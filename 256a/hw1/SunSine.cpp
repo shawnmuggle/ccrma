@@ -1,8 +1,7 @@
 #include "RtAudio.h"
 #include <iostream>
+#include <cstdlib>
 using namespace std;
-
-#define SAMPLE_RATE 44100
 
 int callback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
 	      double streamTime, RtAudioStreamStatus status, void *data )
@@ -18,6 +17,7 @@ int main( )
   unsigned int devices = audio.getDeviceCount();
   if ( devices < 1 ) {
     cerr << "No audio device found!" << endl;
+    exit(1);
   }
 
   audio.showWarnings( true );
@@ -43,13 +43,27 @@ int main( )
   options.flags |= RTAUDIO_HOG_DEVICE;
   options.flags |= RTAUDIO_SCHEDULE_REALTIME;
 
+  int sampleRate;
+  if (info.sampleRates.size() < 1) {
+    cerr << "No supported sample rates found!" << endl;
+    exit(1);
+  }
+  for (int i = 0; i < info.sampleRates.size(); i++) {
+    sampleRate = info.sampleRates[i];
+    if (sampleRate == 44100 || sampleRate == 48000) {
+      // Found a nice sample rate, stop looking
+      break;
+    }
+  }
+  cout << "Using sample rate: " << sampleRate << endl;
+
   double *data = (double *) calloc( params.nChannels, sizeof( double ) );
 
   try {
     audio.openStream( &params,            // output params
 		      NULL,               // input params
 		      RTAUDIO_FLOAT64,    // audio format 
-		      44100,              // sample rate
+		      sampleRate,              // sample rate
 		      &bufferFrames,      // num frames per buffer (mutable by rtaudio)
 		      &callback,          // audio callback
 		      (void *)data,       // user data pointer

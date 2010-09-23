@@ -1,8 +1,7 @@
 CXX=g++
 INCLUDES=
-FLAGS=-D__MACOSX_CORE__ -c
-LIBS=-framework CoreAudio -framework CoreMIDI -framework CoreFoundation \
-	-framework IOKit -framework Carbon -lstdc++ -lm
+FLAGS=-D__UNIX_JACK__ -c
+LIBS=-lstdc++ -lm -ljack
 
 OBJS=	RtAudio.o SunSine.o
 
