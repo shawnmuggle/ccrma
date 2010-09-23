@@ -1,12 +1,22 @@
 #include "RtAudio.h"
 #include <iostream>
 #include <cstdlib>
+#include <math.h>
 using namespace std;
 
 int callback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
 	      double streamTime, RtAudioStreamStatus status, void *data )
 {
-  
+  RtAudio *audio = (RtAudio *)data;
+  //cout << audio->getStreamSampleRate() << endl;
+
+  for (unsigned int i = 0; i < nBufferFrames * 2;) {
+    double samp = ((double) rand() / (double) RAND_MAX) * 2 - 1;
+    //cout << samp << endl;
+    ((double *)outputBuffer)[i++] = samp;
+    ((double *)outputBuffer)[i++] = samp;
+  }
+
   return 0;
 }
 
@@ -30,7 +40,7 @@ int main( )
     info = audio.getDeviceInfo(i);
     if ( info.outputChannels > 0 ) {
       params.deviceId = i;
-      params.nChannels = info.outputChannels;
+      params.nChannels = 2;//info.outputChannels;
       break;
     }
   }
@@ -57,16 +67,14 @@ int main( )
   }
   cout << "Using sample rate: " << sampleRate << endl;
 
-  double *data = (double *) calloc( params.nChannels, sizeof( double ) );
-
   try {
     audio.openStream( &params,            // output params
 		      NULL,               // input params
 		      RTAUDIO_FLOAT64,    // audio format 
-		      sampleRate,              // sample rate
+		      sampleRate,         // sample rate
 		      &bufferFrames,      // num frames per buffer (mutable by rtaudio)
 		      &callback,          // audio callback
-		      (void *)data,       // user data pointer
+		      &audio,             // user data pointer HACK HACK :D
 		      &options);          // stream options
     audio.startStream();
   } catch ( RtError &e ) {
@@ -89,7 +97,6 @@ int main( )
   if ( audio.isStreamOpen() ) {
     audio.closeStream();
   }
-  free( data );
 
   cout << "HELLO" << endl;
   return 0;
