@@ -2,30 +2,45 @@
 #include <iostream>
 #include <cstdlib>
 #include <math.h>
+#include <map>
+#include <string.h>
 using namespace std;
 
+typedef double (*ugen) (double phase, double width);
+
 double g_phase = 0;
-double g_frequency = 10;
+double g_frequency = 220;
+double g_width = 0.5;
+ugen g_active_ugen;
 
-double pulse(double phase)
+double sine(double phase, double width)
 {
-  if (phase < M_PI)
+  return sin(phase);
+}
+
+double pulse(double phase, double width)
+{
+  if (phase < 2 * M_PI * width)
     return 1.0;
-  return 0.0;
+  else
+    return 0.0;
 }
 
-double saw(double phase)
+double saw(double phase, double width)
 {
-  return 2.0 * M_PI - phase;
+  if (phase < 2 * M_PI * width)
+    return phase / (M_PI * width) - 1; // has a * 2 - 1 to normalize to double sample range
+  else
+    return 1 - 2 * (phase / (2 * M_PI) - width) / (1 - width); // get value over remaining range, then normalize to 1
 }
 
-double noise(double phase)
+double noise(double phase, double width)
 {
   return (double)rand() / (double)RAND_MAX * 2 - 1;
 }
 
 double g_last_phase = 1.0;
-double impulse(double phase)
+double impulse(double phase, double width)
 {
   double samp = 0.0;
   if (phase < g_last_phase)
@@ -46,8 +61,8 @@ int callback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
     if (g_phase > 2 * M_PI) {
       g_phase -= 2 * M_PI;
     }
-    double samp = impulse(g_phase);
-        
+    double samp = g_active_ugen(g_phase, g_width);
+
     // TODO: correctly loop over channels
     // TODO: find out if we're not supposed to be interleaved
     ((double *)outputBuffer)[i++] = samp;
@@ -57,8 +72,41 @@ int callback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
   return 0;
 }
 
-int main( )
+int usage()
 {
+  cout <<
+    "SunSine [type] [frequency] [width]" << endl <<
+    "    [type]: --sine | --saw | --pulse | --noise | --impulse" << endl <<
+    "    [frequency]: (a number > 0, not required for noise" << endl <<
+    "    [width]: pulse width ([0-1]), only required for saw and pulse" << endl;
+  exit(1);
+}
+
+int main( int argc, char *argv[])
+{
+  map<string, ugen> ugens;
+  ugens["--sine"] = &sine;
+  ugens["--saw"] = &saw;
+  ugens["--pulse"] = &pulse;
+  ugens["--noise"] = &noise;
+  ugens["--impulse"] = &impulse;
+
+  //if (argc < 3 || argc > 4 ) usage();
+
+
+  // TODO: find out what happens if this isn't stringable
+  string type_arg = argv[1];
+  g_active_ugen = ugens[type_arg];
+
+  /*
+  channels = (unsigned int) atoi( argv[1]);
+  fs = (unsigned int) atoi( argv[2] );
+  if ( argc > 3 )
+    device = (unsigned int) atoi( argv[3] );
+  if ( argc > 4 )
+    offset = (unsigned int) atoi( argv[4] );
+  */
+
   RtAudio audio;
   audio.showWarnings( true );
 
