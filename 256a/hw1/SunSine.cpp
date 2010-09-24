@@ -4,15 +4,24 @@
 #include <math.h>
 using namespace std;
 
+double g_phase = 0;
+double g_frequency = 440;
+
 int callback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
 	      double streamTime, RtAudioStreamStatus status, void *data )
 {
   RtAudio *audio = (RtAudio *)data;
-  //cout << audio->getStreamSampleRate() << endl;
+  unsigned int sampleRate = audio->getStreamSampleRate();
 
   for (unsigned int i = 0; i < nBufferFrames * 2;) {
-    double samp = ((double) rand() / (double) RAND_MAX) * 2 - 1;
-    //cout << samp << endl;
+    double increment =  (2.0 * M_PI) / sampleRate * g_frequency;
+    g_phase += increment;
+    if (g_phase > 2 * M_PI) {
+      g_phase -= 2 * M_PI;
+    }
+    double samp = sin(g_phase);
+    
+    // TODO: correctly loop over channels
     ((double *)outputBuffer)[i++] = samp;
     ((double *)outputBuffer)[i++] = samp;
   }
