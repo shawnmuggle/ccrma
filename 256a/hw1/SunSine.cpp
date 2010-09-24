@@ -12,6 +12,7 @@ double g_phase = 0;
 double g_frequency = 220;
 double g_width = 0.5;
 ugen g_active_ugen;
+bool g_modulateInput;
 
 double sine(double phase, double width)
 {
@@ -63,6 +64,10 @@ int callback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
     }
     double samp = g_active_ugen(g_phase, g_width);
 
+    if (g_modulateInput) {
+      samp = ((double *)inputBuffer)[i / 2] * samp;
+    }
+
     // TODO: correctly loop over channels
     // TODO: find out if we're not supposed to be interleaved
     ((double *)outputBuffer)[i++] = samp;
@@ -75,15 +80,18 @@ int callback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
 int usage()
 {
   cout <<
-    "SunSine [type] [frequency] [width]" << endl <<
+    "SunSine [type] [frequency] [width] [modulation]" << endl <<
     "    [type]: --sine | --saw | --pulse | --noise | --impulse" << endl <<
     "    [frequency]: (a number > 0, not required for noise" << endl <<
-    "    [width]: pulse width ([0-1]), only required for saw and pulse" << endl;
+    "    [width]: pulse width ([0-1]), only required for saw and pulse" << endl <<
+    "    [modulation]: --input (modulates the signal by the line/mic input) (optional)";
   exit(1);
 }
 
 int main( int argc, char *argv[])
 {
+
+  // COMMAND LINE ARG HANDLING
   map<string, ugen> ugens;
   ugens["--sine"] = &sine;
   ugens["--saw"] = &saw;
@@ -91,28 +99,36 @@ int main( int argc, char *argv[])
   ugens["--noise"] = &noise;
   ugens["--impulse"] = &impulse;
 
-  //if (argc < 3 || argc > 4 ) usage();
-
+  if (argc < 3 || argc > 5 ) usage();
 
   // TODO: find out what happens if this isn't stringable
   string type_arg = argv[1];
   g_active_ugen = ugens[type_arg];
 
-  /*
-  channels = (unsigned int) atoi( argv[1]);
-  fs = (unsigned int) atoi( argv[2] );
-  if ( argc > 3 )
-    device = (unsigned int) atoi( argv[3] );
-  if ( argc > 4 )
-    offset = (unsigned int) atoi( argv[4] );
-  */
+  double freq_arg = atof(argv[2]);
+  if (freq_arg <= 0)
+    usage();
+  g_frequency = freq_arg;
 
+  double width_arg = atof(argv[3]);
+  if (width_arg < 0 || width_arg > 1)
+    usage();
+  g_width = width_arg;
+
+  if (argc == 5) {
+    string modulate_arg = argv[4];
+    g_modulateInput = true;
+  }
+
+  // AUDIO SETUP
   RtAudio audio;
   audio.showWarnings( true );
 
-  RtAudio::StreamParameters params;
+  RtAudio::StreamParameters outputParams;
+  RtAudio::StreamParameters inputParams;
 
-  // Choose an audio device
+  // Choose an audio device and a sample rate
+  unsigned int sampleRate;
   unsigned int devices = audio.getDeviceCount();
   if ( devices < 1 ) {
     cerr << "No audio device found!" << endl;
@@ -121,41 +137,44 @@ int main( int argc, char *argv[])
   RtAudio::DeviceInfo info;
   for (unsigned int i = 0; i < devices; i++ ) {
     info = audio.getDeviceInfo(i);
-    if ( info.outputChannels > 1 ) {
-      params.deviceId = i;
-      params.nChannels = 2;
-      break;
+    if ( info.isDefaultOutput ) {
+      outputParams.deviceId = i;
+      outputParams.nChannels = 2;
+
+      if (info.sampleRates.size() < 1) {
+	cerr << "No supported sample rates found!" << endl;
+	exit(1);
+      }
+      for (int i = 0; i < info.sampleRates.size(); i++) {
+	sampleRate = info.sampleRates[i];
+	if (sampleRate == 44100 || sampleRate == 48000) {
+	  // Found a nice sample rate, stop looking
+	  break;
+	}
+      }
+      cout << "Using sample rate: " << sampleRate << endl;
+
+    }
+    if ( info.isDefaultInput ) {
+      inputParams.deviceId = i;
+      inputParams.nChannels = 1;
     }
   }
-  params.firstChannel = 0;
 
-  cout << "Using device ID " << params.deviceId << " which has " << 
-    params.nChannels << " output channels." << endl;
+  cout << "Using output device ID " << outputParams.deviceId << " which has " << 
+    outputParams.nChannels << " output channels." << endl;
+  cout << "Using input device ID " << inputParams.deviceId << " which has " << 
+    inputParams.nChannels << " input channels." << endl;
 
   RtAudio::StreamOptions options;
   options.flags |= RTAUDIO_HOG_DEVICE;
   options.flags |= RTAUDIO_SCHEDULE_REALTIME;
 
-  // Choose a sample rate
-  int sampleRate;
-  if (info.sampleRates.size() < 1) {
-    cerr << "No supported sample rates found!" << endl;
-    exit(1);
-  }
-  for (int i = 0; i < info.sampleRates.size(); i++) {
-    sampleRate = info.sampleRates[i];
-    if (sampleRate == 44100 || sampleRate == 48000) {
-      // Found a nice sample rate, stop looking
-      break;
-    }
-  }
-  cout << "Using sample rate: " << sampleRate << endl;
-
   unsigned int bufferFrames = 256;
 
   try {
-    audio.openStream( &params,            // output params
-		      NULL,               // input params
+    audio.openStream( &outputParams,      // output params
+		      &inputParams,       // input params
 		      RTAUDIO_FLOAT64,    // audio format 
 		      sampleRate,         // sample rate
 		      &bufferFrames,      // num frames per buffer (mutable by rtaudio)
@@ -184,6 +203,5 @@ int main( int argc, char *argv[])
     audio.closeStream();
   }
 
-  cout << "HELLO" << endl;
   return 0;
 }
