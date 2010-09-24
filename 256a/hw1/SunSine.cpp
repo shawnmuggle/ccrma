@@ -5,7 +5,34 @@
 using namespace std;
 
 double g_phase = 0;
-double g_frequency = 440;
+double g_frequency = 10;
+
+double pulse(double phase)
+{
+  if (phase < M_PI)
+    return 1.0;
+  return 0.0;
+}
+
+double saw(double phase)
+{
+  return 2.0 * M_PI - phase;
+}
+
+double noise(double phase)
+{
+  return (double)rand() / (double)RAND_MAX * 2 - 1;
+}
+
+double g_last_phase = 1.0;
+double impulse(double phase)
+{
+  double samp = 0.0;
+  if (phase < g_last_phase)
+    samp = 1.0;
+  g_last_phase = phase;
+  return samp;
+}
 
 int callback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
 	      double streamTime, RtAudioStreamStatus status, void *data )
@@ -19,9 +46,10 @@ int callback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
     if (g_phase > 2 * M_PI) {
       g_phase -= 2 * M_PI;
     }
-    double samp = sin(g_phase);
-    
+    double samp = impulse(g_phase);
+        
     // TODO: correctly loop over channels
+    // TODO: find out if we're not supposed to be interleaved
     ((double *)outputBuffer)[i++] = samp;
     ((double *)outputBuffer)[i++] = samp;
   }
@@ -32,24 +60,22 @@ int callback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
 int main( )
 {
   RtAudio audio;
+  audio.showWarnings( true );
 
+  RtAudio::StreamParameters params;
+
+  // Choose an audio device
   unsigned int devices = audio.getDeviceCount();
   if ( devices < 1 ) {
     cerr << "No audio device found!" << endl;
     exit(1);
   }
-
-  audio.showWarnings( true );
-
-  unsigned int bufferFrames = 256;
-  
-  RtAudio::StreamParameters params;
   RtAudio::DeviceInfo info;
   for (unsigned int i = 0; i < devices; i++ ) {
     info = audio.getDeviceInfo(i);
-    if ( info.outputChannels > 0 ) {
+    if ( info.outputChannels > 1 ) {
       params.deviceId = i;
-      params.nChannels = 2;//info.outputChannels;
+      params.nChannels = 2;
       break;
     }
   }
@@ -62,6 +88,7 @@ int main( )
   options.flags |= RTAUDIO_HOG_DEVICE;
   options.flags |= RTAUDIO_SCHEDULE_REALTIME;
 
+  // Choose a sample rate
   int sampleRate;
   if (info.sampleRates.size() < 1) {
     cerr << "No supported sample rates found!" << endl;
@@ -75,6 +102,8 @@ int main( )
     }
   }
   cout << "Using sample rate: " << sampleRate << endl;
+
+  unsigned int bufferFrames = 256;
 
   try {
     audio.openStream( &params,            // output params
