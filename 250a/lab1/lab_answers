@@ -1,0 +1,24 @@
+Short Questions:
+1. The patch is an infinite loop of bangs.
+
+Key Repeat:
+1. On a CCRMA workstation, holding down a key causes the keyname-down object to fire repeatedly and very quickly.
+2. I'd say this is the best possible behavior for key-repeat (though the patch might sound better if the play-sample object was polyphonic.
+
+
+Patch changes:
+I made a noise instrument out of the provided patch. It keeps the sample playback, but is designed to focus more on regular repetition and effects sweeps than melodic single notes. I created a tap tempo object which can control repeated playback of each sample at different rates. I created individual sample playback objects for each sample, so that they can play concurrently. I added several filters which affect the sample playback which are controlled by the mouse. I also added a bass synth which uses frequency modulated frequency modulation :]
+
+Usage:
+* a, s, d, f trigger samples. They should typically be held down to generate extremely fast repeated playback, which is nice & textural.
+* The mouse controls various effects applied to the samples.
+ - Horizontal position controls playback rate, so that when the mouse is near the left edge of the screen the samples will play extremely slowly, and very quickly near the right. 
+ - Vertical position controls the cutoff frequency of a high-pass filter, with the cutoff increasing as the mouse gets towards the bottom of the screen
+ - Holding down the left mouse button causes a very short delay loop to kick in, like a very simple Karplus-Strong model, giving some resonance to the sound.
+* You can use the taptempo objects at the top of the patch to set repeat rates for the samples. Just repeatedly click on the "tap" button, and it'll send out bangs at the average rate of your taps. Press the "rst" button to reset the rate for that taptempo object.
+* q, w, e, r, t, y, u will set the carrier frequency of a bass synth (just an osc~).
+ - You can change the "modulation frequency" and "modulation frequency index" to do frequency modulation on the bass synth.
+ - You can change the "modulation frequency modulation frequency" and the "modulation frequency modulation frequency index" to do frequency modulation on the signal which is frequency modulating the bass synth.
+
+Playing:
+I like to start out with a simple bass sound, without any modulation, then to bring in both modulators slowly, first at low frequencies so that the oscillation is very clear, and then increasing both modulation frequencies until the sound is very thick. Then I change the bass carrier frequency with the top row of keys (qwertyu) so that they beat differently with the modulations. Then I start playing back samples with the asdf keys, sometimes individually, and moving towards short bursts. I start with the mouse in the bottom left of the screen so they are played back faster than their original rate, and with a high-pass filter applied pretty heavily. Then I start sweeping the mouse around while playing bursts of repeated samples (holding down one of the asdf keys to repeat the sample), and start to explore the left edge of the screen (very low playback rate). Starting to press and hold the left mouse button to induce the delay loop while repeating a sample and moving the mouse from left to right sounds pretty cool. Soon I start tapping in near-identical tempos into the samples so that they play back in interesting phasing patterns, and continue to trigger them with the keyboard and manipulate all the various parameters to taste. I like to take out all the elements in the reverse order from how I brought them in.
