@@ -1,6 +1,0 @@
-Short Questions:
-1. The patch is an infinite loop of bangs.
-
-Key Repeat:
-1. On a CCRMA workstation, holding down a key causes the keyname-down object to fire repeatedly and very quickly.
-2. I'd say this is the best possible behavior for key-repeat (though the patch might sound better if the play-sample object was polyphonic.
