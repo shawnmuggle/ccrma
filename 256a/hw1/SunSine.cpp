@@ -24,9 +24,10 @@ double pulse(double phase, double width)
   if (phase < 2 * M_PI * width)
     return 1.0;
   else
-    return 0.0;
+    return -1.0;
 }
 
+// FIXME: wavering frequencies (at v. high harmonics)
 double saw(double phase, double width)
 {
   if (phase < 2 * M_PI * width)
@@ -84,7 +85,7 @@ int usage()
     "    [type]: --sine | --saw | --pulse | --noise | --impulse" << endl <<
     "    [frequency]: (a number > 0, not required for noise" << endl <<
     "    [width]: pulse width ([0-1]), only required for saw and pulse" << endl <<
-    "    [modulation]: --input (modulates the signal by the line/mic input) (optional)";
+    "    [modulation]: --input (modulates the signal by the line/mic input) (optional)" << endl;
   exit(1);
 }
 
