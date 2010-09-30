@@ -26,6 +26,8 @@ double g_fm_index = 20;
 double g_fm_width = 0.5;
 ugen g_active_fm_ugen;
 
+// UGEN FUNCTIONS
+
 double sine(double phase, double width)
 {
   return sin(phase);
@@ -67,6 +69,8 @@ double impulse(double phase, double width)
   return samp;
 }
 
+// AUDIO CALLBACK
+
 int callback( void *output_buffer, void *input_buffer, unsigned int n_buffer_frames,
 	      double stream_time, RtAudioStreamStatus status, void *data )
 {
@@ -102,6 +106,8 @@ int callback( void *output_buffer, void *input_buffer, unsigned int n_buffer_fra
 
   return 0;
 }
+
+// USAGE MESSAGE
 
 int usage()
 {
