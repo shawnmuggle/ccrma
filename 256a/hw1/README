@@ -1,0 +1,30 @@
+Mike Rotondo
+256A HW1 - SunSine
+
+ * COMPILE
+    You can just run "make" to compile SunSine. It will compile RtAudio to use Jack, and this will work on the CCRMA machines as well as OS X, as long as you are running a jack server.
+
+ * USAGE
+
+      SunSine ([type] [frequency] [width]) [modulation]
+          [type]: --sine | --saw | --pulse | --noise | --impulse
+          [frequency]: (a number > 0, not required for noise
+          [width]: pulse width ([0-1]), only required for saw and pulse
+          [modulation] (optional): 
+              --input (modulates the signal by the line/mic input)
+              --fm (modulates the signal by another signal, requires another 
+                  [type], [frequency], [width], and [index]
+      EXAMPLES:
+          SunSine --noise 0 0 (ignores frequency and width)
+          SunSine --sine 440 0 (ignores width)
+          SunSine --pulse 220 0.5
+          SunSine --saw 110 0.5 --input
+          SunSine --saw 400 0.5 --fm --pulse 10 0.5 40
+          SunSine --saw 400 0.5 --input --fm --pulse 10 0.5 100
+
+ * Special Sauce
+    I added optional Frequency Modulation which can take its own waveform, frequency, width and index, as seen in the Usage message. You can also turn on FM and ring modulation on at the same time, so you can modulate while you modulate.
+    Also I made it auto-detect the correct audio devices and sample rates to use.
+
+* :(
+    When I do a spectral analysis on my audio, I see that the harmonic peaks are oscillating slightly in amplitude and frequency. I haven't yet tracked down exactly why, and I can't hear the effect.
