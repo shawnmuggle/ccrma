@@ -1,0 +1,6 @@
+Mike Rotondo
+250A Lab 2
+
+I made a keyboard instrument that I call The Clacker. It's a monophonic instrument with a pretty simple synthesis setup, and plays a major pentatonic scale. The oscillator is a phasor which I convert into a .25 pulse-width pulse wave with an expr~ object, which already gives a somewhat "vocal" sound, with plenty of harmonics. I pass that through a band-pass filter which is set up to have its center frequency default to the root frequency of the scale and a reasonably high Q, and which acts as a wah (has its center frequency go up) when a pressure sensor is squeezed.
+
+I also route the clackity sound of the keys straight through from adc to dac, with a bit of gain because my mic is crap. I tried for a while to think of a way to modulate the instrument's sound with the signal from the mic, but couldn't make it sound nice.
