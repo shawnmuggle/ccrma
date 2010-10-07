@@ -1,0 +1,5 @@
+Mike Rotondo
+250A Lab 3
+
+Button bug: Input pin is set to 2 but the comment says it should be 7.
+
