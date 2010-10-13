@@ -42,6 +42,7 @@ class DelayLine : public UGen {
   DelayLine(int max_delay_length, int delay_length);
   ~DelayLine();
   virtual SAMPLE ComputeOutputSample(SAMPLE input_sample);
+  SAMPLE AverageValue(); // pretty random, but I need to find out what's been coming out
 };
 
 class Gain : public UGen {
@@ -72,19 +73,22 @@ class RectangularEnvelope : public UGen {
 };
 
 class Voice {
-  int tick_count;
  protected:
+  //SHOULD BE PRIVATE but is used from a public method for now
+  int tick_count;
   UGen *ugen;
  public:
   Voice();
   Voice(UGen *unit_generator);
   ~Voice();
   SAMPLE GetSample();
+  virtual bool IsDone();
 };
 
 class KarplusStrong : public Voice {
  public:
   KarplusStrong(double frequency);
+  virtual bool IsDone();
 };
 
 class Synth {

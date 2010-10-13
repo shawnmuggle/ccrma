@@ -1,6 +1,6 @@
 CXX=g++
 INCLUDES=
-FLAGS=-D__LINUX_ALSA__ -c -g -O0 -fno-inline
+FLAGS=-D__LINUX_ALSA__ -c #-g -O0 -fno-inline
 OSX_FLAGS=-D__MACOSX_CORE__ -c
 LINUX_FLAGS=-D__LINUX_ALSASEQ__ -c
 LIBS=-lstdc++ -lm #-ljack

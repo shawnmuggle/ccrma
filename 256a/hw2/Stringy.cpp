@@ -96,6 +96,15 @@ SAMPLE DelayLine::ComputeOutputSample(SAMPLE input_sample)
   return output_sample;
 }
 
+SAMPLE DelayLine::AverageValue()
+{
+  SAMPLE sum = 0;
+  for (int i = 0; i < delay_length; i++) {
+    sum += delay_buffer[i];
+  }
+  return sum / delay_length;
+}
+
 Gain::Gain(double gain) :
   gain(gain)
 {}
@@ -166,6 +175,12 @@ SAMPLE Voice::GetSample()
   return ugen->GetSample(tick_count++);
 }
 
+bool Voice::IsDone()
+{
+  cout << "voice done?" << endl;
+  return false;
+}
+
 KarplusStrong::KarplusStrong(double frequency)
 {
   int wavelength_in_samples = (int) (g_sample_rate / frequency);
@@ -181,22 +196,34 @@ KarplusStrong::KarplusStrong(double frequency)
   moving_average->GetAudioFrom(delay);
   gain->GetAudioFrom(moving_average);
   delay->GetAudioFrom(gain);
+  
+  ugen = delay;
+}
 
-  this->ugen = delay;
+bool KarplusStrong::IsDone()
+{
+  SAMPLE average = ((DelayLine *)ugen)->AverageValue();
+  return tick_count > 10000 && average < 0.01;
 }
 
 // AUDIO CALLBACK (static!)
 int Synth::AudioCallback(void *output_buffer, void *input_buffer, unsigned int n_buffer_frames,
-		    double stream_time, RtAudioStreamStatus status, void *userData )
+			 double stream_time, RtAudioStreamStatus status, void *userData )
 {
   vector<Voice *> *voices = (vector<Voice *> *) userData;
   for (unsigned int i = 0; i < n_buffer_frames * 2;) {
     SAMPLE output_sample = 0;
     
-    vector<Voice *>::iterator itr;
-    pthread_mutex_lock(&voices_mutex);
-    for(itr=voices->begin(); itr!=voices->end(); itr++) {
-      output_sample += (*itr)->GetSample();
+    pthread_mutex_lock(&voices_mutex);    
+    vector<Voice *>::iterator itr=voices->begin();
+    while(itr != voices->end()) {
+      if((*itr)->IsDone()) {
+	cout << "ERASING" << endl;
+	itr = voices->erase(itr);
+      } else {
+	output_sample += (*itr)->GetSample();	
+	++itr;
+      }
     }
     pthread_mutex_unlock(&voices_mutex);
     
