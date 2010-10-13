@@ -6,10 +6,12 @@
 #include <map>
 #include <string.h>
 #include <assert.h>
+#include <pthread.h>
 
 // FIXME: inaudibly wavering harmonic frequencies (at v. high harmonics)
 
 double g_sample_rate = 0;
+int g_num_voices = 30;
 pthread_mutex_t voices_mutex;
 
 UGen::UGen () :
@@ -96,13 +98,9 @@ SAMPLE DelayLine::ComputeOutputSample(SAMPLE input_sample)
   return output_sample;
 }
 
-SAMPLE DelayLine::AverageValue()
+SAMPLE MovingAverage::GetLastAverage()
 {
-  SAMPLE sum = 0;
-  for (int i = 0; i < delay_length; i++) {
-    sum += delay_buffer[i];
-  }
-  return sum / delay_length;
+  return last_sample_generated;
 }
 
 Gain::Gain(double gain) :
@@ -156,6 +154,8 @@ SAMPLE RectangularEnvelope::ComputeOutputSample(SAMPLE input_sample)
   }
 }
 
+// Forgot that I needed this for a couple hours, which caused me great anguish!
+//   (Also caused me to learn how to use gdb and valgrind, so that's good)
 Voice::Voice() :
   tick_count(0)
 {}
@@ -175,55 +175,38 @@ SAMPLE Voice::GetSample()
   return ugen->GetSample(tick_count++);
 }
 
-bool Voice::IsDone()
-{
-  cout << "voice done?" << endl;
-  return false;
-}
-
 KarplusStrong::KarplusStrong(double frequency)
 {
   int wavelength_in_samples = (int) (g_sample_rate / frequency);
 
   UGen *noise = new WhiteNoise();
   RectangularEnvelope *env = new RectangularEnvelope(wavelength_in_samples, 1.0);
-  UGen *moving_average = new MovingAverage(1000, 2);
+  average = new MovingAverage(1000, 2);
   UGen *delay = new DelayLine(44100 * 5, wavelength_in_samples);
-  UGen *gain = new Gain(0.99);
+  UGen *gain = new Gain(1.01);//0.99999);
   
   env->GetAudioFrom(noise);
   delay->GetAudioFrom(env);
-  moving_average->GetAudioFrom(delay);
-  gain->GetAudioFrom(moving_average);
+  average->GetAudioFrom(delay);
+  gain->GetAudioFrom(average);
   delay->GetAudioFrom(gain);
   
   ugen = delay;
-}
-
-bool KarplusStrong::IsDone()
-{
-  SAMPLE average = ((DelayLine *)ugen)->AverageValue();
-  return tick_count > 10000 && average < 0.01;
 }
 
 // AUDIO CALLBACK (static!)
 int Synth::AudioCallback(void *output_buffer, void *input_buffer, unsigned int n_buffer_frames,
 			 double stream_time, RtAudioStreamStatus status, void *userData )
 {
-  vector<Voice *> *voices = (vector<Voice *> *) userData;
+  deque<Voice *> *voices = (deque<Voice *> *) userData;
   for (unsigned int i = 0; i < n_buffer_frames * 2;) {
     SAMPLE output_sample = 0;
     
     pthread_mutex_lock(&voices_mutex);    
-    vector<Voice *>::iterator itr=voices->begin();
+    deque<Voice *>::iterator itr=voices->begin();
     while(itr != voices->end()) {
-      if((*itr)->IsDone()) {
-	cout << "ERASING" << endl;
-	itr = voices->erase(itr);
-      } else {
-	output_sample += (*itr)->GetSample();	
-	++itr;
-      }
+      output_sample += (*itr)->GetSample();	
+      ++itr;
     }
     pthread_mutex_unlock(&voices_mutex);
     
@@ -234,23 +217,33 @@ int Synth::AudioCallback(void *output_buffer, void *input_buffer, unsigned int n
 }
 
 // static!!
+double Synth::mtof(int pitch)
+{
+  double pitch_zero_freq = 8.17579892;
+  return pitch_zero_freq * pow(2.0, pitch / 12.0);
+}
+
+// static!!
 void Synth::MidiCallback(double deltatime, std::vector< unsigned char > *message, void *userData )
 {
-  vector<Voice *> *voices = (vector<Voice *> *) userData;
+  deque<Voice *> *voices = (deque<Voice *> *) userData;
   unsigned int num_bytes = message->size();
   if ( num_bytes > 0 ) {
     pthread_mutex_lock(&voices_mutex);
-    if ((int)message->at(0) == 144) {
-      int freq = 200 + 400 * (double)rand() / (double)RAND_MAX;
-      cout << freq << endl;
+    if ((int)message->at(0) == 144 && (int)message->at(2) > 0) {
+      int freq = mtof((int)message->at(1));
+      cout << "Got frequency " << freq << " for pitch " << (int)message->at(1) << endl;
       voices->push_back(new KarplusStrong(freq));
+      if (voices->size() >= g_num_voices) {
+	voices->pop_front();
+      }
     }
     pthread_mutex_unlock(&voices_mutex);
   }
 }
 
 Synth::Synth() :
-  voices(new vector<Voice *>())
+  voices(new deque<Voice *>())
 {}
 
 Synth::~Synth ()
@@ -379,6 +372,7 @@ void Synth::SetUpAudio()
 
 int main( int argc, char *argv[])
 {
+  pthread_mutex_init(&voices_mutex, NULL);
   Synth *synth = new Synth();
   synth->SetUpMidi();
   synth->SetUpAudio();
