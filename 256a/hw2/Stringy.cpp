@@ -241,7 +241,9 @@ void Synth::MidiCallback(double deltatime, std::vector< unsigned char > *message
   if ( num_bytes > 0 ) {
     pthread_mutex_lock(&voices_mutex);
     if ((int)message->at(0) == 144) {
-      voices->push_back(new KarplusStrong(440));
+      int freq = 200 + 400 * (double)rand() / (double)RAND_MAX;
+      cout << freq << endl;
+      voices->push_back(new KarplusStrong(freq));
     }
     pthread_mutex_unlock(&voices_mutex);
   }

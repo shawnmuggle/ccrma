@@ -2,8 +2,8 @@ UNAME := $(shell uname)
 
 CXX=g++
 ifeq ($(UNAME), Linux)
-	FLAGS=-D__LINUX__ALSA__ -D__LINUX_ALSASEQ__ -c -g -O0 -fno-inline
-	LIBS=-lstdc++ -lm -lasound -lpthread
+	FLAGS=-D__UNIX_JACK__ -D__LINUX_ALSASEQ__ -c -g -O0 -fno-inline
+	LIBS=-lstdc++ -lm -ljack -lasound -lpthread
 endif
 ifeq ($(UNAME), Darwin)
 	FLAGS=-D__UNIX_JACK__ -D__MACOSX_CORE__ -c -g -O0 -fno-inline
