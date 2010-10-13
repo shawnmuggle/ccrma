@@ -5,6 +5,31 @@ using namespace std;
 
 #define SAMPLE double
 
+/*
+ * The top level class here is Synth, which has a deque of Voices, each of which owns
+ * a UGen which is actually one node in a graph of UGens. Synth owns the MIDI and audio
+ * callbacks. 
+ *
+ * In the MIDI callback, the deque of Voices is added to (and subtracted from
+ * when a new voice is added and the polyphony capacity has already been reached). In the
+ * audio callback, for each sample being supplied to the audio hardware, each Voice is
+ * asked for its next sample. 
+ *
+ * The Voices, in turn, ask their UGen for its next sample. They provide their UGens with 
+ * tick counts, which are distinct to each Voice, so that potential loops in the graph 
+ * of UGens can be handled. Each UGen, if it hasn't yet computed a sample for this tick,
+ * passes on the request for a new sample to its suppliers, computes a new sample given 
+ * the combined inputs and increments its state as necessary. Otherwise, it just returns
+ * the sample it has already computed for this tick.
+ * 
+ * UGens chain together with GetAudioFrom calls, like so:
+ * UGen *sine = new Sine(440);
+ * UGen *sine2 = new Sine(220);
+ * UGen *gain = new Gain(0.5);
+ * gain->GetsAudioFrom(sine);
+ * gain->GetsAudioFrom(sine2);
+ */
+
 class UGen {
   int last_tick_seen;
   vector<UGen *> ugens;  

@@ -1,0 +1,17 @@
+Mike Rotondo
+256A HW2 - Stringy
+http://ccrma.stanford.edu/~mrotondo/256a/hw2
+
+Compile
+ * You can just run "make" to compile Stringy. It will compile RtAudio to use Jack, and this will work on the CCRMA machines as well as OS X, as long as you are running a jack server.
+
+Usage
+ * ./Stringy
+ * (It'll ask you what MIDI input device you'd like to use once it starts up.)
+
+Special Sauce
+* I basically ripped off ChucK (conceptually) creating a general system of UGens which can be connected to one another with multiple-in/multiple-out connections, can handle loops, and generate audio on a per-sample basis. Above the UGens are Voices, of which KarplusStrong is a subclass. I'm not sure if there is actually a fundamental difference between UGens and Voices, and I might go back in and change it around later. I used a deque to handle polyphony, so that adding new voices and stealing the oldest one is always done in constant time.
+* I also added mappings to the pitch bend and mod wheels on most MIDI controllers so that the player could have further control over the sound of my instrument. The "pitch bend wheel" controls an offset of the instrument's delay-line's read index. This can create a basic pitch bend effect, but more interestingly can result in the read index moving in front of the write index, which causes some really neat long-period looping effects. The mod-wheel controls an offset on the attenuation factor for all the instruments, so that you can dampen or excite (even beyond 1.0, going into feedback) the strings differently over time. I traded lots of ideas with Sean Coffin about this stuff, and he has some similar effects on his instrument.
+
+:(
+ * I had some segfaults for soooo long. But, I learned how to use valgrind and gdb, so it'll be easier next time.
