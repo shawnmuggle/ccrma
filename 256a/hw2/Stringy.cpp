@@ -8,8 +8,6 @@
 #include <assert.h>
 #include <pthread.h>
 
-// FIXME: inaudibly wavering harmonic frequencies (at v. high harmonics)
-
 double g_sample_rate = 0;
 int g_num_voices = 30;
 pthread_mutex_t voices_mutex;
@@ -98,11 +96,6 @@ SAMPLE DelayLine::ComputeOutputSample(SAMPLE input_sample)
   return output_sample;
 }
 
-SAMPLE MovingAverage::GetLastAverage()
-{
-  return last_sample_generated;
-}
-
 Gain::Gain(double gain) :
   gain(gain)
 {}
@@ -137,6 +130,11 @@ SAMPLE MovingAverage::ComputeOutputSample(SAMPLE input_sample)
   }
 
   return output_sample;
+}
+
+MovingAverage::~MovingAverage ()
+{
+  delete sample_values;
 }
 
 RectangularEnvelope::RectangularEnvelope(int length, double amplitude) :
@@ -329,25 +327,16 @@ void Synth::SetUpAudio()
 
   unsigned int buffer_frames = 256;
   try {
-    audio.openStream( &output_params,     // output params
-		      &input_params,      // input params
-		      RTAUDIO_FLOAT64,    // audio format 
-		      sample_rate,        // sample rate
-		      &buffer_frames,     // num frames per buffer (mutable by rtaudio)
-		      &Synth::AudioCallback,          // audio callback
-		      voices,        // user data pointer
-		      &options);          // stream options
+    audio.openStream( &output_params,
+		      &input_params,
+		      RTAUDIO_FLOAT64,
+		      sample_rate,
+		      &buffer_frames,
+		      &Synth::AudioCallback,
+		      voices,
+		      &options);
 
     audio.startStream();
-
-
-    pthread_mutex_lock(&voices_mutex);
-    voices->push_back(new KarplusStrong(100));
-    //voices->push_back(new KarplusStrong(150));
-    //voices->push_back(new KarplusStrong(200));
-    pthread_mutex_unlock(&voices_mutex);
-
-
   } catch ( RtError &e ) {
     e.printMessage();
     goto cleanup;

@@ -7,12 +7,11 @@ using namespace std;
 
 class UGen {
   int last_tick_seen;
- protected:
-  SAMPLE last_sample_generated;
- public:
   // TODO: THIS SHOULD BE PRIVATE but I can't get iterating over a private vector to work
   vector<UGen *> ugens;  
-  
+ protected:
+  SAMPLE last_sample_generated;
+ public:  
   UGen();
   void GetAudioFrom(UGen *ugen);
   SAMPLE GetSample(int tick_count);
@@ -56,6 +55,7 @@ class MovingAverage : public UGen {
   int write_index;
   SAMPLE sum;
  public:
+  ~MovingAverage();
   MovingAverage(int max_average_length, int average_length);
   virtual SAMPLE ComputeOutputSample(SAMPLE input_sample);
   SAMPLE GetLastAverage();
