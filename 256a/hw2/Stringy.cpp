@@ -1,23 +1,64 @@
-#include "RtAudio.h"
 #include "Stringy.h"
 #include <iostream>
 #include <cstdlib>
 #include <math.h>
 #include <map>
 #include <string.h>
+#include <assert.h>
 
 // TODO: clean up all globals into a state struct which gets passed back as user data
-// TODO: create classes for ugens if we want to do per-ugen requirement checking on command line params
 // FIXME: inaudibly wavering harmonic frequencies (at v. high harmonics)
+
+double g_sample_rate = 0;
+pthread_mutex_t voices_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+UGen::UGen () :
+  last_tick_seen(-1),
+  last_sample_generated(0)
+{}
 
 void UGen::GetAudioFrom(UGen *ugen)
 {
-  this->ugens.push_back(ugen);
+  ugens.push_back(ugen);
 }
 
-SAMPLE Sine::GetSample(double phase)
+SAMPLE UGen::GetSample(int tick_count)
 {
+  if (tick_count > last_tick_seen) {
+    last_tick_seen = tick_count;
+    SAMPLE input_sample = ComputeInputSample(tick_count);
+    last_sample_generated = ComputeOutputSample(input_sample);
+  }
+  return last_sample_generated;
+}
+
+SAMPLE UGen::ComputeInputSample(int tick_count)
+{
+  SAMPLE input_sample = 0;
+  vector<UGen *>::iterator itr;
+  for(itr=ugens.begin(); itr!=ugens.end(); itr++) {
+    input_sample += (*itr)->GetSample(tick_count);
+  }
+  return input_sample;
+}
+
+Sine::Sine(double frequency) :
+  frequency(frequency)
+{}
+
+SAMPLE Sine::ComputeOutputSample(SAMPLE input_sample)
+{
+  double increment =  (2.0 * M_PI) / g_sample_rate * (frequency);
+  phase += increment;
+  if (phase > 2 * M_PI) {
+    phase -= 2 * M_PI;
+  }
   return sin(phase);
+}
+
+SAMPLE WhiteNoise::ComputeOutputSample(SAMPLE input_sample)
+{
+  return (double)rand() / (double)RAND_MAX * 2 - 1;
 }
 
 DelayLine::DelayLine(int max_delay_length, int delay_length) :
@@ -25,8 +66,12 @@ DelayLine::DelayLine(int max_delay_length, int delay_length) :
   delay_length(delay_length),
   write_index(0)
 {
-  this->delay_buffer = new SAMPLE[max_delay_length];
-  memset(this->delay_buffer, 0, sizeof(SAMPLE) * max_delay_length);
+  cout << "Delay length: " << delay_length << ", MAX delay length: " << max_delay_length << endl;
+
+  assert(delay_length <= max_delay_length);
+
+  delay_buffer = new SAMPLE[max_delay_length];
+  memset(delay_buffer, 0, sizeof(SAMPLE) * max_delay_length);
   read_index = write_index - delay_length;
   if (read_index < 0) {
     read_index += max_delay_length;
@@ -35,26 +80,21 @@ DelayLine::DelayLine(int max_delay_length, int delay_length) :
 
 DelayLine::~DelayLine()
 {
-  delete this->delay_buffer;
+  delete delay_buffer;
 }
 
-SAMPLE DelayLine::GetSample(double phase)
+SAMPLE DelayLine::ComputeOutputSample(SAMPLE input_sample)
 {
-  SAMPLE input_sample = 0;
-  vector<UGen *>::iterator itr;
-  for(itr=ugens.begin(); itr!=ugens.end(); itr++) {
-    input_sample += (*itr)->GetSample(phase);
+  delay_buffer[write_index++] = input_sample;
+  if (write_index >= max_delay_length) {
+    write_index -= max_delay_length;
   }
-  this->delay_buffer[this->write_index++] = input_sample;
-  if (this->write_index >= this->max_delay_length) {
-    this->write_index -= this->max_delay_length;
+  
+  SAMPLE output_sample = delay_buffer[read_index++];
+  if (read_index >= max_delay_length) {
+    read_index -= max_delay_length;
   }
-
-  SAMPLE output_sample = this->delay_buffer[this->read_index++];
-  if (this->read_index >= this->max_delay_length) {
-    this->read_index -= this->max_delay_length;
-  }
-
+  
   return output_sample;
 }
 
@@ -62,219 +102,131 @@ Gain::Gain(double gain) :
   gain(gain)
 {}
 
-SAMPLE Gain::GetSample(double phase)
+SAMPLE Gain::ComputeOutputSample(SAMPLE input_sample)
 {
-  SAMPLE input_sample = 0;
-  vector<UGen *>::iterator itr;
-  for(itr=ugens.begin(); itr!=ugens.end(); itr++) {
-    input_sample += (*itr)->GetSample(phase);
-  }
-  
-  return input_sample * this->gain;
+  return input_sample * gain;
 }
 
-Voice::Voice(double frequency, UGen *ugen) : 
-  frequency(frequency),
-  ugen(ugen)
+MovingAverage::MovingAverage(int max_average_length, int average_length) :
+  max_average_length(max_average_length),
+  average_length(average_length),
+  write_index(0),
+  sum(0)
+{
+  assert(average_length <= max_average_length);
+
+  sample_values = new SAMPLE[max_average_length];
+  memset(sample_values, 0, sizeof(SAMPLE) * max_average_length);
+}
+
+SAMPLE MovingAverage::ComputeOutputSample(SAMPLE input_sample)
+{
+  SAMPLE output_sample = sum / average_length;
+  sum -= sample_values[write_index];
+  sample_values[write_index] = input_sample;
+  sum += sample_values[write_index];
+
+  write_index++;
+  if (write_index >= average_length) {
+    write_index -= average_length;
+  }
+
+  return output_sample;
+}
+
+RectangularEnvelope::RectangularEnvelope(int length, double amplitude) :
+  length(length),
+  amplitude(amplitude),
+  samples_seen(0)
+{}
+
+SAMPLE RectangularEnvelope::ComputeOutputSample(SAMPLE input_sample)
+{
+  if (samples_seen++ < length) {
+    return input_sample * amplitude;
+  } else {
+    return 0.0;
+  }
+}
+
+Voice::Voice()
+{}
+
+Voice::Voice(UGen *ugen) : 
+  ugen(ugen),
+  tick_count(0)
 {}
 
 Voice::~Voice()
 {
-  delete this->ugen;
+  delete ugen;
 }
 
-SAMPLE Voice::GetSample(AudioData *audio_data)
+SAMPLE Voice::GetSample()
 {
-  double increment =  (2.0 * M_PI) / audio_data->sample_rate * (this->frequency);
-  this->phase += increment;
-  if (this->phase > 2 * M_PI) {
-    this->phase -= 2 * M_PI;
-  }
-  return ugen->GetSample(this->phase);
+  return ugen->GetSample(tick_count++);
 }
 
-Voice *g_voice;
-
-/*typedef double (*ugen) (double phase, double width);
-
-double g_phase = 0;
-double g_frequency = 220;
-double g_width = 0.5;
-ugen g_active_ugen;
-
-bool g_modulate_input;
-
-bool g_fm_on = false;
-double g_fm_phase = 0;
-double g_fm_frequency = 300;
-double g_fm_index = 20;
-double g_fm_width = 0.5;
-ugen g_active_fm_ugen;
-
-// UGEN FUNCTIONS
-
-double sine(double phase, double width)
+KarplusStrong::KarplusStrong(double frequency)
 {
-  return sin(phase);
+  int wavelength_in_samples = (int) (g_sample_rate / frequency);
+
+  UGen *noise = new WhiteNoise();
+  RectangularEnvelope *env = new RectangularEnvelope(wavelength_in_samples, 1.0);
+  UGen *moving_average = new MovingAverage(1000, 2);
+  UGen *delay = new DelayLine(44100 * 5, wavelength_in_samples);
+  UGen *gain = new Gain(0.99);
+  
+  env->GetAudioFrom(noise);
+  delay->GetAudioFrom(env);
+  moving_average->GetAudioFrom(delay);
+  gain->GetAudioFrom(moving_average);
+  delay->GetAudioFrom(gain);
+
+  this->ugen = delay;
 }
 
-double pulse(double phase, double width)
+// AUDIO CALLBACK (static!)
+int Synth::callback( void *output_buffer, void *input_buffer, unsigned int n_buffer_frames,
+		     double stream_time, RtAudioStreamStatus status, void *data )
 {
-  if (width == 0)
-    width = 0.001;
-  if (width == 1)
-    width = 0.999;
-
-  if (phase < 2 * M_PI * width)
-    return 1.0;
-  else
-    return -1.0;
-}
-
-double saw(double phase, double width)
-{
-  if (phase < 2 * M_PI * width)
-    return phase / (M_PI * width) - 1; // has a * 2 - 1 to normalize to double sample range
-  else
-    return 1 - 2 * (phase / (2 * M_PI) - width) / (1 - width); // get value over remaining range, then normalize to 1
-}
-
-double noise(double phase, double width)
-{
-  return (double)rand() / (double)RAND_MAX * 2 - 1;
-}
-
-double g_last_phase = 1.0;
-double impulse(double phase, double width)
-{
-  double samp = 0.0;
-  if (phase < g_last_phase)
-    samp = 1.0;
-  g_last_phase = phase;
-  return samp;
-}
-*/
-
-
-// AUDIO CALLBACK
-
-int callback( void *output_buffer, void *input_buffer, unsigned int n_buffer_frames,
-	      double stream_time, RtAudioStreamStatus status, void *data )
-{
-  AudioData *audio_data = (AudioData *)data;
-
+  vector<Voice *> *voices = (vector<Voice *> *) data;
   for (unsigned int i = 0; i < n_buffer_frames * 2;) {
-    SAMPLE samp = g_voice->GetSample(audio_data);
-    ((SAMPLE *)output_buffer)[i++] = samp;
-    ((SAMPLE *)output_buffer)[i++] = samp;
-  }
+    SAMPLE output_sample = 0;
 
+    //pthread_mutex_lock(&voices_mutex);
+    vector<Voice *>::iterator itr;
+    for(itr=voices->begin(); itr!=voices->end(); itr++) {
+      output_sample += (*itr)->GetSample();
+    }
+    //pthread_mutex_unlock(&voices_mutex);
+    
+    ((SAMPLE *)output_buffer)[i++] = output_sample;
+    ((SAMPLE *)output_buffer)[i++] = output_sample;
+  }  
   return 0;
 }
 
-// USAGE MESSAGE
-
-int usage()
+Synth::Synth()
 {
-  cout <<
-    "SunSine ([type] [frequency] [width]) [modulation]" << endl <<
-    "    [type]: --sine | --saw | --pulse | --noise | --impulse" << endl <<
-    "    [frequency]: (a number > 0, not required for noise" << endl <<
-    "    [width]: pulse width ([0-1]), only required for saw and pulse" << endl <<
-    "    [modulation] (optional): " << endl << 
-    "        --input (modulates the signal by the line/mic input)" << endl <<
-    "        --fm (modulates the signal by another signal, requires another " << endl <<
-    "            [type], [frequency], [width], and [index]" << endl <<
-    "EXAMPLES:" << endl <<
-    "    SunSine --noise 0 0 (ignores frequency and width)" << endl <<
-    "    SunSine --sine 440 0 (ignores width)" << endl <<
-    "    SunSine --pulse 220 0.5" << endl <<
-    "    SunSine --saw 110 0.5 --input" << endl << 
-    "    SunSine --saw 400 0.5 --fm --pulse 10 0.5 40" << endl <<
-    "    SunSine --saw 400 0.5 --input --fm --pulse 10 0.5 100" << endl;
-  exit(1);
+  voices = new vector<Voice *>();
 }
 
-int main( int argc, char *argv[])
+Synth::~Synth ()
 {
-  /*
-  // COMMAND LINE ARG HANDLING
-  map<string, ugen> ugens;
-  ugens["--sine"] = &sine;
-  ugens["--saw"] = &saw;
-  ugens["--pulse"] = &pulse;
-  ugens["--noise"] = &noise;
-  ugens["--impulse"] = &impulse;
+  pthread_mutex_destroy(&voices_mutex);
+  delete voices;
+}
 
-  if (argc < 4 || argc > 10 ) usage();
-
-  string type_arg = argv[1];
-  g_active_ugen = ugens[type_arg];
-  if (g_active_ugen == NULL)
-    usage();
-
-  double freq_arg = atof(argv[2]);
-  if (freq_arg <= 0)
-    usage();
-  g_frequency = freq_arg;
-
-  double width_arg = atof(argv[3]);
-  if (width_arg < 0 || width_arg > 1)
-    usage();
-  g_width = width_arg;
-
-  if (argc > 4) { // modulation parameters present
-    for (int i = 4; i < argc;) {
-      if (string(argv[i]).compare("--input") == 0) {
-	g_modulate_input = true;
-	i++;
-      } 
-      else if (string(argv[i]).compare("--fm") == 0) {
-	g_fm_on = true;
-
-	string fm_type_arg = argv[++i];
-	g_active_fm_ugen = ugens[fm_type_arg];
-	if (g_active_fm_ugen == NULL)
-	  usage();
-	
-	double fm_freq_arg = atof(argv[++i]);
-	if (fm_freq_arg <= 0)
-	  usage();
-	g_fm_frequency = fm_freq_arg;
-	
-	double fm_width_arg = atof(argv[++i]);
-	if (fm_width_arg < 0 || fm_width_arg > 1)
-	  usage();
-	g_fm_width = fm_width_arg;
-	
-	double fm_index_arg = atoi(argv[++i]);
-	g_fm_index = fm_index_arg;
-
-	i++;
-      }
-      else
-	usage();
-    }
-  }
-  */
-
-  UGen *sine = new Sine();
-  UGen *delay = new DelayLine(44100 * 5, 44100);
-  delay->GetAudioFrom(sine);
-  g_voice = new Voice(440.0, delay);
-
-  // AUDIO SETUP
-  RtAudio audio;
+void Synth::SetUpAudio()
+{
   audio.showWarnings( true );
-
-  RtAudio::StreamParameters output_params;
-  RtAudio::StreamParameters input_params;
 
   // Choose an audio device and a sample rate
   unsigned int sample_rate;
   unsigned int devices = audio.getDeviceCount();
   if ( devices < 1 ) {
-    cerr << "No audio device found!" << endl;
+    cerr << "No audio device found! (You probably need to start JACK)" << endl;
     exit(1);
   }
   RtAudio::DeviceInfo info;
@@ -292,11 +244,11 @@ int main( int argc, char *argv[])
 	sample_rate = info.sampleRates[i];
 	if (sample_rate == 44100 || sample_rate == 48000) {
 	  // Found a nice sample rate, stop looking
+	  g_sample_rate = sample_rate;
 	  break;
 	}
       }
-      cout << "Using sample rate: " << sample_rate << endl;
-
+      cout << "Using sample rate: " << g_sample_rate << endl;
     }
     if ( info.isDefaultInput ) {
       input_params.deviceId = i;
@@ -314,24 +266,26 @@ int main( int argc, char *argv[])
   options.flags |= RTAUDIO_SCHEDULE_REALTIME;
 
   unsigned int buffer_frames = 256;
-
-  cout << "YO" << endl;
-
-  AudioData audio_data;
-  audio_data.sample_rate = sample_rate;
-
-  cout << "HI" << endl;
-
   try {
     audio.openStream( &output_params,     // output params
 		      &input_params,      // input params
 		      RTAUDIO_FLOAT64,    // audio format 
 		      sample_rate,        // sample rate
 		      &buffer_frames,     // num frames per buffer (mutable by rtaudio)
-		      &callback,          // audio callback
-		      &audio_data,         // user data pointer
+		      &Synth::callback,          // audio callback
+		      voices,        // user data pointer
 		      &options);          // stream options
+
     audio.startStream();
+
+
+    //pthread_mutex_lock(&voices_mutex);
+    voices->push_back(new KarplusStrong(100));
+    voices->push_back(new KarplusStrong(150));
+    voices->push_back(new KarplusStrong(200));
+    //pthread_mutex_lock(&voices_mutex);  
+
+
   } catch ( RtError &e ) {
     e.printMessage();
     goto cleanup;
@@ -352,8 +306,12 @@ int main( int argc, char *argv[])
   if ( audio.isStreamOpen() ) {
     audio.closeStream();
   }
+}
 
-  delete g_voice;
-
+int main( int argc, char *argv[])
+{
+  Synth *synth = new Synth();
+  synth->SetUpAudio();
+  delete synth;
   return 0;
 }
