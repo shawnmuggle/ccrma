@@ -64,6 +64,7 @@ SAMPLE WhiteNoise::ComputeOutputSample(SAMPLE input_sample)
 DelayLine::DelayLine(int max_delay_length, int delay_length) :
   max_delay_length(max_delay_length),
   delay_length(delay_length),
+  delay_length_offset(0),
   write_index(0)
 {
   assert(delay_length <= max_delay_length);
@@ -88,7 +89,12 @@ SAMPLE DelayLine::ComputeOutputSample(SAMPLE input_sample)
     write_index -= max_delay_length;
   }
   
-  SAMPLE output_sample = delay_buffer[read_index++];
+  int read_position = (read_index + delay_length_offset) % max_delay_length;
+  if (read_position < 0) {
+    read_position += max_delay_length;
+  }
+  SAMPLE output_sample = delay_buffer[read_position];
+  read_index += 1;
   if (read_index >= max_delay_length) {
     read_index -= max_delay_length;
   }
@@ -103,6 +109,11 @@ Gain::Gain(double gain) :
 SAMPLE Gain::ComputeOutputSample(SAMPLE input_sample)
 {
   return input_sample * gain;
+}
+
+void Gain::SetGain(double gain)
+{
+  gain = gain;
 }
 
 MovingAverage::MovingAverage(int max_average_length, int average_length) :
@@ -173,15 +184,17 @@ SAMPLE Voice::GetSample()
   return ugen->GetSample(tick_count++);
 }
 
-KarplusStrong::KarplusStrong(double frequency)
+KarplusStrong::KarplusStrong(double frequency) :
+  pitch_offset_scale(1000)
 {
   int wavelength_in_samples = (int) (g_sample_rate / frequency);
+  int max_delay_length = 44100 * 5;
 
-  UGen *noise = new WhiteNoise();
+  WhiteNoise *noise = new WhiteNoise();
   RectangularEnvelope *env = new RectangularEnvelope(wavelength_in_samples, 1.0);
-  average = new MovingAverage(1000, 2);
-  UGen *delay = new DelayLine(44100 * 5, wavelength_in_samples);
-  UGen *gain = new Gain(1.01);//0.99999);
+  MovingAverage *average = new MovingAverage(1000, 2);
+  delay = new DelayLine(max_delay_length, wavelength_in_samples);
+  gain = new Gain(0.99999);
   
   env->GetAudioFrom(noise);
   delay->GetAudioFrom(env);
@@ -190,6 +203,18 @@ KarplusStrong::KarplusStrong(double frequency)
   delay->GetAudioFrom(gain);
   
   ugen = delay;
+}
+
+// offset is from [-1, 1]
+void KarplusStrong::SetPitchOffset(double offset)
+{
+  delay->delay_length_offset = offset * pitch_offset_scale;
+}
+
+// offset is from [-1, 1]
+void KarplusStrong::SetGainOffset(double offset)
+{
+  gain->gain = .9 + offset * .2;
 }
 
 // AUDIO CALLBACK (static!)
@@ -227,13 +252,27 @@ void Synth::MidiCallback(double deltatime, std::vector< unsigned char > *message
   deque<Voice *> *voices = (deque<Voice *> *) userData;
   unsigned int num_bytes = message->size();
   if ( num_bytes > 0 ) {
+    cout << (int)message->at(0) << ", " << (int)message->at(1) << ", " << (int)message->at(2) << endl;
     pthread_mutex_lock(&voices_mutex);
     if ((int)message->at(0) == 144 && (int)message->at(2) > 0) {
       int freq = mtof((int)message->at(1));
-      cout << "Got frequency " << freq << " for pitch " << (int)message->at(1) << endl;
       voices->push_back(new KarplusStrong(freq));
       if (voices->size() >= g_num_voices) {
 	voices->pop_front();
+      }
+    } else if ((int)message->at(0) == 224) {
+      double pitch_offset = ((int)message->at(2) - 64) / 64.0;
+      deque<Voice *>::iterator itr=voices->begin();
+      while(itr != voices->end()) {
+	((KarplusStrong *)(*itr))->SetPitchOffset(pitch_offset);
+	++itr;
+      }
+    } else if ((int)message->at(0) == 176) {
+      double gain_offset = ((int)message->at(2) - 64) / 64.0;
+      deque<Voice *>::iterator itr=voices->begin();
+      while(itr != voices->end()) {
+	((KarplusStrong *)(*itr))->SetGainOffset(gain_offset);
+	++itr;
       }
     }
     pthread_mutex_unlock(&voices_mutex);
@@ -274,8 +313,13 @@ void Synth::SetUpMidi()
     std::cout << "  Input Port #" << i+1 << ": " << port_name << '\n';
   }
 
+  char input;
+  cout << "Which device would you like to use for MIDI input?" << endl;
+  cin >> input;
+  cin.ignore();
+
   midi_in->setCallback(&Synth::MidiCallback, voices);
-  midi_in->openPort();
+  midi_in->openPort(1);//(int)input - 49);
 }
 
 void Synth::SetUpAudio()
