@@ -1,4 +1,5 @@
 #include "Stringy.h"
+#include <pthread.h>
 #include <iostream>
 #include <cstdlib>
 #include <math.h>
@@ -6,11 +7,10 @@
 #include <string.h>
 #include <assert.h>
 
-// TODO: clean up all globals into a state struct which gets passed back as user data
 // FIXME: inaudibly wavering harmonic frequencies (at v. high harmonics)
 
 double g_sample_rate = 0;
-pthread_mutex_t voices_mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t voices_mutex;
 
 UGen::UGen () :
   last_tick_seen(-1),
@@ -24,6 +24,9 @@ void UGen::GetAudioFrom(UGen *ugen)
 
 SAMPLE UGen::GetSample(int tick_count)
 {
+  if (this == NULL) {
+    cout << "this == NULL??!!" << endl;
+  }
   if (tick_count > last_tick_seen) {
     last_tick_seen = tick_count;
     SAMPLE input_sample = ComputeInputSample(tick_count);
@@ -66,7 +69,7 @@ DelayLine::DelayLine(int max_delay_length, int delay_length) :
   delay_length(delay_length),
   write_index(0)
 {
-  cout << "Delay length: " << delay_length << ", MAX delay length: " << max_delay_length << endl;
+  //cout << "Delay length: " << delay_length << ", MAX delay length: " << max_delay_length << endl;
 
   assert(delay_length <= max_delay_length);
 
@@ -80,6 +83,7 @@ DelayLine::DelayLine(int max_delay_length, int delay_length) :
 
 DelayLine::~DelayLine()
 {
+  //cout << "WHATdelay" << endl;  
   delete delay_buffer;
 }
 
@@ -159,6 +163,7 @@ Voice::Voice(UGen *ugen) :
 
 Voice::~Voice()
 {
+  //cout << "WHATvoice" << endl;
   delete ugen;
 }
 
@@ -187,16 +192,23 @@ KarplusStrong::KarplusStrong(double frequency)
 }
 
 // AUDIO CALLBACK (static!)
-int Synth::callback( void *output_buffer, void *input_buffer, unsigned int n_buffer_frames,
-		     double stream_time, RtAudioStreamStatus status, void *data )
+int Synth::AudioCallback(void *output_buffer, void *input_buffer, unsigned int n_buffer_frames,
+		    double stream_time, RtAudioStreamStatus status, void *userData )
 {
-  vector<Voice *> *voices = (vector<Voice *> *) data;
+  //cout << "BOO" << endl;
+  vector<Voice *> *voices = (vector<Voice *> *) userData;
+  //cout << 2 << "--------------------------------------" << endl;
   for (unsigned int i = 0; i < n_buffer_frames * 2;) {
+    //cout << 3 << "." << i << endl;
     SAMPLE output_sample = 0;
-
-    //pthread_mutex_lock(&voices_mutex);
+    
     vector<Voice *>::iterator itr;
+    //pthread_mutex_lock(&voices_mutex);
     for(itr=voices->begin(); itr!=voices->end(); itr++) {
+      //cout << 4 << endl;
+      if (*itr == NULL) {
+	cout << "VOICE IS NULL !?!?!" << endl;
+      }
       output_sample += (*itr)->GetSample();
     }
     //pthread_mutex_unlock(&voices_mutex);
@@ -207,15 +219,67 @@ int Synth::callback( void *output_buffer, void *input_buffer, unsigned int n_buf
   return 0;
 }
 
-Synth::Synth()
+// static!!
+void Synth::MidiCallback(double deltatime, std::vector< unsigned char > *message, void *userData )
 {
-  voices = new vector<Voice *>();
+  //cout << "HELLO" << endl;
+
+  vector<Voice *> *voices = (vector<Voice *> *) userData;
+
+  //cout << voices->size() << endl;
+
+  unsigned int num_bytes = message->size();
+  //  for (unsigned int i = 0; i < num_bytes; i++) {
+    //std::cout << "Byte " << i << " = " << (int)message->at(i) << ", ";
+  //}
+  if ( num_bytes > 0 ) {
+    //std::cout << "stamp = " << deltatime << std::endl;
+    
+    //pthread_mutex_lock(&voices_mutex);
+    if ((int)message->at(0) == 144) {
+      voices->push_back(new KarplusStrong(440));
+    }
+    //pthread_mutex_unlock(&voices_mutex);
+  }
 }
+
+Synth::Synth() :
+  voices(new vector<Voice *>())
+{}
 
 Synth::~Synth ()
 {
-  pthread_mutex_destroy(&voices_mutex);
+  //cout << "WHATsynth" << endl;
   delete voices;
+  delete midi_in;
+}
+
+void Synth::SetUpMidi()
+{
+  // RtMidiIn constructor
+  try {
+    midi_in = new RtMidiIn();
+  }
+  catch (RtError &error) {
+    // Handle the exception here
+    error.printMessage();
+  }
+
+  unsigned int num_ports = midi_in->getPortCount();
+  //std::cout << "\nThere are " << num_ports << " MIDI input sources available.\n";
+  std::string port_name;
+  for ( unsigned int i=0; i<num_ports; i++ ) {
+    try {
+      port_name = midi_in->getPortName(i);
+    }
+    catch ( RtError &error ) {
+      error.printMessage();
+    }
+    //std::cout << "  Input Port #" << i+1 << ": " << port_name << '\n';
+  }
+
+  midi_in->setCallback(&Synth::MidiCallback, voices);
+  midi_in->openPort();
 }
 
 void Synth::SetUpAudio()
@@ -272,18 +336,16 @@ void Synth::SetUpAudio()
 		      RTAUDIO_FLOAT64,    // audio format 
 		      sample_rate,        // sample rate
 		      &buffer_frames,     // num frames per buffer (mutable by rtaudio)
-		      &Synth::callback,          // audio callback
+		      &Synth::AudioCallback,          // audio callback
 		      voices,        // user data pointer
 		      &options);          // stream options
 
     audio.startStream();
 
 
-    //pthread_mutex_lock(&voices_mutex);
     voices->push_back(new KarplusStrong(100));
     voices->push_back(new KarplusStrong(150));
     voices->push_back(new KarplusStrong(200));
-    //pthread_mutex_lock(&voices_mutex);  
 
 
   } catch ( RtError &e ) {
@@ -311,6 +373,7 @@ void Synth::SetUpAudio()
 int main( int argc, char *argv[])
 {
   Synth *synth = new Synth();
+  synth->SetUpMidi();
   synth->SetUpAudio();
   delete synth;
   return 0;

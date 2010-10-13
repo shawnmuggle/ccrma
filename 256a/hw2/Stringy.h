@@ -1,4 +1,5 @@
 #include "RtAudio.h"
+#include "rtmidi/RtMidi.h"
 #include <vector>
 #include <pthread.h>
 using namespace std;
@@ -70,7 +71,6 @@ class RectangularEnvelope : public UGen {
   virtual SAMPLE ComputeOutputSample(SAMPLE input_sample);
 };
 
-// TODO: give vector of ugens? It's more ggeennneerrrraaallll
 class Voice {
   int tick_count;
  protected:
@@ -89,16 +89,18 @@ class KarplusStrong : public Voice {
 
 class Synth {
   RtAudio audio;
+  RtMidiIn *midi_in;
   RtAudio::StreamParameters output_params;
   RtAudio::StreamParameters input_params;
 
-  // TODO: Make sure I add to this atomically from the midi callbacks
   vector<Voice *> *voices;
-  //static pthread_mutex_t voices_mutex;
-  static int callback(void *output_buffer, void *input_buffer, unsigned int n_buffer_frames,
-		      double stream_time, RtAudioStreamStatus status, void *data );
+  static int AudioCallback(void *output_buffer, void *input_buffer, unsigned int n_buffer_frames,
+			   double stream_time, RtAudioStreamStatus status, void *data);
+  static void MidiCallback(double deltatime, std::vector< unsigned char > *message, void *userData);
  public:
   Synth();
   ~Synth();
   void SetUpAudio();
+  void SetUpMidi();
+  void AddVoice(Voice *voice);
 };
