@@ -7,7 +7,6 @@ using namespace std;
 
 class UGen {
   int last_tick_seen;
-  // TODO: THIS SHOULD BE PRIVATE but I can't get iterating over a private vector to work
   vector<UGen *> ugens;  
  protected:
   SAMPLE last_sample_generated;
@@ -36,16 +35,18 @@ class DelayLine : public UGen {
   SAMPLE *delay_buffer;
   int max_delay_length, delay_length, write_index, read_index;
  public:
+  int delay_length_offset;
   DelayLine(int max_delay_length, int delay_length);
   ~DelayLine();
   virtual SAMPLE ComputeOutputSample(SAMPLE input_sample);
 };
 
 class Gain : public UGen {
-  double gain;
  public:
+  double gain;
   Gain(double gain);
   virtual SAMPLE ComputeOutputSample(SAMPLE input_sample);
+  void SetGain(double gain);
 };
 
 class MovingAverage : public UGen {
@@ -58,7 +59,6 @@ class MovingAverage : public UGen {
   ~MovingAverage();
   MovingAverage(int max_average_length, int average_length);
   virtual SAMPLE ComputeOutputSample(SAMPLE input_sample);
-  SAMPLE GetLastAverage();
 };
 
 class RectangularEnvelope : public UGen {
@@ -72,7 +72,6 @@ class RectangularEnvelope : public UGen {
 
 class Voice {
  protected:
-  //SHOULD BE PRIVATE but is used from a public method for now
   int tick_count;
   UGen *ugen;
  public:
@@ -83,9 +82,13 @@ class Voice {
 };
 
 class KarplusStrong : public Voice {
-  MovingAverage *average;
+  double pitch_offset_scale;
+  DelayLine *delay;
+  Gain *gain;
  public:
   KarplusStrong(double frequency);
+  void SetPitchOffset(double offset); 
+  void SetGainOffset(double gain); 
 };
 
 class Synth {
