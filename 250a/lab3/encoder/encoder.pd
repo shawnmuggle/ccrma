@@ -1,0 +1,73 @@
+#N canvas 717 109 397 273 10;
+#X obj 16 74 cnv 15 60 22 empty empty empty 20 12 0 14 -253938 -66577
+0;
+#X msg 24 75 open 2;
+#N canvas 123 312 525 433 serin 0;
+#X obj 180 61 cnv 15 15 15 empty \$0-number-canvas 2 4 8 0 14 -233017
+-1 0;
+#X obj 200 225 s \$0-number-canvas;
+#X obj 60 61 hradio 15 1 1 8 empty empty empty 0 -6 0 8 -225271 -1
+-1 2;
+#X obj 60 13 inlet;
+#X msg 200 202 label \$1;
+#X obj 200 180 makefilename %d;
+#X obj 59 108 int;
+#X msg 59 206 open \$1;
+#X obj 59 377 outlet;
+#X msg 201 306 set \$1 \$2;
+#X obj 59 266 trigger bang anything;
+#X obj 201 286 list;
+#X obj 383 383 outlet;
+#X obj 384 22 netreceive 34567;
+#X obj 477 43 tgl 15 0 empty empty empty 0 -6 0 10 -262144 -1 -1 0
+1;
+#X obj 384 41 bng 15 250 50 0 empty empty empty 0 -6 0 10 -262144 -1
+-1;
+#X obj 187 24 delay 15000;
+#X text 345 379 close;
+#X text 209 4 for open/close automation in Makefile;
+#N canvas 698 22 318 215 reset 0;
+#X obj 65 24 inlet;
+#X obj 66 58 bang;
+#X obj 66 150 send ARDUINO_TEST_RESET;
+#X msg 66 129 0;
+#X msg 111 99 1;
+#X obj 111 120 send ARDUINO_PINMODE_RESET;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 1 0 4 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X restore 172 111 pd reset guis;
+#X connect 2 0 6 0;
+#X connect 2 0 19 0;
+#X connect 3 0 2 0;
+#X connect 4 0 1 0;
+#X connect 5 0 4 0;
+#X connect 6 0 5 0;
+#X connect 6 0 7 0;
+#X connect 7 0 10 0;
+#X connect 9 0 8 0;
+#X connect 10 0 8 0;
+#X connect 10 1 11 0;
+#X connect 11 0 9 0;
+#X connect 13 0 15 0;
+#X connect 13 1 14 0;
+#X connect 15 0 16 0;
+#X connect 15 0 12 0;
+#X connect 16 0 2 0;
+#X coords 0 -1 1 1 136 17 1 60 60;
+#X restore 24 51 pd serin;
+#X text 22 32 serial port #;
+#X msg 153 74 close;
+#X text 22 17 select serial port;
+#X obj 154 129 flatspace/comport \$1 9600;
+#X obj 154 167 print;
+#X text 37 225 This patch allows the user to see what data is coming
+in;
+#X text 37 240 on the serial port.;
+#X connect 1 0 6 0;
+#X connect 2 0 1 0;
+#X connect 2 1 4 0;
+#X connect 4 0 6 0;
+#X connect 6 0 7 0;
