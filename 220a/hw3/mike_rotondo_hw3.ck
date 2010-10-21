@@ -1,7 +1,6 @@
-// demo of how to script a change after a duration has elapsed
-// see below for a sectionI followed by a sectionII
+// Mike Rotondo
+// 220A HW3
 
-////////////////////////////////////////////////////////////////
 // play a cycle of pitches
 5 => int nPitches;
 // array to hold midi pitches (key numbers)
