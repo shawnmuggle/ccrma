@@ -13,7 +13,7 @@ VisualSine: $(OBJS)
 	$(CXX) -o VisualSine $(OBJS) $(LIBS)
 
 VisualSine.o: VisualSine.cpp RtAudio.h chuck_fft.h
-	$(CXX) $(FLAGS) VisualSine.cpp
+	$(CXX) $(FLAGS) -I/usr/local/include/xtract/ VisualSine.cpp
 
 RtAudio.o: RtAudio.h RtAudio.cpp RtError.h
 	$(CXX) $(FLAGS) RtAudio.cpp
