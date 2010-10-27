@@ -1,0 +1,40 @@
+libxtract_la-helper.lo libxtract_la-helper.o: helper.c ../config.h \
+  /usr/include/stdio.h /usr/include/_types.h /usr/include/sys/_types.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/_types.h \
+  /usr/include/i386/_types.h /usr/include/secure/_stdio.h \
+  /usr/include/secure/_common.h ../xtract/libxtract.h \
+  ../xtract/xtract_scalar.h ../xtract/xtract_vector.h \
+  ../xtract/xtract_delta.h ../xtract/xtract_types.h \
+  ../xtract/xtract_macros.h ../xtract/xtract_helper.h
+
+../config.h:
+
+/usr/include/stdio.h:
+
+/usr/include/_types.h:
+
+/usr/include/sys/_types.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/machine/_types.h:
+
+/usr/include/i386/_types.h:
+
+/usr/include/secure/_stdio.h:
+
+/usr/include/secure/_common.h:
+
+../xtract/libxtract.h:
+
+../xtract/xtract_scalar.h:
+
+../xtract/xtract_vector.h:
+
+../xtract/xtract_delta.h:
+
+../xtract/xtract_types.h:
+
+../xtract/xtract_macros.h:
+
+../xtract/xtract_helper.h:

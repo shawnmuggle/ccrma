@@ -1,0 +1,26 @@
+libxtract_la-delta.lo libxtract_la-delta.o: delta.c /usr/include/math.h \
+  /usr/include/architecture/i386/math.h /usr/include/sys/cdefs.h \
+  ../xtract/libxtract.h ../xtract/xtract_scalar.h \
+  ../xtract/xtract_vector.h ../xtract/xtract_delta.h \
+  ../xtract/xtract_types.h ../xtract/xtract_macros.h \
+  ../xtract/xtract_helper.h
+
+/usr/include/math.h:
+
+/usr/include/architecture/i386/math.h:
+
+/usr/include/sys/cdefs.h:
+
+../xtract/libxtract.h:
+
+../xtract/xtract_scalar.h:
+
+../xtract/xtract_vector.h:
+
+../xtract/xtract_delta.h:
+
+../xtract/xtract_types.h:
+
+../xtract/xtract_macros.h:
+
+../xtract/xtract_helper.h:

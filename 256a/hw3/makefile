@@ -7,19 +7,25 @@ LIBS=-framework CoreAudio -framework CoreMIDI -framework CoreFoundation \
 	-framework GLUT -framework Foundation \
 	-framework AppKit -lstdc++ -lm
 
-OBJS=   RtAudio.o VisualSine.o chuck_fft.o
+OBJS=   RtAudio.o VisualSine.o chuck_fft.o gfx.o vector3d.o
 
 VisualSine: $(OBJS)
 	$(CXX) -o VisualSine $(OBJS) $(LIBS)
 
-VisualSine.o: VisualSine.cpp RtAudio.h chuck_fft.h
-	$(CXX) $(FLAGS) -I/usr/local/include/xtract/ VisualSine.cpp
+VisualSine.o: VisualSine.cpp RtAudio.h chuck_fft.h gfx.h vector3d.h
+	$(CXX) $(FLAGS) VisualSine.cpp
 
 RtAudio.o: RtAudio.h RtAudio.cpp RtError.h
 	$(CXX) $(FLAGS) RtAudio.cpp
 
 chuck_fft.o: chuck_fft.c chuck_fft.h
 	$(CXX) $(FLAGS) chuck_fft.c
+
+gfx.o: gfx.cpp gfx.h vector3d.h
+	$(CXX) $(FLAGS) gfx.cpp
+
+vector3d.o: vector3d.cpp vector3d.h
+	$(CXX) $(FLAGS) vector3d.cpp
 
 clean:
 	rm -f *~ *# *.o VisualSine

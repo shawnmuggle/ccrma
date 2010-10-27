@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/libxtract/!svn/ver/101/trunk/examples/MSP
+END
+version.plist
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/libxtract/!svn/ver/80/trunk/examples/MSP/version.plist
+END
+xtract~.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/libxtract/!svn/ver/101/trunk/examples/MSP/xtract~.c
+END
+Info.plist
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/libxtract/!svn/ver/80/trunk/examples/MSP/Info.plist
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/libxtract/!svn/ver/84/trunk/examples/MSP/Makefile
+END
+PkgInfo
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/libxtract/!svn/ver/80/trunk/examples/MSP/PkgInfo
+END

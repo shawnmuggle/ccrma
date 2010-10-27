@@ -1,0 +1,11 @@
+libxtract_la-window.lo libxtract_la-window.o: window.c \
+  /usr/include/math.h /usr/include/architecture/i386/math.h \
+  /usr/include/sys/cdefs.h xtract_window_private.h
+
+/usr/include/math.h:
+
+/usr/include/architecture/i386/math.h:
+
+/usr/include/sys/cdefs.h:
+
+xtract_window_private.h:

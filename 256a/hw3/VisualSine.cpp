@@ -9,6 +9,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <deque>
 
 #ifdef __MACOSX_CORE__
   // note: for mac only
@@ -25,7 +26,7 @@ using namespace std;
 #include "chuck_fft.h"
 #include <pthread.h>
 
-#include "xtract_vector.h"
+#include "gfx.h"
 
 // some defines
 #define SAMPLE float
@@ -33,6 +34,7 @@ using namespace std;
 #define MY_SRATE 44100
 
 pthread_mutex_t buf_mutex;
+pthread_mutex_t particles_mutex;
 
 // width and height of the window
 GLsizei g_width = 800;
@@ -40,7 +42,7 @@ GLsizei g_height = 600;
 
 // globle buffer
 SAMPLE **g_freq_buffers;
-unsigned int g_num_freq_buffers = 20;
+unsigned int g_num_freq_buffers = 40;
 unsigned int g_freq_buffer_front_index = 0;
 long g_freq_buffer_size; // size of buffer in samples
 
@@ -48,12 +50,35 @@ float *g_window;
 
 float g_interesting_freqs_sum = 0;
 float g_prev_interesting_freqs_sum = 0;
+float g_bass_freqs_sum = 0;
 
 float g_average_bin = 0;
 
 GLfloat z_rot = 0.0;
 GLfloat y_rot = 0.0;
 GLfloat x_rot = 0.0;
+
+class Particle
+{
+public:
+  Particle(Vector3D *position, Vector3D *velocity, Vector3D *color) : position(position), velocity(velocity), color(color) {}
+  ~Particle() { delete position; delete velocity; delete color;}
+
+public:
+  void update_position() 
+  { 
+    position->x += velocity->x;
+    position->y += velocity->y;
+    position->z += velocity->z;
+  }
+
+public:
+  Vector3D *color;
+  Vector3D *position;
+  Vector3D *velocity;
+};
+
+deque<Particle *> particles;
 
 // audio callback
 int callme( char * buffer, int buffer_size, void * user_data )
@@ -63,35 +88,64 @@ int callme( char * buffer, int buffer_size, void * user_data )
   SAMPLE *buffy = (SAMPLE *)buffer;
   pthread_mutex_lock(&buf_mutex);    
   SAMPLE *freq_buf = g_freq_buffers[g_freq_buffer_front_index];
+
   for( int i = 0; i < buffer_size; i += 2 ) {
     // copy to global buffer
     freq_buf[i/2] = buffy[i];
     // zero out out buffer
     //buffy[i] = 0.0f;
   }
+
   //cout << "Windowing " << g_freq_buffer_size << " samples in g_buffer" << endl;
   apply_window(freq_buf, g_window, g_freq_buffer_size);
   rfft(freq_buf, g_freq_buffer_size / 2, 1);
   g_freq_buffer_front_index++;
   g_freq_buffer_front_index %= g_num_freq_buffers;
 
-  float bin_total = 0;
+  pthread_mutex_unlock(&buf_mutex);
 
+  float bin_total = 0;
   float new_interesting_freqs_sum = 0;
+  float new_bass_freqs_sum = 0;
   for (int i = 0; i < g_freq_buffer_size / 2; i++) {
     float abs_val = cmp_abs(((complex *)freq_buf)[i]);
     new_interesting_freqs_sum += abs_val;
+    if (i  < 10) {
+      new_bass_freqs_sum += abs_val;
+    }
     bin_total += i * abs_val;
   }
   g_interesting_freqs_sum = (g_prev_interesting_freqs_sum + new_interesting_freqs_sum) / 2;
+
+
+  pthread_mutex_lock(&particles_mutex);
+  if (new_bass_freqs_sum >  g_bass_freqs_sum * 3) {
+    //cout << "BOOP" << endl;
+    Vector3D *pos = new Vector3D(0, 0, 0);
+    Vector3D *vel = new Vector3D(0, 0, 1);
+    Vector3D *color = new Vector3D(rand() / (double)RAND_MAX,
+				   rand() / (double)RAND_MAX,
+				   rand() / (double)RAND_MAX);
+    Particle *particle = new Particle(pos, vel, color);
+    particles.push_back(particle);
+
+    if (particles.size() > 20) {
+      particles.pop_front();
+    }
+
+    //cout << particles.size() << endl;
+  }
+  pthread_mutex_unlock(&particles_mutex);
+  g_bass_freqs_sum = new_bass_freqs_sum;
+
   g_prev_interesting_freqs_sum = new_interesting_freqs_sum;
 
   g_average_bin = bin_total / new_interesting_freqs_sum;
 
-  pthread_mutex_unlock(&buf_mutex);
-  
   return 0;
 }
+
+
 
 
 //-----------------------------------------------------------------------------
@@ -108,6 +162,7 @@ void mouseFunc( int button, int state, int x, int y );
 int main( int argc, char ** argv )
 {
   pthread_mutex_init(&buf_mutex, NULL);
+  pthread_mutex_init(&particles_mutex, NULL);
   
   // initialize GLUT
   glutInit( &argc, argv );
@@ -134,19 +189,33 @@ int main( int argc, char ** argv )
   GLfloat fogColor[4]= {1.0f, 1.0f, 1.0f, 1.0f};		// Fog Color
   glClearColor(1.0f,1.0f,1.0f,1.0f);	  // We'll Clear To The Color Of The Fog ( Modified )
   
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
   glFogi(GL_FOG_MODE, GL_LINEAR);		// Fog Mode
   glFogfv(GL_FOG_COLOR, fogColor);			// Set Fog Color
   glFogf(GL_FOG_DENSITY, 0.7f);				// How Dense Will The Fog Be
   glHint(GL_FOG_HINT, GL_NICEST);			// Fog Hint Value
-  glFogf(GL_FOG_START, 0.0f);				// Fog Start Depth
-  glFogf(GL_FOG_END, 20.0f);				// Fog End Depth
+  glFogf(GL_FOG_START, 2.0f);				// Fog Start Depth
+  glFogf(GL_FOG_END, 30.0f);				// Fog End Depth
   glEnable(GL_FOG);					// Enables GL_FOG
   
   glEnable(GL_LINE_SMOOTH);
 
+  glShadeModel (GL_SMOOTH);
+
+  GLfloat light0_position[] = { 1.0, 1.0, 3.0, 0.0 };
+  glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
+  glEnable(GL_LIGHT0);
+
+  GLfloat light1_position[] = { -2.0, -2.0, 3.0, 0.0 };
+  GLfloat diffuseLight1[] = {1.0, 1.0, 1.0, 1.0};  
+  glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuseLight1);
+  glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
+
+  glEnable(GL_LIGHT1);
+  glEnable(GL_DEPTH_TEST);
+
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+ 
   // RtAudio pointer
   RtAudio * audio = NULL;
   // buffer size
@@ -230,7 +299,7 @@ void reshapeFunc( GLsizei w, GLsizei h )
     // load the identity matrix
     glLoadIdentity( );
     // position the view point
-    gluLookAt( 0.0f, 0.0f, 10.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f );
+    gluLookAt( 2.0f, 2.0f, 10.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f );
 }
 
 
@@ -313,115 +382,228 @@ void idleFunc( )
 //-----------------------------------------------------------------------------
 void displayFunc( )
 {
-    // local state
-    static GLfloat c = 0.0f;
+  static GLfloat time_accumulator = 0.0;
 
-    // clear the color and depth buffers
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+  XGfx::getCurrentTime(true);
+  //cout << "ACTUAL DELTA: " << XGfx::delta() << endl;
+  time_accumulator += XGfx::delta();
+  if (time_accumulator < 1.0 / 60.0) {
+    //cout << "HERP" << endl;
+    return;
+  }
+  //cout << "RENDERTIME at time: " << time_accumulator << endl;
+  time_accumulator = 0.0;
+  XGfx::resetCurrentTime();
 
-    glPushMatrix(); // Go to back of waterfall
-    glTranslatef(0, 0, -(GLfloat)g_num_freq_buffers * 0.5);
 
-    pthread_mutex_lock(&buf_mutex);
-    GLfloat x;
-    for (int buf_idx = 0; buf_idx < g_num_freq_buffers; buf_idx++) {
-      // push the matrix
-      glPushMatrix();
-      // line width
-      //glLineWidth( 5 * buf_idx / g_num_freq_buffers );
+  // local state
+  static GLfloat c = 0.0f;
+  static GLfloat radius = 1.0f;
+  
+  // clear the color and depth buffers
+  glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+  
+  glPushMatrix(); // Go to back of waterfall
+  glTranslatef(0, 0, -(GLfloat)g_num_freq_buffers * 0.5);
+  
+  pthread_mutex_lock(&buf_mutex);
+  GLfloat x;
+  for (int buf_idx = 0; buf_idx < g_num_freq_buffers; buf_idx++) {
+    // push the matrix
+    glPushMatrix();
+    // line width
+    //glLineWidth( 5 * buf_idx / g_num_freq_buffers );
+    
+    glTranslatef(0.0, 0.0, (GLfloat)buf_idx * 0.5);
+    x = -5;
+    GLfloat xinc = ::fabs(2*x / (g_freq_buffer_size / 4));
+    
+    // go
+    glBegin( GL_LINE_STRIP );
+    // loop through global buffer
+    float prev_y_val = 0;
+    
+    complex *freq_buf = (complex *)g_freq_buffers[(g_freq_buffer_front_index + buf_idx) 
+						  % g_num_freq_buffers];
+    
+    //SAMPLE *freq_buf = g_freq_buffers[(g_freq_buffer_front_index + buf_idx + 1) 
+    //% g_num_freq_buffers];
+    
 
-      glTranslatef(0.0, 0.0, (GLfloat)buf_idx * 0.5);
-      x = -5;
-      GLfloat xinc = ::fabs(2*x / (g_freq_buffer_size / 4));
-      
-      // go
-      glBegin( GL_LINE_STRIP );
-      // loop through global buffer
-      float prev_y_val = 0;
-
-      complex *freq_buf = (complex *)g_freq_buffers[(g_freq_buffer_front_index + buf_idx) 
-						    % g_num_freq_buffers];
-      
-      //SAMPLE *freq_buf = g_freq_buffers[(g_freq_buffer_front_index + buf_idx + 1) 
-      //% g_num_freq_buffers];
-
-      if (buf_idx == g_num_freq_buffers - 1) {
-	glLineWidth(2.0);
-	glColor3f(0.0, 0.4, 0.0);
-      } else {
-	glLineWidth(1.0);
-	glColor4f( 0.8 * (0.2 * (sin(c+.8)+1)/2), 0.8 + (0.2 * (sin(c+.01)+1)/2), 0.7 + 0.3 * ((sin(c+.5)+1)/2), 0.5);
-      }
-
-      int freq_idx;
-      for( int i = 0; i < g_freq_buffer_size / 4; i++ )
-	{
-	  // set the next vertex
-
-	  freq_idx = i;
-	  if (i > 0) {
-	    freq_idx = log(i) * i;
-	  }
-
-	  //float y_val = log10(cmp_abs(freq_buf[i])) + 3;
-	  float y_val = 20 * pow(cmp_abs(freq_buf[i]), 0.5) - 1;
-
-	  glVertex2f( x, 1.2 * (y_val + prev_y_val) / 2);
-	  prev_y_val = y_val;
-	  //cout << "here's a value: " << y_val << endl;
-
-	  // increment x
-	  x += xinc;
-	}
-      // done
-      glEnd();
-      
-      // pop
-      glPopMatrix();
+    if (buf_idx == g_num_freq_buffers - 1) {
+      glLineWidth(2.0);
+      glColor3f(0.0, 0.4, 0.0);
+    } else {
+      glLineWidth(1.0);
+      glColor4f( 0.8 * (0.2 * (sin(c+.8)+1)/2), 0.8 + (0.2 * (sin(c+.01)+1)/2), 0.7 + 0.3 * ((sin(c+.5)+1)/2), 0.5);
     }
+    
+    for( int i = 0; i < g_freq_buffer_size / 4; i++ ) {
+      // set the next vertex
 
-    //cout << "Interesting freq mag sum: " << g_interesting_freqs_sum << endl;
+      //float y_val = log10(cmp_abs(freq_buf[i])) + 3;
+      float y_val = 20 * pow(cmp_abs(freq_buf[i]), 0.5) - 1;
+      
+      glVertex2f( x, 1.2 * (y_val + prev_y_val) / 2);
+      prev_y_val = y_val;
+      //cout << "here's a value: " << y_val << endl;
+      
+      // increment x
+      x += xinc;
+    }
+    // done
+    glEnd();
     
-    // increment color
-    c += .001;
-    
+    // pop
     glPopMatrix();
-    pthread_mutex_unlock(&buf_mutex);
-    
+  }
+  
+  //cout << "Interesting freq mag sum: " << g_interesting_freqs_sum << endl;
+  
+  // increment color
+  c += .001;
+  glPopMatrix();
+  pthread_mutex_unlock(&buf_mutex);
+  
+  
+  glEnable ( GL_LIGHTING ) ;
 
-    glPushMatrix(); // power sphere
+
+  // PARTICLES
+  pthread_mutex_lock(&particles_mutex);
+
+  deque<Particle *>::iterator itr=particles.begin();
+  while(itr != particles.end()) {
+    Particle *particle = (*itr);
+    //cout << particle->position->x << endl;;
+    particle->update_position();
     
-    glTranslatef(0.0, 0.0, 0.0);
-    glColor4f(0.0 + g_interesting_freqs_sum, 
-	      0.5 + g_interesting_freqs_sum / 2,
-	      1.0 - g_interesting_freqs_sum,
+    glPushMatrix(); // beat sphere
+    
+    glTranslatef(particle->position->x * 0.1, 
+		 particle->position->y * 0.1, 
+		 particle->position->z * 0.1);
+		 
+    glColor4f(0.5 + 0.2 * particle->color->x,
+	      0.1 + 0.1 * particle->color->y,
+	      0.8 + 0.2 * particle->color->z,
 	      0.3);
     
-    GLfloat radius = pow(g_interesting_freqs_sum + 1, 2);
-    glutSolidSphere(radius, 16, 16);
+    glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE ) ;
+    glEnable ( GL_COLOR_MATERIAL ) ;
     
-    glPopMatrix(); // power sphere
+    //glutSolidSphere(pow(particle->position->z, -0.9), 32, 32);
+    glutSolidTeapot(pow(particle->position->z, -0.9));    
 
-    glPushMatrix(); // freq sphere
+    glDisable ( GL_COLOR_MATERIAL ) ;
+    
+    glPopMatrix(); // beat sphere
+  
+    ++itr;
+  }
+  
 
-    x_rot += 0.47;
-    y_rot += 0.03;
-    z_rot += 0.11;
-    glRotatef(x_rot, 1.0, 0.0, 0.0);
-    glRotatef(y_rot, 0.0, 1.0, 0.0);
-    glRotatef(z_rot, 0.0, 0.0, 1.0);
-    glTranslatef(radius * 1.2, 0.0, 0.0);
+  pthread_mutex_unlock(&particles_mutex);
 
-    glColor4f(20 * g_average_bin / g_freq_buffer_size,
-	      0.4,
-	      0.1,
-	      0.6);
-    glutSolidSphere(0.1, 8, 8);
 
-    glPopMatrix(); // freq sxphere
+  GLfloat speed_mult = radius;
+  x_rot += 0.47 * speed_mult;
+  y_rot += 0.03 * speed_mult;
+  z_rot += 0.11 * speed_mult;
+  
+  glPushMatrix(); // freq sphere
+  
+  glRotatef(x_rot, 1.0, 0.0, 0.0);
+  glRotatef(y_rot, 0.0, 1.0, 0.0);
+  glRotatef(z_rot, 0.0, 0.0, 1.0);
+  glTranslatef(radius * 1.2, 0.0, 0.0);
+  
+  glColor4f(20 * g_average_bin / g_freq_buffer_size,
+	    0.1,
+	    0.1,
+	    0.6);
 
-    // flush!
-    glFlush( );
-    // swap the double buffer
-    glutSwapBuffers( );
+  glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE ) ;
+  glEnable ( GL_COLOR_MATERIAL ) ;
+
+  glutSolidSphere(0.1, 16, 16);
+
+  glDisable ( GL_COLOR_MATERIAL ) ;
+  
+  glPopMatrix(); // freq sxphere
+  
+  glPushMatrix(); // freq sphere
+  
+  glRotatef(x_rot, 0.2, 1.0, 0.0);
+  glRotatef(y_rot, 0.0, 0.3, 0.8);
+  glRotatef(z_rot, 1.0, 0.0, 0.4);
+  glTranslatef(radius * 1.2, 0.0, 0.0);
+  
+  glColor4f(0.1,
+	    20 * g_average_bin / g_freq_buffer_size,
+	    0.1,
+	    0.6);
+
+  glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE ) ;
+  glEnable ( GL_COLOR_MATERIAL ) ;
+
+  glutSolidSphere(0.1, 16, 16);
+  
+  glDisable ( GL_COLOR_MATERIAL ) ;
+
+  glPopMatrix(); // freq sxphere
+  
+  glPushMatrix(); // freq sphere
+  
+  glRotatef(x_rot, 0.0, 0.0, 0.8);
+  glRotatef(y_rot, 0.8, 0.4, 0.5);
+  glRotatef(z_rot, 0.2, 0.1, 0.3);
+  glTranslatef(radius * 1.2, 0.0, 0.0);
+  
+  glColor4f(0.1,
+	    0.1,
+	    20 * g_average_bin / g_freq_buffer_size,
+	    0.6);
+
+  glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE ) ;
+  glEnable ( GL_COLOR_MATERIAL ) ;
+
+  glutSolidSphere(0.1, 16, 16);
+  
+  glDisable ( GL_COLOR_MATERIAL ) ;
+  
+  glPopMatrix(); // freq sxphere
+
+
+
+  glPushMatrix(); // power sphere
+  
+  glTranslatef(0.0, 0.0, 0.0);
+  glColor4f(0.0 + g_interesting_freqs_sum, 
+	    0.5 + g_interesting_freqs_sum / 2,
+	    1.0 - g_interesting_freqs_sum,
+	    0.3);
+    
+  glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE ) ;
+  glEnable ( GL_COLOR_MATERIAL ) ;
+
+  GLfloat new_radius = pow(g_interesting_freqs_sum + 1, 2);
+  radius *= 0.8;
+  if (new_radius > radius) {
+    radius = new_radius;
+  }
+  glutSolidSphere(radius, 32, 32);
+  
+  glDisable ( GL_COLOR_MATERIAL ) ;
+  
+  glPopMatrix(); // power sphere
+  
+
+
+  glDisable ( GL_LIGHTING ) ; 
+  
+  // flush!
+  glFlush( );
+  // swap the double buffer
+  glutSwapBuffers( );
 }

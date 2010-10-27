@@ -1,0 +1,19 @@
+libxtract_la-libxtract.lo libxtract_la-libxtract.o: libxtract.c \
+  ../xtract/libxtract.h ../xtract/xtract_scalar.h \
+  ../xtract/xtract_vector.h ../xtract/xtract_delta.h \
+  ../xtract/xtract_types.h ../xtract/xtract_macros.h \
+  ../xtract/xtract_helper.h
+
+../xtract/libxtract.h:
+
+../xtract/xtract_scalar.h:
+
+../xtract/xtract_vector.h:
+
+../xtract/xtract_delta.h:
+
+../xtract/xtract_types.h:
+
+../xtract/xtract_macros.h:
+
+../xtract/xtract_helper.h:
