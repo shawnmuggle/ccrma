@@ -1,0 +1,19 @@
+Mike Rotondo
+HW3 - SeeSound
+
+* Compile
+  You can just run "make" to compile SeeSound. It will compile RtAudio to use Jack, and will work on the CCRMA machines as long as you are running a jack server.
+
+* Usage
+  ./SeeSound
+
+  You'll need to be running Jack, and play audio via an application which can output to Jack, and then use Jack's routing mechanism to connect your audio playback to SeeSound.
+
+* Special Sauce
+  In addition to the basic waterfall plot of the spectrum over time, I plotted a sphere in the scene which grows & changes color based on (roughly) the energy of the entire spectrum. This gives a nice sense of overall audio excitement, and emphasizes beat-based electronic music nicely. There are also some smaller spheres orbiting the large one: these speed up proportionally to the radius of the large sphere, and get brighter as the "center of gravity" (centroid) of the spectrum goes up (when there is more high-frequency content). Lastly, I made the most busted onset/beat detector in the world. It simply looks at deltas in the overall energy of the spectrum and triggers when the delta exceeds a threshold. When that happens, a teapot zings into existence and flies off the screen, ideally creating a chain of teapots which represents the rhythm of the song.
+
+  On the graphics side, I learned a few neat things about alpha blending, drawing order, fog, lighting, framerate governing, etc.
+  
+* :(
+  I really wish I'd implemented a better beat detector. I read several papers by Miller Puckett with the idea that I'd re-implement the bonk~ object, and also read code and papers by George Tzanetakis, who wrote Marsyas, thinking that I could re-implement his beat histogram extraction code. Neither happened, and I'm left with possibly the worst beat detector ever written.
+

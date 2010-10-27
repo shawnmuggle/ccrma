@@ -15,18 +15,27 @@ ifeq ($(UNAME), Darwin)
 
 endif
 
-OBJS=	RtAudio.o SeeSound.o
+OBJS=	RtAudio.o SeeSound.o chuck_fft.o gfx.o vector3d.o
 
 all: SeeSound
 
 SeeSound: $(OBJS)
 	$(CXX) -o $@ $+ $(LIBS)
 
-SeeSound.o: SeeSound.cpp SeeSound.h RtAudio.h
+SeeSound.o: SeeSound.cpp RtAudio.h chuck_fft.h gfx.h vector3d.h
 	$(CXX) $(FLAGS) SeeSound.cpp
 
 RtAudio.o: RtAudio.h RtAudio.cpp RtError.h
 	$(CXX) $(FLAGS) RtAudio.cpp
+
+chuck_fft.o: chuck_fft.c chuck_fft.h
+	$(CXX) $(FLAGS) chuck_fft.c
+
+gfx.o: gfx.cpp gfx.h vector3d.h
+	$(CXX) $(FLAGS) gfx.cpp
+
+vector3d.o: vector3d.cpp vector3d.h
+	$(CXX) $(FLAGS) vector3d.cpp
 
 clean:
 	rm -f *~ *# *.o SeeSound
