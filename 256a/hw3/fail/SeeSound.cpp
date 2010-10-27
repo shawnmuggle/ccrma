@@ -115,92 +115,75 @@ void idleFunc( )
 //-----------------------------------------------------------------------------
 void displayFunc( )
 {
-  // local state
-  static GLfloat zrot = 0.0f, c = 0.0f;
-  
   // clear the color and depth buffers
   glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
   
-  // line width
-  glLineWidth( 2.0 );
-  // step through and plot the waveform
-  GLfloat x = -5;
-  // increment
-  GLfloat xinc = ::fabs(2*x / g_buffer_size);
-  
   // push the matrix
   glPushMatrix();
-  
-  // rotation
-  glRotatef( zrot, 0, 0, 1 );
-  zrot += .1;
-  
+
   // go
   glBegin( GL_LINE_STRIP );
-  // loop through global buffer
-  for( int i = 0; i < g_buffer_size; i++ ) {
-    // set the color
-    glColor3f( (sin(c)+1)/2, (sin(c*2)+1)/2, (sin(c+.5)+1)/2 );
-    // set the next vertex
-    glVertex2f( x, 5*g_buffer[i] );
-    // increment x
-    x += xinc;
-  }
+  // set the color
+  glColor3f( 1.0, 0.0, 0.0);
+  
+  // set the next vertex
+  glVertex3f( 1, 1, 1);
+  glVertex3f( -1, -1, -1);
+  glVertex3f( 1, -1, 1);
+
   // done
   glEnd();
-  
-  // increment color
-  c += .001;
-  
+
   // pop
   glPopMatrix();
-  
+
   // flush!
   glFlush( );
   // swap the double buffer
   glutSwapBuffers( );
 }
 
-// AUDIO CALLBACK (static!)
-int Synth::AudioCallback(void *output_buffer, void *input_buffer, unsigned int n_buffer_frames,
-			 double stream_time, RtAudioStreamStatus status, void *userData )
+int AudioCallback(void *output_buffer, 
+		  void *input_buffer, 
+		  unsigned int n_buffer_frames,
+		  double stream_time, 
+		  RtAudioStreamStatus status, 
+		  void *userData )
 {
-  for (unsigned int i = 0; i < n_buffer_frames * 2;) {
+  for (unsigned int i = 0; i < n_buffer_frames;) {
     SAMPLE output_sample = 0;
     
     SAMPLE input_sample = ((SAMPLE *) input_buffer)[i/2];
 
-    g_buffer[i] = input_sample;
     ((SAMPLE *)output_buffer)[i++] = input_sample;
-    g_buffer[i] = input_sample;
     ((SAMPLE *)output_buffer)[i++] = input_sample;
-  }  
+  }
+  
   return 0;
 }
 
-void Synth::SetUpAudio()
-{
-  audio.showWarnings( true );
+void SetUpAudio()
+{  
+  static RtAudio *audio = new RtAudio();
 
+  static RtAudio::StreamParameters output_params;
+  static RtAudio::StreamParameters input_params;
 
-  // THIS ISN'T WORKING --- WHY!??!?!
-  // (it seems like RtAudio's detection of which audio device is default output/input is flaky
-  // Look in to why or just go back to jack
+  audio->showWarnings( true );
 
-  /*
   // Choose an audio device and a sample rate
   bool chose_output_device = false;
   bool chose_input_device = false;
 
   unsigned int sample_rate;
-  unsigned int devices = audio.getDeviceCount();
+  unsigned int devices = audio->getDeviceCount();
   if ( devices < 1 ) {
     cerr << "No audio device found! (You probably need to start JACK)" << endl;
     exit(1);
   }
   RtAudio::DeviceInfo info;
   for (unsigned int i = 0; i < devices; i++ ) {
-    info = audio.getDeviceInfo(i);
+    info = audio->getDeviceInfo(i);
     cout << "Looking at device " << info.name << endl;
     cout << "It has " << info.outputChannels << " output channels and " << info.inputChannels << " input channels." << endl;
     if ( info.isDefaultOutput ) {
@@ -234,17 +217,9 @@ void Synth::SetUpAudio()
     }
   }
 
-  */
-
-  output_params.deviceId = 2;
-  output_params.nChannels = 2;
-  input_params.deviceId = 0;
-  input_params.nChannels = 1;
-  g_sample_rate = 44100;
-
-  cout << "Using output device \"" << audio.getDeviceInfo(output_params.deviceId).name << "\" which has " << 
+  cout << "Using output device \"" << audio->getDeviceInfo(output_params.deviceId).name << "\" which has " << 
     output_params.nChannels << " output channels." << endl;
-  cout << "Using input device \"" << audio.getDeviceInfo(input_params.deviceId).name << "\" which has " << 
+  cout << "Using input device \"" << audio->getDeviceInfo(input_params.deviceId).name << "\" which has " << 
     input_params.nChannels << " input channels." << endl;
 
   RtAudio::StreamOptions options;
@@ -258,16 +233,16 @@ void Synth::SetUpAudio()
   
 
   try {
-    audio.openStream( &output_params,
+    audio->openStream( &output_params,
 		      &input_params,
 		      RTAUDIO_FLOAT64,
 		      g_sample_rate,
 		      &buffer_frames,
-		      &Synth::AudioCallback,
+		      &AudioCallback,
 		      NULL,
 		      &options);
 
-    audio.startStream();
+    audio->startStream();
   } catch ( RtError &e ) {
     e.printMessage();
     goto cleanup;
@@ -278,15 +253,15 @@ void Synth::SetUpAudio()
   glutMainLoop();
 
   try {
-    audio.stopStream();
+    audio->stopStream();
   }
   catch ( RtError &e ) {
     e.printMessage();
   }
 
  cleanup:
-  if ( audio.isStreamOpen() ) {
-    audio.closeStream();
+  if ( audio->isStreamOpen() ) {
+    audio->closeStream();
   }
 }
 
@@ -314,8 +289,6 @@ int main( int argc, char *argv[])
   // set the mouse function - called on mouse stuff
   glutMouseFunc( mouseFunc );
 
-  Synth *synth = new Synth();
-  synth->SetUpAudio();
-  delete synth;
+  SetUpAudio();
   return 0;
 }

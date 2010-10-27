@@ -3,7 +3,7 @@ UNAME := $(shell uname)
 CXX=g++
 ifeq ($(UNAME), Linux)
 	FLAGS=-D__UNIX_JACK__ -c #-g -O0 -fno-inline
-	LIBS=-lstdc++ -lm -ljack
+	LIBS=-lstdc++ -lm -ljack -lglut -lGL -lGLU -lpthread
 endif
 ifeq ($(UNAME), Darwin)
 	FLAGS=-D__MACOSX_CORE__ -c #-g -O0 -fno-inline
