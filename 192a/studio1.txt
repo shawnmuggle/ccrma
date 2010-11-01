@@ -1,0 +1,12 @@
+Mike Rotondo
+192A Studio Exercise 1
+
+1. I recorded this track with the two Neumann microphones (the TLM-193 and U87 Ai) in a spaced pair in cardioid mode instead of omni. I tried to observe the 3/1 rule, but it seems like the left mic was too far off the piano or pointed in the wrong direction, because the mix is is much louder on the right side. Both of the mics sound great on their own, though.
+
+2. This recording was done with the two Josephson C42 cardiods in a coincident setup. The stereo image is _much_ more balanced than the first recording, which makes sense because the mics were on top of one another, and I made sure that each of them were pointing roughly at the piano (instead of too far to the side). I also got the levels better, so each channel hits just short of peaking at the loud sections, and is still quite solidly audible at the quieter sections. That said, there's not much separation in this recording. The sound is very centered.
+
+3. This was a botched recording, I didn't pan the microphones and so there's no stereo separation. I stopped the recording partway through.
+
+4. This was recorded with the Shure KSM141s in ORTF formation (roughly), and it's definitely my favorite of the recordings I made, by far. It sounds like there are two pianos! Part of that might be the piece I recorded, but that just highlights how nicely separated the sound feels, with the highs sitting slightly left and mid and bass slightly to the right. It's really great sounding, I think.
+
+(Note: I listened to all of these in headphones to tell the difference between them, which were much clearer that way than with loudspeakers.)
