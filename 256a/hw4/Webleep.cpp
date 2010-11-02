@@ -22,6 +22,9 @@
 #include "gfx.h"
 #include "vector3d.h"
 #include "ugens.h"
+#include "pthread.h"
+#include <stdexcept>
+#include <string.h>
 
 #include <vector>
 
@@ -29,11 +32,21 @@ using namespace std;
 
 
 #define ADDRESS "127.0.0.1"
-#define PORT 7000
 
 #define OUTPUT_BUFFER_SIZE 1024
 
 #define IP_MTU_SIZE 1536
+
+char g_hostname[255];
+int g_port = 7000;
+
+bool g_connect_mode = false;
+char g_other_address[255];
+char g_other_address_char_index = 0;
+char *g_other_host_and_port[2];
+// TODO: INCLUDE LIST OF PEERS FOR MORE THAN 2-PLAYER
+// For now, only try to counter-connect if we aren't already connected to someone
+bool g_connected = false;
 
 // width and height of the window
 GLsizei g_width = 800;
@@ -107,6 +120,8 @@ int g_loop_count = 0;
 
 RtAudio audio;
 
+pthread_t oscpack_thread;
+
 //-----------------------------------------------------------------------------
 // function prototypes
 //-----------------------------------------------------------------------------
@@ -144,7 +159,32 @@ void reshapeFunc( GLsizei w, GLsizei h )
     //gluLookAt( 0.0f, 0.0f, 10.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f );
 }
 
-
+void TryToConnectToHost()
+{
+  g_connect_mode = false;
+  cout << "HEY ENTER" << endl;
+  g_other_host_and_port[0] = strtok(g_other_address, ":");
+  g_other_host_and_port[1] = strtok(NULL, " .,-");
+  //cout << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
+  
+  int port = atoi(g_other_host_and_port[1]);
+  IpEndpointName host( g_other_host_and_port[0], port );
+  
+  char hostIpAddress[ IpEndpointName::ADDRESS_STRING_LENGTH ];
+  host.AddressAsString( hostIpAddress );
+  
+  std::cout << "sending test messages to " << g_other_host_and_port[0] 
+	    << " (" << hostIpAddress << ") on port " << g_port << "...\n";
+  
+  char buffer[IP_MTU_SIZE];
+  osc::OutboundPacketStream p( buffer, IP_MTU_SIZE );
+  UdpTransmitSocket socket( host );
+  
+  p.Clear();
+  p << osc::BeginMessage( "/connect" ) << g_hostname << osc::EndMessage;
+  socket.Send( p.Data(), p.Size() );
+  g_connected = true;
+}
 
 //-----------------------------------------------------------------------------
 // Name: keyboardFunc( )
@@ -152,10 +192,24 @@ void reshapeFunc( GLsizei w, GLsizei h )
 //-----------------------------------------------------------------------------
 void keyboardFunc( unsigned char key, int x, int y )
 {
+  if (g_connect_mode) {
+    g_other_address[g_other_address_char_index++] = key;
+    g_other_address[g_other_address_char_index] = '\0';
+    //cout << g_other_address << endl;
+  }
+
   switch( key )
     {
-    case 'r':
-      //cout << "HELLO R" << endl;
+    case 10:
+    case 13:
+      TryToConnectToHost();
+      break;
+    case 'c':
+      if (!g_connect_mode) {
+	g_connect_mode = true;
+	memset(g_other_address, 0, 255);
+	g_other_address_char_index = 0;
+      }
       break;
     case 'Q':
     case 'q':
@@ -166,8 +220,41 @@ void keyboardFunc( unsigned char key, int x, int y )
   glutPostRedisplay( );
 }
 
+void SendAddBleep(Vector3D *position)
+{
+  cout << "SENDING ADD BLEEP" << endl;
+  int port = atoi(g_other_host_and_port[1]);
+  IpEndpointName host( g_other_host_and_port[0], port );
+  
+  cout << "YUP" << endl;
+  char buffer[IP_MTU_SIZE];
+  osc::OutboundPacketStream p( buffer, IP_MTU_SIZE );
+  UdpTransmitSocket socket( host );
+  
+  cout << "OYES" << endl;
+  p.Clear();
+  p << osc::BeginMessage( "/add" ) << position->x << position->y << osc::EndMessage;
+  socket.Send( p.Data(), p.Size() );
+}
 
-
+void AddBleep(Vector3D *position, bool send)
+{
+  cout << "ADDING BLEEP" << endl;
+  Vector3D *color = new Vector3D(rand() / (double)RAND_MAX,
+				 rand() / (double)RAND_MAX,
+				 rand() / (double)RAND_MAX);
+  cout << "1" << endl;
+  pthread_mutex_lock(&bleeps_mutex);    
+  cout << "2" << endl;
+  bleeps.push_back(new Bleep(position, color));
+  cout << "3" << endl;
+  pthread_mutex_unlock(&bleeps_mutex);    
+  cout << "4" << endl;
+  if (send) {
+    cout << "5" << endl;
+    SendAddBleep(position);
+  }
+}
 
 //-----------------------------------------------------------------------------
 // Name: mouseFunc( )
@@ -185,7 +272,7 @@ void mouseFunc( int button, int state, int x, int y )
 	  pthread_mutex_lock(&bleeps_mutex);    
 	  vector<Bleep *>::iterator itr=bleeps.begin();
 	  while(itr != bleeps.end()) {
-	    Bleep *bleep = *itr;	    
+	    Bleep *bleep = *itr;
 	    Vector3D diff(bleep->position->x - position->x,
 			  bleep->position->y - position->y,
 			  bleep->position->z - position->z);
@@ -195,16 +282,13 @@ void mouseFunc( int button, int state, int x, int y )
 	    }
 	    ++itr;
 	  }
+	  pthread_mutex_unlock(&bleeps_mutex);
 	  if (found_hit) {
 	    Bleep *bleep = *itr;
 	    g_dragging_bleep = bleep;
 	  } else {
-	    Vector3D *color = new Vector3D(rand() / (double)RAND_MAX,
-					   rand() / (double)RAND_MAX,
-					   rand() / (double)RAND_MAX);
-	    bleeps.push_back(new Bleep(position, color));
+	    AddBleep(position, true);
 	  }   
-	  pthread_mutex_unlock(&bleeps_mutex);
         }
         else
         {
@@ -263,6 +347,23 @@ void idleFunc( )
 {
     // render the scene
     glutPostRedisplay( );
+}
+
+
+
+void renderSpacedBitmapString(
+			float x, 
+			float y,
+			int spacing, 
+			void *font,
+			char *string) {
+  char *c;
+  int x1=x;
+  for (c=string; *c != '\0'; c++) {
+	glRasterPos2f(x1,y);
+    	glutBitmapCharacter(font, *c);
+	x1 = x1 + glutBitmapWidth(font,*c) + spacing;
+  }
 }
 
 
@@ -335,6 +436,17 @@ void displayFunc( )
     ++itr;
   }
   pthread_mutex_unlock(&bleeps_mutex);
+
+  glDisable(GL_LIGHTING);
+
+  glColor3f(1, 1, 1);
+  renderSpacedBitmapString(10, 10, 5, GLUT_BITMAP_8_BY_13, g_hostname);
+
+  if (g_connect_mode) {
+    renderSpacedBitmapString(g_width / 2 - 150, g_height / 2, 5, GLUT_BITMAP_8_BY_13, "connect:");
+    renderSpacedBitmapString(g_width / 2 - 50, g_height / 2, 5, GLUT_BITMAP_8_BY_13, g_other_address);
+
+  }
 	  
   // flush!
   glFlush( );
@@ -445,15 +557,31 @@ protected:
       // example of parsing single messages. osc::OsckPacketListener
       // handles the bundle traversal.
       
-      if( strcmp( m.AddressPattern(), "/play" ) == 0 ){
+      if( strcmp( m.AddressPattern(), "/connect" ) == 0 ){
 	// example #1 -- argument stream interface
 	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-	osc::int32 a1;
-	args >> a1 >> osc::EndMessage;
+	const char *hostname;
+	args >> hostname >> osc::EndMessage;
         
-	std::cout << "received '/play' message with argument: "
-		  << a1 << "\n";
+	std::cout << "received '/connect' message with argument: "
+		  << hostname << "\n";
 	
+	memcpy(g_other_address, hostname, 255);
+	if (!g_connected) {
+	  TryToConnectToHost();
+	} 
+      }
+      else if( strcmp( m.AddressPattern(), "/add" ) == 0 ){
+	// example #1 -- argument stream interface
+	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+	float x;
+	float y;
+	args >> x >> y >> osc::EndMessage;
+        
+	std::cout << "received '/add' message with argument: "
+		  << x << ", " <<  y << "\n";
+	
+	AddBleep(new Vector3D(x, y, 0), false);
       }
     }catch( osc::Exception& e ){
       // any parsing errors such as unexpected argument types, or 
@@ -463,6 +591,13 @@ protected:
     }
   }
 };
+
+void *startThread( void* _socket )
+{
+  UdpListeningReceiveSocket* socket = (UdpListeningReceiveSocket*)_socket;
+  socket->RunUntilSigInt();
+  return NULL;
+}
 
 int main(int argc, char* argv[])
 {
@@ -509,20 +644,24 @@ int main(int argc, char* argv[])
 
   glEnable(GL_COLOR_MATERIAL);
 
-  SetUpAudio();
+  try {
+    SetUpAudio();
+  } catch (RtError &e) {
+    e.printMessage();
+  }
 
   if (argc == 1) {
     cout << "SENDING" << endl;
 
     const char *hostName = "localhost";
 
-    IpEndpointName host( hostName, PORT );
+    IpEndpointName host( hostName, g_port );
     
     char hostIpAddress[ IpEndpointName::ADDRESS_STRING_LENGTH ];
     host.AddressAsString( hostIpAddress );
     
     std::cout << "sending test messages to " << hostName 
-	      << " (" << hostIpAddress << ") on port " << PORT << "...\n";
+	      << " (" << hostIpAddress << ") on port " << g_port << "...\n";
 
     char buffer[IP_MTU_SIZE];
     osc::OutboundPacketStream p( buffer, IP_MTU_SIZE );
@@ -532,20 +671,33 @@ int main(int argc, char* argv[])
     p << osc::BeginMessage( "/play" ) << 23 << osc::EndMessage;
     socket.Send( p.Data(), p.Size() );
 
-  } else {
-    cout << "LISTENING" << endl;
-    
-    ExamplePacketListener listener;
-    UdpListeningReceiveSocket s(
-				IpEndpointName( IpEndpointName::ANY_ADDRESS, PORT ),
-				&listener );
-    
-    std::cout << "press ctrl-c to end\n";
-    
-    //s.RunUntilSigInt();
   }
+  cout << "LISTENING" << endl;
+  
+  ExamplePacketListener listener;
+  UdpListeningReceiveSocket *s;
+  bool success = false;
+  while (!success) {
+    try {
+      cout << "Trying to listen on port " << g_port << endl;
+      s = new UdpListeningReceiveSocket(IpEndpointName( IpEndpointName::ANY_ADDRESS, g_port ),
+					&listener );
+      success = true;
+    } catch ( std::runtime_error &e ) {
+      g_port += 1;
+    }
+  }
+  char hostname[255];
+  gethostname(hostname, 255);
+  sprintf(g_hostname, "%s:%d", hostname, g_port);
+  cout << "host and port: " << g_hostname << endl;
+
+  pthread_create(&oscpack_thread, NULL, startThread, (void *)s);
+
   // let GLUT handle the current thread from here
   glutMainLoop();
+
+  pthread_cancel(oscpack_thread);
 
   try {
     audio.stopStream();
