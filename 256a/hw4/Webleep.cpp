@@ -164,7 +164,7 @@ void TryToConnectToHost()
   g_connect_mode = false;
   g_other_host_and_port[0] = strtok(g_other_address, ":");
   g_other_host_and_port[1] = strtok(NULL, " .,-");
-  //cout << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
+  cout << "CONNECTING TO: " << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
   
   int port = atoi(g_other_host_and_port[1]);
   IpEndpointName host( g_other_host_and_port[0], port );
