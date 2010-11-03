@@ -671,9 +671,15 @@ int main(int argc, char* argv[])
       g_port += 1;
     }
   }
-  char hostname[255];
-  gethostname(hostname, 255);
-  sprintf(g_hostname, "%s:%d", hostname, g_port);
+  char local_hostname[255];
+  gethostname(local_hostname, 255);
+  IpEndpointName local_ip_endpoint( local_hostname, g_port );
+  char local_ip_address[ IpEndpointName::ADDRESS_STRING_LENGTH ];
+  local_ip_endpoint.AddressAsString( local_ip_address );
+
+  cout << "MY IP IS " << local_ip_address << endl;
+  
+  sprintf(g_hostname, "%s:%d", local_ip_address, g_port);
   cout << "host and port: " << g_hostname << endl;
 
   cout << "CONNECTED? " << g_connected << endl;  
