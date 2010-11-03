@@ -2,11 +2,11 @@ UNAME := $(shell uname)
 
 CXX=g++
 ifeq ($(UNAME), Linux)
-	FLAGS=-D__UNIX_JACK__ -D__LINUX_ALSASEQ__ -c #-g -O0 -fno-inline
-	LIBS=-lstdc++ -lm -ljack -lasound -lpthread
+	FLAGS=-D__UNIX_JACK__ -c #-g -O0 -fno-inline
+	LIBS=-lstdc++ -lm -ljack -lpthread -lGL -lGLU -lglut
 endif
 ifeq ($(UNAME), Darwin)
-	FLAGS=-D__UNIX_JACK__ -D__MAC__ -c -g -O0 -fno-inline
+	FLAGS=-D__UNIX_JACK__ -D__MAC__ -c #-g -O0 -fno-inline
 	LIBS=-framework CoreAudio -framework CoreMIDI -framework CoreFoundation \
 		-framework IOKit -framework Carbon  -framework OpenGL \
 		-framework GLUT -framework Foundation \

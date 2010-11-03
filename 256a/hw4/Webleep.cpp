@@ -18,6 +18,7 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
+#include <stdio.h>
 
 #include "gfx.h"
 #include "vector3d.h"
