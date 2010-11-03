@@ -26,7 +26,6 @@
 #include "pthread.h"
 #include <stdexcept>
 #include <string.h>
-
 #include <vector>
 
 using namespace std;
@@ -671,8 +670,12 @@ int main(int argc, char* argv[])
       g_port += 1;
     }
   }
+
   char local_hostname[255];
   gethostname(local_hostname, 255);
+
+  cout << "hostname: " << local_hostname << endl;
+
   IpEndpointName local_ip_endpoint( local_hostname, g_port );
   char local_ip_address[ IpEndpointName::ADDRESS_STRING_LENGTH ];
   local_ip_endpoint.AddressAsString( local_ip_address );
