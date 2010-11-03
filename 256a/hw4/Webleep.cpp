@@ -163,7 +163,6 @@ void reshapeFunc( GLsizei w, GLsizei h )
 void TryToConnectToHost()
 {
   g_connect_mode = false;
-  cout << "HEY ENTER" << endl;
   g_other_host_and_port[0] = strtok(g_other_address, ":");
   g_other_host_and_port[1] = strtok(NULL, " .,-");
   //cout << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
@@ -174,8 +173,8 @@ void TryToConnectToHost()
   char hostIpAddress[ IpEndpointName::ADDRESS_STRING_LENGTH ];
   host.AddressAsString( hostIpAddress );
   
-  std::cout << "sending test messages to " << g_other_host_and_port[0] 
-	    << " (" << hostIpAddress << ") on port " << g_port << "...\n";
+  std::cout << "sending /connect to " << g_other_host_and_port[0] 
+	    << " (" << hostIpAddress << ") on port " << port << "...\n";
   
   char buffer[IP_MTU_SIZE];
   osc::OutboundPacketStream p( buffer, IP_MTU_SIZE );
@@ -568,7 +567,11 @@ protected:
 		  << hostname << "\n";
 	
 	memcpy(g_other_address, hostname, 255);
+
+	cout << g_connected << endl;
+
 	if (!g_connected) {
+	  cout << "Trying to back-connect" << endl;
 	  TryToConnectToHost();
 	} 
       }
@@ -602,6 +605,8 @@ void *startThread( void* _socket )
 
 int main(int argc, char* argv[])
 {
+  cout << "CONNECTED? " << g_connected << endl;
+
   pthread_mutex_init(&bleeps_mutex, NULL);
 
   // initialize GLUT
@@ -651,28 +656,6 @@ int main(int argc, char* argv[])
     e.printMessage();
   }
 
-  if (argc == 1) {
-    cout << "SENDING" << endl;
-
-    const char *hostName = "localhost";
-
-    IpEndpointName host( hostName, g_port );
-    
-    char hostIpAddress[ IpEndpointName::ADDRESS_STRING_LENGTH ];
-    host.AddressAsString( hostIpAddress );
-    
-    std::cout << "sending test messages to " << hostName 
-	      << " (" << hostIpAddress << ") on port " << g_port << "...\n";
-
-    char buffer[IP_MTU_SIZE];
-    osc::OutboundPacketStream p( buffer, IP_MTU_SIZE );
-    UdpTransmitSocket socket( host );
-
-    p.Clear();
-    p << osc::BeginMessage( "/play" ) << 23 << osc::EndMessage;
-    socket.Send( p.Data(), p.Size() );
-
-  }
   cout << "LISTENING" << endl;
   
   ExamplePacketListener listener;
@@ -692,6 +675,8 @@ int main(int argc, char* argv[])
   gethostname(hostname, 255);
   sprintf(g_hostname, "%s:%d", hostname, g_port);
   cout << "host and port: " << g_hostname << endl;
+
+  cout << "CONNECTED? " << g_connected << endl;  
 
   pthread_create(&oscpack_thread, NULL, startThread, (void *)s);
 
