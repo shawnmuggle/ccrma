@@ -221,7 +221,7 @@ void keyboardFunc( unsigned char key, int x, int y )
 
 void SendAddBleep(Vector3D *position)
 {
-  cout << "SENDING ADD BLEEP" << endl;
+  cout << "SENDING ADD BLEEP to " << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
   int port = atoi(g_other_host_and_port[1]);
   IpEndpointName host( g_other_host_and_port[0], port );
   
@@ -567,12 +567,17 @@ protected:
 	
 	memcpy(g_other_address, hostname, 255);
 
-	cout << g_connected << endl;
+	g_other_host_and_port[0] = strtok(g_other_address, ":");
+	g_other_host_and_port[1] = strtok(NULL, " .,-");
 
+	g_connected = true;
+	
+	/*
 	if (!g_connected) {
 	  cout << "Trying to back-connect" << endl;
 	  TryToConnectToHost();
-	} 
+	}
+	*/
       }
       else if( strcmp( m.AddressPattern(), "/add" ) == 0 ){
 	// example #1 -- argument stream interface
