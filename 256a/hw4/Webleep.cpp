@@ -567,7 +567,8 @@ protected:
 	
 	memcpy(g_other_address, hostname, 255);
 
-	cout << g_connected << endl;
+	g_other_host_and_port[0] = strtok(g_other_address, ":");
+	g_other_host_and_port[1] = strtok(NULL, " .,-");
 
 	g_connected = true;
 	
