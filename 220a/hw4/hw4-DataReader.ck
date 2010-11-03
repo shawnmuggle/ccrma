@@ -9,13 +9,74 @@ if (me.args())
   data.setDataSource(me.arg(0)); // file name is assumed to be first argument
   data.start();
   data.scaledVal();
-  SinOsc s => dac;
+
+  PulseOsc s => BPF f => dac;
+  1 => f.Q;
+  40 => s.freq;
+
+  VoicForm v => dac;
+  VoicForm v2 => dac;
+  VoicForm v3 => dac;
+  0.2 => v.pitchSweepRate;
+  150 => v.freq;
+  1.0 => v.voiced;
+  0.0 => v.unVoiced;
+  0.4 => v.loudness;
+
+  0.5 => v2.pitchSweepRate;
+  200 => v2.freq;
+  0.7 => v2.voiced;
+  0.3 => v2.unVoiced;
+  0.4 => v2.loudness;
+
+  1.0 => v3.pitchSweepRate;
+  300 => v3.freq;
+  0.9 => v3.gain;
+  0.3 => v3.voiced;
+  0.7 => v3.unVoiced;
+  0.4 => v3.loudness;
+
+  StifKarp b => Pan2 p => dac;
+  1000 => b.freq;
+  0.2 => b.gain;
+
+  0 => float prevVal;
   while (!data.isFinished())
   {
     data.scaledVal() => float val; // next data point, scaled in 0.0 - 1.0 range
+    val - prevVal => float delta;
     s.gain(val);
-    s.freq(Std.mtof(80.0 + val*20.0));
-    100::ms => now;
+    s.freq(Std.mtof(15.0 + delta*20.0));
+    f.freq(Std.mtof(10.0 + val*100.0));
+
+    if (delta > 0.53)
+    {
+	(delta * 64) $ int => int phonemeNum;
+	phonemeNum => v.phonemeNum;
+	phonemeNum => v2.phonemeNum;
+	phonemeNum => v3.phonemeNum;
+
+    	1.0 => v.speak;
+    	1.0 => v2.speak;
+    	1.0 => v3.speak;
+	500::ms => now;
+	1.0 => v.quiet;
+	1.0 => v2.quiet;
+	1.0 => v3.quiet;
+    }
+
+    val * val => b.stretch;
+    b.freq() => float freq;
+    val *=> freq;
+    freq => b.freq;
+    if (b.freq() < 1000)
+    {
+	1000 => b.freq;
+    }    
+
+    val => p.pan;
+    1.0 => b.noteOn;
+    30::ms => now;
   }
 }
 
