@@ -251,7 +251,7 @@ void AddBleep(Vector3D *position, bool send)
   cout << "3" << endl;
   pthread_mutex_unlock(&bleeps_mutex);    
   cout << "4" << endl;
-  if (send) {
+  if (send && g_connected) {
     cout << "5" << endl;
     SendAddBleep(position);
   }
