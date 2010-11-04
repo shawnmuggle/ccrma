@@ -213,6 +213,8 @@ void TryToConnectToHost()
 //-----------------------------------------------------------------------------
 void keyboardFunc( unsigned char key, int x, int y )
 {
+  cout << (int)key << endl;
+
   if (g_connect_mode) {
     g_other_address[g_other_address_char_index++] = key;
     g_other_address[g_other_address_char_index] = '\0';
@@ -239,6 +241,21 @@ void keyboardFunc( unsigned char key, int x, int y )
     }
   
   glutPostRedisplay( );
+}
+
+void SendMoveBleep(int id, float x, float y)
+{
+  cout << "SENDING MOVE BLEEP to " << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
+  int port = atoi(g_other_host_and_port[1]);
+  IpEndpointName host( g_other_host_and_port[0], port );
+  
+  char buffer[IP_MTU_SIZE];
+  osc::OutboundPacketStream p( buffer, IP_MTU_SIZE );
+  UdpTransmitSocket socket( host );
+  
+  p.Clear();
+  p << osc::BeginMessage( "/move" ) << id << x << y << osc::EndMessage;
+  socket.Send( p.Data(), p.Size() );
 }
 
 void SendEraseBleep(int id)
@@ -373,6 +390,7 @@ void mouseMotionFunc(int x,int y)
 {
   if (g_dragging_bleep) {
     g_dragging_bleep->SetPosition(x, y);
+    SendMoveBleep(g_dragging_bleep->id, x, y)
   }
 }
 
@@ -657,6 +675,35 @@ protected:
 	}
 	if (found_hit) {
 	  bleeps.erase(itr);
+	}
+	pthread_mutex_unlock(&bleeps_mutex);
+
+	std::cout << "received '/erase' message with argument: "
+		  << id << "\n";
+      } else if( strcmp( m.AddressPattern(), "/move" ) == 0 ){
+	// example #1 -- argument stream interface
+	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+	osc::int32 id;
+	float x;
+	float y;
+	args >> id >> x >> y >> osc::EndMessage;
+  
+	bool found_hit = false;
+	pthread_mutex_lock(&bleeps_mutex);
+	vector<Bleep *>::iterator itr=bleeps.begin();
+	while(itr != bleeps.end()) {
+	  Bleep *bleep = *itr;
+	  cout << "CHECKING: " << bleep->id << endl;
+	  if (bleep->id == id) {
+	    cout << "SUCCESS" << endl;
+	    found_hit = true;
+	    break;
+	  }
+	  ++itr;
+	}
+	if (found_hit) {
+	  Bleep *bleep = *itr;
+	  bleep->SetPosition(x, y);
 	}
 	pthread_mutex_unlock(&bleeps_mutex);
 
