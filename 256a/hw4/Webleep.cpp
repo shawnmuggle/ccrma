@@ -85,6 +85,8 @@ public:
     green = new Vector3D(color->y, color->y, 0.1);
     blue = new Vector3D(color->z, color->z, 0.1);
     delete color;
+
+    cout << "CREATED BLEEP WITH ID: " << id <<endl;
   }
   void update_color() 
   {
