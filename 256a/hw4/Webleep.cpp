@@ -390,7 +390,7 @@ void mouseMotionFunc(int x,int y)
 {
   if (g_dragging_bleep) {
     g_dragging_bleep->SetPosition(x, y);
-    SendMoveBleep(g_dragging_bleep->id, x, y)
+    SendMoveBleep(g_dragging_bleep->id, x, y);
   }
 }
 
