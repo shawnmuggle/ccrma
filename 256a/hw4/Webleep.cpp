@@ -85,8 +85,6 @@ public:
     green = new Vector3D(color->y, color->y, 0.1);
     blue = new Vector3D(color->z, color->z, 0.1);
     delete color;
-
-    cout << "CREATED BLEEP WITH ID: " << id <<endl;
   }
   void update_color() 
   {
@@ -186,16 +184,13 @@ void TryToConnectToHost()
   g_connect_mode = false;
   g_other_host_and_port[0] = strtok(g_other_address, ":");
   g_other_host_and_port[1] = strtok(NULL, " .,-");
-  cout << "CONNECTING TO: " << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
+  cout << "Connecting to: " << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
   
   int port = atoi(g_other_host_and_port[1]);
   IpEndpointName host( g_other_host_and_port[0], port );
   
   char hostIpAddress[ IpEndpointName::ADDRESS_STRING_LENGTH ];
   host.AddressAsString( hostIpAddress );
-  
-  std::cout << "sending /connect to " << g_other_host_and_port[0] 
-	    << " (" << hostIpAddress << ") on port " << port << "...\n";
   
   char buffer[IP_MTU_SIZE];
   osc::OutboundPacketStream p( buffer, IP_MTU_SIZE );
@@ -213,12 +208,9 @@ void TryToConnectToHost()
 //-----------------------------------------------------------------------------
 void keyboardFunc( unsigned char key, int x, int y )
 {
-  cout << (int)key << endl;
-
   if (g_connect_mode) {
     g_other_address[g_other_address_char_index++] = key;
     g_other_address[g_other_address_char_index] = '\0';
-    //cout << g_other_address << endl;
   }
 
   switch( key )
@@ -245,7 +237,6 @@ void keyboardFunc( unsigned char key, int x, int y )
 
 void SendMoveBleep(int id, float x, float y)
 {
-  cout << "SENDING MOVE BLEEP to " << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
   int port = atoi(g_other_host_and_port[1]);
   IpEndpointName host( g_other_host_and_port[0], port );
   
@@ -260,7 +251,6 @@ void SendMoveBleep(int id, float x, float y)
 
 void SendEraseBleep(int id)
 {
-  cout << "SENDING ERASE BLEEP to " << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
   int port = atoi(g_other_host_and_port[1]);
   IpEndpointName host( g_other_host_and_port[0], port );
   
@@ -275,7 +265,6 @@ void SendEraseBleep(int id)
 
 void SendAddBleep(Bleep *new_bleep)
 {
-  cout << "SENDING ADD BLEEP to " << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
   int port = atoi(g_other_host_and_port[1]);
   IpEndpointName host( g_other_host_and_port[0], port );
   
@@ -290,7 +279,6 @@ void SendAddBleep(Bleep *new_bleep)
 
 void AddBleep(float x, float y, bool send, int id)
 {
-  cout << "ADDING BLEEP" << endl;
   Vector3D *color = new Vector3D(rand() / (double)RAND_MAX,
 				 rand() / (double)RAND_MAX,
 				 rand() / (double)RAND_MAX);
@@ -432,13 +420,10 @@ void displayFunc( )
   static GLfloat time_accumulator = 0.0;
 
   XGfx::getCurrentTime(true);
-  //cout << "ACTUAL DELTA: " << XGfx::delta() << endl;
   time_accumulator += XGfx::delta();
   if (time_accumulator < 1.0 / 60.0) {
-    //cout << "HERP" << endl;
     return;
   }
-  //cout << "RENDERTIME at time: " << time_accumulator << endl;
   time_accumulator = 0.0;
   XGfx::resetCurrentTime();
 
@@ -609,7 +594,6 @@ protected:
   virtual void ProcessMessage( const osc::ReceivedMessage& m, 
 			       const IpEndpointName& remoteEndpoint )
   {
-    cout << "Received " << m.AddressPattern() << endl;
     
     try{
       // example of parsing single messages. osc::OsckPacketListener
@@ -621,22 +605,12 @@ protected:
 	const char *hostname;
 	args >> hostname >> osc::EndMessage;
         
-	std::cout << "received '/connect' message with argument: "
-		  << hostname << "\n";
-	
 	memcpy(g_other_address, hostname, 255);
 
 	g_other_host_and_port[0] = strtok(g_other_address, ":");
 	g_other_host_and_port[1] = strtok(NULL, " .,-");
 
 	g_connected = true;
-	
-	/*
-	if (!g_connected) {
-	  cout << "Trying to back-connect" << endl;
-	  TryToConnectToHost();
-	}
-	*/
       }
       else if( strcmp( m.AddressPattern(), "/add" ) == 0 ){
 	// example #1 -- argument stream interface
@@ -645,10 +619,6 @@ protected:
 	float x;
 	float y;
 	args >> id >> x >> y >> osc::EndMessage;
-        
-	std::cout << "received '/add' message with argument: "
-		  << x << ", " <<  y << "\n";
-	
 	AddBleep(x, y, false, id);
       }
       else if( strcmp( m.AddressPattern(), "/erase" ) == 0 ){
@@ -662,24 +632,17 @@ protected:
 	vector<Bleep *>::iterator itr=bleeps.begin();
 	while(itr != bleeps.end()) {
 	  Bleep *bleep = *itr;
-	  cout << "CHECKING: " << bleep->id << endl;
 	  if (bleep->id == id) {
-	    cout << "SUCCESS" << endl;
 	    found_hit = true;
 	    break;
 	  }
-	  if (!found_hit)
-	    ++itr;
-	  else
-	    cout << "WHAAA?" << endl;
+	  ++itr;
 	}
 	if (found_hit) {
 	  bleeps.erase(itr);
 	}
 	pthread_mutex_unlock(&bleeps_mutex);
 
-	std::cout << "received '/erase' message with argument: "
-		  << id << "\n";
       } else if( strcmp( m.AddressPattern(), "/move" ) == 0 ){
 	// example #1 -- argument stream interface
 	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
@@ -693,9 +656,7 @@ protected:
 	vector<Bleep *>::iterator itr=bleeps.begin();
 	while(itr != bleeps.end()) {
 	  Bleep *bleep = *itr;
-	  cout << "CHECKING: " << bleep->id << endl;
 	  if (bleep->id == id) {
-	    cout << "SUCCESS" << endl;
 	    found_hit = true;
 	    break;
 	  }
@@ -707,8 +668,6 @@ protected:
 	}
 	pthread_mutex_unlock(&bleeps_mutex);
 
-	std::cout << "received '/erase' message with argument: "
-		  << id << "\n";
       }
     }catch( osc::Exception& e ){
       // any parsing errors such as unexpected argument types, or 
@@ -783,14 +742,11 @@ int main(int argc, char* argv[])
     e.printMessage();
   }
 
-  cout << "LISTENING" << endl;
-  
   ExamplePacketListener listener;
   UdpListeningReceiveSocket *s;
   bool success = false;
   while (!success) {
     try {
-      cout << "Trying to listen on port " << g_port << endl;
       s = new UdpListeningReceiveSocket(IpEndpointName( IpEndpointName::ANY_ADDRESS, g_port ),
 					&listener );
       success = true;
@@ -802,16 +758,11 @@ int main(int argc, char* argv[])
   char local_hostname[255];
   gethostname(local_hostname, 255);
 
-  cout << "hostname: " << local_hostname << endl;
-
   IpEndpointName local_ip_endpoint( local_hostname, g_port );
   char local_ip_address[ IpEndpointName::ADDRESS_STRING_LENGTH ];
   local_ip_endpoint.AddressAsString( local_ip_address );
 
-  cout << "MY IP IS " << local_ip_address << endl;
-  
   sprintf(g_hostname, "%s:%d", local_ip_address, g_port);
-  cout << "host and port: " << g_hostname << endl;
 
   pthread_create(&oscpack_thread, NULL, startThread, (void *)s);
 
