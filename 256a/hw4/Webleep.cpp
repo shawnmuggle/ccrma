@@ -348,11 +348,13 @@ void mouseFunc( int button, int state, int x, int y )
 	    }
 	    ++itr;
 	  }
+	  pthread_mutex_unlock(&bleeps_mutex);
 	  if (found_hit) {
 	    bleeps.erase(itr);
-	    SendEraseBleep((*itr)->id);
+	    if (g_connected) {
+	      SendEraseBleep((*itr)->id);
+	    }
 	  }
-	  pthread_mutex_unlock(&bleeps_mutex);
         }
         else
         {
@@ -619,7 +621,7 @@ protected:
       else if( strcmp( m.AddressPattern(), "/add" ) == 0 ){
 	// example #1 -- argument stream interface
 	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-	int id;
+	osc::int32 id;
 	float x;
 	float y;
 	args >> id >> x >> y >> osc::EndMessage;
@@ -632,9 +634,25 @@ protected:
       else if( strcmp( m.AddressPattern(), "/erase" ) == 0 ){
 	// example #1 -- argument stream interface
 	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-	int id;
+	osc::int32 id;
 	args >> id >> osc::EndMessage;
-        
+  
+	bool found_hit = false;
+	pthread_mutex_lock(&bleeps_mutex);
+	vector<Bleep *>::iterator itr=bleeps.begin();
+	while(itr != bleeps.end()) {
+	  Bleep *bleep = *itr;	    
+	  if (bleep->id == id) {
+	    found_hit = true;
+	    break;
+	  }
+	  ++itr;
+	}
+	if (found_hit) {
+	  bleeps.erase(itr);
+	}
+	pthread_mutex_unlock(&bleeps_mutex);
+
 	std::cout << "received '/erase' message with argument: "
 		  << id << "\n";
       }
@@ -643,6 +661,7 @@ protected:
       // missing arguments get thrown as exceptions.
       std::cout << "error while parsing message: "
                 << m.AddressPattern() << ": " << e.what() << "\n";
+      
     }
   }
 };
@@ -669,10 +688,10 @@ int main(int argc, char* argv[])
   // create the window
   glutCreateWindow( "VisualSine" );
 
-
+#ifdef __MAC__
   const GLint sync = 1;
   CGLSetParameter(CGLGetCurrentContext(), kCGLCPSwapInterval, &sync);
-  
+#endif
 
   /*
   glutGameModeString("800x600:32@60");
