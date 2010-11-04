@@ -61,8 +61,8 @@ public:
   Bleep(float x, float y, Vector3D *color) : 
     last_loop_seen(-1)
   {
-    init(x, y, color);
     id = rand();
+    init(x, y, color);
   }
   Bleep(float x, float y, Vector3D *color, int id) : 
     last_loop_seen(-1),
@@ -643,12 +643,17 @@ protected:
 	pthread_mutex_lock(&bleeps_mutex);
 	vector<Bleep *>::iterator itr=bleeps.begin();
 	while(itr != bleeps.end()) {
-	  Bleep *bleep = *itr;	    
+	  Bleep *bleep = *itr;
+	  cout << "CHECKING: " << bleep->id << endl;
 	  if (bleep->id == id) {
+	    cout << "SUCCESS" << endl;
 	    found_hit = true;
 	    break;
 	  }
-	  ++itr;
+	  if (!found_hit)
+	    ++itr;
+	  else
+	    cout << "WHAAA?" << endl;
 	}
 	if (found_hit) {
 	  bleeps.erase(itr);
