@@ -352,10 +352,10 @@ void mouseFunc( int button, int state, int x, int y )
 	  }
 	  pthread_mutex_unlock(&bleeps_mutex);
 	  if (found_hit) {
-	    bleeps.erase(itr);
 	    if (g_connected) {
 	      SendEraseBleep((*itr)->id);
 	    }
+	    bleeps.erase(itr);
 	  }
         }
         else
