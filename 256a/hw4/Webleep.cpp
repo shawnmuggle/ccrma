@@ -7,6 +7,7 @@
 #ifdef __MAC__
   // note: for mac only
   #include <GLUT/glut.h>
+  #include <OpenGL/OpenGL.h>
 #else
   #include <GL/gl.h>
   #include <GL/glu.h>
@@ -27,15 +28,17 @@
 #include <stdexcept>
 #include <string.h>
 #include <vector>
+#include <set>
 
 using namespace std;
 
 
-#define ADDRESS "127.0.0.1"
-
 #define OUTPUT_BUFFER_SIZE 1024
 
 #define IP_MTU_SIZE 1536
+
+#define NUM_COLLISION_SECTIONS 16
+
 
 char g_hostname[255];
 int g_port = 7000;
@@ -55,21 +58,34 @@ GLsizei g_height = 600;
 class Bleep
 {
 public:
-  Bleep(Vector3D *position, Vector3D *color) : 
-    position(position),
+  Bleep(float x, float y, Vector3D *color) : 
     last_loop_seen(-1)
   {
-    sine = new Sine(20 + g_height - position->y);
+    init(x, y, color);
+    id = rand();
+  }
+  Bleep(float x, float y, Vector3D *color, int id) : 
+    last_loop_seen(-1),
+    id(id)
+  {
+    init(x, y, color);
+  }
+  ~Bleep() { delete position; delete red; delete green; delete blue; }
+  void init(float x, float y, Vector3D *color)
+  {
+    sine = new Sine(20 + g_height - y);
     env = new AREnvelope(5, 10000, 1.0);
     env->GetAudioFrom(sine);
     ugen = env;
+
+    position = new Vector3D();
+    SetPosition(x, y);
 
     red = new Vector3D(color->x, color->x, 0.1);
     green = new Vector3D(color->y, color->y, 0.1);
     blue = new Vector3D(color->z, color->z, 0.1);
     delete color;
   }
-  ~Bleep() { delete position; delete red; delete green; delete blue; }
   void update_color() 
   {
     red->interp();
@@ -103,6 +119,7 @@ public:
   Vector3D *blue;
   Vector3D *position;
   UGen *ugen;
+  int id;
 
 private:
   int last_loop_seen;
@@ -113,6 +130,9 @@ private:
 vector<Bleep *> bleeps;
 pthread_mutex_t bleeps_mutex;
 Bleep *g_dragging_bleep = NULL;
+
+// USE LATER FOR PERFORMAnce (divide screen into sections to do collision detection
+// vector<set<Bleep *>> g_collision_sections;
 
 int g_bleep_radius = 10;
 
@@ -219,39 +239,53 @@ void keyboardFunc( unsigned char key, int x, int y )
   glutPostRedisplay( );
 }
 
-void SendAddBleep(Vector3D *position)
+void SendEraseBleep(int id)
+{
+  cout << "SENDING ERASE BLEEP to " << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
+  int port = atoi(g_other_host_and_port[1]);
+  IpEndpointName host( g_other_host_and_port[0], port );
+  
+  char buffer[IP_MTU_SIZE];
+  osc::OutboundPacketStream p( buffer, IP_MTU_SIZE );
+  UdpTransmitSocket socket( host );
+  
+  p.Clear();
+  p << osc::BeginMessage( "/erase" ) << id << osc::EndMessage;
+  socket.Send( p.Data(), p.Size() );
+}
+
+void SendAddBleep(Bleep *new_bleep)
 {
   cout << "SENDING ADD BLEEP to " << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
   int port = atoi(g_other_host_and_port[1]);
   IpEndpointName host( g_other_host_and_port[0], port );
   
-  cout << "YUP" << endl;
   char buffer[IP_MTU_SIZE];
   osc::OutboundPacketStream p( buffer, IP_MTU_SIZE );
   UdpTransmitSocket socket( host );
   
-  cout << "OYES" << endl;
   p.Clear();
-  p << osc::BeginMessage( "/add" ) << position->x << position->y << osc::EndMessage;
+  p << osc::BeginMessage( "/add" ) << new_bleep->id << new_bleep->position->x << new_bleep->position->y << osc::EndMessage;
   socket.Send( p.Data(), p.Size() );
 }
 
-void AddBleep(Vector3D *position, bool send)
+void AddBleep(float x, float y, bool send, int id)
 {
   cout << "ADDING BLEEP" << endl;
   Vector3D *color = new Vector3D(rand() / (double)RAND_MAX,
 				 rand() / (double)RAND_MAX,
 				 rand() / (double)RAND_MAX);
-  cout << "1" << endl;
-  pthread_mutex_lock(&bleeps_mutex);    
-  cout << "2" << endl;
-  bleeps.push_back(new Bleep(position, color));
-  cout << "3" << endl;
+  Bleep *new_bleep;
+  if (id == -1) {
+    new_bleep = new Bleep(x, y, color);
+  } else {
+    new_bleep = new Bleep(x, y, color, id);
+  }
+  pthread_mutex_lock(&bleeps_mutex);
+  bleeps.push_back(new_bleep);
   pthread_mutex_unlock(&bleeps_mutex);    
-  cout << "4" << endl;
   if (send && g_connected) {
-    cout << "5" << endl;
-    SendAddBleep(position);
+    SendAddBleep(new_bleep);
   }
 }
 
@@ -266,15 +300,15 @@ void mouseFunc( int button, int state, int x, int y )
         // when left mouse button is down
         if( state == GLUT_DOWN )
         {
-	  Vector3D *position = new Vector3D(x, y, 0.0);
+	  Vector3D position(x, y, 0.0);
 	  bool found_hit = false;
 	  pthread_mutex_lock(&bleeps_mutex);    
 	  vector<Bleep *>::iterator itr=bleeps.begin();
 	  while(itr != bleeps.end()) {
 	    Bleep *bleep = *itr;
-	    Vector3D diff(bleep->position->x - position->x,
-			  bleep->position->y - position->y,
-			  bleep->position->z - position->z);
+	    Vector3D diff(bleep->position->x - position.x,
+			  bleep->position->y - position.y,
+			  bleep->position->z - position.z);
 	    if (diff.magnitude() <= g_bleep_radius) {
 	      found_hit = true;
 	      break;
@@ -286,7 +320,7 @@ void mouseFunc( int button, int state, int x, int y )
 	    Bleep *bleep = *itr;
 	    g_dragging_bleep = bleep;
 	  } else {
-	    AddBleep(position, true);
+	    AddBleep(x, y, true, -1);
 	  }   
         }
         else
@@ -316,6 +350,7 @@ void mouseFunc( int button, int state, int x, int y )
 	  }
 	  if (found_hit) {
 	    bleeps.erase(itr);
+	    SendEraseBleep((*itr)->id);
 	  }
 	  pthread_mutex_unlock(&bleeps_mutex);
         }
@@ -408,6 +443,8 @@ void displayFunc( )
     g_loop_count++;
     time_line_x -= g_width;
   }
+
+  glEnable(GL_LIGHTING);
 
   pthread_mutex_lock(&bleeps_mutex);
   vector<Bleep *>::iterator itr=bleeps.begin();
@@ -582,14 +619,24 @@ protected:
       else if( strcmp( m.AddressPattern(), "/add" ) == 0 ){
 	// example #1 -- argument stream interface
 	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+	int id;
 	float x;
 	float y;
-	args >> x >> y >> osc::EndMessage;
+	args >> id >> x >> y >> osc::EndMessage;
         
 	std::cout << "received '/add' message with argument: "
 		  << x << ", " <<  y << "\n";
 	
-	AddBleep(new Vector3D(x, y, 0), false);
+	AddBleep(x, y, false, id);
+      }
+      else if( strcmp( m.AddressPattern(), "/erase" ) == 0 ){
+	// example #1 -- argument stream interface
+	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
+	int id;
+	args >> id >> osc::EndMessage;
+        
+	std::cout << "received '/erase' message with argument: "
+		  << id << "\n";
       }
     }catch( osc::Exception& e ){
       // any parsing errors such as unexpected argument types, or 
@@ -609,8 +656,6 @@ void *startThread( void* _socket )
 
 int main(int argc, char* argv[])
 {
-  cout << "CONNECTED? " << g_connected << endl;
-
   pthread_mutex_init(&bleeps_mutex, NULL);
 
   // initialize GLUT
@@ -623,6 +668,11 @@ int main(int argc, char* argv[])
   glutInitWindowPosition( 100, 100 );
   // create the window
   glutCreateWindow( "VisualSine" );
+
+
+  const GLint sync = 1;
+  CGLSetParameter(CGLGetCurrentContext(), kCGLCPSwapInterval, &sync);
+  
 
   /*
   glutGameModeString("800x600:32@60");
@@ -689,8 +739,6 @@ int main(int argc, char* argv[])
   
   sprintf(g_hostname, "%s:%d", local_ip_address, g_port);
   cout << "host and port: " << g_hostname << endl;
-
-  cout << "CONNECTED? " << g_connected << endl;  
 
   pthread_create(&oscpack_thread, NULL, startThread, (void *)s);
 
