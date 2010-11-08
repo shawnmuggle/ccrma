@@ -26,7 +26,9 @@ int valNew = 0;
 int valOld = 0;
 volatile int m = LOW;
 
-volatile byte sensorValue = 0;
+volatile byte sensorValue1 = 0;
+volatile byte sensorValue2 = 0;
+volatile byte sensorValue3 = 0;
 
 void setup()
 {
@@ -45,8 +47,12 @@ void loop()
     // Consider using Serial.print(encoder0Pos, DEC) instead
     valOld = valNew;
   }
-  sensorValue = analogRead(A0);
-  Serial.print(sensorValue);
+  sensorValue1 = analogRead(A0);
+  sensorValue2 = analogRead(A1);
+  sensorValue3 = analogRead(A2);
+  Serial.print(sensorValue1);
+  Serial.print(sensorValue2);
+  Serial.print(sensorValue3);
   Serial.print(encoder0Pos);
   Serial.println("");
   //delay(10);

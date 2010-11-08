@@ -1,5 +1,5 @@
 SinOsc s => dac;
-"/usr/ccrma/web/html/courses/220a/ck/hw/" => string dataDir;
+"/Users/mrotondo/Development/ccrma/220a/hw4/" => string dataDir;
 // instantiate reader
 DataReader drywhite;
 // set data file
