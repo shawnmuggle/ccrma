@@ -25,6 +25,17 @@ class Sine : public UGen {
   void SetFrequency(double freq);
 };
 
+class Pulse : public UGen {
+  double phase;
+  double width;
+  double frequency;
+ public:
+  Pulse(double frequency, double width);
+  virtual SAMPLE ComputeOutputSample(SAMPLE input_sample);
+  void SetFrequency(double freq);
+  void SetWidth(double width);
+};
+
 class WhiteNoise : public UGen {
  public:
   virtual SAMPLE ComputeOutputSample(SAMPLE input_sample);

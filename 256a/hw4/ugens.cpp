@@ -59,6 +59,36 @@ void Sine::SetFrequency(double freq)
   frequency = freq;
 }
 
+Pulse::Pulse(double frequency, double width) :
+  frequency(frequency),
+  width(width),
+  phase(0)
+{}
+
+SAMPLE Pulse::ComputeOutputSample(SAMPLE input_sample)
+{
+  SAMPLE output_sample = 0.0;
+  if (phase < 2 * M_PI * width)
+    output_sample = 1.0;
+
+  double increment =  (2.0 * M_PI) / g_sample_rate * (frequency);
+  phase += increment;
+  if (phase > 2 * M_PI) {
+    phase -= 2 * M_PI;
+  }
+  return output_sample;
+}
+
+void Pulse::SetFrequency(double freq)
+{
+  frequency = freq;
+}
+
+void Pulse::SetWidth(double w)
+{
+  width = w;
+}
+
 SAMPLE WhiteNoise::ComputeOutputSample(SAMPLE input_sample)
 {
   return (double)rand() / (double)RAND_MAX * 2 - 1;

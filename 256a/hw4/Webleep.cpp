@@ -70,12 +70,23 @@ public:
   {
     init(x, y, color);
   }
-  ~Bleep() { delete position; delete red; delete green; delete blue; }
+  ~Bleep() 
+  {
+    delete position; 
+    delete red; delete green; delete blue; 
+    delete pulse; delete sin; delete env; delete lpf; delete gain;
+  }
   void init(float x, float y, Vector3D *color)
   {
-    sine = new Sine(20 + g_height - y);
+    pulse = new Pulse(20 + g_height - y, 0.25);
+    sin = new Sine(20 + g_height - y);
+    gain = new Gain(0.5);
+    lpf = new MovingAverage(10, 10);
     env = new AREnvelope(5, 10000, 1.0);
-    env->GetAudioFrom(sine);
+    lpf->GetAudioFrom(pulse);
+    env->GetAudioFrom(lpf);
+    gain->GetAudioFrom(sin);
+    env->GetAudioFrom(gain);
     ugen = env;
 
     position = new Vector3D();
@@ -110,7 +121,8 @@ public:
   {
     position->x = x;
     position->y = y;
-    sine->SetFrequency(20 + g_height - y);
+    pulse->SetFrequency(20 + g_height - y);
+    sin->SetFrequency((20 + g_height - y) / 2);
   }
 
 public:
@@ -123,8 +135,11 @@ public:
 
 private:
   int last_loop_seen;
-  Sine *sine;
+  Pulse *pulse;
+  Sine *sin;
+  Gain *gain;
   AREnvelope *env;
+  MovingAverage *lpf;
 };
 
 vector<Bleep *> bleeps;
@@ -132,7 +147,7 @@ pthread_mutex_t bleeps_mutex;
 Bleep *g_dragging_bleep = NULL;
 
 // USE LATER FOR PERFORMAnce (divide screen into sections to do collision detection
-// vector<set<Bleep *>> g_collision_sections;
+//vector<set<Bleep *>> g_collision_sections;
 
 int g_bleep_radius = 10;
 
@@ -378,7 +393,9 @@ void mouseMotionFunc(int x,int y)
 {
   if (g_dragging_bleep) {
     g_dragging_bleep->SetPosition(x, y);
-    SendMoveBleep(g_dragging_bleep->id, x, y);
+    if (g_connected) {
+      SendMoveBleep(g_dragging_bleep->id, x, y);
+    }
   }
 }
 
@@ -694,7 +711,7 @@ int main(int argc, char* argv[])
   // set the window postion
   glutInitWindowPosition( 100, 100 );
   // create the window
-  glutCreateWindow( "VisualSine" );
+  glutCreateWindow( "Webleep" );
 
 #ifdef __MAC__
   const GLint sync = 1;
