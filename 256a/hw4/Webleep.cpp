@@ -596,11 +596,8 @@ protected:
   {
     
     try{
-      // example of parsing single messages. osc::OsckPacketListener
-      // handles the bundle traversal.
       
       if( strcmp( m.AddressPattern(), "/connect" ) == 0 ){
-	// example #1 -- argument stream interface
 	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
 	const char *hostname;
 	args >> hostname >> osc::EndMessage;
@@ -613,7 +610,6 @@ protected:
 	g_connected = true;
       }
       else if( strcmp( m.AddressPattern(), "/add" ) == 0 ){
-	// example #1 -- argument stream interface
 	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
 	osc::int32 id;
 	float x;
@@ -622,7 +618,6 @@ protected:
 	AddBleep(x, y, false, id);
       }
       else if( strcmp( m.AddressPattern(), "/erase" ) == 0 ){
-	// example #1 -- argument stream interface
 	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
 	osc::int32 id;
 	args >> id >> osc::EndMessage;
