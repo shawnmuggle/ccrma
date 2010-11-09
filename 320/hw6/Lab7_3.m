@@ -43,3 +43,24 @@ end
 % index of max in xcorr for mixed signal 1 and clean signal 3 is 132167
 % index of max in xcorr for mixed signal 2 and clean signal 3 is 132267
 % index of max in xcorr for mixed signal 3 and clean signal 3 is 132203
+%
+% In this case, the lag at which the cross-correlation of a clean signal
+% and a mixed signal is maximized denotes the time it took for the sound
+% from the violinist playing that clean signal to get to that microphone.
+%
+% mixed signal 1 receives clean signal 3 first, then clean signal 1, then
+% clean signal 2
+%
+% mixed signal 2 receives clean signal 1, then clean signal 2 and 3
+% simultaneously
+%
+% mixed signal 3 receives clean signal 2 first, then clean signal 1, then
+% clean signal 3.
+
+% We can therefore determine that mixed signal 1 comes from the microphone
+% closest to the violinist playing clean signal 3, mixed signal 2 comes
+% from the the middle microphone (closest to the middle violinist, who is 
+% playing clean signal 1), and mixed signal 3 comes from the microphone
+% closest to the violinist playing clean signal 2. Because the layout is
+% symmetric, I can't say which of the outer violinists was playing clean
+% signals 2 or 3.
