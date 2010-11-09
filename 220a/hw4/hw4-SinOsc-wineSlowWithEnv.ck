@@ -1,7 +1,7 @@
 SinOsc l => NRev rev => dac;
 rev.mix(0.05);
 
-"/usr/ccrma/web/html/courses/220a/ck/hw/" => string dataDir;
+"/Users/mrotondo/Development/ccrma/220a/hw4/" => string dataDir;
 200.0 => float update; // update rate in ms
 
 // new class to manage envelopes
@@ -41,6 +41,7 @@ Amp amp; // instantiate both
 Freq freq;
 
 DataReader drywhite;
+<<< dataDir + "hw4-drywhite.dat" >>>;
 drywhite.setDataSource(dataDir + "hw4-drywhite.dat");
 drywhite.start(); 
 

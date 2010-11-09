@@ -3,7 +3,7 @@
 0;
 #X msg 34 85 open 0;
 #N canvas 123 312 525 433 serin 0;
-#X obj 180 61 cnv 15 15 15 empty \$0-number-canvas 2 4 8 0 14 -233017
+#X obj 180 61 cnv 15 15 15 empty \$0-number-canvas 0 4 8 0 14 -233017
 -1 0;
 #X obj 200 225 s \$0-number-canvas;
 #X obj 60 61 hradio 15 1 1 8 empty empty empty 0 -6 0 8 -225271 -1
@@ -71,7 +71,7 @@
 #X obj 147 223 zl group 2;
 #X obj 145 267 unpack 0 0;
 #X obj 13 432 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 4500 1;
 #X obj 138 370 tabwrite pitches;
 #X obj 66 273 print;
 #X obj 140 337 / 95;
@@ -108,6 +108,7 @@
 #X connect 10 2 12 0;
 #X connect 11 0 9 0;
 #X connect 12 0 13 0;
+#X connect 12 0 16 0;
 #X connect 13 0 14 0;
 #X connect 13 0 17 0;
 #X connect 13 1 27 0;

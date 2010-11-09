@@ -6,7 +6,7 @@ rev.mix(0.05);
 rev.gain(0.2);
 
 
-"/usr/ccrma/web/html/courses/220a/ck/hw/" => string dataDir;
+"/Users/mrotondo/Development/ccrma/220a/hw4/" => string dataDir;
 
 DataReader drywhite;
 drywhite.setDataSource(dataDir + "hw4-drywhite.dat");
@@ -23,10 +23,12 @@ while (!drywhite.isFinished() && !fortif.isFinished())
     fortif.scaledVal() => float p;
 
     l.gain(0.5 * Math.pow(w, 2.0));
+    //l.gain(0.5 * w);
     l.freq(Std.mtof(80.0 + w*20.0));
 
     r.gain(0.5 * Math.pow(p, 2.0));
+    //r.gain(0.5 * p);
     r.freq(Std.mtof(50.0 + p*20.0));
-    100::ms => now;
+    10::ms => now;
 }
 
