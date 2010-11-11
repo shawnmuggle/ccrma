@@ -1,9 +1,3 @@
-#include "oscpack/osc/OscOutboundPacketStream.h"
-#include "oscpack/osc/OscReceivedElements.h"
-#include "oscpack/osc/OscPacketListener.h"
-#include "oscpack/ip/UdpSocket.h"
-#include "oscpack/ip/IpEndpointName.h"
-
 #ifdef __MAC__
   // note: for mac only
   #include <GLUT/glut.h>
@@ -30,26 +24,9 @@
 #include <vector>
 #include <set>
 
+//#include <Foundation/Foundation.h>
+
 using namespace std;
-
-
-#define OUTPUT_BUFFER_SIZE 1024
-
-#define IP_MTU_SIZE 1536
-
-#define NUM_COLLISION_SECTIONS 16
-
-
-char g_hostname[255];
-int g_port = 7000;
-
-bool g_connect_mode = false;
-char g_other_address[255];
-char g_other_address_char_index = 0;
-char *g_other_host_and_port[2];
-// TODO: INCLUDE LIST OF PEERS FOR MORE THAN 2-PLAYER
-// For now, only try to counter-connect if we aren't already connected to someone
-bool g_connected = false;
 
 // width and height of the window
 GLsizei g_width = 800;
@@ -155,7 +132,8 @@ int g_loop_count = 0;
 
 RtAudio audio;
 
-pthread_t oscpack_thread;
+Vector3D *g_cam_position;
+Vector3D *g_cam_angle;
 
 //-----------------------------------------------------------------------------
 // function prototypes
@@ -180,41 +158,15 @@ void reshapeFunc( GLsizei w, GLsizei h )
     glMatrixMode( GL_PROJECTION );
     // load the identity matrix
     glLoadIdentity( );
+
     // create the viewing frustum
-    //gluPerspective( 45.0, (GLfloat) w / (GLfloat) h, 1.0, 300.0 );
+    gluPerspective( 45.0, (GLfloat) w / (GLfloat) h, 1.0, 300.0 );
 
     // Create Ortho 640x480 View (0,0 At Top Left)
-    glOrtho(0.0f,g_width,g_height,0.0f,-1.0f,300.0f);
+    //glOrtho(0.0f,g_width,g_height,0.0f,-1.0f,300.0f);
 
     // set the matrix mode to modelview
     glMatrixMode( GL_MODELVIEW );
-    // load the identity matrix
-    glLoadIdentity( );
-    // position the view point
-    //gluLookAt( 0.0f, 0.0f, 10.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f );
-}
-
-void TryToConnectToHost()
-{
-  g_connect_mode = false;
-  g_other_host_and_port[0] = strtok(g_other_address, ":");
-  g_other_host_and_port[1] = strtok(NULL, " .,-");
-  cout << "Connecting to: " << g_other_host_and_port[0] << " : " << g_other_host_and_port[1] << endl;
-  
-  int port = atoi(g_other_host_and_port[1]);
-  IpEndpointName host( g_other_host_and_port[0], port );
-  
-  char hostIpAddress[ IpEndpointName::ADDRESS_STRING_LENGTH ];
-  host.AddressAsString( hostIpAddress );
-  
-  char buffer[IP_MTU_SIZE];
-  osc::OutboundPacketStream p( buffer, IP_MTU_SIZE );
-  UdpTransmitSocket socket( host );
-  
-  p.Clear();
-  p << osc::BeginMessage( "/connect" ) << g_hostname << osc::EndMessage;
-  socket.Send( p.Data(), p.Size() );
-  g_connected = true;
 }
 
 //-----------------------------------------------------------------------------
@@ -223,23 +175,26 @@ void TryToConnectToHost()
 //-----------------------------------------------------------------------------
 void keyboardFunc( unsigned char key, int x, int y )
 {
-  if (g_connect_mode) {
-    g_other_address[g_other_address_char_index++] = key;
-    g_other_address[g_other_address_char_index] = '\0';
-  }
-
   switch( key )
     {
     case 10:
     case 13:
-      TryToConnectToHost();
       break;
-    case 'c':
-      if (!g_connect_mode) {
-	g_connect_mode = true;
-	memset(g_other_address, 0, 255);
-	g_other_address_char_index = 0;
-      }
+      /*
+	case 'a':
+	g_cam_position->x -= 1;
+	break;
+	case 'd':
+	g_cam_position->x += 1;
+	break;
+      */
+    case 's':
+      g_cam_position->z += 1;
+      break;
+    case 'w':
+      g_cam_position->x += 1 * sin(g_cam_angle->x);
+      g_cam_position->y -= 1 * sin(g_cam_angle->y);
+      g_cam_position->z -= 1 * cos(g_cam_angle->z);
       break;
     case 'Q':
     case 'q':
@@ -250,46 +205,20 @@ void keyboardFunc( unsigned char key, int x, int y )
   glutPostRedisplay( );
 }
 
-void SendMoveBleep(int id, float x, float y)
+void specialKeyboardFunc(int key, int x, int y)
 {
-  int port = atoi(g_other_host_and_port[1]);
-  IpEndpointName host( g_other_host_and_port[0], port );
-  
-  char buffer[IP_MTU_SIZE];
-  osc::OutboundPacketStream p( buffer, IP_MTU_SIZE );
-  UdpTransmitSocket socket( host );
-  
-  p.Clear();
-  p << osc::BeginMessage( "/move" ) << id << x << y << osc::EndMessage;
-  socket.Send( p.Data(), p.Size() );
-}
-
-void SendEraseBleep(int id)
-{
-  int port = atoi(g_other_host_and_port[1]);
-  IpEndpointName host( g_other_host_and_port[0], port );
-  
-  char buffer[IP_MTU_SIZE];
-  osc::OutboundPacketStream p( buffer, IP_MTU_SIZE );
-  UdpTransmitSocket socket( host );
-  
-  p.Clear();
-  p << osc::BeginMessage( "/erase" ) << id << osc::EndMessage;
-  socket.Send( p.Data(), p.Size() );
-}
-
-void SendAddBleep(Bleep *new_bleep)
-{
-  int port = atoi(g_other_host_and_port[1]);
-  IpEndpointName host( g_other_host_and_port[0], port );
-  
-  char buffer[IP_MTU_SIZE];
-  osc::OutboundPacketStream p( buffer, IP_MTU_SIZE );
-  UdpTransmitSocket socket( host );
-  
-  p.Clear();
-  p << osc::BeginMessage( "/add" ) << new_bleep->id << new_bleep->position->x << new_bleep->position->y << osc::EndMessage;
-  socket.Send( p.Data(), p.Size() );
+  if(key == GLUT_KEY_LEFT) {
+    g_cam_position->x -= 1;
+  }
+  else if(key == GLUT_KEY_RIGHT) {
+    g_cam_position->x += 1;
+  }
+  else if(key == GLUT_KEY_DOWN) {
+    g_cam_position->z += 1;
+  }
+  else if(key == GLUT_KEY_UP) {
+    g_cam_position->z -= 1;
+  }
 }
 
 void AddBleep(float x, float y, bool send, int id)
@@ -303,12 +232,7 @@ void AddBleep(float x, float y, bool send, int id)
   } else {
     new_bleep = new Bleep(x, y, color, id);
   }
-  pthread_mutex_lock(&bleeps_mutex);
   bleeps.push_back(new_bleep);
-  pthread_mutex_unlock(&bleeps_mutex);    
-  if (send && g_connected) {
-    SendAddBleep(new_bleep);
-  }
 }
 
 //-----------------------------------------------------------------------------
@@ -317,88 +241,49 @@ void AddBleep(float x, float y, bool send, int id)
 //-----------------------------------------------------------------------------
 void mouseFunc( int button, int state, int x, int y )
 {
-    if( button == GLUT_LEFT_BUTTON )
-    {
-        // when left mouse button is down
-        if( state == GLUT_DOWN )
-        {
-	  Vector3D position(x, y, 0.0);
-	  bool found_hit = false;
-	  pthread_mutex_lock(&bleeps_mutex);    
-	  vector<Bleep *>::iterator itr=bleeps.begin();
-	  while(itr != bleeps.end()) {
-	    Bleep *bleep = *itr;
-	    Vector3D diff(bleep->position->x - position.x,
-			  bleep->position->y - position.y,
-			  bleep->position->z - position.z);
-	    if (diff.magnitude() <= g_bleep_radius) {
-	      found_hit = true;
-	      break;
-	    }
-	    ++itr;
-	  }
-	  pthread_mutex_unlock(&bleeps_mutex);
-	  if (found_hit) {
-	    Bleep *bleep = *itr;
-	    g_dragging_bleep = bleep;
-	  } else {
-	    AddBleep(x, y, true, -1);
-	  }   
-        }
-        else
-        {
-	  g_dragging_bleep = NULL;
-        }
-    }
-    else if ( button == GLUT_RIGHT_BUTTON )
-    {
-        // when right mouse button down
-        if( state == GLUT_DOWN )
-        {
-	  Vector3D *position = new Vector3D(x, y, 0.0);
-	  bool found_hit = false;
-	  pthread_mutex_lock(&bleeps_mutex);    
-	  vector<Bleep *>::iterator itr=bleeps.begin();
-	  while(itr != bleeps.end()) {
-	    Bleep *bleep = *itr;	    
-	    Vector3D diff(bleep->position->x - position->x,
-			  bleep->position->y - position->y,
-			  bleep->position->z - position->z);
-	    if (diff.magnitude() <= g_bleep_radius) {
-	      found_hit = true;
-	      break;
-	    }
-	    ++itr;
-	  }
-	  pthread_mutex_unlock(&bleeps_mutex);
-	  if (found_hit) {
-	    if (g_connected) {
-	      SendEraseBleep((*itr)->id);
-	    }
-	    bleeps.erase(itr);
-	  }
-        }
-        else
-        {
-        }
-    }
-    else
-    {
-    }
+  cout << "Click at " << x << ", " << y << endl;
     
-    glutPostRedisplay( );
+  glutPostRedisplay( );
 }
 
 void mouseMotionFunc(int x,int y)
 {
-  if (g_dragging_bleep) {
-    g_dragging_bleep->SetPosition(x, y);
-    if (g_connected) {
-      SendMoveBleep(g_dragging_bleep->id, x, y);
-    }
-  }
 }
 
+int g_prev_mouse_motion_x = 0;
+int g_prev_mouse_motion_y = 0;
+double g_prev_motion_time = XGfx::getCurrentTime(true);
+void mousePassiveMotionFunc(int x, int y)
+{
+  int screen_width = glutGet( GLUT_SCREEN_WIDTH );
+  int screen_height = glutGet( GLUT_SCREEN_HEIGHT );
+
+  double time = XGfx::getCurrentTime(true);
+
+  //cout << "yup" << endl;
+  
+  if (time - g_prev_motion_time < 0.2) {
+    g_cam_angle->x += (x - g_prev_mouse_motion_x) * 0.01;
+    g_cam_angle->y += (y - g_prev_mouse_motion_y) * 0.01;
+  }
+
+  if( x <= 10 || (y) <= 10 || x >= g_width - 10 || y >= g_height - 10) {
+    //cout << "WOOOO" << endl;
+    glutWarpPointer( g_width / 2, g_height / 2 );
+    g_prev_mouse_motion_x = g_width / 2;
+    g_prev_mouse_motion_y = g_height / 2;
+
+    //      If on Mac OS X, the following will also work (and CGwarpMouseCursorPosition seems faster than glutWarpPointer).
+    //CGPoint centerPos = CGPointMake( g_width / 2, g_height / 2 );
+    //CGWarpMouseCursorPosition( centerPos );
+    // Have to re-hide if the user touched any UI element with the invisible pointer, like the Dock.
+    //      CGDisplayHideCursor(kCGDirectMainDisplay);
+  } else {
+    g_prev_mouse_motion_x = x;
+    g_prev_mouse_motion_y = y;
+  }
+  g_prev_motion_time = time;
+}
 
 //-----------------------------------------------------------------------------
 // Name: idleFunc( )
@@ -409,8 +294,6 @@ void idleFunc( )
     // render the scene
     glutPostRedisplay( );
 }
-
-
 
 void renderSpacedBitmapString(
 			float x, 
@@ -427,7 +310,6 @@ void renderSpacedBitmapString(
   }
 }
 
-
 //-----------------------------------------------------------------------------
 // Name: displayFunc( )
 // Desc: callback function invoked to draw the client area
@@ -435,7 +317,7 @@ void renderSpacedBitmapString(
 void displayFunc( )
 {
   static GLfloat time_accumulator = 0.0;
-
+  
   XGfx::getCurrentTime(true);
   time_accumulator += XGfx::delta();
   if (time_accumulator < 1.0 / 60.0) {
@@ -443,71 +325,34 @@ void displayFunc( )
   }
   time_accumulator = 0.0;
   XGfx::resetCurrentTime();
-
+  
   // clear the color and depth buffers
   glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-
-  static GLfloat time_line_x = 0;
-
+  
+  // load the identity matrix
+  glLoadIdentity( );
+  // position the view point
+  gluLookAt(g_cam_position->x, g_cam_position->y, g_cam_position->z,
+	    g_cam_position->x + sin(g_cam_angle->x), g_cam_position->y - sin(g_cam_angle->y), g_cam_position->z - cos(g_cam_angle->x), 
+	    0.0f, 1.0f, 0.0f );
+  
   glPushMatrix();
   
-  glColor3f(0.5, 0.3, 0.9);
-
-  glBegin(GL_LINES);
-
-  glVertex3f(time_line_x, 0, 0);
-  glVertex3f(time_line_x, g_height, 0);
-
-  glEnd();
-
-  glPopMatrix();
-  
-  time_line_x += 2.0;
-  if (time_line_x > g_width) {
-    g_loop_count++;
-    time_line_x -= g_width;
-  }
-
   glEnable(GL_LIGHTING);
 
-  pthread_mutex_lock(&bleeps_mutex);
-  vector<Bleep *>::iterator itr=bleeps.begin();
-  while(itr != bleeps.end()) {
-    Bleep *bleep = *itr;
-    bleep->update_color();
+  GLfloat theta = 0;
+  for (int i = 0; i < 16; i++) {
+    theta = i * 2 * M_PI / 16.0;
 
-    if (time_line_x > bleep->position->x - g_bleep_radius &&
-	time_line_x < bleep->position->x + g_bleep_radius) {
-      bleep->play(g_loop_count);
-    }
-
-    glPushMatrix();
-    
-    glTranslatef(bleep->position->x,
-		 bleep->position->y,
-		 1.0);
-    glColor3f(bleep->red->value,
-	      bleep->green->value,
-	      bleep->blue->value);
-    glutSolidSphere(g_bleep_radius, 16, 16);
-    
-    glPopMatrix();
-
-    ++itr;
+    glTranslatef(10 * sin(theta), 0, -10 * cos(theta));
+    glColor3f(i / 16.0, i / 32.0, -i / 16.0);
+    glutSolidSphere(1, 32, 32);
   }
-  pthread_mutex_unlock(&bleeps_mutex);
 
   glDisable(GL_LIGHTING);
+  
+  glPopMatrix();
 
-  glColor3f(1, 1, 1);
-  renderSpacedBitmapString(10, 10, 5, GLUT_BITMAP_8_BY_13, g_hostname);
-
-  if (g_connect_mode) {
-    renderSpacedBitmapString(g_width / 2 - 150, g_height / 2, 5, GLUT_BITMAP_8_BY_13, "connect:");
-    renderSpacedBitmapString(g_width / 2 - 50, g_height / 2, 5, GLUT_BITMAP_8_BY_13, g_other_address);
-
-  }
-	  
   // flush!
   glFlush( );
   // swap the double buffer
@@ -605,102 +450,12 @@ void SetUpAudio()
   }
 }
 
-class ExamplePacketListener : public osc::OscPacketListener {
-protected:
-  
-  virtual void ProcessMessage( const osc::ReceivedMessage& m, 
-			       const IpEndpointName& remoteEndpoint )
-  {
-    
-    try{
-      
-      if( strcmp( m.AddressPattern(), "/connect" ) == 0 ){
-	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-	const char *hostname;
-	args >> hostname >> osc::EndMessage;
-        
-	memcpy(g_other_address, hostname, 255);
-
-	g_other_host_and_port[0] = strtok(g_other_address, ":");
-	g_other_host_and_port[1] = strtok(NULL, " .,-");
-
-	g_connected = true;
-      }
-      else if( strcmp( m.AddressPattern(), "/add" ) == 0 ){
-	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-	osc::int32 id;
-	float x;
-	float y;
-	args >> id >> x >> y >> osc::EndMessage;
-	AddBleep(x, y, false, id);
-      }
-      else if( strcmp( m.AddressPattern(), "/erase" ) == 0 ){
-	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-	osc::int32 id;
-	args >> id >> osc::EndMessage;
-  
-	bool found_hit = false;
-	pthread_mutex_lock(&bleeps_mutex);
-	vector<Bleep *>::iterator itr=bleeps.begin();
-	while(itr != bleeps.end()) {
-	  Bleep *bleep = *itr;
-	  if (bleep->id == id) {
-	    found_hit = true;
-	    break;
-	  }
-	  ++itr;
-	}
-	if (found_hit) {
-	  bleeps.erase(itr);
-	}
-	pthread_mutex_unlock(&bleeps_mutex);
-
-      } else if( strcmp( m.AddressPattern(), "/move" ) == 0 ){
-	// example #1 -- argument stream interface
-	osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-	osc::int32 id;
-	float x;
-	float y;
-	args >> id >> x >> y >> osc::EndMessage;
-  
-	bool found_hit = false;
-	pthread_mutex_lock(&bleeps_mutex);
-	vector<Bleep *>::iterator itr=bleeps.begin();
-	while(itr != bleeps.end()) {
-	  Bleep *bleep = *itr;
-	  if (bleep->id == id) {
-	    found_hit = true;
-	    break;
-	  }
-	  ++itr;
-	}
-	if (found_hit) {
-	  Bleep *bleep = *itr;
-	  bleep->SetPosition(x, y);
-	}
-	pthread_mutex_unlock(&bleeps_mutex);
-
-      }
-    }catch( osc::Exception& e ){
-      // any parsing errors such as unexpected argument types, or 
-      // missing arguments get thrown as exceptions.
-      std::cout << "error while parsing message: "
-                << m.AddressPattern() << ": " << e.what() << "\n";
-      
-    }
-  }
-};
-
-void *startThread( void* _socket )
-{
-  UdpListeningReceiveSocket* socket = (UdpListeningReceiveSocket*)_socket;
-  socket->RunUntilSigInt();
-  return NULL;
-}
-
 int main(int argc, char* argv[])
 {
   pthread_mutex_init(&bleeps_mutex, NULL);
+
+  g_cam_position = new Vector3D(0, 0, 5);
+  g_cam_angle = new Vector3D(0, 0, 0);
 
   // initialize GLUT
   glutInit( &argc, argv );
@@ -728,7 +483,7 @@ int main(int argc, char* argv[])
     exit(1);	
   }
   */
-  
+
   // set the idle function - called when idle
   glutIdleFunc(idleFunc);
   // set the display function - called when redrawing
@@ -737,16 +492,23 @@ int main(int argc, char* argv[])
   glutReshapeFunc(reshapeFunc);
   // set the keyboard function - called on keyboard events
   glutKeyboardFunc(keyboardFunc);
+  glutSpecialFunc(specialKeyboardFunc);
   // set the mouse function - called on mouse stuff
   glutMouseFunc(mouseFunc);  
   glutMotionFunc(mouseMotionFunc);
+  glutPassiveMotionFunc(mousePassiveMotionFunc);
 
   GLfloat light0_position[] = { 0.0, 0.0, -1.0, 0.0 };
   glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
   glEnable(GL_LIGHT0);
   glEnable ( GL_LIGHTING ) ;
 
+  /*
   glEnable(GL_COLOR_MATERIAL);
+  glEnable(GL_DEPTH_TEST);
+  glEnable(GL_BLEND);
+  glShadeModel(GL_SMOOTH);
+  */
 
   try {
     SetUpAudio();
@@ -754,34 +516,8 @@ int main(int argc, char* argv[])
     e.printMessage();
   }
 
-  ExamplePacketListener listener;
-  UdpListeningReceiveSocket *s;
-  bool success = false;
-  while (!success) {
-    try {
-      s = new UdpListeningReceiveSocket(IpEndpointName( IpEndpointName::ANY_ADDRESS, g_port ),
-					&listener );
-      success = true;
-    } catch ( std::runtime_error &e ) {
-      g_port += 1;
-    }
-  }
-
-  char local_hostname[255];
-  gethostname(local_hostname, 255);
-
-  IpEndpointName local_ip_endpoint( local_hostname, g_port );
-  char local_ip_address[ IpEndpointName::ADDRESS_STRING_LENGTH ];
-  local_ip_endpoint.AddressAsString( local_ip_address );
-
-  sprintf(g_hostname, "%s:%d", local_ip_address, g_port);
-
-  pthread_create(&oscpack_thread, NULL, startThread, (void *)s);
-
   // let GLUT handle the current thread from here
   glutMainLoop();
-
-  pthread_cancel(oscpack_thread);
 
   try {
     audio.stopStream();
