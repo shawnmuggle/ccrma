@@ -14,22 +14,18 @@ ifeq ($(UNAME), Darwin)
 
 endif
 
-OBJS=	RtAudio.o Webleep.o gfx.o vector3d.o ugens.o
-OSC_OBJECTS =  oscpack/osc/OscOutboundPacketStream.o oscpack/osc/OscTypes.o oscpack/ip/posix/NetworkingUtils.o oscpack/ip/posix/UdpSocket.o oscpack/ip/IpEndpointName.o oscpack/osc/OscReceivedElements.o oscpack/osc/OscPrintReceivedElements.o
+OBJS=	RtAudio.o FlyingDream.o gfx.o vector3d.o ugens.o
 
-all: Webleep oscpack
+all: FlyingDream
 
-Webleep: $(OBJS)
+FlyingDream: $(OBJS)
 	$(CXX) -o $@ $+ $(LIBS) $(OSC_OBJECTS)
 
-Webleep.o: Webleep.cpp Webleep.h RtAudio.h gfx.h vector3d.h ugens.h
-	$(CXX) $(FLAGS) Webleep.cpp
+FlyingDream.o: FlyingDream.cpp FlyingDream.h RtAudio.h gfx.h vector3d.h ugens.h
+	$(CXX) $(FLAGS) FlyingDream.cpp
 
 RtAudio.o: RtAudio.h RtAudio.cpp RtError.h
 	$(CXX) $(FLAGS) RtAudio.cpp
-
-oscpack:
-	-make -f oscpack/Makefile all
 
 gfx.o: gfx.cpp gfx.h vector3d.h
 	$(CXX) $(FLAGS) gfx.cpp
@@ -41,4 +37,4 @@ ugens.o: ugens.cpp ugens.h
 	$(CXX) $(FLAGS) ugens.cpp
 
 clean:
-	rm -f *~ *# *.o Webleep
+	rm -f *~ *# *.o FlyingDream
