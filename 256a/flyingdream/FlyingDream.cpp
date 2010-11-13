@@ -35,40 +35,20 @@ GLsizei g_height = 600;
 class Bleep
 {
 public:
-  Bleep(float x, float y, Vector3D *color) : 
-    last_loop_seen(-1)
+  Bleep(Vector3D *position, Vector3D *color) : 
+    position(position)
   {
     id = rand();
-    init(x, y, color);
+    init(color);
   }
-  Bleep(float x, float y, Vector3D *color, int id) : 
-    last_loop_seen(-1),
-    id(id)
-  {
-    init(x, y, color);
-  }
+  
   ~Bleep() 
   {
     delete position; 
     delete red; delete green; delete blue; 
-    delete pulse; delete sin; delete env; delete lpf; delete gain;
   }
-  void init(float x, float y, Vector3D *color)
+  void init(Vector3D *color)
   {
-    pulse = new Pulse(20 + g_height - y, 0.25);
-    sin = new Sine(20 + g_height - y);
-    gain = new Gain(0.5);
-    lpf = new MovingAverage(10, 10);
-    env = new AREnvelope(5, 10000, 1.0);
-    lpf->GetAudioFrom(pulse);
-    env->GetAudioFrom(lpf);
-    gain->GetAudioFrom(sin);
-    env->GetAudioFrom(gain);
-    ugen = env;
-
-    position = new Vector3D();
-    SetPosition(x, y);
-
     red = new Vector3D(color->x, color->x, 0.1);
     green = new Vector3D(color->y, color->y, 0.1);
     blue = new Vector3D(color->z, color->z, 0.1);
@@ -86,49 +66,17 @@ public:
     green->value = 1.0;
     blue->value = 1.0;
   }
-  void play(int loop_count)
-  {
-    if (last_loop_seen < loop_count) {
-      flash();
-      last_loop_seen = loop_count;
-      env->Reset();
-    }
-  }
-  void SetPosition(double x, double y)
-  {
-    position->x = x;
-    position->y = y;
-    pulse->SetFrequency(20 + g_height - y);
-    sin->SetFrequency((20 + g_height - y) / 2);
-  }
 
 public:
   Vector3D *red;
   Vector3D *green;
   Vector3D *blue;
   Vector3D *position;
-  UGen *ugen;
   int id;
-
-private:
-  int last_loop_seen;
-  Pulse *pulse;
-  Sine *sin;
-  Gain *gain;
-  AREnvelope *env;
-  MovingAverage *lpf;
 };
 
 vector<Bleep *> bleeps;
 pthread_mutex_t bleeps_mutex;
-Bleep *g_dragging_bleep = NULL;
-
-// USE LATER FOR PERFORMAnce (divide screen into sections to do collision detection
-//vector<set<Bleep *>> g_collision_sections;
-
-int g_bleep_radius = 10;
-
-int g_loop_count = 0;
 
 RtAudio audio;
 
@@ -150,23 +98,42 @@ void mouseFunc( int button, int state, int x, int y );
 //-----------------------------------------------------------------------------
 void reshapeFunc( GLsizei w, GLsizei h )
 {
-    // save the new window size
-    g_width = w; g_height = h;
-    // map the view port to the client area
-    glViewport( 0, 0, w, h );
-    // set the matrix mode to project
-    glMatrixMode( GL_PROJECTION );
-    // load the identity matrix
-    glLoadIdentity( );
-
-    // create the viewing frustum
-    gluPerspective( 45.0, (GLfloat) w / (GLfloat) h, 1.0, 300.0 );
-
-    // Create Ortho 640x480 View (0,0 At Top Left)
-    //glOrtho(0.0f,g_width,g_height,0.0f,-1.0f,300.0f);
-
-    // set the matrix mode to modelview
-    glMatrixMode( GL_MODELVIEW );
+  // save the new window size
+  g_width = w; g_height = h;
+  // map the view port to the client area
+  glViewport( 0, 0, w, h );
+  // set the matrix mode to project
+  glMatrixMode( GL_PROJECTION );
+  // load the identity matrix
+  glLoadIdentity( );
+  
+  // create the viewing frustum
+  gluPerspective( 45.0, (GLfloat) w / (GLfloat) h, 1.0, 300.0 );
+  
+  // Create Ortho 640x480 View (0,0 At Top Left)
+  //glOrtho(0.0f,g_width,g_height,0.0f,-1.0f,300.0f);
+  
+  // set the matrix mode to modelview
+  glMatrixMode( GL_MODELVIEW );
+  
+  // load the identity matrix
+  glLoadIdentity( );
+  // position the view point
+  gluLookAt(0, 0, 0, 
+	    0, 0, 1, 
+	    0, 1, 0);
+  /*
+  gluLookAt(// POSITION
+	    g_cam_position->x, 
+	    g_cam_position->y, 
+	    g_cam_position->z,
+	    // CENTER (FOCUS POINT)
+	    g_cam_position->x + sin(g_cam_angle->x), 
+	    g_cam_position->y - sin(g_cam_angle->y), 
+	    g_cam_position->z - cos(g_cam_angle->x), 
+	    // UP VECTOR
+	    0.0f, 1.0f, 0.0f );
+  */
 }
 
 //-----------------------------------------------------------------------------
@@ -221,17 +188,12 @@ void specialKeyboardFunc(int key, int x, int y)
   }
 }
 
-void AddBleep(float x, float y, bool send, int id)
+void AddBleep(float x, float y, float z)
 {
   Vector3D *color = new Vector3D(rand() / (double)RAND_MAX,
 				 rand() / (double)RAND_MAX,
 				 rand() / (double)RAND_MAX);
-  Bleep *new_bleep;
-  if (id == -1) {
-    new_bleep = new Bleep(x, y, color);
-  } else {
-    new_bleep = new Bleep(x, y, color, id);
-  }
+  Bleep *new_bleep = new Bleep(new Vector3D(x, y, z), color);
   bleeps.push_back(new_bleep);
 }
 
@@ -263,8 +225,8 @@ void mousePassiveMotionFunc(int x, int y)
   //cout << "yup" << endl;
   
   if (time - g_prev_motion_time < 0.2) {
-    g_cam_angle->x += (x - g_prev_mouse_motion_x) * 0.01;
-    g_cam_angle->y += (y - g_prev_mouse_motion_y) * 0.01;
+    g_cam_angle->x += (x - g_prev_mouse_motion_x);
+    g_cam_angle->y += (y - g_prev_mouse_motion_y);
   }
 
   if( x <= 10 || (y) <= 10 || x >= g_width - 10 || y >= g_height - 10) {
@@ -283,6 +245,7 @@ void mousePassiveMotionFunc(int x, int y)
     g_prev_mouse_motion_y = y;
   }
   g_prev_motion_time = time;
+  //cout << g_cam_angle->y << endl;
 }
 
 //-----------------------------------------------------------------------------
@@ -329,30 +292,51 @@ void displayFunc( )
   // clear the color and depth buffers
   glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
   
+  // ROTATE to mouselook angles
+  glPushMatrix();
   // load the identity matrix
   glLoadIdentity( );
+  glRotatef(g_cam_angle->x, 0.0, 1.0, 0.0);
+  glRotatef(g_cam_angle->y, 1.0, 0.0, 0.0);
+  /*
   // position the view point
-  gluLookAt(g_cam_position->x, g_cam_position->y, g_cam_position->z,
-	    g_cam_position->x + sin(g_cam_angle->x), g_cam_position->y - sin(g_cam_angle->y), g_cam_position->z - cos(g_cam_angle->x), 
+  gluLookAt(// POSITION
+	    g_cam_position->x, 
+	    g_cam_position->y, 
+	    g_cam_position->z,
+	    // CENTER (FOCUS POINT)
+	    g_cam_position->x + sin(g_cam_angle->x), 
+	    g_cam_position->y - sin(g_cam_angle->y), 
+	    g_cam_position->z - cos(g_cam_angle->x), 
+	    // UP VECTOR
 	    0.0f, 1.0f, 0.0f );
-  
+  */
+  //glEnable(GL_LIGHTING);
+
   glPushMatrix();
-  
-  glEnable(GL_LIGHTING);
-
-  GLfloat theta = 0;
-  for (int i = 0; i < 16; i++) {
-    theta = i * 2 * M_PI / 16.0;
-
-    glTranslatef(10 * sin(theta), 0, -10 * cos(theta));
-    glColor3f(i / 16.0, i / 32.0, -i / 16.0);
-    glutSolidSphere(1, 32, 32);
-  }
-
-  glDisable(GL_LIGHTING);
-  
+  glTranslatef(0.0, 0.0, -5.0);
+  glColor3f(1.0, 0.0, 0.0);
+  glutSolidSphere(1, 32, 32);
   glPopMatrix();
 
+  vector<Bleep *>::iterator itr=bleeps.begin();
+  while(itr != bleeps.end()) {
+    Bleep *bleep = *itr;
+    
+    glPushMatrix();
+    glTranslatef(bleep->position->x, bleep->position->y, bleep->position->z);
+    glColor3f(bleep->red->value, bleep->green->value, bleep->blue->value);
+    glutSolidSphere(1, 32, 32);
+    glPopMatrix();
+    
+    ++itr;
+  }
+  
+
+  //glDisable(GL_LIGHTING);
+  
+  glPopMatrix(); // MOUSELOOK rotation
+	    
   // flush!
   glFlush( );
   // swap the double buffer
@@ -366,16 +350,14 @@ int AudioCallback(void *output_buffer, void *input_buffer, unsigned int n_buffer
   for (unsigned int i = 0; i < n_buffer_frames * 2;) {
     SAMPLE output_sample = 0;
 
-    pthread_mutex_lock(&bleeps_mutex);
     vector<Bleep *>::iterator itr=bleeps.begin();
     while(itr != bleeps.end()) {
       Bleep *bleep = *itr;
 
-      output_sample += bleep->ugen->GetSample(tick_count) * 0.1;
+      //output_sample += bleep->ugen->GetSample(tick_count) * 0.1;
 
       ++itr;
     }
-    pthread_mutex_unlock(&bleeps_mutex);
     
     ((SAMPLE *)output_buffer)[i++] = output_sample;
     ((SAMPLE *)output_buffer)[i++] = output_sample;
@@ -452,10 +434,12 @@ void SetUpAudio()
 
 int main(int argc, char* argv[])
 {
-  pthread_mutex_init(&bleeps_mutex, NULL);
+  for (int i = 0; i < 200; i++) {
+    AddBleep(100.0 * rand() / RAND_MAX, 100.0 * rand() / RAND_MAX, 100.0 * rand() / RAND_MAX);
+  }
 
   g_cam_position = new Vector3D(0, 0, 5);
-  g_cam_angle = new Vector3D(0, 0, 0);
+  g_cam_angle = new Vector3D(M_PI, 0, 0);
 
   // initialize GLUT
   glutInit( &argc, argv );
@@ -466,7 +450,7 @@ int main(int argc, char* argv[])
   // set the window postion
   glutInitWindowPosition( 100, 100 );
   // create the window
-  glutCreateWindow( "Webleep" );
+  glutCreateWindow( "Flying Dream" );
 
 #ifdef __MAC__
   const GLint sync = 1;
@@ -498,17 +482,17 @@ int main(int argc, char* argv[])
   glutMotionFunc(mouseMotionFunc);
   glutPassiveMotionFunc(mousePassiveMotionFunc);
 
-  GLfloat light0_position[] = { 0.0, 0.0, -1.0, 0.0 };
+  GLfloat light0_position[] = { 0.0, 0.0, 0.0, 0.0 };
   glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
   glEnable(GL_LIGHT0);
-  glEnable ( GL_LIGHTING ) ;
+  //glEnable ( GL_LIGHTING ) ;
 
-  /*
   glEnable(GL_COLOR_MATERIAL);
+  /*
   glEnable(GL_DEPTH_TEST);
+  */
   glEnable(GL_BLEND);
   glShadeModel(GL_SMOOTH);
-  */
 
   try {
     SetUpAudio();
