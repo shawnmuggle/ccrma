@@ -22,6 +22,5 @@ x3 = [x3 zeros(1,40)];
 y3 = filter(b, a, x3);
 subplot(3, 1, 3);
 hold on;
-plot(0.5 * y1, 'r');
-plot(2 * y2, 'g');
+plot(0.5 * y1 + 2 * y2, 'r');
 plot(y3, 'b');
