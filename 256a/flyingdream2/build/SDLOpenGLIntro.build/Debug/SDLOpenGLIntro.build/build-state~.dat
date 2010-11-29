@@ -1,0 +1,68 @@
+TSDLOpenGLIntro
+v7
+r1
+cCheck dependencies
+
+N/Library/Frameworks/SDL.framework
+c000000004ADD32BD00000000000000CC
+t1256010429
+s204
+
+N/Users/mrotondo/Downloads/SDLOpenGLIntro/English.lproj/InfoPlist.strings
+c0000000044739C39000000000000025A
+t1148427321
+s602
+
+N/Users/mrotondo/Downloads/SDLOpenGLIntro/GameApp.h
+c0000000045FCC06C0000000000000402
+t1174192236
+s1026
+
+N/Users/mrotondo/Downloads/SDLOpenGLIntro/build/Debug/SDLOpenGLIntro.app
+t2
+s0
+
+N/Users/mrotondo/Downloads/SDLOpenGLIntro/build/Debug/SDLOpenGLIntro.app/Contents/Frameworks/GameApp.h
+t2
+s0
+
+N/Users/mrotondo/Downloads/SDLOpenGLIntro/build/Debug/SDLOpenGLIntro.app/Contents/Frameworks/SDL.framework
+t2
+s0
+
+N/Users/mrotondo/Downloads/SDLOpenGLIntro/build/Debug/SDLOpenGLIntro.app/Contents/Info.plist
+t2
+s0
+
+N/Users/mrotondo/Downloads/SDLOpenGLIntro/build/Debug/SDLOpenGLIntro.app/Contents/PkgInfo
+t2
+s0
+
+N/Users/mrotondo/Downloads/SDLOpenGLIntro/build/Debug/SDLOpenGLIntro.app/Contents/Resources/English.lproj/InfoPlist.strings
+t2
+s0
+
+NInfo.plist
+c0000000044739C390000000000000353
+t1148427321
+s851
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies311709681#311709681#0(86"[BEROR]error: There is no SDK with the name or path '/Developer/SDKs/MacOSX10.4u.sdk'1(4@78"error: There is no SDK with the name or path '/Developer/SDKs/MacOSX10.4u.sdk'311709681#18446744073709551615#0#0(1@0"0(0#1#0"29836824280170608#0"0#
+
+CCopyStringsFile /Users/mrotondo/Downloads/SDLOpenGLIntro/build/Debug/SDLOpenGLIntro.app/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
+r0
+
+CPBXCp build/Debug/SDLOpenGLIntro.app/Contents/Frameworks/GameApp.h GameApp.h
+r0
+
+CPBXCp build/Debug/SDLOpenGLIntro.app/Contents/Frameworks/SDL.framework /Library/Frameworks/SDL.framework
+r0
+
+CProcessInfoPlistFile /Users/mrotondo/Downloads/SDLOpenGLIntro/build/Debug/SDLOpenGLIntro.app/Contents/Info.plist Info.plist
+r0
+
+CTouch /Users/mrotondo/Downloads/SDLOpenGLIntro/build/Debug/SDLOpenGLIntro.app
+r0
+

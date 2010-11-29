@@ -44,7 +44,7 @@
   #include <GL/glu.h>
 #endif
 
-
+#include "MathsStruct.h"
 
 
 //-----------------------------------------------------------------------------
@@ -62,6 +62,17 @@ public:
 public:
     void set( GLfloat _x, GLfloat _y, GLfloat _z ) { x = _x; y = _y; z = _z; }
     void setAll( GLfloat val ) { x = y = z = val; }
+
+    // TAKEN FROM same place as quaternion code.
+ public:
+    int IsZero(void) const
+    {
+      return( FLOAT_EQ(0.0f, magnitude() ) );
+    }		// test if this vector is zero
+    int IsUnit(void) const
+    {
+      return( FLOAT_EQ(1.0f, magnitude() ) );
+    }		// test if this vector is a unit vector
     
 public:
     GLfloat & operator []( int index )
