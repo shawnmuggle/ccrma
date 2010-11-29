@@ -8,19 +8,19 @@
  */
 
 // TODO:
-// add reverb (via rtaudio + stk OR fmod)
-//  - look up all the fmod mode flags
-//  - try fmod again with writing twice as many samples (might have been writing half as many as necessary)
-// figure out "velocity out of bounds" error messages
-// Bound position within skybox
 // redo sky & ocean drawing to draw everything correctly (will need environment-specific rendering code)
-// add ground
+// Bound position within skybox
 // add clouds
 // better lighting (as if there's a sun?
-// look into fmod as sound engine (sound come from various env elements?)
+// add ground
 // draw tubes correctly (make them correct in all directions)
 // make tubes look neat (with "random" (aka wind wisps from wii zelda) lines around it?)
-// bigger, more interesting environment
+// bigger, more interesting environment (planet? sun/moon?)
+// improve wind sound
+
+// IDEAS:
+// environment makes music, which has a rhythm represented visually (waves, wind, etc)
+// environmental music is effected by your actions (instrumentation, rhythm, tempo, intensity etc)
 
 #include "BiQuad.h"
 #include "Noise.h"
@@ -125,7 +125,7 @@ int AudioCallback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFr
     //biquad.setResonance( 440.0, 0.98, true ); // automatically normalize for unity peak gain
     
     
-    stk::StkFloat l_output_sample, r_output_sample;
+    stk::StkFloat l_output_sample, r_output_sample, noise_sample;
     for ( unsigned int i=0; i<nBufferFrames; i++ ) {
         //output_sample = noise.tick();
 
@@ -135,6 +135,11 @@ int AudioCallback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFr
         r_output_sample = buffer[i*2+1];
         r_output_sample = reverb.lastFrame()[1];//reverb.tick(r_output_sample, 0);
 
+        noise_sample = biquad.tick(noise.tick()) * 0.1;
+        
+        l_output_sample += noise_sample;
+        r_output_sample += noise_sample;
+        
         //output_sample = reverb.tick(output_sample, 0);
         buffer[i*2] = l_output_sample;  // single-sample computations
         buffer[i*2+1] = r_output_sample;  // single-sample computations
@@ -161,8 +166,8 @@ GameApp::GameApp(void)
     //reverb = new stk::NRev();
     //printf("noise's lastFrame_ size is now %d\n", noise->lastFrame().size());
     
-    biquad.setResonance( 440.0, 0.98, true );
-
+    biquad.setResonance( 20.0, 0.99, true );
+    biquad.setEqualGainZeroes();
     
     g_width = 1440;
     g_height = 855;
@@ -273,7 +278,7 @@ GameApp::GameApp(void)
     parameters.nChannels = 2;
     parameters.firstChannel = 0;
     unsigned int sampleRate = 44100;
-    unsigned int bufferFrames = 8192;//256; // 256 sample frames
+    unsigned int bufferFrames = 256; // 256 sample frames
     double data[2];
     
     //printf("just before setting up callback, noise's lastFrame_ size is now %d\n", noise->lastFrame().size());
@@ -619,6 +624,13 @@ void GameApp::GameLoop(void)
     if (g_tracking) {
         g_paths.back()->AddPoint(new Vector3D(g_position));
     }
+    
+    float speed = g_velocity.magnitude();
+    // arbitrary max speed?
+    float speed_scale = speed / 20;
+    printf("speed scale: %f\n", speed_scale);
+    biquad.setGain(speed_scale);
+    biquad.setResonance(20 + 300 * speed_scale, 0.99, true);
     
     
     // Play paths

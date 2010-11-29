@@ -326,7 +326,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>D5CF659A12A39B5400D94A19</string>
+										<string>D5CF65D212A3AFB300D94A19</string>
 										<key>history</key>
 										<array>
 											<string>D53CF600129457EE00DCCBA1</string>
@@ -341,22 +341,25 @@
 											<string>D5EDB2CA129E6CE700891857</string>
 											<string>D5EDB2CE129E6CE700891857</string>
 											<string>D5EDB323129E72C900891857</string>
-											<string>D5EDB354129E752100891857</string>
 											<string>D5F39F9D12A21DD200295086</string>
 											<string>D5E394F612A23E77003987A4</string>
 											<string>D5E394FF12A23F49003987A4</string>
 											<string>D5DE6C2612A2497800320B82</string>
 											<string>D5DE6C5112A253BA00320B82</string>
-											<string>D5CF5DE412A271E600D94A19</string>
 											<string>D5CF5DE512A271E600D94A19</string>
 											<string>D5CF5E7912A2756C00D94A19</string>
 											<string>D5CF633B12A37B2300D94A19</string>
 											<string>D5CF63F012A380EC00D94A19</string>
 											<string>D5CF64AA12A38FBA00D94A19</string>
-											<string>D5CF652D12A3975800D94A19</string>
 											<string>D5CF655812A398D200D94A19</string>
 											<string>D5CF657B12A39A1100D94A19</string>
-											<string>D5CF657C12A39A1100D94A19</string>
+											<string>D5CF65AC12A3A54800D94A19</string>
+											<string>D5CF65BE12A3AEB000D94A19</string>
+											<string>D5CF65BF12A3AEB000D94A19</string>
+											<string>D5CF65C012A3AEB000D94A19</string>
+											<string>D5CF65C112A3AEB000D94A19</string>
+											<string>D5CF65CB12A3AF3100D94A19</string>
+											<string>D5CF65CC12A3AF3100D94A19</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -554,14 +557,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>D5CF659B12A39B5400D94A19</string>
 		<string>D5CF650812A3954300D94A19</string>
 		<string>D5CF630C12A377FB00D94A19</string>
 		<string>D5CF630D12A377FB00D94A19</string>
 		<string>D53CF57312944FE200DCCBA1</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>/Users/mrotondo/Development/ccrma/256a/flyingdream2/FlyingDream.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>/Users/mrotondo/Development/ccrma/256a/flyingdream2/FlyingDream.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 55 1436 823 0 0 1440 878 </string>

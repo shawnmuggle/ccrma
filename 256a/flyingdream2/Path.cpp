@@ -57,11 +57,15 @@ void Path::FinishedDrawing()
 
 void Path::Play(fluid_synth_t *synth, PitchMapper *mapper)
 {
+    if (Done()) {
+        return;
+    }
+    
     prev_pitch = pitch;
     pitch = mapper->Map(128 - (points->at(playhead_index)->y + 1000) / 2000 * 128);
     if (prev_pitch != pitch) {
         fluid_synth_noteoff(synth, instrument_number, prev_pitch);
-        fluid_synth_noteon(synth, instrument_number, pitch, 80 - 80 * (play_count / (float)lifetime_plays));
+        fluid_synth_noteon(synth, instrument_number, pitch, 80 - 79 * (play_count / (float)lifetime_plays));
     }
 }
 
