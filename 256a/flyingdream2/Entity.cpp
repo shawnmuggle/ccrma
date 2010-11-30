@@ -9,6 +9,7 @@
 
 #include "Entity.h"
 
+#include <iostream>
 
 void Entity::InitColor(Vector3D *color)
 {
@@ -32,6 +33,13 @@ void Entity::Flash()
 
 void Cuboid::Render()
 {
+    /*
+    printf("Rendering entity with position %f, %f, %f, color %f, %f, %f, and scale %f\n", 
+           position->x, position->y, position->z,
+           red->value, green->value, blue->value, 
+           scale);
+     */
+    
     UpdateColor();
     
     glPushMatrix();

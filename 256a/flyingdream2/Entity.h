@@ -7,6 +7,9 @@
  *
  */
 
+#ifndef ENTITY_H
+#define ENTITY_H
+
 #include "vector3d.h"
 #include <stdlib.h>
 
@@ -57,3 +60,5 @@ public:
     { }
     virtual void Render();
 };
+
+#endif

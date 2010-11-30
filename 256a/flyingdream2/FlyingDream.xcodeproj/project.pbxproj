@@ -25,6 +25,7 @@
 		D5CF620512A3735200D94A19 /* SKINI.msg in Resources */ = {isa = PBXBuildFile; fileRef = D5CF61F012A3735200D94A19 /* SKINI.msg */; };
 		D5CF620612A3735200D94A19 /* SKINI.tbl in Resources */ = {isa = PBXBuildFile; fileRef = D5CF61F112A3735200D94A19 /* SKINI.tbl */; };
 		D5CF620812A3736700D94A19 /* libstk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CF620712A3736700D94A19 /* libstk.a */; };
+		D5CF65D612A3B00B00D94A19 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5CF65D512A3B00B00D94A19 /* Environment.cpp */; };
 		D5E394AB12A23759003987A4 /* PitchMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E394AA12A23759003987A4 /* PitchMapper.cpp */; };
 		D5EDB2A2129E6A8100891857 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5EDB2A1129E6A8100891857 /* Path.cpp */; };
 /* End PBXBuildFile section */
@@ -176,6 +177,8 @@
 		D5CF620312A3735200D94A19 /* WvIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WvIn.h; sourceTree = "<group>"; };
 		D5CF620412A3735200D94A19 /* WvOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WvOut.h; sourceTree = "<group>"; };
 		D5CF620712A3736700D94A19 /* libstk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libstk.a; path = "stk-4.4.2/src/libstk.a"; sourceTree = "<group>"; };
+		D5CF65D412A3B00B00D94A19 /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
+		D5CF65D512A3B00B00D94A19 /* Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Environment.cpp; sourceTree = "<group>"; };
 		D5E394A912A23759003987A4 /* PitchMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PitchMapper.h; sourceTree = "<group>"; };
 		D5E394AA12A23759003987A4 /* PitchMapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PitchMapper.cpp; sourceTree = "<group>"; };
 		D5EDB2A0129E6A8100891857 /* Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 				D5EDB2A1129E6A8100891857 /* Path.cpp */,
 				D5E394A912A23759003987A4 /* PitchMapper.h */,
 				D5E394AA12A23759003987A4 /* PitchMapper.cpp */,
+				D5CF65D412A3B00B00D94A19 /* Environment.h */,
+				D5CF65D512A3B00B00D94A19 /* Environment.cpp */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -519,6 +524,7 @@
 				D53CF5B5129454B500DCCBA1 /* vector3d.cpp in Sources */,
 				D5EDB2A2129E6A8100891857 /* Path.cpp in Sources */,
 				D5E394AB12A23759003987A4 /* PitchMapper.cpp in Sources */,
+				D5CF65D612A3B00B00D94A19 /* Environment.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

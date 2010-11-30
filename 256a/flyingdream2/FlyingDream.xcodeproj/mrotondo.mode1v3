@@ -326,7 +326,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>D5CF65D212A3AFB300D94A19</string>
+										<string>D5CF667012A42AFD00D94A19</string>
 										<key>history</key>
 										<array>
 											<string>D53CF600129457EE00DCCBA1</string>
@@ -339,10 +339,7 @@
 											<string>D5EDB25F129E53AC00891857</string>
 											<string>D5EDB290129E56CD00891857</string>
 											<string>D5EDB2CA129E6CE700891857</string>
-											<string>D5EDB2CE129E6CE700891857</string>
 											<string>D5EDB323129E72C900891857</string>
-											<string>D5F39F9D12A21DD200295086</string>
-											<string>D5E394F612A23E77003987A4</string>
 											<string>D5E394FF12A23F49003987A4</string>
 											<string>D5DE6C2612A2497800320B82</string>
 											<string>D5DE6C5112A253BA00320B82</string>
@@ -352,14 +349,19 @@
 											<string>D5CF63F012A380EC00D94A19</string>
 											<string>D5CF64AA12A38FBA00D94A19</string>
 											<string>D5CF655812A398D200D94A19</string>
-											<string>D5CF657B12A39A1100D94A19</string>
 											<string>D5CF65AC12A3A54800D94A19</string>
 											<string>D5CF65BE12A3AEB000D94A19</string>
 											<string>D5CF65BF12A3AEB000D94A19</string>
 											<string>D5CF65C012A3AEB000D94A19</string>
-											<string>D5CF65C112A3AEB000D94A19</string>
 											<string>D5CF65CB12A3AF3100D94A19</string>
-											<string>D5CF65CC12A3AF3100D94A19</string>
+											<string>D5CF664512A3B95F00D94A19</string>
+											<string>D5CF664612A3B95F00D94A19</string>
+											<string>D5CF665A12A3BB1F00D94A19</string>
+											<string>D5CF665B12A3BB1F00D94A19</string>
+											<string>D5CF665C12A3BB1F00D94A19</string>
+											<string>D5CF666912A3BBA800D94A19</string>
+											<string>D5CF666D12A3BBFD00D94A19</string>
+											<string>D5CF666E12A3BBFD00D94A19</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -582,12 +584,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GameApp.cpp</string>
+								<string>Entity.h</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -604,8 +608,6 @@
 							<string>263pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -658,7 +660,7 @@
 			<key>WindowToolGUID</key>
 			<string>D53CF57312944FE200DCCBA1</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

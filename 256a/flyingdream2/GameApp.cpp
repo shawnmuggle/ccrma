@@ -8,9 +8,9 @@
  */
 
 // TODO:
+// better clouds (move, transparent, flatter & more bumpy
 // redo sky & ocean drawing to draw everything correctly (will need environment-specific rendering code)
 // Bound position within skybox
-// add clouds
 // better lighting (as if there's a sun?
 // add ground
 // draw tubes correctly (make them correct in all directions)
@@ -352,6 +352,8 @@ void GameApp::InitApp(void)
                          new Vector3D(53/255.0, 71/255.0, 140/255.0),
                          990);
     
+    g_environment = new Environment();
+    
     InitializeSDL();
     InstallTimer();
     SDL_ShowCursor(SDL_DISABLE);
@@ -379,7 +381,7 @@ void GameApp::InitializeSDL(void)
     glViewport( 0, 0, ( GLsizei )g_width, ( GLsizei )g_height );
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45.0, g_width/g_height, 0.1, 4000);
+    gluPerspective(45.0, g_width/g_height, 0.1, 8000);
     
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -410,8 +412,8 @@ void GameApp::InitializeSDL(void)
     //glEnable(GL_LIGHT0);
     
     //glEnable(GL_COLOR_MATERIAL);
-    //GLfloat LightAmbient[]= { 0.5f, 0.5f, 0.5f, 1.0f }; 				// Ambient Light Values ( NEW )
-    //glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);				// Setup The Ambient Light
+    GLfloat LightAmbient[]= { 0.5f, 0.5f, 0.5f, 1.0f }; 				// Ambient Light Values ( NEW )
+    glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);				// Setup The Ambient Light
     GLfloat LightDiffuse[]= { 1.0f, 1.0f, 1.0f, 0.5f };				 // Diffuse Light Values ( NEW )
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);				// Setup The Diffuse Light
     glEnable(GL_LIGHT1);							// Enable Light One
@@ -419,16 +421,14 @@ void GameApp::InitializeSDL(void)
     GLfloat light_position[] = { 0.0, 0.0, 1.0, 0.0 };
     glLightfv(GL_LIGHT1, GL_POSITION, light_position);
     
-    /*
     GLfloat fogColor[4]= {127/255.0, 178/255.0, 240/255.0, 1.0f};		// Fog Color
     glFogi(GL_FOG_MODE, GL_LINEAR);		// Fog Mode
     glFogfv(GL_FOG_COLOR, fogColor);			// Set Fog Color
-    glFogf(GL_FOG_DENSITY, 0.35f);				// How Dense Will The Fog Be
-    glHint(GL_FOG_HINT, GL_DONT_CARE);			// Fog Hint Value
-    glFogf(GL_FOG_START, 0.0f);				// Fog Start Depth
-    glFogf(GL_FOG_END, 1500.0f);				// Fog End Depth
-    //glEnable(GL_FOG);					// Enables GL_FOG
-     */
+    glFogf(GL_FOG_DENSITY, 1.0f);				// How Dense Will The Fog Be
+    glHint(GL_FOG_HINT, GL_NICEST);			// Fog Hint Value
+    glFogf(GL_FOG_START, 500.0f);				// Fog Start Depth
+    glFogf(GL_FOG_END, 2000.0f);				// Fog End Depth
+    glEnable(GL_FOG);					// Enables GL_FOG
 }
 
 void GameApp::InstallTimer(void)
@@ -628,7 +628,6 @@ void GameApp::GameLoop(void)
     float speed = g_velocity.magnitude();
     // arbitrary max speed?
     float speed_scale = speed / 20;
-    printf("speed scale: %f\n", speed_scale);
     biquad.setGain(speed_scale);
     biquad.setResonance(20 + 300 * speed_scale, 0.99, true);
     
@@ -662,9 +661,13 @@ void GameApp::RenderFrame(void)
     GLfloat light_position[] = { 100.0, 100.0, 100.0, 0.0 };
     glLightfv(GL_LIGHT1, GL_POSITION, light_position);
     
+    /*
     g_ocean->Render();
     
     g_skybox->Render();
+    */
+    
+    g_environment->Render();
     
     //printf("num cuboids: %d\n", g_cuboids->size());
     

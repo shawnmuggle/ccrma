@@ -25,6 +25,7 @@
 #include "Noise.h"
 
 #include "Entity.h"
+#include "Environment.h"
 #include "Path.h"
 #include "PitchMapper.h"
 
@@ -75,6 +76,9 @@ private:
     
     Skybox *g_skybox;
     Cuboid *g_ocean;
+    
+    Environment *g_environment;
+    
     std::vector<Cuboid *> *g_cuboids;
     bool g_tracking;
     //std::vector<std::vector<Vector3D *>*> g_paths;
