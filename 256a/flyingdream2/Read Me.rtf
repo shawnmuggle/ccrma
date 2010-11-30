@@ -1,0 +1,41 @@
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf410
+{\fonttbl\f0\fswiss\fcharset77 Helvetica-Bold;\f1\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\f0\b\fs24 \cf0 SDL OpenGL Intro Read Me
+\f1\b0 \
+\
+The program provides a simple example of a SDL program that uses OpenGL. It creates a window and draws a purple rectangle in the window. Press a key on the keyboard or close the window to quit the program.\
+\
+
+\f0\b Updates
+\f1\b0 \
+\
+March 18, 2007: Changed the code to include SDL_OpenGL.h instead of including the OpenGL headers directly. This change makes the code more portable so you don't have to worry about the differences between LInux, Mac OS X, and Windows on including OpenGL headers.\
+\
+
+\f0\b Notes for Mac OS X Developers
+\f1\b0 \
+\
+The program is a universal binary that will run on both PowerPC and Intel Macs. The PowerPC version will run on Mac OS X 10.2 and later and the Intel version will run on Mac OS X 10.4 and later.\
+\
+I built the program with SDL version 1.2.10 in order to add universal binary support. Building with SDL 1.2.10 embeds the SDL framework into the application bundle. Including the SDL framework in the application bundle is good for releasing your games because you don't have to worry about whether or not the player has installed the SDL framework.  I manually removed the SDL framework from the application bundle to minimize the download size. If you don't have the SDL framework installed, you won't be able to run the executable.\
+\
+I did not use a nib file for the menu bar so you could see how a Mac OS X SDL application looks without using a nib file.\
+\
+
+\f0\b Notes for Linux and Windows Developers
+\f1\b0 \
+\
+You'll be using the files GameApp.h, GameApp.cpp, and main.cpp. The source code should compile with no changes. I was able to compile Windows code with CodeWarrior. I haven't had the chance to compile the code for Linux.\
+\
+
+\f0\b Conclusion
+\f1\b0 \
+\
+This program provides a nice starting point for those of you interested in using SDL and OpenGL in your games. Feel free to use the source code in your applications. and make changes to the code. Also feel free to email me if you have any questions or problems with the code.\
+\
+Mark Szymczyk\
+mark@meandmark.com}
