@@ -12,17 +12,19 @@
 
 Environment::Environment(void)
 {
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 50; i++) {
         clouds.push_back(new Cuboid(new Vector3D(-2000 + 4000 * (rand() / (double)RAND_MAX),
                                                  1000 + 1000 * (rand() / (double)RAND_MAX),
                                                  -2000 + 4000 * (rand() / (double)RAND_MAX)),
                                     new Vector3D(1.0, 1.0, 1.0),
-                                    100 * (rand() / (double)RAND_MAX)));
+                                    0.7,
+                                    20 + 80 * (rand() / (double)RAND_MAX)));
     }
 }
 
 void Environment::Render(void)
 {
+    glDisable(GL_CULL_FACE);
     glDisable(GL_LIGHTING);
     
     glPushMatrix();
@@ -81,7 +83,12 @@ void Environment::Render(void)
     glPopMatrix();
     
     glEnable(GL_LIGHTING);
-    
+    glEnable(GL_CULL_FACE);
+
+}
+
+void Environment::RenderClouds()
+{
     std::vector<Cuboid *>::iterator itr=clouds.begin();
     while(itr != clouds.end()) {
         printf("FOOP\n");

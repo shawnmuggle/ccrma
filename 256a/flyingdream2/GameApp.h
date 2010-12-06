@@ -74,8 +74,8 @@ private:
     
     float g_width, g_height;
     
-    Skybox *g_skybox;
-    Cuboid *g_ocean;
+    //Skybox *g_skybox;
+    //Cuboid *g_ocean;
     
     Environment *g_environment;
     

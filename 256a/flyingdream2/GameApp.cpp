@@ -332,7 +332,7 @@ void GameApp::AddCuboid(float x, float y, float z)
     Vector3D *color = new Vector3D(rand() / (double)RAND_MAX,
                                    rand() / (double)RAND_MAX,
                                    rand() / (double)RAND_MAX);
-    Cuboid *new_cuboid = new Cuboid(new Vector3D(x, y, z), color, 1.0);
+    Cuboid *new_cuboid = new Cuboid(new Vector3D(x, y, z), color, 1.0, 1.0);
     g_cuboids->push_back(new_cuboid);
 }
 
@@ -345,13 +345,15 @@ void GameApp::InitApp(void)
                   1000 - 2000.0 * rand() / RAND_MAX);
     }
     
+    /*
     g_skybox = new Skybox(new Vector3D(0, 0, 0),
                           new Vector3D(127/255.0, 178/255.0, 240/255.0),
                           1000);
     g_ocean = new Cuboid(new Vector3D(0, -1500, 0),
                          new Vector3D(53/255.0, 71/255.0, 140/255.0),
                          990);
-    
+    */
+
     g_environment = new Environment();
     
     InitializeSDL();
@@ -397,6 +399,8 @@ void GameApp::InitializeSDL(void)
     glShadeModel(GL_SMOOTH);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
+    glEnable(GL_CULL_FACE);
+    
     glHint(GL_POLYGON_SMOOTH, GL_NICEST);
     
     
@@ -412,7 +416,7 @@ void GameApp::InitializeSDL(void)
     //glEnable(GL_LIGHT0);
     
     //glEnable(GL_COLOR_MATERIAL);
-    GLfloat LightAmbient[]= { 0.5f, 0.5f, 0.5f, 1.0f }; 				// Ambient Light Values ( NEW )
+    GLfloat LightAmbient[]= { 0.6f, 0.6f, 0.6f, 1.0f }; 				// Ambient Light Values ( NEW )
     glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);				// Setup The Ambient Light
     GLfloat LightDiffuse[]= { 1.0f, 1.0f, 1.0f, 0.5f };				 // Diffuse Light Values ( NEW )
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);				// Setup The Diffuse Light
@@ -658,7 +662,7 @@ void GameApp::RenderFrame(void)
     glRotatef(g_yaw, 0, 1, 0);
     glTranslatef(g_position.x, g_position.y, g_position.z);
 
-    GLfloat light_position[] = { 100.0, 100.0, 100.0, 0.0 };
+    GLfloat light_position[] = { 100.0, 200.0, 300.0, 0.0 };
     glLightfv(GL_LIGHT1, GL_POSITION, light_position);
     
     /*
@@ -669,15 +673,9 @@ void GameApp::RenderFrame(void)
     
     g_environment->Render();
     
-    //printf("num cuboids: %d\n", g_cuboids->size());
-    
     vector<Cuboid *>::iterator itr=g_cuboids->begin();
     while(itr != g_cuboids->end()) {
         Cuboid *cuboid = *itr;
-
-        if (cuboid == NULL)
-            printf("CUBOID IS NULL\n");
-        
         cuboid->Render();
         ++itr;
     }
@@ -690,6 +688,8 @@ void GameApp::RenderFrame(void)
         
         ++path_itr;
     }
+
+    g_environment->RenderClouds();
     
     glPopMatrix();
 

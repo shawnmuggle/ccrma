@@ -45,14 +45,61 @@ void Cuboid::Render()
     glPushMatrix();
     
     glTranslatef(position->x, position->y, position->z);
-    glScalef(scale, scale, scale);
+    //glScalef(scale, scale, scale);
     //glColor4f(red->value, green->value, blue->value, 1.0);
 
-    GLfloat mat_amb_diff[] = { red->value, green->value, blue->value, 1.0 };
+    GLfloat mat_amb_diff[] = { red->value, green->value, blue->value, alpha };
     glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mat_amb_diff);
     
     glBegin(GL_QUADS);
 
+    
+    //top
+    glNormal3f(0.0f, 1.0f, 0.0f);
+    glVertex3f( scale, scale,-scale);			// Top Right Of The Quad (Top)
+    glVertex3f(-scale, scale,-scale);			// Top Left Of The Quad (Top)
+    glVertex3f(-scale, scale, scale);			// Bottom Left Of The Quad (Top)
+    glVertex3f( scale, scale, scale);			// Bottom Right Of The Quad (Top)
+    
+    
+    //bottom
+    glNormal3f(0.0f, -1.0f, 0.0f);
+    glVertex3f( scale,-scale, scale);			// Top Right Of The Quad (Bottom)
+    glVertex3f(-scale,-scale, scale);			// Top Left Of The Quad (Bottom)
+    glVertex3f(-scale,-scale,-scale);			// Bottom Left Of The Quad (Bottom)
+    glVertex3f( scale,-scale,-scale);			// Bottom Right Of The Quad (Bottom)
+    
+    //front
+    glNormal3f(0.0f, 0.0f, 1.0f);
+    glVertex3f( scale, scale, scale);			// Top Right Of The Quad (Front)
+    glVertex3f(-scale, scale, scale);			// Top Left Of The Quad (Front)
+    glVertex3f(-scale,-scale, scale);			// Bottom Left Of The Quad (Front)
+    glVertex3f( scale,-scale, scale);			// Bottom Right Of The Quad (Front)
+    
+    //back
+    glNormal3f(0.0f, 0.0f, -1.0f);
+    glVertex3f( scale,-scale,-scale);			// Bottom Left Of The Quad (Back)
+    glVertex3f(-scale,-scale,-scale);			// Bottom Right Of The Quad (Back)
+    glVertex3f(-scale, scale,-scale);			// Top Right Of The Quad (Back)
+    glVertex3f( scale, scale,-scale);			// Top Left Of The Quad (Back)
+    
+    //left
+    glNormal3f(-1.0f, 0.0f, 0.0f);
+    glVertex3f(-scale, scale, scale);			// Top Right Of The Quad (Left)
+    glVertex3f(-scale, scale,-scale);			// Top Left Of The Quad (Left)
+    glVertex3f(-scale,-scale,-scale);			// Bottom Left Of The Quad (Left)
+    glVertex3f(-scale,-scale, scale);			// Bottom Right Of The Quad (Left)
+    
+    //right
+    glNormal3f(1.0f, 0.0f, 0.0f);
+    glVertex3f( scale, scale,-scale);			// Top Right Of The Quad (Right)
+    glVertex3f( scale, scale, scale);			// Top Left Of The Quad (Right)
+    glVertex3f( scale,-scale, scale);			// Bottom Left Of The Quad (Right)
+    glVertex3f( scale,-scale,-scale);			// Bottom Right Of The Quad (Right)
+    
+    
+    
+    /*
     //top
     glNormal3f(0.0f, 1.0f, 0.0f);
     glVertex3f( 1.0f, 1.0f,-1.0f);			// Top Right Of The Quad (Top)
@@ -95,12 +142,13 @@ void Cuboid::Render()
     glVertex3f( 1.0f, 1.0f, 1.0f);			// Top Left Of The Quad (Right)
     glVertex3f( 1.0f,-1.0f, 1.0f);			// Bottom Left Of The Quad (Right)
     glVertex3f( 1.0f,-1.0f,-1.0f);			// Bottom Right Of The Quad (Right)
-
+*/
+     
 	glEnd();						// Done Drawing The Quad
     
     glPopMatrix();
 }
-
+/*
 void Skybox::Render()
 {
     UpdateColor();
@@ -165,3 +213,4 @@ void Skybox::Render()
     
     glPopMatrix();
 }
+*/

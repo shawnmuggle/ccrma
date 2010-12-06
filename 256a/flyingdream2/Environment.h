@@ -17,6 +17,7 @@ class Environment
 public:
     Environment(void);
     void Render();
+    void RenderClouds();
     void BoundPosition(Vector3D *position);
 private:
     std::vector<Cuboid *> clouds;
