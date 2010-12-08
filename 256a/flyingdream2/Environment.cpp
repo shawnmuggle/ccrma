@@ -12,16 +12,15 @@
 
 #include "Environment.h"
 
-
 Environment::Environment(void)
 {
-    for (int i = 0; i < 50; i++) {
+    for (int i = 0; i < 20; i++) {
         clouds.push_back(new Cuboid(new Vector3D(-2000 + 4000 * (rand() / (double)RAND_MAX),
                                                  -1000 + 3000 * (rand() / (double)RAND_MAX),
                                                  -2000 + 4000 * (rand() / (double)RAND_MAX)),
                                     new Vector3D(1.0, 1.0, 1.0),
                                     0.7,
-                                    20 + 80 * (rand() / (double)RAND_MAX)));
+                                    20 + 300 * (rand() / (double)RAND_MAX)));
     }
     
     x_dim = y_dim = z_dim = 4000.0;
@@ -30,39 +29,6 @@ Environment::Environment(void)
     
     terrain_heights = (float *)malloc(sizeof(float) * x_dim * z_dim);
     memset(terrain_heights, 0, sizeof(float) * x_dim * z_dim);
-    
-    /*
-    std::vector<float> sine_coefficients;
-    sine_coefficients.push_back(0.13);
-    sine_coefficients.push_back(0.15);
-    sine_coefficients.push_back(0.12);
-    sine_coefficients.push_back(0);
-    sine_coefficients.push_back(0.18);
-    sine_coefficients.push_back(0.14);
-    sine_coefficients.push_back(0.16);
-    sine_coefficients.push_back(0.19);
-    sine_coefficients.push_back(0.11);
-    sine_coefficients.push_back(0.1);
-    
-    
-    int freq = 0;
-    float y_value = 0;
-    std::vector<float>::iterator itr;
-    for (int x = 0; x < x_resolution; x++) {
-        y_value = 0;
-        freq = 0;
-        itr = sine_coefficients.begin();
-        while(itr != sine_coefficients.end()) {
-            float coefficient = *itr;
-            y_value += sin(coefficient * ++freq * x * 0.5) * 10;
-            ++itr;
-        }
-        for (int z = 0; z < z_resolution; z++) {
-            terrain_heights[z * x_resolution + x] = y_value;
-        }
-    }
-    */
-    
 
     // CIRCLES ALGORITHM
     int num_iterations = 100; // 1000 looks good
@@ -100,7 +66,7 @@ Environment::Environment(void)
     float half_z_dim = z_dim / 2;
     
     
-    GLfloat mat_amb_diff[] = { 0.0, 1.0, 0.0, 1.0 };
+    GLfloat mat_amb_diff[] = { 0.0, 0.5, 0.0, 1.0 };
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, mat_amb_diff);
     
     float segment_x_dim = x_dim / (float)x_resolution;
@@ -136,6 +102,67 @@ Environment::Environment(void)
     }
     glEndList();
     
+    for(int i = 0; i < 20; i++) {
+        AddInstrumentEntity();
+    }
+}
+
+
+void Environment::AddInstrumentEntity()
+{
+    int x_height_index = (rand() / (float)RAND_MAX) * x_resolution;
+    int z_height_index = (rand() / (float)RAND_MAX) * z_resolution;
+    float segment_x_dim = x_dim / (float)x_resolution;
+    float segment_z_dim = z_dim / (float)z_resolution;
+    float half_x_dim = x_dim / 2;
+    float half_y_dim = y_dim / 2;
+    float half_z_dim = z_dim / 2;
+
+    float x = x_height_index * segment_x_dim - half_x_dim;
+    float y = terrain_heights[z_height_index * x_resolution + x_height_index] - half_y_dim;
+    float z = z_height_index * segment_z_dim - half_z_dim;
+    
+    printf("Creating an instrument entity at %f, %f, %f\n", x, y, z);
+    
+    Vector3D *color = new Vector3D(rand() / (double)RAND_MAX,
+                                   rand() / (double)RAND_MAX,
+                                   rand() / (double)RAND_MAX);
+    InstrumentEntity *new_instrument_entity = new InstrumentEntity(new Vector3D(x, y, z), color, 1.0, 10.0, 127 * (rand() / (float)RAND_MAX));
+    g_instrument_entities.push_back(new_instrument_entity);
+}
+
+void Environment::RenderInstrumentEntities()
+{
+    std::vector<InstrumentEntity *>::iterator instr_itr=g_instrument_entities.begin();
+    while(instr_itr != g_instrument_entities.end()) {
+        InstrumentEntity *instrument_entity = *instr_itr;
+        instrument_entity->Render();
+        ++instr_itr;
+    }
+}
+
+void Environment::Update(Vector3D *player_position, int *instrument_id, Vector3D *instrument_color)
+{
+    std::vector<InstrumentEntity *>::iterator instr_itr=g_instrument_entities.begin();
+    float square_dist;
+    while(instr_itr != g_instrument_entities.end()) {
+        InstrumentEntity *instr_ent = *instr_itr;
+        
+        square_dist = pow(-instr_ent->position->x - player_position->x, 2) + pow(-instr_ent->position->y - player_position->y, 2) + pow(-instr_ent->position->z - player_position->z, 2);
+
+        if (square_dist < 1000 && *instrument_id != instr_ent->instrument_id) {
+            *instrument_id = instr_ent->instrument_id;
+            
+            printf("Copying instrument color: %f, %f, %f\n", instr_ent->red->value, instr_ent->green->value, instr_ent->blue->value);
+            
+            instrument_color->x = instr_ent->red->value;
+            instrument_color->y = instr_ent->green->value;
+            instrument_color->z = instr_ent->blue->value;
+            instr_ent->Flash();
+        }
+        
+        ++instr_itr;
+    }
 }
 
 // taken from website and modified (mostly variable renaming so i make sure i read the whole thing)
@@ -398,12 +425,15 @@ void Environment::BoundPosition(Vector3D *position, Vector3D *velocity, Vector3D
     
     int x_height_index = (-position->x + x_dim / 2) / (float)x_dim * x_resolution;
     int z_height_index = (-position->z + z_dim / 2) / (float)x_dim * z_resolution;
-    float y_value = terrain_heights[z_height_index * x_resolution + x_height_index] - y_dim / 2;
     
+    // average the heights around the current point to smooth out height estimate
+    float y_value = terrain_heights[z_height_index * x_resolution + x_height_index] - y_dim / 2;
     float dist_from_ground = -y_value - position->y; // positive values mean above ground
     
     if (dist_from_ground < 25) {
-        position->y += (dist_from_ground - 25) * 0.7;
+        //position->y += (dist_from_ground - 25) * 0.8;
+        position->y += (-(y_value + 25) - position->y) * 0.4;
+        velocity->y = 0;
         *velocity -= *gravity;
     }
 }

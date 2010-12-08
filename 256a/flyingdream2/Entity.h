@@ -54,15 +54,4 @@ public:
     virtual void Render();
 };
 
-/*
-// Just like cuboid, but with inward-facing normals
-class Skybox : public Entity
-{
-public:
-    Skybox(Vector3D *position, Vector3D *color, float scale) : Entity(position, color, scale)
-    { }
-    virtual void Render();
-};
-*/
-
 #endif

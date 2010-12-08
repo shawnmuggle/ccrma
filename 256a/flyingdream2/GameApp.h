@@ -87,6 +87,9 @@ private:
     bool g_gravity_on;
     PitchMapper *g_pitch_mapper;
     
+    int instrument_id;
+    Vector3D *instrument_color;
+    
 //    fluid_settings_t* settings;
 //    fluid_synth_t* synth;
 //    fluid_audio_driver_t* adriver;

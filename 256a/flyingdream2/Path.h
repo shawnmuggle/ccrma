@@ -18,10 +18,10 @@
 class Path
 {
 public:
-    Path();
+    Path(int instrument_number, Vector3D *color);
     ~Path();
     void AddPoint(Vector3D *point);
-    void Update();
+    void Update(Vector3D *player_position);
     void Play(fluid_synth_t *synth, PitchMapper *mapper);
     void Render();
     bool Done();
@@ -31,4 +31,8 @@ private:
     int playhead_index;
     int instrument_number, pitch, prev_pitch;
     int play_count, lifetime_plays, finished_drawing;
+    bool play_something;
+    time_t time_finished_drawing;
+    int volume;
+    Vector3D color;
 };

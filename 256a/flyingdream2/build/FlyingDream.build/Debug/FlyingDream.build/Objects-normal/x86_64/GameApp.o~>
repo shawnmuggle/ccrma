@@ -1,0 +1,11 @@
+In file included from /Users/mrotondo/Development/ccrma/256a/flyingdream2/stk-4.4.2/include/Filter.h:4,
+                 from /Users/mrotondo/Development/ccrma/256a/flyingdream2/stk-4.4.2/include/BiQuad.h:4,
+                 from /Users/mrotondo/Development/ccrma/256a/flyingdream2/GameApp.cpp:39:
+/Users/mrotondo/Development/ccrma/256a/flyingdream2/stk-4.4.2/include/Stk.h: In member function 'bool stk::StkFrames::empty() const':
+/Users/mrotondo/Development/ccrma/256a/flyingdream2/stk-4.4.2/include/Stk.h:398: warning: format '%d' expects type 'int', but argument 2 has type 'long unsigned int'
+In file included from /Users/mrotondo/Development/ccrma/256a/flyingdream2/GameApp.cpp:41:
+/Users/mrotondo/Development/ccrma/256a/flyingdream2/stk-4.4.2/include/SineWave.h: In member function 'stk::StkFloat stk::SineWave::tick()':
+/Users/mrotondo/Development/ccrma/256a/flyingdream2/stk-4.4.2/include/SineWave.h:101: warning: format '%d' expects type 'int', but argument 2 has type 'size_t'
+/Users/mrotondo/Development/ccrma/256a/flyingdream2/stk-4.4.2/include/SineWave.h:118: warning: format '%d' expects type 'int', but argument 2 has type 'size_t'
+/Users/mrotondo/Development/ccrma/256a/flyingdream2/GameApp.cpp: In constructor 'GameApp::GameApp()':
+/Users/mrotondo/Development/ccrma/256a/flyingdream2/GameApp.cpp:150: warning: deprecated conversion from string constant to 'char*'

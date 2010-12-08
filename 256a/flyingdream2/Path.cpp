@@ -9,10 +9,11 @@
 
 #include "Path.h"
 
-Path::Path() :
+Path::Path(int instrument_number, Vector3D *color) :
 playhead_index(0),
 //instrument_number(rand() / (double)RAND_MAX * 128),
-instrument_number(106),
+instrument_number(instrument_number),
+color(*color),
 pitch(0),
 prev_pitch(0),
 play_count(0),
@@ -20,6 +21,8 @@ lifetime_plays(10),
 finished_drawing(false),
 points(new std::vector<Vector3D *>())
 {
+    printf("New path has rgb: %f, %f, %f\n", color->x, color->y, color->z);
+    play_something = true;
     printf("instrument: %d\n", instrument_number);
 }
 
@@ -33,26 +36,40 @@ void Path::AddPoint(Vector3D *point)
     points->push_back(point);
 }
 
-void Path::Update()
+void Path::Update(Vector3D *player_position)
 {
-    playhead_index += 2;
-    if (playhead_index >= points->size()) {
-        playhead_index = 0;
-        pitch = -1;
-        if (finished_drawing) {
-            ++play_count;
+    if (!play_something && (rand() / (float)RAND_MAX) > 0.95) {
+        play_something = true;
+    }
+    
+    Vector3D *point;
+    double min_dist = 9999999999, square_dist;
+    std::vector<Vector3D *>::iterator point_itr=points->begin();
+    while(point_itr != points->end() - 1) {
+        point = *point_itr;
+        
+        square_dist = pow(point->x - player_position->x, 2) + pow(point->y - player_position->y, 2) + pow(point->z - player_position->z, 2);
+        if (square_dist < min_dist) {
+            min_dist = square_dist;
         }
+        
+        ++point_itr;
+    }
+    volume = 0;
+    if (min_dist < 200000) {
+        volume = 127 * pow((1 - min_dist / 200000), 2);
     }
 }
 
 bool Path::Done()
 {
-    return play_count >= lifetime_plays;
+    return play_count >= lifetime_plays;    
 }
 
 void Path::FinishedDrawing()
 {
     finished_drawing = true;
+    time_finished_drawing = time(NULL);
 }
 
 void Path::Play(fluid_synth_t *synth, PitchMapper *mapper)
@@ -61,33 +78,42 @@ void Path::Play(fluid_synth_t *synth, PitchMapper *mapper)
         return;
     }
     
-    prev_pitch = pitch;
-    pitch = mapper->Map(128 - (points->at(playhead_index)->y + 1000) / 2000 * 128);
-    if (prev_pitch != pitch) {
+    if (play_something) {
+        prev_pitch = pitch;
+        pitch = mapper->Map(30 + (rand() / (float)RAND_MAX) * 60);
         fluid_synth_noteoff(synth, instrument_number, prev_pitch);
-        fluid_synth_noteon(synth, instrument_number, pitch, 80 - 79 * (play_count / (float)lifetime_plays));
+        fluid_synth_noteon(synth, instrument_number, pitch, volume);
+        play_something = false;
     }
 }
 
 void Path::Render()
 {
-    glDisable(GL_LIGHTING);
+    if (points->size() < 3) {
+        return;
+    }
     
-    std::vector<Vector3D *>::iterator point_itr=points->begin();
+    glDisable(GL_LIGHTING);
+    glDisable(GL_CULL_FACE);
     Vector3D *point, *prev_point, *next_point;
-    int point_index = 0, num_segments = 4;
-    float width, prev_width = 0, rad = 0;
-
+    int point_index = 0;
+    float width, prev_width = 0;
     float percent_scale = 0;
     
-    float z_diff, x_diff, theta, theta_right, theta_left;
+    float z_diff, y_diff, x_diff, theta, theta_right, theta_left, point_x, point_y, point_z, prev_point_x, prev_point_y, prev_point_z;
     
+    // TODO: Make path rendering handle vertical angles as well as horizontal ones
+    
+    std::vector<Vector3D *>::iterator point_itr=points->begin();
+    point = *point_itr;
+    prev_point_x = point->x;
+    prev_point_y = point->y;
+    prev_point_z = point->z;
     // increment so we start at the second point
     ++point_itr;
     ++point_index;
     
     glBegin(GL_TRIANGLE_STRIP);
-    
     while(point_itr != points->end() - 1) {
         
         point = *point_itr;
@@ -95,67 +121,72 @@ void Path::Render()
         next_point = *(point_itr + 1);
         
         z_diff = next_point->z - prev_point->z;
+        y_diff = next_point->y - prev_point->y;
         x_diff = next_point->x - prev_point->x;
         theta = atan2(z_diff, x_diff);
         theta_left = theta + M_PI / 2;
         theta_right = theta - M_PI / 2;
         
-        /*
-        GLfloat mat_amb_diff[] = { 0.8, 0.5, 0.2, 1 - play_count / (float)lifetime_plays };
-        float dist = abs(point_index - playhead_index);
-        if (dist < 10) {
-            width = 5 + pow(10 - dist, 1.01);
-            mat_amb_diff[0] = 0.8 + 0.2 * (1 - dist / 10);
-            mat_amb_diff[1] = 0.5 + 0.5 * (1 - dist / 10);
-            mat_amb_diff[2] = 0.2 + 0.8 * (1 - dist / 10);
-        }
-        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, mat_amb_diff);
-        */
-        
-        // TODO: WILL NEED TO DRAW A TOP AND BOTTOM QUAD SO THAT THEY ARE VISIBLE FROM TOP AND BOTTOM
+        point_x = 0.0 * point->x + 1.0 * ((next_point->x + prev_point->x) / 2);
+        point_y = 0.0 * point->y + 1.0 * ((next_point->y + prev_point->y) / 2);
+        point_z = 0.0 * point->z + 1.0 * ((next_point->z + prev_point->z) / 2);
         
         percent_scale = (1 - abs(points->size() / 2 - point_index) / ((float)points->size()/2));
 
         width = percent_scale;
 
-        /*
-        GLfloat mat_amb_diff[] = { 1.0, 1.0, 1.0, (1 - play_count / (float)lifetime_plays) * percent_scale * 2};
-        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, mat_amb_diff);
-        glNormal3f(0, -1, 0);
-        */
-        
-        glColor4f(1.0, 1.0, 1.0, (1 - play_count / (float)lifetime_plays) * percent_scale * 1.5);
-        
-        //printf("Point: %f, %f, %f\n", point->x, point->y, point->z);
-        
-        glVertex3f(-point->x + width * cos(theta_right), 
-                   -point->y, 
-                   -point->z + width * sin(theta_right));
-        glVertex3f(-point->x + width * cos(theta_left), 
-                   -point->y, 
-                   -point->z + width * sin(theta_left));
-        
-        /* 
+        glColor4f(color.x, color.y, color.z, (1 - play_count / (float)lifetime_plays) * percent_scale * 1.5);
+
         glBegin(GL_QUAD_STRIP);
-        for (int i = 0; i <= num_segments; i++) {
-            rad = (i / (float)num_segments) * 2 * M_PI;
-            glNormal3f(cos(rad), sin(rad), 0.0f);
-            glVertex3f(-prev_point->x + prev_width * cos(rad), 
-                       -prev_point->y + prev_width * sin(rad), 
-                       -prev_point->z);
-            glVertex3f(-point->x + width * cos(rad), 
-                       -point->y + width * sin(rad), 
-                       -point->z);
-         }
+        glVertex3f(-point_x + width * cos(theta_right), 
+                   -point_y, 
+                   -point_z + width * sin(theta_right));
+        glVertex3f(-prev_point_x + width * cos(theta_right), 
+                   -prev_point_y, 
+                   -prev_point_z + width * sin(theta_right));
+        
+        glVertex3f(-point_x, 
+                   -point_y + width, 
+                   -point_z);
+        glVertex3f(-prev_point_x, 
+                   -prev_point_y + width, 
+                   -prev_point_z);
+        
+        glVertex3f(-point_x + width * cos(theta_left), 
+                   -point_y, 
+                   -point_z + width * sin(theta_left));
+        glVertex3f(-prev_point_x + width * cos(theta_left), 
+                   -prev_point_y, 
+                   -prev_point_z + width * sin(theta_left));
+        
+        
+        glVertex3f(-point_x, 
+                   -point_y - width, 
+                   -point_z);
+        glVertex3f(-prev_point_x, 
+                   -prev_point_y - width, 
+                   -prev_point_z);
+        
+        glVertex3f(-point_x + width * cos(theta_right), 
+                   -point_y, 
+                   -point_z + width * sin(theta_right));
+        glVertex3f(-prev_point_x + width * cos(theta_right), 
+                   -prev_point_y, 
+                   -prev_point_z + width * sin(theta_right));
+
         glEnd();
-        */
+        
         
         prev_width = width;
+        prev_point_x = point_x;
+        prev_point_y = point_y;
+        prev_point_z = point_z;
         ++point_itr;
         ++point_index;
     }
-    
     glEnd();
+
+    glEnable(GL_CULL_FACE);
     glEnable(GL_LIGHTING);
     
     //printf("-------\n");

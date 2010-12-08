@@ -8,28 +8,33 @@
  */
 
 // TODO:
+
+// ACTUALLY BASED ON THE DESIGN:
+// make instrument entities quietly make noise with their instrument
+// make instrument entities toss off little particle cubes when you get near them/ all the time/when they play notes as above
+
+
+// IMMEDIATE
+
 // better clouds (move, transparent, flatter & more bumpy
-// redo sky & ocean drawing to draw everything correctly (will need environment-specific rendering code)
-// Bound position within skybox
 // better lighting (as if there's a sun?
-// draw tubes correctly (make them correct in all directions)
-// make tubes look neat (with "random" (aka wind wisps from wii zelda) lines around it?)
 // bigger, more interesting environment (planet? sun/moon?)
 // improve wind sound
 // spatialize sound based on where you are relative to source
 // louder
 // blocky "pixels" of randomized color around a base, ˆ la minecraft
-// remap pitch to increased size of world
-// muck with sound design
-// make paths visible from above
-// fix crash when start path while moving backwards (?!?) (width == -1, hmm)
-// make clouds white again (emit light?)
-// fuck around with lighting so it's brighter and doesn't do the "pits or hills" visual illusion on the ground somehow
+// make a player class with position, velocity, and current instrument to pass to path/env/etc update methods
 
 // IDEAS:
 // environment makes music, which has a rhythm represented visually (waves, wind, etc)
 // environmental music is effected by your actions (instrumentation, rhythm, tempo, intensity etc)
 // occasionally a black portal will open up into the world and spit out bad lines, and you need to follow them with music paths to "erase" them
+// there are colored blocks on the ground and you go through them (some kind of effect for this?) to choose different sounds to make when you fly
+// sun/moon rhythm
+// the world has a musical pulse tied to visual effects (like sun/moon rhythm, wind, clouds, colored blocks pulsing)
+
+// ???
+// Are the normals for the clouds or the ground screwed up? They seem to think the light's coming from opposite directions
 
 #include "BiQuad.h"
 #include "Noise.h"
@@ -109,6 +114,9 @@ GameApp::GameApp(void)
     g_gravity_on = true;
     
     g_cuboids = new vector<Cuboid *>();
+    
+    instrument_id = 106;
+    instrument_color = new Vector3D(1.0, 1.0, 1.0);
     
     vector<int> *scale_degrees = new vector<int>();
 
@@ -206,16 +214,16 @@ void GameApp::AddCuboid(float x, float y, float z)
 // Initialization functions
 void GameApp::InitApp(void)
 {
-    for (int i = 0; i < 1000; i++) {
-        AddCuboid(1000 - 2000.0 * rand() / RAND_MAX, 
-                  1000 - 2000.0 * rand() / RAND_MAX, 
-                  1000 - 2000.0 * rand() / RAND_MAX);
+    InitializeSDL();
+    
+    for (int i = 0; i < 4000; i++) {
+        AddCuboid(2000 - 4000.0 * rand() / RAND_MAX, 
+                  2000 - 4000.0 * rand() / RAND_MAX, 
+                  2000 - 4000.0 * rand() / RAND_MAX);
     }
     
-    InitializeSDL();
-
     g_environment = new Environment();
-
+    
     InstallTimer();
     SDL_ShowCursor(SDL_DISABLE);
     
@@ -235,7 +243,7 @@ void GameApp::InitializeSDL(void)
     
         
     Uint32 flags;
-    flags = SDL_OPENGL; // | SDL_FULLSCREEN;
+    flags = SDL_OPENGL | SDL_FULLSCREEN;
     drawContext = SDL_SetVideoMode(g_width, g_height, 0, flags);
     
 
@@ -275,9 +283,9 @@ void GameApp::InitializeSDL(void)
     //glEnable(GL_LIGHT0);
     
     //glEnable(GL_COLOR_MATERIAL);
-    //GLfloat LightAmbient[]= { 0.6f, 0.6f, 0.6f, 1.0f }; 				// Ambient Light Values ( NEW )
-    //glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);				// Setup The Ambient Light
-    GLfloat LightDiffuse[]= { 0.5f, 0.5f, 0.5f, 0.5f };				 // Diffuse Light Values ( NEW )
+    GLfloat LightAmbient[]= { 0.4f, 0.4f, 0.4f, 1.0f }; 				// Ambient Light Values ( NEW )
+    glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);				// Setup The Ambient Light
+    GLfloat LightDiffuse[]= { 0.9f, 0.9f, 0.9f, 1.0f };				 // Diffuse Light Values ( NEW )
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);				// Setup The Diffuse Light
     glEnable(GL_LIGHT1);							// Enable Light One
     
@@ -370,7 +378,7 @@ void GameApp::EventLoop(void)
                             ++itr;
                         }
                         g_tracking = true;
-                        g_paths.push_back(new Path());
+                        g_paths.push_back(new Path(instrument_id, instrument_color));
                         break;
                     case SDLK_w:
                         g_forward_held = true;
@@ -502,7 +510,7 @@ void GameApp::GameLoop(void)
     deque<Path *>::iterator path_itr=g_paths.begin();
     while(path_itr != g_paths.end()) {
         Path *path = *path_itr;
-        path->Update();
+        path->Update(&g_position);
         
         path->Play(synth, g_pitch_mapper);
         ++path_itr;
@@ -510,6 +518,8 @@ void GameApp::GameLoop(void)
     while (!g_paths.empty() && (*g_paths.begin())->Done()) {
         g_paths.pop_front();
     }
+    
+    g_environment->Update(&g_position, &instrument_id, instrument_color);
     
     RenderFrame();    
 }
@@ -545,6 +555,7 @@ void GameApp::RenderFrame(void)
         ++path_itr;
     }
 
+    g_environment->RenderInstrumentEntities();
     g_environment->RenderClouds();
     
     glPopMatrix();
