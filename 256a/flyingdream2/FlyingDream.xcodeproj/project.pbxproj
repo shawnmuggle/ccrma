@@ -18,6 +18,7 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		D53CF5B2129453D200DCCBA1 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D53CF5B1129453D200DCCBA1 /* Entity.cpp */; };
 		D53CF5B5129454B500DCCBA1 /* vector3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D53CF5B3129454B500DCCBA1 /* vector3d.cpp */; };
+		D5BE9A2C12AFD44B00A1A3C2 /* InstrumentEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5BE9A2B12AFD44B00A1A3C2 /* InstrumentEntity.cpp */; };
 		D5CF5DBB12A26FE400D94A19 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CF5DB912A26FE400D94A19 /* libfmodex.dylib */; };
 		D5CF5E6612A274A400D94A19 /* libfmodex.dylib in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = D5CF5DB912A26FE400D94A19 /* libfmodex.dylib */; };
 		D5CF60C512A2858800D94A19 /* librtaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CF60C312A2858800D94A19 /* librtaudio.a */; };
@@ -64,6 +65,8 @@
 		D53CF5B1129453D200DCCBA1 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
 		D53CF5B3129454B500DCCBA1 /* vector3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vector3d.cpp; sourceTree = "<group>"; };
 		D53CF5B4129454B500DCCBA1 /* vector3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector3d.h; sourceTree = "<group>"; };
+		D5BE9A2A12AFD44B00A1A3C2 /* InstrumentEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentEntity.h; sourceTree = "<group>"; };
+		D5BE9A2B12AFD44B00A1A3C2 /* InstrumentEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InstrumentEntity.cpp; sourceTree = "<group>"; };
 		D5CF5DB112A26FE400D94A19 /* fmod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod.h; sourceTree = "<group>"; };
 		D5CF5DB212A26FE400D94A19 /* fmod.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fmod.hpp; sourceTree = "<group>"; };
 		D5CF5DB312A26FE400D94A19 /* fmod_codec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_codec.h; sourceTree = "<group>"; };
@@ -221,6 +224,8 @@
 				D5E394AA12A23759003987A4 /* PitchMapper.cpp */,
 				D5CF65D412A3B00B00D94A19 /* Environment.h */,
 				D5CF65D512A3B00B00D94A19 /* Environment.cpp */,
+				D5BE9A2A12AFD44B00A1A3C2 /* InstrumentEntity.h */,
+				D5BE9A2B12AFD44B00A1A3C2 /* InstrumentEntity.cpp */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -525,6 +530,7 @@
 				D5EDB2A2129E6A8100891857 /* Path.cpp in Sources */,
 				D5E394AB12A23759003987A4 /* PitchMapper.cpp in Sources */,
 				D5CF65D612A3B00B00D94A19 /* Environment.cpp in Sources */,
+				D5BE9A2C12AFD44B00A1A3C2 /* InstrumentEntity.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

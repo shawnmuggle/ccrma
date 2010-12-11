@@ -74,8 +74,8 @@ private:
     
     float g_width, g_height;
     
-    Skybox *g_skybox;
-    Cuboid *g_ocean;
+    //Skybox *g_skybox;
+    //Cuboid *g_ocean;
     
     Environment *g_environment;
     
@@ -86,6 +86,9 @@ private:
     Vector3D g_gravity;
     bool g_gravity_on;
     PitchMapper *g_pitch_mapper;
+    
+    int instrument_id;
+    Vector3D *instrument_color;
     
 //    fluid_settings_t* settings;
 //    fluid_synth_t* synth;

@@ -16,8 +16,9 @@
 class Entity
 {
 protected:
-    Entity(Vector3D *position, Vector3D *color, float scale) : 
+    Entity(Vector3D *position, Vector3D *color, float alpha, float scale) : 
     position(position),
+    alpha(alpha),
     scale(scale)
     {
         id = rand();
@@ -39,6 +40,7 @@ public:
     Vector3D *red;
     Vector3D *green;
     Vector3D *blue;
+    float alpha;
     Vector3D *position;
     float scale;
     int id;    
@@ -47,16 +49,7 @@ public:
 class Cuboid : public Entity
 {
 public:
-    Cuboid(Vector3D *position, Vector3D *color, float scale) : Entity(position, color, scale)
-    { }
-    virtual void Render();
-};
-
-// Just like cuboid, but with inward-facing normals
-class Skybox : public Entity
-{
-public:
-    Skybox(Vector3D *position, Vector3D *color, float scale) : Entity(position, color, scale)
+    Cuboid(Vector3D *position, Vector3D *color, float alpha, float scale) : Entity(position, color, alpha, scale)
     { }
     virtual void Render();
 };

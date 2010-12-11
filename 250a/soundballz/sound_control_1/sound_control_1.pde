@@ -38,12 +38,8 @@ void resetSoundgin()
 
 void setUpSoundgin()
 {
-  // osc a1 amplitude to 127
-  mySerial.print(27, BYTE);
-  mySerial.print(1, BYTE);
-  mySerial.print(24, BYTE);
-  mySerial.print(127, BYTE);
-
+  setAmplitude(127);
+  
   // mixer a amplitude to 127 
   mySerial.print(27, BYTE);
   mySerial.print(1, BYTE);
@@ -134,6 +130,22 @@ void playSomething()
 */
 }
 
+// amp should be between 0 and 15
+void playNote(int pitch, int amp)
+{
+  //setAmplitude(amp);
+  // set up osc a1 envelope attack
+  mySerial.print(27, BYTE);
+  mySerial.print(1, BYTE);
+  mySerial.print(29, BYTE);
+  mySerial.print(amp << 4, BYTE); // 11110000 (loudest, fastest)
+  
+  // load note into osc a1 and play
+  mySerial.print(27, BYTE);
+  mySerial.print(88, BYTE);
+  mySerial.print(pitch, BYTE);
+}
+
 void setAmplitude(byte amp)
 {
   // osc a1 amplitude to 127
@@ -169,7 +181,45 @@ void setup() {
 }
 
 void loop()  {
-
+/*
+  playNote(92, 15);
+  delay(1000);
+  playNote(91, 14);
+  delay(750);
+  playNote(89, 13);
+  delay(550);
+  playNote(87, 12);
+  delay(400);
+  playNote(85, 11);
+  delay(300);
+  playNote(84, 10);
+  delay(250);
+  playNote(82, 9);
+  delay(225);
+  playNote(80, 8);
+  delay(212);
+  playNote(79, 7);
+  delay(200);
+  playNote(79, 7);
+  delay(175);
+  playNote(77, 6);
+  delay(150);
+  playNote(75, 5);
+  delay(125);
+  playNote(75, 5);
+  delay(100);
+  playNote(73, 4);
+  delay(75);
+  playNote(73, 4);
+  delay(50);
+  playNote(72, 3);
+  delay(50);
+  playNote(70, 2);
+  delay(50);
+  playNote(70, 1);
+  delay(1000);
+  */
+  
   prev_accel_x = accel_x;
   prev_accel_y = accel_y;
   prev_accel_z = accel_z;
@@ -177,22 +227,20 @@ void loop()  {
   accel_x = analogRead(A0);
   accel_y = analogRead(A1);
   accel_z = analogRead(A2);
-
+/*
   // FREEFALL DETECTION
   dev_x = accel_x - accel_baseline;
   dev_y = accel_y - accel_baseline;
   dev_z = accel_z - accel_baseline;
   
   deviation_from_freefall = dev_x * dev_x + dev_y * dev_y + dev_z * dev_z;
-
-/*
   if (deviation_from_freefall < 400) {
     playSomething();
   }
   Serial.print("dev: ");
   Serial.println(deviation_from_freefall);
 */
-  
+
   // JERK DETECTION
   delta_accel_x = accel_x - prev_accel_x;
   delta_accel_y = accel_y - prev_accel_y;
@@ -204,9 +252,7 @@ void loop()  {
   if (delta_accel_mag > 10000) {
     playSomething();
   }
-  
-
-
+/*
   delta_accel_mags_sum -= delta_accel_mags[delta_accel_mags_index];
   delta_accel_mags[delta_accel_mags_index] = delta_accel_mag;
   delta_accel_mags_sum += delta_accel_mags[delta_accel_mags_index];
@@ -222,9 +268,8 @@ void loop()  {
   //Serial.print("delta accel mag sum: ");
   //Serial.println(delta_accel_mags_sum);
   //delay(100);
-  
-
- /*
+  */
+  /*
  for (int i=0; i<=30; i++)   
  {     
      digitalWrite(13, HIGH);

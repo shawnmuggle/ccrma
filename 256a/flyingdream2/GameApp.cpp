@@ -8,19 +8,33 @@
  */
 
 // TODO:
+
+// ACTUALLY BASED ON THE DESIGN:
+// make instrument entities quietly make noise with their instrument
+// make instrument entities toss off little particle cubes when you get near them/ all the time/when they play notes as above
+
+
+// IMMEDIATE
+
 // better clouds (move, transparent, flatter & more bumpy
-// redo sky & ocean drawing to draw everything correctly (will need environment-specific rendering code)
-// Bound position within skybox
 // better lighting (as if there's a sun?
-// add ground
-// draw tubes correctly (make them correct in all directions)
-// make tubes look neat (with "random" (aka wind wisps from wii zelda) lines around it?)
 // bigger, more interesting environment (planet? sun/moon?)
 // improve wind sound
+// spatialize sound based on where you are relative to source
+// louder
+// blocky "pixels" of randomized color around a base, ˆ la minecraft
+// make a player class with position, velocity, and current instrument to pass to path/env/etc update methods
 
 // IDEAS:
 // environment makes music, which has a rhythm represented visually (waves, wind, etc)
 // environmental music is effected by your actions (instrumentation, rhythm, tempo, intensity etc)
+// occasionally a black portal will open up into the world and spit out bad lines, and you need to follow them with music paths to "erase" them
+// there are colored blocks on the ground and you go through them (some kind of effect for this?) to choose different sounds to make when you fly
+// sun/moon rhythm
+// the world has a musical pulse tied to visual effects (like sun/moon rhythm, wind, clouds, colored blocks pulsing)
+
+// ???
+// Are the normals for the clouds or the ground screwed up? They seem to think the light's coming from opposite directions
 
 #include "BiQuad.h"
 #include "Noise.h"
@@ -45,85 +59,14 @@ stk::Noise noise;
 stk::NRev reverb;
 stk::BiQuad biquad;
 
-/*
-void ERRCHECK(FMOD_RESULT result)
-{
-    if (result != FMOD_OK)
-    {
-        printf("FMOD error! (%d) %s\n", result, FMOD_ErrorString(result));
-        exit(-1);
-    }
-}
-
-FMOD_RESULT F_CALLBACK pcmreadcallback(FMOD_SOUND *sound, void *data, unsigned int datalen)
-{
-    unsigned int  count;
-    static float  t1 = 0, t2 = 0;        // time
-    static float  v1 = 0, v2 = 0;        // velocity
-    signed short *stereo16bitbuffer = (signed short *)data;
-    
-    fluid_synth_write_s16(synth, datalen >> 1, stereo16bitbuffer, 0, 2, stereo16bitbuffer, 1, 2);
-    
-    
-    for (count=0; count < datalen >> 2; count++)        // >>2 = 16bit stereo (4 bytes per sample)
-    {
-        *stereo16bitbuffer++ = (signed short)(sin(t1) * 32767.0f);    // left channel
-        *stereo16bitbuffer++ = (signed short)(sin(t2) * 32767.0f);    // right channel
-        
-        t1 += 0.01f   + v1;
-        t2 += 0.0142f + v2;
-        v1 += (float)(sin(t1) * 0.002f);
-        v2 += (float)(sin(t2) * 0.002f);
-    }
-    
-    return FMOD_OK;
-}
-
-
-FMOD_RESULT F_CALLBACK pcmsetposcallback(FMOD_SOUND *sound, int subsound, unsigned int position, FMOD_TIMEUNIT postype)
-{
-
-    // This is useful if the user calls Sound::setPosition and you want to seek your data accordingly.
-    return FMOD_OK;
-}
-*/
-
-
 int AudioCallback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
                   double streamTime, RtAudioStreamStatus status, void *userData )
 {
-    //struct synths *s = (synths*)userData;
-    //stk::Noise *noise = s->noise;
-    
-    //printf("at start of callback, noise's lastFrame_ size is now %d\n", noise.lastFrame().size());
-
-    
-    
-    
     SAMPLE *buffer = (SAMPLE *) outputBuffer;    
     if ( status )
         std::cout << "Stream underflow detected!" << std::endl;
     
     fluid_synth_write_float(synth, nBufferFrames, buffer, 0, 2, buffer, 1, 2);
-
-    // TODO: FIGURE OUT A WAY TO DO THIS IN PLACE
-    //stk::StkFrames temp_buffer(nBufferFrames, 2);
-
-    /*
-    for (int i = 0; i < nBufferFrames; i++) {
-        temp_buffer[i*2] = (stk::StkFloat)buffer[i*2];
-        temp_buffer[i*2+1] = (stk::StkFloat)buffer[i*2+1];
-    }
-    reverb->tick(temp_buffer, 0);
-    for (int i = 0; i < nBufferFrames; i++) {
-        buffer[i*2] = (SAMPLE)temp_buffer[i*2];
-        buffer[i*2+1] = (SAMPLE)temp_buffer[i*2+1];
-    }
-     */
-    
-    //stk::BiQuad biquad;
-    //biquad.setResonance( 440.0, 0.98, true ); // automatically normalize for unity peak gain
-    
     
     stk::StkFloat l_output_sample, r_output_sample, noise_sample;
     for ( unsigned int i=0; i<nBufferFrames; i++ ) {
@@ -140,11 +83,8 @@ int AudioCallback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFr
         l_output_sample += noise_sample;
         r_output_sample += noise_sample;
         
-        //output_sample = reverb.tick(output_sample, 0);
         buffer[i*2] = l_output_sample;  // single-sample computations
         buffer[i*2+1] = r_output_sample;  // single-sample computations
-        //temp_buffer[i] = biquad.tick( noise.tick() );  // single-sample computations
-        //std::cout << "i = " << i << " : output = " << output[i] << std::endl;
     }
 
     
@@ -155,19 +95,12 @@ int AudioCallback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFr
 // Constructor
 GameApp::GameApp(void)
 {
-    //printf("HOW BIG IS STKFLOAT? %d\n", sizeof(stk::StkFloat));
-    
-    
-    
     stk::Stk::setSampleRate( 44100.0 );
-    //sine = new stk::SineWave();
-    //sine->setFrequency(220);
-    //noise = new stk::Noise();
-    //reverb = new stk::NRev();
-    //printf("noise's lastFrame_ size is now %d\n", noise->lastFrame().size());
-    
+
     biquad.setResonance( 20.0, 0.99, true );
     biquad.setEqualGainZeroes();
+    
+    biquad.setGain(0);
     
     g_width = 1440;
     g_height = 855;
@@ -177,10 +110,13 @@ GameApp::GameApp(void)
     g_forward_held = false;
     g_backward_held = false;
     
-    g_gravity = Vector3D(0, 0.05, 0);
+    g_gravity = Vector3D(0, 0.2, 0);
     g_gravity_on = true;
     
     g_cuboids = new vector<Cuboid *>();
+    
+    instrument_id = 106;
+    instrument_color = new Vector3D(1.0, 1.0, 1.0);
     
     vector<int> *scale_degrees = new vector<int>();
 
@@ -209,9 +145,6 @@ GameApp::GameApp(void)
     
     g_pitch_mapper = new PitchMapper(60, scale_degrees);
     
-    
-    
-    
     settings = new_fluid_settings();
     
     fluid_settings_setint(settings, "synth.midi-channels", 128);
@@ -221,52 +154,6 @@ GameApp::GameApp(void)
     //adriver = new_fluid_audio_driver(settings, synth);
     
     fluid_synth_sfload(synth, "/Users/mrotondo/Downloads/TimGM6mb.sf2", 1);
-    
-    
-    
-    /*
-    FMOD_RESULT result;
-    result = FMOD::System_Create(&system);
-    ERRCHECK(result);
-    
-    unsigned int version;
-    result = system->getVersion(&version);
-    ERRCHECK(result);
-    printf("Using fmod version %08x\n", version);
-    
-    result = system->init(32, FMOD_INIT_NORMAL, 0);
-    ERRCHECK(result);
-    
-    
-    FMOD_MODE mode = FMOD_2D | FMOD_OPENUSER | FMOD_LOOP_NORMAL | FMOD_HARDWARE | FMOD_CREATESTREAM;
-    int channels = 2;
-    FMOD::Sound *sound;
-    
-    FMOD_CREATESOUNDEXINFO  createsoundexinfo;
-    memset(&createsoundexinfo, 0, sizeof(FMOD_CREATESOUNDEXINFO));
-    createsoundexinfo.cbsize            = sizeof(FMOD_CREATESOUNDEXINFO);              // required.
-    createsoundexinfo.decodebuffersize  = 10024;                                       // Chunk size of stream update in samples.  This will be the amount of data passed to the user callback.
-
-    // ??? 4 works, huge # also works, need to test with load
-    createsoundexinfo.length            = 44100 * channels * sizeof(signed short) * 2; // Length of PCM data in bytes of whole song (for Sound::getLength) 
-
-    // sure, whatever.
-    createsoundexinfo.numchannels       = channels;                                    // Number of channels in the sound.
-    createsoundexinfo.defaultfrequency  = 44100;                                       // Default playback rate of sound. 
-    createsoundexinfo.format            = FMOD_SOUND_FORMAT_PCM16;                     // Data format of sound. 
-    createsoundexinfo.pcmreadcallback   = pcmreadcallback;                             // User callback for reading. 
-    createsoundexinfo.pcmsetposcallback = pcmsetposcallback;                           // User callback for seeking. 
-    
-    result = system->createSound(0, mode, &createsoundexinfo, &sound);
-    ERRCHECK(result);
-    
-    FMOD::Channel *channel = 0;
-    result = system->playSound(FMOD_CHANNEL_FREE, sound, 0, &channel);
-    ERRCHECK(result);
-    */
-    
-
-    
     
     if ( dac.getDeviceCount() < 1 ) {
         std::cout << "\nNo audio devices found!\n";
@@ -279,14 +166,6 @@ GameApp::GameApp(void)
     parameters.firstChannel = 0;
     unsigned int sampleRate = 44100;
     unsigned int bufferFrames = 256; // 256 sample frames
-    double data[2];
-    
-    //printf("just before setting up callback, noise's lastFrame_ size is now %d\n", noise->lastFrame().size());
-    
-    //void *v_s = malloc(sizeof(synths));
-    //synths *s = (synths *)v_s;
-    //s->noise = noise;
-    
     try {
         dac.openStream(&parameters, 
                        NULL, 
@@ -302,10 +181,6 @@ GameApp::GameApp(void)
         e.printMessage();
         exit( 0 );
     }
- 
-    
-    //printf("just after setting up callback, noise's lastFrame_ size is now %d\n", noise->lastFrame().size());
-    
 }
 
 // Destructor
@@ -332,29 +207,23 @@ void GameApp::AddCuboid(float x, float y, float z)
     Vector3D *color = new Vector3D(rand() / (double)RAND_MAX,
                                    rand() / (double)RAND_MAX,
                                    rand() / (double)RAND_MAX);
-    Cuboid *new_cuboid = new Cuboid(new Vector3D(x, y, z), color, 1.0);
+    Cuboid *new_cuboid = new Cuboid(new Vector3D(x, y, z), color, 1.0, 1.0);
     g_cuboids->push_back(new_cuboid);
 }
 
 // Initialization functions
 void GameApp::InitApp(void)
 {
-    for (int i = 0; i < 1000; i++) {
-        AddCuboid(1000 - 2000.0 * rand() / RAND_MAX, 
-                  1000 - 2000.0 * rand() / RAND_MAX, 
-                  1000 - 2000.0 * rand() / RAND_MAX);
-    }
+    InitializeSDL();
     
-    g_skybox = new Skybox(new Vector3D(0, 0, 0),
-                          new Vector3D(127/255.0, 178/255.0, 240/255.0),
-                          1000);
-    g_ocean = new Cuboid(new Vector3D(0, -1500, 0),
-                         new Vector3D(53/255.0, 71/255.0, 140/255.0),
-                         990);
+    for (int i = 0; i < 4000; i++) {
+        AddCuboid(2000 - 4000.0 * rand() / RAND_MAX, 
+                  2000 - 4000.0 * rand() / RAND_MAX, 
+                  2000 - 4000.0 * rand() / RAND_MAX);
+    }
     
     g_environment = new Environment();
     
-    InitializeSDL();
     InstallTimer();
     SDL_ShowCursor(SDL_DISABLE);
     
@@ -374,7 +243,7 @@ void GameApp::InitializeSDL(void)
     
         
     Uint32 flags;
-    flags = SDL_OPENGL; // | SDL_FULLSCREEN;
+    flags = SDL_OPENGL | SDL_FULLSCREEN;
     drawContext = SDL_SetVideoMode(g_width, g_height, 0, flags);
     
 
@@ -397,6 +266,8 @@ void GameApp::InitializeSDL(void)
     glShadeModel(GL_SMOOTH);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
+    glEnable(GL_CULL_FACE);
+    
     glHint(GL_POLYGON_SMOOTH, GL_NICEST);
     
     
@@ -412,9 +283,9 @@ void GameApp::InitializeSDL(void)
     //glEnable(GL_LIGHT0);
     
     //glEnable(GL_COLOR_MATERIAL);
-    GLfloat LightAmbient[]= { 0.5f, 0.5f, 0.5f, 1.0f }; 				// Ambient Light Values ( NEW )
+    GLfloat LightAmbient[]= { 0.4f, 0.4f, 0.4f, 1.0f }; 				// Ambient Light Values ( NEW )
     glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);				// Setup The Ambient Light
-    GLfloat LightDiffuse[]= { 1.0f, 1.0f, 1.0f, 0.5f };				 // Diffuse Light Values ( NEW )
+    GLfloat LightDiffuse[]= { 0.9f, 0.9f, 0.9f, 1.0f };				 // Diffuse Light Values ( NEW )
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);				// Setup The Diffuse Light
     glEnable(GL_LIGHT1);							// Enable Light One
     
@@ -428,7 +299,7 @@ void GameApp::InitializeSDL(void)
     glHint(GL_FOG_HINT, GL_NICEST);			// Fog Hint Value
     glFogf(GL_FOG_START, 500.0f);				// Fog Start Depth
     glFogf(GL_FOG_END, 2000.0f);				// Fog End Depth
-    glEnable(GL_FOG);					// Enables GL_FOG
+//    glEnable(GL_FOG);					// Enables GL_FOG
 }
 
 void GameApp::InstallTimer(void)
@@ -507,7 +378,7 @@ void GameApp::EventLoop(void)
                             ++itr;
                         }
                         g_tracking = true;
-                        g_paths.push_back(new Path());
+                        g_paths.push_back(new Path(instrument_id, instrument_color));
                         break;
                     case SDLK_w:
                         g_forward_held = true;
@@ -621,6 +492,9 @@ void GameApp::GameLoop(void)
     g_velocity *= 0.99;
     //movement
     g_position += g_velocity * 0.5;
+    
+    g_environment->BoundPosition(&g_position, &g_velocity, &g_gravity);
+    
     if (g_tracking) {
         g_paths.back()->AddPoint(new Vector3D(g_position));
     }
@@ -636,7 +510,7 @@ void GameApp::GameLoop(void)
     deque<Path *>::iterator path_itr=g_paths.begin();
     while(path_itr != g_paths.end()) {
         Path *path = *path_itr;
-        path->Update();
+        path->Update(&g_position);
         
         path->Play(synth, g_pitch_mapper);
         ++path_itr;
@@ -644,6 +518,8 @@ void GameApp::GameLoop(void)
     while (!g_paths.empty() && (*g_paths.begin())->Done()) {
         g_paths.pop_front();
     }
+    
+    g_environment->Update(&g_position, &instrument_id, instrument_color);
     
     RenderFrame();    
 }
@@ -658,26 +534,14 @@ void GameApp::RenderFrame(void)
     glRotatef(g_yaw, 0, 1, 0);
     glTranslatef(g_position.x, g_position.y, g_position.z);
 
-    GLfloat light_position[] = { 100.0, 100.0, 100.0, 0.0 };
+    GLfloat light_position[] = { 100.0, 200.0, 300.0, 0.0 };
     glLightfv(GL_LIGHT1, GL_POSITION, light_position);
     
-    /*
-    g_ocean->Render();
-    
-    g_skybox->Render();
-    */
-    
     g_environment->Render();
-    
-    //printf("num cuboids: %d\n", g_cuboids->size());
     
     vector<Cuboid *>::iterator itr=g_cuboids->begin();
     while(itr != g_cuboids->end()) {
         Cuboid *cuboid = *itr;
-
-        if (cuboid == NULL)
-            printf("CUBOID IS NULL\n");
-        
         cuboid->Render();
         ++itr;
     }
@@ -690,6 +554,9 @@ void GameApp::RenderFrame(void)
         
         ++path_itr;
     }
+
+    g_environment->RenderInstrumentEntities();
+    g_environment->RenderClouds();
     
     glPopMatrix();
 

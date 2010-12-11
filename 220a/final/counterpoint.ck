@@ -36,8 +36,6 @@ fun void OrderVoices(Voice voices[])
 
 class Voice
 {
-    Voice @ other_voice;
-    
     Voice @ other_voices[1000];
     0 => int num_other_voices;
     
