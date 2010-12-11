@@ -10,8 +10,15 @@
 // TODO:
 
 // ACTUALLY BASED ON THE DESIGN:
-// make instrument entities quietly make noise with their instrument
+// make instrument entities quietly make noise with their instrument ???????
 // make instrument entities toss off little particle cubes when you get near them/ all the time/when they play notes as above
+// make the pitches from paths correspond roughly to their height off the ground ????????
+
+// indication of what color you currently are
+// better indication of picking up color from spheres
+// start paths in front of camera a la fps weapon tip
+
+// make it multiplayer!
 
 
 // IMMEDIATE
@@ -83,8 +90,8 @@ int AudioCallback( void *outputBuffer, void *inputBuffer, unsigned int nBufferFr
         l_output_sample += noise_sample;
         r_output_sample += noise_sample;
         
-        buffer[i*2] = l_output_sample;  // single-sample computations
-        buffer[i*2+1] = r_output_sample;  // single-sample computations
+        buffer[i*2] = l_output_sample * 3;
+        buffer[i*2+1] = r_output_sample * 3;
     }
 
     
@@ -103,7 +110,7 @@ GameApp::GameApp(void)
     biquad.setGain(0);
     
     g_width = 1440;
-    g_height = 855;
+    g_height = 900;
     g_pitch = g_yaw = g_roll = 0;
     g_tracking = false;
     done = false;

@@ -31,7 +31,7 @@ Environment::Environment(void)
     memset(terrain_heights, 0, sizeof(float) * x_dim * z_dim);
 
     // CIRCLES ALGORITHM
-    int num_iterations = 100; // 1000 looks good
+    int num_iterations = 150; // 1000 looks good
     int point_x, point_z;
     float height = 100, radius = 100, point_dist; // to be randomized
     for (int i = 0; i < num_iterations; i++) {
