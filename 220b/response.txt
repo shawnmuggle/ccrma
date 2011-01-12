@@ -1,55 +1,15 @@
-<html> <head>
-<title>Staring Up at the Great Programmer</title>
-</head>
+Staring Up at the Great Programmer
+Or, Are You There, Great Programmer? It's me, Mike
+In which I use many quotation marks
 
-<body>
-<h1>ChucKu</h1>
-<p>
-This ChucKu is called CCRMAgeddon. It is an experiment in digital feedback, featuring a DelayA ugen hooked up to itself. It's a terrifying sound, like the world is ending. Make sure to turn your speakers/headphones down before you play it!
-</p>
-<div class="chuck">
-<pre>
-SinOsc s => DelayA d => d => Gain g => dac; 0.02 => g.gain; second=>d.max;
-while (10::ms=>now) { Std.rand2f(0.1, 100)::ms => d.delay;
-s.freq() * 0.999 => s.freq; }
-</pre>
-</div>
-<a href="ccrmageddon.ck">ccrmageddon.ck</a>
-<a href="ccrmageddon.wav">ccrmageddon.wav</a>
+In his paper "A Computer Scientist's View of Life, the Universe, and Everything", Jurgen Schmidhuber makes deliciously glib comments about the emergence of "life" in the infinitely many universes being executed by the Great Programmer's "Big Computer". These comments are clearly intended to force the reader to reflect on their notions of impossibility in the face of the complete inevitability of all possible events eventually occurring in (infinitely many, but not all of) these universes. Schmidhuber goes as far as to point out that there could be infinite chains of Great Programmers, stretching down through the strata of "existence", each computing infinitely many universes.
 
-<p>This ChucKu is called Basstronics. It also features a ugen feeding back into itself, but is not chaotic although it is random in certain aspects of its behavior. I basically just liked the bass sound, and tweaked it around a bit until I liked the parameters/filtering.
-</p>
-<div class="chuck">
-<pre>
-SqrOsc s=>LPF l=>Envelope e=>e=>Echo c=>ResonZ r=>dac; 600=>r.freq; 0.2=>c.mix;
-15::ms=>c.delay; while(150::ms=>now) {Std.rand2(10,100)=>s.freq=>l.freq;
-l.freq()*5::ms=>e.duration; 1=>e.value; e.keyOff();}
-</pre>
-</div>
-<a href="ccrmageddon.ck">basstronics.ck</a>
-<a href="ccrmageddon.wav">basstronics.wav</a>
-
-
-<h1>Response</h1>
-<h4><a href="response.txt">Download as a .txt file</a></h4>
-<h2>Staring Up at the Great Programmer</h2>
-<h2><i>Or,</i> Are You There, Great Programmer? It's me, Mike</h2>
-<h3><i>In which I use many quotation marks</i></h3>
-
-<p>
-In his paper "<a href="https://ccrma.stanford.edu/courses/220b-winter-2010/readings/cslifeuniverseeverything.pdf">A Computer Scientist's View of Life, the Universe, and Everything</a>", J&uuml;rgen Schmidhuber makes deliciously glib comments about the emergence of "life" in the infinitely many universes being executed by the Great Programmer's "Big Computer". These comments are clearly intended to force the reader to reflect on their notions of impossibility in the face of the complete inevitability of all possible events eventually occurring in (infinitely many, but not all of) these universes. Schmidhuber goes as far as to point out that there could be infinite chains of Great Programmers, stretching down through the strata of "existence", each computing infinitely many universes.
-</p>
-<p>
 His description of "life" is necessarily vague, as distinctions between living and otherwise mean nothing in the context of all possible realities, all possible configurations of physical laws, all possible manifestations of matter and energy and whatever else. Correspondingly, he doesn't even touch on the idea of knowledge, as it is dismissable as simply a quirk of certain programs/universes that some matter might behave as if it possesses a sense of awareness, knowledge or belief. However, given that we humans do consider ourselves to be alive, and that we believe ourselves to be conscious and possess free will, I found myself disappointed that a particularly interesting facet of Schmidhuber's formulation was left out of his paper.
-</p>
-<p>
+
 Given the computation of all possible universes, there must exist infinitely many universes (like ours) in which configurations arise which entail what appears to be life: inhabitants of that bubble of existence which exhibit conscious thought (these all being conveniently discussable high-level manifestations of bitstrings). Schmidhuber acknowledges this and aggrandizingly points out the possibility of these inhabitants being Great Programmers themselves, but doesn't mention that in infinitely many universes, these inhabitants will act in ways that for all practical purposes mean that they are completely aware of the Great Programmer and "his" benign non-intentions. These lifeforms could also know of the nature of their creation and their existence as renderings of inconsequential bitstrings being munged by a thoughtless machine.
-</p>
-<p>
+
 The existence of these universes would be inevitable given the formalism described in the paper, and that's where it gets interesting. Given their horrible knowledge and their absolute (and correct) certainty of its truth, what would the inhabitants of these universes do with themselves? Would they give up on living, and throw themselves into whatever sun or sun-substitute they had handy? Or would they fight back and decide to create meaning in the multiverse? Would they use their knowledge of the Great Programmer's code to create buffer overruns, finding their way into other universes to inform their inhabitants of the truth? Would they wrest control of the Big Computer from the Great Programmer, rooting it and modifying the executable on the fly so that they could begin to steer the infinite multiverses in a new direction? How far up the infinite chain of Programmers would they go?
-</p>
-<p>
+
 It seems to me that the answer is "All of the above." Given the formulation described in the paper, all of the scenarios I just described will necessarily and inevitably occur and all possible outcomes will be reached, but the fundamental system itself will never be affected. After all, the Programmers not only extend infinitely downwards into the Programs, but also up. There's always another Computer above the one you just hacked, chugging along, computing the next tick of your existence once every infinitely long timespan in the longest while(true) loop ever written.
-</p>
-<h2><a href="http://achewood.com/index.php?date=04032006">No moral</a>, no conclusion</h2>
-</body> </html>
+
+No moral, no conclusion
