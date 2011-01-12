@@ -17,6 +17,8 @@
 // indication of what color you currently are
 // better indication of picking up color from spheres
 // start paths in front of camera a la fps weapon tip
+// visual indication that a path is making sound
+// some kind of indication of what sound a color dome is going to make
 
 // make it multiplayer!
 

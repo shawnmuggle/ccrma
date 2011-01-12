@@ -184,15 +184,15 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 313752444;
-			PBXWorkspaceStateSaveDate = 313752444;
+			PBXPerProjectTemplateStateSaveDate = 315779631;
+			PBXWorkspaceStateSaveDate = 315779631;
 		};
 		perUserProjectItems = {
-			D51EA7C512B382910089D55C /* PBXTextBookmark */ = D51EA7C512B382910089D55C /* PBXTextBookmark */;
 			D53CF600129457EE00DCCBA1 /* PBXTextBookmark */ = D53CF600129457EE00DCCBA1 /* PBXTextBookmark */;
 			D53CF6771294745900DCCBA1 /* PBXTextBookmark */ = D53CF6771294745900DCCBA1 /* PBXTextBookmark */;
-			D543125F12B2F12700096917 /* PBXTextBookmark */ = D543125F12B2F12700096917 /* PBXTextBookmark */;
 			D54659A812B1598900B74F71 /* PBXTextBookmark */ = D54659A812B1598900B74F71 /* PBXTextBookmark */;
+			D567B10112D3A3B800E8E167 /* PBXTextBookmark */ = D567B10112D3A3B800E8E167 /* PBXTextBookmark */;
+			D58FE41A12CE6B6E00CAE96B /* PBXTextBookmark */ = D58FE41A12CE6B6E00CAE96B /* PBXTextBookmark */;
 			D5BE947F12AE770C00A1A3C2 /* PBXTextBookmark */ = D5BE947F12AE770C00A1A3C2 /* PBXTextBookmark */;
 			D5BE961E12AF84C400A1A3C2 /* PBXTextBookmark */ = D5BE961E12AF84C400A1A3C2 /* PBXTextBookmark */;
 			D5BE99F612AFD02100A1A3C2 /* PBXTextBookmark */ = D5BE99F612AFD02100A1A3C2 /* PBXTextBookmark */;
@@ -240,9 +240,9 @@
 	};
 	38694A250A23D420005C94A3 /* GameApp.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1071, 7280}}";
-			sepNavSelRange = "{662, 0}";
-			sepNavVisRange = "{0, 2164}";
+			sepNavIntBoundsRect = "{{0, 0}, {1071, 7683}}";
+			sepNavSelRange = "{7545, 0}";
+			sepNavVisRange = "{6909, 1723}";
 			sepNavWindowFrame = "{{2, 0}, {1434, 878}}";
 		};
 	};
@@ -263,16 +263,6 @@
 		uiCtxt = {
 			sepNavWindowFrame = "{{2, 0}, {1434, 878}}";
 		};
-	};
-	D51EA7C512B382910089D55C /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38694A250A23D420005C94A3 /* GameApp.cpp */;
-		name = "GameApp.cpp: 21";
-		rLen = 0;
-		rLoc = 662;
-		rType = 0;
-		vrLen = 2164;
-		vrLoc = 0;
 	};
 	D53CF56212944FDE00DCCBA1 /* FlyingDream */ = {
 		isa = PBXExecutable;
@@ -423,16 +413,6 @@
 		path = "/Users/mrotondo/Downloads/SDLOpenGLIntro 2/GameApp.cpp";
 		sourceTree = "<absolute>";
 	};
-	D543125F12B2F12700096917 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38694A250A23D420005C94A3 /* GameApp.cpp */;
-		name = "GameApp.cpp: 107";
-		rLen = 0;
-		rLoc = 3585;
-		rType = 0;
-		vrLen = 1262;
-		vrLoc = 3060;
-	};
 	D54659A812B1598900B74F71 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = D5CF65D512A3B00B00D94A19 /* Environment.cpp */;
@@ -442,6 +422,26 @@
 		rType = 0;
 		vrLen = 2041;
 		vrLoc = 4630;
+	};
+	D567B10112D3A3B800E8E167 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38694A250A23D420005C94A3 /* GameApp.cpp */;
+		name = "GameApp.cpp: 264";
+		rLen = 0;
+		rLoc = 7545;
+		rType = 0;
+		vrLen = 1723;
+		vrLoc = 6909;
+	};
+	D58FE41A12CE6B6E00CAE96B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38694A250A23D420005C94A3 /* GameApp.cpp */;
+		name = "GameApp.cpp: 264";
+		rLen = 0;
+		rLoc = 7545;
+		rType = 0;
+		vrLen = 1723;
+		vrLoc = 6909;
 	};
 	D5BE947F12AE770C00A1A3C2 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
