@@ -29,9 +29,9 @@
 	};
 	28D7ACF70DDB3853001CB0EB /* HeavenlyMuffinsViewController.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1093, 3510}}";
-			sepNavSelRange = "{6370, 46}";
-			sepNavVisRange = "{5765, 1325}";
+			sepNavIntBoundsRect = "{{0, 0}, {1093, 3445}}";
+			sepNavSelRange = "{5396, 0}";
+			sepNavVisRange = "{1285, 1509}";
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
@@ -102,6 +102,15 @@
 			D53721DE12DF068700AD17C3 /* PBXTextBookmark */ = D53721DE12DF068700AD17C3 /* PBXTextBookmark */;
 			D53721DF12DF068700AD17C3 /* PBXTextBookmark */ = D53721DF12DF068700AD17C3 /* PBXTextBookmark */;
 			D53721E012DF068700AD17C3 /* PBXTextBookmark */ = D53721E012DF068700AD17C3 /* PBXTextBookmark */;
+			D53721E412DF06C300AD17C3 /* PBXTextBookmark */ = D53721E412DF06C300AD17C3 /* PBXTextBookmark */;
+			D53721E512DF06C300AD17C3 /* PBXTextBookmark */ = D53721E512DF06C300AD17C3 /* PBXTextBookmark */;
+			D53721E612DF06C300AD17C3 /* PBXTextBookmark */ = D53721E612DF06C300AD17C3 /* PBXTextBookmark */;
+			D53721E912DF073200AD17C3 /* PBXTextBookmark */ = D53721E912DF073200AD17C3 /* PBXTextBookmark */;
+			D53721F912DF0C4F00AD17C3 /* PlistBookmark */ = D53721F912DF0C4F00AD17C3 /* PlistBookmark */;
+			D53721FA12DF0C4F00AD17C3 /* PBXTextBookmark */ = D53721FA12DF0C4F00AD17C3 /* PBXTextBookmark */;
+			D53721FB12DF0C4F00AD17C3 /* PBXTextBookmark */ = D53721FB12DF0C4F00AD17C3 /* PBXTextBookmark */;
+			D53721FE12DF0C5A00AD17C3 /* PBXTextBookmark */ = D53721FE12DF0C5A00AD17C3 /* PBXTextBookmark */;
+			D537220312DF0CA000AD17C3 /* PBXTextBookmark */ = D537220312DF0CA000AD17C3 /* PBXTextBookmark */;
 			D5D5D26412DEE18E0036B556 = D5D5D26412DEE18E0036B556 /* PBXTextBookmark */;
 			D5D5D26512DEE18E0036B556 = D5D5D26512DEE18E0036B556 /* PBXTextBookmark */;
 			D5D5D26612DEE18E0036B556 = D5D5D26612DEE18E0036B556 /* PBXTextBookmark */;
@@ -162,7 +171,7 @@
 		fRef = 28D7ACF70DDB3853001CB0EB /* HeavenlyMuffinsViewController.mm */;
 		name = "HeavenlyMuffinsViewController.mm: 138";
 		rLen = 0;
-		rLoc = 4278;
+		rLoc = 4279;
 		rType = 0;
 		vrLen = 439;
 		vrLoc = 3351;
@@ -277,7 +286,7 @@
 		fRef = 28D7ACF70DDB3853001CB0EB /* HeavenlyMuffinsViewController.mm */;
 		name = "HeavenlyMuffinsViewController.mm: 137";
 		rLen = 0;
-		rLoc = 4278;
+		rLoc = 4279;
 		rType = 0;
 		vrLen = 1506;
 		vrLoc = 2805;
@@ -387,7 +396,7 @@
 		fRef = 28D7ACF70DDB3853001CB0EB /* HeavenlyMuffinsViewController.mm */;
 		name = "HeavenlyMuffinsViewController.mm: 220";
 		rLen = 46;
-		rLoc = 6370;
+		rLoc = 6372;
 		rType = 0;
 		vrLen = 1325;
 		vrLoc = 5765;
@@ -411,6 +420,97 @@
 		rType = 0;
 		vrLen = 1132;
 		vrLoc = 0;
+	};
+	D53721E412DF06C300AD17C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF60DDB3853001CB0EB /* HeavenlyMuffinsViewController.h */;
+		name = "HeavenlyMuffinsViewController.h: 31";
+		rLen = 0;
+		rLoc = 945;
+		rType = 0;
+		vrLen = 1132;
+		vrLoc = 0;
+	};
+	D53721E512DF06C300AD17C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* HeavenlyMuffinsViewController.mm */;
+		name = "HeavenlyMuffinsViewController.mm: 220";
+		rLen = 46;
+		rLoc = 6372;
+		rType = 0;
+		vrLen = 1324;
+		vrLoc = 5765;
+	};
+	D53721E612DF06C300AD17C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* HeavenlyMuffinsViewController.mm */;
+		name = "HeavenlyMuffinsViewController.mm: 143";
+		rLen = 0;
+		rLoc = 4246;
+		rType = 0;
+		vrLen = 2157;
+		vrLoc = 3268;
+	};
+	D53721E912DF073200AD17C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* HeavenlyMuffinsViewController.mm */;
+		name = "HeavenlyMuffinsViewController.mm: 184";
+		rLen = 0;
+		rLoc = 5396;
+		rType = 0;
+		vrLen = 1585;
+		vrLoc = 4427;
+	};
+	D53721F912DF0C4F00AD17C3 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* HeavenlyMuffins-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/mrotondo/Development/ccrma/256b/hw1/HeavenlyMuffins/HeavenlyMuffins-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	D53721FA12DF0C4F00AD17C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* HeavenlyMuffinsViewController.mm */;
+		name = "HeavenlyMuffinsViewController.mm: 184";
+		rLen = 0;
+		rLoc = 5396;
+		rType = 0;
+		vrLen = 1509;
+		vrLoc = 1285;
+	};
+	D53721FB12DF0C4F00AD17C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* HeavenlyMuffinsViewController.mm */;
+		name = "HeavenlyMuffinsViewController.mm: 184";
+		rLen = 0;
+		rLoc = 5396;
+		rType = 0;
+		vrLen = 1509;
+		vrLoc = 1285;
+	};
+	D53721FE12DF0C5A00AD17C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* HeavenlyMuffinsViewController.mm */;
+		name = "HeavenlyMuffinsViewController.mm: 184";
+		rLen = 0;
+		rLoc = 5396;
+		rType = 0;
+		vrLen = 1509;
+		vrLoc = 1285;
+	};
+	D537220312DF0CA000AD17C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* HeavenlyMuffinsViewController.mm */;
+		name = "HeavenlyMuffinsViewController.mm: 184";
+		rLen = 0;
+		rLoc = 5396;
+		rType = 0;
+		vrLen = 1509;
+		vrLoc = 1285;
 	};
 	D5D4D5D912DEC1C10043558F /* HeavenlyMuffins */ = {
 		isa = PBXExecutable;

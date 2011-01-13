@@ -140,7 +140,7 @@ void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTra
                                            [touchPts[1].touch locationInView:view_controller.view].y)) / view_controller.view.bounds.size.height;
         }    
         view_controller.delay_length_label.text = [NSString stringWithFormat:@"%.1fs", (float)view_controller.delay_line.delay_length / SRATE];
-        view_controller.feedback_coefficient_label.text = [NSString stringWithFormat:@"%.1f%", g_feedback_coefficient];
+        view_controller.feedback_coefficient_label.text = [NSString stringWithFormat:@"%.1f%%", g_feedback_coefficient];
     }
 }
 
@@ -181,7 +181,7 @@ void touchCallback( NSSet * touches, UIView * view, const std::vector<MoTouchTra
     delay_line = [[DelayLine alloc] initWithMaxDelay:SRATE * 5 andDelay: SRATE];
     
     self.delay_length_label.text = [NSString stringWithFormat:@"%.1fs", (float)self.delay_line.delay_length / SRATE];
-    self.feedback_coefficient_label.text = [NSString stringWithFormat:@"%.1f%", g_feedback_coefficient];
+    self.feedback_coefficient_label.text = [NSString stringWithFormat:@"%.1f%%", g_feedback_coefficient];
     
     MoAccel::addCallback( accelCallback, NULL);
     MoTouch::addCallback( touchCallback, self);

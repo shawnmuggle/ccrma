@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -272,7 +274,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>5</integer>
+									<integer>6</integer>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
@@ -308,14 +310,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>HeavenlyMuffinsViewController.h</string>
+								<string>HeavenlyMuffinsViewController.mm</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,16 +323,15 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>HeavenlyMuffinsViewController.h</string>
+										<string>HeavenlyMuffinsViewController.mm</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>D53721E012DF068700AD17C3</string>
+										<string>D537220312DF0CA000AD17C3</string>
 										<key>history</key>
 										<array>
 											<string>D5D5D26412DEE18E0036B556</string>
 											<string>D5D5D26512DEE18E0036B556</string>
-											<string>D5D5D26812DEE18E0036B556</string>
 											<string>D53721A312DF02CB00AD17C3</string>
 											<string>D53721A412DF02CB00AD17C3</string>
 											<string>D53721A512DF02CB00AD17C3</string>
@@ -340,8 +339,9 @@
 											<string>D53721A812DF02CB00AD17C3</string>
 											<string>D53721CA12DF054900AD17C3</string>
 											<string>D53721DD12DF068700AD17C3</string>
-											<string>D53721DE12DF068700AD17C3</string>
-											<string>D53721DF12DF068700AD17C3</string>
+											<string>D53721E412DF06C300AD17C3</string>
+											<string>D53721F912DF0C4F00AD17C3</string>
+											<string>D53721FA12DF0C4F00AD17C3</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -539,7 +539,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>D53721E112DF068700AD17C3</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>D53721B112DF02CB00AD17C3</string>
 		<string>D53721B212DF02CB00AD17C3</string>
