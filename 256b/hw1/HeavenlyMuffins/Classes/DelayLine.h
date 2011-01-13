@@ -17,6 +17,9 @@
     int write_index;
 }
 - (id) initWithMaxDelay:(int)max_delay andDelay:(int)delay;
+- (void) setNewDelay:(int)delay;
 - (float) writeAndRead:(float)new_sample;
+
+@property (setter=setDelayLength) int delay_length;
 
 @end

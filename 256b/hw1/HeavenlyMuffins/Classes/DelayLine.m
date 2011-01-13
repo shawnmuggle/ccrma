@@ -11,6 +11,8 @@
 
 @implementation DelayLine
 
+@synthesize delay_length;
+
 - (id) initWithMaxDelay:(int)max_delay andDelay:(int)delay
 {
     self = [super init];
@@ -24,6 +26,14 @@
         write_index = delay_length;
     }
     return self;
+}
+
+- (void) setDelayLength:(int)delay
+{
+    if (delay < max_delay_length) {
+        delay_length = delay;
+        write_index = (read_index + delay_length) % max_delay_length;
+    }
 }
 
 - (float) writeAndRead:(float)new_sample
