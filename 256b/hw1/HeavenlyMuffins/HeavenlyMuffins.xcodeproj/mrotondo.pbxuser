@@ -1,0 +1,251 @@
+// !$*UTF8*$!
+{
+	1D3623250D0F684500981E51 /* HeavenlyMuffinsAppDelegate.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1965, 1014}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1929}";
+		};
+	};
+	1D6058900D05DD3D006BFB54 /* HeavenlyMuffins */ = {
+		activeExec = 0;
+		executables = (
+			D5D4D5D912DEC1C10043558F /* HeavenlyMuffins */,
+		);
+	};
+	28D7ACF60DDB3853001CB0EB /* HeavenlyMuffinsViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1093, 681}}";
+			sepNavSelRange = "{304, 0}";
+			sepNavVisRange = "{0, 379}";
+		};
+	};
+	28D7ACF70DDB3853001CB0EB /* HeavenlyMuffinsViewController.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1093, 2353}}";
+			sepNavSelRange = "{1701, 0}";
+			sepNavVisRange = "{1446, 1301}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = D5D4D5D912DEC1C10043558F /* HeavenlyMuffins */;
+		activeSDKPreference = iphoneos4.2;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* HeavenlyMuffins */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* HeavenlyMuffins */,
+		);
+		codeSenseManager = D5D4D5E012DEC1DF0043558F /* Code sense */;
+		executables = (
+			D5D4D5D912DEC1C10043558F /* HeavenlyMuffins */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					915,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 316591572;
+			PBXWorkspaceStateSaveDate = 316591572;
+		};
+		perUserProjectItems = {
+			D5D5D26412DEE18E0036B556 /* PBXTextBookmark */ = D5D5D26412DEE18E0036B556 /* PBXTextBookmark */;
+			D5D5D26512DEE18E0036B556 /* PBXTextBookmark */ = D5D5D26512DEE18E0036B556 /* PBXTextBookmark */;
+			D5D5D26612DEE18E0036B556 /* PBXTextBookmark */ = D5D5D26612DEE18E0036B556 /* PBXTextBookmark */;
+			D5D5D26712DEE18E0036B556 /* PBXTextBookmark */ = D5D5D26712DEE18E0036B556 /* PBXTextBookmark */;
+			D5D5D26812DEE18E0036B556 /* PlistBookmark */ = D5D5D26812DEE18E0036B556 /* PlistBookmark */;
+			D5D5D26912DEE18E0036B556 /* PBXTextBookmark */ = D5D5D26912DEE18E0036B556 /* PBXTextBookmark */;
+			D5D5D26A12DEE18E0036B556 /* PBXTextBookmark */ = D5D5D26A12DEE18E0036B556 /* PBXTextBookmark */;
+			D5D5D26B12DEE18E0036B556 /* PBXTextBookmark */ = D5D5D26B12DEE18E0036B556 /* PBXTextBookmark */;
+			D5D5D26C12DEE18E0036B556 /* PBXTextBookmark */ = D5D5D26C12DEE18E0036B556 /* PBXTextBookmark */;
+		};
+		sourceControlManager = D5D4D5DF12DEC1DF0043558F /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8D1107310486CEB800E47090 /* HeavenlyMuffins-Info.plist */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{2, 0}, {1434, 878}}";
+		};
+	};
+	D5D4D5D912DEC1C10043558F /* HeavenlyMuffins */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = HeavenlyMuffins;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	D5D4D5DF12DEC1DF0043558F /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	D5D4D5E012DEC1DF0043558F /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	D5D4D5F312DEC4980043558F /* mo_compass.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1093, 3588}}";
+			sepNavSelRange = "{3512, 0}";
+			sepNavVisRange = "{0, 2288}";
+		};
+	};
+	D5D4D5FE12DEC4980043558F /* mo_io.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1093, 13130}}";
+			sepNavSelRange = "{21529, 0}";
+			sepNavVisRange = "{20727, 1947}";
+		};
+	};
+	D5D5D24B12DED9440036B556 /* DelayLine.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1093, 681}}";
+			sepNavSelRange = "{240, 0}";
+			sepNavVisRange = "{0, 440}";
+		};
+	};
+	D5D5D24C12DED9440036B556 /* DelayLine.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1093, 658}}";
+			sepNavSelRange = "{836, 0}";
+			sepNavVisRange = "{0, 910}";
+		};
+	};
+	D5D5D26412DEE18E0036B556 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D5D4D5F312DEC4980043558F /* mo_compass.mm */;
+		name = "mo_compass.mm: 96";
+		rLen = 0;
+		rLoc = 3512;
+		rType = 0;
+		vrLen = 2288;
+		vrLoc = 0;
+	};
+	D5D5D26512DEE18E0036B556 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D5D4D5FE12DEC4980043558F /* mo_io.mm */;
+		name = "mo_io.mm: 697";
+		rLen = 0;
+		rLoc = 21529;
+		rType = 0;
+		vrLen = 1947;
+		vrLoc = 20727;
+	};
+	D5D5D26612DEE18E0036B556 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* HeavenlyMuffinsAppDelegate.mm */;
+		name = "HeavenlyMuffinsAppDelegate.mm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1929;
+		vrLoc = 0;
+	};
+	D5D5D26712DEE18E0036B556 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF60DDB3853001CB0EB /* HeavenlyMuffinsViewController.h */;
+		name = "HeavenlyMuffinsViewController.h: 14";
+		rLen = 0;
+		rLoc = 304;
+		rType = 0;
+		vrLen = 379;
+		vrLoc = 0;
+	};
+	D5D5D26812DEE18E0036B556 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* HeavenlyMuffins-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffins-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	D5D5D26912DEE18E0036B556 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* HeavenlyMuffinsViewController.mm */;
+		name = "HeavenlyMuffinsViewController.mm: 70";
+		rLen = 0;
+		rLoc = 1701;
+		rType = 0;
+		vrLen = 1301;
+		vrLoc = 1446;
+	};
+	D5D5D26A12DEE18E0036B556 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D5D5D24C12DED9440036B556 /* DelayLine.m */;
+		name = "DelayLine.m: 39";
+		rLen = 0;
+		rLoc = 836;
+		rType = 0;
+		vrLen = 910;
+		vrLoc = 0;
+	};
+	D5D5D26B12DEE18E0036B556 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D5D5D24B12DED9440036B556 /* DelayLine.h */;
+		name = "DelayLine.h: 19";
+		rLen = 0;
+		rLoc = 366;
+		rType = 0;
+		vrLen = 440;
+		vrLoc = 0;
+	};
+	D5D5D26C12DEE18E0036B556 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D5D5D24B12DED9440036B556 /* DelayLine.h */;
+		name = "DelayLine.h: 13";
+		rLen = 0;
+		rLoc = 240;
+		rType = 0;
+		vrLen = 440;
+		vrLoc = 0;
+	};
+}

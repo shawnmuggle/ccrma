@@ -1,0 +1,1305 @@
+THeavenlyMuffins
+v7
+r0
+t316591639.352228
+cCheck dependencies
+cProcessInfoPlistFile /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/Info.plist HeavenlyMuffins-Info.plist
+cCompileXIB /Users/mrotondo/Development/HeavenlyMuffins/MainWindow.xib
+cCompileXIB /Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffinsViewController.xib
+cCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/AUTHORS momu-1.0.0/AUTHORS
+cCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/COPYING momu-1.0.0/COPYING
+cCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/DEVELOPER momu-1.0.0/DEVELOPER
+cCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/README momu-1.0.0/README
+cCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/THANKS momu-1.0.0/THANKS
+cCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/TODO momu-1.0.0/TODO
+cCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/VERSIONS momu-1.0.0/VERSIONS
+cProcessPCH /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gwblluorqmxqrugcismdduqbighg/HeavenlyMuffins_Prefix.pch.gch HeavenlyMuffins_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cProcessPCH++ /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch.gch HeavenlyMuffins_Prefix.pch normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cProcessPCH++ /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-damedorjbzphrkfeerfyaadxjuqu/HeavenlyMuffins_Prefix.pch.gch HeavenlyMuffins_Prefix.pch normal i386 c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/main.o /Users/mrotondo/Development/HeavenlyMuffins/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/HeavenlyMuffinsAppDelegate.o /Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsAppDelegate.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/HeavenlyMuffinsViewController.o /Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsViewController.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_accel.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_accel.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_audio.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_audio.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_colormap.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_colormap.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_compass.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_compass.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_fft.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fft.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_filter.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_fun.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fun.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_gfx.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_gfx.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_io.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_io.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_location.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_location.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_net.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_net.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_thread.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_thread.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_touch.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_touch.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/IpEndpointName.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/NetworkingUtils.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/UdpSocket.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscOutboundPacketStream.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscPrintReceivedElements.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscReceivedElements.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+cCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscTypes.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscTypes.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+cLd /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/HeavenlyMuffins normal i386
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk
+c000000004D1C8A700000000000000110
+t1293716080
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/AudioToolbox.framework/AudioToolbox
+c000000004CC1224600000000001EA9C0
+t1287725638
+s2009536
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/AudioToolbox.framework/Headers/AudioToolbox.h
+c000000004CC1222F0000000000000A23
+t1287725615
+s2595
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/AudioUnit.framework/Headers/AudioUnit.h
+c000000004CC1222E000000000000041E
+t1287725614
+s1054
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004CC12246000000000029B310
+t1287725638
+s2732816
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/CoreLocation.framework/CoreLocation
+c000000004CC127E80000000000074190
+t1287727080
+s475536
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/CoreLocation.framework/Headers/CoreLocation.h
+c000000004CC127DD00000000000001D0
+t1287727069
+s464
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004CC1226D000000000029D5D0
+t1287725677
+s2741712
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004CC1225F0000000000001466
+t1287725663
+s5222
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES1/gl.h
+c000000004CC123080000000000009369
+t1287725832
+s37737
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES1/glext.h
+c000000004CC123080000000000003C4A
+t1287725832
+s15434
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004CC1281F0000000000000AA1
+t1287727135
+s2721
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004CC12883000000000074D7B0
+t1287727235
+s7657392
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/arpa/inet.h
+c000000004CB3E46D0000000000001533
+t1286857837
+s5427
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/assert.h
+c000000004CB3E4860000000000000DCB
+t1286857862
+s3531
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/errno.h
+c000000004CB3E48600000000000003EB
+t1286857862
+s1003
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/ifaddrs.h
+c000000004CB3E4770000000000000782
+t1286857847
+s1922
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/math.h
+c000000004A5C14A000000000000004F1
+t1247548576
+s1265
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/netdb.h
+c000000004A4181220000000000003057
+t1245806882
+s12375
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/netinet/in.h
+c000000004CBFACA90000000000005462
+t1287629993
+s21602
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/objc/message.h
+c000000004CB935700000000000001B5D
+t1287206256
+s7005
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/objc/objc.h
+c000000004CB935700000000000000A2F
+t1287206256
+s2607
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/objc/runtime.h
+c000000004CB9357000000000000053F9
+t1287206256
+s21497
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/pthread.h
+c000000004CB3E48600000000000038F0
+t1286857862
+s14576
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/signal.h
+c000000004CB3E48600000000000014F0
+t1286857862
+s5360
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/stdio.h
+c000000004CB3E48600000000000040AC
+t1286857862
+s16556
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/stdlib.h
+c000000004CB3E4860000000000002DF5
+t1286857862
+s11765
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/string.h
+c000000004CB3E4860000000000001731
+t1286857862
+s5937
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/sys/socket.h
+c000000004CBFACAC0000000000005A69
+t1287629996
+s23145
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/sys/stat.h
+c000000004CBFACAC0000000000004A1D
+t1287629996
+s18973
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/sys/time.h
+c000000004CBFACAC0000000000001E17
+t1287629996
+s7703
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/sys/types.h
+c000000004CBFACAC0000000000002905
+t1287629996
+s10501
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/unistd.h
+c000000004CB3E486000000000000563E
+t1286857862
+s22078
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/lib/gcc/i686-apple-darwin10/4.2.1/include/stdarg.h
+c000000004A11983400000000000010DD
+t1242667060
+s4317
+
+N/Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsAppDelegate.h
+c000000004D2E8A400000000000000212
+t1294895680
+s530
+i<UIKit/UIKit.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsAppDelegate.mm
+c000000004D2E8A400000000000000AC0
+t1294895680
+s2752
+i"HeavenlyMuffinsAppDelegate.h"
+i"HeavenlyMuffinsViewController.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsViewController.h
+c000000004D2E8A400000000000000109
+t1294895680
+s265
+i<UIKit/UIKit.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsViewController.mm
+c000000004D2E951B0000000000000A19
+t1294898459
+s2585
+i"HeavenlyMuffinsViewController.h"
+i"mo_audio.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffinsViewController.xib
+c000000004D2E8A410000000000001A65
+t1294895681
+s6757
+
+N/Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffins_Prefix.pch
+c000000004D2E8A4100000000000000C7
+t1294895681
+s199
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/MainWindow.xib
+c000000004D2E8A410000000000004E89
+t1294895681
+s20105
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app
+t2
+s0
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app.dSYM
+t2
+s0
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/AUTHORS
+t1294898832
+s548
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/COPYING
+t1294898832
+s1268
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/DEVELOPER
+t1294898832
+s66
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/HeavenlyMuffins
+t2
+s0
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/HeavenlyMuffinsViewController.nib
+t1294898832
+s795
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/Info.plist
+t1294898832
+s629
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/MainWindow.nib
+t1294898832
+s1139
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/PkgInfo
+t1294898832
+s8
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/README
+t1294898832
+s1491
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/THANKS
+t1294898832
+s336
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/TODO
+t1294898832
+s82
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/VERSIONS
+t1294898832
+s40
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/HeavenlyMuffins.LinkFileList
+c000000004D2E96900000000000000D8F
+t1294898832
+s3471
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/HeavenlyMuffinsAppDelegate.o
+t1294898835
+s51096
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/HeavenlyMuffinsViewController.o
+t1294898835
+s40460
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/IpEndpointName.o
+t1294898837
+s4868
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/NetworkingUtils.o
+t1294898837
+s5476
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscOutboundPacketStream.o
+t1294898838
+s47376
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscPrintReceivedElements.o
+t1294898838
+s104508
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscReceivedElements.o
+t1294898838
+s62148
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscTypes.o
+t1294898838
+s4804
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/UdpSocket.o
+t1294898838
+s283104
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/main.o
+t1294898835
+s6312
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_accel.o
+t1294898835
+s115712
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_audio.o
+t1294898835
+s31468
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_colormap.o
+t1294898836
+s423624
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_compass.o
+t1294898835
+s154996
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_fft.o
+t1294898835
+s12472
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_filter.o
+t1294898835
+s46504
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_fun.o
+t1294898835
+s5828
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_gfx.o
+t1294898836
+s26300
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_io.o
+t1294898836
+s88040
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_location.o
+t1294898836
+s118936
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_net.o
+t1294898837
+s326384
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_thread.o
+t1294898837
+s76600
+
+N/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_touch.o
+t1294898837
+s206800
+
+N/Users/mrotondo/Development/HeavenlyMuffins/main.m
+c000000004D2E8A410000000000000174
+t1294895681
+s372
+i<UIKit/UIKit.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/AUTHORS
+c000000004C11569E0000000000000224
+t1276204702
+s548
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/COPYING
+c000000004C1156E600000000000004F4
+t1276204774
+s1268
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/DEVELOPER
+c000000004C1156FF0000000000000042
+t1276204799
+s66
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/README
+c000000004C1157F300000000000005D3
+t1276205043
+s1491
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/THANKS
+c000000004C1158400000000000000150
+t1276205120
+s336
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/TODO
+c000000004C1158160000000000000052
+t1276205078
+s82
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/VERSIONS
+c000000004C11572D0000000000000028
+t1276204845
+s40
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_accel.h
+c000000004C1165BE000000000000108B
+t1276208574
+s4235
+i"mo_def.h"
+i<vector>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_accel.mm
+c000000004C1154EB0000000000001EA9
+t1276204267
+s7849
+i"mo_accel.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_audio.h
+c000000004C11554D000000000000146F
+t1276204365
+s5231
+i"mo_def.h"
+i<AudioUnit/AudioUnit.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_audio.mm
+c000000004C1154EB00000000000059B8
+t1276204267
+s22968
+i"mo_audio.h"
+i<AudioToolbox/AudioToolbox.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_colormap.h
+c000000004C1143570000000000002D21
+t1276199767
+s11553
+i<string>
+i<map>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_colormap.mm
+c000000004C1141BD000000000001184A
+t1276199357
+s71754
+i"mo_colormap.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_compass.h
+c000000004C11651000000000000010F4
+t1276208400
+s4340
+i"mo_def.h"
+i<vector>
+i<CoreLocation/CoreLocation.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_compass.mm
+c000000004C116510000000000000266A
+t1276208400
+s9834
+i"mo_compass.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_def.h
+c000000004C1155580000000000000A93
+t1276204376
+s2707
+i<stdio.h>
+i<stdlib.h>
+i<assert.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fft.h
+c000000004C1154EB0000000000000C92
+t1276204267
+s3218
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fft.mm
+c000000004C1154EB0000000000002648
+t1276204267
+s9800
+i"mo_fft.h"
+i<stdlib.h>
+i<math.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.h
+c000000004C113C8D0000000000003446
+t1276198029
+s13382
+i"mo_def.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm
+c000000004C1154EB00000000000043D1
+t1276204267
+s17361
+i"mo_filter.h"
+i"mo_audio.h"
+i<stdio.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fun.h
+c000000004C113D020000000000000A80
+t1276198146
+s2688
+i"mo_def.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fun.mm
+c000000004C113CD20000000000000C1C
+t1276198098
+s3100
+i"mo_fun.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_gfx.h
+c000000004C113C6E00000000000019F2
+t1276197998
+s6642
+i"mo_def.h"
+i<math.h>
+i<sys/time.h>
+i<OpenGLES/ES1/gl.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_gfx.mm
+c000000004C1154EB0000000000002BC2
+t1276204267
+s11202
+i"mo_gfx.h"
+i<math.h>
+i<OpenGLES/ES1/gl.h>
+i<OpenGLES/ES1/glext.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_io.h
+c000000004C113CF50000000000001C6E
+t1276198133
+s7278
+i"mo_def.h"
+i<string>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_io.mm
+c000000004C1154EB0000000000007B2F
+t1276204267
+s31535
+i"mo_io.h"
+i<sys/stat.h>
+i<sys/types.h>
+i<math.h>
+i<string.h>
+i<iostream>
+i"mo_audio.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_location.h
+c000000004C1154EB00000000000010C3
+t1276204267
+s4291
+i"mo_def.h"
+i<CoreLocation/CoreLocation.h>
+i<vector>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_location.mm
+c000000004C1154EB0000000000001A30
+t1276204267
+s6704
+i"mo_location.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_net.h
+c000000004C1142B6000000000000190C
+t1276199606
+s6412
+i"mo_def.h"
+i"mo_thread.h"
+i"UdpSocket.h"
+i"OscReceivedElements.h"
+i"OscPacketListener.h"
+i"OscOutboundPacketStream.h"
+i<iostream>
+i<map>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_net.mm
+c000000004C1154EB0000000000002F64
+t1276204267
+s12132
+i"mo_net.h"
+i<stdarg.h>
+i<ifaddrs.h>
+i<arpa/inet.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_thread.h
+c000000004C113CEE0000000000000E84
+t1276198126
+s3716
+i"mo_def.h"
+i<pthread.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_thread.mm
+c000000004C113EC500000000000018A4
+t1276198597
+s6308
+i"mo_thread.h"
+i<iostream>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_touch.h
+c000000004C1154EB0000000000000E47
+t1276204267
+s3655
+i<UIKit/UIKit.h>
+i"mo_def.h"
+i<map>
+i<vector>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_touch.mm
+c000000004C1165100000000000002231
+t1276208400
+s8753
+i"mo_touch.h"
+i<objc/objc.h>
+i<objc/runtime.h>
+i<objc/message.h>
+i"mo_thread.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp
+c000000004ADCDD6100000000000009FC
+t1255988577
+s2556
+i"IpEndpointName.h"
+i<stdio.h>
+i"NetworkingUtils.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/IpEndpointName.h
+c000000004ADCDD610000000000000B3F
+t1255988577
+s2879
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/NetworkingUtils.h
+c000000004ADCDD6100000000000007DB
+t1255988577
+s2011
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/PacketListener.h
+c000000004ADCDD6100000000000006D8
+t1255988577
+s1752
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/TimerListener.h
+c000000004ADCDD610000000000000672
+t1255988577
+s1650
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/UdpSocket.h
+c000000004ADCDD6100000000000015B8
+t1255988577
+s5560
+i"NetworkingUtils.h"
+i"IpEndpointName.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp
+c000000004ADCDD60000000000000077C
+t1255988576
+s1916
+i"NetworkingUtils.h"
+i<netdb.h>
+i<sys/socket.h>
+i<netinet/in.h>
+i<string.h>
+i<stdio.h>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp
+c000000004ADCDD600000000000003AD7
+t1255988576
+s15063
+i"UdpSocket.h"
+i<vector>
+i<algorithm>
+i<stdexcept>
+i<assert.h>
+i<signal.h>
+i<math.h>
+i<errno.h>
+i<string.h>
+i<pthread.h>
+i<unistd.h>
+i<stdlib.h>
+i<stdio.h>
+i<netdb.h>
+i<sys/types.h>
+i<sys/socket.h>
+i<sys/time.h>
+i<netinet/in.h>
+i"PacketListener.h"
+i"TimerListener.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscException.h
+c000000004ADCDD5F0000000000000816
+t1255988575
+s2070
+i<exception>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscHostEndianness.h
+c000000004ADCDD5F000000000000096D
+t1255988575
+s2413
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp
+c000000004ADCDD5F0000000000003BF2
+t1255988575
+s15346
+i"OscOutboundPacketStream.h"
+i<string.h>
+i<stdlib.h>
+i<assert.h>
+i<malloc.h>
+i"OscHostEndianness.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.h
+c000000004ADCDD5F00000000000013B2
+t1255988575
+s5042
+i"OscTypes.h"
+i"OscException.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscPacketListener.h
+c000000004ADCDD5F0000000000000A74
+t1255988575
+s2676
+i"OscReceivedElements.h"
+i"../ip/PacketListener.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp
+c000000004ADCDD5F0000000000001C09
+t1255988575
+s7177
+i"OscPrintReceivedElements.h"
+i<iostream>
+i<iomanip>
+i<ctime>
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.h
+c000000004ADCDD5F000000000000080F
+t1255988575
+s2063
+i<iosfwd>
+i"OscReceivedElements.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp
+c000000004ADCDD5F0000000000004816
+t1255988575
+s18454
+i"OscReceivedElements.h"
+i<cassert>
+i"OscHostEndianness.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscReceivedElements.h
+c000000004ADCDD5F00000000000034E7
+t1255988575
+s13543
+i"OscTypes.h"
+i"OscException.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscTypes.cpp
+c000000004ADCDD5F0000000000000666
+t1255988575
+s1638
+i"OscTypes.h"
+
+N/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscTypes.h
+c000000004ADCDD5F0000000000000FCA
+t1255988575
+s4042
+
+N/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-damedorjbzphrkfeerfyaadxjuqu/HeavenlyMuffins_Prefix.pch.gch
+t1294898834
+s2515312
+
+N/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gwblluorqmxqrugcismdduqbighg/HeavenlyMuffins_Prefix.pch.gch
+t1294898834
+s15453392
+
+N/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch.gch
+t1294898834
+s16473168
+
+NHeavenlyMuffins-Info.plist
+c000000004D2E9036000000000000038D
+t1294897206
+s909
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies316591632#316591632#0(0"0(0#1#0"31244212048494624#0"0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/HeavenlyMuffinsAppDelegate.o /Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsAppDelegate.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591634.754251
+e316591635.046923
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/HeavenlyMuffinsAppDelegate.o
+x/Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsAppDelegate.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@89"Compile /Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsAppDelegate.mm316591634#316591635#0(0"0(0#0#81"/Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsAppDelegate.mm8607326880#2265"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsAppDelegate.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/HeavenlyMuffinsAppDelegate.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/HeavenlyMuffinsViewController.o /Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsViewController.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591635.035498
+e316591635.148494
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/HeavenlyMuffinsViewController.o
+x/Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsViewController.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@92"Compile /Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsViewController.mm316591635#316591635#0(0"0(0#0#84"/Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsViewController.mm8605551616#2271"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/Classes/HeavenlyMuffinsViewController.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/HeavenlyMuffinsViewController.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/IpEndpointName.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+s316591637.742090
+e316591637.837869
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/IpEndpointName.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@96"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp316591637#316591637#0(0"0(0#0#88"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp8605636800#2206"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-damedorjbzphrkfeerfyaadxjuqu/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/IpEndpointName.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/NetworkingUtils.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+s316591637.837989
+e316591637.903616
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/NetworkingUtils.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@103"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp316591637#316591637#0(0"0(0#0#95"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp8605316416#2214"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-damedorjbzphrkfeerfyaadxjuqu/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/NetworkingUtils.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscOutboundPacketStream.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+s316591637.903734
+e316591638.091953
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscOutboundPacketStream.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@106"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp316591637#316591638#0(0"0(0#0#98"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp8603308960#2225"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-damedorjbzphrkfeerfyaadxjuqu/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscOutboundPacketStream.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscPrintReceivedElements.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+s316591638.092060
+e316591638.628411
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscPrintReceivedElements.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@107"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp316591638#316591638#0(0"0(0#0#99"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp8606974112#2227"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-damedorjbzphrkfeerfyaadxjuqu/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscPrintReceivedElements.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscReceivedElements.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+s316591638.507270
+e316591638.683302
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscReceivedElements.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@102"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp316591638#316591638#0(0"0(0#0#94"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp8605141568#2217"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-damedorjbzphrkfeerfyaadxjuqu/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscReceivedElements.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscTypes.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscTypes.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+s316591638.628525
+e316591638.672076
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscTypes.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscTypes.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@91"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscTypes.cpp316591638#316591638#0(0"0(0#0#83"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscTypes.cpp8604928704#2195"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-damedorjbzphrkfeerfyaadxjuqu/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/osc/OscTypes.cpp -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/OscTypes.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/UdpSocket.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+s316591637.855219
+e316591638.507150
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/UdpSocket.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@97"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp316591637#316591638#0(0"0(0#0#89"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp8604955072#2202"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-damedorjbzphrkfeerfyaadxjuqu/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/UdpSocket.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/main.o /Users/mrotondo/Development/HeavenlyMuffins/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s316591634.752938
+e316591635.035387
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/main.o
+x/Users/mrotondo/Development/HeavenlyMuffins/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@58"Compile /Users/mrotondo/Development/HeavenlyMuffins/main.m316591634#316591635#0(0"0(0#0#50"/Users/mrotondo/Development/HeavenlyMuffins/main.m8603099168#2191"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gwblluorqmxqrugcismdduqbighg/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/main.m -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/main.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_accel.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_accel.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591635.047036
+e316591635.344993
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_accel.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_accel.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@78"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_accel.mm316591635#316591635#0(0"0(0#0#70"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_accel.mm8605170720#2236"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_accel.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_accel.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_audio.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_audio.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591635.148602
+e316591635.305026
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_audio.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_audio.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@78"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_audio.mm316591635#316591635#0(0"0(0#0#70"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_audio.mm8605006848#2236"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_audio.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_audio.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_colormap.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_colormap.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591635.305128
+e316591636.928120
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_colormap.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_colormap.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_colormap.mm316591635#316591636#0(0"0(0#0#73"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_colormap.mm8605315744#2242"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_colormap.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_colormap.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_compass.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_compass.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591635.345103
+e316591635.665640
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_compass.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_compass.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+o/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_compass.mm: In static member function 'static void MoCompass::checkSetup()':
+o/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_compass.mm:96: warning: 'headingAvailable' is deprecated (declared at /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/CoreLocation.framework/Headers/CLLocationManager.h:173)
+lSLF07#2@80"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_compass.mm316591635#316591635#0(437"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_compass.mm: In static member function 'static void MoCompass::checkSetup()':/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_compass.mm:96: warning: 'headingAvailable' is deprecated (declared at /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/CoreLocation.framework/Headers/CLLocationManager.h:173)1(22@211"'headingAvailable' is deprecated (declared at /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/CoreLocation.framework/Headers/CLLocationManager.h:173)316591635#139#298#0(6@72"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_compass.mm297901200#96#0#96#0#33"'*' is deprecated (declared at *)0(0#0#72"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_compass.mm8605071136#2240"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_compass.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_compass.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_fft.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fft.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591635.665760
+e316591635.745224
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_fft.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fft.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@76"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fft.mm316591635#316591635#0(0"0(0#0#68"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fft.mm8603924480#2232"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fft.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_fft.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_filter.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591635.745345
+e316591635.921924
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_filter.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+o/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm: In member function 'void MoFilter::setCoefficients(long int, Float32*, long int, Float32*)':
+o/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm:86: warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+o/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm:86: warning: format '%d' expects type 'int', but argument 4 has type 'long int'
+lSLF07#2@79"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm316591635#316591635#0(470"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm: In member function 'void MoFilter::setCoefficients(long int, Float32*, long int, Float32*)':/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm:86: warning: format '%d' expects type 'int', but argument 3 has type 'long int'/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm:86: warning: format '%d' expects type 'int', but argument 4 has type 'long int'2(22@66"Format '%d' expects type 'int', but argument 3 has type 'long int'316591635#166#152#0(6@71"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm297897067#86#0#86#0#56"format '*' expects type '*', but argument * has type '*'0(22@66"Format '%d' expects type 'int', but argument 4 has type 'long int'316591635#318#152#0(6@71"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm297897067#86#0#86#0#56"format '*' expects type '*', but argument * has type '*'0(0#0#71"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm8604373952#2238"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_filter.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_filter.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_fun.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fun.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591635.922030
+e316591635.975327
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_fun.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fun.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@76"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fun.mm316591635#316591635#0(0"0(0#0#68"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fun.mm8605389632#2232"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_fun.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_fun.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_gfx.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_gfx.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591635.975520
+e316591636.109622
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_gfx.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_gfx.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@76"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_gfx.mm316591635#316591636#0(0"0(0#0#68"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_gfx.mm8607356032#2232"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_gfx.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_gfx.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_io.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_io.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591636.109741
+e316591636.700771
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_io.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_io.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+o/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_io.mm: In member function 'bool MoAudioFileIn::getMatInfo(const char*)':
+o/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_io.mm:697: warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+lSLF07#2@75"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_io.mm316591636#316591636#0(284"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_io.mm: In member function 'bool MoAudioFileIn::getMatInfo(const char*)':/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_io.mm:697: warning: format '%d' expects type 'int', but argument 3 has type 'long int'1(22@66"Format '%d' expects type 'int', but argument 3 has type 'long int'316591636#135#149#0(6@67"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_io.mm297897067#697#0#697#0#56"format '*' expects type '*', but argument * has type '*'0(0#0#67"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_io.mm8604159264#2230"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_io.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_io.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_location.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_location.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591636.700885
+e316591637.001111
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_location.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_location.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_location.mm316591636#316591637#0(0"0(0#0#73"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_location.mm8605265216#2242"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_location.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_location.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_net.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_net.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591636.928226
+e316591637.741870
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_net.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_net.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@76"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_net.mm316591636#316591637#0(0"0(0#0#68"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_net.mm8606965888#2232"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_net.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_net.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_thread.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_thread.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591637.001217
+e316591637.444572
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_thread.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_thread.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@79"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_thread.mm316591637#316591637#0(0"0(0#0#71"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_thread.mm8605153632#2238"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_thread.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_thread.o0#
+
+CCompileC build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_touch.o /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_touch.mm normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591637.444688
+e316591637.855107
+r1
+xCompileC
+xbuild/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_touch.o
+x/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_touch.mm
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@78"Compile /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_touch.mm316591637#316591637#0(0"0(0#0#70"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_touch.mm8604551232#2236"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch -c /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/api/mo_touch.mm -o /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/mo_touch.o0#
+
+CCompileXIB /Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffinsViewController.xib
+s316591632.491897
+e316591632.912075
+r1
+xCompileXIB
+x/Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffinsViewController.xib
+lSLF07#2@44"CompileXIB HeavenlyMuffinsViewController.xib316591632#316591632#0(0"0(0#0#77"/Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffinsViewController.xib8605624000#693"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/HeavenlyMuffinsViewController.nib /Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffinsViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk0#
+
+CCompileXIB /Users/mrotondo/Development/HeavenlyMuffins/MainWindow.xib
+s316591632.490852
+e316591632.949329
+r1
+xCompileXIB
+x/Users/mrotondo/Development/HeavenlyMuffins/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib316591632#316591632#0(0"0(0#0#58"/Users/mrotondo/Development/HeavenlyMuffins/MainWindow.xib8607007584#655"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/MainWindow.nib /Users/mrotondo/Development/HeavenlyMuffins/MainWindow.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk0#
+
+CCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/AUTHORS momu-1.0.0/AUTHORS
+s316591632.912204
+e316591632.936070
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/HeavenlyMuffins.app/AUTHORS
+xmomu-1.0.0/AUTHORS
+lSLF07#2@23"Copy momu-1.0.0/AUTHORS316591632#316591632#0(0"0(0#0#62"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/AUTHORS8590427424#561"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/AUTHORS /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app0#
+
+CCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/COPYING momu-1.0.0/COPYING
+s316591632.914366
+e316591632.936239
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/HeavenlyMuffins.app/COPYING
+xmomu-1.0.0/COPYING
+lSLF07#2@23"Copy momu-1.0.0/COPYING316591632#316591632#0(0"0(0#0#62"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/COPYING8607164128#561"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/COPYING /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app0#
+
+CCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/DEVELOPER momu-1.0.0/DEVELOPER
+s316591632.918086
+e316591632.936377
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/HeavenlyMuffins.app/DEVELOPER
+xmomu-1.0.0/DEVELOPER
+lSLF07#2@25"Copy momu-1.0.0/DEVELOPER316591632#316591632#0(0"0(0#0#64"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/DEVELOPER8605283520#563"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/DEVELOPER /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app0#
+
+CCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/README momu-1.0.0/README
+s316591632.920304
+e316591632.936492
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/HeavenlyMuffins.app/README
+xmomu-1.0.0/README
+lSLF07#2@22"Copy momu-1.0.0/README316591632#316591632#0(0"0(0#0#61"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/README8604523200#560"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/README /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app0#
+
+CCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/THANKS momu-1.0.0/THANKS
+s316591632.924350
+e316591632.937646
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/HeavenlyMuffins.app/THANKS
+xmomu-1.0.0/THANKS
+lSLF07#2@22"Copy momu-1.0.0/THANKS316591632#316591632#0(0"0(0#0#61"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/THANKS8605077824#560"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/THANKS /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app0#
+
+CCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/TODO momu-1.0.0/TODO
+s316591632.927920
+e316591632.940541
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/HeavenlyMuffins.app/TODO
+xmomu-1.0.0/TODO
+lSLF07#2@20"Copy momu-1.0.0/TODO316591632#316591632#0(0"0(0#0#59"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/TODO8607156768#558"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/TODO /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app0#
+
+CCpResource build/Debug-iphonesimulator/HeavenlyMuffins.app/VERSIONS momu-1.0.0/VERSIONS
+s316591632.930336
+e316591632.945101
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/HeavenlyMuffins.app/VERSIONS
+xmomu-1.0.0/VERSIONS
+lSLF07#2@24"Copy momu-1.0.0/VERSIONS316591632#316591632#0(0"0(0#0#63"/Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/VERSIONS8604759520#562"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/HeavenlyMuffins/momu-1.0.0/VERSIONS /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app0#
+
+CGenerateDSYMFile /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app.dSYM /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/HeavenlyMuffins
+r0
+
+CLd /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/HeavenlyMuffins normal i386
+s316591638.683402
+e316591639.352027
+r0
+xLd
+x/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/HeavenlyMuffins
+xnormal
+xi386
+oUndefined symbols:
+o  "_glOrthof", referenced from:
+o      MoGfx::ortho(int, int, int)in mo_gfx.o
+o  "_glRotatef", referenced from:
+o      MoGfx::ortho(int, int, int)in mo_gfx.o
+o  "_glFrustumf", referenced from:
+o      MoGfx::perspective(double, double, double, double)in mo_gfx.o
+o  "_glMatrixMode", referenced from:
+o      MoGfx::ortho(int, int, int)in mo_gfx.o
+o      MoGfx::ortho(int, int, int)in mo_gfx.o
+o      MoGfx::perspective(double, double, double, double)in mo_gfx.o
+o      MoGfx::perspective(double, double, double, double)in mo_gfx.o
+o  "_glMultMatrixf", referenced from:
+o      MoGfx::lookAt(double, double, double, double, double, double, double, double, double)in mo_gfx.o
+o  "_glHint", referenced from:
+o      MoGfx::perspective(double, double, double, double)in mo_gfx.o
+o  "_glLoadIdentity", referenced from:
+o      MoGfx::ortho(int, int, int)in mo_gfx.o
+o      MoGfx::ortho(int, int, int)in mo_gfx.o
+o      MoGfx::perspective(double, double, double, double)in mo_gfx.o
+o      MoGfx::perspective(double, double, double, double)in mo_gfx.o
+o  "_glTranslatef", referenced from:
+o      MoGfx::lookAt(double, double, double, double, double, double, double, double, double)in mo_gfx.o
+o      MoGfx::ortho(int, int, int)in mo_gfx.o
+o      MoGfx::ortho(int, int, int)in mo_gfx.o
+o  "_glTexImage2D", referenced from:
+o      MoGfx::loadTexture(UIImage*)      in mo_gfx.o
+old: symbol(s) not found
+ocollect2: ld returned 1 exit status
+lSLF07#2@112"Link /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/HeavenlyMuffins316591638#316591639#0(1417"Undefined symbols:  "_glOrthof", referenced from:      MoGfx::ortho(int, int, int)in mo_gfx.o  "_glRotatef", referenced from:      MoGfx::ortho(int, int, int)in mo_gfx.o  "_glFrustumf", referenced from:      MoGfx::perspective(double, double, double, double)in mo_gfx.o  "_glMatrixMode", referenced from:      MoGfx::ortho(int, int, int)in mo_gfx.o      MoGfx::ortho(int, int, int)in mo_gfx.o      MoGfx::perspective(double, double, double, double)in mo_gfx.o      MoGfx::perspective(double, double, double, double)in mo_gfx.o  "_glMultMatrixf", referenced from:      MoGfx::lookAt(double, double, double, double, double, double, double, double, double)in mo_gfx.o  "_glHint", referenced from:      MoGfx::perspective(double, double, double, double)in mo_gfx.o  "_glLoadIdentity", referenced from:      MoGfx::ortho(int, int, int)in mo_gfx.o      MoGfx::ortho(int, int, int)in mo_gfx.o      MoGfx::perspective(double, double, double, double)in mo_gfx.o      MoGfx::perspective(double, double, double, double)in mo_gfx.o  "_glTranslatef", referenced from:      MoGfx::lookAt(double, double, double, double, double, double, double, double, double)in mo_gfx.o      MoGfx::ortho(int, int, int)in mo_gfx.o      MoGfx::ortho(int, int, int)in mo_gfx.o  "_glTexImage2D", referenced from:      MoGfx::loadTexture(UIImage*)      in mo_gfx.old: symbol(s) not foundcollect2: ld returned 1 exit status28(4@29""_glOrthof", referenced from:316591639#19#32#0(6@0"316591639#0#0#0#0#0"0(13@38"MoGfx::ortho(int, int, int)in mo_gfx.o316591639#51#45#0(6@0"316591639#0#0#0#0#0"0(4@30""_glRotatef", referenced from:316591639#96#33#0(6@0"316591639#0#0#0#0#0"0(13@38"MoGfx::ortho(int, int, int)in mo_gfx.o316591639#129#45#0(6@0"316591639#0#0#0#0#0"0(4@31""_glFrustumf", referenced from:316591639#174#34#0(6@0"316591639#0#0#0#0#0"0(13@61"MoGfx::perspective(double, double, double, double)in mo_gfx.o316591639#208#68#0(6@0"316591639#0#0#0#0#0"0(4@33""_glMatrixMode", referenced from:316591639#276#36#0(6@0"316591639#0#0#0#0#0"0(13@38"MoGfx::ortho(int, int, int)in mo_gfx.o316591639#312#45#0(6@0"316591639#0#0#0#0#0"0(13@38"MoGfx::ortho(int, int, int)in mo_gfx.o316591639#357#45#0(6@0"316591639#0#0#0#0#0"0(13@61"MoGfx::perspective(double, double, double, double)in mo_gfx.o316591639#402#68#0(6@0"316591639#0#0#0#0#0"0(13@61"MoGfx::perspective(double, double, double, double)in mo_gfx.o316591639#470#68#0(6@0"316591639#0#0#0#0#0"0(4@34""_glMultMatrixf", referenced from:316591639#538#37#0(6@0"316591639#0#0#0#0#0"0(13@96"MoGfx::lookAt(double, double, double, double, double, double, double, double, double)in mo_gfx.o316591639#575#103#0(6@0"316591639#0#0#0#0#0"0(4@27""_glHint", referenced from:316591639#678#30#0(6@0"316591639#0#0#0#0#0"0(13@61"MoGfx::perspective(double, double, double, double)in mo_gfx.o316591639#708#68#0(6@0"316591639#0#0#0#0#0"0(4@35""_glLoadIdentity", referenced from:316591639#776#38#0(6@0"316591639#0#0#0#0#0"0(13@38"MoGfx::ortho(int, int, int)in mo_gfx.o316591639#814#45#0(6@0"316591639#0#0#0#0#0"0(13@38"MoGfx::ortho(int, int, int)in mo_gfx.o316591639#859#45#0(6@0"316591639#0#0#0#0#0"0(13@61"MoGfx::perspective(double, double, double, double)in mo_gfx.o316591639#904#68#0(6@0"316591639#0#0#0#0#0"0(13@61"MoGfx::perspective(double, double, double, double)in mo_gfx.o316591639#972#68#0(6@0"316591639#0#0#0#0#0"0(4@33""_glTranslatef", referenced from:316591639#1040#36#0(6@0"316591639#0#0#0#0#0"0(13@96"MoGfx::lookAt(double, double, double, double, double, double, double, double, double)in mo_gfx.o316591639#1076#103#0(6@0"316591639#0#0#0#0#0"0(13@38"MoGfx::ortho(int, int, int)in mo_gfx.o316591639#1179#45#0(6@0"316591639#0#0#0#0#0"0(13@38"MoGfx::ortho(int, int, int)in mo_gfx.o316591639#1224#45#0(6@0"316591639#0#0#0#0#0"0(4@33""_glTexImage2D", referenced from:316591639#1269#36#0(6@0"316591639#0#0#0#0#0"0(13@45"MoGfx::loadTexture(UIImage*)      in mo_gfx.o316591639#1305#52#0(6@0"316591639#0#0#0#0#0"0(13@19"Symbol(s) not found316591639#1357#24#0(6@0"316591639#0#0#0#0#0"0(13@35"Collect2: ld returned 1 exit status316591639#1381#36#0(6@0"316591639#0#0#0#0#0"0(0#0#0"8604374688#1075"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/g++-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -L/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -filelist /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/Objects-normal/i386/HeavenlyMuffins.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -framework AudioToolbox -framework CoreLocation -o /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/HeavenlyMuffins1#
+
+CProcessInfoPlistFile /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/Info.plist HeavenlyMuffins-Info.plist
+s316591632.436927
+e316591632.490538
+r1
+xProcessInfoPlistFile
+x/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/Info.plist
+xHeavenlyMuffins-Info.plist
+lSLF07#2@34"Process HeavenlyMuffins-Info.plist316591632#316591632#0(0"0(0#0#70"/Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffins-Info.plist32370094775009384#580"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-infoPlistUtility HeavenlyMuffins-Info.plist -genpkginfo /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app/Info.plist0#
+
+CProcessPCH /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gwblluorqmxqrugcismdduqbighg/HeavenlyMuffins_Prefix.pch.gch HeavenlyMuffins_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s316591632.949490
+e316591634.429592
+r1
+xProcessPCH
+x/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gwblluorqmxqrugcismdduqbighg/HeavenlyMuffins_Prefix.pch.gch
+xHeavenlyMuffins_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@37"Precompile HeavenlyMuffins_Prefix.pch316591632#316591634#0(0"0(0#0#70"/Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffins_Prefix.pch8603437056#2070"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -c /Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffins_Prefix.pch -o /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gwblluorqmxqrugcismdduqbighg/HeavenlyMuffins_Prefix.pch.gch0#
+
+CProcessPCH++ /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-damedorjbzphrkfeerfyaadxjuqu/HeavenlyMuffins_Prefix.pch.gch HeavenlyMuffins_Prefix.pch normal i386 c++ com.apple.compilers.gcc.4_2
+s316591634.429817
+e316591634.729179
+r1
+xProcessPCH++
+x/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-damedorjbzphrkfeerfyaadxjuqu/HeavenlyMuffins_Prefix.pch.gch
+xHeavenlyMuffins_Prefix.pch
+xnormal
+xi386
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@37"Precompile HeavenlyMuffins_Prefix.pch316591634#316591634#0(0"0(0#0#70"/Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffins_Prefix.pch8604946016#2037"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x c++-header -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -c /Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffins_Prefix.pch -o /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-damedorjbzphrkfeerfyaadxjuqu/HeavenlyMuffins_Prefix.pch.gch0#
+
+CProcessPCH++ /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch.gch HeavenlyMuffins_Prefix.pch normal i386 objective-c++ com.apple.compilers.gcc.4_2
+s316591632.951144
+e316591634.752818
+r1
+xProcessPCH++
+x/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch.gch
+xHeavenlyMuffins_Prefix.pch
+xnormal
+xi386
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@37"Precompile HeavenlyMuffins_Prefix.pch316591632#316591634#0(0"0(0#0#70"/Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffins_Prefix.pch8605542304#2091"    cd /Users/mrotondo/Development/HeavenlyMuffins    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c++-header -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-generated-files.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-own-target-headers.hmap -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-all-target-headers.hmap -iquote /Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/HeavenlyMuffins-project-headers.hmap -F/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator -I/Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources/i386 -I/Users/mrotondo/Development/HeavenlyMuffins/build/HeavenlyMuffins.build/Debug-iphonesimulator/HeavenlyMuffins.build/DerivedSources -c /Users/mrotondo/Development/HeavenlyMuffins/HeavenlyMuffins_Prefix.pch -o /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HeavenlyMuffins_Prefix-gxpegjcaesrwfoddkxfpojywjkcv/HeavenlyMuffins_Prefix.pch.gch0#
+
+CTouch /Users/mrotondo/Development/HeavenlyMuffins/build/Debug-iphonesimulator/HeavenlyMuffins.app
+r0
+
