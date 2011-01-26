@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -310,6 +308,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -327,7 +327,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>D537220312DF0CA000AD17C3</string>
+										<string>D5B51AE412E7218E00C2FAF0</string>
 										<key>history</key>
 										<array>
 											<string>D5D5D26412DEE18E0036B556</string>
@@ -341,7 +341,7 @@
 											<string>D53721DD12DF068700AD17C3</string>
 											<string>D53721E412DF06C300AD17C3</string>
 											<string>D53721F912DF0C4F00AD17C3</string>
-											<string>D53721FA12DF0C4F00AD17C3</string>
+											<string>D537220412DF20FF00AD17C3</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -353,14 +353,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1154, 737}}</string>
+								<string>{{0, 0}, {1154, 736}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 55 1436 823 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>737pt</string>
+							<string>736pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -373,14 +373,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 742}, {1154, 40}}</string>
+								<string>{{0, 741}, {1154, 41}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 55 1436 823 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>40pt</string>
+							<string>41pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -399,9 +399,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>D53721AE12DF02CB00AD17C3</string>
+				<string>D5B51AE512E7218E00C2FAF0</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>D53721AF12DF02CB00AD17C3</string>
+				<string>D5B51AE612E7218E00C2FAF0</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -539,12 +539,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>D53721B112DF02CB00AD17C3</string>
-		<string>D53721B212DF02CB00AD17C3</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>D5D4D64412DEC6030043558F</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/mrotondo/Development/ccrma/256b/hw1/HeavenlyMuffins/HeavenlyMuffins.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -569,7 +564,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>HeavenlyMuffinsViewController.mm</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -586,8 +581,6 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -627,7 +620,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>D5D4D64412DEC6030043558F</string>
-				<string>D537211512DEE90F00AD17C3</string>
+				<string>D5B51AE712E7218E00C2FAF0</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
