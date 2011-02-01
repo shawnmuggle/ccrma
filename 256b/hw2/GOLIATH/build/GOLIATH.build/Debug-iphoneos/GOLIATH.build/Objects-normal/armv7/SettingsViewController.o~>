@@ -1,0 +1,2 @@
+/Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.mm: In function 'void -[SettingsViewController viewDidLoad](SettingsViewController*, objc_selector*)':
+/Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.mm:35: error: request for member 'gravity' in '*(GOState**)(((char*)self) + OBJC_IVAR_$_SettingsViewController.state)', which is of non-class type 'GOState*'

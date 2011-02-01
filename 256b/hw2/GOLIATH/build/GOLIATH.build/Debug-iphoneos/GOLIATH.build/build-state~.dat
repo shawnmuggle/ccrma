@@ -1,0 +1,1834 @@
+TGOLIATH
+v7
+r0
+t317199301.675378
+cCheck dependencies
+cCpResource build/Debug-iphoneos/GOLIATH.app/ResourceRules.plist /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ResourceRules.plist
+cProcessInfoPlistFile /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/Info.plist GOLIATH-Info.plist
+cCpResource build/Debug-iphoneos/GOLIATH.app/Shader.fsh Shaders/Shader.fsh
+cCpResource build/Debug-iphoneos/GOLIATH.app/Shader.vsh Shaders/Shader.vsh
+cCompileXIB /Users/mrotondo/Development/GOLIATH/MainWindow.xib
+cCpResource build/Debug-iphoneos/GOLIATH.app/AUTHORS momu-1.0.0/AUTHORS
+cCpResource build/Debug-iphoneos/GOLIATH.app/COPYING momu-1.0.0/COPYING
+cCpResource build/Debug-iphoneos/GOLIATH.app/DEVELOPER momu-1.0.0/DEVELOPER
+cCpResource build/Debug-iphoneos/GOLIATH.app/README momu-1.0.0/README
+cCpResource build/Debug-iphoneos/GOLIATH.app/THANKS momu-1.0.0/THANKS
+cCpResource build/Debug-iphoneos/GOLIATH.app/TODO momu-1.0.0/TODO
+cCpResource build/Debug-iphoneos/GOLIATH.app/VERSIONS momu-1.0.0/VERSIONS
+cCompileXIB /Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.xib
+cCompileXIB /Users/mrotondo/Development/GOLIATH/Classes/MainViewController.xib
+cProcessPCH /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch.gch GOLIATH_Prefix.pch normal armv7 objective-c com.apple.compilers.gcc.4_2
+cProcessPCH++ /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch.gch GOLIATH_Prefix.pch normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cProcessPCH++ /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-cizllxyeatgkimafilcmokiuufza/GOLIATH_Prefix.pch.gch GOLIATH_Prefix.pch normal armv7 c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/main.o /Users/mrotondo/Development/GOLIATH/main.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOAppDelegate.o /Users/mrotondo/Development/GOLIATH/Classes/GOAppDelegate.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/EAGLView.o /Users/mrotondo/Development/GOLIATH/Classes/EAGLView.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/ES1Renderer.o /Users/mrotondo/Development/GOLIATH/Classes/ES1Renderer.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/ES2Renderer.o /Users/mrotondo/Development/GOLIATH/Classes/ES2Renderer.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_accel.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_accel.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_audio.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_colormap.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_colormap.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_compass.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_compass.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_fft.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fft.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_filter.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_fun.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fun.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_gfx.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_gfx.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_io.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_io.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_location.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_location.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_net.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_net.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_thread.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_thread.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_touch.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_touch.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/IpEndpointName.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/NetworkingUtils.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/UdpSocket.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscOutboundPacketStream.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscPrintReceivedElements.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscReceivedElements.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscTypes.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscTypes.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOState.o /Users/mrotondo/Development/GOLIATH/Classes/GOState.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOSynth.o /Users/mrotondo/Development/GOLIATH/Classes/GOSynth.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/SettingsViewController.o /Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/MainViewController.o /Users/mrotondo/Development/GOLIATH/Classes/MainViewController.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOTouchObject.o /Users/mrotondo/Development/GOLIATH/Classes/GOTouchObject.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+cLd /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/GOLIATH normal armv7
+cGenerateDSYMFile /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app.dSYM /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/GOLIATH
+cProcessProductPackaging "/Users/mrotondo/Library/MobileDevice/Provisioning Profiles/6A56C621-8243-4CDB-8EF9-A51D0D1D66DD.mobileprovision" /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/embedded.mobileprovision
+cTouch /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app
+cProcessProductPackaging /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/Entitlements.plist /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH.xcent
+cCodeSign /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk
+c000000004D1C89220000000000000110
+t1293715746
+s272
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/Entitlements.plist
+c000000004CB3DFCF00000000000001A7
+t1286856655
+s423
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ResourceRules.plist
+c000000004CB3DFCF00000000000001E5
+t1286856655
+s485
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/AudioToolbox.framework/AudioToolbox
+c000000004CC10EF400000000003B8CB0
+t1287720692
+s3902640
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/AudioToolbox.framework/Headers/AudioToolbox.h
+c000000004CC10EB60000000000000A23
+t1287720630
+s2595
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/AudioUnit.framework/Headers/AudioUnit.h
+c000000004CC10EB0000000000000041E
+t1287720624
+s1054
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/CoreLocation.framework/CoreLocation
+c000000004CC11B5300000000000D96F0
+t1287723859
+s890608
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/CoreLocation.framework/Headers/CoreLocation.h
+c000000004CC11B4300000000000001D0
+t1287723843
+s464
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004CC10F4700000000003E1F20
+t1287720775
+s4071200
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004CC10F1C0000000000001466
+t1287720732
+s5222
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/EAGL.h
+c000000004CC110BE000000000000094F
+t1287721150
+s2383
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/EAGLDrawable.h
+c000000004CC110BE0000000000000A61
+t1287721150
+s2657
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES1/gl.h
+c000000004CC110BE0000000000009369
+t1287721150
+s37737
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES1/glext.h
+c000000004CC110BE0000000000003C4A
+t1287721150
+s15434
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES2/gl.h
+c000000004CC110BE00000000000092AA
+t1287721150
+s37546
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES2/glext.h
+c000000004CC110BE00000000000026AA
+t1287721150
+s9898
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/OpenGLES.framework/OpenGLES
+c000000004CC110CB000000000002C650
+t1287721163
+s181840
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.h
+c000000004CC1111C00000000000000C4
+t1287721244
+s196
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
+c000000004CC1127D0000000000267530
+t1287721597
+s2520368
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004CC11AE60000000000000AA1
+t1287723750
+s2721
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004CC11B750000000000C769F0
+t1287723893
+s13068784
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/Availability.h
+c000000004CB3FBB80000000000001ADD
+t1286863800
+s6877
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/arpa/inet.h
+c000000004CB3E4790000000000001533
+t1286857849
+s5427
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/assert.h
+c000000004CB3E4B80000000000000DCB
+t1286857912
+s3531
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/errno.h
+c000000004CB3E4B800000000000003EB
+t1286857912
+s1003
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/ifaddrs.h
+c000000004CB3E4840000000000000782
+t1286857860
+s1922
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/math.h
+c000000004CB3E44400000000000004F1
+t1286857796
+s1265
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/netdb.h
+c000000004CB3E4A0000000000000307F
+t1286857888
+s12415
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/netinet/in.h
+c000000004CBFACDD0000000000005462
+t1287630045
+s21602
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/objc/message.h
+c000000004CC1098E0000000000001B5D
+t1287719310
+s7005
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/objc/objc.h
+c000000004CC1098E0000000000000A2F
+t1287719310
+s2607
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/objc/runtime.h
+c000000004CC1098E00000000000053F9
+t1287719310
+s21497
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/pthread.h
+c000000004CB3E4B800000000000038F0
+t1286857912
+s14576
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/signal.h
+c000000004CB3E4B800000000000014F0
+t1286857912
+s5360
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/stdio.h
+c000000004CB3E4B800000000000040AC
+t1286857912
+s16556
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/stdlib.h
+c000000004CB3E4B80000000000002DF5
+t1286857912
+s11765
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/string.h
+c000000004CB3E4B80000000000001731
+t1286857912
+s5937
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/sys/socket.h
+c000000004CBFACD80000000000005A69
+t1287630040
+s23145
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/sys/stat.h
+c000000004CBFACD80000000000004A1D
+t1287630040
+s18973
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/sys/time.h
+c000000004CBFACD90000000000001E17
+t1287630041
+s7703
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/sys/types.h
+c000000004CBFACD90000000000002905
+t1287630041
+s10501
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/unistd.h
+c000000004CB3E4B8000000000000563E
+t1286857912
+s22078
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/lib/gcc/arm-apple-darwin10/4.2.1/include/stdarg.h
+c000000004C5A568700000000000010DD
+t1280988807
+s4317
+
+N/Users/mrotondo/Development/GOLIATH/Classes/EAGLView.h
+c000000004D37DBEB000000000000059B
+t1295506411
+s1435
+i<UIKit/UIKit.h>
+i<QuartzCore/QuartzCore.h>
+i"ESRenderer.h"
+i"GOState.h"
+i"GOSynth.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/EAGLView.m
+c000000004D37DBED000000000000138B
+t1295506413
+s5003
+i"EAGLView.h"
+i"ES1Renderer.h"
+i"ES2Renderer.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/ES1Renderer.h
+c000000004D37DBB5000000000000029B
+t1295506357
+s667
+i"ESRenderer.h"
+i<OpenGLES/ES1/gl.h>
+i<OpenGLES/ES1/glext.h>
+i"GOState.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/ES1Renderer.m
+c000000004D37DB05000000000000149A
+t1295506181
+s5274
+i"ES1Renderer.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/ES2Renderer.h
+c000000004D37DBB7000000000000029C
+t1295506359
+s668
+i"ESRenderer.h"
+i<OpenGLES/ES2/gl.h>
+i<OpenGLES/ES2/glext.h>
+
+N/Users/mrotondo/Development/GOLIATH/Classes/ES2Renderer.m
+c000000004D36D30E0000000000002229
+t1295438606
+s8745
+i"ES2Renderer.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/ESRenderer.h
+c000000004D37DBB80000000000000196
+t1295506360
+s406
+i<QuartzCore/QuartzCore.h>
+i<OpenGLES/EAGL.h>
+i<OpenGLES/EAGLDrawable.h>
+i"GOState.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/FlipViewController.h
+c000000004D37796100000000000000EB
+t1295481185
+s235
+i<UIKit/UIKit.h>
+
+N/Users/mrotondo/Development/GOLIATH/Classes/FlipViewController.m
+c000000004D377961000000000000052A
+t1295481185
+s1322
+i"FlipViewController.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/FlipViewController.xib
+c000000004D377961000000000000509F
+t1295481185
+s20639
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GOAppDelegate.h
+c000000004D37DC0600000000000001EC
+t1295506438
+s492
+i<UIKit/UIKit.h>
+i"MainViewController.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GOAppDelegate.m
+c000000004D37DC1E000000000000040A
+t1295506462
+s1034
+i"GOAppDelegate.h"
+i"EAGLView.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GOLIATHAppDelegate.h
+c000000004D378E0200000000000001F1
+t1295486466
+s497
+i<UIKit/UIKit.h>
+i"MainViewController.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GOLIATHAppDelegate.m
+c000000004D3791950000000000000414
+t1295487381
+s1044
+i"GOLIATHAppDelegate.h"
+i"EAGLView.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GOState.h
+c000000004D37DB940000000000000187
+t1295506324
+s391
+i<Foundation/Foundation.h>
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GOState.m
+c000000004D37DB9600000000000001E2
+t1295506326
+s482
+i"GOState.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GOSynth.h
+c000000004D37DBD70000000000000162
+t1295506391
+s354
+i<Foundation/Foundation.h>
+i"GOState.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GOSynth.mm
+c000000004D37DC2E00000000000005DB
+t1295506478
+s1499
+i"GOSynth.h"
+i"mo_audio.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GOTouchObject.h
+c000000004D37DB6E00000000000000E3
+t1295506286
+s227
+i<Foundation/Foundation.h>
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GOTouchObject.m
+c000000004D37DB6E00000000000000D0
+t1295506286
+s208
+i"GOTouchObject.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GoliathState.h
+c000000004D36DE01000000000000018C
+t1295441409
+s396
+i<Foundation/Foundation.h>
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GoliathState.m
+c000000004D36E07100000000000001EC
+t1295442033
+s492
+i"GoliathState.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.h
+c000000004D37DB990000000000000167
+t1295506329
+s359
+i<Foundation/Foundation.h>
+i"GOState.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m
+c000000004D36E771000000000000036F
+t1295443825
+s879
+i"GoliathSynth.h"
+i"mo_audio.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.mm
+c000000004D37DBA900000000000005E5
+t1295506345
+s1509
+i"GoliathSynth.h"
+i"mo_audio.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/MainViewController.h
+c000000004D379862000000000000014F
+t1295489122
+s335
+i<UIKit/UIKit.h>
+i"SettingsViewController.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/MainViewController.m
+c000000004D37B57E000000000000072A
+t1295496574
+s1834
+i"MainViewController.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/MainViewController.xib
+c000000004D379B69000000000000545C
+t1295489897
+s21596
+
+N/Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.h
+c000000004D379A200000000000000235
+t1295489568
+s565
+i<UIKit/UIKit.h>
+
+N/Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.m
+c000000004D37980E00000000000005A5
+t1295489038
+s1445
+i"SettingsViewController.h"
+
+N/Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.xib
+c000000004D37A04F0000000000005281
+t1295491151
+s21121
+
+N/Users/mrotondo/Development/GOLIATH/GOLIATH_Prefix.pch
+c000000004D3658F60000000000000138
+t1295407350
+s312
+i<Availability.h>
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/mrotondo/Development/GOLIATH/MainWindow.xib
+c000000004D37DC180000000000005235
+t1295506456
+s21045
+
+N/Users/mrotondo/Development/GOLIATH/Shaders/Shader.fsh
+c000000004D3658F600000000000000DD
+t1295407350
+s221
+
+N/Users/mrotondo/Development/GOLIATH/Shaders/Shader.vsh
+c000000004D3658F60000000000000163
+t1295407350
+s355
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app
+t1295506501
+s714
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app.dSYM
+t1295506495
+s102
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/AUTHORS
+t1295506484
+s548
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/COPYING
+t1295506484
+s1268
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/DEVELOPER
+t1295506484
+s66
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/FlipViewController.nib
+t2
+s0
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/GOLIATH
+t1295506494
+s345532
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/Info.plist
+t1295506484
+s1015
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/MainViewController.nib
+t1295506485
+s1510
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/MainWindow.nib
+t1295506485
+s1111
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/PkgInfo
+t1295506484
+s8
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/README
+t1295506484
+s1491
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/ResourceRules.plist
+t1295506484
+s485
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/SettingsViewController.nib
+t1295506485
+s1166
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/Shader.fsh
+t1295506484
+s221
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/Shader.vsh
+t1295506484
+s355
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/THANKS
+t1295506484
+s336
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/TODO
+t1295506484
+s82
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/VERSIONS
+t1295506484
+s40
+
+N/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/embedded.mobileprovision
+t1295506495
+s11349
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH.xcent
+t1295506495
+s420
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/EAGLView.o
+t1295506487
+s58056
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/ES1Renderer.o
+t1295506487
+s55152
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/ES2Renderer.o
+t1295506487
+s26796
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/FlipViewController.o
+t2
+s0
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOAppDelegate.o
+t1295506487
+s50920
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOLIATH.LinkFileList
+c000000004D37DC340000000000000E0F
+t1295506484
+s3599
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOLIATHAppDelegate.o
+t1295489568
+s51124
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOState.o
+t1295506491
+s41908
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOSynth.o
+t1295506492
+s10376
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOTouchObject.o
+t1295506492
+s5248
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GoliathState.o
+t1295442050
+s42020
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GoliathSynth.o
+t1295449882
+s10504
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/IpEndpointName.o
+t1295506490
+s4768
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/MainViewController.o
+t1295506492
+s41436
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/NetworkingUtils.o
+t1295506490
+s5472
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscOutboundPacketStream.o
+t1295506491
+s41164
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscPrintReceivedElements.o
+t1295506491
+s102484
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscReceivedElements.o
+t1295506492
+s52596
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscTypes.o
+t1295506491
+s4600
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/SettingsViewController.o
+t1295506492
+s39912
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/UdpSocket.o
+t1295506491
+s255684
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/main.o
+t1295506487
+s6424
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_accel.o
+t1295506488
+s106504
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_audio.o
+t1295506487
+s30416
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_colormap.o
+t1295506489
+s412880
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_compass.o
+t1295506488
+s144860
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_fft.o
+t1295506488
+s11488
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_filter.o
+t1295506488
+s42600
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_fun.o
+t1295506488
+s5704
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_gfx.o
+t1295506489
+s24152
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_io.o
+t1295506489
+s83800
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_location.o
+t1295506490
+s109340
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_net.o
+t1295506490
+s310140
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_thread.o
+t1295506490
+s76336
+
+N/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_touch.o
+t1295506491
+s190752
+
+N/Users/mrotondo/Development/GOLIATH/main.m
+c000000004D3658F6000000000000016C
+t1295407350
+s364
+i<UIKit/UIKit.h>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/AUTHORS
+c000000004C11569E0000000000000224
+t1276204702
+s548
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/COPYING
+c000000004C1156E600000000000004F4
+t1276204774
+s1268
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/DEVELOPER
+c000000004C1156FF0000000000000042
+t1276204799
+s66
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/README
+c000000004C1157F300000000000005D3
+t1276205043
+s1491
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/THANKS
+c000000004C1158400000000000000150
+t1276205120
+s336
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/TODO
+c000000004C1158160000000000000052
+t1276205078
+s82
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/VERSIONS
+c000000004C11572D0000000000000028
+t1276204845
+s40
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_accel.h
+c000000004C1165BE000000000000108B
+t1276208574
+s4235
+i"mo_def.h"
+i<vector>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_accel.mm
+c000000004C1154EB0000000000001EA9
+t1276204267
+s7849
+i"mo_accel.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.h
+c000000004C11554D000000000000146F
+t1276204365
+s5231
+i"mo_def.h"
+i<AudioUnit/AudioUnit.h>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.mm
+c000000004C1154EB00000000000059B8
+t1276204267
+s22968
+i"mo_audio.h"
+i<AudioToolbox/AudioToolbox.h>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_colormap.h
+c000000004C1143570000000000002D21
+t1276199767
+s11553
+i<string>
+i<map>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_colormap.mm
+c000000004C1141BD000000000001184A
+t1276199357
+s71754
+i"mo_colormap.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_compass.h
+c000000004C11651000000000000010F4
+t1276208400
+s4340
+i"mo_def.h"
+i<vector>
+i<CoreLocation/CoreLocation.h>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_compass.mm
+c000000004C116510000000000000266A
+t1276208400
+s9834
+i"mo_compass.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_def.h
+c000000004C1155580000000000000A93
+t1276204376
+s2707
+i<stdio.h>
+i<stdlib.h>
+i<assert.h>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fft.h
+c000000004C1154EB0000000000000C92
+t1276204267
+s3218
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fft.mm
+c000000004C1154EB0000000000002648
+t1276204267
+s9800
+i"mo_fft.h"
+i<stdlib.h>
+i<math.h>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.h
+c000000004C113C8D0000000000003446
+t1276198029
+s13382
+i"mo_def.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm
+c000000004C1154EB00000000000043D1
+t1276204267
+s17361
+i"mo_filter.h"
+i"mo_audio.h"
+i<stdio.h>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fun.h
+c000000004C113D020000000000000A80
+t1276198146
+s2688
+i"mo_def.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fun.mm
+c000000004C113CD20000000000000C1C
+t1276198098
+s3100
+i"mo_fun.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_gfx.h
+c000000004C113C6E00000000000019F2
+t1276197998
+s6642
+i"mo_def.h"
+i<math.h>
+i<sys/time.h>
+i<OpenGLES/ES1/gl.h>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_gfx.mm
+c000000004C1154EB0000000000002BC2
+t1276204267
+s11202
+i"mo_gfx.h"
+i<math.h>
+i<OpenGLES/ES1/gl.h>
+i<OpenGLES/ES1/glext.h>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_io.h
+c000000004C113CF50000000000001C6E
+t1276198133
+s7278
+i"mo_def.h"
+i<string>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_io.mm
+c000000004C1154EB0000000000007B2F
+t1276204267
+s31535
+i"mo_io.h"
+i<sys/stat.h>
+i<sys/types.h>
+i<math.h>
+i<string.h>
+i<iostream>
+i"mo_audio.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_location.h
+c000000004C1154EB00000000000010C3
+t1276204267
+s4291
+i"mo_def.h"
+i<CoreLocation/CoreLocation.h>
+i<vector>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_location.mm
+c000000004C1154EB0000000000001A30
+t1276204267
+s6704
+i"mo_location.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_net.h
+c000000004C1142B6000000000000190C
+t1276199606
+s6412
+i"mo_def.h"
+i"mo_thread.h"
+i"UdpSocket.h"
+i"OscReceivedElements.h"
+i"OscPacketListener.h"
+i"OscOutboundPacketStream.h"
+i<iostream>
+i<map>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_net.mm
+c000000004C1154EB0000000000002F64
+t1276204267
+s12132
+i"mo_net.h"
+i<stdarg.h>
+i<ifaddrs.h>
+i<arpa/inet.h>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_thread.h
+c000000004C113CEE0000000000000E84
+t1276198126
+s3716
+i"mo_def.h"
+i<pthread.h>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_thread.mm
+c000000004C113EC500000000000018A4
+t1276198597
+s6308
+i"mo_thread.h"
+i<iostream>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_touch.h
+c000000004C1154EB0000000000000E47
+t1276204267
+s3655
+i<UIKit/UIKit.h>
+i"mo_def.h"
+i<map>
+i<vector>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_touch.mm
+c000000004C1165100000000000002231
+t1276208400
+s8753
+i"mo_touch.h"
+i<objc/objc.h>
+i<objc/runtime.h>
+i<objc/message.h>
+i"mo_thread.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp
+c000000004ADCDD6100000000000009FC
+t1255988577
+s2556
+i"IpEndpointName.h"
+i<stdio.h>
+i"NetworkingUtils.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/IpEndpointName.h
+c000000004ADCDD610000000000000B3F
+t1255988577
+s2879
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/NetworkingUtils.h
+c000000004ADCDD6100000000000007DB
+t1255988577
+s2011
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/PacketListener.h
+c000000004ADCDD6100000000000006D8
+t1255988577
+s1752
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/TimerListener.h
+c000000004ADCDD610000000000000672
+t1255988577
+s1650
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/UdpSocket.h
+c000000004ADCDD6100000000000015B8
+t1255988577
+s5560
+i"NetworkingUtils.h"
+i"IpEndpointName.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp
+c000000004ADCDD60000000000000077C
+t1255988576
+s1916
+i"NetworkingUtils.h"
+i<netdb.h>
+i<sys/socket.h>
+i<netinet/in.h>
+i<string.h>
+i<stdio.h>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp
+c000000004ADCDD600000000000003AD7
+t1255988576
+s15063
+i"UdpSocket.h"
+i<vector>
+i<algorithm>
+i<stdexcept>
+i<assert.h>
+i<signal.h>
+i<math.h>
+i<errno.h>
+i<string.h>
+i<pthread.h>
+i<unistd.h>
+i<stdlib.h>
+i<stdio.h>
+i<netdb.h>
+i<sys/types.h>
+i<sys/socket.h>
+i<sys/time.h>
+i<netinet/in.h>
+i"PacketListener.h"
+i"TimerListener.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscException.h
+c000000004ADCDD5F0000000000000816
+t1255988575
+s2070
+i<exception>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscHostEndianness.h
+c000000004ADCDD5F000000000000096D
+t1255988575
+s2413
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp
+c000000004ADCDD5F0000000000003BF2
+t1255988575
+s15346
+i"OscOutboundPacketStream.h"
+i<string.h>
+i<stdlib.h>
+i<assert.h>
+i<malloc.h>
+i"OscHostEndianness.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.h
+c000000004ADCDD5F00000000000013B2
+t1255988575
+s5042
+i"OscTypes.h"
+i"OscException.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscPacketListener.h
+c000000004ADCDD5F0000000000000A74
+t1255988575
+s2676
+i"OscReceivedElements.h"
+i"../ip/PacketListener.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp
+c000000004ADCDD5F0000000000001C09
+t1255988575
+s7177
+i"OscPrintReceivedElements.h"
+i<iostream>
+i<iomanip>
+i<ctime>
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.h
+c000000004ADCDD5F000000000000080F
+t1255988575
+s2063
+i<iosfwd>
+i"OscReceivedElements.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp
+c000000004ADCDD5F0000000000004816
+t1255988575
+s18454
+i"OscReceivedElements.h"
+i<cassert>
+i"OscHostEndianness.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscReceivedElements.h
+c000000004ADCDD5F00000000000034E7
+t1255988575
+s13543
+i"OscTypes.h"
+i"OscException.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscTypes.cpp
+c000000004ADCDD5F0000000000000666
+t1255988575
+s1638
+i"OscTypes.h"
+
+N/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscTypes.h
+c000000004ADCDD5F0000000000000FCA
+t1255988575
+s4042
+
+N/Users/mrotondo/Library/MobileDevice/Provisioning Profiles/6A56C621-8243-4CDB-8EF9-A51D0D1D66DD.mobileprovision
+c000000004D365BEC0000000000002C55
+t1295408108
+s11349
+
+N/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch.gch
+t1295506486
+s11044456
+
+N/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-cizllxyeatgkimafilcmokiuufza/GOLIATH_Prefix.pch.gch
+t1295506487
+s1990940
+
+N/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch.gch
+t1295506486
+s10442456
+
+NGOLIATH-Info.plist
+c000000004D36591900000000000004D1
+t1295407385
+s1233
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies317199284#317199284#0(0"0(0#1#0"8730791808#0"0#
+
+CCodeSign /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app
+s317199295.276089
+e317199301.675274
+r1
+xCodeSign
+x/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app
+lSLF07#2@41"CodeSign build/Debug-iphoneos/GOLIATH.app317199295#317199301#0(0"0(0#0#68"/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app8635973600#693"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    setenv _CODESIGN_ALLOCATE_ /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate    /usr/bin/codesign -f -s "iPhone Developer: Ge Wang (AR5E675E2R)" --resource-rules=/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/ResourceRules.plist --entitlements /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH.xcent /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/EAGLView.o /Users/mrotondo/Development/GOLIATH/Classes/EAGLView.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+s317199287.391603
+e317199287.548852
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/EAGLView.o
+x/Users/mrotondo/Development/GOLIATH/Classes/EAGLView.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@62"Compile /Users/mrotondo/Development/GOLIATH/Classes/EAGLView.m317199287#317199287#0(0"0(0#0#54"/Users/mrotondo/Development/GOLIATH/Classes/EAGLView.m8737753440#1777"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv7 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/Classes/EAGLView.m -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/EAGLView.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/ES1Renderer.o /Users/mrotondo/Development/GOLIATH/Classes/ES1Renderer.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+s317199287.440368
+e317199287.588722
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/ES1Renderer.o
+x/Users/mrotondo/Development/GOLIATH/Classes/ES1Renderer.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@65"Compile /Users/mrotondo/Development/GOLIATH/Classes/ES1Renderer.m317199287#317199287#0(0"0(0#0#57"/Users/mrotondo/Development/GOLIATH/Classes/ES1Renderer.m8737038752#1783"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv7 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/Classes/ES1Renderer.m -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/ES1Renderer.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/ES2Renderer.o /Users/mrotondo/Development/GOLIATH/Classes/ES2Renderer.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+s317199287.549059
+e317199287.701142
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/ES2Renderer.o
+x/Users/mrotondo/Development/GOLIATH/Classes/ES2Renderer.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@65"Compile /Users/mrotondo/Development/GOLIATH/Classes/ES2Renderer.m317199287#317199287#0(0"0(0#0#57"/Users/mrotondo/Development/GOLIATH/Classes/ES2Renderer.m8733719616#1783"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv7 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/Classes/ES2Renderer.m -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/ES2Renderer.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/FlipViewController.o /Users/mrotondo/Development/GOLIATH/Classes/FlipViewController.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOAppDelegate.o /Users/mrotondo/Development/GOLIATH/Classes/GOAppDelegate.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+s317199287.314783
+e317199287.440265
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOAppDelegate.o
+x/Users/mrotondo/Development/GOLIATH/Classes/GOAppDelegate.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@67"Compile /Users/mrotondo/Development/GOLIATH/Classes/GOAppDelegate.m317199287#317199287#0(0"0(0#0#59"/Users/mrotondo/Development/GOLIATH/Classes/GOAppDelegate.m8738750880#1787"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv7 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/Classes/GOAppDelegate.m -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOAppDelegate.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOLIATHAppDelegate.o /Users/mrotondo/Development/GOLIATH/Classes/GOLIATHAppDelegate.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+s317182368.775498
+e317182368.924543
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOLIATHAppDelegate.o
+x/Users/mrotondo/Development/GOLIATH/Classes/GOLIATHAppDelegate.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@72"Compile /Users/mrotondo/Development/GOLIATH/Classes/GOLIATHAppDelegate.m317182368#317182368#0(0"0(0#0#64"/Users/mrotondo/Development/GOLIATH/Classes/GOLIATHAppDelegate.m8671999264#1797"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv7 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/Classes/GOLIATHAppDelegate.m -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOLIATHAppDelegate.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOState.o /Users/mrotondo/Development/GOLIATH/Classes/GOState.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+s317199291.836881
+e317199291.934606
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOState.o
+x/Users/mrotondo/Development/GOLIATH/Classes/GOState.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@61"Compile /Users/mrotondo/Development/GOLIATH/Classes/GOState.m317199291#317199291#0(0"0(0#0#53"/Users/mrotondo/Development/GOLIATH/Classes/GOState.m8702791744#1775"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv7 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/Classes/GOState.m -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOState.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOSynth.o /Users/mrotondo/Development/GOLIATH/Classes/GOSynth.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199291.934721
+e317199292.060587
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOSynth.o
+x/Users/mrotondo/Development/GOLIATH/Classes/GOSynth.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@62"Compile /Users/mrotondo/Development/GOLIATH/Classes/GOSynth.mm317199291#317199292#0(0"0(0#0#54"/Users/mrotondo/Development/GOLIATH/Classes/GOSynth.mm8698320864#1797"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/Classes/GOSynth.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOSynth.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOTouchObject.o /Users/mrotondo/Development/GOLIATH/Classes/GOTouchObject.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+s317199292.166218
+e317199292.225619
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOTouchObject.o
+x/Users/mrotondo/Development/GOLIATH/Classes/GOTouchObject.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@67"Compile /Users/mrotondo/Development/GOLIATH/Classes/GOTouchObject.m317199292#317199292#0(0"0(0#0#59"/Users/mrotondo/Development/GOLIATH/Classes/GOTouchObject.m8705427552#1787"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv7 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/Classes/GOTouchObject.m -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOTouchObject.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GoliathState.o /Users/mrotondo/Development/GOLIATH/Classes/GoliathState.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+s317134850.053815
+e317134850.283840
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GoliathState.o
+x/Users/mrotondo/Development/GOLIATH/Classes/GoliathState.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@66"Compile /Users/mrotondo/Development/GOLIATH/Classes/GoliathState.m317134850#317134850#0(0"0(0#0#58"/Users/mrotondo/Development/GOLIATH/Classes/GoliathState.m8731177440#1785"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv7 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/Classes/GoliathState.m -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GoliathState.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GoliathSynth.o /Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+s317136615.730454
+e317136615.892107
+r0
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GoliathSynth.o
+x/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+oIn file included from /Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:11:
+o/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.h:86: error: expected specifier-qualifier-list before 'MoAudioUnitInfo'
+o/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.h:110: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'MoAudio'
+o/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:16: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'namespace'
+o/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m: In function '-[GoliathSynth init]':
+o/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:22: error: 'MoAudio' undeclared (first use in this function)
+o/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:22: error: (Each undeclared identifier is reported only once
+o/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:22: error: for each function it appears in.)
+o/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:22: error: expected ',' or ';' before ':' token
+o/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:28: warning: 'return' with no value, in function returning non-void
+o/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:32: error: expected ';' before ':' token
+o/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:38: warning: 'return' with no value, in function returning non-void
+lSLF07#2@66"Compile /Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m317136615#317136615#0(1396"In file included from /Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:11:/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.h:86: error: expected specifier-qualifier-list before 'MoAudioUnitInfo'/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.h:110: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'MoAudio'/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:16: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'namespace'/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m: In function '-[GoliathSynth init]':/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:22: error: 'MoAudio' undeclared (first use in this function)/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:22: error: (Each undeclared identifier is reported only once/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:22: error: for each function it appears in.)/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:22: error: expected ',' or ';' before ':' token/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:28: warning: 'return' with no value, in function returning non-void/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:32: error: expected ';' before ':' token/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m:38: warning: 'return' with no value, in function returning non-void8(4@58"Expected specifier-qualifier-list before 'MoAudioUnitInfo'317136615#85#132#2(7@80"In file included from /Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m317136615#18446744073709551615#0#0(6@58"/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m317136615#11#0#11#0#0"0(13@123"Expected specifier-qualifier-list before 'MoAudioUnitInfo' in /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.h317136615#18446744073709551615#0#0(6@61"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.h297897165#86#0#86#0#0"0(6@61"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.h297897165#86#0#86#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before 'MoAudio'317136615#217#140#2(7@80"In file included from /Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m317136615#18446744073709551615#0#0(6@58"/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m317136615#11#0#11#0#0"0(13@130"Expected '=', ',', ';', 'asm' or '__attribute__' before 'MoAudio' in /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.h317136615#18446744073709551615#0#0(6@61"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.h297897165#110#0#110#0#0"0(6@61"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.h297897165#110#0#110#0#19"expected * before *0(4@67"Expected '=', ',', ';', 'asm' or '__attribute__' before 'namespace'317136615#357#138#0(6@58"/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m317136615#16#0#16#0#19"expected * before *0(4@49"'MoAudio' undeclared (first use in this function)317136615#591#120#0(6@58"/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m317136615#22#0#22#0#43"'*' undeclared (first use in this function)0(4@36"Expected ',' or ';' before ':' token317136615#935#107#0(6@58"/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m317136615#22#0#22#0#19"expected * before *0(22@54"'return' with no value, in function returning non-void317136615#1042#127#0(6@58"/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m317136615#28#0#28#0#54"'return' with no value, in function returning non-void0(4@29"Expected ';' before ':' token317136615#1169#100#0(6@58"/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m317136615#32#0#32#0#19"expected * before *0(22@54"'return' with no value, in function returning non-void317136615#1269#127#0(6@58"/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m317136615#38#0#38#0#54"'return' with no value, in function returning non-void0(0#0#58"/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m8745313152#1785"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv7 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.m -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GoliathSynth.o1#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GoliathSynth.o /Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317142680.950527
+e317142682.248039
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GoliathSynth.o
+x/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@67"Compile /Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.mm317142680#317142682#0(0"0(0#0#59"/Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.mm8614120000#1807"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/Classes/GoliathSynth.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GoliathSynth.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/IpEndpointName.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+s317199290.788805
+e317199290.875284
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/IpEndpointName.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp
+xnormal
+xarmv7
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@88"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp317199290#317199290#0(0"0(0#0#80"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp8735479392#1820"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-cizllxyeatgkimafilcmokiuufza/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/IpEndpointName.cpp -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/IpEndpointName.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/MainViewController.o /Users/mrotondo/Development/GOLIATH/Classes/MainViewController.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+s317199292.060787
+e317199292.167705
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/MainViewController.o
+x/Users/mrotondo/Development/GOLIATH/Classes/MainViewController.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@72"Compile /Users/mrotondo/Development/GOLIATH/Classes/MainViewController.m317199292#317199292#0(0"0(0#0#64"/Users/mrotondo/Development/GOLIATH/Classes/MainViewController.m8736122528#1797"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv7 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/Classes/MainViewController.m -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/MainViewController.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/NetworkingUtils.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+s317199290.875533
+e317199290.964858
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/NetworkingUtils.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp
+xnormal
+xarmv7
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@95"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp317199290#317199290#0(0"0(0#0#87"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp8703279328#1828"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-cizllxyeatgkimafilcmokiuufza/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/NetworkingUtils.cpp -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/NetworkingUtils.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscOutboundPacketStream.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+s317199291.120972
+e317199291.281738
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscOutboundPacketStream.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp
+xnormal
+xarmv7
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@98"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp317199291#317199291#0(0"0(0#0#90"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp8694134336#1839"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-cizllxyeatgkimafilcmokiuufza/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscOutboundPacketStream.cpp -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscOutboundPacketStream.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscPrintReceivedElements.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+s317199291.281861
+e317199291.796345
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscPrintReceivedElements.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp
+xnormal
+xarmv7
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@99"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp317199291#317199291#0(0"0(0#0#91"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp8732140640#1841"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-cizllxyeatgkimafilcmokiuufza/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscPrintReceivedElements.cpp -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscPrintReceivedElements.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscReceivedElements.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+s317199291.766813
+e317199292.035672
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscReceivedElements.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp
+xnormal
+xarmv7
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@94"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp317199291#317199292#0(0"0(0#0#86"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp8705096256#1831"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-cizllxyeatgkimafilcmokiuufza/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscReceivedElements.cpp -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscReceivedElements.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscTypes.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscTypes.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+s317199291.796474
+e317199291.836755
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscTypes.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscTypes.cpp
+xnormal
+xarmv7
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@83"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscTypes.cpp317199291#317199291#0(0"0(0#0#75"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscTypes.cpp8703934048#1809"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-cizllxyeatgkimafilcmokiuufza/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/osc/OscTypes.cpp -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/OscTypes.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/SettingsViewController.o /Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+s317199292.035817
+e317199292.166099
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/SettingsViewController.o
+x/Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@76"Compile /Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.m317199292#317199292#0(0"0(0#0#68"/Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.m8736780352#1805"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv7 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.m -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/SettingsViewController.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/UdpSocket.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp normal armv7 c++ com.apple.compilers.gcc.4_2
+s317199290.964975
+e317199291.766539
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/UdpSocket.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp
+xnormal
+xarmv7
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@89"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp317199290#317199291#0(0"0(0#0#81"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp8703947424#1816"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-cizllxyeatgkimafilcmokiuufza/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/oscpack/ip/posix/UdpSocket.cpp -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/UdpSocket.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/main.o /Users/mrotondo/Development/GOLIATH/main.m normal armv7 objective-c com.apple.compilers.gcc.4_2
+s317199287.312639
+e317199287.391478
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/main.o
+x/Users/mrotondo/Development/GOLIATH/main.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@50"Compile /Users/mrotondo/Development/GOLIATH/main.m317199287#317199287#0(0"0(0#0#42"/Users/mrotondo/Development/GOLIATH/main.m8740846624#1761"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch armv7 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/main.m -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/main.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_accel.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_accel.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199287.588836
+e317199288.251002
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_accel.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_accel.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@70"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_accel.mm317199287#317199288#0(0"0(0#0#62"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_accel.mm8728202368#1806"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_accel.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_accel.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_audio.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199287.701381
+e317199287.911387
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_audio.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@70"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.mm317199287#317199287#0(0"0(0#0#62"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.mm8739388032#1806"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_audio.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_audio.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_colormap.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_colormap.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199287.911503
+e317199289.910467
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_colormap.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_colormap.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@73"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_colormap.mm317199287#317199289#0(0"0(0#0#65"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_colormap.mm8736869024#1812"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_colormap.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_colormap.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_compass.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_compass.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199288.251278
+e317199288.621802
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_compass.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_compass.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+o/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_compass.mm: In static member function 'static void MoCompass::checkSetup()':
+o/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_compass.mm:96: warning: 'headingAvailable' is deprecated (declared at /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/CoreLocation.framework/Headers/CLLocationManager.h:173)
+lSLF07#2@72"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_compass.mm317199288#317199288#0(407"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_compass.mm: In static member function 'static void MoCompass::checkSetup()':/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_compass.mm:96: warning: 'headingAvailable' is deprecated (declared at /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/CoreLocation.framework/Headers/CLLocationManager.h:173)1(22@197"'headingAvailable' is deprecated (declared at /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/CoreLocation.framework/Headers/CLLocationManager.h:173)317199288#131#276#0(6@64"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_compass.mm297901200#96#0#96#0#33"'*' is deprecated (declared at *)0(0#0#64"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_compass.mm8731925856#1810"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_compass.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_compass.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_fft.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fft.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199288.621928
+e317199288.695851
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_fft.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fft.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@68"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fft.mm317199288#317199288#0(0"0(0#0#60"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fft.mm8738000128#1802"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fft.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_fft.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_filter.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199288.695966
+e317199288.886842
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_filter.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+o/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm: In member function 'void MoFilter::setCoefficients(long int, Float32*, long int, Float32*)':
+o/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm:86: warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+o/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm:86: warning: format '%d' expects type 'int', but argument 4 has type 'long int'
+lSLF07#2@71"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm317199288#317199288#0(446"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm: In member function 'void MoFilter::setCoefficients(long int, Float32*, long int, Float32*)':/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm:86: warning: format '%d' expects type 'int', but argument 3 has type 'long int'/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm:86: warning: format '%d' expects type 'int', but argument 4 has type 'long int'2(22@66"Format '%d' expects type 'int', but argument 3 has type 'long int'317199288#158#144#0(6@63"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm297897067#86#0#86#0#56"format '*' expects type '*', but argument * has type '*'0(22@66"Format '%d' expects type 'int', but argument 4 has type 'long int'317199288#302#144#0(6@63"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm297897067#86#0#86#0#56"format '*' expects type '*', but argument * has type '*'0(0#0#63"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm8737248416#1808"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_filter.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_filter.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_fun.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fun.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199288.886958
+e317199288.942796
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_fun.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fun.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@68"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fun.mm317199288#317199288#0(0"0(0#0#60"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fun.mm8731794880#1802"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_fun.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_fun.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_gfx.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_gfx.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199288.942911
+e317199289.056761
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_gfx.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_gfx.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@68"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_gfx.mm317199288#317199289#0(0"0(0#0#60"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_gfx.mm8696787008#1802"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_gfx.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_gfx.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_io.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_io.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199289.056869
+e317199289.732187
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_io.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_io.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+o/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_io.mm: In member function 'bool MoAudioFileIn::getMatInfo(const char*)':
+o/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_io.mm:697: warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+lSLF07#2@67"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_io.mm317199289#317199289#0(268"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_io.mm: In member function 'bool MoAudioFileIn::getMatInfo(const char*)':/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_io.mm:697: warning: format '%d' expects type 'int', but argument 3 has type 'long int'1(22@66"Format '%d' expects type 'int', but argument 3 has type 'long int'317199289#127#141#0(6@59"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_io.mm297897067#697#0#697#0#56"format '*' expects type '*', but argument * has type '*'0(0#0#59"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_io.mm8703685312#1800"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_io.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_io.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_location.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_location.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199289.732308
+e317199290.052050
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_location.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_location.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@73"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_location.mm317199289#317199290#0(0"0(0#0#65"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_location.mm8738783904#1812"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_location.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_location.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_net.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_net.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199289.910718
+e317199290.788677
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_net.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_net.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@68"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_net.mm317199289#317199290#0(0"0(0#0#60"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_net.mm8736295232#1802"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_net.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_net.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_thread.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_thread.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199290.052161
+e317199290.558578
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_thread.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_thread.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@71"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_thread.mm317199290#317199290#0(0"0(0#0#63"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_thread.mm8734678336#1808"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_thread.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_thread.o0#
+
+CCompileC build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_touch.o /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_touch.mm normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199290.558699
+e317199291.120845
+r1
+xCompileC
+xbuild/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_touch.o
+x/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_touch.mm
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@70"Compile /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_touch.mm317199290#317199291#0(0"0(0#0#62"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_touch.mm8739222144#1806"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++ -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch -c /Users/mrotondo/Development/GOLIATH/momu-1.0.0/api/mo_touch.mm -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/mo_touch.o0#
+
+CCompileXIB /Users/mrotondo/Development/GOLIATH/Classes/FlipViewController.xib
+r0
+
+CCompileXIB /Users/mrotondo/Development/GOLIATH/Classes/MainViewController.xib
+s317199285.047626
+e317199285.474157
+r1
+xCompileXIB
+x/Users/mrotondo/Development/GOLIATH/Classes/MainViewController.xib
+lSLF07#2@41"CompileXIB Classes/MainViewController.xib317199285#317199285#0(0"0(0#0#66"/Users/mrotondo/Development/GOLIATH/Classes/MainViewController.xib8738043520#619"    cd /Users/mrotondo/Development/GOLIATH    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.2    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/MainViewController.nib /Users/mrotondo/Development/GOLIATH/Classes/MainViewController.xib --sdk /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk0#
+
+CCompileXIB /Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.xib
+s317199284.562192
+e317199285.207329
+r1
+xCompileXIB
+x/Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.xib
+lSLF07#2@45"CompileXIB Classes/SettingsViewController.xib317199284#317199285#0(0"0(0#0#70"/Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.xib8730325792#627"    cd /Users/mrotondo/Development/GOLIATH    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.2    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/SettingsViewController.nib /Users/mrotondo/Development/GOLIATH/Classes/SettingsViewController.xib --sdk /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk0#
+
+CCompileXIB /Users/mrotondo/Development/GOLIATH/MainWindow.xib
+s317199284.519515
+e317199285.047487
+r1
+xCompileXIB
+x/Users/mrotondo/Development/GOLIATH/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib317199284#317199285#0(0"0(0#0#50"/Users/mrotondo/Development/GOLIATH/MainWindow.xib8737290432#595"    cd /Users/mrotondo/Development/GOLIATH    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.2    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/MainWindow.nib /Users/mrotondo/Development/GOLIATH/MainWindow.xib --sdk /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk0#
+
+CCpResource build/Debug-iphoneos/GOLIATH.app/AUTHORS momu-1.0.0/AUTHORS
+s317199284.526758
+e317199284.566708
+r1
+xCpResource
+xbuild/Debug-iphoneos/GOLIATH.app/AUTHORS
+xmomu-1.0.0/AUTHORS
+lSLF07#2@23"Copy momu-1.0.0/AUTHORS317199284#317199284#0(0"0(0#0#54"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/AUTHORS8736391200#515"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/GOLIATH/momu-1.0.0/AUTHORS /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app0#
+
+CCpResource build/Debug-iphoneos/GOLIATH.app/COPYING momu-1.0.0/COPYING
+s317199284.527937
+e317199284.566838
+r1
+xCpResource
+xbuild/Debug-iphoneos/GOLIATH.app/COPYING
+xmomu-1.0.0/COPYING
+lSLF07#2@23"Copy momu-1.0.0/COPYING317199284#317199284#0(0"0(0#0#54"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/COPYING8734960320#515"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/GOLIATH/momu-1.0.0/COPYING /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app0#
+
+CCpResource build/Debug-iphoneos/GOLIATH.app/DEVELOPER momu-1.0.0/DEVELOPER
+s317199284.529756
+e317199284.566959
+r1
+xCpResource
+xbuild/Debug-iphoneos/GOLIATH.app/DEVELOPER
+xmomu-1.0.0/DEVELOPER
+lSLF07#2@25"Copy momu-1.0.0/DEVELOPER317199284#317199284#0(0"0(0#0#56"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/DEVELOPER8734761120#517"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/GOLIATH/momu-1.0.0/DEVELOPER /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app0#
+
+CCpResource build/Debug-iphoneos/GOLIATH.app/README momu-1.0.0/README
+s317199284.537640
+e317199284.567075
+r1
+xCpResource
+xbuild/Debug-iphoneos/GOLIATH.app/README
+xmomu-1.0.0/README
+lSLF07#2@22"Copy momu-1.0.0/README317199284#317199284#0(0"0(0#0#53"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/README8734493536#514"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/GOLIATH/momu-1.0.0/README /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app0#
+
+CCpResource build/Debug-iphoneos/GOLIATH.app/ResourceRules.plist /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ResourceRules.plist
+s317199284.348814
+e317199284.514998
+r1
+xCpResource
+xbuild/Debug-iphoneos/GOLIATH.app/ResourceRules.plist
+x/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ResourceRules.plist
+lSLF07#2@94"Copy /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ResourceRules.plist317199284#317199284#0(0"0(0#0#89"/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ResourceRules.plist8702690976#550"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ResourceRules.plist /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app0#
+
+CCpResource build/Debug-iphoneos/GOLIATH.app/Shader.fsh Shaders/Shader.fsh
+s317199284.515185
+e317199284.526077
+r1
+xCpResource
+xbuild/Debug-iphoneos/GOLIATH.app/Shader.fsh
+xShaders/Shader.fsh
+lSLF07#2@23"Copy Shaders/Shader.fsh317199284#317199284#0(0"0(0#0#54"/Users/mrotondo/Development/GOLIATH/Shaders/Shader.fsh8738051808#515"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/GOLIATH/Shaders/Shader.fsh /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app0#
+
+CCpResource build/Debug-iphoneos/GOLIATH.app/Shader.vsh Shaders/Shader.vsh
+s317199284.516579
+e317199284.526657
+r1
+xCpResource
+xbuild/Debug-iphoneos/GOLIATH.app/Shader.vsh
+xShaders/Shader.vsh
+lSLF07#2@23"Copy Shaders/Shader.vsh317199284#317199284#0(0"0(0#0#54"/Users/mrotondo/Development/GOLIATH/Shaders/Shader.vsh8737685024#515"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/GOLIATH/Shaders/Shader.vsh /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app0#
+
+CCpResource build/Debug-iphoneos/GOLIATH.app/THANKS momu-1.0.0/THANKS
+s317199284.544130
+e317199284.567190
+r1
+xCpResource
+xbuild/Debug-iphoneos/GOLIATH.app/THANKS
+xmomu-1.0.0/THANKS
+lSLF07#2@22"Copy momu-1.0.0/THANKS317199284#317199284#0(0"0(0#0#53"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/THANKS8732681984#514"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/GOLIATH/momu-1.0.0/THANKS /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app0#
+
+CCpResource build/Debug-iphoneos/GOLIATH.app/TODO momu-1.0.0/TODO
+s317199284.545391
+e317199284.567306
+r1
+xCpResource
+xbuild/Debug-iphoneos/GOLIATH.app/TODO
+xmomu-1.0.0/TODO
+lSLF07#2@20"Copy momu-1.0.0/TODO317199284#317199284#0(0"0(0#0#51"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/TODO8732022752#512"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/GOLIATH/momu-1.0.0/TODO /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app0#
+
+CCpResource build/Debug-iphoneos/GOLIATH.app/VERSIONS momu-1.0.0/VERSIONS
+s317199284.550239
+e317199284.570068
+r1
+xCpResource
+xbuild/Debug-iphoneos/GOLIATH.app/VERSIONS
+xmomu-1.0.0/VERSIONS
+lSLF07#2@24"Copy momu-1.0.0/VERSIONS317199284#317199284#0(0"0(0#0#55"/Users/mrotondo/Development/GOLIATH/momu-1.0.0/VERSIONS8731373856#516"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/GOLIATH/momu-1.0.0/VERSIONS /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app0#
+
+CGenerateDSYMFile /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app.dSYM /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/GOLIATH
+s317199294.970857
+e317199295.146431
+r1
+xGenerateDSYMFile
+x/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app.dSYM
+x/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/GOLIATH
+lSLF07#2@95"GenerateDSYMFile build/Debug-iphoneos/GOLIATH.app.dSYM build/Debug-iphoneos/GOLIATH.app/GOLIATH317199294#317199295#0(0"0(0#0#76"/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/GOLIATH8738042816#415"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/dsymutil /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/GOLIATH -o /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app.dSYM0#
+
+CLd /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/GOLIATH normal armv7
+s317199292.225867
+e317199294.970577
+r1
+xLd
+x/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/GOLIATH
+xnormal
+xarmv7
+lSLF07#2@81"Link /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/GOLIATH317199292#317199294#0(0"0(0#0#0"8704951904#935"    cd /Users/mrotondo/Development/GOLIATH    setenv IPHONEOS_DEPLOYMENT_TARGET 4.2    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/g++-4.2 -arch armv7 -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -L/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -filelist /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/Objects-normal/armv7/GOLIATH.LinkFileList -dead_strip -miphoneos-version-min=4.2 -framework Foundation -framework UIKit -framework OpenGLES -framework QuartzCore -framework CoreLocation -framework AudioToolbox -o /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/GOLIATH0#
+
+CProcessInfoPlistFile /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/Info.plist GOLIATH-Info.plist
+s317199284.350398
+e317199284.418435
+r1
+xProcessInfoPlistFile
+x/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/Info.plist
+xGOLIATH-Info.plist
+lSLF07#2@26"Process GOLIATH-Info.plist317199284#317199284#0(0"0(0#0#54"/Users/mrotondo/Development/GOLIATH/GOLIATH-Info.plist8702468800#612"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-infoPlistUtility GOLIATH-Info.plist -genpkginfo /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/PkgInfo -expandbuildsettings -format binary -platform iphoneos -resourcerulesfile /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/ResourceRules.plist -o /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/Info.plist0#
+
+CProcessPCH /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch.gch GOLIATH_Prefix.pch normal armv7 objective-c com.apple.compilers.gcc.4_2
+s317199285.474294
+e317199286.612363
+r1
+xProcessPCH
+x/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch.gch
+xGOLIATH_Prefix.pch
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@29"Precompile GOLIATH_Prefix.pch317199285#317199286#0(0"0(0#0#54"/Users/mrotondo/Development/GOLIATH/GOLIATH_Prefix.pch8737143904#1662"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch armv7 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -c /Users/mrotondo/Development/GOLIATH/GOLIATH_Prefix.pch -o /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-fffgdvxtexihtofgxihuoqsfonbc/GOLIATH_Prefix.pch.gch0#
+
+CProcessPCH++ /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch.gch GOLIATH_Prefix.pch normal armv7 objective-c++ com.apple.compilers.gcc.4_2
+s317199285.475502
+e317199287.149742
+r1
+xProcessPCH++
+x/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch.gch
+xGOLIATH_Prefix.pch
+xnormal
+xarmv7
+xobjective-c++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@29"Precompile GOLIATH_Prefix.pch317199285#317199287#0(0"0(0#0#54"/Users/mrotondo/Development/GOLIATH/GOLIATH_Prefix.pch8736481952#1683"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x objective-c++-header -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -c /Users/mrotondo/Development/GOLIATH/GOLIATH_Prefix.pch -o /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-bnddxfrmyhuvyocnhckkgakjyegx/GOLIATH_Prefix.pch.gch0#
+
+CProcessPCH++ /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-cizllxyeatgkimafilcmokiuufza/GOLIATH_Prefix.pch.gch GOLIATH_Prefix.pch normal armv7 c++ com.apple.compilers.gcc.4_2
+s317199286.612661
+e317199287.312420
+r1
+xProcessPCH++
+x/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-cizllxyeatgkimafilcmokiuufza/GOLIATH_Prefix.pch.gch
+xGOLIATH_Prefix.pch
+xnormal
+xarmv7
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@29"Precompile GOLIATH_Prefix.pch317199286#317199287#0(0"0(0#0#54"/Users/mrotondo/Development/GOLIATH/GOLIATH_Prefix.pch8738110816#1673"    cd /Users/mrotondo/Development/GOLIATH    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/gcc-4.2 -x c++-header -arch armv7 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk -fvisibility=hidden -fvisibility-inlines-hidden -gdwarf-2 -mthumb -miphoneos-version-min=4.2 -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-generated-files.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-own-target-headers.hmap -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-all-target-headers.hmap -iquote /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH-project-headers.hmap -F/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos -I/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/include -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources/armv7 -I/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/DerivedSources -c /Users/mrotondo/Development/GOLIATH/GOLIATH_Prefix.pch -o /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/GOLIATH_Prefix-cizllxyeatgkimafilcmokiuufza/GOLIATH_Prefix.pch.gch0#
+
+CProcessProductPackaging "/Users/mrotondo/Library/MobileDevice/Provisioning Profiles/6A56C621-8243-4CDB-8EF9-A51D0D1D66DD.mobileprovision" /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/embedded.mobileprovision
+s317199295.146607
+e317199295.225885
+r1
+xProcessProductPackaging
+x/Users/mrotondo/Library/MobileDevice/Provisioning Profiles/6A56C621-8243-4CDB-8EF9-A51D0D1D66DD.mobileprovision
+x/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/embedded.mobileprovision
+lSLF07#2@195"ProcessProductPackaging "/Users/mrotondo/Library/MobileDevice/Provisioning Profiles/6A56C621-8243-4CDB-8EF9-A51D0D1D66DD.mobileprovision" build/Debug-iphoneos/GOLIATH.app/embedded.mobileprovision317199295#317199295#0(0"0(0#0#93"/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/embedded.mobileprovision8730097344#482"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    <com.apple.tools.product-pkg-utility> "/Users/mrotondo/Library/MobileDevice/Provisioning Profiles/6A56C621-8243-4CDB-8EF9-A51D0D1D66DD.mobileprovision" -o /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app/embedded.mobileprovision0#
+
+CProcessProductPackaging /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/Entitlements.plist /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH.xcent
+s317199295.232242
+e317199295.275980
+r1
+xProcessProductPackaging
+x/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/Entitlements.plist
+x/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH.xcent
+lSLF07#2@175"ProcessProductPackaging /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/Entitlements.plist build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH.xcent317199295#317199295#0(0"0(0#0#98"/Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH.xcent8659644896#488"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    <com.apple.tools.product-pkg-utility> /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/Entitlements.plist -entitlements -format xml -o /Users/mrotondo/Development/GOLIATH/build/GOLIATH.build/Debug-iphoneos/GOLIATH.build/GOLIATH.xcent0#
+
+CTouch /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app
+s317199295.226038
+e317199295.232124
+r1
+xTouch
+x/Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app
+lSLF07#2@74"Touch /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app317199295#317199295#0(0"0(0#0#0"8704880064#320"    cd /Users/mrotondo/Development/GOLIATH    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /usr/bin/touch -c /Users/mrotondo/Development/GOLIATH/build/Debug-iphoneos/GOLIATH.app0#
+
