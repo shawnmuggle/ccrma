@@ -1,0 +1,18 @@
+cymbals:
+
+mic: 5'9"
+cymbal: 3'7"
+distance between: 2'8"
+
+order:
+10 light taps from center to rim
+10 medium taps from center to rim
+10 hard taps from center to rim
+10 very hard taps from center to rim
+6 hard shank hits on rim
+
+(10 hits: 3 hits on bell, 7 hits on rest)
+(6 shank hits: 3 on the far side from the mic, harder each time, then 3 on the left edge from the mic, harder each time)
+
+cymbal 1: K dark crash thin 18", hits ~ 1" apart (ended up losing count and just proceeding towards edge)
+cymbal 2: K Custom dark crash 15"

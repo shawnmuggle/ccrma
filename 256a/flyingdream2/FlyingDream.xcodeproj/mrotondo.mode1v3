@@ -325,7 +325,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>D567B10112D3A3B800E8E167</string>
+										<string>D57DD2CF12F14961008B2098</string>
 										<key>history</key>
 										<array>
 											<string>D53CF600129457EE00DCCBA1</string>
@@ -364,7 +364,7 @@
 											<string>D5BE9B3712AFE50800A1A3C2</string>
 											<string>D5BE9B4712AFE55000A1A3C2</string>
 											<string>D54659A812B1598900B74F71</string>
-											<string>D58FE41A12CE6B6E00CAE96B</string>
+											<string>D567B10112D3A3B800E8E167</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -422,9 +422,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>D567B0EE12D26A3100E8E167</string>
+				<string>D57DD2BF12F12CBC008B2098</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>D567B0EF12D26A3100E8E167</string>
+				<string>D57DD2C012F12CBC008B2098</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -562,6 +562,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>D57DD2CA12F12CBC008B2098</string>
+		<string>D57DD2CB12F12CBC008B2098</string>
+		<string>1CD10A99069EF8BA00B06720</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>D53CF57312944FE200DCCBA1</string>
 		<string>/Users/mrotondo/Development/ccrma/256a/flyingdream2/FlyingDream.xcodeproj</string>
 	</array>
@@ -643,7 +647,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>D53CF57312944FE200DCCBA1</string>
-				<string>D567B0F012D26A3100E8E167</string>
+				<string>D57DD2C112F12CBC008B2098</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -765,13 +769,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>D58FE41B12CE6B6E00CAE96B</string>
+				<string>D57DD2C212F12CBC008B2098</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>D58FE41C12CE6B6E00CAE96B</string>
-				<string>D58FE41D12CE6B6E00CAE96B</string>
-				<string>D58FE41E12CE6B6E00CAE96B</string>
-				<string>D58FE41F12CE6B6E00CAE96B</string>
-				<string>D58FE42012CE6B6E00CAE96B</string>
+				<string>D57DD2C312F12CBC008B2098</string>
+				<string>D57DD2C412F12CBC008B2098</string>
+				<string>D57DD2C512F12CBC008B2098</string>
+				<string>D57DD2C612F12CBC008B2098</string>
+				<string>D57DD2C712F12CBC008B2098</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -890,6 +894,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -925,7 +931,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>D58FE42112CE6B6E00CAE96B</string>
+				<string>D57DD2C812F12CBC008B2098</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
