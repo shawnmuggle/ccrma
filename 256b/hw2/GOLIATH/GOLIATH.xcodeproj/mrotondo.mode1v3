@@ -280,14 +280,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>6</integer>
-									<integer>4</integer>
+									<integer>9</integer>
+									<integer>7</integer>
 									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {259, 764}}</string>
+							<string>{{0, 53}, {259, 764}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -324,7 +324,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GOState.mm</string>
+								<string>GOSynth.mm</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -332,11 +332,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GOState.mm</string>
+										<string>GOSynth.mm</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>D55D7C3D12F88EF20010D298</string>
+										<string>D5A1896F1300903100107C05</string>
 										<key>history</key>
 										<array>
 											<string>D5B51A3F12E70C7300C2FAF0</string>
@@ -359,21 +359,21 @@
 											<string>D55D79AD12F7FAE80010D298</string>
 											<string>D55D7A7D12F8406D0010D298</string>
 											<string>D55D7A7E12F8406D0010D298</string>
-											<string>D55D7B2012F858AC0010D298</string>
 											<string>D55D7B8E12F8755E0010D298</string>
 											<string>D55D7B9012F8755E0010D298</string>
-											<string>D55D7B9212F8755E0010D298</string>
 											<string>D55D7BA312F876B30010D298</string>
 											<string>D55D7BCE12F879320010D298</string>
-											<string>D55D7BCF12F879320010D298</string>
-											<string>D55D7BF112F87CE10010D298</string>
 											<string>D55D7BFA12F87D880010D298</string>
 											<string>D55D7C2812F880D50010D298</string>
 											<string>D55D7C2912F880D50010D298</string>
 											<string>D55D7C2A12F880D50010D298</string>
 											<string>D55D7C2B12F880D50010D298</string>
-											<string>D55D7C2C12F880D50010D298</string>
-											<string>D55D7C3B12F88EA00010D298</string>
+											<string>D5A189691300903100107C05</string>
+											<string>D5A1896A1300903100107C05</string>
+											<string>D5A1896B1300903100107C05</string>
+											<string>D5A1896C1300903100107C05</string>
+											<string>D5A1896D1300903100107C05</string>
+											<string>D5A1896E1300903100107C05</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -431,9 +431,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>D55D77E212F6BF5A0010D298</string>
+				<string>D5A189701300903100107C05</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>D55D77E312F6BF5A0010D298</string>
+				<string>D5A189711300903100107C05</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -571,13 +571,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>D55D781012F6C1520010D298</string>
-		<string>D55D781212F6C1520010D298</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>D511B9C012E690FA008B915B</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>/Users/mrotondo/Development/GOLIATH/GOLIATH.xcodeproj</string>
+		<string>/Users/mrotondo/Development/ccrma/256b/hw2/GOLIATH/GOLIATH.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 55 1436 823 0 0 1440 878 </string>
@@ -601,7 +597,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GOState.mm</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -618,8 +614,6 @@
 							<string>364pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -659,7 +653,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>D511B9C012E690FA008B915B</string>
-				<string>D55D77E412F6BF5A0010D298</string>
+				<string>D5A1887F1300897E00107C05</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -781,13 +775,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>D55D780912F6C1520010D298</string>
+				<string>D5FD545212FAC4FC00576F45</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>D55D780A12F6C1520010D298</string>
-				<string>D55D780B12F6C1520010D298</string>
-				<string>D55D780C12F6C1520010D298</string>
-				<string>D55D780D12F6C1520010D298</string>
-				<string>D55D780E12F6C1520010D298</string>
+				<string>D5FD545312FAC4FC00576F45</string>
+				<string>D5FD545412FAC4FC00576F45</string>
+				<string>D5FD545512FAC4FC00576F45</string>
+				<string>D5FD545612FAC4FC00576F45</string>
+				<string>D5FD545712FAC4FC00576F45</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -796,7 +790,7 @@
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -819,7 +813,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>EAGLView.mm</string>
+										<string>GOSynth.mm</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -877,8 +871,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>D55D77FE12F6C1190010D298</string>
-				<string>D55D77FF12F6C1190010D298</string>
+				<string>D5A188831300897E00107C05</string>
+				<string>D5A188841300897E00107C05</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>

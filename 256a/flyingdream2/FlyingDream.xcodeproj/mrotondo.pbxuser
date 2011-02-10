@@ -184,14 +184,13 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 317795490;
-			PBXWorkspaceStateSaveDate = 317795490;
+			PBXPerProjectTemplateStateSaveDate = 318809944;
+			PBXWorkspaceStateSaveDate = 318809944;
 		};
 		perUserProjectItems = {
 			D53CF600129457EE00DCCBA1 /* PBXTextBookmark */ = D53CF600129457EE00DCCBA1 /* PBXTextBookmark */;
 			D53CF6771294745900DCCBA1 /* PBXTextBookmark */ = D53CF6771294745900DCCBA1 /* PBXTextBookmark */;
 			D54659A812B1598900B74F71 /* PBXTextBookmark */ = D54659A812B1598900B74F71 /* PBXTextBookmark */;
-			D567B10112D3A3B800E8E167 /* PBXTextBookmark */ = D567B10112D3A3B800E8E167 /* PBXTextBookmark */;
 			D57DD2CF12F14961008B2098 /* PBXTextBookmark */ = D57DD2CF12F14961008B2098 /* PBXTextBookmark */;
 			D5BE947F12AE770C00A1A3C2 /* PBXTextBookmark */ = D5BE947F12AE770C00A1A3C2 /* PBXTextBookmark */;
 			D5BE961E12AF84C400A1A3C2 /* PBXTextBookmark */ = D5BE961E12AF84C400A1A3C2 /* PBXTextBookmark */;
@@ -220,6 +219,7 @@
 			D5CF65C012A3AEB000D94A19 /* PBXTextBookmark */ = D5CF65C012A3AEB000D94A19 /* PBXTextBookmark */;
 			D5CF65CB12A3AF3100D94A19 /* PBXTextBookmark */ = D5CF65CB12A3AF3100D94A19 /* PBXTextBookmark */;
 			D5DE6C2612A2497800320B82 /* PBXTextBookmark */ = D5DE6C2612A2497800320B82 /* PBXTextBookmark */;
+			D5DF15BD1300B37F0064D419 /* PBXTextBookmark */ = D5DF15BD1300B37F0064D419 /* PBXTextBookmark */;
 			D5EDB214129DF3D800891857 /* PBXTextBookmark */ = D5EDB214129DF3D800891857 /* PBXTextBookmark */;
 			D5EDB23E129E4D9B00891857 /* PBXTextBookmark */ = D5EDB23E129E4D9B00891857 /* PBXTextBookmark */;
 			D5EDB25B129E538100891857 /* PBXTextBookmark */ = D5EDB25B129E538100891857 /* PBXTextBookmark */;
@@ -240,9 +240,9 @@
 	};
 	38694A250A23D420005C94A3 /* GameApp.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1071, 7683}}";
-			sepNavSelRange = "{7545, 0}";
-			sepNavVisRange = "{6909, 1723}";
+			sepNavIntBoundsRect = "{{0, 0}, {1071, 7579}}";
+			sepNavSelRange = "{3563, 73}";
+			sepNavVisRange = "{14438, 1579}";
 			sepNavWindowFrame = "{{2, 0}, {1434, 878}}";
 		};
 	};
@@ -422,16 +422,6 @@
 		rType = 0;
 		vrLen = 2041;
 		vrLoc = 4630;
-	};
-	D567B10112D3A3B800E8E167 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38694A250A23D420005C94A3 /* GameApp.cpp */;
-		name = "GameApp.cpp: 264";
-		rLen = 0;
-		rLoc = 7545;
-		rType = 0;
-		vrLen = 1723;
-		vrLoc = 6909;
 	};
 	D57DD2CF12F14961008B2098 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -841,6 +831,16 @@
 		name = stl_vector.h;
 		path = "/Developer/SDKs/MacOSX10.6.sdk/usr/include/c++/4.2.1/bits/stl_vector.h";
 		sourceTree = "<absolute>";
+	};
+	D5DF15BD1300B37F0064D419 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38694A250A23D420005C94A3 /* GameApp.cpp */;
+		name = "GameApp.cpp: 109";
+		rLen = 73;
+		rLoc = 3563;
+		rType = 0;
+		vrLen = 1579;
+		vrLoc = 14438;
 	};
 	D5E394A912A23759003987A4 /* PitchMapper.h */ = {
 		uiCtxt = {

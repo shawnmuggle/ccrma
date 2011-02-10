@@ -1,0 +1,87 @@
+PARK SOUNDS:
+
+06 - fence rubs
+07 - fence rubs, hollow pops/slaps, rustling
+79 - fence rubs
+
+
+10 - pipe hits, some voices,
+44 - pole hit
+47 - harmonic-y pole hits & some shuffling
+52 - long-resonating pole hits
+76 - long lowwww pole hits, get harder/more high harmonics
+77 - higher pole hits, more harmonics
+78 - same, with stranger LFO-y timbre
+81 - small pipe/post whacks
+82 - pole whacks, alternatingly noisy
+84 - clanks
+
+32 - smacks & sticks
+33 - deep whacks
+51 - voice (funny?) and deep dry thwacks
+
+34 - water
+35 - water
+88 - SPLOOSH
+89 - pushing water around
+90 - pushing water, splashes, little splashes
+
+
+36 - thonk & rub
+37 - thonk & rub
+40 - rub
+41 - slow rub (wood)
+46 - woody thonks
+50 - loud plastic rub
+59 - wood breaking/falling (also some good "chiff"s @ 0:10)
+80 - wood thwacks
+
+38 - friction sounds
+39 - friction sounds
+
+42 - creaks and squeaks
+45 - squeaks and clanks
+
+43 - chain
+62 - chain or metal box whacks, also car noise
+83 - pingy fence or chain
+98 - chain + laugh
+
+53 - high grassy smacks
+
+54 - mixed metal, mostly starting halfway through
+63 - dry metal scrapes (kicked can?)
+66 - metal box whacks (some dry, some wobbly)
+67 - high metal box whacks and a stick drop
+73 - big metal smash with wobbles, like hitting an old trash can, then more whacks, and a WEIRD high metal tube drop thing halfway through
+94 - clonks and wobbles
+
+55 - bass thuds (weird)
+
+56 - walking and dragging branches (stuttering)
+92 - dragging branches (stuttering)
+93 - dragging branches (time-varying)
+
+58 - leaves (rustling and walking) (+ some cell-phone interference)
+
+65 - beeps
+
+68 - car noises and metal box/bell sounds + BIG wobbly metal smack
+91 - car sounds + wind and scraping
+
+72 - splats
+
+74 - crazy phasing & panning hiss
+
+75 - loud machine noise with tiny pops
+
+85 - reverby clangy vibrations getting louder + wood rub + bang at the end
+86 - reverby claps
+87 - reverby snaps claps and stomps
+95 - reverby "doo", snaps, claps, drops
+96 - reverby metal clang
+97 - softer reverby metal clangs, clacks, wood drops & drags
+
+99 - smooshy walkin
+
+101 - "yip yip", "weep", whistling,
