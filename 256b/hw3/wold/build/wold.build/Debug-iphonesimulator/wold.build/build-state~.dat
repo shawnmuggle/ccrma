@@ -1,0 +1,398 @@
+Twold
+v7
+r0
+t318422953.903615
+cCheck dependencies
+cProcessInfoPlistFile /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/Info.plist wold-Info.plist
+cCpResource build/Debug-iphonesimulator/wold.app/Shader.fsh Shaders/Shader.fsh
+cCpResource build/Debug-iphonesimulator/wold.app/Shader.vsh Shaders/Shader.vsh
+cCompileXIB /Users/mrotondo/Development/wold/MainWindow.xib
+cProcessPCH /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/wold_Prefix-aejwrspiyvpqchcazjlryimigoxm/wold_Prefix.pch.gch wold_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/main.o /Users/mrotondo/Development/wold/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/woldAppDelegate.o /Users/mrotondo/Development/wold/Classes/woldAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/EAGLView.o /Users/mrotondo/Development/wold/Classes/EAGLView.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/ES1Renderer.o /Users/mrotondo/Development/wold/Classes/ES1Renderer.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/ES2Renderer.o /Users/mrotondo/Development/wold/Classes/ES2Renderer.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/wold normal i386
+cGenerateDSYMFile /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app.dSYM /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/wold
+cTouch /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk
+c000000004D1C8A700000000000000110
+t1293716080
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004CC1226D000000000029D5D0
+t1287725677
+s2741712
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004CC1225F0000000000001466
+t1287725663
+s5222
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/EAGL.h
+c000000004CC12308000000000000094F
+t1287725832
+s2383
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/EAGLDrawable.h
+c000000004CC123080000000000000A61
+t1287725832
+s2657
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES1/gl.h
+c000000004CC123080000000000009369
+t1287725832
+s37737
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES1/glext.h
+c000000004CC123080000000000003C4A
+t1287725832
+s15434
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES2/gl.h
+c000000004CC1230800000000000092AA
+t1287725832
+s37546
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES2/glext.h
+c000000004CC1230800000000000026AA
+t1287725832
+s9898
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/OpenGLES.framework/OpenGLES
+c000000004CC1230E0000000000019D40
+t1287725838
+s105792
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.h
+c000000004CC1233C00000000000000C4
+t1287725884
+s196
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
+c000000004CC12431000000000015CDB0
+t1287726129
+s1428912
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004CC1281F0000000000000AA1
+t1287727135
+s2721
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004CC12883000000000074D7B0
+t1287727235
+s7657392
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/Availability.h
+c000000004CB3FA080000000000001ADD
+t1286863368
+s6877
+
+N/Users/mrotondo/Development/wold/Classes/EAGLView.h
+c000000004D4A88150000000000000542
+t1296730133
+s1346
+i<UIKit/UIKit.h>
+i<QuartzCore/QuartzCore.h>
+i"ESRenderer.h"
+
+N/Users/mrotondo/Development/wold/Classes/EAGLView.m
+c000000004D4A881500000000000010C6
+t1296730133
+s4294
+i"EAGLView.h"
+i"ES1Renderer.h"
+i"ES2Renderer.h"
+
+N/Users/mrotondo/Development/wold/Classes/ES1Renderer.h
+c000000004D4A88150000000000000269
+t1296730133
+s617
+i"ESRenderer.h"
+i<OpenGLES/ES1/gl.h>
+i<OpenGLES/ES1/glext.h>
+
+N/Users/mrotondo/Development/wold/Classes/ES1Renderer.m
+c000000004D4A88150000000000000FAB
+t1296730133
+s4011
+i"ES1Renderer.h"
+
+N/Users/mrotondo/Development/wold/Classes/ES2Renderer.h
+c000000004D4A8815000000000000027F
+t1296730133
+s639
+i"ESRenderer.h"
+i<OpenGLES/ES2/gl.h>
+i<OpenGLES/ES2/glext.h>
+
+N/Users/mrotondo/Development/wold/Classes/ES2Renderer.m
+c000000004D4A88150000000000002212
+t1296730133
+s8722
+i"ES2Renderer.h"
+
+N/Users/mrotondo/Development/wold/Classes/ESRenderer.h
+c000000004D4A8815000000000000014E
+t1296730133
+s334
+i<QuartzCore/QuartzCore.h>
+i<OpenGLES/EAGL.h>
+i<OpenGLES/EAGLDrawable.h>
+
+N/Users/mrotondo/Development/wold/Classes/woldAppDelegate.h
+c000000004D4A881500000000000001A1
+t1296730133
+s417
+i<UIKit/UIKit.h>
+
+N/Users/mrotondo/Development/wold/Classes/woldAppDelegate.m
+c000000004D4A8815000000000000032B
+t1296730133
+s811
+i"woldAppDelegate.h"
+i"EAGLView.h"
+
+N/Users/mrotondo/Development/wold/MainWindow.xib
+c000000004D4A8815000000000000530F
+t1296730133
+s21263
+
+N/Users/mrotondo/Development/wold/Shaders/Shader.fsh
+c000000004D4A881500000000000000D9
+t1296730133
+s217
+
+N/Users/mrotondo/Development/wold/Shaders/Shader.vsh
+c000000004D4A8815000000000000015F
+t1296730133
+s351
+
+N/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app
+t1296730153
+s272
+
+N/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app.dSYM
+t1296730153
+s102
+
+N/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/Info.plist
+t1296730141
+s813
+
+N/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/MainWindow.nib
+t1296730148
+s1179
+
+N/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/PkgInfo
+t1296730141
+s8
+
+N/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/Shader.fsh
+t1296730141
+s217
+
+N/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/Shader.vsh
+t1296730141
+s351
+
+N/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/wold
+t1296730153
+s34312
+
+N/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/EAGLView.o
+t1296730152
+s52380
+
+N/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/ES1Renderer.o
+t1296730152
+s16832
+
+N/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/ES2Renderer.o
+t1296730152
+s24820
+
+N/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/main.o
+t1296730152
+s6292
+
+N/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/wold.LinkFileList
+c000000004D4A881D0000000000000243
+t1296730141
+s579
+
+N/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/woldAppDelegate.o
+t1296730152
+s50572
+
+N/Users/mrotondo/Development/wold/main.m
+c000000004D4A88150000000000000168
+t1296730133
+s360
+i<UIKit/UIKit.h>
+
+N/Users/mrotondo/Development/wold/wold_Prefix.pch
+c000000004D4A88150000000000000132
+t1296730133
+s306
+i<Availability.h>
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/wold_Prefix-aejwrspiyvpqchcazjlryimigoxm/wold_Prefix.pch.gch
+t1296730151
+s15441104
+
+Nwold-Info.plist
+c000000004D4A881500000000000004D1
+t1296730133
+s1233
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies318422941#318422941#0(0"0(0#1#0"3343187568374212096#0"0#
+
+CCompileC build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/EAGLView.o /Users/mrotondo/Development/wold/Classes/EAGLView.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s318422952.073847
+e318422952.234772
+r1
+xCompileC
+xbuild/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/EAGLView.o
+x/Users/mrotondo/Development/wold/Classes/EAGLView.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@59"Compile /Users/mrotondo/Development/wold/Classes/EAGLView.m318422952#318422952#0(0"0(0#0#51"/Users/mrotondo/Development/wold/Classes/EAGLView.m8599187104#1874"    cd /Users/mrotondo/Development/wold    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-generated-files.hmap -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-own-target-headers.hmap -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-all-target-headers.hmap -iquote /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-project-headers.hmap -F/Users/mrotondo/Development/wold/build/Debug-iphonesimulator -I/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/DerivedSources/i386 -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/wold_Prefix-aejwrspiyvpqchcazjlryimigoxm/wold_Prefix.pch -c /Users/mrotondo/Development/wold/Classes/EAGLView.m -o /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/EAGLView.o0#
+
+CCompileC build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/ES1Renderer.o /Users/mrotondo/Development/wold/Classes/ES1Renderer.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s318422952.170379
+e318422952.291171
+r1
+xCompileC
+xbuild/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/ES1Renderer.o
+x/Users/mrotondo/Development/wold/Classes/ES1Renderer.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@62"Compile /Users/mrotondo/Development/wold/Classes/ES1Renderer.m318422952#318422952#0(0"0(0#0#54"/Users/mrotondo/Development/wold/Classes/ES1Renderer.m8609647008#1880"    cd /Users/mrotondo/Development/wold    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-generated-files.hmap -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-own-target-headers.hmap -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-all-target-headers.hmap -iquote /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-project-headers.hmap -F/Users/mrotondo/Development/wold/build/Debug-iphonesimulator -I/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/DerivedSources/i386 -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/wold_Prefix-aejwrspiyvpqchcazjlryimigoxm/wold_Prefix.pch -c /Users/mrotondo/Development/wold/Classes/ES1Renderer.m -o /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/ES1Renderer.o0#
+
+CCompileC build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/ES2Renderer.o /Users/mrotondo/Development/wold/Classes/ES2Renderer.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s318422952.234890
+e318422952.353921
+r1
+xCompileC
+xbuild/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/ES2Renderer.o
+x/Users/mrotondo/Development/wold/Classes/ES2Renderer.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@62"Compile /Users/mrotondo/Development/wold/Classes/ES2Renderer.m318422952#318422952#0(0"0(0#0#54"/Users/mrotondo/Development/wold/Classes/ES2Renderer.m8611704160#1880"    cd /Users/mrotondo/Development/wold    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-generated-files.hmap -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-own-target-headers.hmap -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-all-target-headers.hmap -iquote /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-project-headers.hmap -F/Users/mrotondo/Development/wold/build/Debug-iphonesimulator -I/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/DerivedSources/i386 -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/wold_Prefix-aejwrspiyvpqchcazjlryimigoxm/wold_Prefix.pch -c /Users/mrotondo/Development/wold/Classes/ES2Renderer.m -o /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/ES2Renderer.o0#
+
+CCompileC build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/main.o /Users/mrotondo/Development/wold/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s318422951.772710
+e318422952.073738
+r1
+xCompileC
+xbuild/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/main.o
+x/Users/mrotondo/Development/wold/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@47"Compile /Users/mrotondo/Development/wold/main.m318422951#318422952#0(0"0(0#0#39"/Users/mrotondo/Development/wold/main.m8603799904#1858"    cd /Users/mrotondo/Development/wold    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-generated-files.hmap -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-own-target-headers.hmap -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-all-target-headers.hmap -iquote /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-project-headers.hmap -F/Users/mrotondo/Development/wold/build/Debug-iphonesimulator -I/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/DerivedSources/i386 -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/wold_Prefix-aejwrspiyvpqchcazjlryimigoxm/wold_Prefix.pch -c /Users/mrotondo/Development/wold/main.m -o /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/main.o0#
+
+CCompileC build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/woldAppDelegate.o /Users/mrotondo/Development/wold/Classes/woldAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s318422951.774076
+e318422952.170269
+r1
+xCompileC
+xbuild/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/woldAppDelegate.o
+x/Users/mrotondo/Development/wold/Classes/woldAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@66"Compile /Users/mrotondo/Development/wold/Classes/woldAppDelegate.m318422951#318422952#0(0"0(0#0#58"/Users/mrotondo/Development/wold/Classes/woldAppDelegate.m8603306720#1888"    cd /Users/mrotondo/Development/wold    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-generated-files.hmap -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-own-target-headers.hmap -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-all-target-headers.hmap -iquote /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-project-headers.hmap -F/Users/mrotondo/Development/wold/build/Debug-iphonesimulator -I/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/DerivedSources/i386 -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/wold_Prefix-aejwrspiyvpqchcazjlryimigoxm/wold_Prefix.pch -c /Users/mrotondo/Development/wold/Classes/woldAppDelegate.m -o /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/woldAppDelegate.o0#
+
+CCompileXIB /Users/mrotondo/Development/wold/MainWindow.xib
+s318422941.827993
+e318422948.655242
+r1
+xCompileXIB
+x/Users/mrotondo/Development/wold/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib318422941#318422948#0(0"0(0#0#47"/Users/mrotondo/Development/wold/MainWindow.xib8607636320#611"    cd /Users/mrotondo/Development/wold    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/MainWindow.nib /Users/mrotondo/Development/wold/MainWindow.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk0#
+
+CCpResource build/Debug-iphonesimulator/wold.app/Shader.fsh Shaders/Shader.fsh
+s318422941.799391
+e318422941.867190
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/wold.app/Shader.fsh
+xShaders/Shader.fsh
+lSLF07#2@23"Copy Shaders/Shader.fsh318422941#318422941#0(0"0(0#0#51"/Users/mrotondo/Development/wold/Shaders/Shader.fsh8607856512#517"    cd /Users/mrotondo/Development/wold    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/wold/Shaders/Shader.fsh /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app0#
+
+CCpResource build/Debug-iphonesimulator/wold.app/Shader.vsh Shaders/Shader.vsh
+s318422941.827012
+e318422941.867363
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/wold.app/Shader.vsh
+xShaders/Shader.vsh
+lSLF07#2@23"Copy Shaders/Shader.vsh318422941#318422941#0(0"0(0#0#51"/Users/mrotondo/Development/wold/Shaders/Shader.vsh8607751136#517"    cd /Users/mrotondo/Development/wold    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/mrotondo/Development/wold/Shaders/Shader.vsh /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app0#
+
+CGenerateDSYMFile /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app.dSYM /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/wold
+s318422953.345637
+e318422953.876305
+r1
+xGenerateDSYMFile
+x/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app.dSYM
+x/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/wold
+lSLF07#2@100"GenerateDSYMFile build/Debug-iphonesimulator/wold.app.dSYM build/Debug-iphonesimulator/wold.app/wold318422953#318422953#0(0"0(0#0#74"/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/wold8610449248#418"    cd /Users/mrotondo/Development/wold    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/dsymutil /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/wold -o /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app.dSYM0#
+
+CLd /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/wold normal i386
+s318422952.354023
+e318422953.345448
+r1
+xLd
+x/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/wold
+xnormal
+xi386
+lSLF07#2@79"Link /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/wold318422952#318422953#0(0"0(0#0#0"8610872320#935"    cd /Users/mrotondo/Development/wold    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -L/Users/mrotondo/Development/wold/build/Debug-iphonesimulator -F/Users/mrotondo/Development/wold/build/Debug-iphonesimulator -filelist /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/Objects-normal/i386/wold.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework OpenGLES -framework QuartzCore -o /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/wold0#
+
+CProcessInfoPlistFile /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/Info.plist wold-Info.plist
+s318422941.721754
+e318422941.799285
+r1
+xProcessInfoPlistFile
+x/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/Info.plist
+xwold-Info.plist
+lSLF07#2@23"Process wold-Info.plist318422941#318422941#0(0"0(0#0#48"/Users/mrotondo/Development/wold/wold-Info.plist32933040433463412#514"    cd /Users/mrotondo/Development/wold    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-infoPlistUtility wold-Info.plist -genpkginfo /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app/Info.plist0#
+
+CProcessPCH /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/wold_Prefix-aejwrspiyvpqchcazjlryimigoxm/wold_Prefix.pch.gch wold_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s318422948.655559
+e318422951.772535
+r1
+xProcessPCH
+x/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/wold_Prefix-aejwrspiyvpqchcazjlryimigoxm/wold_Prefix.pch.gch
+xwold_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@26"Precompile wold_Prefix.pch318422948#318422951#0(0"0(0#0#48"/Users/mrotondo/Development/wold/wold_Prefix.pch8607320352#1759"    cd /Users/mrotondo/Development/wold    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-generated-files.hmap -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-own-target-headers.hmap -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-all-target-headers.hmap -iquote /Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/wold-project-headers.hmap -F/Users/mrotondo/Development/wold/build/Debug-iphonesimulator -I/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/include -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/DerivedSources/i386 -I/Users/mrotondo/Development/wold/build/wold.build/Debug-iphonesimulator/wold.build/DerivedSources -c /Users/mrotondo/Development/wold/wold_Prefix.pch -o /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/wold_Prefix-aejwrspiyvpqchcazjlryimigoxm/wold_Prefix.pch.gch0#
+
+CTouch /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app
+s318422953.876430
+e318422953.903534
+r1
+xTouch
+x/Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app
+lSLF07#2@75"Touch /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app318422953#318422953#0(0"0(0#0#0"8610127456#325"    cd /Users/mrotondo/Development/wold    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /usr/bin/touch -c /Users/mrotondo/Development/wold/build/Debug-iphonesimulator/wold.app0#
+
