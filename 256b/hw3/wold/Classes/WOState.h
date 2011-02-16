@@ -12,27 +12,14 @@
 
 #import "mo_gfx.h"
 
-#import "WOCamera.h"
-
 @interface WOState : NSObject {
 
-    AKTouchTracker* growingTrees;
-    NSMutableSet* trees;
     NSMutableSet* planets;
     
-    WOCamera* camera;
 }
 
-@property (nonatomic, retain) AKTouchTracker* growingTrees;
-@property (nonatomic, retain) NSMutableSet* trees;
 @property (nonatomic, retain) NSMutableSet* planets;
-@property (nonatomic, retain) WOCamera* camera;
 
-- (void) addTouch:(UITouch*) touch;
-- (void) removeTouch:(UITouch*) touch;
-- (void) moveTouch:(UITouch*) touch;
-- (void) tick;
-- (void) transformModelviewMatrix;
 - (void) render;
 - (void) handleTouchRay:(Vector3D)ray fromPoint:(Vector3D)touchPoint;
 - (void) handleTapRay:(Vector3D)ray fromPoint:(Vector3D)touchPoint;

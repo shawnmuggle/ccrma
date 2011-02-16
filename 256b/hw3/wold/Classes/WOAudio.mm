@@ -10,8 +10,6 @@
 #import "WOLSystem.h"
 #import "WOPlanet.h"
 
-#import "BandedWG.h"
-
 #define SRATE 44100
 #define FRAMESIZE 128
 #define NUMCHANNELS 2
@@ -24,20 +22,12 @@ void audioCallback(Float32* buffer, UInt32 frameSize, void* userData)
     for ( int i = 0; i < frameSize; i++ )
     {
         Float32 sample = 0.0;
-        //Float32 leftSample = 0.0;
-        //Float32 rightSample = 0.0;
         
         WOPlanet* planet = [state.planets anyObject];
         
         for (WOLSystem* tree in planet.trees) {
             sample += [tree tickAudio];
-            //            float offset = tree.origin.x / 786.0;
-            //            leftSample += [tree tickAudio] * (1 - offset);
-            //            rightSample += [tree tickAudio] * offset;
         }
-        
-//        buffer[i * 2] = leftSample;
-//        buffer[i * 2 + 1] = rightSample;
         buffer[i * 2] = buffer[i * 2 + 1] = sample;
     } 
 }
@@ -51,15 +41,6 @@ void audioCallback(Float32* buffer, UInt32 frameSize, void* userData)
     self = [super init];
     if (self) {
         self.state = newState;
-        
-//        self.instruments = [NSMutableArray arrayWithCapacity:6];
-//        stk::BandedWG* instrument;
-//        for (int i = 0; i < 6; i++) {
-//            instrument = new stk::BandedWG();
-//            [self.instruments addObject:[NSValue valueWithPointer:instrument]];
-//        }
-        
-        //NSLog(@"HIELLOELIEOH");
         
         // init the audio layer
         bool result = MoAudio::init( SRATE, FRAMESIZE, NUMCHANNELS );

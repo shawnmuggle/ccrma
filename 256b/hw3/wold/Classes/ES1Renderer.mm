@@ -37,8 +37,6 @@
         glBindRenderbufferOES(GL_RENDERBUFFER_OES, depthRenderbuffer);
         
         glRenderbufferStorageOES(GL_RENDERBUFFER_OES, GL_DEPTH_COMPONENT16_OES, 768, 1024);
-
-        
         
         GLenum status = glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES) ;
         if(status != GL_FRAMEBUFFER_COMPLETE_OES) {
@@ -57,24 +55,6 @@
         // glBlendFunc( GL_ONE, GL_ZERO );
         glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
         
-//        // generate texture name
-//        glGenTextures( 2, &g_texture[0] );
-//        // bind the texture
-//        glBindTexture( GL_TEXTURE_2D, g_texture[0] );
-//        // setting parameters
-//        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-//        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-//        // load the texture
-//        MoGfx::loadTexture( @"venusbump", @"jpg" );
-//        
-//        // bind the texture
-//        glBindTexture( GL_TEXTURE_2D, g_texture[1] );
-//        // setting parameters
-//        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-//        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-//        // load the texture
-//        MoGfx::loadTexture( @"white_texture", @"png" );
-        
         glDepthFunc(GL_LEQUAL);
         glClearDepthf(1.0);
         glCullFace(GL_BACK);
@@ -85,8 +65,6 @@
 
 - (void)render
 {
-    [self.state tick];
-    
     // This application only creates a single context which is already set current at this point.
     // This call is redundant, but needed if dealing with multiple contexts.
     [EAGLContext setCurrentContext:context];
@@ -101,9 +79,6 @@
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     
-    //glOrthof(0, backingWidth, backingHeight, 0, -10, 1000);
-    
-    //glFrustumf(-1, 1, -1, 1, -1, 1);
     MoGfx::perspective( 45.0, backingWidth/(GLfloat)backingHeight, 1.0, 100 );
     
     glGetFloatv( GL_PROJECTION_MATRIX, projection );
@@ -117,9 +92,7 @@
     MoGfx::lookAt( 0, 0, 0, 0, 0, -1, 0, 1, 0 );
     
     glPushMatrix();
-    
-    //[self.state transformModelviewMatrix];
-    
+
     glGetFloatv( GL_MODELVIEW_MATRIX, modelview );
     
     [self.state render];
@@ -169,6 +142,7 @@
     [self.state handleTouchRay:ray fromPoint:nearPoint];
 }
 
+// TODO: Unify this and the above into a generic unproject function (include the duplicated code in WOPlanet to find the actual point on the surface of the planet)
 - (void)processTapLoc:(CGPoint)touchLoc
 {
     Vector3D nearPoint;

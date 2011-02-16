@@ -1,5 +1,0 @@
-/Users/mrotondo/Development/wold/Classes/ES1Renderer.mm: In function 'void -[ES1Renderer processDrag:](ES1Renderer*, objc_selector*, UIPanGestureRecognizer*)':
-/Users/mrotondo/Development/wold/Classes/ES1Renderer.mm:174: warning: 'WOState' may not respond to '-processDrag:'
-/Users/mrotondo/Development/wold/Classes/ES1Renderer.mm:174: warning: (Messages without a matching method signature
-/Users/mrotondo/Development/wold/Classes/ES1Renderer.mm:174: warning: will be assumed to return 'id' and accept
-/Users/mrotondo/Development/wold/Classes/ES1Renderer.mm:174: warning: '...' as arguments.)

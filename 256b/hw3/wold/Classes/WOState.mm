@@ -15,10 +15,7 @@ GLuint g_texture[2];
 
 @implementation WOState
 
-@synthesize growingTrees;
-@synthesize trees;
 @synthesize planets;
-@synthesize camera;
 
 - (id) init
 {
@@ -41,64 +38,17 @@ GLuint g_texture[2];
         // load the texture
         MoGfx::loadTexture( @"white_texture", @"png" );
         
-        self.growingTrees = [[[AKTouchTracker alloc] init] autorelease];
-        self.trees = [[[NSMutableSet alloc] init] autorelease];
-        
         self.planets = [[[NSMutableSet alloc] init] autorelease];
-        //Vector3D planetPosition(1, 1.5, -6);
         Vector3D planetPosition(-2, 0, -6);
         WOPlanet* planet = [[WOPlanet alloc] initWithPosition:planetPosition andRadius:2 andTexture:g_texture[0] andTreeTexture:g_texture[1]]; // 3
         [self.planets addObject:planet];
         
-        self.camera = [[[WOCamera alloc] init] autorelease];
-        self.camera.planet = planet;
     }
     return self;
 }
 
-- (void) addTouch:(UITouch*) touch
-{
-//    WOLSystem* tree = [[WOLSystem alloc] initWithMaxGeneration:4 atPoint:[touch locationInView:touch.view]];
-//
-//    WOXNode* xNode = [[WOXNode alloc] init];
-//    [tree.nodes addObject:xNode];
-//
-//    [self.growingTrees setObject:tree forTouch:touch];
-//    [self.trees addObject:tree];
-}
-
-- (void) removeTouch:(UITouch*) touch
-{
-//    [self.growingTrees removeObjectForTouch:touch];
-}
-
-- (void) moveTouch:(UITouch*) touch
-{
-//    CGPoint touchLoc = [touch locationInView:touch.view];
-//    WOLSystem* tree = [self.growingTrees objectForTouch:touch];
-//    [tree setOffset:CGPointMake(touchLoc.x - tree.origin.x, tree.origin.y - touchLoc.y)];
-}
-
-- (void) tick
-{
-    for (UITouch* touch in [self.growingTrees allTouches]) {
-        WOLSystem* tree = [self.growingTrees objectForTouch:touch];
-        [tree tick];
-    }
-}
-
-- (void) transformModelviewMatrix
-{
-    [self.camera transform];    
-}
-
 - (void) render
 {
-//    for (WOLSystem* tree in self.trees) {
-//        [tree render];
-//    }
-    
-    
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
     glEnableClientState( GL_TEXTURE_COORD_ARRAY );
@@ -176,10 +126,7 @@ GLuint g_texture[2];
 
 - (void) dealloc
 {
-    [self.growingTrees release];
-    [self.trees release];
     [self.planets release];
-    [self.camera release];
     
     [super dealloc];
 }

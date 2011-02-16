@@ -165,19 +165,11 @@ Point2fT    MousePt;
     point->z = pointMatrix.s.ZX;
     
     WOLSystem* tree = [[[WOLSystem alloc] initWithMaxGeneration:4 atPoint:*point] autorelease];
-//    WOXNode* xNode = [[[WOXNode alloc] init] autorelease];
-//    [tree.nodes addObject:xNode];
     
     WOLittleFNode* fNode = [[[WOLittleFNode alloc] init] autorelease];
     [tree.nodes addObject:fNode];
     fNode = [[[WOLittleFNode alloc] init] autorelease];
     [tree.nodes addObject:fNode];
-//    fNode = [[[WOLittleFNode alloc] init] autorelease];
-//    [tree.nodes addObject:fNode];
-//    fNode = [[[WOLittleFNode alloc] init] autorelease];
-//    [tree.nodes addObject:fNode];
-//    fNode = [[[WOLittleFNode alloc] init] autorelease];
-//    [tree.nodes addObject:fNode];
     
     WOANode* aNode = [[[WOANode alloc] init] autorelease];
     [tree.nodes addObject:aNode];
@@ -291,37 +283,6 @@ Point2fT    MousePt;
         glRotatef(xy_angle * (180 / M_PI) - 90, 0.0f, 0.0f, 1.0f);        
         glRotatef(sin(yz_angle) * (180 / M_PI), 1.0, 0.0f, 0.0f);
         //glTranslatef(0, self.radius, 0);
-        
-        
-        
-        
-        
-//        // CODE TAKEN FROM http://www.euclideanspace.com/maths/geometry/rotations/conversions/eulerToMatrix/index.htm
-//        // Assuming the angles are in radians.
-//        float ch = cos(xz_angle);
-//        float sh = sin(xz_angle);
-//        float ca = cos(yz_angle);
-//        float sa = sin(yz_angle);
-//        float cb = cos(xy_angle);
-//        float sb = sin(xy_angle);
-//        
-//        Matrix3fT rotationMatrix;
-//        
-//        rotationMatrix.s.XX = ch * ca;
-//        rotationMatrix.s.YX = sh*sb - ch*sa*cb;
-//        rotationMatrix.s.ZX = ch*sa*sb + sh*cb;
-//        rotationMatrix.s.XY = sa;
-//        rotationMatrix.s.YY = ca*cb;
-//        rotationMatrix.s.ZY = -ca*sb;
-//        rotationMatrix.s.XZ = -sh*ca;
-//        rotationMatrix.s.YZ = sh*sa*cb + ch*sb;
-//        rotationMatrix.s.ZZ = -sh*sa*sb + ch*cb;
-//        
-//        glTranslatef(tree.origin.x, tree.origin.y, tree.origin.z);
-//        glMultMatrixf(rotationMatrix.M);
-//        //glTranslatef(0, self.radius, 0);
-
-        
         
         [tree render];
         glPopMatrix();

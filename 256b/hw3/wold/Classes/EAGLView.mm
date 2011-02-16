@@ -189,37 +189,6 @@
     }
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    NSLog(@"OUCH BEGAN");
-
-    for (UITouch* touch in touches) {
-        //[(ES1Renderer*)renderer processTouch:touch];
-        //[self.state addTouch:touch];
-    }
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    for (UITouch* touch in touches) {
-        [self.state moveTouch:touch];
-    }    
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    for (UITouch* touch in touches) {
-        [self.state removeTouch:touch];
-    }
-}
-
-- (void)touchesCanceled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    for (UITouch* touch in touches) {
-        [self.state removeTouch:touch];
-    }
-}
-
 - (void)dealloc
 {
     [renderer release];
