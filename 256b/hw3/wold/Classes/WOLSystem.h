@@ -7,10 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BlitSquare.h"
-#import "BiQuad.h"
-
-#import "WOTurtle.h"
+#import "mo_gfx.h"
 
 @interface WOLSystemRenderState : NSObject {
     NSMutableArray* widthStack;
@@ -35,19 +32,10 @@
     int ticksPerGeneration;
     int generationTickCount;
     
-    int ticksReceived;
-    int advanceInterval;
-    GLfloat* lineVertices;
-    
     Vector3D origin;
     CGPoint offset;
     
-    int numPoints;
-    
-    float red, green, blue;
-    float leaf_red, leaf_green, leaf_blue;
-    
-    stk::BlitSquare* square;
+    float phase, env, freq, freq_offset;
     
 }
 
@@ -59,11 +47,10 @@
 @property int generationTickCount;
 @property (nonatomic) Vector3D origin;
 @property (nonatomic) CGPoint offset;
-@property int numPoints;
+@property float env;
 
 - (id) initWithMaxGeneration:(int)maxGen atPoint:(Vector3D)pos;
 - (void) advanceGeneration;
-- (void) generateNewVertices;
 - (void) tick;
 - (void) render;
 - (float) tickAudio;
@@ -87,7 +74,6 @@
 
 - (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration;
 - (void) renderWithState:(WOLSystemRenderState*)state;
-- (void)modifyTurtle:(WOTurtle*)turtle;
 - (void) setNewGrowthPercent:(float)percent;
 
 @end
@@ -105,7 +91,9 @@
 @interface WOLittleFNode : WONode {}
 @end
 
-@interface WOLNode : WONode {}
+@interface WOLNode : WONode {
+    float freq, phase;
+}
 @end
 
 @interface WOPlusNode : WONode {}

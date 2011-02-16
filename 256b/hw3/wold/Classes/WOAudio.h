@@ -15,9 +15,12 @@
 
     WOState* state;
     
+    //NSMutableArray* instruments;
+    
 }
 
 @property (nonatomic, retain) WOState* state;
+//@property (nonatomic, retain) NSMutableArray* instruments;
 
 - (id) initWithState:(WOState*)state;
 

@@ -1,7 +1,0 @@
-In file included from /Users/mrotondo/Development/wold/Classes/WOPlanet.mm:17:
-/Users/mrotondo/Development/wold/Classes/ArcBall.h:29:1: warning: "assert" redefined
-In file included from /Users/mrotondo/Development/wold/momu-1.0.0/api/mo_def.h:58,
-                 from /Users/mrotondo/Development/wold/momu-1.0.0/api/mo_gfx.h:56,
-                 from /Users/mrotondo/Development/wold/Classes/WOPlanet.h:10,
-                 from /Users/mrotondo/Development/wold/Classes/WOPlanet.mm:9:
-/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/assert.h:84:1: warning: this is the location of the previous definition

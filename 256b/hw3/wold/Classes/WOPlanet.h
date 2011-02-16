@@ -31,5 +31,6 @@
 - (void) transform;
 - (void) render;
 - (void) processDrag:(UIPanGestureRecognizer*)gesture;
+- (void)processTap:(Vector3D)point;
 
 @end

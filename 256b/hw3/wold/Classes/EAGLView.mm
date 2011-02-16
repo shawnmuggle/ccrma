@@ -59,6 +59,11 @@
         [self addGestureRecognizer:pan];
         [pan release];
         
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                       initWithTarget:self action:@selector(handleTap:)];
+        [self addGestureRecognizer:tap];
+        [tap release];
+        
         animating = FALSE;
         displayLinkSupported = FALSE;
         animationFrameInterval = 1;
@@ -96,6 +101,16 @@
 - (void)handlePan:(UIPanGestureRecognizer *)sender
 {
     [(ES1Renderer*)renderer processDrag:sender];
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateRecognized) {
+        NSLog(@"BOO YA");
+        
+        CGPoint point = [sender locationInView:sender.view];
+        [(ES1Renderer*)renderer processTapLoc:point];
+    }
 }
 
 - (void)drawView:(id)sender

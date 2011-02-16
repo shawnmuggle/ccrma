@@ -169,6 +169,27 @@
     [self.state handleTouchRay:ray fromPoint:nearPoint];
 }
 
+- (void)processTapLoc:(CGPoint)touchLoc
+{
+    Vector3D nearPoint;
+    Vector3D farPoint;
+    
+    gluUnProject((GLfloat)touchLoc.x, (GLfloat)touchLoc.y , 0.6, 
+                 modelview, projection, viewport, 
+                 (GLfloat*)&nearPoint.x, (GLfloat*)&nearPoint.y, (GLfloat*)&nearPoint.z);
+    gluUnProject((GLfloat)touchLoc.x, (GLfloat)touchLoc.y , 0.9, 
+                 modelview, projection, viewport, 
+                 (GLfloat*)&farPoint.x, (GLfloat*)&farPoint.y, (GLfloat*)&farPoint.z);
+    
+    // TOTAL HACK, dunno why the points are ending up with flipped y coordinates from the actual models.
+    nearPoint.y *= -1;
+    farPoint.y *= -1;
+    
+    Vector3D ray = farPoint - nearPoint;
+    
+    [self.state handleTapRay:ray fromPoint:nearPoint];
+}
+
 - (void)processDrag:(UIPanGestureRecognizer*)gesture
 {
     [self.state processDrag:gesture];

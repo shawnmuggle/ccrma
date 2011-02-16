@@ -70,6 +70,40 @@ Point2fT    MousePt;
     }
 }
 
+- (void)processTap:(Vector3D)point
+{
+    NSLog(@"HEYO");
+    
+    Vector3D touchPoint(position - point);
+    touchPoint.normalize();
+    touchPoint *= -1;    
+    
+    Matrix3fT pointMatrix;
+    pointMatrix.s.XX = touchPoint.x;
+    pointMatrix.s.YX = touchPoint.y;
+    pointMatrix.s.ZX = touchPoint.z;
+    Matrix3fMulMatrix3f(&pointMatrix, &ThisRot);
+    
+    //NSLog(@"PointMatrix: \n%f %f %f;\n%f %f %f;\n%f %f %f", pointMatrix.s.XX, pointMatrix.s.XY, pointMatrix.s.XZ, pointMatrix.s.YX, pointMatrix.s.YY, pointMatrix.s.YZ, pointMatrix.s.ZX, pointMatrix.s.ZY, pointMatrix.s.ZZ);
+    
+    touchPoint.x = pointMatrix.s.XX;
+    touchPoint.y = pointMatrix.s.YX;
+    touchPoint.z = pointMatrix.s.ZX;
+    
+    touchPoint *= self.radius;
+    
+    float dist;
+    for (WOLSystem* tree in self.trees) {
+        Vector3D treePoint = [tree origin] * self.radius;
+        dist = sqrt(pow(treePoint.x - touchPoint.x, 2) + pow(treePoint.y - touchPoint.y, 2) + pow(treePoint.z - touchPoint.z, 2));
+        NSLog(@"Dist: %f < %f ?", dist, self.radius / 5);
+        if (dist < self.radius / 5) {
+            tree.env = 1.0;
+            break;
+        }
+    }
+}
+
 - (id) initWithPosition:(Vector3D)pos andRadius:(float)rad andTexture:(GLuint)texture_id andTreeTexture:(GLuint)tree_texture_id
 {
     self = [super init];
@@ -219,7 +253,7 @@ Point2fT    MousePt;
     //drawSphere(self.radius, 40, 40);
     glBindTexture( GL_TEXTURE_2D, planet_texture );
     
-    [WOGeometry drawSphereWithRadius:self.radius andNumLats:40 andNumLongs:40];
+    [WOGeometry drawSphereWithRadius:self.radius andNumLats:20 andNumLongs:20];
     //[WOGeometry drawFrustumWithBottomRadius:self.radius andTopRadius:0 andHeight:self.radius * 2 andSections:40];
     
     glBindTexture( GL_TEXTURE_2D, tree_texture);
@@ -237,7 +271,7 @@ Point2fT    MousePt;
         //glRotatef(xz_angle, 0, 1, 0);
         glRotatef(xy_angle, 0, 0, 1);
         //drawSphere(self.radius / 10, 10, 10);
-        [WOGeometry drawSphereWithRadius:self.radius/10 andNumLats:10 andNumLongs:10];
+        [WOGeometry drawSphereWithRadius:self.radius/10 andNumLats:6 andNumLongs:6];
         glPopMatrix();
     }
     

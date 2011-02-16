@@ -35,6 +35,7 @@
 - (void) transformModelviewMatrix;
 - (void) render;
 - (void) handleTouchRay:(Vector3D)ray fromPoint:(Vector3D)touchPoint;
+- (void) handleTapRay:(Vector3D)ray fromPoint:(Vector3D)touchPoint;
 - (void) processDrag:(UIPanGestureRecognizer*)gesture;
 
 @end

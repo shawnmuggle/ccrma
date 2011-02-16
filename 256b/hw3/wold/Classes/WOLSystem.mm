@@ -15,6 +15,7 @@
 #import <cstdlib>
 #import <ctime>
 
+#define SRATE 44100
 
 float white[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
@@ -79,7 +80,7 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 @synthesize generationTickCount;
 @synthesize origin;
 @synthesize offset;
-@synthesize numPoints;
+@synthesize env;
 
 - (id) initWithMaxGeneration:(int)maxGen atPoint:(Vector3D)pos
 {
@@ -91,18 +92,14 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
         self.generationTickCount = 0;
         self.ticksPerGeneration = 30;
 
-        ticksReceived = 0;
-        advanceInterval = 2;
-        lineVertices = NULL;
-        
         self.origin = pos;
         self.offset = CGPointMake(0, 0);
         
-        self.numPoints = 1;
-
-        square = new stk::BlitSquare();
-        square->setFrequency(80 + 300 * -origin.y / 1024.0);
-        square->setHarmonics(0);
+        phase = 0.0;
+        env = 0.999999;
+        //freq = 200 + (rand() / (float)RAND_MAX) * 200.0;
+        freq = 1000 + (rand() / (float)RAND_MAX) * 400.0;
+        freq_offset = 0.0;
         
         srand((unsigned)time(0));
     }
@@ -125,7 +122,9 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
         self.currentGeneration++;
         self.generationTickCount = 0;
         [self advanceGeneration];
-        square->setHarmonics(self.currentGeneration);
+        //freq *= 1.5;
+        freq *= 0.666666;
+        env = 0.99999;
     }
     self.generationTickCount++;
     float generationPercent = self.generationTickCount / (float)self.ticksPerGeneration;
@@ -133,34 +132,10 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
         node.growthPercent = generationPercent;
         node.offset = self.offset;
     }
-    
-//    if (ticksReceived++ % advanceInterval == 0) {
-//        [self generateNewVertices];
-//    }
-}
-
-- (void) generateNewVertices
-{
-    delete lineVertices;
-    
-    lineVertices = new GLfloat[(numPoints - 1) * 2 * 3]; // 2 points for every line segment if using GL_LINES, and 3 values per 3D point
-
-    WOTurtle* turtle = [[WOTurtle alloc] initWithPoints:lineVertices];
-    Vector3D position;
-    [turtle addPoint:position];
-    
-    for (WONode* node in nodes) {
-        [node modifyTurtle:turtle];
-    }
 }
 
 - (void) render
 {
-//    glPushMatrix();
-//    glVertexPointer(3, GL_FLOAT, 0, lineVertices);
-//    glDrawArrays(GL_LINES, 0, numPoints);
-//    glPopMatrix();
-
     WOLSystemRenderState* state = [[[WOLSystemRenderState alloc] init] autorelease];
     
     for (WONode* node in self.nodes) {
@@ -169,9 +144,10 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 }
 
 - (float) tickAudio
-{
-    float generationPercent = self.generationTickCount / (float)self.ticksPerGeneration;
-    return 0.1 * ((self.currentGeneration + generationPercent) / self.maxGeneration) * square->tick();
+{  
+    env *= 0.99995;
+    phase += (freq + freq_offset)/(SRATE*1.0);
+    return sin(2.0*M_PI*phase) * env;
 }
 
 @end
@@ -216,9 +192,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 - (void) renderWithState:(WOLSystemRenderState*)state
 {}
 
-- (void) modifyTurtle:(WOTurtle *)turtle
-{}
-
 @end
 
 @implementation WOXNode
@@ -257,8 +230,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     [nodes addObject:[[WORightBracketNode alloc] init]];
     [nodes addObject:[[WOMinusNode alloc] init]];
     [nodes addObject:[[WOXNode alloc] init]];
-    
-    lSystem.numPoints += 3;
     
     return nodes;
 }
@@ -310,8 +281,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     [nodes addObject:[[WOANode alloc] init]];
     [nodes addObject:[[WORightBracketNode alloc] init]];
     
-    lSystem.numPoints += 1;
-    
     return nodes;
 }
 
@@ -337,8 +306,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     [nodes addObject:fNode];
     [nodes addObject:[[WOFNode alloc] init]];
     
-    lSystem.numPoints += 2;
-    
     return nodes;
 }
 
@@ -347,20 +314,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     float length = 0.1 * self.growthPercent;
     [WOGeometry drawFrustumWithBottomRadius:[state oldWidth] andTopRadius:[state newWidth] andHeight:length andSections:5];
     glTranslatef(0.0f, length, 0.0f);
-}
-
-- (void)modifyTurtle:(WOTurtle *)turtle
-{
-    // TODO: Implement x angles as well.
-    
-    float length = 0.1 * self.growthPercent;
-    
-    TurtleState* state = [turtle currentState];
-    Vector3D newPosition;
-    newPosition.x = state->x + cos((M_PI / 180) * state->zAngle) * length;
-    newPosition.y = state->y + sin((M_PI / 180) * state->zAngle) * length;
-    newPosition.z = state->z + sin((M_PI / 180) * state->yAngle) * length;
-    [turtle addPoint:newPosition];
 }
 
 @end
@@ -379,7 +332,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 - (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
 {
     NSMutableArray* newNodes = [super expandInLSystem:lSystem isLastGeneration:lastGeneration];
-    lSystem.numPoints += 1;
     return newNodes;
 }
 
@@ -393,20 +345,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     glTranslatef(0.0f, length, 0.0f);
 }
 
-- (void)modifyTurtle:(WOTurtle *)turtle
-{
-    // TODO: Implement x angles as well.
-    
-    float length = 0.1 * self.growthPercent;
-    
-    TurtleState* state = [turtle currentState];
-    Vector3D newPosition;
-    newPosition.x = state->x + cos((M_PI / 180) * state->zAngle) * length;
-    newPosition.y = state->y + sin((M_PI / 180) * state->zAngle) * length;
-    newPosition.z = state->z + sin((M_PI / 180) * state->yAngle) * length;
-    [turtle addPoint:newPosition];
-}
-
 @end
 
 @implementation WOLNode
@@ -416,6 +354,8 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     self = [super init];
     if (self) {
         self.symbol = @"l";
+        phase = 0;
+        freq = 0.5 * rand() / (float)RAND_MAX;
     }
     return self;
 }
@@ -427,7 +367,9 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     
     GLfloat radius = 0.1;
     glTranslatef(0.0f, radius, 0.0f);
-    glRotatef(90, 1.0f, 0.0f, 0.0f);
+    float flutter_offset = 10 * sin(2.0*M_PI*phase);
+    phase += freq * 0.05;
+    glRotatef(90 + flutter_offset, 1.0f, 0.0f, 0.0f);
     [WOGeometry drawFrustumWithBottomRadius:radius andTopRadius:radius andHeight:0.0001 andSections:5];
 }
 
@@ -451,18 +393,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     glRotatef(angle * self.growthPercent, 1.0f, 0.0f, 0.0f);
 }
 
-- (void) modifyTurtle:(WOTurtle *)turtle
-{
-    float angleOffset = 0;
-    if (fabs(self.offset.x) < 50) {
-        angleOffset = -self.offset.y / 40.0;
-    } else {
-        angleOffset = self.offset.x / 50.0;
-    }
-    
-    [turtle addZAngle:self.growthPercent * (25 + angleOffset)];
-}
-
 @end
 
 @implementation WOMinusNode
@@ -480,18 +410,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 {
     GLfloat angle = -25 + 10 * self.randomOffset;
     glRotatef(angle * self.growthPercent, 1.0f, 0.0f, 0.0f);
-}
-
-- (void) modifyTurtle:(WOTurtle *)turtle
-{
-    float angleOffset = 0;
-    if (fabs(self.offset.x) < 50) {
-        angleOffset = self.offset.y / 40.0;
-    } else {
-        angleOffset = self.offset.x / 50.0;
-    }
-    
-    [turtle addZAngle:self.growthPercent * (-25 + angleOffset)];
 }
 
 @end
@@ -513,11 +431,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     glRotatef(angle * self.growthPercent, 0.0f, 0.0f, 1.0f);
 }
 
-- (void) modifyTurtle:(WOTurtle *)turtle
-{
-    [turtle addYAngle:self.growthPercent * 25];
-}
-
 @end
 
 @implementation WOLTNode
@@ -535,11 +448,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 {
     GLfloat angle = -25 + 10 * self.randomOffset;
     glRotatef(angle * self.growthPercent, 0.0f, 0.0f, 1.0f);
-}
-
-- (void) modifyTurtle:(WOTurtle *)turtle
-{
-    [turtle addYAngle:self.growthPercent * -25];
 }
 
 @end
@@ -561,11 +469,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     glRotatef(angle * self.growthPercent, 0.0f, 1.0f, 0.0f);
 }
 
-- (void) modifyTurtle:(WOTurtle *)turtle
-{
-    [turtle addYAngle:self.growthPercent * 25];
-}
-
 @end
 
 @implementation WODownNode
@@ -583,11 +486,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 {
     GLfloat angle = -25 + 10 * self.randomOffset;
     glRotatef(angle * self.growthPercent, 0.0f, 1.0f, 0.0f);
-}
-
-- (void) modifyTurtle:(WOTurtle *)turtle
-{
-    [turtle addYAngle:self.growthPercent * -25];
 }
 
 @end
@@ -610,11 +508,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     glPushMatrix();
 }
 
-- (void) modifyTurtle:(WOTurtle *)turtle
-{
-    [turtle pushState];
-}
-
 @end
 
 @implementation WORightBracketNode
@@ -633,11 +526,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 {
     [state pop];
     glPopMatrix();
-}
-
-- (void) modifyTurtle:(WOTurtle *)turtle
-{
-    [turtle popState];
 }
 
 @end

@@ -39,6 +39,7 @@
 		D553EFAB1309E77E00829ECF /* plutobump2k.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D553EF9E1309E77E00829ECF /* plutobump2k.jpg */; };
 		D553EFAC1309E77E00829ECF /* plutomap1k.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D553EF9F1309E77E00829ECF /* plutomap1k.jpg */; };
 		D553EFDA130A2C0C00829ECF /* WOCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = D553EFD9130A2C0C00829ECF /* WOCamera.mm */; };
+		D55E3A99130C2C17009E23B7 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D55E3A98130C2C17009E23B7 /* icon.png */; };
 		D5A1855E12FC438600107C05 /* WOLSystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5A1855D12FC438600107C05 /* WOLSystem.mm */; };
 		D5A187DB1300776A00107C05 /* AKTouchTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5A187DA1300776A00107C05 /* AKTouchTracker.mm */; };
 		D5A188631300886300107C05 /* mo_accel.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5A188291300886300107C05 /* mo_accel.mm */; };
@@ -256,6 +257,7 @@
 		D553EF9F1309E77E00829ECF /* plutomap1k.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plutomap1k.jpg; sourceTree = "<group>"; };
 		D553EFD8130A2C0C00829ECF /* WOCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOCamera.h; sourceTree = "<group>"; };
 		D553EFD9130A2C0C00829ECF /* WOCamera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WOCamera.mm; sourceTree = "<group>"; };
+		D55E3A98130C2C17009E23B7 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D5A1855C12FC438600107C05 /* WOLSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLSystem.h; sourceTree = "<group>"; };
 		D5A1855D12FC438600107C05 /* WOLSystem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WOLSystem.mm; sourceTree = "<group>"; };
 		D5A187D91300776900107C05 /* AKTouchTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKTouchTracker.h; sourceTree = "<group>"; };
@@ -651,6 +653,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D55E3A98130C2C17009E23B7 /* icon.png */,
 				D553EF921309E75A00829ECF /* textures */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* wold-Info.plist */,
@@ -1180,6 +1183,7 @@
 				D553EFAB1309E77E00829ECF /* plutobump2k.jpg in Resources */,
 				D553EFAC1309E77E00829ECF /* plutomap1k.jpg in Resources */,
 				D51DF095130BAABA0057FD04 /* white_texture.png in Resources */,
+				D55E3A99130C2C17009E23B7 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1366,12 +1370,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ge Wang (AR5E675E2R)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6A56C621-8243-4CDB-8EF9-A51D0D1D66DD";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

@@ -142,6 +142,32 @@ GLuint g_texture[2];
     }
 }
 
+- (void) handleTapRay:(Vector3D)ray fromPoint:(Vector3D)touchPoint
+{
+    BOOL hit = NO;
+    
+    //NSLog(@"Stepping into space...");
+    int numSteps = 100;
+    for (int i = 0; i < numSteps; i++) {
+        Vector3D point = touchPoint + ray * ((float)i / numSteps);
+        //NSLog(@"Point @ %f, %f, %f", point.x, point.y, point.z);
+        Vector3D dist;
+        for (WOPlanet* planet in self.planets) {
+            //NSLog(@"Planet @ %f, %f, %f", planet.position.x, planet.position.y, planet.position.z);
+            dist = point - planet.position;
+            if (dist.magnitude() < planet.radius) {
+                //NSLog(@"O MF G A HIT!");
+                //NSLog(@"Dist: %f", dist.magnitude());
+                [planet processTap:point];
+                hit = YES;
+            }
+        }
+        if (hit) {
+            break;
+        }
+    }
+}
+
 - (void)processDrag:(UIPanGestureRecognizer*)gesture
 {
     WOPlanet* currentPlanet = [self.planets anyObject];

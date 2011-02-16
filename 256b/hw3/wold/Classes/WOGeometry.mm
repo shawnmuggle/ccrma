@@ -10,8 +10,28 @@
 
 #import "mo_gfx.h"
 
+GLuint sphereVBO;
+
 // TODO: Use display lists to speed these bitches up.
 @implementation WOGeometry
+
++ (void)initSphereVBO
+{
+//    // allocate a new buffer
+//    glGenBuffers(1, &sphereVBO);
+//    // bind the buffer object to use
+//    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
+//    
+//    // Let's make it 40 lats & 40 longs
+//    
+//    const GLsizeiptr vertex_size = NUMBER_OF_CUBE_VERTICES*NUMBER_OF_CUBE_COMPONENTS_PER_VERTEX*sizeof(GLfloat);
+//    const GLsizeiptr color_size = NUMBER_OF_CUBE_COLORS*NUMBER_OF_CUBE_COMPONENTS_PER_COLOR*sizeof(GLubyte);
+//    
+//    // allocate enough space for the VBO
+//    
+//    
+//    glBufferData(GL_ARRAY_BUFFER, vertex_size+color_size, 0, GL_STATIC_DRAW);
+}
 
 // TODO: Use triangle fans at the top and bottom instead of triangle strips, to have less redundancy?
 + (void)drawSphereWithRadius:(GLfloat)r andNumLats:(GLint)lats andNumLongs:(GLint)longs
