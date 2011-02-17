@@ -370,7 +370,8 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     float flutter_offset = 10 * sin(2.0*M_PI*phase);
     phase += freq * 0.05;
     glRotatef(90 + flutter_offset, 1.0f, 0.0f, 0.0f);
-    [WOGeometry drawFrustumWithBottomRadius:radius andTopRadius:radius andHeight:0.0001 andSections:5];
+    [WOGeometry drawDiskWithRadius:radius andSections:5];
+    //[WOGeometry drawFrustumWithBottomRadius:radius andTopRadius:radius andHeight:0.0001 andSections:5];
 }
 
 @end

@@ -56,6 +56,7 @@ GLuint g_texture[2];
     glEnable(GL_CULL_FACE);
     
     for (WOPlanet* planet in self.planets) {
+        [planet tick];
         [planet render];
     }
     
@@ -90,6 +91,12 @@ GLuint g_texture[2];
             break;
         }
     }
+}
+
+- (void) processPressEnd
+{
+    WOPlanet* currentPlanet = [self.planets anyObject];
+    [currentPlanet stopGrowing];
 }
 
 - (void) handleTapRay:(Vector3D)ray fromPoint:(Vector3D)touchPoint

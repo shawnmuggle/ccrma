@@ -39,6 +39,7 @@
 - (BOOL)resizeFromLayer:(CAEAGLLayer *)layer;
 - (void)processTouchLoc:(CGPoint)touchLoc;
 - (void)processTapLoc:(CGPoint)tapLoc;
+- (void)processPressEnd;
 - (void)processDrag:(UIPanGestureRecognizer*)gesture;
 
 @end

@@ -22,6 +22,7 @@
 
 - (void) render;
 - (void) handleTouchRay:(Vector3D)ray fromPoint:(Vector3D)touchPoint;
+- (void) processPressEnd;
 - (void) handleTapRay:(Vector3D)ray fromPoint:(Vector3D)touchPoint;
 - (void) processDrag:(UIPanGestureRecognizer*)gesture;
 

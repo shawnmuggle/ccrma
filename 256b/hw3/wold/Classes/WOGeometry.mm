@@ -193,4 +193,82 @@ GLuint sphereVBO;
     glDrawArrays(GL_TRIANGLE_FAN, 0, numFanVertices);
 }
 
++ (void)drawDiskWithRadius:(GLfloat)r andSections:(GLint)sections
+{
+    GLfloat h = 0.0001;
+    int numFanVertices = sections + 2;
+    
+    GLfloat bottomFanVertices[numFanVertices * 3];
+    GLfloat bottomFanNormals[numFanVertices * 3];
+    GLfloat bottomFanTexCoords[numFanVertices * 2];
+    bottomFanVertices[0] = 0.0f;
+    bottomFanVertices[1] = 0.0f;
+    bottomFanVertices[2] = 0.0f;
+    
+    bottomFanNormals[0] = 0.0f;
+    bottomFanNormals[1] = -1.0f;
+    bottomFanNormals[2] = 0.0f;
+    
+    bottomFanTexCoords[0] = 0.5;
+    bottomFanTexCoords[1] = 0.5;
+    
+    GLfloat topFanVertices[numFanVertices * 3];
+    GLfloat topFanNormals[numFanVertices * 3];
+    GLfloat topFanTexCoords[numFanVertices * 2];
+    topFanVertices[0] = 0.0f;
+    topFanVertices[1] = h;
+    topFanVertices[2] = 0.0f;
+    
+    topFanNormals[0] = 0.0f;
+    topFanNormals[1] = 1.0f;
+    topFanNormals[2] = 0.0f;
+    
+    topFanTexCoords[0] = 0.5;
+    topFanTexCoords[1] = 0.5;
+    
+    GLfloat percent, theta, x, z;
+    Vector3D norm;
+    for( int i = 0; i < numFanVertices - 1; i++) {
+        percent = i / (GLfloat)(numFanVertices - 2);
+        theta = 2 * M_PI * percent;
+        
+        x = r * cos(theta);
+        z = r * sin(theta);
+        
+        bottomFanVertices[(i + 1) * 3] = x;
+        bottomFanVertices[(i + 1) * 3 + 1] = 0.0f;
+        bottomFanVertices[(i + 1) * 3 + 2] = z;
+        
+        bottomFanNormals[(i + 1) * 3] = 0.0f;
+        bottomFanNormals[(i + 1) * 3 + 1] = -1.0f;
+        bottomFanNormals[(i + 1) * 3 + 2] = 0.0f;
+        
+        bottomFanTexCoords[(i + 1) * 2] = 0.5 + x / 2;
+        bottomFanTexCoords[(i + 1) * 2 + 1] = 0.5 + z / 2;
+        
+        // NOTE: This is written in reverse so that it winds correctly and OpenGL recognizes it as facing in the opposite direction from the bottom
+        topFanVertices[(numFanVertices - (i + 1)) * 3] = x;
+        topFanVertices[(numFanVertices - (i + 1)) * 3 + 1] = h;
+        topFanVertices[(numFanVertices - (i + 1)) * 3 + 2] = z;
+        
+        topFanNormals[(i + 1) * 3] = 0.0f;
+        topFanNormals[(i + 1) * 3 + 1] = 1.0f;
+        topFanNormals[(i + 1) * 3 + 2] = 0.0f;
+        
+        topFanTexCoords[(i + 1) * 2] = 0.5 + x / 2;
+        topFanTexCoords[(i + 1) * 2 + 1] = 0.5 + z / 2;
+    }
+
+    glVertexPointer(3, GL_FLOAT, 0, bottomFanVertices);
+    glNormalPointer(GL_FLOAT, 0, bottomFanNormals);
+    glTexCoordPointer( 2, GL_FLOAT, 0, bottomFanTexCoords );
+    glDrawArrays(GL_TRIANGLE_FAN, 0, numFanVertices);
+    
+    glVertexPointer(3, GL_FLOAT, 0, topFanVertices);
+    glNormalPointer(GL_FLOAT, 0, topFanNormals);
+    glTexCoordPointer( 2, GL_FLOAT, 0, topFanTexCoords );
+    glDrawArrays(GL_TRIANGLE_FAN, 0, numFanVertices);
+}
+
+
 @end

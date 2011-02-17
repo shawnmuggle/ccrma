@@ -7,7 +7,6 @@
 //
 
 #import "WOPlanet.h"
-#import "WOLSystem.h"
 
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
@@ -39,7 +38,7 @@ ArcBallT    ArcBall(768.0f * 2, 1024.0f);
 Point2fT    MousePt;
 
 @implementation WOPlanet
-@synthesize position, radius, lines, trees;
+@synthesize position, radius, lines, trees, growingTree;
 
 - (void) processDrag:(UIPanGestureRecognizer *)gesture
 {
@@ -183,6 +182,13 @@ Point2fT    MousePt;
     NSLog(@"ORIGIN: %f, %f, %f", tree.origin.x, tree.origin.y, tree.origin.z);
     NSLog(@"ANGLES: XY %f, XZ %f, YZ %f", xy_angle, xz_angle, yz_angle);
     
+    self.growingTree = tree;
+    
+}
+
+- (void) stopGrowing
+{
+    self.growingTree = nil;
 }
 
 - (void) transform
@@ -268,8 +274,7 @@ Point2fT    MousePt;
     }
     
     for (WOLSystem* tree in self.trees) {
-        [tree tick];
-        
+
         xy_angle = tree.origin.angleXY();
         xz_angle = tree.origin.angleXZ();
         yz_angle = tree.origin.angleYZ();
@@ -293,6 +298,11 @@ Point2fT    MousePt;
     glDisable(GL_LIGHTING);
     
     glPopMatrix();
+}
+
+- (void) tick
+{
+    [growingTree tick];
 }
 
 @end

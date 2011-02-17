@@ -164,6 +164,11 @@
     [self.state handleTapRay:ray fromPoint:nearPoint];
 }
 
+- (void)processPressEnd
+{
+    [self.state processPressEnd];
+}
+
 - (void)processDrag:(UIPanGestureRecognizer*)gesture
 {
     [self.state processDrag:gesture];

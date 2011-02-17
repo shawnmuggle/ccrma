@@ -94,7 +94,11 @@
         
         CGPoint pressPoint = [sender locationInView:sender.view];
         [(ES1Renderer*)renderer processTouchLoc:pressPoint];
+    } else if (sender.state == UIGestureRecognizerStateEnded) {
+        [(ES1Renderer*)renderer processPressEnd];
     }
+    
+    
     //[self.state addTouch:touch];
 }
 
