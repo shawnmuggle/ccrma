@@ -10,10 +10,12 @@
 #import "mo_gfx.h"
 
 @interface WOLSystemRenderState : NSObject {
-    NSMutableArray* widthStack;
+    //NSMutableArray* widthStack;
+    GLfloat* widthStack;
+    int stackIndex;
 }
 
-@property (nonatomic, retain) NSMutableArray* widthStack;
+//@property (nonatomic, retain) NSMutableArray* widthStack;
 
 - (float) oldWidth;
 - (float) newWidth;

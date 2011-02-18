@@ -10,6 +10,7 @@
 
 #import "ES1Renderer.h"
 
+#import "WOGeometry.h"
 
 @interface EAGLView ()
 @property (nonatomic, getter=isAnimating) BOOL animating;
@@ -41,6 +42,8 @@
         eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
                                         [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
 
+        //[WOGeometry generateDisk];
+        
         renderer = [[ES1Renderer alloc] init];
 
         if (!renderer)
@@ -97,9 +100,6 @@
     } else if (sender.state == UIGestureRecognizerStateEnded) {
         [(ES1Renderer*)renderer processPressEnd];
     }
-    
-    
-    //[self.state addTouch:touch];
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)sender

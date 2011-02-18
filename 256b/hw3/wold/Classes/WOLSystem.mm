@@ -21,48 +21,44 @@ float white[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 
 @implementation WOLSystemRenderState
-@synthesize widthStack;
+//@synthesize widthStack;
 
 - (id) init
 {
     self = [super init];
     if (self) {
-        self.widthStack = [NSMutableArray array];
-        [self.widthStack addObject:[NSNumber numberWithFloat:0.1]];
+        widthStack = new GLfloat[1000];
+        stackIndex = 0;
+        widthStack[stackIndex] = 0.1;
     }
     return self;
 }
 
 - (float) oldWidth
 {
-    NSNumber* top = [self.widthStack lastObject];
-    return [top floatValue];
+    return widthStack[stackIndex];
 }
 
 - (float) newWidth
 {
-    NSNumber* top = [self.widthStack lastObject];
-    [self.widthStack removeLastObject];
-    GLfloat newWidth = [top floatValue] * 0.65;
-    [self.widthStack addObject:[NSNumber numberWithFloat:newWidth]];
-    return newWidth;
-
+    widthStack[stackIndex] *= 0.65;
+    return widthStack[stackIndex];
 }
 
 - (void) push
 {
-    NSNumber* top = [self.widthStack lastObject];
-    [self.widthStack addObject:[NSNumber numberWithFloat:[top floatValue]]];
+    widthStack[stackIndex + 1] = widthStack[stackIndex];
+    stackIndex++;
 }
 
 - (void) pop
 {
-    [self.widthStack removeLastObject];
+    stackIndex--;
 }
 
 - (void) dealloc
 {
-    [widthStack release];
+    delete widthStack;
     
     [super dealloc];
 }
@@ -366,12 +362,15 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, green);
     
     GLfloat radius = 0.1;
+
+    //glPushMatrix();
     glTranslatef(0.0f, radius, 0.0f);
     float flutter_offset = 10 * sin(2.0*M_PI*phase);
     phase += freq * 0.05;
     glRotatef(90 + flutter_offset, 1.0f, 0.0f, 0.0f);
-    [WOGeometry drawDiskWithRadius:radius andSections:5];
-    //[WOGeometry drawFrustumWithBottomRadius:radius andTopRadius:radius andHeight:0.0001 andSections:5];
+    //glScalef(radius, 1.0, radius);
+    //[WOGeometry drawDiskWithRadius:radius andSections:5];
+    //glPopMatrix();
 }
 
 @end

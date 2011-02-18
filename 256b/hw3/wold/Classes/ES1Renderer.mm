@@ -8,7 +8,7 @@
 
 #import "ES1Renderer.h"
 
-#import "glu.h".f
+#import "glu.h"
 
 @implementation ES1Renderer
 

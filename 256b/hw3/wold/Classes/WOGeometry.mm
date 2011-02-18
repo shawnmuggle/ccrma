@@ -193,6 +193,101 @@ GLuint sphereVBO;
     glDrawArrays(GL_TRIANGLE_FAN, 0, numFanVertices);
 }
 
+//
+//// SADNESS but I need these in class methods.
+//// Disk geometry:
+//GLfloat* diskBottomVertices;
+//GLfloat* diskBottomNormals;
+//GLfloat* diskBottomTexCoords;
+//GLfloat* diskTopVertices;
+//GLfloat* diskTopNormals;
+//GLfloat* diskTopTexCoords;
+//int numDiskVertices;
+//
+//+ (void) generateDisk
+//{
+//    // Assume 5 sections (like leaves have, duh)
+//    int sections = 5;
+//    GLfloat h = 0.0001;
+//    GLfloat r = 1.0; // Scale it later!
+//    numDiskVertices = sections + 2;
+//    
+//    diskBottomVertices = new GLfloat[numDiskVertices * 3];
+//    diskBottomNormals = new GLfloat[numDiskVertices * 3];
+//    diskBottomTexCoords = new GLfloat[numDiskVertices * 2];
+//    diskBottomVertices[0] = 0.0f;
+//    diskBottomVertices[1] = 0.0f;
+//    diskBottomVertices[2] = 0.0f;
+//    
+//    diskBottomNormals[0] = 0.0f;
+//    diskBottomNormals[1] = -1.0f;
+//    diskBottomNormals[2] = 0.0f;
+//    
+//    diskBottomTexCoords[0] = 0.5;
+//    diskBottomTexCoords[1] = 0.5;
+//    
+//    diskTopVertices = new GLfloat[numDiskVertices * 3];
+//    diskTopNormals = new GLfloat[numDiskVertices * 3];
+//    diskTopTexCoords = new GLfloat[numDiskVertices * 2];
+//    diskTopVertices[0] = 0.0f;
+//    diskTopVertices[1] = h;
+//    diskTopVertices[2] = 0.0f;
+//    
+//    diskTopNormals[0] = 0.0f;
+//    diskTopNormals[1] = 1.0f;
+//    diskTopNormals[2] = 0.0f;
+//    
+//    diskTopTexCoords[0] = 0.5;
+//    diskTopTexCoords[1] = 0.5;
+//    
+//    GLfloat percent, theta, x, z;
+//    Vector3D norm;
+//    for( int i = 0; i < numDiskVertices - 1; i++) {
+//        percent = i / (GLfloat)(numDiskVertices - 2);
+//        theta = 2 * M_PI * percent;
+//        
+//        x = r * cos(theta);
+//        z = r * sin(theta);
+//        
+//        diskBottomVertices[(i + 1) * 3] = x;
+//        diskBottomVertices[(i + 1) * 3 + 1] = 0.0f;
+//        diskBottomVertices[(i + 1) * 3 + 2] = z;
+//        
+//        diskBottomNormals[(i + 1) * 3] = 0.0f;
+//        diskBottomNormals[(i + 1) * 3 + 1] = -1.0f;
+//        diskBottomNormals[(i + 1) * 3 + 2] = 0.0f;
+//        
+//        diskBottomTexCoords[(i + 1) * 2] = 0.5 + x / 2;
+//        diskBottomTexCoords[(i + 1) * 2 + 1] = 0.5 + z / 2;
+//        
+//        // NOTE: This is written in reverse so that it winds correctly and OpenGL recognizes it as facing in the opposite direction from the bottom
+//        diskTopVertices[(numDiskVertices - (i + 1)) * 3] = x;
+//        diskTopVertices[(numDiskVertices - (i + 1)) * 3 + 1] = h;
+//        diskTopVertices[(numDiskVertices - (i + 1)) * 3 + 2] = z;
+//        
+//        diskTopNormals[(i + 1) * 3] = 0.0f;
+//        diskTopNormals[(i + 1) * 3 + 1] = 1.0f;
+//        diskTopNormals[(i + 1) * 3 + 2] = 0.0f;
+//        
+//        diskTopTexCoords[(i + 1) * 2] = 0.5 + x / 2;
+//        diskTopTexCoords[(i + 1) * 2 + 1] = 0.5 + z / 2;
+//    }
+//
+//}
+//
+//+ (void)drawDiskWithRadius:(GLfloat)r andSections:(GLint)sections
+//{
+//    glVertexPointer(3, GL_FLOAT, 0, diskBottomVertices);
+//    glNormalPointer(GL_FLOAT, 0, diskBottomNormals);
+//    glTexCoordPointer( 2, GL_FLOAT, 0, diskBottomTexCoords );
+//    glDrawArrays(GL_TRIANGLE_FAN, 0, numDiskVertices);
+//     
+//    glVertexPointer(3, GL_FLOAT, 0, diskTopVertices);
+//    glNormalPointer(GL_FLOAT, 0, diskTopNormals);
+//    glTexCoordPointer( 2, GL_FLOAT, 0, diskTopTexCoords );
+//    glDrawArrays(GL_TRIANGLE_FAN, 0, numDiskVertices);
+//}
+
 + (void)drawDiskWithRadius:(GLfloat)r andSections:(GLint)sections
 {
     GLfloat h = 0.0001;
