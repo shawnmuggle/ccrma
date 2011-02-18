@@ -15,9 +15,11 @@
 }
 
 + (void)drawSphereWithRadius:(GLfloat)r andNumLats:(GLint)lats andNumLongs:(GLint)longs;
+
++ (void)generateFrustum;
 + (void)drawFrustumWithBottomRadius:(GLfloat)rBottom andTopRadius:(GLfloat)topRadius andHeight:(GLfloat)h andSections:(GLint)sections;
 
-//+ (void)generateDisk;
++ (void)generateDisk;
 + (void)drawDiskWithRadius:(GLfloat)r andSections:(GLint)sections;
 
 @end

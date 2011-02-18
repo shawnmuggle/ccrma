@@ -363,14 +363,11 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     
     GLfloat radius = 0.1;
 
-    //glPushMatrix();
     glTranslatef(0.0f, radius, 0.0f);
     float flutter_offset = 10 * sin(2.0*M_PI*phase);
     phase += freq * 0.05;
     glRotatef(90 + flutter_offset, 1.0f, 0.0f, 0.0f);
-    //glScalef(radius, 1.0, radius);
-    //[WOGeometry drawDiskWithRadius:radius andSections:5];
-    //glPopMatrix();
+    [WOGeometry drawDiskWithRadius:radius andSections:5];
 }
 
 @end

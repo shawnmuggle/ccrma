@@ -79,14 +79,35 @@ GLuint sphereVBO;
     }
 }
 
-+ (void)drawFrustumWithBottomRadius:(GLfloat)rBottom andTopRadius:(GLfloat)rTop andHeight:(GLfloat)h andSections:(GLint)sections
+// Globals so I can use them from class methods
+GLfloat* bottomFanVertices;
+GLfloat* bottomFanNormals;
+GLfloat* bottomFanTexCoords;
+
+GLfloat* topFanVertices;
+GLfloat* topFanNormals;
+GLfloat* topFanTexCoords;
+
+GLfloat* tubeVertices;
+GLfloat* tubeNormals;
+GLfloat* tubeTexCoords;
+
+int numTubeVertices;
+int numFanVertices;
+
++ (void)generateFrustum
 {
-    int numTubeVertices = (sections + 1) * 2;
-    int numFanVertices = sections + 2;
+    GLfloat rBottom = 1.0; // Scale me later!
+    GLfloat rTop = 0.65; // Like our tree frustums, duh!
+    GLfloat h = 1.0; // Scale me later!
+    int sections = 5; // Like our trees, again.
     
-    GLfloat bottomFanVertices[numFanVertices * 3];
-    GLfloat bottomFanNormals[numFanVertices * 3];
-    GLfloat bottomFanTexCoords[numFanVertices * 2];
+    numTubeVertices = (sections + 1) * 2;
+    numFanVertices = sections + 2;
+    
+    bottomFanVertices = new GLfloat[numFanVertices * 3];
+    bottomFanNormals = new GLfloat[numFanVertices * 3];
+    bottomFanTexCoords = new GLfloat[numFanVertices * 2];
     bottomFanVertices[0] = 0.0f;
     bottomFanVertices[1] = 0.0f;
     bottomFanVertices[2] = 0.0f;
@@ -98,9 +119,9 @@ GLuint sphereVBO;
     bottomFanTexCoords[0] = 0.5;
     bottomFanTexCoords[1] = 0.5;
     
-    GLfloat topFanVertices[numFanVertices * 3];
-    GLfloat topFanNormals[numFanVertices * 3];
-    GLfloat topFanTexCoords[numFanVertices * 2];
+    topFanVertices = new GLfloat[numFanVertices * 3];
+    topFanNormals = new GLfloat[numFanVertices * 3];
+    topFanTexCoords = new GLfloat[numFanVertices * 2];
     topFanVertices[0] = 0.0f;
     topFanVertices[1] = h;
     topFanVertices[2] = 0.0f;
@@ -108,13 +129,13 @@ GLuint sphereVBO;
     topFanNormals[0] = 0.0f;
     topFanNormals[1] = 1.0f;
     topFanNormals[2] = 0.0f;
-
+    
     topFanTexCoords[0] = 0.5;
     topFanTexCoords[1] = 0.5;
     
-    GLfloat tubeVertices[numTubeVertices * 3];
-    GLfloat tubeNormals[numTubeVertices * 3];
-    GLfloat tubeTexCoords[numTubeVertices * 2];
+    tubeVertices = new GLfloat[numTubeVertices * 3];
+    tubeNormals = new GLfloat[numTubeVertices * 3];
+    tubeTexCoords = new GLfloat[numTubeVertices * 2];
     
     GLfloat percent, theta, bottomX, topX, bottomZ, topZ;
     Vector3D norm;
@@ -174,9 +195,110 @@ GLuint sphereVBO;
         tubeTexCoords[i * 2 * 2 + 1] = 0.0f;
         tubeTexCoords[i * 2 * 2 + 2] = percent;
         tubeTexCoords[i * 2 * 2 + 3] = 1.0f;
-        
     }
+}
 
++ (void)drawFrustumWithBottomRadius:(GLfloat)rBottom andTopRadius:(GLfloat)rTop andHeight:(GLfloat)h andSections:(GLint)sections
+{
+//    int numTubeVertices = (sections + 1) * 2;
+//    int numFanVertices = sections + 2;
+//    
+//    GLfloat bottomFanVertices[numFanVertices * 3];
+//    GLfloat bottomFanNormals[numFanVertices * 3];
+//    GLfloat bottomFanTexCoords[numFanVertices * 2];
+//    bottomFanVertices[0] = 0.0f;
+//    bottomFanVertices[1] = 0.0f;
+//    bottomFanVertices[2] = 0.0f;
+//    
+//    bottomFanNormals[0] = 0.0f;
+//    bottomFanNormals[1] = -1.0f;
+//    bottomFanNormals[2] = 0.0f;
+//    
+//    bottomFanTexCoords[0] = 0.5;
+//    bottomFanTexCoords[1] = 0.5;
+//    
+//    GLfloat topFanVertices[numFanVertices * 3];
+//    GLfloat topFanNormals[numFanVertices * 3];
+//    GLfloat topFanTexCoords[numFanVertices * 2];
+//    topFanVertices[0] = 0.0f;
+//    topFanVertices[1] = h;
+//    topFanVertices[2] = 0.0f;
+//    
+//    topFanNormals[0] = 0.0f;
+//    topFanNormals[1] = 1.0f;
+//    topFanNormals[2] = 0.0f;
+//
+//    topFanTexCoords[0] = 0.5;
+//    topFanTexCoords[1] = 0.5;
+//    
+//    GLfloat tubeVertices[numTubeVertices * 3];
+//    GLfloat tubeNormals[numTubeVertices * 3];
+//    GLfloat tubeTexCoords[numTubeVertices * 2];
+//    
+//    GLfloat percent, theta, bottomX, topX, bottomZ, topZ;
+//    Vector3D norm;
+//    for( int i = 0; i < numFanVertices - 1; i++) {
+//        percent = i / (GLfloat)(numFanVertices - 2);
+//        theta = 2 * M_PI * percent;
+//        
+//        bottomX = rBottom * cos(theta);
+//        bottomZ = rBottom * sin(theta);
+//        topX = rTop * cos(theta);
+//        topZ = rTop * sin(theta);
+//        
+//        bottomFanVertices[(i + 1) * 3] = bottomX;
+//        bottomFanVertices[(i + 1) * 3 + 1] = 0.0f;
+//        bottomFanVertices[(i + 1) * 3 + 2] = bottomZ;
+//        
+//        bottomFanNormals[(i + 1) * 3] = 0.0f;
+//        bottomFanNormals[(i + 1) * 3 + 1] = -1.0f;
+//        bottomFanNormals[(i + 1) * 3 + 2] = 0.0f;
+//        
+//        bottomFanTexCoords[(i + 1) * 2] = 0.5 + bottomX / 2;
+//        bottomFanTexCoords[(i + 1) * 2 + 1] = 0.5 + bottomZ / 2;
+//        
+//        // NOTE: This is written in reverse so that it winds correctly and OpenGL recognizes it as facing in the opposite direction from the bottom
+//        topFanVertices[(numFanVertices - (i + 1)) * 3] = topX;
+//        topFanVertices[(numFanVertices - (i + 1)) * 3 + 1] = h;
+//        topFanVertices[(numFanVertices - (i + 1)) * 3 + 2] = topZ;
+//        
+//        topFanNormals[(i + 1) * 3] = 0.0f;
+//        topFanNormals[(i + 1) * 3 + 1] = 1.0f;
+//        topFanNormals[(i + 1) * 3 + 2] = 0.0f;
+//        
+//        topFanTexCoords[(i + 1) * 2] = 0.5 + topX / 2;
+//        topFanTexCoords[(i + 1) * 2 + 1] = 0.5 + topZ / 2;
+//        
+//        tubeVertices[i * 3 * 2] = bottomX;
+//        tubeVertices[i * 3 * 2 + 1] = 0.0f;
+//        tubeVertices[i * 3 * 2 + 2] = bottomZ;
+//        tubeVertices[i * 3 * 2 + 3] = topX;
+//        tubeVertices[i * 3 * 2 + 4] = h;
+//        tubeVertices[i * 3 * 2 + 5] = topZ;
+//        
+//        norm.x = bottomX;
+//        norm.z = bottomZ;
+//        norm.normalize();
+//        tubeNormals[i * 3 * 2] = norm.x;
+//        tubeNormals[i * 3 * 2 + 1] = 0.0f;
+//        tubeNormals[i * 3 * 2 + 2] = norm.z;
+//        norm.x = topX;
+//        norm.z = topZ;
+//        norm.normalize();
+//        tubeNormals[i * 3 * 2 + 3] = norm.x;
+//        tubeNormals[i * 3 * 2 + 4] = 0.0f;
+//        tubeNormals[i * 3 * 2 + 5] = norm.z;
+//        
+//        tubeTexCoords[i * 2 * 2] = percent;
+//        tubeTexCoords[i * 2 * 2 + 1] = 0.0f;
+//        tubeTexCoords[i * 2 * 2 + 2] = percent;
+//        tubeTexCoords[i * 2 * 2 + 3] = 1.0f;
+//        
+//    }
+
+    glPushMatrix();
+    glScalef(rBottom, h, rBottom);
+    
     glVertexPointer(3, GL_FLOAT, 0, tubeVertices);
     glNormalPointer(GL_FLOAT, 0, tubeNormals);
     glTexCoordPointer( 2, GL_FLOAT, 0, tubeTexCoords );
@@ -191,179 +313,186 @@ GLuint sphereVBO;
     glNormalPointer(GL_FLOAT, 0, topFanNormals);
     glTexCoordPointer( 2, GL_FLOAT, 0, topFanTexCoords );
     glDrawArrays(GL_TRIANGLE_FAN, 0, numFanVertices);
+    
+    glPopMatrix();
 }
 
-//
-//// SADNESS but I need these in class methods.
-//// Disk geometry:
-//GLfloat* diskBottomVertices;
-//GLfloat* diskBottomNormals;
-//GLfloat* diskBottomTexCoords;
-//GLfloat* diskTopVertices;
-//GLfloat* diskTopNormals;
-//GLfloat* diskTopTexCoords;
-//int numDiskVertices;
-//
-//+ (void) generateDisk
-//{
-//    // Assume 5 sections (like leaves have, duh)
-//    int sections = 5;
-//    GLfloat h = 0.0001;
-//    GLfloat r = 1.0; // Scale it later!
-//    numDiskVertices = sections + 2;
-//    
-//    diskBottomVertices = new GLfloat[numDiskVertices * 3];
-//    diskBottomNormals = new GLfloat[numDiskVertices * 3];
-//    diskBottomTexCoords = new GLfloat[numDiskVertices * 2];
-//    diskBottomVertices[0] = 0.0f;
-//    diskBottomVertices[1] = 0.0f;
-//    diskBottomVertices[2] = 0.0f;
-//    
-//    diskBottomNormals[0] = 0.0f;
-//    diskBottomNormals[1] = -1.0f;
-//    diskBottomNormals[2] = 0.0f;
-//    
-//    diskBottomTexCoords[0] = 0.5;
-//    diskBottomTexCoords[1] = 0.5;
-//    
-//    diskTopVertices = new GLfloat[numDiskVertices * 3];
-//    diskTopNormals = new GLfloat[numDiskVertices * 3];
-//    diskTopTexCoords = new GLfloat[numDiskVertices * 2];
-//    diskTopVertices[0] = 0.0f;
-//    diskTopVertices[1] = h;
-//    diskTopVertices[2] = 0.0f;
-//    
-//    diskTopNormals[0] = 0.0f;
-//    diskTopNormals[1] = 1.0f;
-//    diskTopNormals[2] = 0.0f;
-//    
-//    diskTopTexCoords[0] = 0.5;
-//    diskTopTexCoords[1] = 0.5;
-//    
-//    GLfloat percent, theta, x, z;
-//    Vector3D norm;
-//    for( int i = 0; i < numDiskVertices - 1; i++) {
-//        percent = i / (GLfloat)(numDiskVertices - 2);
-//        theta = 2 * M_PI * percent;
-//        
-//        x = r * cos(theta);
-//        z = r * sin(theta);
-//        
-//        diskBottomVertices[(i + 1) * 3] = x;
-//        diskBottomVertices[(i + 1) * 3 + 1] = 0.0f;
-//        diskBottomVertices[(i + 1) * 3 + 2] = z;
-//        
-//        diskBottomNormals[(i + 1) * 3] = 0.0f;
-//        diskBottomNormals[(i + 1) * 3 + 1] = -1.0f;
-//        diskBottomNormals[(i + 1) * 3 + 2] = 0.0f;
-//        
-//        diskBottomTexCoords[(i + 1) * 2] = 0.5 + x / 2;
-//        diskBottomTexCoords[(i + 1) * 2 + 1] = 0.5 + z / 2;
-//        
-//        // NOTE: This is written in reverse so that it winds correctly and OpenGL recognizes it as facing in the opposite direction from the bottom
-//        diskTopVertices[(numDiskVertices - (i + 1)) * 3] = x;
-//        diskTopVertices[(numDiskVertices - (i + 1)) * 3 + 1] = h;
-//        diskTopVertices[(numDiskVertices - (i + 1)) * 3 + 2] = z;
-//        
-//        diskTopNormals[(i + 1) * 3] = 0.0f;
-//        diskTopNormals[(i + 1) * 3 + 1] = 1.0f;
-//        diskTopNormals[(i + 1) * 3 + 2] = 0.0f;
-//        
-//        diskTopTexCoords[(i + 1) * 2] = 0.5 + x / 2;
-//        diskTopTexCoords[(i + 1) * 2 + 1] = 0.5 + z / 2;
-//    }
-//
-//}
-//
-//+ (void)drawDiskWithRadius:(GLfloat)r andSections:(GLint)sections
-//{
-//    glVertexPointer(3, GL_FLOAT, 0, diskBottomVertices);
-//    glNormalPointer(GL_FLOAT, 0, diskBottomNormals);
-//    glTexCoordPointer( 2, GL_FLOAT, 0, diskBottomTexCoords );
-//    glDrawArrays(GL_TRIANGLE_FAN, 0, numDiskVertices);
-//     
-//    glVertexPointer(3, GL_FLOAT, 0, diskTopVertices);
-//    glNormalPointer(GL_FLOAT, 0, diskTopNormals);
-//    glTexCoordPointer( 2, GL_FLOAT, 0, diskTopTexCoords );
-//    glDrawArrays(GL_TRIANGLE_FAN, 0, numDiskVertices);
-//}
 
-+ (void)drawDiskWithRadius:(GLfloat)r andSections:(GLint)sections
+// SADNESS but I need these in class methods.
+// Disk geometry:
+GLfloat* diskBottomVertices;
+GLfloat* diskBottomNormals;
+GLfloat* diskBottomTexCoords;
+GLfloat* diskTopVertices;
+GLfloat* diskTopNormals;
+GLfloat* diskTopTexCoords;
+int numDiskVertices;
+
++ (void) generateDisk
 {
+    // Assume 5 sections (like leaves have, duh)
+    int sections = 5;
     GLfloat h = 0.0001;
-    int numFanVertices = sections + 2;
+    GLfloat r = 1.0; // Scale it later!
+    numDiskVertices = sections + 2;
     
-    GLfloat bottomFanVertices[numFanVertices * 3];
-    GLfloat bottomFanNormals[numFanVertices * 3];
-    GLfloat bottomFanTexCoords[numFanVertices * 2];
-    bottomFanVertices[0] = 0.0f;
-    bottomFanVertices[1] = 0.0f;
-    bottomFanVertices[2] = 0.0f;
+    diskBottomVertices = new GLfloat[numDiskVertices * 3];
+    diskBottomNormals = new GLfloat[numDiskVertices * 3];
+    diskBottomTexCoords = new GLfloat[numDiskVertices * 2];
+    diskBottomVertices[0] = 0.0f;
+    diskBottomVertices[1] = 0.0f;
+    diskBottomVertices[2] = 0.0f;
     
-    bottomFanNormals[0] = 0.0f;
-    bottomFanNormals[1] = -1.0f;
-    bottomFanNormals[2] = 0.0f;
+    diskBottomNormals[0] = 0.0f;
+    diskBottomNormals[1] = -1.0f;
+    diskBottomNormals[2] = 0.0f;
     
-    bottomFanTexCoords[0] = 0.5;
-    bottomFanTexCoords[1] = 0.5;
+    diskBottomTexCoords[0] = 0.5;
+    diskBottomTexCoords[1] = 0.5;
     
-    GLfloat topFanVertices[numFanVertices * 3];
-    GLfloat topFanNormals[numFanVertices * 3];
-    GLfloat topFanTexCoords[numFanVertices * 2];
-    topFanVertices[0] = 0.0f;
-    topFanVertices[1] = h;
-    topFanVertices[2] = 0.0f;
+    diskTopVertices = new GLfloat[numDiskVertices * 3];
+    diskTopNormals = new GLfloat[numDiskVertices * 3];
+    diskTopTexCoords = new GLfloat[numDiskVertices * 2];
+    diskTopVertices[0] = 0.0f;
+    diskTopVertices[1] = h;
+    diskTopVertices[2] = 0.0f;
     
-    topFanNormals[0] = 0.0f;
-    topFanNormals[1] = 1.0f;
-    topFanNormals[2] = 0.0f;
+    diskTopNormals[0] = 0.0f;
+    diskTopNormals[1] = 1.0f;
+    diskTopNormals[2] = 0.0f;
     
-    topFanTexCoords[0] = 0.5;
-    topFanTexCoords[1] = 0.5;
+    diskTopTexCoords[0] = 0.5;
+    diskTopTexCoords[1] = 0.5;
     
     GLfloat percent, theta, x, z;
     Vector3D norm;
-    for( int i = 0; i < numFanVertices - 1; i++) {
-        percent = i / (GLfloat)(numFanVertices - 2);
+    for( int i = 0; i < numDiskVertices - 1; i++) {
+        percent = i / (GLfloat)(numDiskVertices - 2);
         theta = 2 * M_PI * percent;
         
         x = r * cos(theta);
         z = r * sin(theta);
         
-        bottomFanVertices[(i + 1) * 3] = x;
-        bottomFanVertices[(i + 1) * 3 + 1] = 0.0f;
-        bottomFanVertices[(i + 1) * 3 + 2] = z;
+        diskBottomVertices[(i + 1) * 3] = x;
+        diskBottomVertices[(i + 1) * 3 + 1] = 0.0f;
+        diskBottomVertices[(i + 1) * 3 + 2] = z;
         
-        bottomFanNormals[(i + 1) * 3] = 0.0f;
-        bottomFanNormals[(i + 1) * 3 + 1] = -1.0f;
-        bottomFanNormals[(i + 1) * 3 + 2] = 0.0f;
+        diskBottomNormals[(i + 1) * 3] = 0.0f;
+        diskBottomNormals[(i + 1) * 3 + 1] = -1.0f;
+        diskBottomNormals[(i + 1) * 3 + 2] = 0.0f;
         
-        bottomFanTexCoords[(i + 1) * 2] = 0.5 + x / 2;
-        bottomFanTexCoords[(i + 1) * 2 + 1] = 0.5 + z / 2;
+        diskBottomTexCoords[(i + 1) * 2] = 0.5 + x / 2;
+        diskBottomTexCoords[(i + 1) * 2 + 1] = 0.5 + z / 2;
         
         // NOTE: This is written in reverse so that it winds correctly and OpenGL recognizes it as facing in the opposite direction from the bottom
-        topFanVertices[(numFanVertices - (i + 1)) * 3] = x;
-        topFanVertices[(numFanVertices - (i + 1)) * 3 + 1] = h;
-        topFanVertices[(numFanVertices - (i + 1)) * 3 + 2] = z;
+        diskTopVertices[(numDiskVertices - (i + 1)) * 3] = x;
+        diskTopVertices[(numDiskVertices - (i + 1)) * 3 + 1] = h;
+        diskTopVertices[(numDiskVertices - (i + 1)) * 3 + 2] = z;
         
-        topFanNormals[(i + 1) * 3] = 0.0f;
-        topFanNormals[(i + 1) * 3 + 1] = 1.0f;
-        topFanNormals[(i + 1) * 3 + 2] = 0.0f;
+        diskTopNormals[(i + 1) * 3] = 0.0f;
+        diskTopNormals[(i + 1) * 3 + 1] = 1.0f;
+        diskTopNormals[(i + 1) * 3 + 2] = 0.0f;
         
-        topFanTexCoords[(i + 1) * 2] = 0.5 + x / 2;
-        topFanTexCoords[(i + 1) * 2 + 1] = 0.5 + z / 2;
+        diskTopTexCoords[(i + 1) * 2] = 0.5 + x / 2;
+        diskTopTexCoords[(i + 1) * 2 + 1] = 0.5 + z / 2;
     }
 
-    glVertexPointer(3, GL_FLOAT, 0, bottomFanVertices);
-    glNormalPointer(GL_FLOAT, 0, bottomFanNormals);
-    glTexCoordPointer( 2, GL_FLOAT, 0, bottomFanTexCoords );
-    glDrawArrays(GL_TRIANGLE_FAN, 0, numFanVertices);
-    
-    glVertexPointer(3, GL_FLOAT, 0, topFanVertices);
-    glNormalPointer(GL_FLOAT, 0, topFanNormals);
-    glTexCoordPointer( 2, GL_FLOAT, 0, topFanTexCoords );
-    glDrawArrays(GL_TRIANGLE_FAN, 0, numFanVertices);
 }
+
++ (void)drawDiskWithRadius:(GLfloat)r andSections:(GLint)sections
+{
+    glPushMatrix();
+    glScalef(r, 1.0, r);
+    
+    glVertexPointer(3, GL_FLOAT, 0, diskBottomVertices);
+    glNormalPointer(GL_FLOAT, 0, diskBottomNormals);
+    glTexCoordPointer( 2, GL_FLOAT, 0, diskBottomTexCoords );
+    glDrawArrays(GL_TRIANGLE_FAN, 0, numDiskVertices);
+     
+    glVertexPointer(3, GL_FLOAT, 0, diskTopVertices);
+    glNormalPointer(GL_FLOAT, 0, diskTopNormals);
+    glTexCoordPointer( 2, GL_FLOAT, 0, diskTopTexCoords );
+    glDrawArrays(GL_TRIANGLE_FAN, 0, numDiskVertices);
+    
+    glPopMatrix();
+}
+
+//+ (void)drawDiskWithRadius:(GLfloat)r andSections:(GLint)sections
+//{
+//    GLfloat h = 0.0001;
+//    int numFanVertices = sections + 2;
+//    
+//    GLfloat bottomFanVertices[numFanVertices * 3];
+//    GLfloat bottomFanNormals[numFanVertices * 3];
+//    GLfloat bottomFanTexCoords[numFanVertices * 2];
+//    bottomFanVertices[0] = 0.0f;
+//    bottomFanVertices[1] = 0.0f;
+//    bottomFanVertices[2] = 0.0f;
+//    
+//    bottomFanNormals[0] = 0.0f;
+//    bottomFanNormals[1] = -1.0f;
+//    bottomFanNormals[2] = 0.0f;
+//    
+//    bottomFanTexCoords[0] = 0.5;
+//    bottomFanTexCoords[1] = 0.5;
+//    
+//    GLfloat topFanVertices[numFanVertices * 3];
+//    GLfloat topFanNormals[numFanVertices * 3];
+//    GLfloat topFanTexCoords[numFanVertices * 2];
+//    topFanVertices[0] = 0.0f;
+//    topFanVertices[1] = h;
+//    topFanVertices[2] = 0.0f;
+//    
+//    topFanNormals[0] = 0.0f;
+//    topFanNormals[1] = 1.0f;
+//    topFanNormals[2] = 0.0f;
+//    
+//    topFanTexCoords[0] = 0.5;
+//    topFanTexCoords[1] = 0.5;
+//    
+//    GLfloat percent, theta, x, z;
+//    Vector3D norm;
+//    for( int i = 0; i < numFanVertices - 1; i++) {
+//        percent = i / (GLfloat)(numFanVertices - 2);
+//        theta = 2 * M_PI * percent;
+//        
+//        x = r * cos(theta);
+//        z = r * sin(theta);
+//        
+//        bottomFanVertices[(i + 1) * 3] = x;
+//        bottomFanVertices[(i + 1) * 3 + 1] = 0.0f;
+//        bottomFanVertices[(i + 1) * 3 + 2] = z;
+//        
+//        bottomFanNormals[(i + 1) * 3] = 0.0f;
+//        bottomFanNormals[(i + 1) * 3 + 1] = -1.0f;
+//        bottomFanNormals[(i + 1) * 3 + 2] = 0.0f;
+//        
+//        bottomFanTexCoords[(i + 1) * 2] = 0.5 + x / 2;
+//        bottomFanTexCoords[(i + 1) * 2 + 1] = 0.5 + z / 2;
+//        
+//        // NOTE: This is written in reverse so that it winds correctly and OpenGL recognizes it as facing in the opposite direction from the bottom
+//        topFanVertices[(numFanVertices - (i + 1)) * 3] = x;
+//        topFanVertices[(numFanVertices - (i + 1)) * 3 + 1] = h;
+//        topFanVertices[(numFanVertices - (i + 1)) * 3 + 2] = z;
+//        
+//        topFanNormals[(i + 1) * 3] = 0.0f;
+//        topFanNormals[(i + 1) * 3 + 1] = 1.0f;
+//        topFanNormals[(i + 1) * 3 + 2] = 0.0f;
+//        
+//        topFanTexCoords[(i + 1) * 2] = 0.5 + x / 2;
+//        topFanTexCoords[(i + 1) * 2 + 1] = 0.5 + z / 2;
+//    }
+//
+//    glVertexPointer(3, GL_FLOAT, 0, bottomFanVertices);
+//    glNormalPointer(GL_FLOAT, 0, bottomFanNormals);
+//    glTexCoordPointer( 2, GL_FLOAT, 0, bottomFanTexCoords );
+//    glDrawArrays(GL_TRIANGLE_FAN, 0, numFanVertices);
+//    
+//    glVertexPointer(3, GL_FLOAT, 0, topFanVertices);
+//    glNormalPointer(GL_FLOAT, 0, topFanNormals);
+//    glTexCoordPointer( 2, GL_FLOAT, 0, topFanTexCoords );
+//    glDrawArrays(GL_TRIANGLE_FAN, 0, numFanVertices);
+//}
 
 
 @end
