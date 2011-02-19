@@ -91,6 +91,7 @@
 		D553EEF31309383200829ECF /* glu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = glu.mm; sourceTree = "<group>"; };
 		D553EF991309E77D00829ECF /* venusbump.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = venusbump.jpg; sourceTree = "<group>"; };
 		D55E3A98130C2C17009E23B7 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		D5941680130EDABC00EC5427 /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
 		D5A1855C12FC438600107C05 /* WOLSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLSystem.h; sourceTree = "<group>"; };
 		D5A1855D12FC438600107C05 /* WOLSystem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WOLSystem.mm; sourceTree = "<group>"; };
 		D5A187D91300776900107C05 /* AKTouchTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKTouchTracker.h; sourceTree = "<group>"; };
@@ -203,6 +204,7 @@
 				D553EC8C1308F3E700829ECF /* WOPlanet.mm */,
 				D51DF015130B8A390057FD04 /* WOGeometry.h */,
 				D51DF016130B8A390057FD04 /* WOGeometry.mm */,
+				D5941680130EDABC00EC5427 /* Vector.hpp */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

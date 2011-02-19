@@ -9,6 +9,7 @@
 #import "WOGeometry.h"
 
 #import "mo_gfx.h"
+#import "Vector.hpp"
 
 GLuint sphereVBO;
 
@@ -79,21 +80,22 @@ GLuint sphereVBO;
     }
 }
 
+struct Vertex {
+    vec3 Position;
+    vec4 Color;
+}
+
 // Globals so I can use them from class methods
-GLfloat* bottomFanVertices;
-GLfloat* bottomFanNormals;
-GLfloat* bottomFanTexCoords;
-
-GLfloat* topFanVertices;
-GLfloat* topFanNormals;
-GLfloat* topFanTexCoords;
-
 GLfloat* tubeVertices;
 GLfloat* tubeNormals;
 GLfloat* tubeTexCoords;
 
 int numTubeVertices;
 int numFanVertices;
+
+// NEW HOTNESS using vertex indexing and drawElements
+GLfloat* frustumVertices;
+//GLubyte* frustumIndices;
 
 + (void)generateFrustum
 {
@@ -105,12 +107,16 @@ int numFanVertices;
     numTubeVertices = (sections + 1) * 2;
     numFanVertices = sections + 2;
     
-    bottomFanVertices = new GLfloat[numFanVertices * 3];
+    frustumVertices = new GLfloat[numTubeVertices + (numFanVertices * 2) * 3];
+    int vertexIndex = 0;
+    
     bottomFanNormals = new GLfloat[numFanVertices * 3];
     bottomFanTexCoords = new GLfloat[numFanVertices * 2];
-    bottomFanVertices[0] = 0.0f;
-    bottomFanVertices[1] = 0.0f;
-    bottomFanVertices[2] = 0.0f;
+    
+    frustumVertices[vertexIndex * 3] = 0.0f;
+    frustumVertices[vertexIndex * 3 + 1] = 0.0f;
+    frustumVertices[vertexIndex * 3 + 2] = 0.0f;
+    vertexIndex++;
     
     bottomFanNormals[0] = 0.0f;
     bottomFanNormals[1] = -1.0f;
@@ -200,102 +206,6 @@ int numFanVertices;
 
 + (void)drawFrustumWithBottomRadius:(GLfloat)rBottom andTopRadius:(GLfloat)rTop andHeight:(GLfloat)h andSections:(GLint)sections
 {
-//    int numTubeVertices = (sections + 1) * 2;
-//    int numFanVertices = sections + 2;
-//    
-//    GLfloat bottomFanVertices[numFanVertices * 3];
-//    GLfloat bottomFanNormals[numFanVertices * 3];
-//    GLfloat bottomFanTexCoords[numFanVertices * 2];
-//    bottomFanVertices[0] = 0.0f;
-//    bottomFanVertices[1] = 0.0f;
-//    bottomFanVertices[2] = 0.0f;
-//    
-//    bottomFanNormals[0] = 0.0f;
-//    bottomFanNormals[1] = -1.0f;
-//    bottomFanNormals[2] = 0.0f;
-//    
-//    bottomFanTexCoords[0] = 0.5;
-//    bottomFanTexCoords[1] = 0.5;
-//    
-//    GLfloat topFanVertices[numFanVertices * 3];
-//    GLfloat topFanNormals[numFanVertices * 3];
-//    GLfloat topFanTexCoords[numFanVertices * 2];
-//    topFanVertices[0] = 0.0f;
-//    topFanVertices[1] = h;
-//    topFanVertices[2] = 0.0f;
-//    
-//    topFanNormals[0] = 0.0f;
-//    topFanNormals[1] = 1.0f;
-//    topFanNormals[2] = 0.0f;
-//
-//    topFanTexCoords[0] = 0.5;
-//    topFanTexCoords[1] = 0.5;
-//    
-//    GLfloat tubeVertices[numTubeVertices * 3];
-//    GLfloat tubeNormals[numTubeVertices * 3];
-//    GLfloat tubeTexCoords[numTubeVertices * 2];
-//    
-//    GLfloat percent, theta, bottomX, topX, bottomZ, topZ;
-//    Vector3D norm;
-//    for( int i = 0; i < numFanVertices - 1; i++) {
-//        percent = i / (GLfloat)(numFanVertices - 2);
-//        theta = 2 * M_PI * percent;
-//        
-//        bottomX = rBottom * cos(theta);
-//        bottomZ = rBottom * sin(theta);
-//        topX = rTop * cos(theta);
-//        topZ = rTop * sin(theta);
-//        
-//        bottomFanVertices[(i + 1) * 3] = bottomX;
-//        bottomFanVertices[(i + 1) * 3 + 1] = 0.0f;
-//        bottomFanVertices[(i + 1) * 3 + 2] = bottomZ;
-//        
-//        bottomFanNormals[(i + 1) * 3] = 0.0f;
-//        bottomFanNormals[(i + 1) * 3 + 1] = -1.0f;
-//        bottomFanNormals[(i + 1) * 3 + 2] = 0.0f;
-//        
-//        bottomFanTexCoords[(i + 1) * 2] = 0.5 + bottomX / 2;
-//        bottomFanTexCoords[(i + 1) * 2 + 1] = 0.5 + bottomZ / 2;
-//        
-//        // NOTE: This is written in reverse so that it winds correctly and OpenGL recognizes it as facing in the opposite direction from the bottom
-//        topFanVertices[(numFanVertices - (i + 1)) * 3] = topX;
-//        topFanVertices[(numFanVertices - (i + 1)) * 3 + 1] = h;
-//        topFanVertices[(numFanVertices - (i + 1)) * 3 + 2] = topZ;
-//        
-//        topFanNormals[(i + 1) * 3] = 0.0f;
-//        topFanNormals[(i + 1) * 3 + 1] = 1.0f;
-//        topFanNormals[(i + 1) * 3 + 2] = 0.0f;
-//        
-//        topFanTexCoords[(i + 1) * 2] = 0.5 + topX / 2;
-//        topFanTexCoords[(i + 1) * 2 + 1] = 0.5 + topZ / 2;
-//        
-//        tubeVertices[i * 3 * 2] = bottomX;
-//        tubeVertices[i * 3 * 2 + 1] = 0.0f;
-//        tubeVertices[i * 3 * 2 + 2] = bottomZ;
-//        tubeVertices[i * 3 * 2 + 3] = topX;
-//        tubeVertices[i * 3 * 2 + 4] = h;
-//        tubeVertices[i * 3 * 2 + 5] = topZ;
-//        
-//        norm.x = bottomX;
-//        norm.z = bottomZ;
-//        norm.normalize();
-//        tubeNormals[i * 3 * 2] = norm.x;
-//        tubeNormals[i * 3 * 2 + 1] = 0.0f;
-//        tubeNormals[i * 3 * 2 + 2] = norm.z;
-//        norm.x = topX;
-//        norm.z = topZ;
-//        norm.normalize();
-//        tubeNormals[i * 3 * 2 + 3] = norm.x;
-//        tubeNormals[i * 3 * 2 + 4] = 0.0f;
-//        tubeNormals[i * 3 * 2 + 5] = norm.z;
-//        
-//        tubeTexCoords[i * 2 * 2] = percent;
-//        tubeTexCoords[i * 2 * 2 + 1] = 0.0f;
-//        tubeTexCoords[i * 2 * 2 + 2] = percent;
-//        tubeTexCoords[i * 2 * 2 + 3] = 1.0f;
-//        
-//    }
-
     glPushMatrix();
     glScalef(rBottom, h, rBottom);
     
