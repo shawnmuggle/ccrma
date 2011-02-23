@@ -207,7 +207,7 @@ GLfloat* frustumVertices;
 + (void)drawFrustumWithBottomRadius:(GLfloat)rBottom andTopRadius:(GLfloat)rTop andHeight:(GLfloat)h andSections:(GLint)sections
 {
     glPushMatrix();
-    glScalef(rBottom, h, rBottom);
+    glScalef(rBottom, h, rBottom);  // TODO: This non-uniform scale could be hurting performance
     
     glVertexPointer(3, GL_FLOAT, 0, tubeVertices);
     glNormalPointer(GL_FLOAT, 0, tubeNormals);
@@ -312,7 +312,7 @@ int numDiskVertices;
 + (void)drawDiskWithRadius:(GLfloat)r andSections:(GLint)sections
 {
     glPushMatrix();
-    glScalef(r, 1.0, r);
+    glScalef(r, 1.0, r);  // TODO: This non-uniform scale could be hurting performance
     
     glVertexPointer(3, GL_FLOAT, 0, diskBottomVertices);
     glNormalPointer(GL_FLOAT, 0, diskBottomNormals);

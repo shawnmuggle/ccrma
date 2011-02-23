@@ -12,13 +12,14 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.mm */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		D566775B13128A0300D13D0A /* SKINI.msg in Resources */ = {isa = PBXBuildFile; fileRef = D56676C313128A0300D13D0A /* SKINI.msg */; };
+		D566775C13128A0300D13D0A /* SKINI.tbl in Resources */ = {isa = PBXBuildFile; fileRef = D56676C413128A0300D13D0A /* SKINI.tbl */; };
+		D566778F13128A0300D13D0A /* Mesh2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D566772313128A0300D13D0A /* Mesh2D.cpp */; };
+		D566779A13128A0300D13D0A /* OnePole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D566772E13128A0300D13D0A /* OnePole.cpp */; };
+		D56677B413128A0300D13D0A /* Stk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D566774B13128A0300D13D0A /* Stk.cpp */; };
 		D58007FB130D941800A082AC /* CymbalSounder.mm in Sources */ = {isa = PBXBuildFile; fileRef = D58007FA130D941800A082AC /* CymbalSounder.mm */; };
 		D5800910130D956A00A082AC /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D580090D130D956A00A082AC /* RtAudio.cpp */; };
 		D580094A130D989100A082AC /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5800949130D989100A082AC /* CoreAudio.framework */; };
-		D5800ADC130DC89500A082AC /* Mesh2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5800A25130DC89400A082AC /* Mesh2D.cpp */; };
-		D5800AE6130DC89500A082AC /* OnePole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5800A2F130DC89400A082AC /* OnePole.cpp */; };
-		D5800B85130DD84100A082AC /* SKINI.msg in Resources */ = {isa = PBXBuildFile; fileRef = D5800B84130DD84100A082AC /* SKINI.msg */; };
-		D5800B89130DD85E00A082AC /* Stk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5800B88130DD85E00A082AC /* Stk.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,21 +35,22 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* CymbalSounds-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CymbalSounds-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* CymbalSounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CymbalSounds.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D566768C13128A0300D13D0A /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		D566769F13128A0300D13D0A /* Mesh2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh2D.h; sourceTree = "<group>"; };
+		D56676AA13128A0300D13D0A /* OnePole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePole.h; sourceTree = "<group>"; };
+		D56676C313128A0300D13D0A /* SKINI.msg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SKINI.msg; sourceTree = "<group>"; };
+		D56676C413128A0300D13D0A /* SKINI.tbl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SKINI.tbl; sourceTree = "<group>"; };
+		D56676C813128A0300D13D0A /* Stk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stk.h; sourceTree = "<group>"; };
+		D566772313128A0300D13D0A /* Mesh2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh2D.cpp; sourceTree = "<group>"; };
+		D566772E13128A0300D13D0A /* OnePole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OnePole.cpp; sourceTree = "<group>"; };
+		D566774B13128A0300D13D0A /* Stk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stk.cpp; sourceTree = "<group>"; };
+		D56677C513128B6800D13D0A /* Instrmnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrmnt.h; sourceTree = "<group>"; };
 		D58007F9130D941800A082AC /* CymbalSounder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CymbalSounder.h; sourceTree = "<group>"; };
 		D58007FA130D941800A082AC /* CymbalSounder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CymbalSounder.mm; sourceTree = "<group>"; };
 		D580090D130D956A00A082AC /* RtAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RtAudio.cpp; sourceTree = "<group>"; };
 		D580090E130D956A00A082AC /* RtAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
 		D580090F130D956A00A082AC /* RtError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtError.h; sourceTree = "<group>"; };
 		D5800949130D989100A082AC /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		D58009A1130DC89300A082AC /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
-		D58009AE130DC89300A082AC /* Instrmnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrmnt.h; sourceTree = "<group>"; };
-		D58009B3130DC89300A082AC /* Mesh2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh2D.h; sourceTree = "<group>"; };
-		D58009BD130DC89300A082AC /* OnePole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePole.h; sourceTree = "<group>"; };
-		D58009DB130DC89300A082AC /* Stk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stk.h; sourceTree = "<group>"; };
-		D5800A25130DC89400A082AC /* Mesh2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh2D.cpp; sourceTree = "<group>"; };
-		D5800A2F130DC89400A082AC /* OnePole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OnePole.cpp; sourceTree = "<group>"; };
-		D5800B84130DD84100A082AC /* SKINI.msg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SKINI.msg; sourceTree = "<group>"; };
-		D5800B88130DD85E00A082AC /* Stk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stk.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +107,7 @@
 		29B97314FDCFA39411CA2CEA /* CymbalSounds */ = {
 			isa = PBXGroup;
 			children = (
-				D5800984130DC86800A082AC /* stk */,
+				D56677C413128A4C00D13D0A /* stkrs */,
 				D580090C130D953C00A082AC /* rtaudio */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -144,6 +146,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D566766F13128A0300D13D0A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D56677C513128B6800D13D0A /* Instrmnt.h */,
+				D566768C13128A0300D13D0A /* Filter.h */,
+				D566769F13128A0300D13D0A /* Mesh2D.h */,
+				D56676AA13128A0300D13D0A /* OnePole.h */,
+				D56676C313128A0300D13D0A /* SKINI.msg */,
+				D56676C413128A0300D13D0A /* SKINI.tbl */,
+				D56676C813128A0300D13D0A /* Stk.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		D56676DB13128A0300D13D0A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D566772313128A0300D13D0A /* Mesh2D.cpp */,
+				D566772E13128A0300D13D0A /* OnePole.cpp */,
+				D566774B13128A0300D13D0A /* Stk.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D56677C413128A4C00D13D0A /* stkrs */ = {
+			isa = PBXGroup;
+			children = (
+				D56676DB13128A0300D13D0A /* src */,
+				D566766F13128A0300D13D0A /* include */,
+			);
+			name = stkrs;
+			sourceTree = "<group>";
+		};
 		D580090C130D953C00A082AC /* rtaudio */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,38 +187,6 @@
 				D580090F130D956A00A082AC /* RtError.h */,
 			);
 			name = rtaudio;
-			sourceTree = "<group>";
-		};
-		D5800984130DC86800A082AC /* stk */ = {
-			isa = PBXGroup;
-			children = (
-				D5800985130DC89200A082AC /* include */,
-				D58009EB130DC89300A082AC /* src */,
-			);
-			name = stk;
-			sourceTree = "<group>";
-		};
-		D5800985130DC89200A082AC /* include */ = {
-			isa = PBXGroup;
-			children = (
-				D58009A1130DC89300A082AC /* Filter.h */,
-				D58009AE130DC89300A082AC /* Instrmnt.h */,
-				D58009B3130DC89300A082AC /* Mesh2D.h */,
-				D58009BD130DC89300A082AC /* OnePole.h */,
-				D58009DB130DC89300A082AC /* Stk.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		D58009EB130DC89300A082AC /* src */ = {
-			isa = PBXGroup;
-			children = (
-				D5800B88130DD85E00A082AC /* Stk.cpp */,
-				D5800B84130DD84100A082AC /* SKINI.msg */,
-				D5800A25130DC89400A082AC /* Mesh2D.cpp */,
-				D5800A2F130DC89400A082AC /* OnePole.cpp */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,7 +241,8 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				D5800B85130DD84100A082AC /* SKINI.msg in Resources */,
+				D566775B13128A0300D13D0A /* SKINI.msg in Resources */,
+				D566775C13128A0300D13D0A /* SKINI.tbl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,9 +257,9 @@
 				256AC3DA0F4B6AC300CF3369 /* CymbalSoundsAppDelegate.mm in Sources */,
 				D58007FB130D941800A082AC /* CymbalSounder.mm in Sources */,
 				D5800910130D956A00A082AC /* RtAudio.cpp in Sources */,
-				D5800ADC130DC89500A082AC /* Mesh2D.cpp in Sources */,
-				D5800AE6130DC89500A082AC /* OnePole.cpp in Sources */,
-				D5800B89130DD85E00A082AC /* Stk.cpp in Sources */,
+				D566778F13128A0300D13D0A /* Mesh2D.cpp in Sources */,
+				D566779A13128A0300D13D0A /* OnePole.cpp in Sources */,
+				D56677B413128A0300D13D0A /* Stk.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +296,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CymbalSounds_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CymbalSounds-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -310,6 +315,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CymbalSounds_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CymbalSounds-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (

@@ -81,7 +81,7 @@ struct Vector2 {
     {
         return Vector2<float>(x, y);
     }
-    operator==(const Vector2& v) const
+    bool operator==(const Vector2& v) const
     {
         return x == v.x && y == v.y;
     }
@@ -107,7 +107,7 @@ struct Vector3 {
     Vector3(T x, T y, T z) : x(x), y(y), z(z) {}
     T Length()
     {
-        return std::(x * x + y * y + z * z);
+        return std::sqrt(x * x + y * y + z * z);
     }
     void Normalize()
     {

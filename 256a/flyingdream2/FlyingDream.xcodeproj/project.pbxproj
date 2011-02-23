@@ -19,8 +19,6 @@
 		D53CF5B2129453D200DCCBA1 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D53CF5B1129453D200DCCBA1 /* Entity.cpp */; };
 		D53CF5B5129454B500DCCBA1 /* vector3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D53CF5B3129454B500DCCBA1 /* vector3d.cpp */; };
 		D5BE9A2C12AFD44B00A1A3C2 /* InstrumentEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5BE9A2B12AFD44B00A1A3C2 /* InstrumentEntity.cpp */; };
-		D5CF5DBB12A26FE400D94A19 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CF5DB912A26FE400D94A19 /* libfmodex.dylib */; };
-		D5CF5E6612A274A400D94A19 /* libfmodex.dylib in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = D5CF5DB912A26FE400D94A19 /* libfmodex.dylib */; };
 		D5CF60C512A2858800D94A19 /* librtaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CF60C312A2858800D94A19 /* librtaudio.a */; };
 		D5CF60C612A2858800D94A19 /* librtaudio.so in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CF60C412A2858800D94A19 /* librtaudio.so */; };
 		D5CF620512A3735200D94A19 /* SKINI.msg in Resources */ = {isa = PBXBuildFile; fileRef = D5CF61F012A3735200D94A19 /* SKINI.msg */; };
@@ -38,7 +36,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D5CF5E6612A274A400D94A19 /* libfmodex.dylib in Copy Frameworks into .app bundle */,
 				002F3A0009D0884600EBEB88 /* SDL.framework in Copy Frameworks into .app bundle */,
 				38694A280A23D420005C94A3 /* GameApp.h in Copy Frameworks into .app bundle */,
 			);
@@ -67,15 +64,6 @@
 		D53CF5B4129454B500DCCBA1 /* vector3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector3d.h; sourceTree = "<group>"; };
 		D5BE9A2A12AFD44B00A1A3C2 /* InstrumentEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentEntity.h; sourceTree = "<group>"; };
 		D5BE9A2B12AFD44B00A1A3C2 /* InstrumentEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InstrumentEntity.cpp; sourceTree = "<group>"; };
-		D5CF5DB112A26FE400D94A19 /* fmod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod.h; sourceTree = "<group>"; };
-		D5CF5DB212A26FE400D94A19 /* fmod.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fmod.hpp; sourceTree = "<group>"; };
-		D5CF5DB312A26FE400D94A19 /* fmod_codec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_codec.h; sourceTree = "<group>"; };
-		D5CF5DB412A26FE400D94A19 /* fmod_dsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_dsp.h; sourceTree = "<group>"; };
-		D5CF5DB512A26FE400D94A19 /* fmod_errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_errors.h; sourceTree = "<group>"; };
-		D5CF5DB612A26FE400D94A19 /* fmod_memoryinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_memoryinfo.h; sourceTree = "<group>"; };
-		D5CF5DB712A26FE400D94A19 /* fmod_output.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmod_output.h; sourceTree = "<group>"; };
-		D5CF5DB912A26FE400D94A19 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodex.dylib; sourceTree = "<group>"; };
-		D5CF5DBA12A26FE400D94A19 /* libfmodexL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfmodexL.dylib; sourceTree = "<group>"; };
 		D5CF60C312A2858800D94A19 /* librtaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librtaudio.a; path = "rtaudio-4.0.7/librtaudio.a"; sourceTree = "<group>"; };
 		D5CF60C412A2858800D94A19 /* librtaudio.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = librtaudio.so; path = "rtaudio-4.0.7/librtaudio.so"; sourceTree = "<group>"; };
 		D5CF61A012A3735200D94A19 /* ADSR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADSR.h; sourceTree = "<group>"; };
@@ -195,7 +183,6 @@
 			files = (
 				D5CF60C512A2858800D94A19 /* librtaudio.a in Frameworks */,
 				D5CF60C612A2858800D94A19 /* librtaudio.so in Frameworks */,
-				D5CF5DBB12A26FE400D94A19 /* libfmodex.dylib in Frameworks */,
 				002F3C0109D093BD00EBEB88 /* OpenGL.framework in Frameworks */,
 				002F39FA09D0881F00EBEB88 /* SDL.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
@@ -263,7 +250,6 @@
 				D5CF613112A372F000D94A19 /* stk */,
 				D5CF60C312A2858800D94A19 /* librtaudio.a */,
 				D5CF60C412A2858800D94A19 /* librtaudio.so */,
-				D5CF5DAF12A26FE400D94A19 /* fmod */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -288,39 +274,6 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D5CF5DAF12A26FE400D94A19 /* fmod */ = {
-			isa = PBXGroup;
-			children = (
-				D5CF5DB012A26FE400D94A19 /* inc */,
-				D5CF5DB812A26FE400D94A19 /* lib */,
-			);
-			name = fmod;
-			path = api;
-			sourceTree = "<group>";
-		};
-		D5CF5DB012A26FE400D94A19 /* inc */ = {
-			isa = PBXGroup;
-			children = (
-				D5CF5DB112A26FE400D94A19 /* fmod.h */,
-				D5CF5DB212A26FE400D94A19 /* fmod.hpp */,
-				D5CF5DB312A26FE400D94A19 /* fmod_codec.h */,
-				D5CF5DB412A26FE400D94A19 /* fmod_dsp.h */,
-				D5CF5DB512A26FE400D94A19 /* fmod_errors.h */,
-				D5CF5DB612A26FE400D94A19 /* fmod_memoryinfo.h */,
-				D5CF5DB712A26FE400D94A19 /* fmod_output.h */,
-			);
-			path = inc;
-			sourceTree = "<group>";
-		};
-		D5CF5DB812A26FE400D94A19 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				D5CF5DB912A26FE400D94A19 /* libfmodex.dylib */,
-				D5CF5DBA12A26FE400D94A19 /* libfmodexL.dylib */,
-			);
-			path = lib;
 			sourceTree = "<group>";
 		};
 		D5CF613112A372F000D94A19 /* stk */ = {
@@ -513,7 +466,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp api/lib/libfmodex.dylib \"$TARGET_BUILD_DIR\"\ncp rtaudio-4.0.7/librtaudio.so \"$TARGET_BUILD_DIR\"\ncp rtaudio-4.0.7/librtaudio.a \"$TARGET_BUILD_DIR\"\ncp stk-4.4.2/src/libstk.a \"$TARGET_BUILD_DIR\"";
+			shellScript = "cp rtaudio-4.0.7/librtaudio.so \"$TARGET_BUILD_DIR\"\ncp rtaudio-4.0.7/librtaudio.a \"$TARGET_BUILD_DIR\"\ncp stk-4.4.2/src/libstk.a \"$TARGET_BUILD_DIR\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -556,6 +509,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -573,6 +527,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/stk-4.4.2/src\"";
 				OTHER_LDFLAGS = "-lfluidsynth";
 				PRODUCT_NAME = FlyingDream;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -587,6 +542,7 @@
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -603,6 +559,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/rtaudio-4.0.7\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/stk-4.4.2/src\"";
 				PRODUCT_NAME = FlyingDream;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

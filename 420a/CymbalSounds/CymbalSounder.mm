@@ -9,10 +9,8 @@
 #import "CymbalSounder.h"
 
 #import "RtAudio.h"
-#import "OnePole.h"
 #import "Mesh2D.h"
 
-stk::OnePole* filter;
 stk::Mesh2D* mesh;
 
 // Two-channel sawtooth wave generator.
@@ -28,8 +26,6 @@ int saw( void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
     // Write interleaved audio data.
     for ( i=0; i<nBufferFrames; i++ ) {
         for ( j=0; j<2; j++ ) {
-            //*buffer++ = filter->tick(rand() / (double)RAND_MAX);
-            //*buffer++ = rand() / (double)RAND_MAX;
             *buffer++ = mesh->tick();
         }
     }
@@ -41,8 +37,7 @@ void* startThread(void* aDac)
 {
     RtAudio* dac = (RtAudio*)aDac;
     
-    //filter = new stk::OnePole();
-    mesh = new stk::Mesh2D(10, 10);
+    mesh = new stk::Mesh2D(12, 12);
     mesh->noteOn(10.0, 1.0);
     
     RtAudio::StreamParameters parameters;

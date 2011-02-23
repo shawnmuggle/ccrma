@@ -1,0 +1,65 @@
+/***************************************************/
+/*! \class Cubicnl
+    \brief STK cubic non-linearity class.
+
+    This class implements the cubic non-linearity
+    that was used in SynthBuilder.
+
+    2007 Nick Porcaro
+*/
+/***************************************************/
+
+#ifndef STK_CUBICNL_H
+#define STK_CUBICNL_H
+
+#include "Function.h"
+#include <cmath>
+
+namespace stk {
+
+class Cubicnl : public Function
+{
+public:
+  //! Default constructor.
+  Cubicnl();
+
+  void setA1( StkFloat a1 );
+  void setA2( StkFloat a2 );
+  void setA3( StkFloat a3 );
+  void setGain( StkFloat gain );
+  void setThreshold( StkFloat threshold );
+
+  //! Class destructor.
+  ~Cubicnl();
+  //! Input one sample to the filter and return one output.
+  StkFloat tick( StkFloat input );
+
+protected:
+ 
+  StkFloat computeSample( StkFloat input );
+  StkFloat threshold_;
+  StkFloat a1_;
+  StkFloat a2_;
+  StkFloat a3_;
+  StkFloat gain_;
+};
+
+
+inline StkFloat Cubicnl :: tick( StkFloat input )
+{
+  StkFloat inputSquared = input * input;
+  StkFloat inputCubed = inputSquared * input;
+
+  StkFloat lastOutput = gain_ * (a1_ * input + a2_ * inputSquared + a3_ * inputCubed);
+
+  // Apply threshold if we are out of range
+  if (fabs(lastOutput) > threshold_) {
+    lastOutput = (lastOutput < 0 ? -threshold_ : threshold_);
+  }
+  lastFrame_[0] = lastOutput;
+  return lastOutput;
+}
+
+} // stk namespace
+
+#endif

@@ -1,0 +1,55 @@
+/***************************************************/
+/*! \class Cubicnl
+    \brief STK jet table class.
+
+    This class implements the cubic non-linearity
+    that was used in SynthBuilder.
+
+    2007 Nick Porcaro
+*/
+/***************************************************/
+
+#include "Cubicnl.h"
+
+namespace stk {
+
+Cubicnl :: Cubicnl()
+{
+  a1_ = 0.5;
+  a2_ = 0.5;
+  a3_ = 0.5;
+  gain_ = 1.0;
+  threshold_ = 1.0;
+}
+
+Cubicnl :: ~Cubicnl()
+{
+}
+
+void Cubicnl :: setA1(StkFloat a1)
+{
+  a1_ = a1;
+}
+
+void Cubicnl :: setA2(StkFloat a2)
+{
+  a2_ = a2;
+}
+
+void Cubicnl :: setA3(StkFloat a3)
+{
+  a3_ = a3;
+}
+
+void Cubicnl :: setGain(StkFloat gain)
+{
+  gain_ = gain;
+}
+
+void Cubicnl :: setThreshold(StkFloat threshold)
+{
+  threshold_ = threshold;
+}
+
+
+} // stk namespace
