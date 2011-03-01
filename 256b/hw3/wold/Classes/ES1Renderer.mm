@@ -47,14 +47,6 @@
         glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_COLOR_ATTACHMENT0_OES, GL_RENDERBUFFER_OES, colorRenderbuffer);
         glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_DEPTH_ATTACHMENT_OES, GL_RENDERBUFFER_OES, depthRenderbuffer);
         
-        // enable texture mapping
-        glEnable( GL_TEXTURE_2D );
-        // enable blending
-        glEnable( GL_BLEND );
-        // blend function
-        // glBlendFunc( GL_ONE, GL_ZERO );
-        glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-        
         glDepthFunc(GL_LEQUAL);
         glClearDepthf(1.0);
         glCullFace(GL_BACK);
@@ -65,6 +57,7 @@
 
 - (void)render
 {
+    
     // This application only creates a single context which is already set current at this point.
     // This call is redundant, but needed if dealing with multiple contexts.
     [EAGLContext setCurrentContext:context];

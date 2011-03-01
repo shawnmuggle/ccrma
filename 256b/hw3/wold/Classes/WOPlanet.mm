@@ -15,6 +15,8 @@
 
 #import "ArcBall.h"
 
+#import "ASIFormDataRequest.h"
+
 GLfloat g_sun_angle = 0;
 GLfloat g_sun_dist = 30;
 
@@ -38,7 +40,7 @@ ArcBallT    ArcBall(768.0f * 2, 1024.0f);
 Point2fT    MousePt;
 
 @implementation WOPlanet
-@synthesize position, radius, lines, trees, growingTree;
+@synthesize position, radius, lines, trees, growingTree, id;
 
 - (void) processDrag:(UIPanGestureRecognizer *)gesture
 {
@@ -95,7 +97,7 @@ Point2fT    MousePt;
     for (WOLSystem* tree in self.trees) {
         Vector3D treePoint = [tree origin] * self.radius;
         dist = sqrt(pow(treePoint.x - touchPoint.x, 2) + pow(treePoint.y - touchPoint.y, 2) + pow(treePoint.z - touchPoint.z, 2));
-        NSLog(@"Dist: %f < %f ?", dist, self.radius / 5);
+        //NSLog(@"Dist: %f < %f ?", dist, self.radius / 5);
         if (dist < self.radius / 5) {
             tree.env = 1.0;
             break;
@@ -103,25 +105,98 @@ Point2fT    MousePt;
     }
 }
 
-- (id) initWithPosition:(Vector3D)pos andRadius:(float)rad andTexture:(GLuint)texture_id andTreeTexture:(GLuint)tree_texture_id
+- (id) initWithID:(int)dbID 
+      andPosition:(Vector3D)pos 
+        andRadius:(float)rad 
+       andTexture:(GLuint)texture_id 
+   andTreeTexture:(GLuint)tree_texture_id
+           andRed:(GLfloat)red
+         andGreen:(GLfloat)green
+          andBlue:(GLfloat)blue
 {
     self = [super init];
     if (self) {
+        self.id = dbID;
+        
         self.position = pos;
         self.radius = rad;
         
         self.lines = [[[NSMutableSet alloc] init] autorelease];
         self.trees = [[[NSMutableSet alloc] init] autorelease];
 
+        r = red;
+        g = green;
+        b = blue;
+        
         planet_texture = texture_id;
         tree_texture = tree_texture_id;
         
-        Vector3D* line = new Vector3D(1, 0, 0);
-        [self.lines addObject:[NSValue valueWithPointer:line]];
-        
-        [self addTreeAtPoint:line];
+        for (NSDictionary* treePlist in [self getTreesFromServer]) {
+            Vector3D* pos = new Vector3D([[treePlist objectForKey:@"x"] floatValue], 
+                                         [[treePlist objectForKey:@"y"] floatValue], 
+                                         [[treePlist objectForKey:@"z"] floatValue]);
+            [self addTreeAtPoint:pos];
+            [self.growingTree setAge:[[treePlist objectForKey:@"age"] floatValue]];
+            self.growingTree.freq = [[treePlist objectForKey:@"frequency"] floatValue];
+            [self stopGrowingAndSendToServer:NO];
+        }
     }
     return self;
+}
+
+- (NSArray*) getTreesFromServer
+{
+    NSArray* treesPlist;
+    
+    NSString *server = [[NSString alloc] initWithString:@"http://mikerotondo.com/wold/"];
+    
+    NSURL *url = [NSURL URLWithString:[server stringByAppendingFormat:@"planets/%d/trees",self.id]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    // Start sending synchronously
+    [request startSynchronous];
+    
+    // Display any error messages
+    NSError *error = [request error];
+    if (!error) {
+        NSString *response = [request responseString];
+        NSLog(@"Response: %@", response);
+        
+        NSData* data = [NSData dataWithBytes:[response cStringUsingEncoding:NSUTF8StringEncoding] 
+                                      length:[response lengthOfBytesUsingEncoding:NSUTF8StringEncoding]];
+        treesPlist = [NSPropertyListSerialization propertyListWithData:data
+                                                               options:0
+                                                                format:NULL
+                                                                 error:NULL];
+    }
+    return treesPlist;
+}
+
+- (void) submitTreeToServer:(WOLSystem*)tree
+{
+	NSLog(@"about to send data to server...");
+	
+	NSString *server = [[NSString alloc] initWithUTF8String:"http://mikerotondo.com/wold/"];
+	
+	NSURL *url = [NSURL URLWithString:[server stringByAppendingFormat:@"planets/%d/trees", self.id]];
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	
+    // Setup the variables for the request
+    [request setPostValue:[NSNumber numberWithFloat:tree.origin.x] forKey:@"x"];
+    [request setPostValue:[NSNumber numberWithFloat:tree.origin.y] forKey:@"y"];
+    [request setPostValue:[NSNumber numberWithFloat:tree.origin.z] forKey:@"z"];
+    float age = tree.currentGeneration + ((float)tree.generationTickCount / tree.ticksPerGeneration);
+    [request setPostValue:[NSNumber numberWithFloat:age] forKey:@"age"];
+    [request setPostValue:[NSNumber numberWithFloat:tree.freq] forKey:@"frequency"];
+    
+	[request startSynchronous];  // TODO: Make this asynchronous to get rid of sound sputtering
+    
+	NSError *error = [request error];
+	if (!error) {
+		NSString *response = [request responseString];
+        NSLog(@"POSTED TREE: %@", response);
+	}	
 }
 
 - (void) dealloc
@@ -142,13 +217,13 @@ Point2fT    MousePt;
     *newPoint *= -1;
     NSLog(@"New point: %f, %f, %f", newPoint->x, newPoint->y, newPoint->z);
     
-    [self addTreeAtPoint:newPoint];
-    
-    [self.lines addObject:[NSValue valueWithPointer:newPoint]];
+    [self addTreeAtPoint:newPoint];    
 }
 
 - (void) addTreeAtPoint:(Vector3D*)point
 {
+    [self.lines addObject:[NSValue valueWithPointer:point]];
+    
     NSLog(@"This Rot: \n%f %f %f;\n%f %f %f;\n%f %f %f", ThisRot.s.XX, ThisRot.s.XY, ThisRot.s.XZ, ThisRot.s.YX, ThisRot.s.YY, ThisRot.s.YZ, ThisRot.s.ZX, ThisRot.s.ZY, ThisRot.s.ZZ);
     
     Matrix3fT pointMatrix;
@@ -183,11 +258,13 @@ Point2fT    MousePt;
     NSLog(@"ANGLES: XY %f, XZ %f, YZ %f", xy_angle, xz_angle, yz_angle);
     
     self.growingTree = tree;
-    
 }
 
-- (void) stopGrowing
+- (void) stopGrowingAndSendToServer:(BOOL)send
 {
+    if (send) {
+        [self submitTreeToServer:self.growingTree];
+    }
     self.growingTree = nil;
 }
 
@@ -200,17 +277,12 @@ Point2fT    MousePt;
 {
     glTranslatef(self.position.x, self.position.y, self.position.z);
     
-    //glRotatef(90, 1, 0, 0);
-
-    //glEnable(GL_ALPHA);
-    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    
     float lightAmbient[] = { 0.1f, 0.1f, 0.1f, 1.0f };
     float lightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 //    float lightSpecular[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     
-    float matAmbient[] = { 0.5f, 1.0f, 0.7f, 1.0f };
-    float matDiffuse[] = { 0.3f, 0.8f, 0.5f, 1.0f };
+    float matAmbient[] = { r, g, b, 1.0f };
+    float matDiffuse[] = { r * 0.75f, g * 0.75f, b * 0.75f, 1.0f };
 //    float matSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     
     GLfloat sun_x, sun_y, sun_z;
@@ -244,17 +316,21 @@ Point2fT    MousePt;
     
     glPushMatrix();
     
-    glMultMatrixf(Transform.M);										// NEW: Apply Dynamic Transform
+    glMultMatrixf(Transform.M);
     
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmbient);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, matDiffuse);
-    //drawSphere(self.radius, 40, 40);
+
     glBindTexture( GL_TEXTURE_2D, planet_texture );
     
-    [WOGeometry drawSphereWithRadius:self.radius andNumLats:20 andNumLongs:20];
-    //[WOGeometry drawFrustumWithBottomRadius:self.radius andTopRadius:0 andHeight:self.radius * 2 andSections:40];
     
-    glBindTexture( GL_TEXTURE_2D, tree_texture);
+    // enable texture mapping
+    glEnable( GL_TEXTURE_2D ); // TODO: Move this around only the textured drawing!
+    //[WOGeometry drawSphereWithRadius:self.radius andNumLats:20 andNumLongs:20];
+    //[WOGeometry drawFrustumWithBottomRadius:self.radius / 2 andTopRadius:self.radius / 4 andHeight:self.radius / 2 andSections:40];
+    glDisable(GL_TEXTURE_2D);
+    
+    //glBindTexture( GL_TEXTURE_2D, tree_texture);
     
     GLfloat xy_angle, xz_angle, yz_angle;
     for (NSValue* lineValue in self.lines) {
@@ -265,11 +341,10 @@ Point2fT    MousePt;
         yz_angle = line->angleYZ() * (180 / M_PI);
         
         glPushMatrix();
-        glTranslatef(endPoint.x, endPoint.y, endPoint.z);
-        //glRotatef(xz_angle, 0, 1, 0);
+        glTranslatef(endPoint.x, endPoint.y, endPoint.z); // TODO: This is still wrong
         glRotatef(xy_angle, 0, 0, 1);
-        //drawSphere(self.radius / 10, 10, 10);
-        [WOGeometry drawSphereWithRadius:self.radius/10 andNumLats:6 andNumLongs:6];
+
+        //[WOGeometry drawSphereWithRadius:self.radius/10 andNumLats:6 andNumLongs:6];
         glPopMatrix();
     }
     
@@ -287,13 +362,11 @@ Point2fT    MousePt;
         glTranslatef(treePoint.x, treePoint.y, treePoint.z);
         glRotatef(xy_angle * (180 / M_PI) - 90, 0.0f, 0.0f, 1.0f);        
         glRotatef(sin(yz_angle) * (180 / M_PI), 1.0, 0.0f, 0.0f);
-        //glTranslatef(0, self.radius, 0);
         
         [tree render];
         glPopMatrix();
     }
     
-    //glDisable(GL_ALPHA);
     glDisable(GL_LIGHT0);
     glDisable(GL_LIGHTING);
     

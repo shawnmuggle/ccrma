@@ -20,6 +20,7 @@
 
 @property (nonatomic, retain) NSMutableSet* planets;
 
+- (NSArray*) getPlanetsFromServer;
 - (void) render;
 - (void) handleTouchRay:(Vector3D)ray fromPoint:(Vector3D)touchPoint;
 - (void) processPressEnd;

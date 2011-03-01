@@ -37,7 +37,7 @@
     Vector3D origin;
     CGPoint offset;
     
-    float phase, env, freq, freq_offset;
+    float phase, env, freq;
     
 }
 
@@ -50,12 +50,14 @@
 @property (nonatomic) Vector3D origin;
 @property (nonatomic) CGPoint offset;
 @property float env;
+@property float freq;
 
 - (id) initWithMaxGeneration:(int)maxGen atPoint:(Vector3D)pos;
 - (void) advanceGeneration;
 - (void) tick;
 - (void) render;
 - (float) tickAudio;
+- (void) setAge:(float)age;
 
 @end
 

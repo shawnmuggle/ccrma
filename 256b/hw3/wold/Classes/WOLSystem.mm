@@ -77,6 +77,7 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 @synthesize origin;
 @synthesize offset;
 @synthesize env;
+@synthesize freq;
 
 - (id) initWithMaxGeneration:(int)maxGen atPoint:(Vector3D)pos
 {
@@ -92,10 +93,8 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
         self.offset = CGPointMake(0, 0);
         
         phase = 0.0;
-        env = 0.999999;
-        //freq = 200 + (rand() / (float)RAND_MAX) * 200.0;
-        freq = 1000 + (rand() / (float)RAND_MAX) * 400.0;
-        freq_offset = 0.0;
+        self.env = 0.999999;
+        self.freq = 1000 + (rand() / (float)RAND_MAX) * 400.0;
         
         srand((unsigned)time(0));
     }
@@ -104,6 +103,10 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 
 - (void) advanceGeneration
 {
+    self.currentGeneration++;
+    self.generationTickCount = 0;
+    self.freq *= 0.666666;
+
     NSMutableArray* newNodes = [[NSMutableArray alloc] init];
     for (WONode* node in self.nodes) {
         [newNodes addObjectsFromArray:[node expandInLSystem:self isLastGeneration:self.currentGeneration == self.maxGeneration]];
@@ -115,11 +118,7 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 - (void) tick
 {
     if (self.generationTickCount == self.ticksPerGeneration && self.currentGeneration < self.maxGeneration) {
-        self.currentGeneration++;
-        self.generationTickCount = 0;
         [self advanceGeneration];
-        //freq *= 1.5;
-        freq *= 0.666666;
         env = 0.99999;
     }
     self.generationTickCount++;
@@ -142,8 +141,27 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 - (float) tickAudio
 {  
     env *= 0.99995;
-    phase += (freq + freq_offset)/(SRATE*1.0);
+    phase += self.freq/(SRATE*1.0);
     return sin(2.0*M_PI*phase) * env;
+}
+
+- (void) setAge:(float)age
+{
+    int generation = 1;
+    while (generation++ <= age) {
+        for (WOLNode* node in self.nodes) {
+            node.growthPercent = 1.0;
+        }
+        [self advanceGeneration];
+    }
+    
+    float percent = age - floor(age);
+    self.generationTickCount = percent * self.ticksPerGeneration;
+    for (WOLNode* node in self.nodes) {
+        if (node.growthPercent != 1.0) {
+            node.growthPercent = percent;
+        }
+    }
 }
 
 @end
@@ -367,7 +385,7 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     float flutter_offset = 10 * sin(2.0*M_PI*phase);
     phase += freq * 0.05;
     glRotatef(90 + flutter_offset, 1.0f, 0.0f, 0.0f);
-    [WOGeometry drawDiskWithRadius:radius andSections:5];
+    //[WOGeometry drawDiskWithRadius:radius andSections:5];
 }
 
 @end

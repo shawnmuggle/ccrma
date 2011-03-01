@@ -42,11 +42,11 @@
         eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
                                         [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
 
+        renderer = [[ES1Renderer alloc] init];
+        
         [WOGeometry generateDisk];
         [WOGeometry generateFrustum];
         
-        renderer = [[ES1Renderer alloc] init];
-
         if (!renderer)
         {
             [self release];

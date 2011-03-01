@@ -38,6 +38,8 @@ void* startThread(void* aDac)
     RtAudio* dac = (RtAudio*)aDac;
     
     mesh = new stk::Mesh2D(12, 12);
+    mesh->setInputPosition(0.5, 0.5);
+    mesh->setDecay(1.0);
     mesh->noteOn(10.0, 1.0);
     
     RtAudio::StreamParameters parameters;
