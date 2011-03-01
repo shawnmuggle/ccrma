@@ -118,9 +118,6 @@ GLuint g_texture[2];
 
 - (void) render
 {
-    //glEnableClientState(GL_VERTEX_ARRAY);
-    //glEnableClientState(GL_NORMAL_ARRAY);
-    //glEnableClientState( GL_TEXTURE_COORD_ARRAY );
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     
@@ -131,9 +128,6 @@ GLuint g_texture[2];
     
     glDisable(GL_CULL_FACE);
     glDisable(GL_DEPTH_TEST);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-    glDisableClientState(GL_NORMAL_ARRAY);
-    glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 - (void) handleTouchRay:(Vector3D)ray fromPoint:(Vector3D)touchPoint

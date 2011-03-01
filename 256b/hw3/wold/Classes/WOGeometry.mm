@@ -91,9 +91,7 @@
 
 struct Vertex {
     vec3 Position;
-    vec4 Color;
     vec3 Normal;
-    vec2 TexCoord;
 };
 
 GLuint frustumVertexBuffer;
@@ -114,8 +112,6 @@ const int vertexCount = numSlices * 2 + 2;
     std::vector<Vertex> frustumVertices(vertexCount);
     std::vector<Vertex>::iterator vertex = frustumVertices.begin();
     
-    vec4 color(1.0, 1.0, 1.0, 1.0);
-    
     // body of frustum
     GLfloat x;
     for (float theta = 0; vertex != frustumVertices.end() - 2; theta += dtheta)
@@ -125,9 +121,7 @@ const int vertexCount = numSlices * 2 + 2;
         
         vec3 position(bottomRadius * cos(theta), 0.0, bottomRadius * sin(theta));
         vertex->Position = position;
-        vertex->Color = color;
         vertex->Normal = position.Normalized();
-        vertex->TexCoord = vec2(x, 0);
         vertex++;
     
         position.x = topRadius * cos(theta);
@@ -135,20 +129,14 @@ const int vertexCount = numSlices * 2 + 2;
         vertex->Position = position;
         vertex->Position.y = 1.0;
         vertex->Normal = position.Normalized();
-        vertex->Color = color;
-        vertex->TexCoord = vec2(x, 1);
         vertex++;
     }
     
     vertex->Position = vec3(0, 0, 0);
-    vertex->Color = color;
     vertex->Normal = vec3(0, -1, 0);
-    vertex->TexCoord = vec2(0.5, 0.5);
     vertex++;
     vertex->Position = vec3(0, 1, 0);
     vertex->Normal = vec3(0, 1, 0);
-    vertex->Color = color;
-    vertex->TexCoord = vec2(0.5, 0.5);
     
     // GENERATE INDICES
     frustumIndexCount = numSlices * 2 * 3;
@@ -203,6 +191,28 @@ const int vertexCount = numSlices * 2 + 2;
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, frustumIndices.size() * sizeof(frustumIndices[0]), &frustumIndices[0], GL_STATIC_DRAW);
 }
 
++ (void)startDrawingFrustums
+{
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, frustumIndexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, frustumVertexBuffer);
+
+    glVertexPointer(3, GL_FLOAT, sizeof(Vertex), 0);
+    const GLvoid* normalOffset = (GLvoid*)sizeof(vec3);
+    glNormalPointer(GL_FLOAT, sizeof(Vertex), normalOffset);
+    
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_NORMAL_ARRAY);
+}
+
++ (void)stopDrawingFrustums
+{
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_NORMAL_ARRAY);
+    
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
 + (void)drawFrustumWithBottomRadius:(GLfloat)rBottom andTopRadius:(GLfloat)rTop andHeight:(GLfloat)h andSections:(GLint)sections
 {
     //NSLog(@"%d", counter++);
@@ -210,37 +220,14 @@ const int vertexCount = numSlices * 2 + 2;
     glPushMatrix();
     glScalef(rBottom, h, rBottom); // suboptimal
     
-    const GLvoid* colorOffset = (GLvoid*) sizeof(vec3);
-    const GLvoid* normalOffset = (GLvoid*) (sizeof(vec3) + sizeof(vec4));
-    const GLvoid* texCoordOffset = (GLvoid*) (sizeof(vec3) + sizeof(vec4) + sizeof(vec3));
-    
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, frustumIndexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, frustumVertexBuffer);
-    glVertexPointer(3, GL_FLOAT, sizeof(Vertex), 0);
-    glColorPointer(4, GL_FLOAT, sizeof(Vertex), colorOffset);
-    glNormalPointer(GL_FLOAT, sizeof(Vertex), normalOffset);
-    glTexCoordPointer(2, GL_FLOAT, sizeof(Vertex), texCoordOffset);
-    
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_COLOR_ARRAY);
-    glEnableClientState(GL_NORMAL_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    
     const GLvoid* frustumOffset = 0;
     const GLvoid* bottomDiskOffset = (GLvoid*)frustumIndexCount;
     const GLvoid* topDiskOffset = (GLvoid*)(frustumIndexCount + diskIndexCount);
     
-//    glDrawElements(GL_TRIANGLES, frustumIndexCount, GL_UNSIGNED_BYTE, frustumOffset);
-//    glDrawElements(GL_TRIANGLES, diskIndexCount, GL_UNSIGNED_BYTE, bottomDiskOffset);
-//    glDrawElements(GL_TRIANGLES, diskIndexCount, GL_UNSIGNED_BYTE, topDiskOffset);
+    glDrawElements(GL_TRIANGLES, frustumIndexCount, GL_UNSIGNED_BYTE, frustumOffset);
+    glDrawElements(GL_TRIANGLES, diskIndexCount, GL_UNSIGNED_BYTE, bottomDiskOffset);
+    glDrawElements(GL_TRIANGLES, diskIndexCount, GL_UNSIGNED_BYTE, topDiskOffset);
     
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_COLOR_ARRAY);
-    glDisableClientState(GL_NORMAL_ARRAY);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-    
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glPopMatrix();
 }
 

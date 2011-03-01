@@ -348,6 +348,7 @@ Point2fT    MousePt;
         glPopMatrix();
     }
     
+    [WOGeometry startDrawingFrustums];
     for (WOLSystem* tree in self.trees) {
 
         xy_angle = tree.origin.angleXY();
@@ -366,6 +367,7 @@ Point2fT    MousePt;
         [tree render];
         glPopMatrix();
     }
+    [WOGeometry stopDrawingFrustums];
     
     glDisable(GL_LIGHT0);
     glDisable(GL_LIGHTING);

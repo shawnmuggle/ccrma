@@ -50,6 +50,13 @@
         glDepthFunc(GL_LEQUAL);
         glClearDepthf(1.0);
         glCullFace(GL_BACK);
+        
+        glDisable(GL_DITHER);
+        glDisable(GL_ALPHA_TEST);
+        glDisable(GL_BLEND);
+        glDisable(GL_STENCIL_TEST);
+        glDisable(GL_FOG);
+        glDisable(GL_TEXTURE_2D);
     }
 
     return self;
