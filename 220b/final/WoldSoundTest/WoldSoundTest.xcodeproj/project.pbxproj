@@ -1,0 +1,595 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D539D85F1326A87E00CA09E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D539D85E1326A87E00CA09E3 /* UIKit.framework */; };
+		D539D8611326A87E00CA09E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D539D8601326A87E00CA09E3 /* Foundation.framework */; };
+		D539D8631326A87E00CA09E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D539D8621326A87E00CA09E3 /* CoreGraphics.framework */; };
+		D539D8691326A87E00CA09E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D539D8671326A87E00CA09E3 /* InfoPlist.strings */; };
+		D539D86C1326A87E00CA09E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D539D86B1326A87E00CA09E3 /* main.m */; };
+		D539D86F1326A87E00CA09E3 /* WoldSoundTestAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D86E1326A87E00CA09E3 /* WoldSoundTestAppDelegate.mm */; };
+		D539D8721326A87E00CA09E3 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D539D8701326A87E00CA09E3 /* MainWindow.xib */; };
+		D539D8751326A87E00CA09E3 /* WoldSoundTestViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D8741326A87E00CA09E3 /* WoldSoundTestViewController.mm */; };
+		D539D8781326A87E00CA09E3 /* WoldSoundTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D539D8761326A87E00CA09E3 /* WoldSoundTestViewController.xib */; };
+		D539D8BB1326A8DF00CA09E3 /* mo_accel.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D8811326A8DF00CA09E3 /* mo_accel.mm */; };
+		D539D8BC1326A8DF00CA09E3 /* mo_audio.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D8831326A8DF00CA09E3 /* mo_audio.mm */; };
+		D539D8BD1326A8DF00CA09E3 /* mo_colormap.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D8851326A8DF00CA09E3 /* mo_colormap.mm */; };
+		D539D8BE1326A8DF00CA09E3 /* mo_compass.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D8871326A8DF00CA09E3 /* mo_compass.mm */; };
+		D539D8BF1326A8DF00CA09E3 /* mo_fft.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D88A1326A8DF00CA09E3 /* mo_fft.mm */; };
+		D539D8C01326A8DF00CA09E3 /* mo_filter.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D88C1326A8DF00CA09E3 /* mo_filter.mm */; };
+		D539D8C11326A8DF00CA09E3 /* mo_fun.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D88E1326A8DF00CA09E3 /* mo_fun.mm */; };
+		D539D8C21326A8DF00CA09E3 /* mo_gfx.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D8901326A8DF00CA09E3 /* mo_gfx.mm */; };
+		D539D8C31326A8DF00CA09E3 /* mo_io.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D8921326A8DF00CA09E3 /* mo_io.mm */; };
+		D539D8C41326A8DF00CA09E3 /* mo_location.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D8941326A8DF00CA09E3 /* mo_location.mm */; };
+		D539D8C61326A8DF00CA09E3 /* mo_thread.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D8981326A8DF00CA09E3 /* mo_thread.mm */; };
+		D539D8C71326A8DF00CA09E3 /* mo_touch.mm in Sources */ = {isa = PBXBuildFile; fileRef = D539D89A1326A8DF00CA09E3 /* mo_touch.mm */; };
+		D539D8C81326A8DF00CA09E3 /* IpEndpointName.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D539D89E1326A8DF00CA09E3 /* IpEndpointName.cpp */; };
+		D539D8C91326A8DF00CA09E3 /* NetworkingUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D539D8A31326A8DF00CA09E3 /* NetworkingUtils.cpp */; };
+		D539D8CA1326A8DF00CA09E3 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D539D8A41326A8DF00CA09E3 /* UdpSocket.cpp */; };
+		D539D8CB1326A8DF00CA09E3 /* OscOutboundPacketStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D539D8AB1326A8DF00CA09E3 /* OscOutboundPacketStream.cpp */; };
+		D539D8CC1326A8DF00CA09E3 /* OscPrintReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D539D8AE1326A8DF00CA09E3 /* OscPrintReceivedElements.cpp */; };
+		D539D8CD1326A8DF00CA09E3 /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D539D8B01326A8DF00CA09E3 /* OscReceivedElements.cpp */; };
+		D539D8CE1326A8DF00CA09E3 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D539D8B21326A8DF00CA09E3 /* OscTypes.cpp */; };
+		D539D8CF1326A8DF00CA09E3 /* AUTHORS in Resources */ = {isa = PBXBuildFile; fileRef = D539D8B41326A8DF00CA09E3 /* AUTHORS */; };
+		D539D8D01326A8DF00CA09E3 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = D539D8B51326A8DF00CA09E3 /* COPYING */; };
+		D539D8D11326A8DF00CA09E3 /* DEVELOPER in Resources */ = {isa = PBXBuildFile; fileRef = D539D8B61326A8DF00CA09E3 /* DEVELOPER */; };
+		D539D8D21326A8DF00CA09E3 /* README in Resources */ = {isa = PBXBuildFile; fileRef = D539D8B71326A8DF00CA09E3 /* README */; };
+		D539D8D31326A8DF00CA09E3 /* THANKS in Resources */ = {isa = PBXBuildFile; fileRef = D539D8B81326A8DF00CA09E3 /* THANKS */; };
+		D539D8D41326A8DF00CA09E3 /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = D539D8B91326A8DF00CA09E3 /* TODO */; };
+		D539D8D51326A8DF00CA09E3 /* VERSIONS in Resources */ = {isa = PBXBuildFile; fileRef = D539D8BA1326A8DF00CA09E3 /* VERSIONS */; };
+		D539D8DD1326AAE900CA09E3 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D539D8DC1326AAE900CA09E3 /* CoreAudio.framework */; };
+		D539D8DF1326AB9500CA09E3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D539D8DE1326AB9500CA09E3 /* AudioToolbox.framework */; };
+		D539D8E11326ABAB00CA09E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D539D8E01326ABAB00CA09E3 /* CoreLocation.framework */; };
+		D5BE16071326ADCF00677823 /* Envelope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5BE14E11326ADCE00677823 /* Envelope.cpp */; };
+		D5BE16091326ADCF00677823 /* FileRead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5BE14E31326ADCE00677823 /* FileRead.cpp */; };
+		D5BE16121326ADCF00677823 /* Granulate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5BE14EC1326ADCE00677823 /* Granulate.cpp */; };
+		D5BE16291326ADCF00677823 /* Noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5BE150E1326ADCE00677823 /* Noise.cpp */; };
+		D5BE169B1326ADD200677823 /* Stk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5BE15811326ADCE00677823 /* Stk.cpp */; };
+		D5BE16AE1326B1C200677823 /* potato_hell.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5BE16AD1326B1C200677823 /* potato_hell.wav */; };
+		D5BE16B11326B3FA00677823 /* SoundGrain.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5BE16B01326B3FA00677823 /* SoundGrain.mm */; };
+		D5BE16B41326B89200677823 /* GrainTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BE16B31326B89200677823 /* GrainTouchView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D539D85A1326A87E00CA09E3 /* WoldSoundTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoldSoundTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D539D85E1326A87E00CA09E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D539D8601326A87E00CA09E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D539D8621326A87E00CA09E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D539D8661326A87E00CA09E3 /* WoldSoundTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WoldSoundTest-Info.plist"; sourceTree = "<group>"; };
+		D539D8681326A87E00CA09E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D539D86A1326A87E00CA09E3 /* WoldSoundTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WoldSoundTest-Prefix.pch"; sourceTree = "<group>"; };
+		D539D86B1326A87E00CA09E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D539D86D1326A87E00CA09E3 /* WoldSoundTestAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WoldSoundTestAppDelegate.h; sourceTree = "<group>"; };
+		D539D86E1326A87E00CA09E3 /* WoldSoundTestAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = WoldSoundTestAppDelegate.mm; sourceTree = "<group>"; };
+		D539D8711326A87E00CA09E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		D539D8731326A87E00CA09E3 /* WoldSoundTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WoldSoundTestViewController.h; sourceTree = "<group>"; };
+		D539D8741326A87E00CA09E3 /* WoldSoundTestViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = WoldSoundTestViewController.mm; sourceTree = "<group>"; };
+		D539D8771326A87E00CA09E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/WoldSoundTestViewController.xib; sourceTree = "<group>"; };
+		D539D8801326A8DF00CA09E3 /* mo_accel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_accel.h; sourceTree = "<group>"; };
+		D539D8811326A8DF00CA09E3 /* mo_accel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_accel.mm; sourceTree = "<group>"; };
+		D539D8821326A8DF00CA09E3 /* mo_audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_audio.h; sourceTree = "<group>"; };
+		D539D8831326A8DF00CA09E3 /* mo_audio.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_audio.mm; sourceTree = "<group>"; };
+		D539D8841326A8DF00CA09E3 /* mo_colormap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_colormap.h; sourceTree = "<group>"; };
+		D539D8851326A8DF00CA09E3 /* mo_colormap.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_colormap.mm; sourceTree = "<group>"; };
+		D539D8861326A8DF00CA09E3 /* mo_compass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_compass.h; sourceTree = "<group>"; };
+		D539D8871326A8DF00CA09E3 /* mo_compass.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_compass.mm; sourceTree = "<group>"; };
+		D539D8881326A8DF00CA09E3 /* mo_def.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_def.h; sourceTree = "<group>"; };
+		D539D8891326A8DF00CA09E3 /* mo_fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_fft.h; sourceTree = "<group>"; };
+		D539D88A1326A8DF00CA09E3 /* mo_fft.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_fft.mm; sourceTree = "<group>"; };
+		D539D88B1326A8DF00CA09E3 /* mo_filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_filter.h; sourceTree = "<group>"; };
+		D539D88C1326A8DF00CA09E3 /* mo_filter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_filter.mm; sourceTree = "<group>"; };
+		D539D88D1326A8DF00CA09E3 /* mo_fun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_fun.h; sourceTree = "<group>"; };
+		D539D88E1326A8DF00CA09E3 /* mo_fun.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_fun.mm; sourceTree = "<group>"; };
+		D539D88F1326A8DF00CA09E3 /* mo_gfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_gfx.h; sourceTree = "<group>"; };
+		D539D8901326A8DF00CA09E3 /* mo_gfx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_gfx.mm; sourceTree = "<group>"; };
+		D539D8911326A8DF00CA09E3 /* mo_io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_io.h; sourceTree = "<group>"; };
+		D539D8921326A8DF00CA09E3 /* mo_io.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_io.mm; sourceTree = "<group>"; };
+		D539D8931326A8DF00CA09E3 /* mo_location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_location.h; sourceTree = "<group>"; };
+		D539D8941326A8DF00CA09E3 /* mo_location.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_location.mm; sourceTree = "<group>"; };
+		D539D8971326A8DF00CA09E3 /* mo_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_thread.h; sourceTree = "<group>"; };
+		D539D8981326A8DF00CA09E3 /* mo_thread.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_thread.mm; sourceTree = "<group>"; };
+		D539D8991326A8DF00CA09E3 /* mo_touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_touch.h; sourceTree = "<group>"; };
+		D539D89A1326A8DF00CA09E3 /* mo_touch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_touch.mm; sourceTree = "<group>"; };
+		D539D89B1326A8DF00CA09E3 /* momu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = momu.h; sourceTree = "<group>"; };
+		D539D89E1326A8DF00CA09E3 /* IpEndpointName.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IpEndpointName.cpp; sourceTree = "<group>"; };
+		D539D89F1326A8DF00CA09E3 /* IpEndpointName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IpEndpointName.h; sourceTree = "<group>"; };
+		D539D8A01326A8DF00CA09E3 /* NetworkingUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingUtils.h; sourceTree = "<group>"; };
+		D539D8A11326A8DF00CA09E3 /* PacketListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketListener.h; sourceTree = "<group>"; };
+		D539D8A31326A8DF00CA09E3 /* NetworkingUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkingUtils.cpp; sourceTree = "<group>"; };
+		D539D8A41326A8DF00CA09E3 /* UdpSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UdpSocket.cpp; sourceTree = "<group>"; };
+		D539D8A51326A8DF00CA09E3 /* TimerListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerListener.h; sourceTree = "<group>"; };
+		D539D8A61326A8DF00CA09E3 /* UdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UdpSocket.h; sourceTree = "<group>"; };
+		D539D8A81326A8DF00CA09E3 /* MessageMappingOscPacketListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageMappingOscPacketListener.h; sourceTree = "<group>"; };
+		D539D8A91326A8DF00CA09E3 /* OscException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscException.h; sourceTree = "<group>"; };
+		D539D8AA1326A8DF00CA09E3 /* OscHostEndianness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscHostEndianness.h; sourceTree = "<group>"; };
+		D539D8AB1326A8DF00CA09E3 /* OscOutboundPacketStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscOutboundPacketStream.cpp; sourceTree = "<group>"; };
+		D539D8AC1326A8DF00CA09E3 /* OscOutboundPacketStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscOutboundPacketStream.h; sourceTree = "<group>"; };
+		D539D8AD1326A8DF00CA09E3 /* OscPacketListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscPacketListener.h; sourceTree = "<group>"; };
+		D539D8AE1326A8DF00CA09E3 /* OscPrintReceivedElements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscPrintReceivedElements.cpp; sourceTree = "<group>"; };
+		D539D8AF1326A8DF00CA09E3 /* OscPrintReceivedElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscPrintReceivedElements.h; sourceTree = "<group>"; };
+		D539D8B01326A8DF00CA09E3 /* OscReceivedElements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscReceivedElements.cpp; sourceTree = "<group>"; };
+		D539D8B11326A8DF00CA09E3 /* OscReceivedElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscReceivedElements.h; sourceTree = "<group>"; };
+		D539D8B21326A8DF00CA09E3 /* OscTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscTypes.cpp; sourceTree = "<group>"; };
+		D539D8B31326A8DF00CA09E3 /* OscTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscTypes.h; sourceTree = "<group>"; };
+		D539D8B41326A8DF00CA09E3 /* AUTHORS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUTHORS; sourceTree = "<group>"; };
+		D539D8B51326A8DF00CA09E3 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		D539D8B61326A8DF00CA09E3 /* DEVELOPER */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DEVELOPER; sourceTree = "<group>"; };
+		D539D8B71326A8DF00CA09E3 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		D539D8B81326A8DF00CA09E3 /* THANKS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = THANKS; sourceTree = "<group>"; };
+		D539D8B91326A8DF00CA09E3 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		D539D8BA1326A8DF00CA09E3 /* VERSIONS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSIONS; sourceTree = "<group>"; };
+		D539D8DC1326AAE900CA09E3 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D539D8DE1326AB9500CA09E3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D539D8E01326ABAB00CA09E3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D5BE14E11326ADCE00677823 /* Envelope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Envelope.cpp; sourceTree = "<group>"; };
+		D5BE14E31326ADCE00677823 /* FileRead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileRead.cpp; sourceTree = "<group>"; };
+		D5BE14EC1326ADCE00677823 /* Granulate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Granulate.cpp; sourceTree = "<group>"; };
+		D5BE150E1326ADCE00677823 /* Noise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Noise.cpp; sourceTree = "<group>"; };
+		D5BE15811326ADCE00677823 /* Stk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stk.cpp; sourceTree = "<group>"; };
+		D5BE15A41326ADCE00677823 /* Envelope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Envelope.h; sourceTree = "<group>"; };
+		D5BE15A61326ADCE00677823 /* FileRead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileRead.h; sourceTree = "<group>"; };
+		D5BE15B11326ADCE00677823 /* Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Generator.h; sourceTree = "<group>"; };
+		D5BE15B21326ADCE00677823 /* Granulate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Granulate.h; sourceTree = "<group>"; };
+		D5BE15E41326ADCE00677823 /* Stk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stk.h; sourceTree = "<group>"; };
+		D5BE16AB1326B0CA00677823 /* Noise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Noise.h; sourceTree = "<group>"; };
+		D5BE16AD1326B1C200677823 /* potato_hell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = potato_hell.wav; path = ../../../../../Downloads/potato_hell.wav; sourceTree = "<group>"; };
+		D5BE16AF1326B3FA00677823 /* SoundGrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundGrain.h; sourceTree = "<group>"; };
+		D5BE16B01326B3FA00677823 /* SoundGrain.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SoundGrain.mm; sourceTree = "<group>"; };
+		D5BE16B21326B89200677823 /* GrainTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrainTouchView.h; sourceTree = "<group>"; };
+		D5BE16B31326B89200677823 /* GrainTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrainTouchView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D539D8571326A87E00CA09E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D539D8E11326ABAB00CA09E3 /* CoreLocation.framework in Frameworks */,
+				D539D8DF1326AB9500CA09E3 /* AudioToolbox.framework in Frameworks */,
+				D539D8DD1326AAE900CA09E3 /* CoreAudio.framework in Frameworks */,
+				D539D85F1326A87E00CA09E3 /* UIKit.framework in Frameworks */,
+				D539D8611326A87E00CA09E3 /* Foundation.framework in Frameworks */,
+				D539D8631326A87E00CA09E3 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D539D84F1326A87D00CA09E3 = {
+			isa = PBXGroup;
+			children = (
+				D5BE16AA1326ADD800677823 /* stk */,
+				D539D87E1326A8DF00CA09E3 /* momu-1.0.0 */,
+				D539D8641326A87E00CA09E3 /* WoldSoundTest */,
+				D5BE16AC1326B15900677823 /* sounds */,
+				D539D85D1326A87E00CA09E3 /* Frameworks */,
+				D539D85B1326A87E00CA09E3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D539D85B1326A87E00CA09E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D539D85A1326A87E00CA09E3 /* WoldSoundTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D539D85D1326A87E00CA09E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D539D8E01326ABAB00CA09E3 /* CoreLocation.framework */,
+				D539D8DE1326AB9500CA09E3 /* AudioToolbox.framework */,
+				D539D8DC1326AAE900CA09E3 /* CoreAudio.framework */,
+				D539D85E1326A87E00CA09E3 /* UIKit.framework */,
+				D539D8601326A87E00CA09E3 /* Foundation.framework */,
+				D539D8621326A87E00CA09E3 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D539D8641326A87E00CA09E3 /* WoldSoundTest */ = {
+			isa = PBXGroup;
+			children = (
+				D539D86D1326A87E00CA09E3 /* WoldSoundTestAppDelegate.h */,
+				D539D86E1326A87E00CA09E3 /* WoldSoundTestAppDelegate.mm */,
+				D539D8701326A87E00CA09E3 /* MainWindow.xib */,
+				D539D8731326A87E00CA09E3 /* WoldSoundTestViewController.h */,
+				D539D8741326A87E00CA09E3 /* WoldSoundTestViewController.mm */,
+				D539D8761326A87E00CA09E3 /* WoldSoundTestViewController.xib */,
+				D539D8651326A87E00CA09E3 /* Supporting Files */,
+				D5BE16AF1326B3FA00677823 /* SoundGrain.h */,
+				D5BE16B01326B3FA00677823 /* SoundGrain.mm */,
+				D5BE16B21326B89200677823 /* GrainTouchView.h */,
+				D5BE16B31326B89200677823 /* GrainTouchView.m */,
+			);
+			path = WoldSoundTest;
+			sourceTree = "<group>";
+		};
+		D539D8651326A87E00CA09E3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D539D8661326A87E00CA09E3 /* WoldSoundTest-Info.plist */,
+				D539D8671326A87E00CA09E3 /* InfoPlist.strings */,
+				D539D86A1326A87E00CA09E3 /* WoldSoundTest-Prefix.pch */,
+				D539D86B1326A87E00CA09E3 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D539D87E1326A8DF00CA09E3 /* momu-1.0.0 */ = {
+			isa = PBXGroup;
+			children = (
+				D539D87F1326A8DF00CA09E3 /* api */,
+				D539D8B41326A8DF00CA09E3 /* AUTHORS */,
+				D539D8B51326A8DF00CA09E3 /* COPYING */,
+				D539D8B61326A8DF00CA09E3 /* DEVELOPER */,
+				D539D8B71326A8DF00CA09E3 /* README */,
+				D539D8B81326A8DF00CA09E3 /* THANKS */,
+				D539D8B91326A8DF00CA09E3 /* TODO */,
+				D539D8BA1326A8DF00CA09E3 /* VERSIONS */,
+			);
+			path = "momu-1.0.0";
+			sourceTree = "<group>";
+		};
+		D539D87F1326A8DF00CA09E3 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				D539D8801326A8DF00CA09E3 /* mo_accel.h */,
+				D539D8811326A8DF00CA09E3 /* mo_accel.mm */,
+				D539D8821326A8DF00CA09E3 /* mo_audio.h */,
+				D539D8831326A8DF00CA09E3 /* mo_audio.mm */,
+				D539D8841326A8DF00CA09E3 /* mo_colormap.h */,
+				D539D8851326A8DF00CA09E3 /* mo_colormap.mm */,
+				D539D8861326A8DF00CA09E3 /* mo_compass.h */,
+				D539D8871326A8DF00CA09E3 /* mo_compass.mm */,
+				D539D8881326A8DF00CA09E3 /* mo_def.h */,
+				D539D8891326A8DF00CA09E3 /* mo_fft.h */,
+				D539D88A1326A8DF00CA09E3 /* mo_fft.mm */,
+				D539D88B1326A8DF00CA09E3 /* mo_filter.h */,
+				D539D88C1326A8DF00CA09E3 /* mo_filter.mm */,
+				D539D88D1326A8DF00CA09E3 /* mo_fun.h */,
+				D539D88E1326A8DF00CA09E3 /* mo_fun.mm */,
+				D539D88F1326A8DF00CA09E3 /* mo_gfx.h */,
+				D539D8901326A8DF00CA09E3 /* mo_gfx.mm */,
+				D539D8911326A8DF00CA09E3 /* mo_io.h */,
+				D539D8921326A8DF00CA09E3 /* mo_io.mm */,
+				D539D8931326A8DF00CA09E3 /* mo_location.h */,
+				D539D8941326A8DF00CA09E3 /* mo_location.mm */,
+				D539D8971326A8DF00CA09E3 /* mo_thread.h */,
+				D539D8981326A8DF00CA09E3 /* mo_thread.mm */,
+				D539D8991326A8DF00CA09E3 /* mo_touch.h */,
+				D539D89A1326A8DF00CA09E3 /* mo_touch.mm */,
+				D539D89B1326A8DF00CA09E3 /* momu.h */,
+				D539D89C1326A8DF00CA09E3 /* oscpack */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		D539D89C1326A8DF00CA09E3 /* oscpack */ = {
+			isa = PBXGroup;
+			children = (
+				D539D89D1326A8DF00CA09E3 /* ip */,
+				D539D8A71326A8DF00CA09E3 /* osc */,
+			);
+			path = oscpack;
+			sourceTree = "<group>";
+		};
+		D539D89D1326A8DF00CA09E3 /* ip */ = {
+			isa = PBXGroup;
+			children = (
+				D539D89E1326A8DF00CA09E3 /* IpEndpointName.cpp */,
+				D539D89F1326A8DF00CA09E3 /* IpEndpointName.h */,
+				D539D8A01326A8DF00CA09E3 /* NetworkingUtils.h */,
+				D539D8A11326A8DF00CA09E3 /* PacketListener.h */,
+				D539D8A21326A8DF00CA09E3 /* posix */,
+				D539D8A51326A8DF00CA09E3 /* TimerListener.h */,
+				D539D8A61326A8DF00CA09E3 /* UdpSocket.h */,
+			);
+			path = ip;
+			sourceTree = "<group>";
+		};
+		D539D8A21326A8DF00CA09E3 /* posix */ = {
+			isa = PBXGroup;
+			children = (
+				D539D8A31326A8DF00CA09E3 /* NetworkingUtils.cpp */,
+				D539D8A41326A8DF00CA09E3 /* UdpSocket.cpp */,
+			);
+			path = posix;
+			sourceTree = "<group>";
+		};
+		D539D8A71326A8DF00CA09E3 /* osc */ = {
+			isa = PBXGroup;
+			children = (
+				D539D8A81326A8DF00CA09E3 /* MessageMappingOscPacketListener.h */,
+				D539D8A91326A8DF00CA09E3 /* OscException.h */,
+				D539D8AA1326A8DF00CA09E3 /* OscHostEndianness.h */,
+				D539D8AB1326A8DF00CA09E3 /* OscOutboundPacketStream.cpp */,
+				D539D8AC1326A8DF00CA09E3 /* OscOutboundPacketStream.h */,
+				D539D8AD1326A8DF00CA09E3 /* OscPacketListener.h */,
+				D539D8AE1326A8DF00CA09E3 /* OscPrintReceivedElements.cpp */,
+				D539D8AF1326A8DF00CA09E3 /* OscPrintReceivedElements.h */,
+				D539D8B01326A8DF00CA09E3 /* OscReceivedElements.cpp */,
+				D539D8B11326A8DF00CA09E3 /* OscReceivedElements.h */,
+				D539D8B21326A8DF00CA09E3 /* OscTypes.cpp */,
+				D539D8B31326A8DF00CA09E3 /* OscTypes.h */,
+			);
+			path = osc;
+			sourceTree = "<group>";
+		};
+		D5BE14CC1326ADCE00677823 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE14E11326ADCE00677823 /* Envelope.cpp */,
+				D5BE14E31326ADCE00677823 /* FileRead.cpp */,
+				D5BE14EC1326ADCE00677823 /* Granulate.cpp */,
+				D5BE150E1326ADCE00677823 /* Noise.cpp */,
+				D5BE15811326ADCE00677823 /* Stk.cpp */,
+			);
+			name = src;
+			path = "stk-4.4.2/src";
+			sourceTree = "<group>";
+		};
+		D5BE158E1326ADCE00677823 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE16AB1326B0CA00677823 /* Noise.h */,
+				D5BE15A41326ADCE00677823 /* Envelope.h */,
+				D5BE15A61326ADCE00677823 /* FileRead.h */,
+				D5BE15B11326ADCE00677823 /* Generator.h */,
+				D5BE15B21326ADCE00677823 /* Granulate.h */,
+				D5BE15E41326ADCE00677823 /* Stk.h */,
+			);
+			name = include;
+			path = "stk-4.4.2/include";
+			sourceTree = "<group>";
+		};
+		D5BE16AA1326ADD800677823 /* stk */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE158E1326ADCE00677823 /* include */,
+				D5BE14CC1326ADCE00677823 /* src */,
+			);
+			name = stk;
+			sourceTree = "<group>";
+		};
+		D5BE16AC1326B15900677823 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE16AD1326B1C200677823 /* potato_hell.wav */,
+			);
+			name = sounds;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D539D8591326A87E00CA09E3 /* WoldSoundTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D539D87B1326A87E00CA09E3 /* Build configuration list for PBXNativeTarget "WoldSoundTest" */;
+			buildPhases = (
+				D539D8561326A87E00CA09E3 /* Sources */,
+				D539D8571326A87E00CA09E3 /* Frameworks */,
+				D539D8581326A87E00CA09E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WoldSoundTest;
+			productName = WoldSoundTest;
+			productReference = D539D85A1326A87E00CA09E3 /* WoldSoundTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D539D8511326A87E00CA09E3 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = D539D8541326A87E00CA09E3 /* Build configuration list for PBXProject "WoldSoundTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D539D84F1326A87D00CA09E3;
+			productRefGroup = D539D85B1326A87E00CA09E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D539D8591326A87E00CA09E3 /* WoldSoundTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D539D8581326A87E00CA09E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D539D8691326A87E00CA09E3 /* InfoPlist.strings in Resources */,
+				D539D8721326A87E00CA09E3 /* MainWindow.xib in Resources */,
+				D539D8781326A87E00CA09E3 /* WoldSoundTestViewController.xib in Resources */,
+				D539D8CF1326A8DF00CA09E3 /* AUTHORS in Resources */,
+				D539D8D01326A8DF00CA09E3 /* COPYING in Resources */,
+				D539D8D11326A8DF00CA09E3 /* DEVELOPER in Resources */,
+				D539D8D21326A8DF00CA09E3 /* README in Resources */,
+				D539D8D31326A8DF00CA09E3 /* THANKS in Resources */,
+				D539D8D41326A8DF00CA09E3 /* TODO in Resources */,
+				D539D8D51326A8DF00CA09E3 /* VERSIONS in Resources */,
+				D5BE16AE1326B1C200677823 /* potato_hell.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D539D8561326A87E00CA09E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D539D86C1326A87E00CA09E3 /* main.m in Sources */,
+				D539D86F1326A87E00CA09E3 /* WoldSoundTestAppDelegate.mm in Sources */,
+				D539D8751326A87E00CA09E3 /* WoldSoundTestViewController.mm in Sources */,
+				D539D8BB1326A8DF00CA09E3 /* mo_accel.mm in Sources */,
+				D539D8BC1326A8DF00CA09E3 /* mo_audio.mm in Sources */,
+				D539D8BD1326A8DF00CA09E3 /* mo_colormap.mm in Sources */,
+				D539D8BE1326A8DF00CA09E3 /* mo_compass.mm in Sources */,
+				D539D8BF1326A8DF00CA09E3 /* mo_fft.mm in Sources */,
+				D539D8C01326A8DF00CA09E3 /* mo_filter.mm in Sources */,
+				D539D8C11326A8DF00CA09E3 /* mo_fun.mm in Sources */,
+				D539D8C21326A8DF00CA09E3 /* mo_gfx.mm in Sources */,
+				D539D8C31326A8DF00CA09E3 /* mo_io.mm in Sources */,
+				D539D8C41326A8DF00CA09E3 /* mo_location.mm in Sources */,
+				D539D8C61326A8DF00CA09E3 /* mo_thread.mm in Sources */,
+				D539D8C71326A8DF00CA09E3 /* mo_touch.mm in Sources */,
+				D539D8C81326A8DF00CA09E3 /* IpEndpointName.cpp in Sources */,
+				D539D8C91326A8DF00CA09E3 /* NetworkingUtils.cpp in Sources */,
+				D539D8CA1326A8DF00CA09E3 /* UdpSocket.cpp in Sources */,
+				D539D8CB1326A8DF00CA09E3 /* OscOutboundPacketStream.cpp in Sources */,
+				D539D8CC1326A8DF00CA09E3 /* OscPrintReceivedElements.cpp in Sources */,
+				D539D8CD1326A8DF00CA09E3 /* OscReceivedElements.cpp in Sources */,
+				D539D8CE1326A8DF00CA09E3 /* OscTypes.cpp in Sources */,
+				D5BE16071326ADCF00677823 /* Envelope.cpp in Sources */,
+				D5BE16091326ADCF00677823 /* FileRead.cpp in Sources */,
+				D5BE16121326ADCF00677823 /* Granulate.cpp in Sources */,
+				D5BE16291326ADCF00677823 /* Noise.cpp in Sources */,
+				D5BE169B1326ADD200677823 /* Stk.cpp in Sources */,
+				D5BE16B11326B3FA00677823 /* SoundGrain.mm in Sources */,
+				D5BE16B41326B89200677823 /* GrainTouchView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D539D8671326A87E00CA09E3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D539D8681326A87E00CA09E3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D539D8701326A87E00CA09E3 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D539D8711326A87E00CA09E3 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		D539D8761326A87E00CA09E3 /* WoldSoundTestViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D539D8771326A87E00CA09E3 /* en */,
+			);
+			name = WoldSoundTestViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D539D8791326A87E00CA09E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		D539D87A1326A87E00CA09E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		D539D87C1326A87E00CA09E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WoldSoundTest/WoldSoundTest-Prefix.pch";
+				INFOPLIST_FILE = "WoldSoundTest/WoldSoundTest-Info.plist";
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/stk-4.4.2/src\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D539D87D1326A87E00CA09E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WoldSoundTest/WoldSoundTest-Prefix.pch";
+				INFOPLIST_FILE = "WoldSoundTest/WoldSoundTest-Info.plist";
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/stk-4.4.2/src\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D539D8541326A87E00CA09E3 /* Build configuration list for PBXProject "WoldSoundTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D539D8791326A87E00CA09E3 /* Debug */,
+				D539D87A1326A87E00CA09E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D539D87B1326A87E00CA09E3 /* Build configuration list for PBXNativeTarget "WoldSoundTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D539D87C1326A87E00CA09E3 /* Debug */,
+				D539D87D1326A87E00CA09E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D539D8511326A87E00CA09E3 /* Project object */;
+}

@@ -45,20 +45,20 @@ Point2fT    MousePt;
 - (void) processDrag:(UIPanGestureRecognizer *)gesture
 {
     if (gesture.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Starting a drag!");
+        //NSLog(@"Starting a drag!");
         LastRot = ThisRot;										// Set Last Static Rotation To Last Dynamic One
         
         CGPoint loc = [gesture locationInView:gesture.view];
-        NSLog(@"Drag started at %f, %f", loc.x, loc.y);
+        //NSLog(@"Drag started at %f, %f", loc.x, loc.y);
         MousePt.s.X = loc.x + 768; // Accounting for screen offset in "spherical" dragging centered (roughly) on left edge of screen
         MousePt.s.Y = loc.y;
               
         ArcBall.click(&MousePt);
     } else if (gesture.state == UIGestureRecognizerStateChanged) {
-        NSLog(@"Continuing a drag!");    
+        //NSLog(@"Continuing a drag!");    
         
         CGPoint loc = [gesture locationInView:gesture.view];
-        NSLog(@"Drag started at %f, %f", loc.x, loc.y);
+        //NSLog(@"Drag started at %f, %f", loc.x, loc.y);
         MousePt.s.X = loc.x + 768; // Accounting for screen offset
         MousePt.s.Y = loc.y;
         
@@ -190,7 +190,7 @@ Point2fT    MousePt;
     [request setPostValue:[NSNumber numberWithFloat:age] forKey:@"age"];
     [request setPostValue:[NSNumber numberWithFloat:tree.freq] forKey:@"frequency"];
     
-	[request startSynchronous];  // TODO: Make this asynchronous to get rid of sound sputtering
+	[request startAsynchronous];
     
 	NSError *error = [request error];
 	if (!error) {
@@ -265,6 +265,8 @@ Point2fT    MousePt;
     if (send) {
         [self submitTreeToServer:self.growingTree];
     }
+    self.growingTree.growing = NO;
+    [self.growingTree generateVBO];
     self.growingTree = nil;
 }
 
@@ -327,7 +329,7 @@ Point2fT    MousePt;
     // enable texture mapping
     glEnable( GL_TEXTURE_2D ); // TODO: Move this around only the textured drawing!
     //[WOGeometry drawSphereWithRadius:self.radius andNumLats:20 andNumLongs:20];
-    //[WOGeometry drawFrustumWithBottomRadius:self.radius / 2 andTopRadius:self.radius / 4 andHeight:self.radius / 2 andSections:40];
+    [WOGeometry drawFrustumWithBottomRadius:self.radius / 2 andTopRadius:self.radius / 4 andHeight:self.radius / 2 andSections:40];
     glDisable(GL_TEXTURE_2D);
     
     //glBindTexture( GL_TEXTURE_2D, tree_texture);
@@ -348,7 +350,6 @@ Point2fT    MousePt;
         glPopMatrix();
     }
     
-    [WOGeometry startDrawingFrustums];
     for (WOLSystem* tree in self.trees) {
 
         xy_angle = tree.origin.angleXY();
@@ -367,7 +368,6 @@ Point2fT    MousePt;
         [tree render];
         glPopMatrix();
     }
-    [WOGeometry stopDrawingFrustums];
     
     glDisable(GL_LIGHT0);
     glDisable(GL_LIGHTING);

@@ -51,6 +51,8 @@
 		D553EEF41309383200829ECF /* glu.mm in Sources */ = {isa = PBXBuildFile; fileRef = D553EEF31309383200829ECF /* glu.mm */; };
 		D553EFA61309E77E00829ECF /* venusbump.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D553EF991309E77D00829ECF /* venusbump.jpg */; };
 		D55E3A99130C2C17009E23B7 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D55E3A98130C2C17009E23B7 /* icon.png */; };
+		D595C236132460D000799C7D /* at_mglUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D595C22E132460D000799C7D /* at_mglUtils.cpp */; };
+		D595C237132460D000799C7D /* at_minigl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D595C230132460D000799C7D /* at_minigl.cpp */; };
 		D5A1855E12FC438600107C05 /* WOLSystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5A1855D12FC438600107C05 /* WOLSystem.mm */; };
 		D5A187DB1300776A00107C05 /* AKTouchTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5A187DA1300776A00107C05 /* AKTouchTracker.mm */; };
 		D5A188631300886300107C05 /* mo_accel.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5A188291300886300107C05 /* mo_accel.mm */; };
@@ -173,6 +175,11 @@
 		D5666EC11312748A00D13D0A /* Matrix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Matrix.hpp; sourceTree = "<group>"; };
 		D5666EC213127B5900D13D0A /* Quaternion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Quaternion.hpp; sourceTree = "<group>"; };
 		D5941680130EDABC00EC5427 /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
+		D595C22D132460D000799C7D /* at_mglTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = at_mglTypes.h; sourceTree = "<group>"; };
+		D595C22E132460D000799C7D /* at_mglUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = at_mglUtils.cpp; sourceTree = "<group>"; };
+		D595C22F132460D000799C7D /* at_mglUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = at_mglUtils.h; sourceTree = "<group>"; };
+		D595C230132460D000799C7D /* at_minigl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = at_minigl.cpp; sourceTree = "<group>"; };
+		D595C231132460D000799C7D /* at_minigl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = at_minigl.h; sourceTree = "<group>"; };
 		D5A1855C12FC438600107C05 /* WOLSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLSystem.h; sourceTree = "<group>"; };
 		D5A1855D12FC438600107C05 /* WOLSystem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WOLSystem.mm; sourceTree = "<group>"; };
 		D5A187D91300776900107C05 /* AKTouchTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKTouchTracker.h; sourceTree = "<group>"; };
@@ -314,6 +321,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				D595C224132460D000799C7D /* at_minigl */,
 				D5430D0F131BA79E0091BBE0 /* asihttp */,
 				D5A188261300886200107C05 /* momu-1.0.0 */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -453,6 +461,18 @@
 				D5666EC213127B5900D13D0A /* Quaternion.hpp */,
 			);
 			name = Maths;
+			sourceTree = "<group>";
+		};
+		D595C224132460D000799C7D /* at_minigl */ = {
+			isa = PBXGroup;
+			children = (
+				D595C22D132460D000799C7D /* at_mglTypes.h */,
+				D595C22E132460D000799C7D /* at_mglUtils.cpp */,
+				D595C22F132460D000799C7D /* at_mglUtils.h */,
+				D595C230132460D000799C7D /* at_minigl.cpp */,
+				D595C231132460D000799C7D /* at_minigl.h */,
+			);
+			path = at_minigl;
 			sourceTree = "<group>";
 		};
 		D5A188261300886200107C05 /* momu-1.0.0 */ = {
@@ -683,6 +703,8 @@
 				D5430D76131BA79E0091BBE0 /* ASIS3Request.m in Sources */,
 				D5430D77131BA79E0091BBE0 /* ASIS3ServiceRequest.m in Sources */,
 				D5430D89131BB6220091BBE0 /* Reachability.m in Sources */,
+				D595C236132460D000799C7D /* at_mglUtils.cpp in Sources */,
+				D595C237132460D000799C7D /* at_minigl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

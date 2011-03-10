@@ -9,8 +9,39 @@
 #import "WOGeometry.h"
 
 #import "mo_gfx.h"
-#import "Vector.hpp"
-#import <vector>
+#import "Matrix.hpp"
+#import "Quaternion.hpp"
+
+#import "at_minigl.h"
+
+// HACK BY MIKE LOL
+mat3 RotationMatrix(const float xDegrees, const float yDegrees, const float zDegrees)
+{
+    mat3 m;
+    float xRadians = xDegrees * 3.14159f / 180.0f;
+    float yRadians = yDegrees * 3.14159f / 180.0f;
+    float zRadians = zDegrees * 3.14159f / 180.0f;
+    float xCos = std::cos(xRadians);
+    float xSin = std::sin(xRadians);
+    float yCos = std::cos(yRadians);
+    float ySin = std::sin(yRadians);
+    float zCos = std::cos(zRadians);
+    float zSin = std::sin(zRadians);
+    
+    m.x.x = yCos * zCos;
+    m.x.y = -xCos * zSin + xSin * ySin * zCos;
+    m.x.z = xSin * zSin + xCos * ySin * zCos;
+    
+    m.y.x = yCos * zCos;
+    m.y.y = xCos * zCos + xSin * ySin * zSin;
+    m.y.z = -xSin * zCos + xCos * ySin * zSin;
+    
+    m.z.x = -ySin;
+    m.z.y = xSin * yCos;
+    m.z.z = xCos * yCos;
+    
+    return m;
+}
 
 // TODO: Use display lists to speed these bitches up.
 @implementation WOGeometry
@@ -18,7 +49,7 @@
 // TODO: Use triangle fans at the top and bottom instead of triangle strips, to have less redundancy?
 + (void)drawSphereWithRadius:(GLfloat)r andNumLats:(GLint)lats andNumLongs:(GLint)longs
 {
-    NSLog(@"SPHERE");
+    //NSLog(@"SPHERE");
     
     GLfloat psi, theta, theta_next, x1, y1, z1, x2, y2, z2;
     
@@ -89,11 +120,6 @@
     }
 }
 
-struct Vertex {
-    vec3 Position;
-    vec3 Normal;
-};
-
 GLuint frustumVertexBuffer;
 GLuint frustumIndexBuffer;
 
@@ -106,8 +132,133 @@ const int numSlices = 5;
 const float dtheta = M_PI * 2 / numSlices;
 const int vertexCount = numSlices * 2 + 2;
 
-+ (void)generateFrustum
++ (void)addFrustumToVerticesVector:(std::vector<Vertex>*)vertices 
+                  andIndicesVector:(std::vector<GLushort>*) indices
+                  withBottomRadius:(GLfloat)bottomRadius 
+                         andHeight:(GLfloat)height
 {
+    mglPushMatrix();
+    mglScale(bottomRadius, height, bottomRadius);
+    
+    // GENERATE VERTICES
+    //std::vector<Vertex> frustumVertices(vertexCount);
+    //std::vector<Vertex>::iterator vertex = frustumVertices.begin();
+
+    size_t oldVerticesSize = vertices->size();
+    
+    vertices->reserve(vertices->size() + vertexCount);
+    
+    // body of frustum
+    int i = 0;
+    Vertex vertex;
+    for (float theta = 0; i < vertexCount - 2; theta += dtheta)
+    { 
+        i++;
+        
+        vec3 bottomPosition(bottomRadius * cos(theta), 0.0, bottomRadius * sin(theta));
+        GLfloat transformedBottomPosition[4];
+        mulMatrixVector(bottomPosition.Pointer(), transformedBottomPosition);
+        
+        bottomPosition.x = transformedBottomPosition[0];
+        bottomPosition.y = transformedBottomPosition[1];
+        bottomPosition.z = transformedBottomPosition[2];
+        
+        Vertex vBottom;
+        vBottom.Position= bottomPosition;
+        vBottom.Normal = bottomPosition.Normalized(); // TODO: Figure out how not to translate normals?!?
+        vertices->push_back(vBottom);
+        
+        vec3 topPosition(topRadius * cos(theta), 1.0, topRadius * sin(theta));
+        GLfloat transformedTopPosition[4];
+        mulMatrixVector(topPosition.Pointer(), transformedTopPosition);
+        
+        topPosition.x = transformedTopPosition[0];
+        topPosition.y = transformedTopPosition[1];
+        topPosition.z = transformedTopPosition[2];
+        
+        Vertex vTop;
+        vTop.Position = topPosition;
+        vTop.Normal = bottomPosition.Normalized();
+        vertices->push_back(vTop);
+    }
+    
+    vec3 bottom = vec3(0, 0, 0);
+    GLfloat transformedBottom[4];
+    mulMatrixVector(bottom.Pointer(), transformedBottom);
+    bottom.x = transformedBottom[0];
+    bottom.y = transformedBottom[1];
+    bottom.z = transformedBottom[2];
+    
+    vec3 bottomNormal = vec3(0, -1, 0);
+    GLfloat transformedBottomNormal[4];
+    mulMatrixVector(bottomNormal.Pointer(), transformedBottomNormal);
+    bottomNormal.x = transformedBottomNormal[0];
+    bottomNormal.y = transformedBottomNormal[1];
+    bottomNormal.z = transformedBottomNormal[2];
+    
+    Vertex bottomVertex;
+    bottomVertex.Position = bottom;
+    bottomVertex.Normal = bottomNormal;
+    vertices->push_back(bottomVertex);
+    
+    vec3 top = vec3(0, 1, 0);
+    GLfloat transformedTop[4];
+    mulMatrixVector(top.Pointer(), transformedTop);
+    
+    top.x = transformedTop[0];
+    top.y = transformedTop[1];
+    top.z = transformedTop[2];
+    
+    Vertex topVertex;
+    topVertex.Position = top;
+    topVertex.Normal = top;
+    vertices->push_back(topVertex);
+    
+    // GENERATE INDICES
+    frustumIndexCount = numSlices * 2 * 3;
+    diskIndexCount = numSlices * 3;
+    
+//    std::vector<GLubyte> frustumIndices(frustumIndexCount + diskIndexCount * 2);
+//    std::vector<GLubyte>::iterator index = frustumIndices.begin();
+    
+    indices->reserve(indices->size() + frustumIndexCount + diskIndexCount * 2);
+    
+    // BODY TRIANGLES
+    for (int i = 0; i < numSlices * 2; i += 2) {
+        indices->push_back(oldVerticesSize + i);
+        indices->push_back(oldVerticesSize + (i + 1) % (2 * numSlices));
+        indices->push_back(oldVerticesSize + (i + 3) % (2 * numSlices));
+        
+        indices->push_back(oldVerticesSize + i);
+        indices->push_back(oldVerticesSize + (i + 3) % (2 * numSlices));
+        indices->push_back(oldVerticesSize + (i + 2) % (2 * numSlices));
+    }
+    
+    // BOTTOM DISK TRIANGLES
+    const int bottomDiskCenterIndex = vertexCount - 2;
+    for (int i = 0; i < numSlices * 2; i += 2) {
+        indices->push_back(oldVerticesSize + bottomDiskCenterIndex);
+        indices->push_back(oldVerticesSize + i);
+        indices->push_back(oldVerticesSize + (i + 2) % (2 * numSlices));
+    }
+    
+    // TOP DISK TRIANGLES
+    // NOTE: each triangle wound in reverse so that it doesn't think it's a backface
+    const int topDiskCenterIndex = vertexCount - 1;
+    for (int i = 1; i < numSlices * 2 + 1; i += 2) {
+        indices->push_back(oldVerticesSize + topDiskCenterIndex);
+        indices->push_back(oldVerticesSize + (i + 2) % (2 * numSlices));
+        indices->push_back(oldVerticesSize + i);
+    }
+
+    mglPopMatrix();
+}
+
++ (void)generateFrustumVBO
+{
+    //mglRotate(90, 1, 0, 0);
+    //mglScale(0.065, 0.3, 0.065);
+    
     // GENERATE VERTICES
     std::vector<Vertex> frustumVertices(vertexCount);
     std::vector<Vertex>::iterator vertex = frustumVertices.begin();
@@ -118,32 +269,37 @@ const int vertexCount = numSlices * 2 + 2;
     { 
         x = theta / (2 * M_PI);
         NSLog(@"x: %f", x);
-        
-        vec3 position(bottomRadius * cos(theta), 0.0, bottomRadius * sin(theta));
-        vertex->Position = position;
-        vertex->Normal = position.Normalized();
+                
+        vec3 bottomPosition(bottomRadius * cos(theta), 0.0, bottomRadius * sin(theta));
+
+        vertex->Position= bottomPosition;
+        vertex->Normal = bottomPosition.Normalized();
         vertex++;
-    
-        position.x = topRadius * cos(theta);
-        position.z = topRadius * sin(theta);
-        vertex->Position = position;
-        vertex->Position.y = 1.0;
-        vertex->Normal = position.Normalized();
+        
+        vec3 topPosition(topRadius * cos(theta), 1.0, topRadius * sin(theta));
+
+        vertex->Position = topPosition;
+        vertex->Normal = bottomPosition.Normalized();
         vertex++;
     }
     
+    vec3 bottomNormal = vec3(0, -1, 0);
+    
     vertex->Position = vec3(0, 0, 0);
-    vertex->Normal = vec3(0, -1, 0);
+    vertex->Normal = bottomNormal;
     vertex++;
-    vertex->Position = vec3(0, 1, 0);
-    vertex->Normal = vec3(0, 1, 0);
+    
+    vec3 top = vec3(0, 1, 0);
+
+    vertex->Position = top;
+    vertex->Normal = top;
     
     // GENERATE INDICES
     frustumIndexCount = numSlices * 2 * 3;
     diskIndexCount = numSlices * 3;
 
-    std::vector<GLubyte> frustumIndices(frustumIndexCount + diskIndexCount * 2);
-    std::vector<GLubyte>::iterator index = frustumIndices.begin();
+    std::vector<GLushort> frustumIndices(frustumIndexCount + diskIndexCount * 2);
+    std::vector<GLushort>::iterator index = frustumIndices.begin();
 
     // BODY TRIANGLES
     for (int i = 0; i < numSlices * 2; i += 2) {
@@ -214,199 +370,12 @@ const int vertexCount = numSlices * 2 + 2;
 }
 
 + (void)drawFrustumWithBottomRadius:(GLfloat)rBottom andTopRadius:(GLfloat)rTop andHeight:(GLfloat)h andSections:(GLint)sections
-{
-    //NSLog(@"%d", counter++);
-    
+{   
     glPushMatrix();
     glScalef(rBottom, h, rBottom); // suboptimal
-    
-    const GLvoid* frustumOffset = 0;
-    const GLvoid* bottomDiskOffset = (GLvoid*)frustumIndexCount;
-    const GLvoid* topDiskOffset = (GLvoid*)(frustumIndexCount + diskIndexCount);
-    
-    glDrawElements(GL_TRIANGLES, frustumIndexCount, GL_UNSIGNED_BYTE, frustumOffset);
-    glDrawElements(GL_TRIANGLES, diskIndexCount, GL_UNSIGNED_BYTE, bottomDiskOffset);
-    glDrawElements(GL_TRIANGLES, diskIndexCount, GL_UNSIGNED_BYTE, topDiskOffset);
-    
+    glDrawElements(GL_TRIANGLES, frustumIndexCount + diskIndexCount * 2, GL_UNSIGNED_SHORT, 0);
     glPopMatrix();
 }
-
-//+ (void)drawFrustumWithBottomRadius:(GLfloat)rBottom andTopRadius:(GLfloat)rTop andHeight:(GLfloat)h andSections:(GLint)sections
-//{
-//    GLsizei stride = sizeof(Vertex);
-//    const GLvoid* pCoords = &frustumVertices[0].Position.x;
-//    const GLvoid* pColors = &frustumVertices[0].Color.x;
-//    const GLvoid* pNormals = &frustumVertices[0].Normal.x;
-//    const GLvoid* pTexCoords = &frustumVertices[0].TexCoord.x;
-//    
-//    glPushMatrix();
-//    glScalef(rBottom, h, rBottom);
-//    glVertexPointer(3, GL_FLOAT, stride, pCoords);
-//    glColorPointer(4, GL_FLOAT, stride, pColors);
-//    glNormalPointer(GL_FLOAT, stride, pNormals);
-//    glTexCoordPointer(2, GL_FLOAT, stride, pTexCoords); // TODO: Figure out why textures don't seem to be working for frustums
-//    glEnableClientState(GL_VERTEX_ARRAY);
-//    glEnableClientState(GL_COLOR_ARRAY);
-//    glEnableClientState(GL_NORMAL_ARRAY);
-//    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-//    
-//    const GLvoid* bodyIndices = &frustumIndices[0];
-//    const GLvoid* bottomDiskIndices = &frustumIndices[frustumIndexCount];
-//    const GLvoid* topDiskIndices = &frustumIndices[frustumIndexCount + diskIndexCount];
-//    
-//    glDrawElements(GL_TRIANGLES, frustumIndexCount, GL_UNSIGNED_BYTE, bodyIndices);
-//    glDrawElements(GL_TRIANGLES, diskIndexCount, GL_UNSIGNED_BYTE, bottomDiskIndices);
-//    glDrawElements(GL_TRIANGLES, diskIndexCount, GL_UNSIGNED_BYTE, topDiskIndices);
-//    
-//    glDisableClientState(GL_VERTEX_ARRAY);
-//    glDisableClientState(GL_COLOR_ARRAY);
-//    glDisableClientState(GL_NORMAL_ARRAY);
-//    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-//    glPopMatrix();
-//}
-
-//// Globals so I can use them from class methods
-//GLfloat* tubeVertices;
-//GLfloat* tubeNormals;
-//GLfloat* tubeTexCoords;
-//
-//int numTubeVertices;
-//int numFanVertices;
-//
-//// NEW HOTNESS using vertex indexing and drawElements
-//GLfloat* frustumVertices;
-////GLubyte* frustumIndices;
-//
-//+ (void)generateFrustum
-//{
-//    GLfloat rBottom = 1.0; // Scale me later!
-//    GLfloat rTop = 0.65; // Like our tree frustums, duh!
-//    GLfloat h = 1.0; // Scale me later!
-//    int sections = 5; // Like our trees, again.
-//    
-//    numTubeVertices = (sections + 1) * 2;
-//    numFanVertices = sections + 2;
-//    
-//    frustumVertices = new GLfloat[numTubeVertices + (numFanVertices * 2) * 3];
-//    int vertexIndex = 0;
-//    
-//    bottomFanNormals = new GLfloat[numFanVertices * 3];
-//    bottomFanTexCoords = new GLfloat[numFanVertices * 2];
-//    
-//    frustumVertices[vertexIndex * 3] = 0.0f;
-//    frustumVertices[vertexIndex * 3 + 1] = 0.0f;
-//    frustumVertices[vertexIndex * 3 + 2] = 0.0f;
-//    vertexIndex++;
-//    
-//    bottomFanNormals[0] = 0.0f;
-//    bottomFanNormals[1] = -1.0f;
-//    bottomFanNormals[2] = 0.0f;
-//    
-//    bottomFanTexCoords[0] = 0.5;
-//    bottomFanTexCoords[1] = 0.5;
-//    
-//    topFanVertices = new GLfloat[numFanVertices * 3];
-//    topFanNormals = new GLfloat[numFanVertices * 3];
-//    topFanTexCoords = new GLfloat[numFanVertices * 2];
-//    topFanVertices[0] = 0.0f;
-//    topFanVertices[1] = h;
-//    topFanVertices[2] = 0.0f;
-//    
-//    topFanNormals[0] = 0.0f;
-//    topFanNormals[1] = 1.0f;
-//    topFanNormals[2] = 0.0f;
-//    
-//    topFanTexCoords[0] = 0.5;
-//    topFanTexCoords[1] = 0.5;
-//    
-//    tubeVertices = new GLfloat[numTubeVertices * 3];
-//    tubeNormals = new GLfloat[numTubeVertices * 3];
-//    tubeTexCoords = new GLfloat[numTubeVertices * 2];
-//    
-//    GLfloat percent, theta, bottomX, topX, bottomZ, topZ;
-//    Vector3D norm;
-//    for( int i = 0; i < numFanVertices - 1; i++) {
-//        percent = i / (GLfloat)(numFanVertices - 2);
-//        theta = 2 * M_PI * percent;
-//        
-//        bottomX = rBottom * cos(theta);
-//        bottomZ = rBottom * sin(theta);
-//        topX = rTop * cos(theta);
-//        topZ = rTop * sin(theta);
-//        
-//        bottomFanVertices[(i + 1) * 3] = bottomX;
-//        bottomFanVertices[(i + 1) * 3 + 1] = 0.0f;
-//        bottomFanVertices[(i + 1) * 3 + 2] = bottomZ;
-//        
-//        bottomFanNormals[(i + 1) * 3] = 0.0f;
-//        bottomFanNormals[(i + 1) * 3 + 1] = -1.0f;
-//        bottomFanNormals[(i + 1) * 3 + 2] = 0.0f;
-//        
-//        bottomFanTexCoords[(i + 1) * 2] = 0.5 + bottomX / 2;
-//        bottomFanTexCoords[(i + 1) * 2 + 1] = 0.5 + bottomZ / 2;
-//        
-//        // NOTE: This is written in reverse so that it winds correctly and OpenGL recognizes it as facing in the opposite direction from the bottom
-//        topFanVertices[(numFanVertices - (i + 1)) * 3] = topX;
-//        topFanVertices[(numFanVertices - (i + 1)) * 3 + 1] = h;
-//        topFanVertices[(numFanVertices - (i + 1)) * 3 + 2] = topZ;
-//        
-//        topFanNormals[(i + 1) * 3] = 0.0f;
-//        topFanNormals[(i + 1) * 3 + 1] = 1.0f;
-//        topFanNormals[(i + 1) * 3 + 2] = 0.0f;
-//        
-//        topFanTexCoords[(i + 1) * 2] = 0.5 + topX / 2;
-//        topFanTexCoords[(i + 1) * 2 + 1] = 0.5 + topZ / 2;
-//        
-//        tubeVertices[i * 3 * 2] = bottomX;
-//        tubeVertices[i * 3 * 2 + 1] = 0.0f;
-//        tubeVertices[i * 3 * 2 + 2] = bottomZ;
-//        tubeVertices[i * 3 * 2 + 3] = topX;
-//        tubeVertices[i * 3 * 2 + 4] = h;
-//        tubeVertices[i * 3 * 2 + 5] = topZ;
-//        
-//        norm.x = bottomX;
-//        norm.z = bottomZ;
-//        norm.normalize();
-//        tubeNormals[i * 3 * 2] = norm.x;
-//        tubeNormals[i * 3 * 2 + 1] = 0.0f;
-//        tubeNormals[i * 3 * 2 + 2] = norm.z;
-//        norm.x = topX;
-//        norm.z = topZ;
-//        norm.normalize();
-//        tubeNormals[i * 3 * 2 + 3] = norm.x;
-//        tubeNormals[i * 3 * 2 + 4] = 0.0f;
-//        tubeNormals[i * 3 * 2 + 5] = norm.z;
-//        
-//        tubeTexCoords[i * 2 * 2] = percent;
-//        tubeTexCoords[i * 2 * 2 + 1] = 0.0f;
-//        tubeTexCoords[i * 2 * 2 + 2] = percent;
-//        tubeTexCoords[i * 2 * 2 + 3] = 1.0f;
-//    }
-//}
-//
-//+ (void)drawFrustumWithBottomRadius:(GLfloat)rBottom andTopRadius:(GLfloat)rTop andHeight:(GLfloat)h andSections:(GLint)sections
-//{
-//    glPushMatrix();
-//    glScalef(rBottom, h, rBottom);  // TODO: This non-uniform scale could be hurting performance
-//    
-//    glVertexPointer(3, GL_FLOAT, 0, tubeVertices);
-//    glNormalPointer(GL_FLOAT, 0, tubeNormals);
-//    glTexCoordPointer( 2, GL_FLOAT, 0, tubeTexCoords );
-//    glDrawArrays(GL_TRIANGLE_STRIP, 0, numTubeVertices);
-//
-//    glVertexPointer(3, GL_FLOAT, 0, bottomFanVertices);
-//    glNormalPointer(GL_FLOAT, 0, bottomFanNormals);
-//    glTexCoordPointer( 2, GL_FLOAT, 0, bottomFanTexCoords );
-//    glDrawArrays(GL_TRIANGLE_FAN, 0, numFanVertices);
-//
-//    glVertexPointer(3, GL_FLOAT, 0, topFanVertices);
-//    glNormalPointer(GL_FLOAT, 0, topFanNormals);
-//    glTexCoordPointer( 2, GL_FLOAT, 0, topFanTexCoords );
-//    glDrawArrays(GL_TRIANGLE_FAN, 0, numFanVertices);
-//    
-//    glPopMatrix();
-//}
-
 
 // SADNESS but I need these in class methods.
 // Disk geometry:

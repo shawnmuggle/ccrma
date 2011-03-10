@@ -43,11 +43,11 @@ GLuint g_texture[2];
         NSDictionary* lastPlanet = [planetPlist lastObject];
         
         self.planets = [[[NSMutableSet alloc] init] autorelease];
-        Vector3D planetPosition(-2, 0, -6); // TODO: replace this with per-planet position from db
+        Vector3D planetPosition(-6, 0, -6); // TODO: replace this with per-planet position from db
         //Vector3D planetPosition(0, 0, -6);
         WOPlanet* planet = [[WOPlanet alloc] initWithID: [[lastPlanet objectForKey:@"id"] intValue]
                                             andPosition: planetPosition 
-                                              andRadius: 2
+                                              andRadius: 6
                                              andTexture: g_texture[0] // TODO: replace with handle to texture from db
                                          andTreeTexture: g_texture[1] // TODO: probably get rid of
                                                  andRed: [[lastPlanet objectForKey:@"red"] floatValue]

@@ -45,7 +45,7 @@
         renderer = [[ES1Renderer alloc] init];
         
         [WOGeometry generateDisk];
-        [WOGeometry generateFrustum];
+        [WOGeometry generateFrustumVBO];
         
         if (!renderer)
         {

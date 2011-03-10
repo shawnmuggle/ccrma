@@ -10,10 +10,10 @@
 
 #import "ES1Renderer.h"
 
-#import "WOGeometry.h"
-
 #import <cstdlib>
 #import <ctime>
+
+#import "at_minigl.h"
 
 #define SRATE 44100
 
@@ -78,6 +78,7 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 @synthesize offset;
 @synthesize env;
 @synthesize freq;
+@synthesize growing;
 
 - (id) initWithMaxGeneration:(int)maxGen atPoint:(Vector3D)pos
 {
@@ -97,6 +98,8 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
         self.freq = 1000 + (rand() / (float)RAND_MAX) * 400.0;
         
         srand((unsigned)time(0));
+        
+        self.growing = YES;
     }
     return self;
 }
@@ -131,10 +134,42 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 
 - (void) render
 {
-    WOLSystemRenderState* state = [[[WOLSystemRenderState alloc] init] autorelease];
+//    WOLSystemRenderState* state = [[[WOLSystemRenderState alloc] init] autorelease];
+//    for (WONode* node in self.nodes) {
+//        [node renderWithState:state];
+//    }
     
-    for (WONode* node in self.nodes) {
-        [node renderWithState:state];
+    if (self.growing) {
+        WOLSystemRenderState* state = [[[WOLSystemRenderState alloc] init] autorelease];
+        [WOGeometry startDrawingFrustums];
+        for (WONode* node in self.nodes) {
+            [node renderWithState:state];
+        }
+        [WOGeometry stopDrawingFrustums];
+    } else {
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+        glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+        
+        glVertexPointer(3, GL_FLOAT, sizeof(Vertex), 0);
+        const GLvoid* normalOffset = (GLvoid*)sizeof(vec3);
+        glNormalPointer(GL_FLOAT, sizeof(Vertex), normalOffset);
+        
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_NORMAL_ARRAY);
+        
+        
+        glPushMatrix();
+        
+        glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_SHORT, 0);
+        
+        glPopMatrix();
+        
+        glDisableClientState(GL_VERTEX_ARRAY);
+        glDisableClientState(GL_NORMAL_ARRAY);
+        
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        
     }
 }
 
@@ -162,6 +197,50 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
             node.growthPercent = percent;
         }
     }
+}
+
+- (void) generateVBO
+{
+    std::vector<Vertex> vertices;
+    std::vector<GLushort> indices;
+    WOLSystemRenderState* state = [[[WOLSystemRenderState alloc] init] autorelease];
+
+    mglPushMatrix();
+    NSLog(@"Number of nodes: %d", [self.nodes count]);
+    for (WONode* node in self.nodes) {
+        [node addToVerticesVector:&vertices andIndicesVector:&indices withRenderState:state];
+    }
+    mglPopMatrix();
+    
+    // Create the VBO for the vertices
+    glGenBuffers(1, &vertexBuffer);
+    
+    GLenum err = glGetError();
+    NSLog(@"Err: %d", err);
+    
+    if(glIsBuffer(vertexBuffer))
+        printf("I'm a buffer!\n");	// Never gets here
+    
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vertices[0]), &vertices[0], GL_STATIC_DRAW);
+    
+    // Create the VBO for the indices
+    glGenBuffers(1, &indexBuffer);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(indices[0]), &indices[0], GL_STATIC_DRAW);
+
+    numIndices = indices.size();
+    
+//    std::vector<GLushort>::iterator it = indices.begin();
+//    while (it != indices.end()) {
+////        Vertex v = *it;
+////        NSLog(@"%f, %f, %f", v.Position.x, v.Position.y, v.Position.z);
+//        GLushort b = *it;
+//        NSLog(@"%d", b);
+//        it++;
+//    }
+    
+    NSLog(@"vertexBuffer: %d, indexBuffer: %d, numIndices: %d, numVertices: %d", vertexBuffer, indexBuffer, numIndices, vertices.size());
 }
 
 @end
@@ -206,49 +285,83 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 - (void) renderWithState:(WOLSystemRenderState*)state
 {}
 
-@end
-
-@implementation WOXNode
-
-- (id) init
-{
-    self = [super init];
-    if (self) {
-        self.symbol = @"X";
-    }
-    return self;
-}
-
-- (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
-{
-    NSMutableArray* nodes = [NSMutableArray array];
-    [nodes addObject:[[WOFNode alloc] init]];
-    [nodes addObject:[[WOMinusNode alloc] init]];
-    
-    if (!lastGeneration) {
-        [nodes addObject:[[WOLeftBracketNode alloc] init]];
-        [nodes addObject:[[WOLeftBracketNode alloc] init]];
-        [nodes addObject:[[WOXNode alloc] init]];
-        [nodes addObject:[[WORightBracketNode alloc] init]];
-        [nodes addObject:[[WOPlusNode alloc] init]];
-        [nodes addObject:[[WOXNode alloc] init]];
-        [nodes addObject:[[WORightBracketNode alloc] init]];
-    }
-    
-    [nodes addObject:[[WOPlusNode alloc] init]];
-    [nodes addObject:[[WOFNode alloc] init]];
-    [nodes addObject:[[WOLeftBracketNode alloc] init]];
-    [nodes addObject:[[WOPlusNode alloc] init]];
-    [nodes addObject:[[WOFNode alloc] init]];
-    [nodes addObject:[[WOXNode alloc] init]];
-    [nodes addObject:[[WORightBracketNode alloc] init]];
-    [nodes addObject:[[WOMinusNode alloc] init]];
-    [nodes addObject:[[WOXNode alloc] init]];
-    
-    return nodes;
-}
+- (void) addToVerticesVector:(std::vector<Vertex>*)vertices andIndicesVector:(std::vector<GLushort>*)indices withRenderState:(WOLSystemRenderState*)state
+{}
 
 @end
+
+//@implementation WOXNode
+//
+//- (id) init
+//{
+//    self = [super init];
+//    if (self) {
+//        self.symbol = @"X";
+//    }
+//    return self;
+//}
+//
+//- (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
+//{
+//    NSMutableArray* nodes = [NSMutableArray array];
+//    [nodes addObject:[[WOFNode alloc] init]];
+//    [nodes addObject:[[WOMinusNode alloc] init]];
+//    
+//    if (!lastGeneration) {
+//        [nodes addObject:[[WOLeftBracketNode alloc] init]];
+//        [nodes addObject:[[WOLeftBracketNode alloc] init]];
+//        [nodes addObject:[[WOXNode alloc] init]];
+//        [nodes addObject:[[WORightBracketNode alloc] init]];
+//        [nodes addObject:[[WOPlusNode alloc] init]];
+//        [nodes addObject:[[WOXNode alloc] init]];
+//        [nodes addObject:[[WORightBracketNode alloc] init]];
+//    }
+//    
+//    [nodes addObject:[[WOPlusNode alloc] init]];
+//    [nodes addObject:[[WOFNode alloc] init]];
+//    [nodes addObject:[[WOLeftBracketNode alloc] init]];
+//    [nodes addObject:[[WOPlusNode alloc] init]];
+//    [nodes addObject:[[WOFNode alloc] init]];
+//    [nodes addObject:[[WOXNode alloc] init]];
+//    [nodes addObject:[[WORightBracketNode alloc] init]];
+//    [nodes addObject:[[WOMinusNode alloc] init]];
+//    [nodes addObject:[[WOXNode alloc] init]];
+//    
+//    return nodes;
+//}
+//
+//@end
+//
+//@implementation WOFNode
+//
+//- (id) init
+//{
+//    self = [super init];
+//    if (self) {
+//        self.symbol = @"F";
+//    }
+//    return self;
+//}
+//
+//- (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
+//{
+//    NSMutableArray* nodes = [NSMutableArray array];
+//    WOFNode* fNode = [[WOFNode alloc] init];
+//    fNode.growthPercent = 1.0;
+//    [nodes addObject:fNode];
+//    [nodes addObject:[[WOFNode alloc] init]];
+//    
+//    return nodes;
+//}
+//
+//- (void) renderWithState:(WOLSystemRenderState*)state
+//{
+//    float length = 0.1 * self.growthPercent;
+//    [WOGeometry drawFrustumWithBottomRadius:[state oldWidth] andTopRadius:[state newWidth] andHeight:length andSections:5];
+//    glTranslatef(0.0f, length, 0.0f);
+//}
+//
+//@end
 
 @implementation WOANode
 
@@ -300,38 +413,6 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 
 @end
 
-
-@implementation WOFNode
-
-- (id) init
-{
-    self = [super init];
-    if (self) {
-        self.symbol = @"F";
-    }
-    return self;
-}
-
-- (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
-{
-    NSMutableArray* nodes = [NSMutableArray array];
-    WOFNode* fNode = [[WOFNode alloc] init];
-    fNode.growthPercent = 1.0;
-    [nodes addObject:fNode];
-    [nodes addObject:[[WOFNode alloc] init]];
-    
-    return nodes;
-}
-
-- (void) renderWithState:(WOLSystemRenderState*)state
-{
-    float length = 0.1 * self.growthPercent;
-    [WOGeometry drawFrustumWithBottomRadius:[state oldWidth] andTopRadius:[state newWidth] andHeight:length andSections:5];
-    glTranslatef(0.0f, length, 0.0f);
-}
-
-@end
-
 @implementation WOLittleFNode
 
 - (id) init
@@ -359,6 +440,17 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     glTranslatef(0.0f, length, 0.0f);
 }
 
+- (void) addToVerticesVector:(std::vector<Vertex>*)vertices andIndicesVector:(std::vector<GLushort>*)indices withRenderState:(WOLSystemRenderState*)state
+{
+    GLfloat length = 0.3 * self.growthPercent;
+    [WOGeometry addFrustumToVerticesVector: vertices 
+                          andIndicesVector: indices
+                          withBottomRadius: [state oldWidth] 
+                                 andHeight: length];
+    [state newWidth];
+    mglTranslate(0.0f, length, 0.0f);
+}
+
 @end
 
 @implementation WOLNode
@@ -382,9 +474,11 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     GLfloat radius = 0.1;
 
     glTranslatef(0.0f, radius, 0.0f);
+    mglTranslate(0.0f, radius, 0.0f);
     float flutter_offset = 10 * sin(2.0*M_PI*phase);
     phase += freq * 0.05;
     glRotatef(90 + flutter_offset, 1.0f, 0.0f, 0.0f);
+    mglRotate(90 + flutter_offset, 1.0f, 0.0f, 0.0f);
     //[WOGeometry drawDiskWithRadius:radius andSections:5];
 }
 
@@ -408,6 +502,12 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     glRotatef(angle * self.growthPercent, 1.0f, 0.0f, 0.0f);
 }
 
+- (void) addToVerticesVector:(std::vector<Vertex>*)vertices andIndicesVector:(std::vector<GLushort>*)indices withRenderState:(WOLSystemRenderState*)state
+{
+    GLfloat angle = 25 + 10 * self.randomOffset;
+    mglRotate(angle * self.growthPercent, 1.0f, 0.0f, 0.0f);    
+}
+
 @end
 
 @implementation WOMinusNode
@@ -425,6 +525,12 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 {
     GLfloat angle = -25 + 10 * self.randomOffset;
     glRotatef(angle * self.growthPercent, 1.0f, 0.0f, 0.0f);
+}
+
+- (void) addToVerticesVector:(std::vector<Vertex>*)vertices andIndicesVector:(std::vector<GLushort>*)indices withRenderState:(WOLSystemRenderState*)state
+{
+    GLfloat angle = -25 + 10 * self.randomOffset;
+    mglRotate(angle * self.growthPercent, 1.0f, 0.0f, 0.0f);
 }
 
 @end
@@ -446,6 +552,12 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     glRotatef(angle * self.growthPercent, 0.0f, 0.0f, 1.0f);
 }
 
+- (void) addToVerticesVector:(std::vector<Vertex>*)vertices andIndicesVector:(std::vector<GLushort>*)indices withRenderState:(WOLSystemRenderState*)state
+{
+    GLfloat angle = 25 + 10 * self.randomOffset;
+    mglRotate(angle * self.growthPercent, 0.0f, 0.0f, 1.0f);
+}
+
 @end
 
 @implementation WOLTNode
@@ -463,6 +575,12 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 {
     GLfloat angle = -25 + 10 * self.randomOffset;
     glRotatef(angle * self.growthPercent, 0.0f, 0.0f, 1.0f);
+}
+
+- (void) addToVerticesVector:(std::vector<Vertex>*)vertices andIndicesVector:(std::vector<GLushort>*)indices withRenderState:(WOLSystemRenderState*)state
+{
+    GLfloat angle = -25 + 10 * self.randomOffset;
+    mglRotate(angle * self.growthPercent, 0.0f, 0.0f, 1.0f);    
 }
 
 @end
@@ -484,6 +602,12 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     glRotatef(angle * self.growthPercent, 0.0f, 1.0f, 0.0f);
 }
 
+- (void) addToVerticesVector:(std::vector<Vertex>*)vertices andIndicesVector:(std::vector<GLushort>*)indices withRenderState:(WOLSystemRenderState*)state
+{
+    GLfloat angle = 25 + 10 * self.randomOffset;
+    mglRotate(angle * self.growthPercent, 0.0f, 1.0f, 0.0f);
+}
+
 @end
 
 @implementation WODownNode
@@ -501,6 +625,12 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 {
     GLfloat angle = -25 + 10 * self.randomOffset;
     glRotatef(angle * self.growthPercent, 0.0f, 1.0f, 0.0f);
+}
+
+- (void) addToVerticesVector:(std::vector<Vertex>*)vertices andIndicesVector:(std::vector<GLushort>*)indices withRenderState:(WOLSystemRenderState*)state
+{
+    GLfloat angle = -25 + 10 * self.randomOffset;
+    mglRotate(angle * self.growthPercent, 0.0f, 1.0f, 0.0f);
 }
 
 @end
@@ -523,6 +653,12 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
     glPushMatrix();
 }
 
+- (void) addToVerticesVector:(std::vector<Vertex>*)vertices andIndicesVector:(std::vector<GLushort>*)indices withRenderState:(WOLSystemRenderState*)state
+{
+    [state push];
+    mglPushMatrix();
+}
+
 @end
 
 @implementation WORightBracketNode
@@ -541,6 +677,12 @@ float green[] = { 0.0f, 1.0f, 0.0f, 1.0f };
 {
     [state pop];
     glPopMatrix();
+}
+
+- (void) addToVerticesVector:(std::vector<Vertex>*)vertices andIndicesVector:(std::vector<GLushort>*)indices withRenderState:(WOLSystemRenderState*)state
+{
+    [state pop];
+    mglPopMatrix();
 }
 
 @end

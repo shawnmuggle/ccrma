@@ -15,5 +15,10 @@
     pthread_t rtaudio_thread;
     
 }
+- (IBAction)playCymbal:(id)sender;
+- (IBAction)setSize:(id)sender;
+- (IBAction)setAttackFalloff:(id)sender;
+- (IBAction)setPole:(id)sender;
+- (IBAction)setDamping:(id)sender;
 
 @end
