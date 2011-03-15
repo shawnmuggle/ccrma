@@ -1,0 +1,327 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D527A6FF132DCD810001EB33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D527A6FE132DCD810001EB33 /* UIKit.framework */; };
+		D527A701132DCD810001EB33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D527A700132DCD810001EB33 /* Foundation.framework */; };
+		D527A703132DCD810001EB33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D527A702132DCD810001EB33 /* CoreGraphics.framework */; };
+		D527A709132DCD820001EB33 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D527A707132DCD820001EB33 /* InfoPlist.strings */; };
+		D527A70C132DCD820001EB33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A70B132DCD820001EB33 /* main.m */; };
+		D527A70F132DCD820001EB33 /* Wold_2AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A70E132DCD820001EB33 /* Wold_2AppDelegate.m */; };
+		D527A712132DCD820001EB33 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D527A710132DCD820001EB33 /* MainWindow.xib */; };
+		D527A715132DCD820001EB33 /* Wold_2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A714132DCD820001EB33 /* Wold_2ViewController.m */; };
+		D527A718132DCD820001EB33 /* Wold_2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D527A716132DCD820001EB33 /* Wold_2ViewController.xib */; };
+		D527A720132DD08B0001EB33 /* WOPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A71F132DD08B0001EB33 /* WOPlanet.m */; };
+		D527A723132DD1570001EB33 /* WOState.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A722132DD1570001EB33 /* WOState.m */; };
+		D527A726132DD2310001EB33 /* WORenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A725132DD2310001EB33 /* WORenderer.m */; };
+		D527A729132DD3040001EB33 /* WOPlanetView.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A728132DD3040001EB33 /* WOPlanetView.m */; };
+		D59D8BF5132E1F120060601C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59D8BF4132E1F120060601C /* QuartzCore.framework */; };
+		D5A4A6AC132E3E3500FE4DF1 /* WOTree.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A4A6AB132E3E3400FE4DF1 /* WOTree.m */; };
+		D5A4A6AF132E599800FE4DF1 /* WOLSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A4A6AD132E599700FE4DF1 /* WOLSystem.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D527A6FA132DCD810001EB33 /* Wold 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wold 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D527A6FE132DCD810001EB33 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D527A700132DCD810001EB33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D527A702132DCD810001EB33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D527A706132DCD820001EB33 /* Wold_2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wold_2-Info.plist"; sourceTree = "<group>"; };
+		D527A708132DCD820001EB33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D527A70A132DCD820001EB33 /* Wold_2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wold_2-Prefix.pch"; sourceTree = "<group>"; };
+		D527A70B132DCD820001EB33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D527A70D132DCD820001EB33 /* Wold_2AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wold_2AppDelegate.h; sourceTree = "<group>"; };
+		D527A70E132DCD820001EB33 /* Wold_2AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Wold_2AppDelegate.m; sourceTree = "<group>"; };
+		D527A711132DCD820001EB33 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		D527A713132DCD820001EB33 /* Wold_2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wold_2ViewController.h; sourceTree = "<group>"; };
+		D527A714132DCD820001EB33 /* Wold_2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Wold_2ViewController.m; sourceTree = "<group>"; };
+		D527A717132DCD820001EB33 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Wold_2ViewController.xib; sourceTree = "<group>"; };
+		D527A71E132DD08B0001EB33 /* WOPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOPlanet.h; sourceTree = "<group>"; };
+		D527A71F132DD08B0001EB33 /* WOPlanet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOPlanet.m; sourceTree = "<group>"; };
+		D527A721132DD1570001EB33 /* WOState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOState.h; sourceTree = "<group>"; };
+		D527A722132DD1570001EB33 /* WOState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOState.m; sourceTree = "<group>"; };
+		D527A724132DD2300001EB33 /* WORenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WORenderer.h; sourceTree = "<group>"; };
+		D527A725132DD2310001EB33 /* WORenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WORenderer.m; sourceTree = "<group>"; };
+		D527A727132DD3040001EB33 /* WOPlanetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOPlanetView.h; sourceTree = "<group>"; };
+		D527A728132DD3040001EB33 /* WOPlanetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOPlanetView.m; sourceTree = "<group>"; };
+		D59D8BF4132E1F120060601C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D5A4A6AA132E3E3400FE4DF1 /* WOTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOTree.h; sourceTree = "<group>"; };
+		D5A4A6AB132E3E3400FE4DF1 /* WOTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOTree.m; sourceTree = "<group>"; };
+		D5A4A6AD132E599700FE4DF1 /* WOLSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLSystem.m; sourceTree = "<group>"; };
+		D5A4A6AE132E599800FE4DF1 /* WOLSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLSystem.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D527A6F7132DCD810001EB33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D59D8BF5132E1F120060601C /* QuartzCore.framework in Frameworks */,
+				D527A6FF132DCD810001EB33 /* UIKit.framework in Frameworks */,
+				D527A701132DCD810001EB33 /* Foundation.framework in Frameworks */,
+				D527A703132DCD810001EB33 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D527A6EF132DCD810001EB33 = {
+			isa = PBXGroup;
+			children = (
+				D527A704132DCD810001EB33 /* Wold 2 */,
+				D527A6FD132DCD810001EB33 /* Frameworks */,
+				D527A6FB132DCD810001EB33 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D527A6FB132DCD810001EB33 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D527A6FA132DCD810001EB33 /* Wold 2.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D527A6FD132DCD810001EB33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D59D8BF4132E1F120060601C /* QuartzCore.framework */,
+				D527A6FE132DCD810001EB33 /* UIKit.framework */,
+				D527A700132DCD810001EB33 /* Foundation.framework */,
+				D527A702132DCD810001EB33 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D527A704132DCD810001EB33 /* Wold 2 */ = {
+			isa = PBXGroup;
+			children = (
+				D527A70D132DCD820001EB33 /* Wold_2AppDelegate.h */,
+				D527A70E132DCD820001EB33 /* Wold_2AppDelegate.m */,
+				D527A710132DCD820001EB33 /* MainWindow.xib */,
+				D527A713132DCD820001EB33 /* Wold_2ViewController.h */,
+				D527A714132DCD820001EB33 /* Wold_2ViewController.m */,
+				D527A716132DCD820001EB33 /* Wold_2ViewController.xib */,
+				D527A705132DCD820001EB33 /* Supporting Files */,
+				D527A71E132DD08B0001EB33 /* WOPlanet.h */,
+				D527A71F132DD08B0001EB33 /* WOPlanet.m */,
+				D527A721132DD1570001EB33 /* WOState.h */,
+				D527A722132DD1570001EB33 /* WOState.m */,
+				D527A724132DD2300001EB33 /* WORenderer.h */,
+				D527A725132DD2310001EB33 /* WORenderer.m */,
+				D527A727132DD3040001EB33 /* WOPlanetView.h */,
+				D527A728132DD3040001EB33 /* WOPlanetView.m */,
+				D5A4A6AA132E3E3400FE4DF1 /* WOTree.h */,
+				D5A4A6AB132E3E3400FE4DF1 /* WOTree.m */,
+				D5A4A6AE132E599800FE4DF1 /* WOLSystem.h */,
+				D5A4A6AD132E599700FE4DF1 /* WOLSystem.m */,
+			);
+			path = "Wold 2";
+			sourceTree = "<group>";
+		};
+		D527A705132DCD820001EB33 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D527A706132DCD820001EB33 /* Wold_2-Info.plist */,
+				D527A707132DCD820001EB33 /* InfoPlist.strings */,
+				D527A70A132DCD820001EB33 /* Wold_2-Prefix.pch */,
+				D527A70B132DCD820001EB33 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D527A6F9132DCD810001EB33 /* Wold 2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D527A71B132DCD820001EB33 /* Build configuration list for PBXNativeTarget "Wold 2" */;
+			buildPhases = (
+				D527A6F6132DCD810001EB33 /* Sources */,
+				D527A6F7132DCD810001EB33 /* Frameworks */,
+				D527A6F8132DCD810001EB33 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Wold 2";
+			productName = "Wold 2";
+			productReference = D527A6FA132DCD810001EB33 /* Wold 2.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D527A6F1132DCD810001EB33 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = D527A6F4132DCD810001EB33 /* Build configuration list for PBXProject "Wold 2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D527A6EF132DCD810001EB33;
+			productRefGroup = D527A6FB132DCD810001EB33 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D527A6F9132DCD810001EB33 /* Wold 2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D527A6F8132DCD810001EB33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D527A709132DCD820001EB33 /* InfoPlist.strings in Resources */,
+				D527A712132DCD820001EB33 /* MainWindow.xib in Resources */,
+				D527A718132DCD820001EB33 /* Wold_2ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D527A6F6132DCD810001EB33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D527A70C132DCD820001EB33 /* main.m in Sources */,
+				D527A70F132DCD820001EB33 /* Wold_2AppDelegate.m in Sources */,
+				D527A715132DCD820001EB33 /* Wold_2ViewController.m in Sources */,
+				D527A720132DD08B0001EB33 /* WOPlanet.m in Sources */,
+				D527A723132DD1570001EB33 /* WOState.m in Sources */,
+				D527A726132DD2310001EB33 /* WORenderer.m in Sources */,
+				D527A729132DD3040001EB33 /* WOPlanetView.m in Sources */,
+				D5A4A6AC132E3E3500FE4DF1 /* WOTree.m in Sources */,
+				D5A4A6AF132E599800FE4DF1 /* WOLSystem.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D527A707132DCD820001EB33 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D527A708132DCD820001EB33 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D527A710132DCD820001EB33 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D527A711132DCD820001EB33 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		D527A716132DCD820001EB33 /* Wold_2ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D527A717132DCD820001EB33 /* en */,
+			);
+			name = Wold_2ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D527A719132DCD820001EB33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		D527A71A132DCD820001EB33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		D527A71C132DCD820001EB33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Wold 2/Wold_2-Prefix.pch";
+				INFOPLIST_FILE = "Wold 2/Wold_2-Info.plist";
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D527A71D132DCD820001EB33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Wold 2/Wold_2-Prefix.pch";
+				INFOPLIST_FILE = "Wold 2/Wold_2-Info.plist";
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D527A6F4132DCD810001EB33 /* Build configuration list for PBXProject "Wold 2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D527A719132DCD820001EB33 /* Debug */,
+				D527A71A132DCD820001EB33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D527A71B132DCD820001EB33 /* Build configuration list for PBXNativeTarget "Wold 2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D527A71C132DCD820001EB33 /* Debug */,
+				D527A71D132DCD820001EB33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D527A6F1132DCD810001EB33 /* Project object */;
+}
