@@ -100,8 +100,9 @@
 @synthesize generationTickCount;
 @synthesize growing;
 @synthesize path;
+@synthesize layer;
 
-- (id) initWithMaxGeneration:(int)maxGen
+- (id) initWithMaxGeneration:(int)maxGen andAngle:(float)newAngle andOrigin:(CGPoint)origin
 {
     self = [super init];
     if (self) {
@@ -113,8 +114,18 @@
         
         self.growing = YES;
         
-        path = CGPathCreateMutable();
-        layer = [CAShapeLayer layer];
+        self.layer = [CAShapeLayer layer];
+        self.layer.strokeColor = [UIColor colorWithRed:0.2 green:0.8 blue:0.3 alpha:1.0].CGColor;
+        self.layer.fillColor = [UIColor whiteColor].CGColor;
+        self.layer.lineWidth = 2.0;
+        
+        NSLog(@"Got a new LSystem with angle: %f and origin: %f, %f", newAngle, origin.x, origin.y);
+        
+        CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(newAngle);
+        CGAffineTransform translationTransform = CGAffineTransformMakeTranslation(origin.x, origin.y);
+        CGAffineTransform transform = CGAffineTransformConcat(rotationTransform, translationTransform);
+        [self.layer setAffineTransform:transform];
+        
     }
     return self;
 }
@@ -153,11 +164,13 @@
 {
     if (growing) {
         path = CGPathCreateMutable();
-        CGPathMoveToPoint(path, NULL, pos.x, pos.y);
+        //CGPathMoveToPoint(path, NULL, pos.x, pos.y);
+        CGPathMoveToPoint(path, NULL, 0, 0);
         WOLSystemTransformStack* stack = [[[WOLSystemTransformStack alloc] initWithPoint:pos andAngle:angle] autorelease];
         for (WONode* node in self.nodes) {
             [node renderWithStack:stack inLSystem:self];
         }
+        self.layer.path = path;
     }
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextAddPath(context, path);

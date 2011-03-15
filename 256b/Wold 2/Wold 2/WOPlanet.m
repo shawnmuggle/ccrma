@@ -17,6 +17,9 @@
     self = [super init];
     if (self) {
         self.trees = [NSMutableSet setWithCapacity:10];
+
+        baseRadius = 900;
+        maxHeight = 300;
         
         self.layer = [CAShapeLayer layer];
         path = CGPathCreateMutable();
@@ -33,8 +36,6 @@
 - (void) generatePath
 {
     int numPlanetSegments = 500;
-    float baseRadius = 900;
-    float maxHeight = 300;
     
     float planetSurface = [self surfaceFunction:0];
     float x = (baseRadius + maxHeight * planetSurface) * cos(0);
@@ -53,8 +54,13 @@
 
 - (void) addTreeAtAngle:(float)angle
 {
-    WOTree* tree = [[[WOTree alloc] initWithAngle:-angle] autorelease];
+    float planetSurface = [self surfaceFunction:angle];
+    float treeX = (baseRadius + maxHeight * planetSurface) * cos(-angle);
+    float treeY = (baseRadius + maxHeight * planetSurface) * sin(-angle);
+
+    WOTree* tree = [[[WOTree alloc] initWithAngle:-angle andOrigin:CGPointMake(treeX, treeY)] autorelease];
     [self.trees addObject:tree];
+    [self.layer addSublayer:[tree layer]];
 }
 
 - (float) surfaceFunction:(float)x

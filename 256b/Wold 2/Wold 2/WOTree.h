@@ -17,9 +17,12 @@
 }
 
 @property float angle;
+@property (nonatomic, retain) WOLSystem* lSystem;
 
-- (id) initWithAngle:(float)newAngle;
+// TODO: Unify tree & LSystem classes
+- (id) initWithAngle:(float)newAngle andOrigin:(CGPoint)origin;
 - (void) renderAtPoint:(CGPoint)pos withAngle:(float)angle;
 - (void) tick;
+- (CALayer*) layer;
 
 @end

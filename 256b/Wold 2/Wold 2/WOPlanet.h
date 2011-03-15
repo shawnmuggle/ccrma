@@ -13,7 +13,8 @@
 @interface WOPlanet : NSObject {
     
     UIColor* color;
-    float radius;
+    float baseRadius;
+    float maxHeight;
     
     NSMutableSet* trees;
     
