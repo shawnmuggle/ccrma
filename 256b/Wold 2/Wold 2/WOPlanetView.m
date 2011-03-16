@@ -21,31 +21,20 @@
     return self;
 }
 
-- (void)awakeFromNib
-{
-    UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc] initWithTarget:state action:@selector(handlePan:)];
-    [self addGestureRecognizer:pan];
-    
-    UILongPressGestureRecognizer* press = [[UILongPressGestureRecognizer alloc] initWithTarget:state action:@selector(handleLongPress:)];
-    [self addGestureRecognizer:press];
-    
-    UIPinchGestureRecognizer* pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:state action:@selector(handlePinch:)];
-    [self addGestureRecognizer:pinch];
-}
-
 - (void) tick:(id)sender
 {
     [state tick:sender];
     [self setNeedsDisplay];
 }
 
+/*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    [renderer render];
-}
 
+}
+*/
 - (void)dealloc
 {
     [super dealloc];

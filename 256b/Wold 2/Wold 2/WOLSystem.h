@@ -30,7 +30,6 @@
     NSMutableArray* stack;
 }
 
-- (id) initWithPoint:(CGPoint)pos andAngle:(float)angle;
 - (void) push;
 - (void) pop;
 - (void) translateBy:(float)length;
@@ -68,20 +67,20 @@
 - (id) initWithMaxGeneration:(int)maxGen andAngle:(float)newAngle andOrigin:(CGPoint)origin;
 - (void) advanceGeneration;
 - (void) tick;
-- (void) renderAtPoint:(CGPoint)pos withAngle:(float)angle;
 - (void) setAge:(float)age;
 
 @end
 
 @interface WONode : NSObject {
 
-    NSString* symbol; // For debugging
-    
     float growthPercent;
+    float randomOffset;
+    float offset;
 }
 
-@property (nonatomic, retain) NSString* symbol;
 @property (setter=setNewGrowthPercent:) float growthPercent;
+@property float offset;
+@property float randomOffset;
 
 - (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration;
 - (void) renderWithStack:(WOLSystemTransformStack*)stack inLSystem:(WOLSystem*)system;
@@ -92,18 +91,30 @@
 @interface WOANode : WONode {}
 @end
 
-@interface WOLittleFNode : WONode {}
+@interface WOLittleFNode : WONode
+{
+    float baseLength;
+    float maxOffset;
+}
+
+- (id) initWithBaseLength:(float)newBaseLength andMaxOffset:(float)newMaxOffset;
+
 @end
 
-//@interface WOLNode : WONode {
-//    float freq, phase;
-//}
-//@end
-
-@interface WOPlusNode : WONode {}
+@interface WOLNode : WONode {}
 @end
 
-@interface WOMinusNode : WONode {}
+@interface WOWiggleNode : WONode {}
+@end
+
+@interface WOAngleNode : WONode 
+{
+    float baseAngle;
+    float maxOffset;
+}
+
+- (id) initWithBaseAngle:(float)newBaseAngle andMaxOffset:(float)newMaxOffset;
+
 @end
 
 @interface WOLeftBracketNode : WONode {}

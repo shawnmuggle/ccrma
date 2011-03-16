@@ -19,7 +19,7 @@
     self = [super init];
     if (self) {
         stack = [[NSMutableArray alloc] init];
-        WOLSystemTransformState* firstState = [[WOLSystemTransformState alloc] init];
+        WOLSystemTransformState* firstState = [[[WOLSystemTransformState alloc] init] autorelease];
         firstState.width = 0;
         firstState.angle = 0;
         firstState.x = 0;
@@ -27,21 +27,6 @@
         [stack addObject:firstState];
     }
     return self;
-}
-
-- (id) initWithPoint:(CGPoint)pos andAngle:(float)angle
-{
-    self = [super init];
-    if (self) {
-        stack = [[NSMutableArray alloc] init];
-        WOLSystemTransformState* firstState = [[WOLSystemTransformState alloc] init];
-        firstState.width = 0;
-        firstState.angle = angle;
-        firstState.x = pos.x;
-        firstState.y = pos.y;
-        [stack addObject:firstState];
-    }
-    return self;    
 }
 
 - (void) push
@@ -77,8 +62,8 @@
 - (void) translateBy:(float)length
 {
     WOLSystemTransformState* currentState = [stack lastObject];
-    currentState.x = currentState.x + length * cos(currentState.angle);
-    currentState.y = currentState.y - length * sin(currentState.angle); // Growing upwards towards negative Y
+    currentState.x = currentState.x + length * cos((M_PI / 180) * currentState.angle);
+    currentState.y = currentState.y - length * sin((M_PI / 180) * currentState.angle); // Growing upwards towards negative Y
 }
 
 - (CGPoint) getPoint
@@ -110,22 +95,16 @@
         self.maxGeneration = maxGen;
         self.currentGeneration = 0;
         self.generationTickCount = 0;
-        self.ticksPerGeneration = 30;
+        self.ticksPerGeneration = 20;
         
         self.growing = YES;
         
         self.layer = [CAShapeLayer layer];
-        self.layer.strokeColor = [UIColor colorWithRed:0.2 green:0.8 blue:0.3 alpha:1.0].CGColor;
-        self.layer.fillColor = [UIColor whiteColor].CGColor;
-        self.layer.lineWidth = 2.0;
-        
-        NSLog(@"Got a new LSystem with angle: %f and origin: %f, %f", newAngle, origin.x, origin.y);
         
         CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(newAngle);
         CGAffineTransform translationTransform = CGAffineTransformMakeTranslation(origin.x, origin.y);
         CGAffineTransform transform = CGAffineTransformConcat(rotationTransform, translationTransform);
         [self.layer setAffineTransform:transform];
-        
     }
     return self;
 }
@@ -157,56 +136,49 @@
     for (WONode* node in self.nodes) {
         node.growthPercent = generationPercent;
     }
-}
 
-// TODO: Cache the everloving shit out of these points
-- (void) renderAtPoint:(CGPoint)pos withAngle:(float)angle
-{
     if (growing) {
         path = CGPathCreateMutable();
-        //CGPathMoveToPoint(path, NULL, pos.x, pos.y);
         CGPathMoveToPoint(path, NULL, 0, 0);
-        WOLSystemTransformStack* stack = [[[WOLSystemTransformStack alloc] initWithPoint:pos andAngle:angle] autorelease];
+        WOLSystemTransformStack* stack = [[[WOLSystemTransformStack alloc] init] autorelease];
         for (WONode* node in self.nodes) {
             [node renderWithStack:stack inLSystem:self];
         }
         self.layer.path = path;
+        
+        CGRect b = CGPathGetBoundingBox(path);
+        //NSLog(@"path bbox: %f, %f: %fx%f", b.origin.x, b.origin.y, b.size.width, b.size.height);
+//        NSLog(@"layer bounds: %f, %f: %fx%f", 
+//              self.layer.frame.origin.x, 
+//              self.layer.frame.origin.y, 
+//              self.layer.frame.size.width, 
+//              self.layer.frame.size.height);
+        self.layer.bounds = CGRectMake(-b.size.height / 2.0, -b.size.width / 2.0, b.size.height, b.size.width);
     }
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextAddPath(context, path);
-
 }
 
 - (void) setAge:(float)age
 {
     int generation = 1;
     while (generation++ <= age) {
-//        for (WOLNode* node in self.nodes) {
-//            node.growthPercent = 1.0;
-//        }
         [self advanceGeneration];
     }
     
     float percent = age - floor(age);
     self.generationTickCount = percent * self.ticksPerGeneration;
-//    for (WOLNode* node in self.nodes) {
-//        if (node.growthPercent != 1.0) {
-//            node.growthPercent = percent;
-//        }
-//    }
 }
 @end
 
 @implementation WONode
-
-@synthesize symbol;
-@synthesize growthPercent;
+@synthesize growthPercent, offset, randomOffset;
 
 - (id) init
 {
     self = [super init];
     if (self) {
         self.growthPercent = 0;
+        offset = 0;
+        randomOffset = rand() / (float)RAND_MAX;
     }
     return self;
 }
@@ -214,8 +186,10 @@
 - (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
 {
     NSMutableArray* newNodes = [NSMutableArray array];
-    WONode* newNode = [[[self class] alloc] init];
+    WONode* newNode = [[[[self class] alloc] init] autorelease];
     newNode.growthPercent = self.growthPercent;
+    newNode.offset = offset;
+    newNode.randomOffset = randomOffset;
     [newNodes addObject:newNode];
     return newNodes;
 }
@@ -238,38 +212,27 @@
 
 @implementation WOANode
 
-- (id) init
-{
-    self = [super init];
-    if (self) {
-        self.symbol = @"A";
-    }
-    return self;
-}
-
-
-// TODO: Make LNodes (leaves) work again, with just little circles.
 - (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
 {
     NSMutableArray* nodes = [NSMutableArray array];
 
-    [nodes addObject:[[WOLittleFNode alloc] init]];
+    [nodes addObject:[[[WOLittleFNode alloc] initWithBaseLength:80 andMaxOffset:20] autorelease]];
 
-    [nodes addObject:[[WOLeftBracketNode alloc] init]];
-    [nodes addObject:[[WOPlusNode alloc] init]];
-    [nodes addObject:[[WOPlusNode alloc] init]];
-    [nodes addObject:[[WOANode alloc] init]];
-    //[nodes addObject:[[WOLNode alloc] init]];
-    [nodes addObject:[[WORightBracketNode alloc] init]];
+    [nodes addObject:[[[WOLeftBracketNode alloc] init] autorelease]];
+    [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:15 andMaxOffset:10] autorelease]];
+    [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:15 andMaxOffset:10] autorelease]];
+    [nodes addObject:[[[WOANode alloc] init] autorelease]];
+    [nodes addObject:[[WOLNode alloc] init]];
+    [nodes addObject:[[[WORightBracketNode alloc] init] autorelease]];
     
-    [nodes addObject:[[WOLeftBracketNode alloc] init]];
-    [nodes addObject:[[WOMinusNode alloc] init]];
-    [nodes addObject:[[WOMinusNode alloc] init]];
-    [nodes addObject:[[WOANode alloc] init]];
-    //[nodes addObject:[[WOLNode alloc] init]];
-    [nodes addObject:[[WORightBracketNode alloc] init]];
+    [nodes addObject:[[[WOLeftBracketNode alloc] init] autorelease]];
+    [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:-15 andMaxOffset:-10] autorelease]];
+    [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:-15 andMaxOffset:-10] autorelease]];
+    [nodes addObject:[[[WOANode alloc] init] autorelease]];
+    [nodes addObject:[[WOLNode alloc] init]];
+    [nodes addObject:[[[WORightBracketNode alloc] init] autorelease]];
 
-    [nodes addObject:[[WOANode alloc] init]];
+    [nodes addObject:[[[WOANode alloc] init] autorelease]];
 
     return nodes;
 }
@@ -278,102 +241,101 @@
 
 @implementation WOLittleFNode
 
-- (id) init
+- (id) initWithBaseLength:(float)newBaseLength andMaxOffset:(float)newMaxOffset
 {
     self = [super init];
     if (self) {
-        self.symbol = @"f";
+        
+        baseLength = newBaseLength;
+        maxOffset = newMaxOffset;
     }
     return self;
 }
 
 - (void) renderWithStack:(WOLSystemTransformStack*)stack inLSystem:(WOLSystem*)system
 {
-    float length = 30 * self.growthPercent;
+    float length = (baseLength + maxOffset * randomOffset) * self.growthPercent;
     [stack translateBy:length];
     CGPoint newPoint = [stack getPoint];
     CGPathAddLineToPoint(system.path, NULL, newPoint.x, newPoint.y);
 }
 
+- (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
+{
+    NSMutableArray* newNodes = [NSMutableArray array];
+    WOLittleFNode* newNode = [[[WOLittleFNode alloc] initWithBaseLength:baseLength andMaxOffset:maxOffset] autorelease];
+    newNode.growthPercent = self.growthPercent;
+    newNode.offset = offset;
+    newNode.randomOffset = randomOffset;
+    [newNodes addObject:newNode];
+    return newNodes;
+}
+
 @end
 
-//@implementation WOLNode
-//
-//- (id) init
-//{
-//    self = [super init];
-//    if (self) {
-//        self.symbol = @"l";
-//        phase = 0;
-//        freq = 0.5 * rand() / (float)RAND_MAX;
-//    }
-//    return self;
-//}
-//
-//- (void) renderWithState:(WOLSystemRenderState*)state
-//{
-//    float radius = 0.1;
-//
-//    glTranslatef(0.0f, radius, 0.0f);
-//    mglTranslate(0.0f, radius, 0.0f);
-//    float flutter_offset = 10 * sin(2.0*M_PI*phase);
-//    phase += freq * 0.05;
-//    glRotatef(90 + flutter_offset, 1.0f, 0.0f, 0.0f);
-//    mglRotate(90 + flutter_offset, 1.0f, 0.0f, 0.0f);
-//    //[WOGeometry drawDiskWithRadius:radius andSections:5];
-//}
-//
-//@end
+@implementation WOLNode
 
+- (void) renderWithStack:(WOLSystemTransformStack*)stack inLSystem:(WOLSystem*)system
+{
+    float radius = 2;
+    CGPoint newPoint = [stack getPoint];
+    CGPathAddArc(system.path, NULL, newPoint.x, newPoint.y, radius, 0, 2 * M_PI, 0);
+}
 
-@implementation WOPlusNode
+@end
 
-- (id) init
+@implementation WOWiggleNode
+
+- (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
+{
+    NSMutableArray* nodes = [NSMutableArray array];
+    
+    WOAngleNode* a = [[[WOAngleNode alloc] initWithBaseAngle:-10 andMaxOffset:20] autorelease];
+    WOLittleFNode* f = [[[WOLittleFNode alloc] initWithBaseLength:10 andMaxOffset:5] autorelease];
+    WOWiggleNode* w = [[[WOWiggleNode alloc] init] autorelease];
+    
+    [nodes addObject:a];
+    [nodes addObject:f];
+    [nodes addObject:w];
+    
+    return nodes;
+}
+
+@end
+
+@implementation WOAngleNode
+
+- (id) initWithBaseAngle:(float)newBaseAngle andMaxOffset:(float)newMaxOffset
 {
     self = [super init];
     if (self) {
-        self.symbol = @"+";
+        
+        baseAngle = newBaseAngle;
+        maxOffset = newMaxOffset;
     }
     return self;
 }
 
 - (void) renderWithStack:(WOLSystemTransformStack*)stack inLSystem:(WOLSystem*)system
 {
-    float angle = 25;
+    float angle = baseAngle + maxOffset * randomOffset;
     [stack rotateBy:angle];
 }
 
-@end
-
-@implementation WOMinusNode
-
-- (id) init
+- (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
 {
-    self = [super init];
-    if (self) {
-        self.symbol = @"-";
-    }
-    return self;    
-}
-
-- (void) renderWithStack:(WOLSystemTransformStack*)stack inLSystem:(WOLSystem*)system
-{
-    float angle = -25;
-    [stack rotateBy:angle];
+    NSMutableArray* newNodes = [NSMutableArray array];
+    WOAngleNode* newNode = [[[WOAngleNode alloc] initWithBaseAngle:baseAngle andMaxOffset:maxOffset] autorelease];
+    newNode.growthPercent = self.growthPercent;
+    newNode.offset = offset;
+    newNode.randomOffset = randomOffset;
+    [newNodes addObject:newNode];
+    return newNodes;
 }
 
 @end
 
 @implementation WOLeftBracketNode
-
-- (id) init
-{
-    self = [super init];
-    if (self) {
-        self.symbol = @"[";
-    }
-    return self;
-}
 
 - (void) renderWithStack:(WOLSystemTransformStack*)stack inLSystem:(WOLSystem*)system
 {
@@ -383,16 +345,6 @@
 @end
 
 @implementation WORightBracketNode
-
-- (id) init
-{
-    self = [super init];
-    if (self) {
-        self.symbol = @"]";
-    }
-    return self;
-    
-}
 
 - (void) renderWithStack:(WOLSystemTransformStack*)stack inLSystem:(WOLSystem*)system
 {
