@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "WOLSystem.h"
+#import "Stk.h"
 
 @interface WOTree : NSObject {
     
@@ -22,6 +23,7 @@
 // TODO: Unify tree & LSystem classes
 - (id) initWithAngle:(float)newAngle andOrigin:(CGPoint)origin andType:(int)type;
 - (void) tick;
+- (void) tickAudio:(stk::StkFrames*)frames;
 - (CALayer*) layer;
 
 @end

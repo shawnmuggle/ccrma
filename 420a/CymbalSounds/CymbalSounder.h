@@ -18,7 +18,15 @@
 - (IBAction)playCymbal:(id)sender;
 - (IBAction)setSize:(id)sender;
 - (IBAction)setAttackFalloff:(id)sender;
-- (IBAction)setPole:(id)sender;
-- (IBAction)setDamping:(id)sender;
+
+- (IBAction)setLeftPole:(id)sender;
+- (IBAction)setLeftDamping:(id)sender;
+- (IBAction)setLeftA1:(id)sender;
+- (IBAction)setLeftA2:(id)sender;
+
+- (IBAction)setRightPole:(id)sender;
+- (IBAction)setRightDamping:(id)sender;
+- (IBAction)setRightA1:(id)sender;
+- (IBAction)setRightA2:(id)sender;
 
 @end

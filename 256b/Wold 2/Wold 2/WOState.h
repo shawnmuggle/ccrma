@@ -40,8 +40,6 @@
 @property BOOL justZoomed;
 
 - (void) tick:(id)sender;
-- (void) zoom;
-- (void) setScreenAndSky;
 - (void) render;
 - (void) handlePan:(id)sender;
 - (void) handleRub:(id)sender;

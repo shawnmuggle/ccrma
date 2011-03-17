@@ -11,6 +11,7 @@
 #import "Stk.h"
 
 @implementation SoundGrain
+@synthesize newBaseStart, newDensity, masterGain;
 
 - (id)initWithRandomParamsAndFrames:(stk::StkFrames*)data
 {
@@ -18,35 +19,85 @@
     if (self) {
         frames = data;
         
-        lengthSamps = rand() % 500;
-        startSamp = rand() % (frames->size() - lengthSamps);
-        attackSamps = rand() % 100;
-        releaseSamps = rand() % 100;
-        
         currentSamp = 0;
+        startSamp = 0;
+        masterGain = 0;
+        
+        baseStart = 0.5;
+        density = 0.9;
+        
+        [self updateParams];
     }
     
     return self;
 }
 
-- (Float32) tick
+- (void)updateParams
 {
-    Float32 sample = startSamp + currentSamp;
+    // This modulates independently of point position
+    lengthSamps = 5000 + rand() % 5000;
     
-    Float32 gain = 1.0;
+    float startVariability = 0.09;
+    startSamp = (frames->size() - lengthSamps) * (baseStart + startVariability * (rand() / (float)RAND_MAX));
     
-    if (currentSamp < attackSamps)
-        gain = currentSamp / (Float32)attackSamps;
-    else if (currentSamp > lengthSamps - releaseSamps)
-        gain = 1 - (currentSamp - (lengthSamps - releaseSamps)) / (Float32) releaseSamps;
+    int fractionLength = lengthSamps * 0.2;  // The most that the attack or release can be is 2x this fraction
+    attackSamps = fractionLength + fractionLength * (rand() / (float)RAND_MAX);
+    releaseSamps = fractionLength + fractionLength * (rand() / (float)RAND_MAX);
     
-    currentSamp++;
-    return sample * gain;
+    doneFraction = 1 / density;
+    
+    //NSLog(@"Restarting with start: %d length: %d", startSamp, lengthSamps);
 }
 
-- (BOOL) done
+- (void) updateValsInBoundingBox:(CGRect)box
 {
-    return currentSamp >= lengthSamps * 1.3;
+    if (self.newBaseStart != 0 && box.size.height != 0.0) {
+        baseStart = (self.newBaseStart + box.size.height / 2.0) / box.size.height;
+        
+        if (baseStart > 0.9) baseStart = 0.9; // This + startVariability (above) can never add up to more than 1
+        if (baseStart < 0) baseStart = 0;
+        
+        self.newBaseStart = 0.0;
+    }
+    if (self.newDensity != 0.0 && box.size.width != 0.0) {
+        density = 1.0 - self.newDensity / box.size.width;
+        
+        if (density > 0.9) density = 0.9;
+        if (density < 0.1) density = 0.1;
+        
+        self.newDensity = 0.0;
+    }
+    
+    //NSLog(@"Base start: %f, Density: %f", baseStart, density);
+}
+
+- (void) tickAudio:(stk::StkFrames*)outFrames
+{
+    Float32 gain;
+    for (int i = 0; i < outFrames->size(); i++) {
+        stk::StkFloat sample = 0.0;
+        if (currentSamp < lengthSamps) {
+            //NSLog(@"Grabbing at index: %d", startSamp + currentSamp);
+            sample = (*frames)[startSamp + currentSamp];
+        }
+        
+        gain = 1.0;
+        
+        if (currentSamp < attackSamps)
+            gain = currentSamp / (Float32)attackSamps;
+        else if (currentSamp > lengthSamps - releaseSamps)
+            gain = 1 - (currentSamp - (lengthSamps - releaseSamps)) / (Float32) releaseSamps;
+        
+        currentSamp++;
+        
+        if (currentSamp >= lengthSamps * doneFraction) {
+            //NSLog(@"HEYO");
+            [self updateParams];
+            currentSamp = 0;
+        }
+        
+        (*outFrames)[i] += sample * gain * masterGain;
+    }
 }
 
 - (void)dealloc

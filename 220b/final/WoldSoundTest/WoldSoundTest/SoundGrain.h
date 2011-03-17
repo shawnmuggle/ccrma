@@ -14,6 +14,16 @@
 @private
     stk::StkFrames* frames;
     
+    float baseStart;
+    float newBaseStart;
+    
+    float density;
+    float newDensity;
+    
+    float doneFraction;
+    
+    float masterGain;
+    
     uint startSamp;
     uint lengthSamps;
     uint attackSamps;
@@ -22,8 +32,13 @@
     uint currentSamp;
 }
 
+@property float newBaseStart;
+@property float newDensity;
+@property float masterGain;
+
 - (id)initWithRandomParamsAndFrames:(stk::StkFrames*)frames;
-- (Float32) tick;
-- (BOOL) done;
+- (void) updateParams;
+- (void) tickAudio:(stk::StkFrames*)outFrames;
+- (void) updateValsInBoundingBox:(CGRect)box;
 
 @end

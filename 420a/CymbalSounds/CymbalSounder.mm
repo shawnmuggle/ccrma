@@ -39,7 +39,7 @@ void* startThread(void* aDac)
     mesh->noteOn(10.0, 1.0, 0.5);
     
     mikeMesh = new MikeMesh();
-    mikeMesh->noteOn();
+    //mikeMesh->noteOn();
     
     RtAudio::StreamParameters parameters;
     parameters.deviceId = dac->getDefaultOutputDevice();
@@ -91,16 +91,49 @@ void* startThread(void* aDac)
     float falloff = [sender floatValue];
     mikeMesh->setAttackFalloff(falloff);
 }
-- (IBAction)setPole:(NSSlider*)sender
+
+- (IBAction)setLeftPole:(NSSlider*)sender
 {
     float pole = [sender floatValue];
-    mikeMesh->setPole(pole);
+    mikeMesh->setLeftPole(pole);
 }
-- (IBAction)setDamping:(NSSlider*)sender
+- (IBAction)setLeftDamping:(NSSlider*)sender
 {
     float damping = [sender floatValue];
-    mikeMesh->setDamping(damping);
+    mikeMesh->setLeftDamping(damping);
 }
+- (IBAction)setLeftA1:(NSSlider*)sender
+{
+    float coefficient = [sender floatValue];
+    mikeMesh->setLeftA1(coefficient);
+}
+- (IBAction)setLeftA2:(NSSlider*)sender
+{
+    float coefficient = [sender floatValue];
+    mikeMesh->setLeftA2(coefficient);
+}
+
+- (IBAction)setRightPole:(NSSlider*)sender
+{
+    float pole = [sender floatValue];
+    mikeMesh->setRightPole(pole);
+}
+- (IBAction)setRightDamping:(NSSlider*)sender
+{
+    float damping = [sender floatValue];
+    mikeMesh->setRightDamping(damping);
+}
+- (IBAction)setRightA1:(NSSlider*)sender
+{
+    float coefficient = [sender floatValue];
+    mikeMesh->setRightA1(coefficient);
+}
+- (IBAction)setRightA2:(NSSlider*)sender
+{
+    float coefficient = [sender floatValue];
+    mikeMesh->setRightA2(coefficient);
+}
+
 
 - (IBAction)playCymbal:(id)sender {
     NSLog(@"YUP");

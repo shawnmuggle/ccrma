@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
+#import "WOInstrument.h"
 
 @interface WOLSystemTransformState : NSObject {
 
@@ -51,6 +52,8 @@
     BOOL growing;
     CGMutablePathRef path;
     CAShapeLayer* layer;
+    
+    WOInstrument* instrument;
 }
 
 @property (nonatomic, retain) NSMutableArray* nodes;
@@ -64,9 +67,12 @@
 @property CGMutablePathRef path;
 @property (nonatomic, retain) CAShapeLayer* layer;
 
+@property (nonatomic, retain) WOInstrument* instrument;
+
 - (id) initWithMaxGeneration:(int)maxGen andAngle:(float)newAngle andOrigin:(CGPoint)origin;
 - (void) advanceGeneration;
 - (void) tick;
+- (void) tickAudio:(stk::StkFrames*)frames;
 - (void) setAge:(float)age;
 
 @end
@@ -78,13 +84,14 @@
     float offset;
 }
 
-@property (setter=setNewGrowthPercent:) float growthPercent;
+@property (setter=setNewGrowthPercent:,getter=getGrowthPercent) float growthPercent;
 @property float offset;
 @property float randomOffset;
 
 - (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration;
 - (void) renderWithStack:(WOLSystemTransformStack*)stack inLSystem:(WOLSystem*)system;
 - (void) setNewGrowthPercent:(float)percent;
+- (float) getGrowthPercent;
 
 @end
 
@@ -95,7 +102,11 @@
 {
     float baseLength;
     float maxOffset;
+    
+    int pointId;
 }
+
+@property int pointId;
 
 - (id) initWithBaseLength:(float)newBaseLength andMaxOffset:(float)newMaxOffset;
 

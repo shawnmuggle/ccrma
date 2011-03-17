@@ -12,6 +12,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.mm */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		D536BF851328EAF200D8E7BA /* DelayA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D536BF841328EAF200D8E7BA /* DelayA.cpp */; };
 		D566775B13128A0300D13D0A /* SKINI.msg in Resources */ = {isa = PBXBuildFile; fileRef = D56676C313128A0300D13D0A /* SKINI.msg */; };
 		D566775C13128A0300D13D0A /* SKINI.tbl in Resources */ = {isa = PBXBuildFile; fileRef = D56676C413128A0300D13D0A /* SKINI.tbl */; };
 		D566778F13128A0300D13D0A /* Mesh2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D566772313128A0300D13D0A /* Mesh2D.cpp */; };
@@ -38,6 +39,8 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* CymbalSounds-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CymbalSounds-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* CymbalSounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CymbalSounds.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D536BF831328EADE00D8E7BA /* DelayA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayA.h; sourceTree = "<group>"; };
+		D536BF841328EAF200D8E7BA /* DelayA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DelayA.cpp; sourceTree = "<group>"; };
 		D566768C13128A0300D13D0A /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
 		D566769F13128A0300D13D0A /* Mesh2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh2D.h; sourceTree = "<group>"; };
 		D56676AA13128A0300D13D0A /* OnePole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePole.h; sourceTree = "<group>"; };
@@ -161,6 +164,7 @@
 		D566766F13128A0300D13D0A /* include */ = {
 			isa = PBXGroup;
 			children = (
+				D536BF831328EADE00D8E7BA /* DelayA.h */,
 				D5692C9B131E481A004FE489 /* NonLinearAllPass.h */,
 				D57D09C3131DF8FB00B14BC3 /* Delay.h */,
 				D57D09C0131DF8CD00B14BC3 /* DelayL.h */,
@@ -178,6 +182,7 @@
 		D56676DB13128A0300D13D0A /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D536BF841328EAF200D8E7BA /* DelayA.cpp */,
 				D5692C9C131E4826004FE489 /* NonLinearAllPass.cpp */,
 				D57D09C1131DF8E000B14BC3 /* DelayL.cpp */,
 				D566772313128A0300D13D0A /* Mesh2D.cpp */,
@@ -280,6 +285,7 @@
 				D57D09C2131DF8E000B14BC3 /* DelayL.cpp in Sources */,
 				D5692C9D131E4826004FE489 /* NonLinearAllPass.cpp in Sources */,
 				D5692CB2132328B2004FE489 /* MikeMesh.cpp in Sources */,
+				D536BF851328EAF200D8E7BA /* DelayA.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,6 @@
 		D518F1C0133164F10008C42C /* mo_fft.mm in Sources */ = {isa = PBXBuildFile; fileRef = D518F192133164F10008C42C /* mo_fft.mm */; };
 		D518F1C1133164F10008C42C /* mo_filter.mm in Sources */ = {isa = PBXBuildFile; fileRef = D518F194133164F10008C42C /* mo_filter.mm */; };
 		D518F1C2133164F10008C42C /* mo_fun.mm in Sources */ = {isa = PBXBuildFile; fileRef = D518F196133164F10008C42C /* mo_fun.mm */; };
-		D518F1C3133164F10008C42C /* mo_gfx.mm in Sources */ = {isa = PBXBuildFile; fileRef = D518F198133164F10008C42C /* mo_gfx.mm */; };
 		D518F1C4133164F10008C42C /* mo_io.mm in Sources */ = {isa = PBXBuildFile; fileRef = D518F19A133164F10008C42C /* mo_io.mm */; };
 		D518F1C6133164F10008C42C /* mo_net.mm in Sources */ = {isa = PBXBuildFile; fileRef = D518F19E133164F10008C42C /* mo_net.mm */; };
 		D518F1C7133164F10008C42C /* mo_thread.mm in Sources */ = {isa = PBXBuildFile; fileRef = D518F1A0133164F10008C42C /* mo_thread.mm */; };
@@ -27,22 +26,31 @@
 		D518F1CE133164F10008C42C /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D518F1B8133164F10008C42C /* OscReceivedElements.cpp */; };
 		D518F1CF133164F10008C42C /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D518F1BA133164F10008C42C /* OscTypes.cpp */; };
 		D518F1D71331676A0008C42C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D518F1D61331676A0008C42C /* AudioToolbox.framework */; };
-		D526D6E9132FE7F100D55AF3 /* WOSolarSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = D526D6E8132FE7F000D55AF3 /* WOSolarSystem.m */; };
+		D518F1DA13316BBF0008C42C /* WOInstrument.mm in Sources */ = {isa = PBXBuildFile; fileRef = D518F1D913316BBB0008C42C /* WOInstrument.mm */; };
+		D518F1E013318C560008C42C /* kshoonya.wav in Resources */ = {isa = PBXBuildFile; fileRef = D518F1DF13318C560008C42C /* kshoonya.wav */; };
+		D526D6E9132FE7F100D55AF3 /* WOSolarSystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = D526D6E8132FE7F000D55AF3 /* WOSolarSystem.mm */; };
 		D527A6FF132DCD810001EB33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D527A6FE132DCD810001EB33 /* UIKit.framework */; };
 		D527A701132DCD810001EB33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D527A700132DCD810001EB33 /* Foundation.framework */; };
 		D527A703132DCD810001EB33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D527A702132DCD810001EB33 /* CoreGraphics.framework */; };
 		D527A709132DCD820001EB33 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D527A707132DCD820001EB33 /* InfoPlist.strings */; };
 		D527A70C132DCD820001EB33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A70B132DCD820001EB33 /* main.m */; };
-		D527A70F132DCD820001EB33 /* Wold_2AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A70E132DCD820001EB33 /* Wold_2AppDelegate.m */; };
+		D527A70F132DCD820001EB33 /* Wold_2AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = D527A70E132DCD820001EB33 /* Wold_2AppDelegate.mm */; };
 		D527A712132DCD820001EB33 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D527A710132DCD820001EB33 /* MainWindow.xib */; };
-		D527A715132DCD820001EB33 /* Wold_2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A714132DCD820001EB33 /* Wold_2ViewController.m */; };
+		D527A715132DCD820001EB33 /* Wold_2ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D527A714132DCD820001EB33 /* Wold_2ViewController.mm */; };
 		D527A718132DCD820001EB33 /* Wold_2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D527A716132DCD820001EB33 /* Wold_2ViewController.xib */; };
-		D527A720132DD08B0001EB33 /* WOPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A71F132DD08B0001EB33 /* WOPlanet.m */; };
-		D527A723132DD1570001EB33 /* WOState.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A722132DD1570001EB33 /* WOState.m */; };
-		D527A729132DD3040001EB33 /* WOPlanetView.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A728132DD3040001EB33 /* WOPlanetView.m */; };
+		D527A720132DD08B0001EB33 /* WOPlanet.mm in Sources */ = {isa = PBXBuildFile; fileRef = D527A71F132DD08B0001EB33 /* WOPlanet.mm */; };
+		D527A723132DD1570001EB33 /* WOState.mm in Sources */ = {isa = PBXBuildFile; fileRef = D527A722132DD1570001EB33 /* WOState.mm */; };
+		D527A729132DD3040001EB33 /* WOPlanetView.mm in Sources */ = {isa = PBXBuildFile; fileRef = D527A728132DD3040001EB33 /* WOPlanetView.mm */; };
 		D59D8BF5132E1F120060601C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59D8BF4132E1F120060601C /* QuartzCore.framework */; };
-		D5A4A6AC132E3E3500FE4DF1 /* WOTree.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A4A6AB132E3E3400FE4DF1 /* WOTree.m */; };
-		D5A4A6AF132E599800FE4DF1 /* WOLSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A4A6AD132E599700FE4DF1 /* WOLSystem.m */; };
+		D5A1445C1331911B00605C1C /* Envelope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5A1439A1331911A00605C1C /* Envelope.cpp */; };
+		D5A1445E1331911B00605C1C /* FileRead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5A1439C1331911A00605C1C /* FileRead.cpp */; };
+		D5A144671331911B00605C1C /* Granulate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5A143A51331911A00605C1C /* Granulate.cpp */; };
+		D5A1447E1331911C00605C1C /* Noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5A143C71331911A00605C1C /* Noise.cpp */; };
+		D5A144F01331911E00605C1C /* Stk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5A1443A1331911B00605C1C /* Stk.cpp */; };
+		D5A145091331960A00605C1C /* SoundGrain.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5A145071331960900605C1C /* SoundGrain.mm */; };
+		D5A1450B13319ADC00605C1C /* whistle.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5A1450A13319ADC00605C1C /* whistle.wav */; };
+		D5A4A6AC132E3E3500FE4DF1 /* WOTree.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5A4A6AB132E3E3400FE4DF1 /* WOTree.mm */; };
+		D5A4A6AF132E599800FE4DF1 /* WOLSystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5A4A6AD132E599700FE4DF1 /* WOLSystem.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,8 +69,6 @@
 		D518F194133164F10008C42C /* mo_filter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_filter.mm; sourceTree = "<group>"; };
 		D518F195133164F10008C42C /* mo_fun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_fun.h; sourceTree = "<group>"; };
 		D518F196133164F10008C42C /* mo_fun.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_fun.mm; sourceTree = "<group>"; };
-		D518F197133164F10008C42C /* mo_gfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_gfx.h; sourceTree = "<group>"; };
-		D518F198133164F10008C42C /* mo_gfx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_gfx.mm; sourceTree = "<group>"; };
 		D518F199133164F10008C42C /* mo_io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_io.h; sourceTree = "<group>"; };
 		D518F19A133164F10008C42C /* mo_io.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_io.mm; sourceTree = "<group>"; };
 		D518F19D133164F10008C42C /* mo_net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_net.h; sourceTree = "<group>"; };
@@ -93,8 +99,11 @@
 		D518F1BA133164F10008C42C /* OscTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscTypes.cpp; sourceTree = "<group>"; };
 		D518F1BB133164F10008C42C /* OscTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscTypes.h; sourceTree = "<group>"; };
 		D518F1D61331676A0008C42C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D518F1D813316BB90008C42C /* WOInstrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOInstrument.h; sourceTree = "<group>"; };
+		D518F1D913316BBB0008C42C /* WOInstrument.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WOInstrument.mm; sourceTree = "<group>"; };
+		D518F1DF13318C560008C42C /* kshoonya.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = kshoonya.wav; path = sounds/kshoonya.wav; sourceTree = "<group>"; };
 		D526D6E7132FE7F000D55AF3 /* WOSolarSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSolarSystem.h; sourceTree = "<group>"; };
-		D526D6E8132FE7F000D55AF3 /* WOSolarSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOSolarSystem.m; sourceTree = "<group>"; };
+		D526D6E8132FE7F000D55AF3 /* WOSolarSystem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WOSolarSystem.mm; sourceTree = "<group>"; };
 		D527A6FA132DCD810001EB33 /* Wold 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wold 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D527A6FE132DCD810001EB33 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D527A700132DCD810001EB33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,21 +113,35 @@
 		D527A70A132DCD820001EB33 /* Wold_2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wold_2-Prefix.pch"; sourceTree = "<group>"; };
 		D527A70B132DCD820001EB33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D527A70D132DCD820001EB33 /* Wold_2AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wold_2AppDelegate.h; sourceTree = "<group>"; };
-		D527A70E132DCD820001EB33 /* Wold_2AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Wold_2AppDelegate.m; sourceTree = "<group>"; };
+		D527A70E132DCD820001EB33 /* Wold_2AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Wold_2AppDelegate.mm; sourceTree = "<group>"; };
 		D527A711132DCD820001EB33 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		D527A713132DCD820001EB33 /* Wold_2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wold_2ViewController.h; sourceTree = "<group>"; };
-		D527A714132DCD820001EB33 /* Wold_2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Wold_2ViewController.m; sourceTree = "<group>"; };
+		D527A714132DCD820001EB33 /* Wold_2ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Wold_2ViewController.mm; sourceTree = "<group>"; };
 		D527A717132DCD820001EB33 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Wold_2ViewController.xib; sourceTree = "<group>"; };
 		D527A71E132DD08B0001EB33 /* WOPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOPlanet.h; sourceTree = "<group>"; };
-		D527A71F132DD08B0001EB33 /* WOPlanet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOPlanet.m; sourceTree = "<group>"; };
+		D527A71F132DD08B0001EB33 /* WOPlanet.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WOPlanet.mm; sourceTree = "<group>"; };
 		D527A721132DD1570001EB33 /* WOState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOState.h; sourceTree = "<group>"; };
-		D527A722132DD1570001EB33 /* WOState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOState.m; sourceTree = "<group>"; };
+		D527A722132DD1570001EB33 /* WOState.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WOState.mm; sourceTree = "<group>"; };
 		D527A727132DD3040001EB33 /* WOPlanetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOPlanetView.h; sourceTree = "<group>"; };
-		D527A728132DD3040001EB33 /* WOPlanetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOPlanetView.m; sourceTree = "<group>"; };
+		D527A728132DD3040001EB33 /* WOPlanetView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WOPlanetView.mm; sourceTree = "<group>"; };
 		D59D8BF4132E1F120060601C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D5A143351331911A00605C1C /* Envelope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Envelope.h; sourceTree = "<group>"; };
+		D5A143371331911A00605C1C /* FileRead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileRead.h; sourceTree = "<group>"; };
+		D5A143421331911A00605C1C /* Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Generator.h; sourceTree = "<group>"; };
+		D5A143431331911A00605C1C /* Granulate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Granulate.h; sourceTree = "<group>"; };
+		D5A143551331911A00605C1C /* Noise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Noise.h; sourceTree = "<group>"; };
+		D5A143751331911A00605C1C /* Stk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stk.h; sourceTree = "<group>"; };
+		D5A1439A1331911A00605C1C /* Envelope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Envelope.cpp; sourceTree = "<group>"; };
+		D5A1439C1331911A00605C1C /* FileRead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileRead.cpp; sourceTree = "<group>"; };
+		D5A143A51331911A00605C1C /* Granulate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Granulate.cpp; sourceTree = "<group>"; };
+		D5A143C71331911A00605C1C /* Noise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Noise.cpp; sourceTree = "<group>"; };
+		D5A1443A1331911B00605C1C /* Stk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stk.cpp; sourceTree = "<group>"; };
+		D5A145071331960900605C1C /* SoundGrain.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SoundGrain.mm; path = ../../../220b/final/WoldSoundTest/WoldSoundTest/SoundGrain.mm; sourceTree = "<group>"; };
+		D5A145081331960900605C1C /* SoundGrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundGrain.h; path = ../../../220b/final/WoldSoundTest/WoldSoundTest/SoundGrain.h; sourceTree = "<group>"; };
+		D5A1450A13319ADC00605C1C /* whistle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = whistle.wav; path = sounds/whistle.wav; sourceTree = "<group>"; };
 		D5A4A6AA132E3E3400FE4DF1 /* WOTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOTree.h; sourceTree = "<group>"; };
-		D5A4A6AB132E3E3400FE4DF1 /* WOTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOTree.m; sourceTree = "<group>"; };
-		D5A4A6AD132E599700FE4DF1 /* WOLSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOLSystem.m; sourceTree = "<group>"; };
+		D5A4A6AB132E3E3400FE4DF1 /* WOTree.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WOTree.mm; sourceTree = "<group>"; };
+		D5A4A6AD132E599700FE4DF1 /* WOLSystem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WOLSystem.mm; sourceTree = "<group>"; };
 		D5A4A6AE132E599800FE4DF1 /* WOLSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOLSystem.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,13 +161,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D518F1801330B39C0008C42C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		D518F187133164F10008C42C /* momu */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,8 +177,6 @@
 				D518F194133164F10008C42C /* mo_filter.mm */,
 				D518F195133164F10008C42C /* mo_fun.h */,
 				D518F196133164F10008C42C /* mo_fun.mm */,
-				D518F197133164F10008C42C /* mo_gfx.h */,
-				D518F198133164F10008C42C /* mo_gfx.mm */,
 				D518F199133164F10008C42C /* mo_io.h */,
 				D518F19A133164F10008C42C /* mo_io.mm */,
 				D518F19D133164F10008C42C /* mo_net.h */,
@@ -229,11 +243,21 @@
 			path = osc;
 			sourceTree = "<group>";
 		};
+		D518F1DB13318C2A0008C42C /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D5A1450A13319ADC00605C1C /* whistle.wav */,
+				D518F1DF13318C560008C42C /* kshoonya.wav */,
+			);
+			name = sounds;
+			sourceTree = "<group>";
+		};
 		D527A6EF132DCD810001EB33 = {
 			isa = PBXGroup;
 			children = (
+				D54AC0C31331C89F00139097 /* STK */,
+				D518F1DB13318C2A0008C42C /* sounds */,
 				D518F187133164F10008C42C /* momu */,
-				D518F1801330B39C0008C42C /* Resources */,
 				D527A704132DCD810001EB33 /* Wold 2 */,
 				D527A6FD132DCD810001EB33 /* Frameworks */,
 				D527A6FB132DCD810001EB33 /* Products */,
@@ -264,24 +288,28 @@
 			isa = PBXGroup;
 			children = (
 				D527A70D132DCD820001EB33 /* Wold_2AppDelegate.h */,
-				D527A70E132DCD820001EB33 /* Wold_2AppDelegate.m */,
+				D527A70E132DCD820001EB33 /* Wold_2AppDelegate.mm */,
 				D527A710132DCD820001EB33 /* MainWindow.xib */,
 				D527A713132DCD820001EB33 /* Wold_2ViewController.h */,
-				D527A714132DCD820001EB33 /* Wold_2ViewController.m */,
+				D527A714132DCD820001EB33 /* Wold_2ViewController.mm */,
 				D527A716132DCD820001EB33 /* Wold_2ViewController.xib */,
 				D527A705132DCD820001EB33 /* Supporting Files */,
-				D527A71E132DD08B0001EB33 /* WOPlanet.h */,
-				D527A71F132DD08B0001EB33 /* WOPlanet.m */,
-				D527A721132DD1570001EB33 /* WOState.h */,
-				D527A722132DD1570001EB33 /* WOState.m */,
 				D527A727132DD3040001EB33 /* WOPlanetView.h */,
-				D527A728132DD3040001EB33 /* WOPlanetView.m */,
-				D5A4A6AA132E3E3400FE4DF1 /* WOTree.h */,
-				D5A4A6AB132E3E3400FE4DF1 /* WOTree.m */,
-				D5A4A6AE132E599800FE4DF1 /* WOLSystem.h */,
-				D5A4A6AD132E599700FE4DF1 /* WOLSystem.m */,
+				D527A728132DD3040001EB33 /* WOPlanetView.mm */,
+				D527A721132DD1570001EB33 /* WOState.h */,
+				D527A722132DD1570001EB33 /* WOState.mm */,
 				D526D6E7132FE7F000D55AF3 /* WOSolarSystem.h */,
-				D526D6E8132FE7F000D55AF3 /* WOSolarSystem.m */,
+				D526D6E8132FE7F000D55AF3 /* WOSolarSystem.mm */,
+				D527A71E132DD08B0001EB33 /* WOPlanet.h */,
+				D527A71F132DD08B0001EB33 /* WOPlanet.mm */,
+				D5A4A6AA132E3E3400FE4DF1 /* WOTree.h */,
+				D5A4A6AB132E3E3400FE4DF1 /* WOTree.mm */,
+				D5A4A6AE132E599800FE4DF1 /* WOLSystem.h */,
+				D5A4A6AD132E599700FE4DF1 /* WOLSystem.mm */,
+				D518F1D813316BB90008C42C /* WOInstrument.h */,
+				D518F1D913316BBB0008C42C /* WOInstrument.mm */,
+				D5A145081331960900605C1C /* SoundGrain.h */,
+				D5A145071331960900605C1C /* SoundGrain.mm */,
 				D518F184133161560008C42C /* WOSynth.h */,
 				D518F185133161570008C42C /* WOSynth.mm */,
 			);
@@ -297,6 +325,42 @@
 				D527A70B132DCD820001EB33 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D54AC0C31331C89F00139097 /* STK */ = {
+			isa = PBXGroup;
+			children = (
+				D5A143851331911A00605C1C /* src */,
+				D5A1431F1331911A00605C1C /* include */,
+			);
+			name = STK;
+			sourceTree = "<group>";
+		};
+		D5A1431F1331911A00605C1C /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D5A143351331911A00605C1C /* Envelope.h */,
+				D5A143371331911A00605C1C /* FileRead.h */,
+				D5A143421331911A00605C1C /* Generator.h */,
+				D5A143431331911A00605C1C /* Granulate.h */,
+				D5A143551331911A00605C1C /* Noise.h */,
+				D5A143751331911A00605C1C /* Stk.h */,
+			);
+			name = include;
+			path = "stk-4.4.2/include";
+			sourceTree = "<group>";
+		};
+		D5A143851331911A00605C1C /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D5A1439A1331911A00605C1C /* Envelope.cpp */,
+				D5A1439C1331911A00605C1C /* FileRead.cpp */,
+				D5A143A51331911A00605C1C /* Granulate.cpp */,
+				D5A143C71331911A00605C1C /* Noise.cpp */,
+				D5A1443A1331911B00605C1C /* Stk.cpp */,
+			);
+			name = src;
+			path = "stk-4.4.2/src";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,6 +413,8 @@
 				D527A709132DCD820001EB33 /* InfoPlist.strings in Resources */,
 				D527A712132DCD820001EB33 /* MainWindow.xib in Resources */,
 				D527A718132DCD820001EB33 /* Wold_2ViewController.xib in Resources */,
+				D518F1E013318C560008C42C /* kshoonya.wav in Resources */,
+				D5A1450B13319ADC00605C1C /* whistle.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,14 +426,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D527A70C132DCD820001EB33 /* main.m in Sources */,
-				D527A70F132DCD820001EB33 /* Wold_2AppDelegate.m in Sources */,
-				D527A715132DCD820001EB33 /* Wold_2ViewController.m in Sources */,
-				D527A720132DD08B0001EB33 /* WOPlanet.m in Sources */,
-				D527A723132DD1570001EB33 /* WOState.m in Sources */,
-				D527A729132DD3040001EB33 /* WOPlanetView.m in Sources */,
-				D5A4A6AC132E3E3500FE4DF1 /* WOTree.m in Sources */,
-				D5A4A6AF132E599800FE4DF1 /* WOLSystem.m in Sources */,
-				D526D6E9132FE7F100D55AF3 /* WOSolarSystem.m in Sources */,
+				D527A70F132DCD820001EB33 /* Wold_2AppDelegate.mm in Sources */,
+				D527A715132DCD820001EB33 /* Wold_2ViewController.mm in Sources */,
+				D527A720132DD08B0001EB33 /* WOPlanet.mm in Sources */,
+				D527A723132DD1570001EB33 /* WOState.mm in Sources */,
+				D527A729132DD3040001EB33 /* WOPlanetView.mm in Sources */,
+				D5A4A6AC132E3E3500FE4DF1 /* WOTree.mm in Sources */,
+				D5A4A6AF132E599800FE4DF1 /* WOLSystem.mm in Sources */,
+				D526D6E9132FE7F100D55AF3 /* WOSolarSystem.mm in Sources */,
 				D518F186133161580008C42C /* WOSynth.mm in Sources */,
 				D518F1BC133164F10008C42C /* mo_accel.mm in Sources */,
 				D518F1BD133164F10008C42C /* mo_audio.mm in Sources */,
@@ -375,7 +441,6 @@
 				D518F1C0133164F10008C42C /* mo_fft.mm in Sources */,
 				D518F1C1133164F10008C42C /* mo_filter.mm in Sources */,
 				D518F1C2133164F10008C42C /* mo_fun.mm in Sources */,
-				D518F1C3133164F10008C42C /* mo_gfx.mm in Sources */,
 				D518F1C4133164F10008C42C /* mo_io.mm in Sources */,
 				D518F1C6133164F10008C42C /* mo_net.mm in Sources */,
 				D518F1C7133164F10008C42C /* mo_thread.mm in Sources */,
@@ -387,6 +452,13 @@
 				D518F1CD133164F10008C42C /* OscPrintReceivedElements.cpp in Sources */,
 				D518F1CE133164F10008C42C /* OscReceivedElements.cpp in Sources */,
 				D518F1CF133164F10008C42C /* OscTypes.cpp in Sources */,
+				D518F1DA13316BBF0008C42C /* WOInstrument.mm in Sources */,
+				D5A1445C1331911B00605C1C /* Envelope.cpp in Sources */,
+				D5A1445E1331911B00605C1C /* FileRead.cpp in Sources */,
+				D5A144671331911B00605C1C /* Granulate.cpp in Sources */,
+				D5A1447E1331911C00605C1C /* Noise.cpp in Sources */,
+				D5A144F01331911E00605C1C /* Stk.cpp in Sources */,
+				D5A145091331960A00605C1C /* SoundGrain.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,13 +530,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ge Wang (AR5E675E2R)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wold 2/Wold_2-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "Wold 2/Wold_2-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/stk-4.4.2/src\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6A56C621-8243-4CDB-8EF9-A51D0D1D66DD";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -476,8 +556,13 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wold 2/Wold_2-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "Wold 2/Wold_2-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/stk-4.4.2/src\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

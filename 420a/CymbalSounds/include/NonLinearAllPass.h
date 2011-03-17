@@ -29,6 +29,9 @@ namespace stk {
         StkFloat tick( StkFloat input );
         
         StkFrames& tick( StkFrames& frames, unsigned int channel = 0 );
+        
+        void setPole(StkFloat pole) { lpf_.setPole(pole); };
+        void setGain(StkFloat gain) { lpf_.setGain(gain); };
 
     protected:
         
@@ -48,6 +51,8 @@ namespace stk {
     {
         float x_n = lpf_.tick(input);
         
+        //float x_n = input;
+        
         x_n = gain_ * x_n;
 
         float u_n = x_n - a_ * u_n_minus_1_;
@@ -63,18 +68,6 @@ namespace stk {
         
         lastFrame_[0] = y_n;
         return lastFrame_[0];
-
-//        fVec_[0] = inputs_[0];
-//        
-//        int positive = fVec_[0] > 0;
-//        fRec_[0] = (fVec_[0] * ((a1_ * (1 - positive)) - (a2_ * positive)));
-//        StkFloat fRec1 = fVec_[1];
-//        
-//        lastFrame_[0] = fRec_[0] + fRec1;
-//        fRec_[1] = fRec_[0];
-//        fVec_[1] = fVec_[0];
-        
-//        return lastFrame_[0];
     }
     
     inline StkFrames& NonLinearAllPass :: tick( StkFrames& frames, unsigned int channel )

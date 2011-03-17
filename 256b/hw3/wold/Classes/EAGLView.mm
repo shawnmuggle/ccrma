@@ -86,7 +86,7 @@
         
         NSLog(@"WHIAT");
         
-        self.audio = [[WOAudio alloc] initWithState:self.state];
+        //self.audio = [[WOAudio alloc] initWithState:self.state];
     }
 
     return self;

@@ -45,14 +45,14 @@ stk::StkFloat MikeMesh::tick()
     return output;
 }
 
-void MikeMesh::setSize(float newSizeSamps)
+void MikeMesh::setSize(float sizeSamps)
 {
-    float halfLength = newSizeSamps / 2.0;
+    float halfLength = sizeSamps / 2.0;
     
-    rightGoingWaveLeft.setDelay(halfLength);
-    rightGoingWaveRight.setDelay(halfLength);
-    leftGoingWaveLeft.setDelay(halfLength);
-    leftGoingWaveRight.setDelay(halfLength);
+    rightGoingWaveLeft.setDelay(halfLength * 1.3);
+    rightGoingWaveRight.setDelay(halfLength * 0.7);
+    leftGoingWaveLeft.setDelay(halfLength * 1.3);
+    leftGoingWaveRight.setDelay(halfLength * 0.7);
 }
 
 void MikeMesh::setAttackFalloff(float newFalloff)
@@ -60,14 +60,36 @@ void MikeMesh::setAttackFalloff(float newFalloff)
     falloff = newFalloff;
 }
 
-void MikeMesh::setPole(float newPole)
+void MikeMesh::setLeftPole(float pole)
 {
-    leftEdge.setPole(newPole);
-    rightEdge.setPole(newPole);
+    leftEdge.setPole(pole);
+}
+void MikeMesh::setLeftDamping(float damping)
+{
+    leftEdge.setGain(1 - damping);
+}
+void MikeMesh::setLeftA1(float coefficient)
+{
+    leftEdge.setA1(coefficient);
+}
+void MikeMesh::setLeftA2(float coefficient)
+{
+    leftEdge.setA2(coefficient);
 }
 
-void MikeMesh::setDamping(float newDamping)
+void MikeMesh::setRightPole(float pole)
 {
-    leftEdge.setGain(1 - newDamping);
-    rightEdge.setGain(1 - newDamping);
+    rightEdge.setPole(pole);
+}
+void MikeMesh::setRightDamping(float damping)
+{
+    rightEdge.setGain(1 - damping);
+}
+void MikeMesh::setRightA1(float coefficient)
+{
+    rightEdge.setA1(coefficient);
+}
+void MikeMesh::setRightA2(float coefficient)
+{
+    rightEdge.setA2(coefficient);
 }

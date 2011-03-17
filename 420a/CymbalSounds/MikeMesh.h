@@ -9,8 +9,8 @@
 #ifndef MIKEMESH_H
 #define MIKEMESH_H
 
-#include "DelayL.h"
-#include "OnePole.h"
+#include "DelayA.h"
+#include "NonLinearAllPass.h"
 
 class MikeMesh
 {
@@ -21,20 +21,30 @@ public:
     void noteOn();
     stk::StkFloat tick();
     
-    void setSize(float newSizeSamps);
-    void setPole(float newPole);
-    void setDamping(float newDamping);
-    void setAttackFalloff(float newFalloff);
+    void setSize(float sizeSamps);
+    void setAttackFalloff(float falloff);
+    
+    void setLeftDamping(float damping);
+    void setLeftPole(float pole);
+    void setLeftA1(float coefficient);
+    void setLeftA2(float coefficient);
+
+    void setRightDamping(float damping);
+    void setRightPole(float pole);
+    void setRightA1(float coefficient);
+    void setRightA2(float coefficient);
+    
+
 protected:
-    stk::DelayL rightGoingWaveRight;
-    stk::DelayL rightGoingWaveLeft;
-    stk::DelayL leftGoingWaveRight;
-    stk::DelayL leftGoingWaveLeft;
+    stk::DelayA rightGoingWaveRight;
+    stk::DelayA rightGoingWaveLeft;
+    stk::DelayA leftGoingWaveRight;
+    stk::DelayA leftGoingWaveLeft;
 
     stk::StkFloat falloff;
     
-    stk::OnePole leftEdge;
-    stk::OnePole rightEdge;
+    stk::NonLinearAllPass leftEdge;
+    stk::NonLinearAllPass rightEdge;
     
     stk::StkFloat input;
 };
