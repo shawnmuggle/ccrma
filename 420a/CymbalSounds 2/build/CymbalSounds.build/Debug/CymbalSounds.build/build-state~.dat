@@ -1,0 +1,196 @@
+TCymbalSounds
+v7
+r0
+t319656853.037066
+cCheck dependencies
+cProcessInfoPlistFile /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/Info.plist CymbalSounds-Info.plist
+cCopyStringsFile /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
+cCompileXIB /Users/mrotondo/Development/ccrma/420a/CymbalSounds/English.lproj/MainMenu.xib
+cProcessPCH /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/CymbalSounds_Prefix-epgprrtnoyhjvdelyfrfbrkzsefh/CymbalSounds_Prefix.pch.gch CymbalSounds_Prefix.pch normal x86_64 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/CymbalSounds.build/Debug/CymbalSounds.build/Objects-normal/x86_64/main.o /Users/mrotondo/Development/ccrma/420a/CymbalSounds/main.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/CymbalSounds.build/Debug/CymbalSounds.build/Objects-normal/x86_64/CymbalSoundsAppDelegate.o /Users/mrotondo/Development/ccrma/420a/CymbalSounds/CymbalSoundsAppDelegate.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+cLd /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/MacOS/CymbalSounds normal x86_64
+cTouch /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004D1C8AC500000000000000EE
+t1293716165
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Cocoa.framework/Headers/Cocoa.h
+c0000000040C4AA6800000000000001E5
+t1086630504
+s485
+
+N/System/Library/Frameworks/Cocoa.framework/Cocoa
+c000000004A1F2D63000000000000A5E0
+t1243557219
+s42464
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/CymbalSoundsAppDelegate.h
+c000000004D5D57F3000000000000014D
+t1297962995
+s333
+i<Cocoa/Cocoa.h>
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/CymbalSoundsAppDelegate.m
+c000000004D5D57F30000000000000187
+t1297962995
+s391
+i"CymbalSoundsAppDelegate.h"
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/CymbalSounds_Prefix.pch
+c000000004D5D57F3000000000000009B
+t1297962995
+s155
+i<Cocoa/Cocoa.h>
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/English.lproj/InfoPlist.strings
+c000000004D5D57F2000000000000002D
+t1297962994
+s45
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/English.lproj/MainMenu.xib
+c000000004D5D57F3000000000002BBA2
+t1297962995
+s179106
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/Objects-normal/x86_64/CymbalSounds.LinkFileList
+c000000004D5D5C0A0000000000000119
+t1297964042
+s281
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/Objects-normal/x86_64/CymbalSoundsAppDelegate.o
+t1297964050
+s21256
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/Objects-normal/x86_64/main.o
+t1297964050
+s5016
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app
+t1297964053
+s102
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/Info.plist
+t1297964042
+s901
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/MacOS/CymbalSounds
+t1297964053
+s14664
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/PkgInfo
+t1297964042
+s8
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/Resources/English.lproj/InfoPlist.strings
+t1297964043
+s92
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/Resources/English.lproj/MainMenu.nib
+t1297964045
+s34462
+
+N/Users/mrotondo/Development/ccrma/420a/CymbalSounds/main.m
+c000000004D5D57F30000000000000105
+t1297962995
+s261
+i<Cocoa/Cocoa.h>
+
+N/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/CymbalSounds_Prefix-epgprrtnoyhjvdelyfrfbrkzsefh/CymbalSounds_Prefix.pch.gch
+t1297964050
+s54306576
+
+NCymbalSounds-Info.plist
+c000000004D5D57F300000000000003EA
+t1297962995
+s1002
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies319656841#319656842#0(0"0(0#1#0"27866456492998768#0"0#
+
+CCompileC build/CymbalSounds.build/Debug/CymbalSounds.build/Objects-normal/x86_64/CymbalSoundsAppDelegate.o /Users/mrotondo/Development/ccrma/420a/CymbalSounds/CymbalSoundsAppDelegate.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+s319656850.717843
+e319656850.976709
+r1
+xCompileC
+xbuild/CymbalSounds.build/Debug/CymbalSounds.build/Objects-normal/x86_64/CymbalSoundsAppDelegate.o
+x/Users/mrotondo/Development/ccrma/420a/CymbalSounds/CymbalSoundsAppDelegate.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@85"Compile /Users/mrotondo/Development/ccrma/420a/CymbalSounds/CymbalSoundsAppDelegate.m319656850#319656850#0(0"0(0#0#77"/Users/mrotondo/Development/ccrma/420a/CymbalSounds/CymbalSoundsAppDelegate.m8600141792#1731"    cd /Users/mrotondo/Development/ccrma/420a/CymbalSounds    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/CymbalSounds-generated-files.hmap -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/CymbalSounds-own-target-headers.hmap -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/CymbalSounds-all-target-headers.hmap -iquote /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/CymbalSounds-project-headers.hmap -F/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/include -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/DerivedSources/x86_64 -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/CymbalSounds_Prefix-epgprrtnoyhjvdelyfrfbrkzsefh/CymbalSounds_Prefix.pch -c /Users/mrotondo/Development/ccrma/420a/CymbalSounds/CymbalSoundsAppDelegate.m -o /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/Objects-normal/x86_64/CymbalSoundsAppDelegate.o0#
+
+CCompileC build/CymbalSounds.build/Debug/CymbalSounds.build/Objects-normal/x86_64/main.o /Users/mrotondo/Development/ccrma/420a/CymbalSounds/main.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
+s319656850.716537
+e319656850.951713
+r1
+xCompileC
+xbuild/CymbalSounds.build/Debug/CymbalSounds.build/Objects-normal/x86_64/main.o
+x/Users/mrotondo/Development/ccrma/420a/CymbalSounds/main.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@66"Compile /Users/mrotondo/Development/ccrma/420a/CymbalSounds/main.m319656850#319656850#0(0"0(0#0#58"/Users/mrotondo/Development/ccrma/420a/CymbalSounds/main.m8601316352#1693"    cd /Users/mrotondo/Development/ccrma/420a/CymbalSounds    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/CymbalSounds-generated-files.hmap -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/CymbalSounds-own-target-headers.hmap -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/CymbalSounds-all-target-headers.hmap -iquote /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/CymbalSounds-project-headers.hmap -F/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/include -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/DerivedSources/x86_64 -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/DerivedSources -include /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/CymbalSounds_Prefix-epgprrtnoyhjvdelyfrfbrkzsefh/CymbalSounds_Prefix.pch -c /Users/mrotondo/Development/ccrma/420a/CymbalSounds/main.m -o /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/Objects-normal/x86_64/main.o0#
+
+CCompileXIB /Users/mrotondo/Development/ccrma/420a/CymbalSounds/English.lproj/MainMenu.xib
+s319656842.349276
+e319656845.222405
+r1
+xCompileXIB
+x/Users/mrotondo/Development/ccrma/420a/CymbalSounds/English.lproj/MainMenu.xib
+lSLF07#2@37"CompileXIB English.lproj/MainMenu.xib319656842#319656845#0(0"0(0#0#78"/Users/mrotondo/Development/ccrma/420a/CymbalSounds/English.lproj/MainMenu.xib8599069696#408"    cd /Users/mrotondo/Development/ccrma/420a/CymbalSounds    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/Resources/English.lproj/MainMenu.nib /Users/mrotondo/Development/ccrma/420a/CymbalSounds/English.lproj/MainMenu.xib --sdk /Developer/SDKs/MacOSX10.6.sdk0#
+
+CCopyStringsFile /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
+s319656842.321546
+e319656843.549509
+r1
+xCopyStringsFile
+x/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/Resources/English.lproj/InfoPlist.strings
+xEnglish.lproj/InfoPlist.strings
+lSLF07#2@36"Copy English.lproj/InfoPlist.strings319656842#319656843#0(0"0(0#0#83"/Users/mrotondo/Development/ccrma/420a/CymbalSounds/English.lproj/InfoPlist.strings8599369632#396"    cd /Users/mrotondo/Development/ccrma/420a/CymbalSounds    setenv ICONV /usr/bin/iconv    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copystrings --validate --inputencoding utf-8 --outputencoding UTF-16 English.lproj/InfoPlist.strings --outdir /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/Resources/English.lproj0#
+
+CLd /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/MacOS/CymbalSounds normal x86_64
+s319656850.976805
+e319656853.033532
+r1
+xLd
+x/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/MacOS/CymbalSounds
+xnormal
+xx86_64
+lSLF07#2@113"Link /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/MacOS/CymbalSounds319656850#319656853#0(0"0(0#0#0"8603258560#632"    cd /Users/mrotondo/Development/ccrma/420a/CymbalSounds    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug -F/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug -filelist /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/Objects-normal/x86_64/CymbalSounds.LinkFileList -mmacosx-version-min=10.6 -framework Cocoa -o /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/MacOS/CymbalSounds0#
+
+CProcessInfoPlistFile /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/Info.plist CymbalSounds-Info.plist
+s319656842.246778
+e319656842.321187
+r1
+xProcessInfoPlistFile
+x/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/Info.plist
+xCymbalSounds-Info.plist
+lSLF07#2@31"Process CymbalSounds-Info.plist319656842#319656842#0(0"0(0#0#75"/Users/mrotondo/Development/ccrma/420a/CymbalSounds/CymbalSounds-Info.plist30962681237471344#364"    cd /Users/mrotondo/Development/ccrma/420a/CymbalSounds    builtin-infoPlistUtility CymbalSounds-Info.plist -genpkginfo /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app/Contents/Info.plist0#
+
+CProcessPCH /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/CymbalSounds_Prefix-epgprrtnoyhjvdelyfrfbrkzsefh/CymbalSounds_Prefix.pch.gch CymbalSounds_Prefix.pch normal x86_64 objective-c com.apple.compilers.gcc.4_2
+s319656845.222674
+e319656850.716327
+r1
+xProcessPCH
+x/var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/CymbalSounds_Prefix-epgprrtnoyhjvdelyfrfbrkzsefh/CymbalSounds_Prefix.pch.gch
+xCymbalSounds_Prefix.pch
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@34"Precompile CymbalSounds_Prefix.pch319656845#319656850#0(0"0(0#0#75"/Users/mrotondo/Development/ccrma/420a/CymbalSounds/CymbalSounds_Prefix.pch8599260096#1581"    cd /Users/mrotondo/Development/ccrma/420a/CymbalSounds    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c-header -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/CymbalSounds-generated-files.hmap -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/CymbalSounds-own-target-headers.hmap -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/CymbalSounds-all-target-headers.hmap -iquote /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/CymbalSounds-project-headers.hmap -F/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/include -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/DerivedSources/x86_64 -I/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/CymbalSounds.build/Debug/CymbalSounds.build/DerivedSources -c /Users/mrotondo/Development/ccrma/420a/CymbalSounds/CymbalSounds_Prefix.pch -o /var/folders/sI/sIwceW8UHf8dyW4JzKfEIk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/CymbalSounds_Prefix-epgprrtnoyhjvdelyfrfbrkzsefh/CymbalSounds_Prefix.pch.gch0#
+
+CTouch /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app
+s319656853.033746
+e319656853.037020
+r1
+xTouch
+x/Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app
+lSLF07#2@86"Touch /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app319656853#319656853#0(0"0(0#0#0"8604841696#162"    cd /Users/mrotondo/Development/ccrma/420a/CymbalSounds    /usr/bin/touch -c /Users/mrotondo/Development/ccrma/420a/CymbalSounds/build/Debug/CymbalSounds.app0#
+

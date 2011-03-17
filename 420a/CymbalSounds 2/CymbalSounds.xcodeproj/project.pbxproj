@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		256AC3DA0F4B6AC300CF3369 /* CymbalSoundsAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* CymbalSoundsAppDelegate.mm */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.mm */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		D536BF851328EAF200D8E7BA /* DelayA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D536BF841328EAF200D8E7BA /* DelayA.cpp */; };
+		D566775B13128A0300D13D0A /* SKINI.msg in Resources */ = {isa = PBXBuildFile; fileRef = D56676C313128A0300D13D0A /* SKINI.msg */; };
+		D566775C13128A0300D13D0A /* SKINI.tbl in Resources */ = {isa = PBXBuildFile; fileRef = D56676C413128A0300D13D0A /* SKINI.tbl */; };
+		D566778F13128A0300D13D0A /* Mesh2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D566772313128A0300D13D0A /* Mesh2D.cpp */; };
+		D566779A13128A0300D13D0A /* OnePole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D566772E13128A0300D13D0A /* OnePole.cpp */; };
+		D56677B413128A0300D13D0A /* Stk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D566774B13128A0300D13D0A /* Stk.cpp */; };
+		D5692C9D131E4826004FE489 /* NonLinearAllPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5692C9C131E4826004FE489 /* NonLinearAllPass.cpp */; };
+		D5692CB2132328B2004FE489 /* MikeMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5692CB0132328B1004FE489 /* MikeMesh.cpp */; };
+		D57D09C2131DF8E000B14BC3 /* DelayL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D57D09C1131DF8E000B14BC3 /* DelayL.cpp */; };
+		D58007FB130D941800A082AC /* CymbalSounder.mm in Sources */ = {isa = PBXBuildFile; fileRef = D58007FA130D941800A082AC /* CymbalSounder.mm */; };
+		D5800910130D956A00A082AC /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D580090D130D956A00A082AC /* RtAudio.cpp */; };
+		D580094A130D989100A082AC /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5800949130D989100A082AC /* CoreAudio.framework */; };
+		D58823CB13298A3400AAB5C5 /* FileWvOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D58823CA13298A3400AAB5C5 /* FileWvOut.cpp */; };
+		D58823D213298BB200AAB5C5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D58823D113298BB200AAB5C5 /* CoreFoundation.framework */; };
+		D58823D613298C1B00AAB5C5 /* FileWrite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D58823D513298C1A00AAB5C5 /* FileWrite.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		256AC3D80F4B6AC300CF3369 /* CymbalSoundsAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CymbalSoundsAppDelegate.h; sourceTree = "<group>"; };
+		256AC3D90F4B6AC300CF3369 /* CymbalSoundsAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CymbalSoundsAppDelegate.mm; sourceTree = "<group>"; };
+		256AC3F00F4B6AF500CF3369 /* CymbalSounds_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CymbalSounds_Prefix.pch; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		8D1107310486CEB800E47090 /* CymbalSounds-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CymbalSounds-Info.plist"; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* CymbalSounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CymbalSounds.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D536BF831328EADE00D8E7BA /* DelayA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayA.h; sourceTree = "<group>"; };
+		D536BF841328EAF200D8E7BA /* DelayA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DelayA.cpp; sourceTree = "<group>"; };
+		D566768C13128A0300D13D0A /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		D566769F13128A0300D13D0A /* Mesh2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh2D.h; sourceTree = "<group>"; };
+		D56676AA13128A0300D13D0A /* OnePole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePole.h; sourceTree = "<group>"; };
+		D56676C313128A0300D13D0A /* SKINI.msg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SKINI.msg; sourceTree = "<group>"; };
+		D56676C413128A0300D13D0A /* SKINI.tbl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SKINI.tbl; sourceTree = "<group>"; };
+		D56676C813128A0300D13D0A /* Stk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stk.h; sourceTree = "<group>"; };
+		D566772313128A0300D13D0A /* Mesh2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh2D.cpp; sourceTree = "<group>"; };
+		D566772E13128A0300D13D0A /* OnePole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OnePole.cpp; sourceTree = "<group>"; };
+		D566774B13128A0300D13D0A /* Stk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stk.cpp; sourceTree = "<group>"; };
+		D56677C513128B6800D13D0A /* Instrmnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrmnt.h; sourceTree = "<group>"; };
+		D5692C9B131E481A004FE489 /* NonLinearAllPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonLinearAllPass.h; sourceTree = "<group>"; };
+		D5692C9C131E4826004FE489 /* NonLinearAllPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NonLinearAllPass.cpp; sourceTree = "<group>"; };
+		D5692CB0132328B1004FE489 /* MikeMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MikeMesh.cpp; sourceTree = "<group>"; };
+		D5692CB1132328B2004FE489 /* MikeMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MikeMesh.h; sourceTree = "<group>"; };
+		D57D09C0131DF8CD00B14BC3 /* DelayL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayL.h; sourceTree = "<group>"; };
+		D57D09C1131DF8E000B14BC3 /* DelayL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DelayL.cpp; sourceTree = "<group>"; };
+		D57D09C3131DF8FB00B14BC3 /* Delay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Delay.h; sourceTree = "<group>"; };
+		D58007F9130D941800A082AC /* CymbalSounder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CymbalSounder.h; sourceTree = "<group>"; };
+		D58007FA130D941800A082AC /* CymbalSounder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CymbalSounder.mm; sourceTree = "<group>"; };
+		D580090D130D956A00A082AC /* RtAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RtAudio.cpp; sourceTree = "<group>"; };
+		D580090E130D956A00A082AC /* RtAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
+		D580090F130D956A00A082AC /* RtError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtError.h; sourceTree = "<group>"; };
+		D5800949130D989100A082AC /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D58823CA13298A3400AAB5C5 /* FileWvOut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileWvOut.cpp; sourceTree = "<group>"; };
+		D58823CE13298A5600AAB5C5 /* FileWvOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileWvOut.h; sourceTree = "<group>"; };
+		D58823CF13298A5600AAB5C5 /* WvOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WvOut.h; sourceTree = "<group>"; };
+		D58823D013298A6900AAB5C5 /* FileWrite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileWrite.h; sourceTree = "<group>"; };
+		D58823D113298BB200AAB5C5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		D58823D513298C1A00AAB5C5 /* FileWrite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileWrite.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D58823D213298BB200AAB5C5 /* CoreFoundation.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				D580094A130D989100A082AC /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				256AC3D80F4B6AC300CF3369 /* CymbalSoundsAppDelegate.h */,
+				256AC3D90F4B6AC300CF3369 /* CymbalSoundsAppDelegate.mm */,
+				D58007F9130D941800A082AC /* CymbalSounder.h */,
+				D58007FA130D941800A082AC /* CymbalSounder.mm */,
+				D5692CB0132328B1004FE489 /* MikeMesh.cpp */,
+				D5692CB1132328B2004FE489 /* MikeMesh.h */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				D5800949130D989100A082AC /* CoreAudio.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* CymbalSounds.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CymbalSounds */ = {
+			isa = PBXGroup;
+			children = (
+				D58823D113298BB200AAB5C5 /* CoreFoundation.framework */,
+				D56677C413128A4C00D13D0A /* stkrs */,
+				D580090C130D953C00A082AC /* rtaudio */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CymbalSounds;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				256AC3F00F4B6AF500CF3369 /* CymbalSounds_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.mm */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107310486CEB800E47090 /* CymbalSounds-Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D566766F13128A0300D13D0A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D58823D013298A6900AAB5C5 /* FileWrite.h */,
+				D58823CE13298A5600AAB5C5 /* FileWvOut.h */,
+				D58823CF13298A5600AAB5C5 /* WvOut.h */,
+				D536BF831328EADE00D8E7BA /* DelayA.h */,
+				D5692C9B131E481A004FE489 /* NonLinearAllPass.h */,
+				D57D09C3131DF8FB00B14BC3 /* Delay.h */,
+				D57D09C0131DF8CD00B14BC3 /* DelayL.h */,
+				D56677C513128B6800D13D0A /* Instrmnt.h */,
+				D566768C13128A0300D13D0A /* Filter.h */,
+				D566769F13128A0300D13D0A /* Mesh2D.h */,
+				D56676AA13128A0300D13D0A /* OnePole.h */,
+				D56676C313128A0300D13D0A /* SKINI.msg */,
+				D56676C413128A0300D13D0A /* SKINI.tbl */,
+				D56676C813128A0300D13D0A /* Stk.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		D56676DB13128A0300D13D0A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D58823D513298C1A00AAB5C5 /* FileWrite.cpp */,
+				D58823CA13298A3400AAB5C5 /* FileWvOut.cpp */,
+				D536BF841328EAF200D8E7BA /* DelayA.cpp */,
+				D5692C9C131E4826004FE489 /* NonLinearAllPass.cpp */,
+				D57D09C1131DF8E000B14BC3 /* DelayL.cpp */,
+				D566772313128A0300D13D0A /* Mesh2D.cpp */,
+				D566772E13128A0300D13D0A /* OnePole.cpp */,
+				D566774B13128A0300D13D0A /* Stk.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D56677C413128A4C00D13D0A /* stkrs */ = {
+			isa = PBXGroup;
+			children = (
+				D56676DB13128A0300D13D0A /* src */,
+				D566766F13128A0300D13D0A /* include */,
+			);
+			name = stkrs;
+			sourceTree = "<group>";
+		};
+		D580090C130D953C00A082AC /* rtaudio */ = {
+			isa = PBXGroup;
+			children = (
+				D580090D130D956A00A082AC /* RtAudio.cpp */,
+				D580090E130D956A00A082AC /* RtAudio.h */,
+				D580090F130D956A00A082AC /* RtError.h */,
+			);
+			name = rtaudio;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* CymbalSounds */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "CymbalSounds" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CymbalSounds;
+			productInstallPath = "$(HOME)/Applications";
+			productName = CymbalSounds;
+			productReference = 8D1107320486CEB800E47090 /* CymbalSounds.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "CymbalSounds" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CymbalSounds */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* CymbalSounds */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				D566775B13128A0300D13D0A /* SKINI.msg in Resources */,
+				D566775C13128A0300D13D0A /* SKINI.tbl in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.mm in Sources */,
+				256AC3DA0F4B6AC300CF3369 /* CymbalSoundsAppDelegate.mm in Sources */,
+				D58007FB130D941800A082AC /* CymbalSounder.mm in Sources */,
+				D5800910130D956A00A082AC /* RtAudio.cpp in Sources */,
+				D566778F13128A0300D13D0A /* Mesh2D.cpp in Sources */,
+				D566779A13128A0300D13D0A /* OnePole.cpp in Sources */,
+				D56677B413128A0300D13D0A /* Stk.cpp in Sources */,
+				D57D09C2131DF8E000B14BC3 /* DelayL.cpp in Sources */,
+				D5692C9D131E4826004FE489 /* NonLinearAllPass.cpp in Sources */,
+				D5692CB2132328B2004FE489 /* MikeMesh.cpp in Sources */,
+				D536BF851328EAF200D8E7BA /* DelayA.cpp in Sources */,
+				D58823CB13298A3400AAB5C5 /* FileWvOut.cpp in Sources */,
+				D58823D613298C1B00AAB5C5 /* FileWrite.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DDD58150DA1D0A300B32029 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CymbalSounds_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "CymbalSounds-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/src\"",
+				);
+				PRODUCT_NAME = CymbalSounds;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CymbalSounds_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "CymbalSounds-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/src\"",
+				);
+				PRODUCT_NAME = CymbalSounds;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"-D__MACOSX_CORE__",
+					"$(OTHER_CFLAGS)",
+				);
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "CymbalSounds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "CymbalSounds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

@@ -1,0 +1,381 @@
+// !$*UTF8*$!
+{
+	256AC3D80F4B6AC300CF3369 /* CymbalSoundsAppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1167, 745}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 333}";
+		};
+	};
+	256AC3D90F4B6AC300CF3369 /* CymbalSoundsAppDelegate.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1029, 745}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 391}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = D55E3B70130D8F73009E23B7 /* CymbalSounds */;
+		activeTarget = 8D1107260486CEB800E47090 /* CymbalSounds */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* CymbalSounds */,
+		);
+		breakpoints = (
+		);
+		codeSenseManager = D55E3B82130D8F78009E23B7 /* Code sense */;
+		executables = (
+			D55E3B70130D8F73009E23B7 /* CymbalSounds */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					851,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 319656833;
+			PBXWorkspaceStateSaveDate = 319656833;
+		};
+		perUserProjectItems = {
+			D5800915130D95DC00A082AC /* PBXTextBookmark */ = D5800915130D95DC00A082AC /* PBXTextBookmark */;
+			D5800917130D95DC00A082AC /* PBXTextBookmark */ = D5800917130D95DC00A082AC /* PBXTextBookmark */;
+			D5800918130D95DC00A082AC /* PBXTextBookmark */ = D5800918130D95DC00A082AC /* PBXTextBookmark */;
+			D580093B130D980B00A082AC /* PBXTextBookmark */ = D580093B130D980B00A082AC /* PBXTextBookmark */;
+			D580095A130DC59B00A082AC /* PBXTextBookmark */ = D580095A130DC59B00A082AC /* PBXTextBookmark */;
+			D5800B94130DDC3C00A082AC /* PBXTextBookmark */ = D5800B94130DDC3C00A082AC /* PBXTextBookmark */;
+			D5800B95130DDC3C00A082AC /* PBXTextBookmark */ = D5800B95130DDC3C00A082AC /* PBXTextBookmark */;
+			D5800B96130DDC3C00A082AC /* PBXTextBookmark */ = D5800B96130DDC3C00A082AC /* PBXTextBookmark */;
+			D5800B97130DDC3C00A082AC /* PBXTextBookmark */ = D5800B97130DDC3C00A082AC /* PBXTextBookmark */;
+			D5800B9A130DDC3C00A082AC /* PBXTextBookmark */ = D5800B9A130DDC3C00A082AC /* PBXTextBookmark */;
+			D5800B9C130DDC3C00A082AC /* PBXTextBookmark */ = D5800B9C130DDC3C00A082AC /* PBXTextBookmark */;
+			D5800BB4130DDCFB00A082AC /* PBXTextBookmark */ = D5800BB4130DDCFB00A082AC /* PBXTextBookmark */;
+			D5800BB5130DDCFB00A082AC /* PBXTextBookmark */ = D5800BB5130DDCFB00A082AC /* PBXTextBookmark */;
+			D5800BB6130DDCFB00A082AC /* PBXTextBookmark */ = D5800BB6130DDCFB00A082AC /* PBXTextBookmark */;
+			D5800BB7130DDCFB00A082AC /* PBXTextBookmark */ = D5800BB7130DDCFB00A082AC /* PBXTextBookmark */;
+			D5800BDF130E9EE000A082AC /* PBXTextBookmark */ = D5800BDF130E9EE000A082AC /* PBXTextBookmark */;
+		};
+		sourceControlManager = D55E3B81130D8F78009E23B7 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	29B97316FDCFA39411CA2CEA /* main.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1029, 745}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 261}";
+		};
+	};
+	8D1107260486CEB800E47090 /* CymbalSounds */ = {
+		activeExec = 0;
+		executables = (
+			D55E3B70130D8F73009E23B7 /* CymbalSounds */,
+		);
+	};
+	D55E3B70130D8F73009E23B7 /* CymbalSounds */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = CymbalSounds;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	D55E3B81130D8F78009E23B7 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	D55E3B82130D8F78009E23B7 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	D58007F9130D941800A082AC /* CymbalSounder.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1029, 720}}";
+			sepNavSelRange = "{273, 0}";
+			sepNavVisRange = "{0, 288}";
+		};
+	};
+	D58007FA130D941800A082AC /* CymbalSounder.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1029, 1326}}";
+			sepNavSelRange = "{932, 0}";
+			sepNavVisRange = "{0, 1403}";
+		};
+	};
+	D580090D130D956A00A082AC /* RtAudio.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1083, 102843}}";
+			sepNavSelRange = "{14725, 21}";
+			sepNavVisRange = "{14377, 457}";
+		};
+	};
+	D580090E130D956A00A082AC /* RtAudio.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1375, 12311}}";
+			sepNavSelRange = "{9892, 0}";
+			sepNavVisRange = "{9092, 1998}";
+		};
+	};
+	D580090F130D956A00A082AC /* RtError.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1029, 793}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 2093}";
+		};
+	};
+	D5800915130D95DC00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D80F4B6AC300CF3369 /* CymbalSoundsAppDelegate.h */;
+		name = "CymbalSoundsAppDelegate.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 333;
+		vrLoc = 0;
+	};
+	D5800917130D95DC00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D90F4B6AC300CF3369 /* CymbalSoundsAppDelegate.mm */;
+		name = "CymbalSoundsAppDelegate.mm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 391;
+		vrLoc = 0;
+	};
+	D5800918130D95DC00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.mm */;
+		name = "main.mm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 261;
+		vrLoc = 0;
+	};
+	D580093B130D980B00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D580090E130D956A00A082AC /* RtAudio.h */;
+		name = "RtAudio.h: 207";
+		rLen = 11;
+		rLoc = 9896;
+		rType = 0;
+		vrLen = 2634;
+		vrLoc = 8625;
+	};
+	D580095A130DC59B00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D58007F9130D941800A082AC /* CymbalSounder.h */;
+		name = "CymbalSounder.h: 15";
+		rLen = 0;
+		rLoc = 273;
+		rType = 0;
+		vrLen = 288;
+		vrLoc = 0;
+	};
+	D58009A1130DC89300A082AC /* Filter.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1029, 1131}}";
+			sepNavSelRange = "{1987, 0}";
+			sepNavVisRange = "{0, 1905}";
+		};
+	};
+	D58009AE130DC89300A082AC /* Instrmnt.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1029, 1625}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1917}";
+		};
+	};
+	D58009B3130DC89300A082AC /* Mesh2D.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1029, 1404}}";
+			sepNavSelRange = "{2378, 8}";
+			sepNavVisRange = "{1113, 1756}";
+		};
+	};
+	D58009BD130DC89300A082AC /* OnePole.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1029, 1742}}";
+			sepNavSelRange = "{657, 0}";
+			sepNavVisRange = "{2749, 1647}";
+		};
+	};
+	D58009DB130DC89300A082AC /* Stk.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1029, 7020}}";
+			sepNavSelRange = "{18678, 0}";
+			sepNavVisRange = "{2836, 1293}";
+		};
+	};
+	D5800A25130DC89400A082AC /* Mesh2D.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1029, 5343}}";
+			sepNavSelRange = "{916, 0}";
+			sepNavVisRange = "{133, 1158}";
+		};
+	};
+	D5800A2F130DC89400A082AC /* OnePole.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1029, 720}}";
+			sepNavSelRange = "{662, 0}";
+			sepNavVisRange = "{0, 1057}";
+		};
+	};
+	D5800B94130DDC3C00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D58009AE130DC89300A082AC /* Instrmnt.h */;
+		name = "Instrmnt.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1917;
+		vrLoc = 0;
+	};
+	D5800B95130DDC3C00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D580090D130D956A00A082AC /* RtAudio.cpp */;
+		name = "RtAudio.cpp: 449";
+		rLen = 0;
+		rLoc = 14699;
+		rType = 0;
+		vrLen = 2322;
+		vrLoc = 14208;
+	};
+	D5800B96130DDC3C00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D580090F130D956A00A082AC /* RtError.h */;
+		name = "RtError.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 2093;
+		vrLoc = 0;
+	};
+	D5800B97130DDC3C00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D58009DB130DC89300A082AC /* Stk.h */;
+		name = "Stk.h: 533";
+		rLen = 0;
+		rLoc = 18678;
+		rType = 0;
+		vrLen = 1293;
+		vrLoc = 2836;
+	};
+	D5800B9A130DDC3C00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D58009A1130DC89300A082AC /* Filter.h */;
+		name = "Filter.h: 58";
+		rLen = 0;
+		rLoc = 1987;
+		rType = 0;
+		vrLen = 1905;
+		vrLoc = 0;
+	};
+	D5800B9C130DDC3C00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D58009BD130DC89300A082AC /* OnePole.h */;
+		name = "OnePole.h: 26";
+		rLen = 0;
+		rLoc = 657;
+		rType = 0;
+		vrLen = 1647;
+		vrLoc = 2749;
+	};
+	D5800BB4130DDCFB00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D5800A25130DC89400A082AC /* Mesh2D.cpp */;
+		name = "Mesh2D.cpp: 32";
+		rLen = 0;
+		rLoc = 916;
+		rType = 0;
+		vrLen = 1158;
+		vrLoc = 133;
+	};
+	D5800BB5130DDCFB00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D58009B3130DC89300A082AC /* Mesh2D.h */;
+		name = "Mesh2D.h: 88";
+		rLen = 8;
+		rLoc = 2378;
+		rType = 0;
+		vrLen = 1756;
+		vrLoc = 1113;
+	};
+	D5800BB6130DDCFB00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D5800A2F130DC89400A082AC /* OnePole.cpp */;
+		name = "OnePole.cpp: 30";
+		rLen = 0;
+		rLoc = 662;
+		rType = 0;
+		vrLen = 1057;
+		vrLoc = 0;
+	};
+	D5800BB7130DDCFB00A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D58007FA130D941800A082AC /* CymbalSounder.mm */;
+		name = "CymbalSounder.mm: 46";
+		rLen = 0;
+		rLoc = 1104;
+		rType = 0;
+		vrLen = 1394;
+		vrLoc = 0;
+	};
+	D5800BDF130E9EE000A082AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D58007FA130D941800A082AC /* CymbalSounder.mm */;
+		name = "CymbalSounder.mm: 38";
+		rLen = 0;
+		rLoc = 932;
+		rType = 0;
+		vrLen = 1403;
+		vrLoc = 0;
+	};
+}

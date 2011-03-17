@@ -1,0 +1,77 @@
+/***************************************************/
+/*! \class Tablooki
+    \brief STK Table Lookup
+
+    This class implements a interpolating table lookup
+    that was used in SynthBuilder.  It is assumed
+    the input data is between -1 and 1.
+
+*/
+/***************************************************/
+
+#ifndef STK_TABLOOKI_H
+#define STK_TABLOOKI_H
+
+#include "Function.h"
+
+namespace stk {
+
+class Tablooki : public Function
+{
+public:
+  //! Default constructor.
+  Tablooki();
+  StkFloat tick( StkFloat input );
+  void setTable(StkFloat *aTable, int aLength);
+  ~Tablooki();
+
+protected:
+ 
+  StkFloat *table_;
+  int tableLength_;
+  StkFloat midPointIndex_;
+};
+
+inline StkFloat Tablooki :: tick( StkFloat input )
+{
+  int ind1,ind2;
+  StkFloat val1,val2,interpFraction;
+  StkFloat A;
+
+  int end, endm1; // for error checking, but slow
+  end = tableLength_ - 1;
+  endm1 = end-1;
+
+  A = midPointIndex_ * input + midPointIndex_;
+  ind1 = (int)A;
+  interpFraction = (A - ind1);
+  ind2 = ind1 + 1;
+          
+  // RANGE CHECKING (too slow?)
+  if (ind1 >= endm1) {
+    ind2 = end;
+    if (ind1 > end) {
+      ind1 = end;
+      errorString_ << 
+	"Tablooki::computeSample: Fixed out of range input";
+      handleError( StkError::WARNING );
+    }
+  } else {
+    if (ind1<0) {
+      ind1 = ind2 = 0;
+      errorString_ << 
+	"Tablooki::computeSample: Fixed out of range input";
+      handleError( StkError::WARNING );
+    }
+  }
+          
+  val1 = table_[ind1];
+  val2 = table_[ind2];
+  lastFrame_[0] = ((val2-val1)*interpFraction + val1);
+  return lastFrame_[0];
+}
+
+
+} // stk namespace
+
+#endif
