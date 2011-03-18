@@ -9,6 +9,7 @@
 #import "WOState.h"
 #import "QuartzCore/QuartzCore.h"
 #import "WOTree.h"
+#import "ASIFormDataRequest.h"
 
 @implementation WOState
 @synthesize solarSystems, currentSolarSystem, currentPlanet, zoomLevel, rotationAngle, zoomedPlanetYOffset, justZoomed;
@@ -20,7 +21,11 @@
         srand((unsigned)time(0));
         
         self.solarSystems = [NSMutableSet setWithCapacity:1];
-        [self.solarSystems addObject:[[[WOSolarSystem alloc] init] autorelease]];
+
+        // NOTE: Right now this just creates a new solar system and stores it on the server but never retrieves it
+        // TODO: Switch this over to grab the latest solar system from the server
+        // TODO: Add a method to generate a new solar system
+        [self.solarSystems addObject:[[[WOSolarSystem alloc] initWithId:[self getNewSolarSystemIdFromServer]] autorelease]];
         
         self.currentSolarSystem = [self.solarSystems anyObject];
         self.currentPlanet = nil;
@@ -38,30 +43,83 @@
     return self;
 }
 
+- (int) getNewSolarSystemIdFromServer
+{
+	NSLog(@"getting new solar system to server...");
+	
+	NSString *server = [[NSString alloc] initWithUTF8String:"http://mikerotondo.com/wold/"];
+	NSURL *url = [NSURL URLWithString:[server stringByAppendingString:@"newsystem"]];
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request startSynchronous];
+    
+	NSError *error = [request error];
+	if (!error) {
+		NSString *response = [request responseString];
+        return [response intValue];
+	}
+    return -1;
+}
+
 - (void) awakeFromNib
 {
     [view.layer addSublayer:self.currentSolarSystem.sky];
 
-    UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     pan.minimumNumberOfTouches = 2;
     [view addGestureRecognizer:pan];
     
-    UIPanGestureRecognizer* rub = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleRub:)];
+    rub = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleRub:)];
     rub.maximumNumberOfTouches = 1;
     [view addGestureRecognizer:rub];
+    rub.delegate = self;
     
-    UILongPressGestureRecognizer* press = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    press = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [view addGestureRecognizer:press];
+    press.delegate = self;
     
-    UILongPressGestureRecognizer* twoPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    twoPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     twoPress.numberOfTouchesRequired = 2;
     [view addGestureRecognizer:twoPress];
+    twoPress.delegate = self;
     
-    UIPinchGestureRecognizer* pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+    threePress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    threePress.numberOfTouchesRequired = 3;
+    [view addGestureRecognizer:threePress];
+    threePress.delegate = self;
+    
+    fourPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    fourPress.numberOfTouchesRequired = 4;
+    fourPress.numberOfTapsRequired = 0;
+    [view addGestureRecognizer:fourPress];
+    fourPress.delegate = self;
+    
+    pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [view addGestureRecognizer:pinch];
 
-    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSolarSystemTap:)];
+    tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSolarSystemTap:)];
     [view addGestureRecognizer:tap];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return YES;
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    if ((gestureRecognizer == rub || gestureRecognizer == press || gestureRecognizer == twoPress) && 
+        (otherGestureRecognizer == rub || otherGestureRecognizer == press || otherGestureRecognizer == twoPress)) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
 }
 
 - (void) tick:(id)sender
@@ -84,8 +142,8 @@
             case 3: // Zoomed in to the surface
                 self.currentPlanet.layer.shadowOpacity = 0.0;
                 scale = 1.0; // TODO: Set this based on the baseRadius of the planet so the surface is in a consistent location
-                centerX = -self.currentPlanet.loc.x * scale + screen.size.width / 2.0;
-                centerY = -self.currentPlanet.loc.y * scale + screen.size.height / 2.0 + self.currentPlanet.baseRadius;
+                centerX = -(self.currentSolarSystem.star.loc.x + self.currentPlanet.loc.x) * scale + screen.size.width / 2.0;
+                centerY = -(self.currentSolarSystem.star.loc.y + self.currentPlanet.loc.y) * scale + screen.size.height / 2.0 + self.currentPlanet.baseRadius;
                 // TODO: Figure out how to  set centerX and centerY to zoom in on the right planet!
                 background = [UIColor colorWithRed:198.0 / 255 green:218.0 / 255 blue:232.0 / 255 alpha:1.0].CGColor;
                 break;
@@ -93,16 +151,16 @@
             case 2: // Zoomed in so the planet is centered on the screen
                 self.currentPlanet.layer.shadowOpacity = 0.0;
                 scale = 0.25;
-                centerX = -self.currentPlanet.loc.x * scale + screen.size.width / 2.0;
-                centerY = -self.currentPlanet.loc.y * scale + screen.size.height / 2.0;
+                centerX = -(self.currentSolarSystem.star.loc.x + self.currentPlanet.loc.x) * scale + screen.size.width / 2.0;
+                centerY = -(self.currentSolarSystem.star.loc.y + self.currentPlanet.loc.y) * scale + screen.size.height / 2.0;
                 background = [UIColor colorWithRed:46.0 / 255 green:51.0 / 255 blue:63.0 / 255 alpha:1.0].CGColor;
                 break;
                 
             case 1:
                 self.currentPlanet.layer.shadowOpacity = 0.4;
                 scale = 0.05;
-                centerX = screen.size.width / 8.0;
-                centerY = screen.size.height / 2.0;
+                centerX = -self.currentSolarSystem.star.loc.x * scale + screen.size.width / 8.0;
+                centerY = -self.currentSolarSystem.star.loc.y * scale + screen.size.height / 2.0;
                 background = [UIColor colorWithRed:16.0 / 255 green:21.0 / 255 blue:33.0 / 255 alpha:1.0].CGColor;
                 break;
                 
@@ -136,35 +194,39 @@
 }
 
 
-- (void) handlePan:(id)sender
+- (void) handlePan:(UIPanGestureRecognizer*)sender
 {
-    UIPanGestureRecognizer* pan = (UIPanGestureRecognizer*)sender;
-    self.currentPlanet.rotationAngleIncrement += [pan velocityInView:pan.view].x * 0.000005;
+    self.currentPlanet.rotationAngleIncrement += [sender velocityInView:sender.view].x * 0.000005;
 }
 
-- (void) handleLongPress:(id)sender
+- (void) handleLongPress:(UILongPressGestureRecognizer*)sender
 {
-    UILongPressGestureRecognizer* press = (UILongPressGestureRecognizer*)sender;
-    if (press.state == UIGestureRecognizerStateBegan) {
+    if (sender.state == UIGestureRecognizerStateBegan) {
         self.currentPlanet.rotationAngleIncrement = 0;
         
-        CGPoint loc = [press locationInView:press.view];
+        CGPoint loc = [sender locationInView:sender.view];
         
         float xDiff = loc.x - 512; // hacked magic number, we know the screen is sideways & 1024 px wide
         float yDiff = (768 - loc.y) + (self.currentPlanet.baseRadius - 384); // more hackass magic numbers
         
+        int type = [sender numberOfTouches];
+        if ([sender numberOfTapsRequired] == 1) {
+            type += 3;
+        }
+        
         [self.currentPlanet addTreeAtAngle:atan2f(yDiff, xDiff) + self.currentPlanet.rotationAngle 
-                                  treeType:[press numberOfTouches]];
+                                  treeType:type];
+    } else if (sender.state == UIGestureRecognizerStateEnded) {
+        [self.currentPlanet stopGrowingTree];
     }
 }
 
-- (void) handlePinch:(id)sender
+- (void) handlePinch:(UIPinchGestureRecognizer*)sender
 {
-    UIPinchGestureRecognizer* pinch = (UIPinchGestureRecognizer*)sender;
-    if (pinch.state == UIGestureRecognizerStateBegan) {
-        if (pinch.scale > 1) { 
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        if (sender.scale > 1) { 
             self.zoomLevel += 1;
-        } else if (pinch.scale < 1) {
+        } else if (sender.scale < 1) {
             self.zoomLevel -= 1;
         }
         if (self.zoomLevel < 1) self.zoomLevel = 1;
@@ -174,17 +236,15 @@
     }
 }
 
-- (void) handleSolarSystemTap:(id)sender
+- (void) handleSolarSystemTap:(UITapGestureRecognizer*)sender
 {
-    UITapGestureRecognizer* tap = (UITapGestureRecognizer*)sender;
-    if (tap.state == UIGestureRecognizerStateEnded) {
-        CGPoint loc = [tap locationInView:tap.view];
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint loc = [sender locationInView:tap.view];
         
         int i = 0;
         for (WOPlanet* planet in self.currentSolarSystem.planets) {
             CGPoint convertedLoc = [view.layer convertPoint:loc toLayer:planet.layer]; // TODO: Verify that we're still getting correct conversion
-            convertedLoc = CGPointMake(convertedLoc.x, 
-                                       convertedLoc.y);
+            convertedLoc = CGPointMake(convertedLoc.x, convertedLoc.y);
             
             if ([planet.layer containsPoint:convertedLoc]) {
                 
@@ -202,11 +262,10 @@
     }
 }
 
-- (void) handleRub:(id)sender
+- (void) handleRub:(UIPanGestureRecognizer*)sender
 {
-    UIPanGestureRecognizer* rub = (UIPanGestureRecognizer*)sender;
-    if (rub.state == UIGestureRecognizerStateBegan || rub.state == UIGestureRecognizerStateChanged) {
-        CGPoint loc = [rub locationInView:rub.view];
+    if (sender.state == UIGestureRecognizerStateBegan || sender.state == UIGestureRecognizerStateChanged) {
+        CGPoint loc = [sender locationInView:sender.view];
         
         for (WOTree* tree in currentPlanet.trees) {
             CGPoint convertedLoc = [view.layer convertPoint:loc toLayer:tree.lSystem.layer]; // TODO: Verify that we're still getting correct conversion
@@ -214,24 +273,29 @@
                                        convertedLoc.x - tree.lSystem.layer.bounds.size.height / 2.0);
             
             if ([tree.lSystem.layer containsPoint:convertedLoc]) {
-                CGColorRef color = tree.lSystem.layer.strokeColor;
                 
-                CABasicAnimation* flashAnimation = [CABasicAnimation
-                                                    animationWithKeyPath:@"strokeColor"];
-                flashAnimation.toValue = (id)[UIColor whiteColor].CGColor;
-                flashAnimation.duration = 0.25;
-                CABasicAnimation* fadeAnimation = [CABasicAnimation
-                                                   animationWithKeyPath:@"strokeColor"];
-                fadeAnimation.fromValue = (id)[UIColor whiteColor].CGColor;
-                fadeAnimation.toValue = (id)color;
-                fadeAnimation.duration = 1.0;
-                fadeAnimation.beginTime = 0.25;
+//                CGColorRef color = tree.lSystem.layer.strokeColor;
+//                CABasicAnimation* flashAnimation = [CABasicAnimation
+//                                                    animationWithKeyPath:@"strokeColor"];
+//                flashAnimation.toValue = (id)[UIColor whiteColor].CGColor;
+//                flashAnimation.duration = 0.25;
+//                CABasicAnimation* fadeAnimation = [CABasicAnimation
+//                                                   animationWithKeyPath:@"strokeColor"];
+//                fadeAnimation.fromValue = (id)[UIColor whiteColor].CGColor;
+//                fadeAnimation.toValue = (id)color;
+//                fadeAnimation.duration = 1.0;
+//                fadeAnimation.beginTime = 0.25;
+//                
+//                CAAnimationGroup *group = [CAAnimationGroup animation];
+//                [group setDuration:1.25];
+//                [group setAnimations:[NSArray arrayWithObjects:flashAnimation, fadeAnimation, nil]];
+//                
+//                [tree.lSystem.layer addAnimation:group forKey:nil];
                 
-                CAAnimationGroup *group = [CAAnimationGroup animation];
-                [group setDuration:1.25];
-                [group setAnimations:[NSArray arrayWithObjects:flashAnimation, fadeAnimation, nil]];
-                
-                [tree.lSystem.layer addAnimation:group forKey:nil];
+                CGSize treeSize = tree.lSystem.layer.bounds.size;
+                // This point goes from -.5, 0 in the lower left to 0.5, 1 in the top right
+                CGPoint normalizedPoint = CGPointMake(convertedLoc.x / treeSize.width, (convertedLoc.y + treeSize.height * 0.5) / treeSize.height);
+                [tree handleTouch:normalizedPoint withVelocity:[sender velocityInView:sender.view]];
             }
         }
     }

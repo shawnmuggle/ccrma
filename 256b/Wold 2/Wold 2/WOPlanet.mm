@@ -8,11 +8,12 @@
 
 #import "WOPlanet.h"
 #import "WOTree.h"
+#import "ASIFormDataRequest.h"
 
 @implementation WOPlanet
 @synthesize trees, layer, baseRadius, loc, translation, rotation, rotationAngleIncrement, rotationAngle;
 
-- (id) initAtPoint:(CGPoint)newLoc;
+- (id) initAtPoint:(CGPoint)newLoc
 {
     self = [super init];
     if (self) {
@@ -38,8 +39,226 @@
         
         rotationAngle = 0;
         self.rotationAngleIncrement = 0;
+        
+        soundFiles = [[NSArray arrayWithObjects:@"ice", @"fire", @"door", @"record", nil] retain];
+        
     }
     return self;
+}
+
+- (id) initAtPoint:(CGPoint)newLoc withId:(int)newPlanetId
+{
+    self = [super init];
+    if (self) {
+        self.trees = [NSMutableSet setWithCapacity:10];
+        
+        if (newPlanetId == -1) { // CREATE NEW PLANET
+            planetId = [self getNewPlanetIdFromServer];
+            
+            NSLog(@"Got planet id %d from the server...", planetId);
+            
+            [self determineShape];
+ 
+            
+            self.layer = [CAShapeLayer layer];
+            path = CGPathCreateMutable();
+            [self generatePath];
+            self.layer.path = path;
+            self.layer.bounds = CGPathGetBoundingBox(path);
+            
+            self.translation = [CALayer layer];
+            self.rotation = [CALayer layer];
+            [self.translation addSublayer:self.rotation];
+            [self.rotation addSublayer:self.layer];
+            
+            loc = newLoc;
+            self.translation.transform = CATransform3DMakeTranslation(loc.x, loc.y, 0);
+            
+            [self setupLayer];
+            
+            rotationAngle = 0;
+            self.rotationAngleIncrement = 0;
+            
+            soundFiles = [[NSArray arrayWithObjects:@"ice", @"fire", @"door", @"record", nil] retain];
+            
+            [self submitPlanetInfoToServer];
+        }
+
+    }
+    return self;
+}
+
+- (id) initAtPoint:(CGPoint)newLoc withPlist:(NSDictionary*)plist
+{
+    self = [super init];
+    if (self) {
+        self.trees = [NSMutableSet setWithCapacity:10];
+        
+        // HACK: this whole thing is a fucking hack. Collapse all this into shared code!!!
+        
+        planetId = [[plist objectForKey:@"id"] intValue];
+        
+        //Equivalent to a call to determineShape
+        
+        // TODO: Oops, store radius and maxHeight on the server too
+        self.baseRadius = 800 + 200 * (rand() / (float)RAND_MAX);
+        maxHeight = 200 + 200 * (rand() / (float)RAND_MAX);
+        
+        a1 = [[plist objectForKey:@"a1"] floatValue];
+        a2 = [[plist objectForKey:@"a2"] floatValue];
+        a3 = [[plist objectForKey:@"a3"] floatValue];
+        a4 = [[plist objectForKey:@"a4"] floatValue];
+
+        c1 = [[plist objectForKey:@"c1"] floatValue];
+        c2 = [[plist objectForKey:@"c2"] floatValue];
+        c3 = [[plist objectForKey:@"c3"] floatValue];
+        c4 = [[plist objectForKey:@"c4"] floatValue];
+
+        
+        // Duplicated from the other init
+        
+        self.layer = [CAShapeLayer layer];
+        path = CGPathCreateMutable();
+        [self generatePath];
+        self.layer.path = path;
+        self.layer.bounds = CGPathGetBoundingBox(path);
+        
+        self.translation = [CALayer layer];
+        self.rotation = [CALayer layer];
+        [self.translation addSublayer:self.rotation];
+        [self.rotation addSublayer:self.layer];
+        
+        loc = newLoc;
+        self.translation.transform = CATransform3DMakeTranslation(loc.x, loc.y, 0);
+        
+        
+        // Equivalent to a call to setupLayer
+        self.layer.strokeColor = [UIColor colorWithRed:0.2 green:0.8 blue:0.3 alpha:1.0].CGColor;
+        self.layer.lineWidth = 8.0;
+        
+        r = [[plist objectForKey:@"red"] floatValue];
+        g = [[plist objectForKey:@"green"] floatValue];
+        b = [[plist objectForKey:@"blue"] floatValue];
+        float fill[3] = {r, g, b};
+        
+        self.layer.fillColor = [self generateSquaresPatternFromColorComponents:fill];
+        
+        rotationAngle = 0;
+        self.rotationAngleIncrement = 0;
+        
+        NSLog(@"SOUND 1: %@", [plist objectForKey:@"sound1"]);
+        
+        soundFiles = [[NSArray arrayWithObjects:
+                       [plist objectForKey:@"sound1"],
+                       [plist objectForKey:@"sound2"],
+                       [plist objectForKey:@"sound3"],
+                       [plist objectForKey:@"sound4"], nil] retain];
+        
+        for (NSDictionary* treePlist in [self getTreesFromServer]) {
+            [self addTreeAtAngle:[[treePlist valueForKey:@"angle"] floatValue] treeType:[[treePlist valueForKey:@"type"] intValue]];
+            
+            // HACK HACK HACK
+            //tree.lSystem.angleOffset = [[treePlist valueForKey:@"angleOffset"] floatValue];
+            //[tree.lSystem setAge:[[treePlist valueForKey:@"age"] floatValue]];
+        }
+        for (WOTree* tree in self.trees) {
+            for (SoundGrain* grain in tree.lSystem.instrument.grainsArray) {
+                grain.on = NO;
+            }
+        }
+        
+    }
+    return self;
+}
+
+- (NSArray*) getTreesFromServer
+{
+    NSLog(@"Getting trees from server!");
+    
+    NSArray* treesPlist;
+    
+    NSString *server = [[NSString alloc] initWithString:@"http://mikerotondo.com/wold/"];
+    
+    NSURL *url = [NSURL URLWithString:[server stringByAppendingFormat:@"treesforplanet/%d", planetId]];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    // Start sending synchronously
+    [request startSynchronous];
+    
+    // Display any error messages
+    NSError *error = [request error];
+    if (!error) {
+        NSString *response = [request responseString];
+        NSLog(@"Response: %@", response);
+        
+        NSData* data = [NSData dataWithBytes:[response cStringUsingEncoding:NSUTF8StringEncoding] 
+                                      length:[response lengthOfBytesUsingEncoding:NSUTF8StringEncoding]];
+        treesPlist = [NSPropertyListSerialization propertyListWithData:data
+                                                               options:0
+                                                                format:NULL
+                                                                 error:NULL];
+    }
+    return treesPlist;
+}
+
+
+- (void) submitPlanetInfoToServer
+{
+	NSLog(@"sending planet updates to server...");
+	
+	NSString *server = [[NSString alloc] initWithUTF8String:"http://mikerotondo.com/wold/"];
+	
+	NSURL *url = [NSURL URLWithString:[server stringByAppendingString:@"planets"]];
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	
+    // Setup the variables for the request
+    [request setPostValue:[NSNumber numberWithFloat:planetId] forKey:@"id"];
+    
+    [request setPostValue:[NSNumber numberWithFloat:r] forKey:@"r"];
+    [request setPostValue:[NSNumber numberWithFloat:g] forKey:@"g"];
+    [request setPostValue:[NSNumber numberWithFloat:b] forKey:@"b"];
+
+    [request setPostValue:[NSNumber numberWithFloat:a1] forKey:@"a1"];
+    [request setPostValue:[NSNumber numberWithFloat:a2] forKey:@"a2"];
+    [request setPostValue:[NSNumber numberWithFloat:a3] forKey:@"a3"];
+    [request setPostValue:[NSNumber numberWithFloat:a4] forKey:@"a4"];
+
+    [request setPostValue:[NSNumber numberWithFloat:c1] forKey:@"c1"];
+    [request setPostValue:[NSNumber numberWithFloat:c2] forKey:@"c2"];
+    [request setPostValue:[NSNumber numberWithFloat:c3] forKey:@"c3"];
+    [request setPostValue:[NSNumber numberWithFloat:c4] forKey:@"c4"];
+    
+    [request setPostValue:[soundFiles objectAtIndex:0] forKey:@"sound1"];
+    [request setPostValue:[soundFiles objectAtIndex:1] forKey:@"sound2"];
+    [request setPostValue:[soundFiles objectAtIndex:2] forKey:@"sound3"];
+    [request setPostValue:[soundFiles objectAtIndex:3] forKey:@"sound4"];
+    
+	[request startSynchronous];
+    
+//	NSError *error = [request error];
+//	if (!error) {
+//		NSString *response = [request responseString];
+//        NSLog(@"POSTED TREE: %@", response);
+//	}	
+}
+
+- (int) getNewPlanetIdFromServer
+{
+	NSLog(@"getting new planet id to server...");
+	
+	NSString *server = [[NSString alloc] initWithUTF8String:"http://mikerotondo.com/wold/"];
+	NSURL *url = [NSURL URLWithString:[server stringByAppendingString:@"newplanet"]];
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request startSynchronous];
+    
+	NSError *error = [request error];
+	if (!error) {
+		NSString *response = [request responseString];
+        return [response intValue];
+	}
+    return -1;
 }
 
 - (void) determineShape
@@ -102,7 +321,10 @@
     self.layer.strokeColor = [UIColor colorWithRed:0.2 green:0.8 blue:0.3 alpha:1.0].CGColor;
     self.layer.lineWidth = 8.0;
 
-    float fill[3] = { 0.7 * rand() / (float)RAND_MAX, 0.6 * rand() / (float)RAND_MAX,  0.8 * rand() / (float)RAND_MAX };
+    r =  0.7 * rand() / (float)RAND_MAX;
+    g = 0.6 * rand() / (float)RAND_MAX;
+    b = 0.8 * rand() / (float)RAND_MAX;
+    float fill[3] = {r, g, b};
     
     self.layer.fillColor = [self generateSquaresPatternFromColorComponents:fill];
 }
@@ -133,8 +355,10 @@
     float treeX = (self.baseRadius + maxHeight * planetSurface) * cos(-angle);
     float treeY = (self.baseRadius + maxHeight * planetSurface) * sin(-angle);
 
-    WOTree* tree = [[[WOTree alloc] initWithAngle:-angle andOrigin:CGPointMake(treeX, treeY) andType:type] autorelease];
+    WOTree* tree = [[WOTree alloc] initWithAngle:-angle andOrigin:CGPointMake(treeX, treeY) andType:type andFilename:[soundFiles objectAtIndex:type - 1]];
+    tree.planetId = planetId;
     [self.trees addObject:tree];
+    
     [self.layer addSublayer:[tree layer]];
 }
 
@@ -149,8 +373,22 @@
     self.rotationAngle += self.rotationAngleIncrement;
     self.rotationAngleIncrement *= rotationDamping;
     
+    //NSLog(@"In planet tick, we have %d trees", [self.trees count]);
+    
     for (WOTree* tree in self.trees) {
         [tree tick];
+    }
+}
+
+- (void) stopGrowingTree
+{
+    // NOTE: This assumes that there is only one tree growing at any time!!
+    for (WOTree* tree in self.trees) {
+        if ([tree isGrowing]) {
+            [tree stopGrowing];
+            
+            [tree updateServer];
+        }
     }
 }
 

@@ -84,11 +84,12 @@
 @synthesize ticksPerGeneration;
 @synthesize generationTickCount;
 @synthesize growing;
+@synthesize angleOffset;
 @synthesize path;
 @synthesize layer;
 @synthesize instrument;
 
-- (id) initWithMaxGeneration:(int)maxGen andAngle:(float)newAngle andOrigin:(CGPoint)origin
+- (id) initWithMaxGeneration:(int)maxGen andAngle:(float)newAngle andOrigin:(CGPoint)origin andSoundFile:(NSString *)filename
 {
     self = [super init];
     if (self) {
@@ -107,7 +108,7 @@
         CGAffineTransform transform = CGAffineTransformConcat(rotationTransform, translationTransform);
         [self.layer setAffineTransform:transform];
         
-        instrument = [[WOInstrument alloc] init];
+        instrument = [[WOInstrument alloc] initWithFilename:filename];
     }
     return self;
 }
@@ -125,22 +126,31 @@
     self.nodes = newNodes;
 
     if (self.currentGeneration == self.maxGeneration) {
+        NSLog(@"HEYO!");
         growing = NO;
     }
 }
 
 - (void) tick
 {
-    if (self.generationTickCount == self.ticksPerGeneration && self.currentGeneration < self.maxGeneration) {
-        [self advanceGeneration];
-    }
-    self.generationTickCount++;
-    float generationPercent = self.generationTickCount / (float)self.ticksPerGeneration;
-    for (WONode* node in self.nodes) {
-        node.growthPercent = generationPercent;
+    if (growing) {
+        if (self.generationTickCount == self.ticksPerGeneration && self.currentGeneration < self.maxGeneration) {
+            [self advanceGeneration];
+        }
+        self.generationTickCount++;
+        float generationPercent = self.generationTickCount / (float)self.ticksPerGeneration;
+        for (WONode* node in self.nodes) {
+            node.growthPercent = generationPercent;
+        }
     }
 
-    if (growing) {
+    if (growing || fabs(angleOffset) > 0.001) {
+        for (WONode* node in self.nodes) {
+            if ([node isKindOfClass:[WOAngleNode class]]) {
+                node.offset += angleOffset;
+            }
+        }
+        
         path = CGPathCreateMutable();
         CGPathMoveToPoint(path, NULL, 0, 0);
         WOLSystemTransformStack* stack = [[[WOLSystemTransformStack alloc] init] autorelease];
@@ -154,6 +164,9 @@
 
         [self.instrument updateParamsWithBoundingBox:b];
     }
+    angleOffset *= 0.92;
+    
+    [self.instrument tick];
 }
 
 - (void) tickAudio:(stk::StkFrames*)frames;
@@ -171,6 +184,13 @@
     float percent = age - floor(age);
     self.generationTickCount = percent * self.ticksPerGeneration;
 }
+
+- (void) handleTouch:(CGPoint)loc withVelocity:(CGPoint)vel
+{
+    [self.instrument handleTouch:loc withVelocity:(CGPoint)vel];
+    angleOffset = -vel.x * 0.0001;
+}
+
 @end
 
 @implementation WONode
@@ -225,8 +245,9 @@
 {
     NSMutableArray* nodes = [NSMutableArray array];
 
+    [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:0 andMaxOffset:0] autorelease]];
     [nodes addObject:[[[WOLittleFNode alloc] initWithBaseLength:50 andMaxOffset:20] autorelease]];
-
+    
     [nodes addObject:[[[WOLeftBracketNode alloc] init] autorelease]];
     [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:15 andMaxOffset:10] autorelease]];
     [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:15 andMaxOffset:10] autorelease]];
@@ -248,8 +269,64 @@
 
 @end
 
+@implementation WOPineNode
+
+- (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
+{
+    NSMutableArray* nodes = [NSMutableArray array];
+    
+    [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:0 andMaxOffset:0] autorelease]];
+    [nodes addObject:[[[WOLittleFNode alloc] initWithBaseLength:50 andMaxOffset:20] autorelease]];
+    
+    [nodes addObject:[[[WOLeftBracketNode alloc] init] autorelease]];
+    [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:85 andMaxOffset:10] autorelease]];
+    [nodes addObject:[[[WOWiggleNode alloc] init] autorelease]];
+    [nodes addObject:[[WOLNode alloc] init]];
+    [nodes addObject:[[[WORightBracketNode alloc] init] autorelease]];
+
+    [nodes addObject:[[[WOLeftBracketNode alloc] init] autorelease]];
+    [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:-85 andMaxOffset:-10] autorelease]];
+    [nodes addObject:[[[WOWiggleNode alloc] init] autorelease]];
+    [nodes addObject:[[WOLNode alloc] init]];
+    [nodes addObject:[[[WORightBracketNode alloc] init] autorelease]];
+    
+    [nodes addObject:[[[WOPineNode alloc] init] autorelease]];
+    
+    return nodes;
+}
+
+@end
+
+// TODO: There's a bug in CurlyNode and elsewhere (ANode, PineNode) probably that causes redundant LNodes. This is probably causing a performance hit. Find it and kill it later.
+
+@implementation WOCurlyNode
+
+- (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
+{
+    NSMutableArray* nodes = [NSMutableArray array];
+    
+    [nodes addObject:[[[WOLeftBracketNode alloc] init] autorelease]];
+    [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:15 andMaxOffset:3] autorelease]];    
+    [nodes addObject:[[[WOCurlyNode alloc] init] autorelease]];
+    [nodes addObject:[[[WORightBracketNode alloc] init] autorelease]];
+
+    [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:5 andMaxOffset:3] autorelease]];
+    [nodes addObject:[[[WOLittleFNode alloc] initWithBaseLength:10 andMaxOffset:10] autorelease]];
+    [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:5 andMaxOffset:3] autorelease]];
+    [nodes addObject:[[[WOLittleFNode alloc] initWithBaseLength:10 andMaxOffset:10] autorelease]];
+    [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:5 andMaxOffset:3] autorelease]];
+    [nodes addObject:[[[WOLittleFNode alloc] initWithBaseLength:10 andMaxOffset:10] autorelease]];
+    [nodes addObject:[[[WOAngleNode alloc] initWithBaseAngle:5 andMaxOffset:3] autorelease]];
+    [nodes addObject:[[[WOLittleFNode alloc] initWithBaseLength:10 andMaxOffset:10] autorelease]];
+    [nodes addObject:[[[WOCurlyNode alloc] init] autorelease]];
+    [nodes addObject:[[WOLNode alloc] init]];
+    
+    return nodes;
+}
+
+@end
+
 @implementation WOLittleFNode
-@synthesize pointId;
 
 - (id) initWithBaseLength:(float)newBaseLength andMaxOffset:(float)newMaxOffset
 {
@@ -258,8 +335,6 @@
         
         baseLength = newBaseLength;
         maxOffset = newMaxOffset;
-        
-        pointId = rand();
     }
     return self;
 }
@@ -270,8 +345,6 @@
     [stack translateBy:length];
     CGPoint newPoint = [stack getPoint];
     CGPathAddLineToPoint(system.path, NULL, newPoint.x, newPoint.y);
-    
-    [system.instrument setGrainWithId:self.pointId ParamsX:newPoint.x Y:newPoint.y];
 }
 
 - (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
@@ -281,7 +354,6 @@
     newNode.growthPercent = self.growthPercent;
     newNode.offset = offset;
     newNode.randomOffset = randomOffset;
-    newNode.pointId = pointId;
     [newNodes addObject:newNode];
     return newNodes;
 }
@@ -289,12 +361,36 @@
 @end
 
 @implementation WOLNode
+@synthesize pointId;
+
+- (id) init
+{
+    self = [super init];
+    if (self) {
+        pointId = rand();
+    }
+    return self;
+}
 
 - (void) renderWithStack:(WOLSystemTransformStack*)stack inLSystem:(WOLSystem*)system
 {
     float radius = 2;
     CGPoint newPoint = [stack getPoint];
     CGPathAddArc(system.path, NULL, newPoint.x, newPoint.y, radius, 0, 2 * M_PI, 0);
+    
+    [system.instrument setGrainWithId:self.pointId ParamsX:newPoint.x Y:newPoint.y];
+}
+
+- (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration
+{
+    NSMutableArray* newNodes = [NSMutableArray array];
+    WOLNode* newNode = [[[WOLNode alloc] init] autorelease];
+    newNode.growthPercent = self.growthPercent;
+    newNode.offset = offset;
+    newNode.randomOffset = randomOffset;
+    newNode.pointId = pointId;
+    [newNodes addObject:newNode];
+    return newNodes;
 }
 
 @end
@@ -333,7 +429,7 @@
 
 - (void) renderWithStack:(WOLSystemTransformStack*)stack inLSystem:(WOLSystem*)system
 {
-    float angle = baseAngle + maxOffset * randomOffset;
+    float angle = baseAngle + maxOffset * (randomOffset) + offset;
     [stack rotateBy:angle];
 }
 

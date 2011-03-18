@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 
-
 @interface WOPlanet : NSObject {
     
     UIColor* color;
@@ -25,14 +24,16 @@
     
     CGPoint loc;
     
-    CGColorRef fillColor;
-    CGColorRef strokeColor;
-    
     float c1, c2, c3, c4;
     float a1, a2, a3, a4;
+    float r, g, b;
+    NSArray* soundFiles;
     
     float rotationAngle;
     float rotationAngleIncrement;
+    
+    
+    int planetId;
 }
 
 @property (nonatomic, retain) NSMutableSet* trees;
@@ -45,6 +46,8 @@
 @property float rotationAngleIncrement;
 
 - (id) initAtPoint:(CGPoint)newLoc;
+- (id) initAtPoint:(CGPoint)newLoc withId:(int)newPlanetId;
+- (id) initAtPoint:(CGPoint)newLoc withPlist:(NSDictionary*)plist;
 - (void) determineShape;
 - (float) surfaceFunction:(float) x;
 - (void) addTreeAtAngle:(float)angle treeType:(int)type;
@@ -52,6 +55,10 @@
 - (void) generatePath;
 - (void) setupLayer;
 - (CGColorRef) generateSquaresPatternFromColorComponents:(float*)components;
+- (void) stopGrowingTree;
+- (int) getNewPlanetIdFromServer;
+- (void) submitPlanetInfoToServer;
+- (NSArray*) getTreesFromServer;
 
 @end
 

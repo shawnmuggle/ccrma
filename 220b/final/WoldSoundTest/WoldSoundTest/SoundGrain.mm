@@ -11,12 +11,14 @@
 #import "Stk.h"
 
 @implementation SoundGrain
-@synthesize newBaseStart, newDensity, masterGain;
+@synthesize newBaseStart, newDensity, masterGain, on, densityOffset, lengthOffset;
 
 - (id)initWithRandomParamsAndFrames:(stk::StkFrames*)data
 {
     self = [super init];
     if (self) {
+        on = NO;
+        
         frames = data;
         
         currentSamp = 0;
@@ -35,7 +37,13 @@
 - (void)updateParams
 {
     // This modulates independently of point position
-    lengthSamps = 5000 + rand() % 5000;
+    if (self.lengthOffset < -0.04) self.lengthOffset = -0.04;
+    lengthSamps = 500 + 10000 * self.lengthOffset + rand() % (500 + (int)(10000 * self.lengthOffset));
+    
+    //NSLog(@"Length offset is %f and lengthSamps is %d", self.lengthOffset, lengthSamps);
+    //NSLog(@"Sample length is %lu", frames->size());
+    
+    if (lengthSamps >= frames->size()) lengthSamps = frames->size();
     
     float startVariability = 0.09;
     startSamp = (frames->size() - lengthSamps) * (baseStart + startVariability * (rand() / (float)RAND_MAX));
@@ -44,8 +52,10 @@
     attackSamps = fractionLength + fractionLength * (rand() / (float)RAND_MAX);
     releaseSamps = fractionLength + fractionLength * (rand() / (float)RAND_MAX);
     
-    doneFraction = 1 / density;
+    //if (self.densityOffset < -density * 0.9) self.densityOffset = -density * 0.9;
+    doneFraction = 1 / (density + self.densityOffset);
     
+    //NSLog(@"Density offset is %f and doneFraction is %f", self.densityOffset, doneFraction);
     //NSLog(@"Restarting with start: %d length: %d", startSamp, lengthSamps);
 }
 
@@ -73,6 +83,9 @@
 
 - (void) tickAudio:(stk::StkFrames*)outFrames
 {
+    self.densityOffset *= 0.999;    
+    self.lengthOffset *= 0.999;
+    
     Float32 gain;
     for (int i = 0; i < outFrames->size(); i++) {
         stk::StkFloat sample = 0.0;

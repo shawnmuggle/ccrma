@@ -10,19 +10,20 @@
 #import "FileRead.h"
 
 @implementation WOInstrument
+@synthesize grainsArray;
 
-- (id) init
+
+- (id) initWithFilename:(NSString*)filename
 {
     self = [super init];
     if (self) {
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"whistle" ofType:@"wav"];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:filename ofType:@"wav"];
         std::string fileName = [filePath UTF8String];
         bool typeRaw = false;
         
         // Attempt to load the soundfile data.
         stk::FileRead file( fileName, typeRaw );
         data.resize( file.fileSize(), file.channels() );
-        NSLog(@"File size: %lu", file.fileSize());
         file.read( data );
         
         //grain = [[SoundGrain alloc] initWithRandomParamsAndFrames:&data];
@@ -33,9 +34,11 @@
         grainsArray = [[NSMutableArray alloc] initWithCapacity:numGrains];
         for (int i = 0; i < numGrains; i++) {
             SoundGrain* grain = [[SoundGrain alloc] initWithRandomParamsAndFrames:&data];
-            grain.masterGain = 0;
             [grainsArray addObject:grain];
         }
+        
+        gain = 0.0;
+        gainTarget = 0.0;
     }
     return self;
 }
@@ -63,17 +66,52 @@
     for (id key in grainsDict) {
         SoundGrain* grain = [grainsDict objectForKey:key];
         [grain updateValsInBoundingBox:boundingBox];
-        grain.masterGain = 0.05;
+        grain.on = YES;
+        gainTarget = 0.75;
+    }
+}
+
+- (void) handleTouch:(CGPoint)loc withVelocity:(CGPoint)vel
+{
+    gainTarget = 0.25 + loc.y * 0.75;
+    float densityOffset = -vel.y * 0.000005;
+    float lengthOffset = vel.y * 0.0005;
+        
+//    if (densityOffset > 2.0) densityOffset = 2.0;
+//    if (densityOffset < -0.5) densityOffset = -0.5;
+    
+    for (id key in grainsDict) {
+        SoundGrain* grain = [grainsDict objectForKey:key];
+        grain.on = YES;
+        grain.densityOffset += densityOffset;
+        grain.lengthOffset += lengthOffset;
+    }
+}
+
+- (void) tick
+{
+    gain += (gainTarget - gain) * 0.5;
+    gainTarget *= 0.95;
+    if (gain < 0.00001)
+    {
+        for (SoundGrain* grain in grainsArray) {
+            if (!grain.on) {
+                // All the grains after this one haven't been used yet
+                break;
+            }
+            grain.on = NO;
+        }        
     }
 }
 
 - (void) tickAudio:(stk::StkFrames*)frames;
 {
     for (SoundGrain* grain in grainsArray) {
-        if (grain.masterGain == 0) {
+        if (!grain.on) {
             // All the grains after this one haven't been used yet
             break;
         }
+        grain.masterGain = gain;
         [grain tickAudio:frames];
     }
 }

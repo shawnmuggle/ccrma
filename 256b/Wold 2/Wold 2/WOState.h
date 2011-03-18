@@ -10,7 +10,7 @@
 #import "WOPlanet.h"
 #import "WOSolarSystem.h"
 
-@interface WOState : NSObject {
+@interface WOState : NSObject <UIGestureRecognizerDelegate> {
     
     // HACK: This is probably not the best way to do this, but git'er done!
     IBOutlet UIView* view;
@@ -29,6 +29,15 @@
     CGRect screen;
     
     CATransform3D scaledAndTranslated;
+    
+    UIPanGestureRecognizer* pan;
+    UIPanGestureRecognizer* rub;
+    UILongPressGestureRecognizer* press;
+    UILongPressGestureRecognizer* twoPress;
+    UILongPressGestureRecognizer* threePress;
+    UILongPressGestureRecognizer* fourPress;
+    UIPinchGestureRecognizer* pinch;
+    UITapGestureRecognizer* tap;
 }
 
 @property (nonatomic, retain) NSMutableSet* solarSystems;
@@ -46,5 +55,6 @@
 - (void) handleLongPress:(id)sender;
 - (void) handleSolarSystemTap:(id)sender;
 - (void) handlePinch:(id)sender;
+- (int) getNewSolarSystemIdFromServer;
 
 @end

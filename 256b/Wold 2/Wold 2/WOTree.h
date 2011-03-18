@@ -14,16 +14,26 @@
     
     float angle;
     WOLSystem* lSystem;
+    int type;
     
+    int treeId;
+    
+    int planetId;
 }
 
 @property float angle;
 @property (nonatomic, retain) WOLSystem* lSystem;
+@property int planetId;
 
 // TODO: Unify tree & LSystem classes
-- (id) initWithAngle:(float)newAngle andOrigin:(CGPoint)origin andType:(int)type;
+- (id) initWithAngle:(float)newAngle andOrigin:(CGPoint)origin andType:(int)newType andFilename:(NSString*)filename;
 - (void) tick;
 - (void) tickAudio:(stk::StkFrames*)frames;
 - (CALayer*) layer;
+- (void) handleTouch:(CGPoint)loc withVelocity:(CGPoint)vel;
+- (void) stopGrowing;
+- (bool) isGrowing;
+- (void) updateServer;
+- (int) getNewTreeIdFromServer;
 
 @end

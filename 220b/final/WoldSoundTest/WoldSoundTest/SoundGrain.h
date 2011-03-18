@@ -23,6 +23,7 @@
     float doneFraction;
     
     float masterGain;
+    bool on;
     
     uint startSamp;
     uint lengthSamps;
@@ -30,11 +31,17 @@
     uint releaseSamps;
     
     uint currentSamp;
+    
+    float densityOffset;
+    float lengthOffset;
 }
 
 @property float newBaseStart;
 @property float newDensity;
 @property float masterGain;
+@property bool on;
+@property float densityOffset;
+@property float lengthOffset;
 
 - (id)initWithRandomParamsAndFrames:(stk::StkFrames*)frames;
 - (void) updateParams;

@@ -18,11 +18,16 @@
     CALayer* sky;
     CALayer* zoom;
     
+    int systemId;
+    
 }
 
 @property (nonatomic, retain) WOStar* star;
 @property (nonatomic, retain) NSMutableArray* planets;
 @property (nonatomic, retain) CALayer* sky;
 @property (nonatomic, retain) CALayer* zoom;
+
+- (id) initWithId:(int)newSystemId;
+- (NSArray*) getPlanetsFromServer;
 
 @end

@@ -54,6 +54,8 @@
     CAShapeLayer* layer;
     
     WOInstrument* instrument;
+    
+    float angleOffset;
 }
 
 @property (nonatomic, retain) NSMutableArray* nodes;
@@ -63,17 +65,19 @@
 @property int ticksPerGeneration;
 @property int generationTickCount;
 @property BOOL growing;
+@property float angleOffset;
 
 @property CGMutablePathRef path;
 @property (nonatomic, retain) CAShapeLayer* layer;
 
 @property (nonatomic, retain) WOInstrument* instrument;
 
-- (id) initWithMaxGeneration:(int)maxGen andAngle:(float)newAngle andOrigin:(CGPoint)origin;
+- (id) initWithMaxGeneration:(int)maxGen andAngle:(float)newAngle andOrigin:(CGPoint)origin andSoundFile:(NSString*)filename;
 - (void) advanceGeneration;
 - (void) tick;
 - (void) tickAudio:(stk::StkFrames*)frames;
 - (void) setAge:(float)age;
+- (void) handleTouch:(CGPoint)loc withVelocity:(CGPoint)vel;
 
 @end
 
@@ -98,21 +102,27 @@
 @interface WOANode : WONode {}
 @end
 
+@interface WOPineNode : WONode {}
+@end
+
+@interface WOCurlyNode : WONode {}
+@end
+
 @interface WOLittleFNode : WONode
 {
     float baseLength;
     float maxOffset;
-    
-    int pointId;
 }
-
-@property int pointId;
 
 - (id) initWithBaseLength:(float)newBaseLength andMaxOffset:(float)newMaxOffset;
 
 @end
 
-@interface WOLNode : WONode {}
+@interface WOLNode : WONode
+{
+    int pointId;
+}
+@property int pointId;
 @end
 
 @interface WOWiggleNode : WONode {}
