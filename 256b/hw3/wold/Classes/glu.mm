@@ -16,7 +16,7 @@
 //  All programs contained herein are provided to you "AS IS" without any warranties of any kind. 
 //  The implied warranties of non-infringement, merchantability and fitness for a particular purpose are expressly disclaimed.
  
-#include "glu.h".f
+#include "glu.h"
 #include <math.h>
 #include <string.h>
 

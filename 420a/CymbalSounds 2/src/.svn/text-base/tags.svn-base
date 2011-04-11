@@ -1,0 +1,1286 @@
+
+ADSR.cpp,527
+namespace stk 16,511
+ADSR :: ADSR(stk::ADSR18,528
+ADSR :: ~ADSR(30,733
+void ADSR :: sampleRateChanged(34,760
+void ADSR :: keyOn(43,1027
+void ADSR :: keyOff(49,1089
+void ADSR :: setAttackRate(55,1153
+void ADSR :: setDecayRate(65,1405
+void ADSR :: setSustainLevel(75,1653
+void ADSR :: setReleaseRate(85,1906
+void ADSR :: setAttackTime(95,2162
+void ADSR :: setDecayTime(105,2474
+void ADSR :: setReleaseTime(115,2782
+void ADSR :: setAllTimes(125,3118
+void ADSR :: setTarget(133,3346
+void ADSR :: setValue(146,3594
+
+Asymp.cpp,307
+namespace stk 29,976
+Asymp :: Asymp(stk::Asymp31,993
+Asymp :: ~Asymp(41,1177
+void Asymp :: sampleRateChanged(45,1210
+void Asymp :: keyOn(53,1438
+void Asymp :: keyOff(58,1497
+void Asymp :: setTau(63,1557
+void Asymp :: setTime(75,1864
+void Asymp :: setTarget(88,2232
+void Asymp :: setValue(95,2382
+
+BandedWG.cpp,507
+namespace stk 36,1026
+BandedWG :: BandedWG(stk::BandedWG38,1043
+BandedWG :: ~BandedWG(60,1393
+void BandedWG :: clear(64,1428
+void BandedWG :: setPreset(72,1553
+void BandedWG :: setFrequency(172,4280
+void BandedWG :: setStrikePosition(213,5531
+void BandedWG :: startBowing(218,5658
+void BandedWG :: stopBowing(225,5819
+void BandedWG :: pluck(231,5917
+void BandedWG :: noteOn(242,6207
+void BandedWG :: noteOff(257,6598
+StkFloat BandedWG :: tick(268,6866
+void BandedWG :: controlChange(312,7904
+
+BeeThree.cpp,129
+namespace stk 37,961
+BeeThree :: BeeThree(stk::BeeThree39,978
+BeeThree :: ~BeeThree(65,1758
+void BeeThree :: noteOn(69,1793
+
+BiQuad.cpp,278
+namespace stk 16,476
+BiQuad :: BiQuad(stk::BiQuad18,493
+BiQuad :: ~BiQuad(30,703
+void BiQuad :: setCoefficients(35,766
+void BiQuad :: sampleRateChanged(46,992
+void BiQuad :: setResonance(54,1243
+void BiQuad :: setNotch(67,1584
+void BiQuad :: setEqualGainZeroes(74,1834
+
+Blit.cpp,213
+namespace stk 26,1021
+Blit:: Blit(stk::Blit28,1041
+Blit :: ~Blit(35,1158
+void Blit :: reset(39,1183
+void Blit :: setFrequency(45,1254
+void Blit :: setHarmonics(57,1552
+void Blit :: updateHarmonics(63,1671
+
+BlitSaw.cpp,238
+namespace stk 24,974
+BlitSaw:: BlitSaw(stk::BlitSaw26,994
+BlitSaw :: ~BlitSaw(33,1117
+void BlitSaw :: reset(37,1148
+void BlitSaw :: setFrequency(44,1240
+void BlitSaw :: setHarmonics(57,1562
+void BlitSaw :: updateHarmonics(74,2296
+
+BlitSquare.cpp,267
+namespace stk 35,1615
+BlitSquare:: BlitSquare(stk::BlitSquare37,1634
+BlitSquare :: ~BlitSquare(44,1763
+void BlitSquare :: reset(48,1800
+void BlitSquare :: setFrequency(56,1921
+void BlitSquare :: setHarmonics(71,2427
+void BlitSquare :: updateHarmonics(77,2552
+
+BlowBotl.cpp,381
+namespace stk 22,531
+#define __BOTTLE_RADIUS_ 24,548
+BlowBotl :: BlowBotl(stk::BlowBotl26,580
+BlowBotl :: ~BlowBotl(40,858
+void BlowBotl :: clear(44,893
+void BlowBotl :: setFrequency(49,951
+void BlowBotl :: startBlowing(61,1288
+void BlowBotl :: stopBlowing(68,1434
+void BlowBotl :: noteOn(74,1533
+void BlowBotl :: noteOff(86,1913
+void BlowBotl :: controlChange(96,2152
+
+BlowHole.cpp,433
+namespace stk 40,1219
+BlowHole :: BlowHole(stk::BlowHole42,1236
+BlowHole :: ~BlowHole(88,3090
+void BlowHole :: clear(92,3125
+void BlowHole :: setFrequency(102,3296
+void BlowHole :: setVent(119,3819
+void BlowHole :: setTonehole(137,4187
+void BlowHole :: startBlowing(155,4644
+void BlowHole :: stopBlowing(161,4781
+void BlowHole :: noteOn(167,4892
+void BlowHole :: noteOff(179,5283
+void BlowHole :: controlChange(189,5524
+
+Bowed.cpp,350
+namespace stk 27,696
+Bowed :: Bowed(stk::Bowed29,713
+Bowed :: ~Bowed(59,1443
+void Bowed :: clear(63,1472
+void Bowed :: setFrequency(69,1551
+void Bowed :: startBowing(85,2134
+void Bowed :: stopBowing(92,2296
+void Bowed :: noteOn(98,2393
+void Bowed :: noteOff(109,2726
+void Bowed :: setVibrato(119,2969
+void Bowed :: controlChange(124,3039
+
+Brass.cpp,348
+namespace stk 27,695
+Brass :: Brass(stk::Brass29,712
+Brass :: ~Brass(51,1218
+void Brass :: clear(55,1247
+void Brass :: setFrequency(62,1344
+void Brass :: setLip(79,1846
+void Brass :: startBlowing(91,2148
+void Brass :: stopBlowing(98,2293
+void Brass :: noteOn(104,2391
+void Brass :: noteOff(115,2725
+void Brass :: controlChange(125,2961
+
+Chorus.cpp,128
+namespace stk 14,364
+Chorus :: Chorus(stk::Chorus16,381
+void Chorus :: clear(32,880
+void Chorus :: setModFrequency(40,1010
+
+Clarinet.cpp,352
+namespace stk 28,744
+Clarinet :: Clarinet(stk::Clarinet30,761
+Clarinet :: ~Clarinet(44,1178
+void Clarinet :: clear(48,1213
+void Clarinet :: setFrequency(54,1294
+void Clarinet :: startBlowing(70,1787
+void Clarinet :: stopBlowing(76,1921
+void Clarinet :: noteOn(82,2039
+void Clarinet :: noteOff(94,2470
+void Clarinet :: controlChange(104,2711
+
+Delay.cpp,225
+namespace stk 19,592
+Delay :: Delay(stk::Delay21,609
+Delay :: ~Delay(43,1264
+void Delay :: setMaximumDelay(47,1287
+void Delay :: setDelay(65,1798
+StkFloat Delay :: energy(90,2596
+StkFloat Delay :: contentsAt(112,3059
+
+DelayA.cpp,229
+namespace stk 23,860
+DelayA :: DelayA(stk::DelayA25,877
+DelayA :: ~DelayA(47,1516
+void DelayA :: clear(51,1541
+void DelayA :: setMaximumDelay(59,1682
+void DelayA :: setDelay(77,2196
+StkFloat DelayA :: contentsAt(121,3523
+
+DelayL.cpp,199
+namespace stk 22,854
+DelayL :: DelayL(stk::DelayL24,871
+DelayL :: ~DelayL(45,1492
+void DelayL :: setMaximumDelay(49,1517
+void DelayL :: setDelay(67,2031
+StkFloat DelayL :: contentsAt(100,2992
+
+Drummer.cpp,158
+namespace stk 21,618
+Drummer :: Drummer(stk::Drummer58,1478
+Drummer :: ~Drummer(66,1700
+void Drummer :: noteOn(70,1733
+void Drummer :: noteOff(144,4441
+
+Echo.cpp,147
+namespace stk 14,300
+Echo :: Echo(stk::Echo16,317
+void Echo :: clear(24,493
+void Echo :: setMaximumDelay(30,570
+void Echo :: setDelay(42,860
+
+Envelope.cpp,188
+namespace stk 16,521
+Envelope :: Envelope(stk::Envelope18,538
+Envelope :: ~Envelope(27,689
+Envelope& Envelope :: operator= operator=32,762
+void Envelope :: sampleRateChanged(44,956
+
+FM.cpp,307
+namespace stk 29,762
+FM :: FM(stk::FM31,779
+FM :: ~FM(78,1708
+void FM :: loadWaves(86,1826
+void FM :: setFrequency(92,1976
+void FM :: setRatio(100,2169
+void FM :: setGain(120,2750
+void FM :: keyOn(136,3190
+void FM :: keyOff(142,3290
+void FM :: noteOff(148,3392
+void FM :: controlChange(158,3598
+
+FMVoices.cpp,210
+namespace stk 37,939
+FMVoices :: FMVoices(stk::FMVoices39,956
+FMVoices :: ~FMVoices(72,1905
+void FMVoices :: setFrequency(76,1940
+void FMVoices :: noteOn(114,2896
+void FMVoices :: controlChange(128,3294
+
+FileLoop.cpp,380
+namespace stk 22,723
+FileLoop :: FileLoop(stk::FileLoop24,740
+FileLoop :: FileLoop(30,919
+FileLoop :: ~FileLoop(38,1218
+void FileLoop :: openFile(43,1291
+void FileLoop :: setRate(88,2642
+void FileLoop :: addTime(96,2791
+void FileLoop :: addPhase(108,3034
+void FileLoop :: addPhaseOffset(120,3303
+StkFloat FileLoop :: tick(126,3458
+StkFrames& FileLoop :: tick(196,5602
+
+FileRead.cpp,449
+namespace stk 38,1277
+FileRead :: FileRead(stk::FileRead40,1294
+FileRead :: FileRead(45,1333
+FileRead :: ~FileRead(52,1541
+void FileRead :: close(58,1602
+bool FileRead :: isOpen(65,1697
+void FileRead :: open(71,1781
+bool FileRead :: getRawInfo(129,3761
+bool FileRead :: getWavInfo(162,4869
+bool FileRead :: getSndInfo(286,8718
+bool FileRead :: getAifInfo(357,10767
+bool FileRead :: getMatInfo(479,14597
+void FileRead :: read(588,18350
+
+FileWrite.cpp,746
+namespace stk 28,958
+struct wavhdr stk::wavhdr38,1357
+struct sndhdr 55,1946
+struct aifhdr 67,2182
+struct aifssnd 79,2679
+struct mathdr 87,2959
+FileWrite :: FileWrite(94,3166
+FileWrite::FileWrite(99,3209
+FileWrite :: ~FileWrite(105,3386
+void FileWrite :: close(110,3434
+bool FileWrite :: isOpen(128,3808
+void FileWrite :: open(134,3893
+bool FileWrite :: setRawFile(182,5509
+bool FileWrite :: setWavFile(209,6216
+void FileWrite :: closeWavFile(267,7997
+bool FileWrite :: setSndFile(293,8721
+void FileWrite :: closeSndFile(337,9970
+bool FileWrite :: setAifFile(358,10519
+void FileWrite :: closeAifFile(465,13621
+bool FileWrite :: setMatFile(504,14854
+void FileWrite :: closeMatFile(610,19018
+void FileWrite :: write(631,19601
+
+FileWvIn.cpp,494
+namespace stk 37,1468
+FileWvIn :: FileWvIn(stk::FileWvIn39,1485
+FileWvIn :: FileWvIn(46,1716
+FileWvIn :: ~FileWvIn(55,2061
+void FileWvIn :: sampleRateChanged(61,2149
+void FileWvIn :: closeFile(67,2309
+void FileWvIn :: openFile(74,2437
+void FileWvIn :: reset(109,3394
+void FileWvIn :: normalize(116,3549
+void FileWvIn :: normalize(122,3693
+void FileWvIn :: setRate(143,4126
+void FileWvIn :: addTime(160,4610
+StkFloat FileWvIn :: tick(173,4930
+StkFrames& FileWvIn :: tick(230,6672
+
+FileWvOut.cpp,310
+namespace stk 26,866
+FileWvOut :: FileWvOut(stk::FileWvOut28,883
+FileWvOut::FileWvOut(33,973
+FileWvOut :: ~FileWvOut(39,1212
+void FileWvOut :: closeFile(44,1264
+void FileWvOut :: openFile(59,1563
+void FileWvOut :: incrementFrame(81,2194
+void FileWvOut :: tick(93,2387
+void FileWvOut :: tick(112,2804
+
+Fir.cpp,127
+namespace stk 25,825
+Fir :: Fir(stk::Fir27,842
+Fir :: Fir(35,975
+Fir :: ~Fir(50,1305
+void Fir :: setCoefficients(54,1324
+
+Flute.cpp,436
+namespace stk 28,741
+Flute :: Flute(stk::Flute30,758
+Flute :: ~Flute(59,1508
+void Flute :: clear(63,1537
+void Flute :: setFrequency(71,1652
+void Flute :: startBlowing(92,2253
+void Flute :: stopBlowing(99,2415
+void Flute :: noteOn(105,2513
+void Flute :: noteOff(117,2896
+void Flute :: setJetReflection(127,3131
+void Flute :: setEndReflection(132,3223
+void Flute :: setJetDelay(137,3339
+void Flute :: controlChange(145,3587
+
+FormSwep.cpp,329
+namespace stk 16,476
+FormSwep :: FormSwep(stk::FormSwep18,493
+FormSwep :: ~FormSwep(41,923
+void FormSwep :: sampleRateChanged(46,990
+void FormSwep :: setResonance(54,1245
+void FormSwep :: setStates(68,1588
+void FormSwep :: setTargets(81,1889
+void FormSwep :: setSweepRate(96,2282
+void FormSwep :: setSweepTime(103,2443
+
+Granulate.cpp,447
+namespace stk 22,701
+Granulate :: Granulate(stk::Granulate24,718
+Granulate :: Granulate(33,888
+Granulate :: ~Granulate(43,1164
+void Granulate :: setStretch(47,1201
+void Granulate :: setGrainParameters(57,1408
+void Granulate :: setRandomFactor(78,2095
+void Granulate :: openFile(86,2299
+void Granulate :: reset(103,2774
+void Granulate :: setVoices(120,3229
+void Granulate :: calculateGrain(143,3912
+StkFloat Granulate :: tick(202,5819
+
+HevyMetl.cpp,129
+namespace stk 31,857
+HevyMetl :: HevyMetl(stk::HevyMetl33,874
+HevyMetl :: ~HevyMetl(61,1717
+void HevyMetl :: noteOn(65,1752
+
+Iir.cpp,199
+namespace stk 29,993
+Iir :: Iir(stk::Iir31,1010
+Iir :: Iir(41,1198
+Iir :: ~Iir(63,1820
+void Iir :: setCoefficients(67,1839
+void Iir :: setNumerator(75,2097
+void Iir :: setDenominator(94,2616
+
+InetWvIn.cpp,375
+namespace stk 29,1170
+extern "C" THREAD_RETURN THREAD_TYPE inputThread(stk::inputThread31,1187
+InetWvIn :: InetWvIn(42,1387
+InetWvIn :: ~InetWvIn(55,1862
+void InetWvIn :: listen(65,2040
+void InetWvIn :: receive(125,3909
+int InetWvIn :: readData(169,5182
+bool InetWvIn :: isConnected(251,7546
+StkFloat InetWvIn :: tick(259,7683
+StkFrames& InetWvIn :: tick(292,8639
+
+InetWvOut.cpp,355
+namespace stk 28,1016
+InetWvOut :: InetWvOut(stk::InetWvOut30,1033
+InetWvOut :: InetWvOut(35,1163
+InetWvOut :: ~InetWvOut(42,1485
+void InetWvOut :: connect(49,1599
+void InetWvOut :: disconnect(97,3320
+void InetWvOut :: writeData(107,3483
+void InetWvOut :: incrementFrame(169,5216
+void InetWvOut :: tick(181,5415
+void InetWvOut :: tick(200,5894
+
+JCRev.cpp,184
+namespace stk 19,650
+JCRev :: JCRev(stk::JCRev21,667
+void JCRev :: clear(59,1704
+void JCRev :: setT60(74,2019
+StkFrames& JCRev :: tick(80,2190
+StkFrames& JCRev :: tick(100,2730
+
+Mandolin.cpp,274
+namespace stk 33,982
+Mandolin :: Mandolin(stk::Mandolin35,999
+Mandolin :: ~Mandolin(57,2233
+void Mandolin :: pluck(63,2323
+void Mandolin :: pluck(88,3208
+void Mandolin :: noteOn(106,3770
+void Mandolin :: setBodySize(117,4084
+void Mandolin :: controlChange(125,4320
+
+Mesh2D.cpp,602
+namespace stk 30,861
+Mesh2D :: Mesh2D(stk::Mesh2D32,878
+Mesh2D :: ~Mesh2D(57,1261
+void Mesh2D :: clear(61,1292
+void Mesh2D :: clearMesh(75,1473
+StkFloat Mesh2D :: energy(99,1865
+void Mesh2D :: setNX(139,2702
+void Mesh2D :: setNY(154,3084
+void Mesh2D :: setDecay(169,3466
+void Mesh2D :: setInputPosition(191,4014
+void Mesh2D :: noteOn(220,4878
+void Mesh2D :: noteOff(238,5354
+StkFloat Mesh2D :: inputTick(246,5549
+StkFloat Mesh2D :: tick(263,5889
+const StkFloat VSCALE 270,6040
+StkFloat Mesh2D :: tick0(272,6070
+StkFloat Mesh2D :: tick1(320,7583
+void Mesh2D :: controlChange(367,8822
+
+Messager.cpp,467
+namespace stk 40,1745
+Messager :: Messager(stk::Messager54,2091
+Messager :: ~Messager(64,2257
+bool Messager :: setScoreFile(84,2662
+void Messager :: popMessage(103,3211
+void Messager :: pushMessage(128,3814
+bool Messager :: startStdInput(141,4057
+THREAD_RETURN THREAD_TYPE stdinHandler(167,4812
+void midiHandler(195,5594
+bool Messager :: startMidiInput(225,6535
+bool Messager :: startSocketInput(265,7780
+THREAD_RETURN THREAD_TYPE socketHandler(314,9107
+
+MidiFileIn.cpp,487
+namespace stk 22,864
+MidiFileIn :: MidiFileIn(stk::MidiFileIn24,881
+MidiFileIn :: ~MidiFileIn(160,5420
+int MidiFileIn :: getFileFormat(167,5595
+unsigned int MidiFileIn :: getNumberOfTracks(172,5658
+int MidiFileIn :: getDivision(177,5735
+void MidiFileIn :: rewindTrack(182,5798
+double MidiFileIn :: getTickSeconds(194,6158
+unsigned long MidiFileIn :: getNextEvent(205,6494
+unsigned long MidiFileIn :: getNextMidiEvent(322,10484
+bool MidiFileIn :: readVariableLength(345,11476
+
+Modal.cpp,346
+namespace stk 16,432
+Modal :: Modal(stk::Modal18,449
+Modal :: ~Modal(50,1220
+void Modal :: clear(58,1342
+void Modal :: setFrequency(65,1468
+void Modal :: setRatioAndRadius(72,1652
+void Modal :: setModeGain(104,2528
+void Modal :: strike(115,2823
+void Modal :: noteOn(145,3598
+void Modal :: noteOff(156,3903
+void Modal :: damp(168,4240
+
+ModalBar.cpp,260
+namespace stk 35,834
+ModalBar :: ModalBar(stk::ModalBar37,851
+ModalBar :: ~ModalBar(48,1162
+void ModalBar :: setStickHardness(53,1213
+void ModalBar :: setStrikePosition(71,1797
+void ModalBar :: setPreset(97,2609
+void ModalBar :: controlChange(161,4837
+
+Modulate.cpp,177
+namespace stk 15,369
+Modulate :: Modulate(stk::Modulate17,386
+Modulate :: ~Modulate(32,698
+void Modulate :: sampleRateChanged(37,771
+void Modulate :: setRandomGain(43,952
+
+Moog.cpp,176
+namespace stk 24,628
+Moog :: Moog(stk::Moog26,645
+Moog :: ~Moog(43,1242
+void Moog :: setFrequency(47,1269
+void Moog :: noteOn(61,1698
+void Moog :: controlChange(87,2447
+
+Mutex.cpp,196
+namespace stk 16,420
+Mutex :: Mutex(stk::Mutex18,437
+Mutex :: ~Mutex(37,899
+void Mutex :: lock(52,1176
+void Mutex :: unlock(65,1386
+void Mutex :: wait(78,1600
+void Mutex :: signal(91,1848
+
+NRev.cpp,176
+namespace stk 20,732
+NRev :: NRev(stk::NRev22,749
+void NRev :: clear(54,1632
+void NRev :: setT60(64,1831
+StkFrames& NRev :: tick(70,2001
+StkFrames& NRev :: tick(90,2538
+
+Noise.cpp,86
+namespace stk 16,397
+Noise :: Noise(stk::Noise18,414
+void Noise :: setSeed(24,518
+
+OnePole.cpp,162
+namespace stk 15,443
+OnePole :: OnePole(stk::OnePole17,460
+OnePole :: ~OnePole(27,632
+void OnePole :: setPole(31,663
+void OnePole :: setCoefficients(42,892
+
+OneZero.cpp,162
+namespace stk 15,438
+OneZero :: OneZero(stk::OneZero17,455
+OneZero :: ~OneZero(25,577
+void OneZero :: setZero(29,610
+void OneZero :: setCoefficients(40,854
+
+PRCRev.cpp,190
+namespace stk 20,580
+PRCRev :: PRCRev(stk::PRCRev22,597
+void PRCRev :: clear(55,1443
+void PRCRev :: setT60(65,1633
+StkFrames& PRCRev :: tick(71,1874
+StkFrames& PRCRev :: tick(91,2416
+
+PercFlut.cpp,168
+namespace stk 31,814
+PercFlut :: PercFlut(stk::PercFlut33,831
+PercFlut :: ~PercFlut(59,1690
+void PercFlut :: setFrequency(63,1725
+void PercFlut :: noteOn(68,1816
+
+Phonemes.cpp,356
+namespace stk 16,400
+Phonemes :: Phonemes(stk::Phonemes209,6048
+Phonemes :: ~Phonemes(213,6080
+const char *Phonemes :: name(217,6113
+StkFloat Phonemes :: voiceGain(228,6378
+StkFloat Phonemes :: noiseGain(239,6655
+StkFloat Phonemes :: formantFrequency(250,6932
+StkFloat Phonemes :: formantRadius(266,7422
+StkFloat Phonemes :: formantGain(282,7903
+
+PitShift.cpp,204
+namespace stk 15,351
+PitShift :: PitShift(stk::PitShift17,368
+void PitShift :: clear(32,718
+void PitShift :: setShift(39,821
+StkFrames& PitShift :: tick(53,1044
+StkFrames& PitShift :: tick(70,1534
+
+PluckTwo.cpp,368
+namespace stk 23,644
+PluckTwo :: PluckTwo(stk::PluckTwo25,661
+PluckTwo :: ~PluckTwo(44,1217
+void PluckTwo :: clear(48,1252
+void PluckTwo :: setFrequency(57,1394
+void PluckTwo :: setDetune(82,2199
+void PluckTwo :: setFreqAndDetune(94,2563
+void PluckTwo :: setPluckPosition(100,2698
+void PluckTwo :: setBaseLoopGain(115,3180
+void PluckTwo :: noteOff(122,3370
+
+Plucked.cpp,254
+namespace stk 22,617
+Plucked :: Plucked(stk::Plucked24,634
+Plucked :: ~Plucked(33,878
+void Plucked :: clear(37,911
+void Plucked :: setFrequency(44,1014
+void Plucked :: pluck(65,1607
+void Plucked :: noteOn(86,2296
+void Plucked :: noteOff(97,2608
+
+PoleZero.cpp,211
+namespace stk 16,474
+PoleZero :: PoleZero(stk::PoleZero18,491
+PoleZero :: ~PoleZero(29,697
+void PoleZero :: setCoefficients(33,726
+void PoleZero :: setAllpass(42,900
+void PoleZero :: setBlockZero(50,1049
+
+Resonate.cpp,276
+namespace stk 23,599
+Resonate :: Resonate(stk::Resonate25,616
+Resonate :: ~Resonate(35,839
+void Resonate :: noteOn(39,874
+void Resonate :: noteOff(50,1221
+void Resonate :: setResonance(60,1439
+void Resonate :: setNotch(83,2245
+void Resonate :: controlChange(102,2806
+
+Rhodey.cpp,154
+namespace stk 35,927
+Rhodey :: Rhodey(stk::Rhodey37,944
+Rhodey :: ~Rhodey(63,1695
+void Rhodey :: setFrequency(67,1726
+void Rhodey :: noteOn(75,1924
+
+RtAudio.cpp,6204
+const unsigned int RtApi::MAX_SAMPLE_RATES 50,2128
+const unsigned int RtApi::SAMPLE_RATES[RtApi::SAMPLE_RATES51,2177
+  #define MUTEX_INITIALIZE(57,2382
+  #define MUTEX_DESTROY(58,2441
+  #define MUTEX_LOCK(59,2496
+  #define MUTEX_UNLOCK(60,2550
+  #define MUTEX_INITIALIZE(63,2731
+  #define MUTEX_DESTROY(64,2789
+  #define MUTEX_LOCK(65,2844
+  #define MUTEX_UNLOCK(66,2896
+  #define MUTEX_INITIALIZE(68,2956
+  #define MUTEX_DESTROY(69,3015
+void RtAudio :: getCompiledApi(78,3229
+void RtAudio :: openRtApi(107,3894
+RtAudio :: RtAudio(139,4595
+RtAudio :: ~RtAudio(171,5707
+void RtAudio :: openStream(176,5759
+RtApi :: RtApi(195,6575
+RtApi :: ~RtApi(206,6807
+void RtApi :: openStream(211,6865
+unsigned int RtApi :: getDefaultInputDevice(289,9523
+unsigned int RtApi :: getDefaultOutputDevice(295,9646
+void RtApi :: closeStream(301,9770
+bool RtApi :: probeDeviceOpen(307,9859
+void RtApi :: tickStreamTime(316,10241
+long RtApi :: getStreamLatency(329,10624
+double RtApi :: getStreamTime(342,10930
+unsigned int RtApi :: getStreamSampleRate(365,11520
+struct CoreHandle 404,13089
+  CoreHandle(CoreHandle::CoreHandle417,13635
+RtApiCore :: RtApiCore(421,13808
+RtApiCore :: ~RtApiCore(426,13863
+unsigned int RtApiCore :: getDeviceCount(434,14102
+unsigned int RtApiCore :: getDefaultInputDevice(448,14532
+unsigned int RtApiCore :: getDefaultOutputDevice(481,15594
+RtAudio::DeviceInfo RtApiCore :: getDeviceInfo(514,16661
+OSStatus callbackHandler(710,24226
+OSStatus deviceListener(727,24894
+static bool hasProperty(744,25370
+bool RtApiCore :: probeDeviceOpen(750,25597
+void RtApiCore :: closeStream(1221,45056
+void RtApiCore :: startStream(1273,46738
+void RtApiCore :: stopStream(1318,48094
+void RtApiCore :: abortStream(1370,49672
+bool RtApiCore :: callbackEvent(1385,50003
+const char* RtApiCore :: getErrorCode(1645,59818
+struct JackHandle 1726,62468
+  JackHandle(JackHandle::JackHandle1735,62761
+void jackSilentError(1739,62900
+RtApiJack :: RtApiJack(1741,62942
+RtApiJack :: ~RtApiJack(1750,63130
+unsigned int RtApiJack :: getDeviceCount(1755,63216
+RtAudio::DeviceInfo RtApiJack :: getDeviceInfo(1788,64195
+int jackCallbackHandler(1877,67121
+void jackShutdown(1887,67389
+int jackXrun(1903,68075
+bool RtApiJack :: probeDeviceOpen(1913,68279
+void RtApiJack :: closeStream(2155,77022
+void RtApiJack :: startStream(2196,77970
+void RtApiJack :: stopStream(2274,80500
+void RtApiJack :: abortStream(2305,81249
+extern "C" void *jackStopStream(jackStopStream2325,81869
+bool RtApiJack :: callbackEvent(2335,82064
+AsioDrivers drivers;2480,87441
+ASIOCallbacks asioCallbacks;2481,87462
+ASIODriverInfo driverInfo;2482,87491
+CallbackInfo *asioCallbackInfo;asioCallbackInfo2483,87518
+bool asioXRun;2484,87550
+struct AsioHandle 2486,87566
+  AsioHandle(AsioHandle::AsioHandle2492,87786
+RtApiAsio :: RtApiAsio(2501,88108
+RtApiAsio :: ~RtApiAsio(2521,88786
+unsigned int RtApiAsio :: getDeviceCount(2527,88914
+RtAudio::DeviceInfo RtApiAsio :: getDeviceInfo(2532,89017
+void bufferSwitch(2643,93070
+void RtApiAsio :: saveDeviceInfo(2649,93224
+bool RtApiAsio :: probeDeviceOpen(2659,93448
+void RtApiAsio :: closeStream(3015,107360
+void RtApiAsio :: startStream(3055,108257
+void RtApiAsio :: stopStream(3086,109030
+void RtApiAsio :: abortStream(3126,110139
+bool RtApiAsio :: callbackEvent(3144,110736
+void sampleRateChanged(3294,115731
+long asioMessages(3314,116453
+static const char* getAsioErrorString(3384,119225
+  struct Messages 3386,119285
+#define WAVE_FORMAT_96M08 3426,120663
+#define WAVE_FORMAT_96S08 3427,120726
+#define WAVE_FORMAT_96M16 3428,120791
+#define WAVE_FORMAT_96S16 3429,120855
+#define MINIMUM_DEVICE_BUFFER_SIZE 3432,120929
+static inline DWORD dsPointerDifference(3438,121128
+static inline DWORD dsPointerBetween(3446,121378
+struct DsHandle 3456,121829
+  DsHandle(DsHandle::DsHandle3467,122215
+struct EnumInfo 3501,123412
+  EnumInfo(EnumInfo::EnumInfo3510,123563
+RtApiDs :: RtApiDs(3514,123663
+RtApiDs :: ~RtApiDs(3523,123930
+unsigned int RtApiDs :: getDefaultInputDevice(3529,124072
+unsigned int RtApiDs :: getDefaultOutputDevice(3556,125007
+unsigned int RtApiDs :: getDeviceCount(3573,125564
+RtAudio::DeviceInfo RtApiDs :: getDeviceInfo(3596,126368
+bool RtApiDs :: probeDeviceOpen(3763,133437
+void RtApiDs :: closeStream(4261,153107
+void RtApiDs :: startStream(4315,154605
+void RtApiDs :: stopStream(4383,156844
+void RtApiDs :: abortStream(4489,160401
+void RtApiDs :: callbackEvent(4504,160718
+extern "C" unsigned __stdcall callbackHandler(4914,177442
+std::string convertTChar(4930,177756
+static BOOL CALLBACK deviceQueryCallback(4947,178181
+static char* getErrorString(4996,179479
+struct AlsaHandle 5060,180771
+  AlsaHandle(AlsaHandle::AlsaHandle5066,180881
+RtApiAlsa :: RtApiAlsa(5072,181016
+RtApiAlsa :: ~RtApiAlsa(5077,181071
+unsigned int RtApiAlsa :: getDeviceCount(5082,181157
+RtAudio::DeviceInfo RtApiAlsa :: getDeviceInfo(5122,182242
+void RtApiAlsa :: saveDeviceInfo(5383,191479
+bool RtApiAlsa :: probeDeviceOpen(5393,191703
+void RtApiAlsa :: closeStream(5890,209938
+void RtApiAlsa :: startStream(5938,211302
+void RtApiAlsa :: stopStream(5990,212848
+void RtApiAlsa :: abortStream(6038,214205
+void RtApiAlsa :: callbackEvent(6083,215478
+extern "C" void *alsaCallbackHandler(alsaCallbackHandler6267,221711
+struct OssHandle 6299,222401
+  OssHandle(OssHandle::OssHandle6305,222512
+RtApiOss :: RtApiOss(6309,222612
+RtApiOss :: ~RtApiOss(6314,222665
+unsigned int RtApiOss :: getDeviceCount(6319,222749
+RtAudio::DeviceInfo RtApiOss :: getDeviceInfo(6340,223304
+bool RtApiOss :: probeDeviceOpen(6448,226735
+void RtApiOss :: closeStream(6882,241820
+void RtApiOss :: startStream(6930,243099
+void RtApiOss :: stopStream(6952,243613
+void RtApiOss :: abortStream(7024,245774
+void RtApiOss :: callbackEvent(7070,247151
+extern "C" void *ossCallbackHandler(ossCallbackHandler7202,251372
+void RtApi :: error(7228,252014
+void RtApi :: verifyStream(7237,252267
+void RtApi :: clearStreamInfo(7245,252432
+unsigned int RtApi :: formatBytes(7281,253538
+void RtApi :: setConvertInfo(7299,253976
+void RtApi :: convertBuffer(7379,257161
+void RtApi :: byteSwapBuffer(7816,272558
+
+RtMidi.cpp,3380
+RtMidi :: RtMidi(47,2043
+void RtMidi :: error(52,2106
+RtMidiIn :: RtMidiIn(72,2660
+void RtMidiIn :: setCallback(77,2763
+void RtMidiIn :: cancelCallback(96,3271
+void RtMidiIn :: setQueueSizeLimit(109,3567
+void RtMidiIn :: ignoreTypes(114,3670
+double RtMidiIn :: getMessage(122,3934
+RtMidiOut :: RtMidiOut(147,4749
+struct CoreMidiData 172,5474
+void midiInputCallback(185,5831
+void RtMidiIn :: initialize(319,10766
+void RtMidiIn :: openPort(337,11394
+void RtMidiIn :: openVirtualPort(393,13284
+void RtMidiIn :: closePort(411,14006
+RtMidiIn :: ~RtMidiIn(420,14196
+unsigned int RtMidiIn :: getPortCount(432,14471
+CFStringRef EndpointName(439,14655
+static CFStringRef ConnectedEndpointName(509,16835
+std::string RtMidiIn :: getPortName(561,18763
+unsigned int RtMidiOut :: getPortCount(590,19682
+std::string RtMidiOut :: getPortName(595,19768
+void RtMidiOut :: initialize(617,20458
+void RtMidiOut :: openPort(634,21050
+void RtMidiOut :: closePort(681,22681
+void RtMidiOut :: openVirtualPort(690,22872
+RtMidiOut :: ~RtMidiOut(714,23683
+void RtMidiOut :: sendMessage(726,23960
+struct AlsaMidiData 815,27023
+#define PORT_TYPE(827,27322
+extern "C" void *alsaMidiHandler(alsaMidiHandler834,27620
+void RtMidiIn :: initialize(991,32948
+unsigned int portInfo(1025,34137
+void RtMidiIn :: openPort(1054,35137
+void RtMidiIn :: openVirtualPort(1145,38481
+void RtMidiIn :: closePort(1197,40329
+RtMidiIn :: ~RtMidiIn(1212,40762
+unsigned int RtMidiIn :: getPortCount(1233,41264
+std::string RtMidiIn :: getPortName(1242,41532
+unsigned int RtMidiOut :: getPortCount(1272,42600
+std::string RtMidiOut :: getPortName(1281,42871
+void RtMidiOut :: initialize(1306,43735
+void RtMidiOut :: openPort(1342,44917
+void RtMidiOut :: closePort(1397,46982
+void RtMidiOut :: openVirtualPort(1407,47256
+RtMidiOut :: ~RtMidiOut(1422,47824
+void RtMidiOut :: sendMessage(1436,48205
+struct IrixMidiData 1505,50594
+extern "C" void *irixMidiHandler(irixMidiHandler1515,50850
+void RtMidiIn :: initialize(1634,54759
+void RtMidiIn :: openPort(1647,55231
+void RtMidiIn :: openVirtualPort(1696,56763
+void RtMidiIn :: closePort(1703,57005
+RtMidiIn :: ~RtMidiIn(1716,57298
+unsigned int RtMidiIn :: getPortCount(1726,57473
+std::string RtMidiIn :: getPortName(1733,57596
+unsigned int RtMidiOut :: getPortCount(1753,58209
+std::string RtMidiOut :: getPortName(1760,58333
+void RtMidiOut :: initialize(1775,58748
+void RtMidiOut :: openPort(1787,59183
+void RtMidiOut :: closePort(1820,60189
+void RtMidiOut :: openVirtualPort(1829,60376
+RtMidiOut :: ~RtMidiOut(1836,60620
+void RtMidiOut :: sendMessage(1846,60797
+struct WinMidiData 1902,62441
+#define  RT_SYSEX_BUFFER_SIZE 1910,62651
+static void CALLBACK midiInputCallback(1917,62888
+void RtMidiIn :: initialize(2008,66640
+void RtMidiIn :: openPort(2025,67284
+void RtMidiIn :: openVirtualPort(2088,69563
+void RtMidiIn :: closePort(2095,69817
+RtMidiIn :: ~RtMidiIn(2116,70473
+unsigned int RtMidiIn :: getPortCount(2126,70646
+std::string RtMidiIn :: getPortName(2131,70720
+unsigned int RtMidiOut :: getPortCount(2160,71722
+std::string RtMidiOut :: getPortName(2165,71798
+void RtMidiOut :: initialize(2189,72604
+void RtMidiOut :: openPort(2204,73138
+void RtMidiOut :: closePort(2239,74287
+void RtMidiOut :: openVirtualPort(2249,74515
+RtMidiOut :: ~RtMidiOut(2256,74771
+void RtMidiOut :: sendMessage(2266,74946
+
+RtWvIn.cpp,269
+namespace stk 25,935
+int read(stk::read28,1032
+void RtWvIn :: fillBuffer(37,1415
+RtWvIn :: RtWvIn(73,2401
+RtWvIn :: ~RtWvIn(97,3280
+void RtWvIn :: start(103,3365
+void RtWvIn :: stop(111,3463
+StkFloat RtWvIn :: tick(120,3635
+StkFrames& RtWvIn :: tick(148,4351
+
+RtWvOut.cpp,410
+namespace stk 24,898
+enum { RUNNING,stk::RUNNING27,943
+enum { RUNNING, EMPTYING,stk::EMPTYING27,943
+enum { RUNNING, EMPTYING, FINISHED stk::FINISHED27,943
+int write(stk::write30,1064
+int RtWvOut :: readBuffer(39,1461
+RtWvOut :: RtWvOut(93,2911
+RtWvOut :: ~RtWvOut(121,3948
+void RtWvOut :: start(129,4184
+void RtWvOut :: stop(137,4289
+void RtWvOut :: tick(145,4392
+void RtWvOut :: tick(168,4982
+
+Sampler.cpp,184
+namespace stk 14,402
+Sampler :: Sampler(stk::Sampler16,419
+Sampler :: ~Sampler(25,606
+void Sampler :: keyOn(32,769
+void Sampler :: keyOff(43,954
+void Sampler :: noteOff(48,1008
+
+Saxofony.cpp,400
+namespace stk 41,1379
+Saxofony :: Saxofony(stk::Saxofony43,1396
+Saxofony :: ~Saxofony(63,1965
+void Saxofony :: clear(67,2000
+void Saxofony :: setFrequency(74,2099
+void Saxofony :: setBlowPosition(91,2614
+void Saxofony :: startBlowing(106,3021
+void Saxofony :: stopBlowing(112,3158
+void Saxofony :: noteOn(118,3268
+void Saxofony :: noteOff(130,3659
+void Saxofony :: controlChange(140,3900
+
+Shakers.cpp,7013
+namespace stk 60,1673
+int my_random(stk::my_random62,1690
+StkFloat float_random(68,1837
+StkFloat noise_tick(74,2004
+const StkFloat MARA_SOUND_DECAY 82,2196
+const StkFloat MARA_SYSTEM_DECAY 83,2236
+const StkFloat MARA_GAIN 84,2278
+const StkFloat MARA_NUM_BEANS 85,2311
+const StkFloat MARA_CENTER_FREQ 86,2347
+const StkFloat MARA_RESON 87,2389
+const StkFloat SEKE_SOUND_DECAY 90,2434
+const StkFloat SEKE_SYSTEM_DECAY 91,2474
+const StkFloat SEKE_GAIN 92,2516
+const StkFloat SEKE_NUM_BEANS 93,2549
+const StkFloat SEKE_CENTER_FREQ 94,2585
+const StkFloat SEKE_RESON 95,2627
+const StkFloat SANDPAPR_SOUND_DECAY 98,2674
+const StkFloat SANDPAPR_SYSTEM_DECAY 99,2719
+const StkFloat SANDPAPR_GAIN 100,2765
+const StkFloat SANDPAPR_NUM_GRAINS 101,2801
+const StkFloat SANDPAPR_CENTER_FREQ 102,2843
+const StkFloat SANDPAPR_RESON 103,2889
+const StkFloat CABA_SOUND_DECAY 106,2937
+const StkFloat CABA_SYSTEM_DECAY 107,2977
+const StkFloat CABA_GAIN 108,3019
+const StkFloat CABA_NUM_BEADS 109,3052
+const StkFloat CABA_CENTER_FREQ 110,3089
+const StkFloat CABA_RESON 111,3131
+const StkFloat BAMB_SOUND_DECAY 114,3187
+const StkFloat BAMB_SYSTEM_DECAY 115,3227
+const StkFloat BAMB_GAIN 116,3270
+const StkFloat BAMB_NUM_TUBES 117,3302
+const StkFloat BAMB_CENTER_FREQ0 118,3340
+const StkFloat BAMB_CENTER_FREQ1 119,3383
+const StkFloat BAMB_CENTER_FREQ2 120,3432
+const StkFloat BAMB_RESON	121,3481
+const StkFloat TBAMB_SOUND_DECAY 124,3555
+const StkFloat TBAMB_SYSTEM_DECAY 125,3596
+const StkFloat TBAMB_GAIN 126,3640
+const StkFloat TBAMB_NUM_TUBES 127,3673
+const StkFloat TBAMB_CENTER_FREQ0 128,3712
+const StkFloat TBAMB_CENTER_FREQ1 129,3756
+const StkFloat TBAMB_CENTER_FREQ2 130,3800
+const StkFloat TBAMB_CENTER_FREQ3 131,3844
+const StkFloat TBAMB_CENTER_FREQ4 132,3888
+const StkFloat TBAMB_CENTER_FREQ5 133,3932
+const StkFloat TBAMB_CENTER_FREQ6 134,3976
+const StkFloat TBAMB_RESON 135,4020
+const StkFloat WUTR_SOUND_DECAY 138,4072
+const StkFloat WUTR_SYSTEM_DECAY 139,4112
+const StkFloat WUTR_GAIN 140,4154
+const StkFloat WUTR_NUM_SOURCES 141,4186
+const StkFloat WUTR_CENTER_FREQ0 142,4224
+const StkFloat WUTR_CENTER_FREQ1 143,4266
+const StkFloat WUTR_CENTER_FREQ2 144,4308
+const StkFloat WUTR_RESON 145,4350
+const StkFloat WUTR_FREQ_SWEEP 146,4386
+const StkFloat TAMB_SOUND_DECAY 149,4442
+const StkFloat TAMB_SYSTEM_DECAY 150,4482
+const StkFloat TAMB_GAIN 151,4525
+const StkFloat TAMB_NUM_TIMBRELS 152,4557
+const StkFloat TAMB_SHELL_FREQ 153,4596
+const StkFloat TAMB_SHELL_GAIN 154,4635
+const StkFloat TAMB_SHELL_RESON 155,4673
+const StkFloat TAMB_CYMB_FREQ1 156,4713
+const StkFloat TAMB_CYMB_FREQ2 157,4752
+const StkFloat TAMB_CYMB_RESON 158,4791
+const StkFloat SLEI_SOUND_DECAY 161,4846
+const StkFloat SLEI_SYSTEM_DECAY 162,4886
+const StkFloat SLEI_GAIN 163,4929
+const StkFloat SLEI_NUM_BELLS 164,4961
+const StkFloat SLEI_CYMB_FREQ0 165,4997
+const StkFloat SLEI_CYMB_FREQ1 166,5036
+const StkFloat SLEI_CYMB_FREQ2 167,5075
+const StkFloat SLEI_CYMB_FREQ3 168,5114
+const StkFloat SLEI_CYMB_FREQ4 169,5153
+const StkFloat SLEI_CYMB_RESON 170,5192
+const StkFloat GUIR_SOUND_DECAY 173,5241
+const StkFloat GUIR_GAIN 174,5281
+const StkFloat GUIR_NUM_PARTS 175,5314
+const StkFloat GUIR_GOURD_FREQ 176,5351
+const StkFloat GUIR_GOURD_RESON 177,5392
+const StkFloat GUIR_GOURD_FREQ2 178,5432
+const StkFloat GUIR_GOURD_RESON2 179,5474
+const StkFloat WRENCH_SOUND_DECAY 182,5526
+const StkFloat WRENCH_GAIN 183,5568
+const StkFloat WRENCH_NUM_PARTS 184,5600
+const StkFloat WRENCH_FREQ 185,5639
+const StkFloat WRENCH_RESON 186,5676
+const StkFloat WRENCH_FREQ2 187,5712
+const StkFloat WRENCH_RESON2 188,5750
+const StkFloat COKECAN_SOUND_DECAY 191,5800
+const StkFloat COKECAN_SYSTEM_DECAY 192,5843
+const StkFloat COKECAN_GAIN 193,5888
+const StkFloat COKECAN_NUM_PARTS 194,5923
+const StkFloat COKECAN_HELMFREQ 195,5962
+const StkFloat COKECAN_HELM_RES 196,6001
+const StkFloat COKECAN_METLFREQ0 197,6041
+const StkFloat COKECAN_METLFREQ1 198,6082
+const StkFloat COKECAN_METLFREQ2 199,6123
+const StkFloat COKECAN_METLFREQ3 200,6164
+const StkFloat COKECAN_METL_RES 201,6205
+const StkFloat STIX1_SOUND_DECAY 207,6354
+const StkFloat STIX1_SYSTEM_DECAY 208,6395
+const StkFloat STIX1_GAIN 209,6438
+const StkFloat STIX1_NUM_BEANS 210,6472
+const StkFloat STIX1_CENTER_FREQ 211,6508
+const StkFloat STIX1_RESON 212,6551
+const StkFloat CRUNCH1_SOUND_DECAY 215,6597
+const StkFloat CRUNCH1_SYSTEM_DECAY 216,6640
+const StkFloat CRUNCH1_GAIN 217,6687
+const StkFloat CRUNCH1_NUM_BEADS 218,6723
+const StkFloat CRUNCH1_CENTER_FREQ 219,6761
+const StkFloat CRUNCH1_RESON 220,6805
+const StkFloat NEXTMUG_SOUND_DECAY 223,6854
+const StkFloat NEXTMUG_SYSTEM_DECAY 224,6897
+const StkFloat NEXTMUG_GAIN 225,6943
+const StkFloat NEXTMUG_NUM_PARTS 226,6978
+const StkFloat NEXTMUG_FREQ0 227,7016
+const StkFloat NEXTMUG_FREQ1 228,7053
+const StkFloat NEXTMUG_FREQ2 229,7090
+const StkFloat NEXTMUG_FREQ3 230,7127
+const StkFloat NEXTMUG_RES 231,7165
+const StkFloat PENNY_FREQ0 233,7202
+const StkFloat PENNY_FREQ1 234,7238
+const StkFloat PENNY_FREQ2 235,7273
+const StkFloat PENNY_RES 236,7308
+const StkFloat NICKEL_FREQ0 238,7345
+const StkFloat NICKEL_FREQ1 239,7381
+const StkFloat NICKEL_FREQ2 240,7417
+const StkFloat NICKEL_RES 241,7453
+const StkFloat DIME_FREQ0 243,7490
+const StkFloat DIME_FREQ1 244,7524
+const StkFloat DIME_FREQ2 245,7558
+const StkFloat DIME_RES 246,7592
+const StkFloat QUARTER_FREQ0 248,7627
+const StkFloat QUARTER_FREQ1 249,7664
+const StkFloat QUARTER_FREQ2 250,7701
+const StkFloat QUARTER_RES 251,7738
+const StkFloat FRANC_FREQ0 253,7776
+const StkFloat FRANC_FREQ1 254,7811
+const StkFloat FRANC_FREQ2 255,7847
+const StkFloat FRANC_RES 256,7882
+const StkFloat PESO_FREQ0 258,7918
+const StkFloat PESO_FREQ1 259,7952
+const StkFloat PESO_FREQ2 260,7986
+const StkFloat PESO_RES 261,8021
+const StkFloat BIGROCKS_SOUND_DECAY 264,8070
+const StkFloat BIGROCKS_SYSTEM_DECAY 265,8114
+const StkFloat BIGROCKS_GAIN 266,8161
+const StkFloat BIGROCKS_NUM_PARTS 267,8198
+const StkFloat BIGROCKS_FREQ 268,8238
+const StkFloat BIGROCKS_RES 269,8275
+const StkFloat LITLROCKS_SOUND_DECAY 272,8330
+const StkFloat LITLROCKS_SYSTEM_DECAY 273,8375
+const StkFloat LITLROCKS_GAIN 274,8424
+const StkFloat LITLROCKS_NUM_PARTS 275,8462
+const StkFloat LITLROCKS_FREQ 276,8505
+const StkFloat LITLROCKS_RES 277,8543
+Shakers :: Shakers(281,8614
+Shakers :: ~Shakers(320,9332
+const StkFloat MAX_SHAKE 324,9365
+char instrs[instrs326,9401
+int Shakers :: setupName(335,9702
+void Shakers :: setFinalZs(352,10051
+void Shakers :: setDecays(359,10199
+int Shakers :: setFreqAndReson(365,10323
+int Shakers :: setupNum(378,10681
+void Shakers :: noteOn(797,23950
+void Shakers :: noteOff(812,24541
+const StkFloat MIN_ENERGY 818,24668
+StkFloat Shakers :: tick(820,24702
+void Shakers :: controlChange(891,26973
+StkFloat Shakers :: wuter_tick(1001,31029
+StkFloat Shakers :: ratchet_tick(1072,33311
+StkFloat Shakers :: tbamb_tick(1098,34082
+
+Simple.cpp,282
+namespace stk 23,591
+Simple :: Simple(stk::Simple25,608
+Simple :: ~Simple(36,883
+void Simple :: keyOn(41,930
+void Simple :: keyOff(46,981
+void Simple :: noteOn(51,1034
+void Simple :: noteOff(62,1365
+void Simple :: setFrequency(72,1579
+void Simple :: controlChange(78,1719
+
+SineWave.cpp,320
+namespace stk 19,599
+SineWave :: SineWave(stk::SineWave23,647
+SineWave :: ~SineWave(36,965
+void SineWave :: sampleRateChanged(41,1032
+void SineWave :: reset(47,1192
+void SineWave :: setFrequency(53,1264
+void SineWave :: addTime(59,1418
+void SineWave :: addPhase(65,1520
+void SineWave :: addPhaseOffset(71,1652
+
+SingWave.cpp,135
+namespace stk 18,606
+SingWave :: SingWave(stk::SingWave20,624
+SingWave :: ~SingWave(39,1042
+void SingWave :: setFrequency(43,1071
+
+Sitar.cpp,236
+namespace stk 22,610
+Sitar :: Sitar(stk::Sitar24,627
+Sitar :: ~Sitar(39,1001
+void Sitar :: clear(43,1030
+void Sitar :: setFrequency(49,1108
+void Sitar :: pluck(65,1611
+void Sitar :: noteOn(70,1679
+void Sitar :: noteOff(82,2016
+
+Skini.cpp,308
+namespace stk 29,824
+Skini :: Skini(stk::Skini31,841
+Skini :: ~Skini(35,863
+bool Skini :: setFile(39,886
+long Skini :: nextMessage(57,1297
+void Skini :: tokenize(79,1828
+long Skini :: parseString(98,2582
+std::string Skini :: whatsThisType(194,5394
+std::string Skini :: whatsThisController(207,5650
+
+Socket.cpp,218
+namespace stk 14,371
+Socket :: Socket(stk::Socket16,388
+Socket :: ~Socket(22,441
+void Socket :: close(33,545
+void Socket :: setBlocking(48,789
+int Socket :: writeBuffer(66,1237
+int Socket :: readBuffer(72,1434
+
+Sphere.cpp,206
+namespace stk 15,335
+Vector3D* Sphere::getRelativePosition(stk::Sphere::getRelativePosition17,352
+StkFloat Sphere::getVelocity(25,630
+StkFloat Sphere::isInside(31,795
+void Sphere::addVelocity(43,1106
+
+StifKarp.cpp,435
+namespace stk 28,801
+StifKarp :: StifKarp(stk::StifKarp30,818
+StifKarp :: ~StifKarp(49,1319
+void StifKarp :: clear(53,1354
+void StifKarp :: setFrequency(60,1453
+void StifKarp :: setStretch(85,2128
+void StifKarp :: setPickupPosition(107,2744
+void StifKarp :: setBaseLoopGain(124,3363
+void StifKarp :: pluck(131,3564
+void StifKarp :: noteOn(153,4335
+void StifKarp :: noteOff(164,4649
+void StifKarp :: controlChange(185,5252
+
+Stk.cpp,786
+namespace stk 55,2550
+Stk :: Stk(stk::Stk69,3048
+Stk :: ~Stk(74,3107
+void Stk :: setSampleRate(78,3132
+void Stk :: sampleRateChanged(89,3389
+void Stk :: addSampleRateAlert(96,3618
+void Stk :: removeSampleRateAlert(104,3791
+void Stk :: setRawwavePath(114,4005
+void Stk :: swap16(124,4224
+void Stk :: swap32(134,4382
+void Stk :: swap64(150,4635
+void Stk :: sleep(184,5242
+void Stk :: handleError(193,5492
+void Stk :: handleError(199,5658
+void Stk :: handleError(205,5789
+StkFrames :: StkFrames(229,6372
+StkFrames :: StkFrames(249,6900
+StkFrames :: ~StkFrames(269,7510
+StkFrames :: StkFrames(274,7571
+StkFrames& StkFrames :: operator= operator=282,7779
+void StkFrames :: resize(292,8018
+void StkFrames :: resize(311,8527
+StkFloat StkFrames :: interpolate(318,8707
+
+TapDelay.cpp,177
+namespace stk 19,663
+TapDelay :: TapDelay(stk::TapDelay21,680
+TapDelay :: ~TapDelay(45,1436
+void TapDelay :: setMaximumDelay(49,1465
+void TapDelay :: setTapDelays(70,2061
+
+TcpClient.cpp,212
+namespace stk 29,1070
+TcpClient :: TcpClient(stk::TcpClient31,1087
+TcpClient :: ~TcpClient(48,1561
+int TcpClient :: connect(52,1598
+int TcpClient :: writeBuffer(92,2900
+int TcpClient :: readBuffer(98,3089
+
+TcpServer.cpp,211
+namespace stk 28,1059
+TcpServer :: TcpServer(stk::TcpServer30,1076
+TcpServer :: ~TcpServer(78,2547
+int TcpServer :: accept(82,2578
+int TcpServer :: writeBuffer(87,2656
+int TcpServer :: readBuffer(93,2844
+
+Thread.cpp,209
+namespace stk 25,846
+Thread :: Thread(stk::Thread27,863
+Thread :: ~Thread(32,902
+bool Thread :: start(36,927
+bool Thread :: cancel(58,1462
+bool Thread :: wait(75,1741
+void Thread :: testCancel(97,2160
+
+TubeBell.cpp,129
+namespace stk 35,929
+TubeBell :: TubeBell(stk::TubeBell37,946
+TubeBell :: ~TubeBell(64,1770
+void TubeBell :: noteOn(68,1805
+
+TwoPole.cpp,210
+namespace stk 16,448
+TwoPole :: TwoPole(stk::TwoPole18,465
+TwoPole :: ~TwoPole(30,662
+void TwoPole :: sampleRateChanged(35,727
+void TwoPole :: setResonance(43,980
+void TwoPole :: setCoefficients(56,1503
+
+TwoZero.cpp,206
+namespace stk 16,439
+TwoZero :: TwoZero(stk::TwoZero18,456
+TwoZero :: ~TwoZero(27,593
+void TwoZero :: sampleRateChanged(32,658
+void TwoZero :: setCoefficients(40,911
+void TwoZero :: setNotch(49,1084
+
+UdpSocket.cpp,299
+namespace stk 27,1039
+UdpSocket :: UdpSocket(stk::UdpSocket29,1056
+UdpSocket :: ~UdpSocket(65,2096
+void UdpSocket :: setDestination(69,2127
+void UdpSocket :: setAddress(75,2272
+int UdpSocket :: writeBuffer(89,2767
+int UdpSocket :: readBuffer(95,3024
+int UdpSocket :: writeBufferTo(101,3216
+
+VoicForm.cpp,358
+namespace stk 34,978
+VoicForm :: VoicForm(stk::VoicForm36,995
+VoicForm :: ~VoicForm(56,1493
+void VoicForm :: clear(61,1546
+void VoicForm :: setFrequency(70,1681
+bool VoicForm :: setPhoneme(82,1992
+void VoicForm :: setFilterSweepRate(111,3235
+void VoicForm :: quiet(122,3547
+void VoicForm :: noteOn(128,3635
+void VoicForm :: controlChange(135,3828
+
+Voicer.cpp,494
+namespace stk 29,1141
+Voicer :: Voicer(stk::Voicer31,1158
+void Voicer :: addInstrument(38,1308
+void Voicer :: removeInstrument(55,1843
+long Voicer :: noteOn(81,2655
+void Voicer :: noteOff(119,3844
+void Voicer :: noteOff(129,4172
+void Voicer :: setFrequency(140,4448
+void Voicer :: setFrequency(152,4836
+void Voicer :: pitchBend(165,5232
+void Voicer :: pitchBend(178,5625
+void Voicer :: controlChange(193,6034
+void Voicer :: controlChange(201,6263
+void Voicer :: silence(211,6508
+
+Whistle.cpp,403
+namespace stk 23,576
+Whistle :: Whistle(stk::Whistle38,896
+Whistle :: ~Whistle(72,1660
+void Whistle :: clear(79,1764
+void Whistle :: setFrequency(83,1799
+void Whistle :: startBlowing(95,2148
+void Whistle :: stopBlowing(101,2288
+void Whistle :: noteOn(107,2389
+void Whistle :: noteOff(117,2728
+int frameCount 127,2967
+StkFloat Whistle :: tick(129,2988
+void Whistle :: controlChange(222,6212
+
+Wurley.cpp,154
+namespace stk 35,918
+Wurley :: Wurley(stk::Wurley37,935
+Wurley :: ~Wurley(64,1725
+void Wurley :: setFrequency(68,1756
+void Wurley :: noteOn(77,2075

@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "mo_gfx.h"
 
+#import "WOGeometry.h"
+
+#import <vector>
+
 @interface WOLSystemRenderState : NSObject {
     //NSMutableArray* widthStack;
     GLfloat* widthStack;
@@ -37,8 +41,13 @@
     Vector3D origin;
     CGPoint offset;
     
-    float phase, env, freq, freq_offset;
+    float phase, env, freq;
     
+    GLuint vertexBuffer;
+    GLuint indexBuffer;
+    
+    BOOL growing;
+    int numIndices;
 }
 
 @property (nonatomic, retain) NSMutableArray* nodes;
@@ -50,12 +59,16 @@
 @property (nonatomic) Vector3D origin;
 @property (nonatomic) CGPoint offset;
 @property float env;
+@property float freq;
+@property BOOL growing;
 
 - (id) initWithMaxGeneration:(int)maxGen atPoint:(Vector3D)pos;
 - (void) advanceGeneration;
 - (void) tick;
 - (void) render;
 - (float) tickAudio;
+- (void) setAge:(float)age;
+- (void) generateVBO;
 
 @end
 
@@ -77,17 +90,18 @@
 - (NSMutableArray*) expandInLSystem:(WOLSystem*)lSystem isLastGeneration:(BOOL)lastGeneration;
 - (void) renderWithState:(WOLSystemRenderState*)state;
 - (void) setNewGrowthPercent:(float)percent;
+- (void) addToVerticesVector:(std::vector<Vertex>*)vertices andIndicesVector:(std::vector<GLushort>*)indices withRenderState:(WOLSystemRenderState*)state;
 
 @end
 
 // Fractal Plant from wikipedia: (http://en.wikipedia.org/wiki/L-system)
-@interface WOXNode : WONode {}
-@end
+//@interface WOXNode : WONode {}
+//@end
+
+//@interface WOFNode : WONode {}
+//@end
 
 @interface WOANode : WONode {}
-@end
-
-@interface WOFNode : WONode {}
 @end
 
 @interface WOLittleFNode : WONode {}

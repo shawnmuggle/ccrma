@@ -1,0 +1,73 @@
+/***************************************************/
+/*! \class MoogVCF
+  \brief STK MoogVCF filter
+
+  This class implements Tim Stilson's MoogVCF filter
+  that was used in SynthBuilder.
+
+  2007 Nick Porcaro
+*/
+#ifndef STK_MOOGVCF_H
+#define STK_MOOGVCF_H
+
+#include "Function.h"
+
+namespace stk {
+
+class MoogVCF : public Function
+{
+public:
+  //! Default constructor.
+  MoogVCF();
+  void clear();
+  StkFloat tick( StkFloat input );  // Not used for this filter
+  StkFloat tick(StkFloat input, StkFloat gain, StkFloat freq);
+  void getDefaultSeparationTable(StkFloat **ptr);
+  int defaultSeparationTableLen();
+  ~MoogVCF();
+
+protected:
+  StkFloat *table_;
+  int tableLength_;
+  StkFloat midPointIndex_;
+  StkFloat sfb_;
+  StkFloat s[4];
+};
+
+#define SATURATE(x) (UNITCLIP(x))
+#define CLAMP_ZERO(a) ((((a)<(StkFloat)1e-12)&&((a)>(StkFloat)-1e-12))?(StkFloat)0.0:(a))
+#define UNITCLIP(x) ((x) > 1.0 ? (1.0) : ((x) < -1.0 ? -1.0 :(x)))
+
+inline StkFloat MoogVCF :: tick( StkFloat input )
+{
+  printf ("Invalid call to MoogVCF::tick");
+  return 0;
+}
+
+inline StkFloat MoogVCF :: tick(StkFloat input, StkFloat gain, StkFloat freq)
+{
+  int j;
+  StkFloat A;
+  StkFloat tmp;
+  StkFloat pval;
+
+  A = sfb_;
+  pval = ((StkFloat)0.55)*(freq)-((StkFloat)0.45);
+  A = (StkFloat)0.25*(input - A);
+
+  for (j=0; j<4; j++) {
+    tmp = s[j];
+    A =  SATURATE(((StkFloat)1.538461538461538*((StkFloat)1.0+pval)*A) - pval*tmp);
+    s[j] = (StkFloat)CLAMP_ZERO(A);
+    A = SATURATE((StkFloat)0.3*tmp + A);
+  }
+  lastFrame_[0] = (StkFloat)A;
+  A *= gain;
+  sfb_ = (StkFloat)A;
+  return lastFrame_[0];
+}
+
+
+} // stk namespace
+
+#endif

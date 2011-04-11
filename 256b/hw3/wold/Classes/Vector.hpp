@@ -172,6 +172,10 @@ struct Vector3 {
         y /= v.y;
         z /= v.z;
     }
+    Vector3 operator-(void) const
+    {
+        return Vector3(-x, -y, -z);
+    }
     bool operator==(const Vector3& v) const
     {
         return x == v.x && y == v.y && z == v.z;

@@ -42,11 +42,11 @@
         eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
                                         [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
 
-        [WOGeometry generateDisk];
-        [WOGeometry generateFrustum];
-        
         renderer = [[ES1Renderer alloc] init];
-
+        
+        [WOGeometry generateDisk];
+        [WOGeometry generateFrustumVBO];
+        
         if (!renderer)
         {
             [self release];
@@ -86,7 +86,7 @@
         
         NSLog(@"WHIAT");
         
-        self.audio = [[WOAudio alloc] initWithState:self.state];
+        //self.audio = [[WOAudio alloc] initWithState:self.state];
     }
 
     return self;

@@ -49,10 +49,18 @@ struct Matrix3 {
         m.y.x = x.y; m.y.y = y.y; m.y.z = z.y;
         m.z.x = x.z; m.z.y = y.z; m.z.z = z.z;
         return m;
-    }
+    }    
     const T* Pointer() const
     {
         return &x.x;
+    }
+    Vector3<T> operator * (const Vector3<T>& b) const
+    {
+        Vector3<T> v;
+        v.x = x.x * b.x + x.y * b.y + x.z * b.z;
+        v.y = y.x * b.x + y.y * b.y + y.z * b.z;
+        v.z = z.x * b.x + z.y * b.y + z.z * b.z;
+        return v;
     }
     vec3 x;
     vec3 y;

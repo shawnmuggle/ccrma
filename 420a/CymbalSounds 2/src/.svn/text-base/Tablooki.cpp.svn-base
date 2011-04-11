@@ -1,0 +1,36 @@
+/***************************************************/
+/*! \class Tablooki
+  \brief STK Table Lookup
+
+  This class implements a interpolating table lookup
+  that was used in SynthBuilder.  It is assumed
+  the input data is between -1 and 1.
+
+  2007 Nick Porcaro
+*/
+/***************************************************/
+
+#include "Tablooki.h"
+#include <cmath>
+
+namespace stk {
+
+Tablooki :: Tablooki() : Function()
+{
+  table_ = 0;
+  tableLength_ = 0;
+}
+
+Tablooki :: ~Tablooki()
+{
+}
+
+void Tablooki :: setTable(StkFloat *aTable, int aLength)
+{
+  // Caller's responsibility to manage the memory of aTable.
+  table_ = aTable;
+  tableLength_ = aLength;
+  midPointIndex_ = (StkFloat)(tableLength_ - 1)/(StkFloat)2.0;
+}
+
+} // stk namespace
