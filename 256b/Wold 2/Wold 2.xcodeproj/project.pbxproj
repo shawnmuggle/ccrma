@@ -636,7 +636,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ge Wang (AR5E675E2R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Rotondo (W9AD566TJP)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 1;
@@ -650,7 +650,7 @@
 					"\"$(SRCROOT)/stk-4.4.2/src\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6A56C621-8243-4CDB-8EF9-A51D0D1D66DD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD5A620B-236A-4D9C-8580-19AAEFA890F2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -659,6 +659,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Rotondo (W9AD566TJP)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wold 2/Wold_2-Prefix.pch";
@@ -670,6 +671,7 @@
 					"\"$(SRCROOT)/stk-4.4.2/src\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD5A620B-236A-4D9C-8580-19AAEFA890F2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

@@ -154,6 +154,8 @@
                        [plist objectForKey:@"sound3"],
                        [plist objectForKey:@"sound4"], nil] retain];
         
+        self.layer.shouldRasterize = YES;
+        
         for (NSDictionary* treePlist in [self getTreesFromServer]) {
             [self addTreeAtAngle:[[treePlist valueForKey:@"angle"] floatValue] treeType:[[treePlist valueForKey:@"type"] intValue]];
             

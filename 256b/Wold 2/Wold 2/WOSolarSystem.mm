@@ -36,7 +36,7 @@
         // TODO: randomize distances, angles
         // TODO: draw orbit lines
         
-        bool createNewSystem = NO;
+        bool createNewSystem = YES;
         NSArray* planetPlists;
         if (!createNewSystem) {
             planetPlists = [[self getPlanetsFromServer] retain];

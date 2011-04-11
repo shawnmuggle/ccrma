@@ -108,6 +108,7 @@
 
 - (void) stopGrowing
 {
+    self.lSystem.layer.shouldRasterize = YES;
     self.lSystem.growing = NO;
 }
 

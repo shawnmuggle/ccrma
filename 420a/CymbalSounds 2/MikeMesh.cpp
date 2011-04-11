@@ -19,124 +19,138 @@ MikeMesh::MikeMesh()
     
     numTicks = 0;
     
+    // must be at least 3x3
     meshWidth = 30;
     meshHeight = 30;
     junctions.resize(meshWidth * meshHeight);
     
     Junction* j;
     APNLEdge* e;
-
+    
     // Row by row...
     for (int y = 0; y < meshHeight; y++) {
         for (int x = 0; x < meshWidth; x++) {
-            j = new Junction();
-            
-            junctions[y * meshWidth + x] = j;
-            
-            if (x == 0) {
-                e = new APNLEdge();
-                e->left = true;
-                reflections.push_back(e);
-                
-                j->left = new MikeString();
-                e->setString(j->left);
-                
-                
-                j->left->x = x;
-                j->left->y = y;
-                j->left->label = "left";
-                strings.push_back(j->left);
-                
 
-                j->left->setAInput(e);
-                j->left->setBInput(j);
-            }
-            if (y == 0) {
-                e = new APNLEdge();
-                e->top = true;
-                reflections.push_back(e);
+            // If we're at the center, put edges on the surrounding junctions
+            if (x == meshWidth / 2 && y == meshHeight / 2) {
                 
-                j->top = new MikeString();
-                e->setString(j->top);
-
-                
-                j->top->x = x;
-                j->top->y = y;
-                j->top->label = "top";
-                strings.push_back(j->top);
-                
-                
-                j->top->setAInput(e);
-                j->top->setBInput(j);
-            }
-            if (x == meshWidth - 1) {
                 e = new APNLEdge();
                 e->right = true;
                 reflections.push_back(e);
+                junctions[y * meshWidth + x - 1]->right = 
                 
-                j->right = new MikeString();
-                e->setString(j->right);
+            } else {
+                j = new Junction();
+                junctions[y * meshWidth + x] = j;
+        
+                // If this is on the edge:
+                if (x == 0) {
+                    e = new APNLEdge();
+                    e->left = true;
+                    reflections.push_back(e);
+                    
+                    j->left = new MikeString();
+                    e->setString(j->left);
+                    
+                    
+                    j->left->x = x;
+                    j->left->y = y;
+                    j->left->label = "left";
+                    strings.push_back(j->left);
+                    
+                    
+                    j->left->setAInput(e);
+                    j->left->setBInput(j);
+                }
+                if (y == 0) {
+                    e = new APNLEdge();
+                    e->top = true;
+                    reflections.push_back(e);
+                    
+                    j->top = new MikeString();
+                    e->setString(j->top);
+                    
+                    
+                    j->top->x = x;
+                    j->top->y = y;
+                    j->top->label = "top";
+                    strings.push_back(j->top);
+                    
+                    
+                    j->top->setAInput(e);
+                    j->top->setBInput(j);
+                }
+                if (x == meshWidth - 1) {
+                    e = new APNLEdge();
+                    e->right = true;
+                    reflections.push_back(e);
+                    
+                    j->right = new MikeString();
+                    e->setString(j->right);
+                    
+                    
+                    j->right->x = x;
+                    j->right->y = y;
+                    j->right->label = "right";
+                    strings.push_back(j->right);
+                    
+                    
+                    j->right->setAInput(j);
+                    j->right->setBInput(e);
+                }
+                if (y == meshHeight - 1) {
+                    e = new APNLEdge();
+                    e->bottom = true;
+                    reflections.push_back(e);
+                    
+                    j->bottom = new MikeString();
+                    e->setString(j->bottom);
+                    
+                    
+                    j->bottom->x = x;
+                    j->bottom->y = y;
+                    j->bottom->label = "bottom";
+                    strings.push_back(j->bottom);
+                    
+                    
+                    j->bottom->setAInput(j);
+                    j->bottom->setBInput(e);
+                }
 
                 
-                j->right->x = x;
-                j->right->y = y;
-                j->right->label = "right";
-                strings.push_back(j->right);
+                // If this isn't on the edge:
+                if (x > 0) {
+                    Junction* leftJunction = junctions[y * meshWidth + x - 1];
+                    j->left = leftJunction->right;
+                    j->left->setBInput(j);
+                }
+                if (x < meshWidth - 1) {
+                    MikeString* rightString = new MikeString();
+                    j->right = rightString;
+                    rightString->setAInput(j);
+                    
+                    rightString->x = x;
+                    rightString->y = y;
+                    rightString->label = "right";
+                    strings.push_back(rightString);
+                    
+                }
                 
-                
-                j->right->setAInput(j);
-                j->right->setBInput(e);
-            }
-            if (y == meshHeight - 1) {
-                e = new APNLEdge();
-                e->bottom = true;
-                reflections.push_back(e);
-                
-                j->bottom = new MikeString();
-                e->setString(j->bottom);
-                
-                
-                j->bottom->x = x;
-                j->bottom->y = y;
-                j->bottom->label = "bottom";
-                strings.push_back(j->bottom);
-                
-
-                j->bottom->setAInput(j);
-                j->bottom->setBInput(e);
-            }
-            
-            if (x > 0) {
-                Junction* leftJunction = junctions[y * meshWidth + x - 1];
-                j->left = leftJunction->right;
-                j->left->setBInput(j);
-            }
-            if (x < meshWidth - 1) {
-                MikeString* rightString = new MikeString();
-                j->right = rightString;
-                rightString->setAInput(j);
-                
-                rightString->x = x;
-                rightString->y = y;
-                rightString->label = "right";
-                strings.push_back(rightString);
-                
-            }
-
-            if (y > 0) {
-                Junction* topJunction = junctions[(y - 1) * meshWidth + x];
-                j->top = topJunction->bottom;
-                j->top->setBInput(j);
-            }
-            if (y < meshHeight - 1) {                
-                MikeString* bottomString = new MikeString();
-                j->bottom = bottomString;
-                bottomString->setAInput(j);
-                
-                bottomString->x = x;
-                bottomString->y = y;
-                bottomString->label = "bottom";
-                strings.push_back(bottomString);
+                if (y > 0) {
+                    Junction* topJunction = junctions[(y - 1) * meshWidth + x];
+                    j->top = topJunction->bottom;
+                    j->top->setBInput(j);
+                }
+                if (y < meshHeight - 1) {                
+                    MikeString* bottomString = new MikeString();
+                    j->bottom = bottomString;
+                    bottomString->setAInput(j);
+                    
+                    bottomString->x = x;
+                    bottomString->y = y;
+                    bottomString->label = "bottom";
+                    strings.push_back(bottomString);
+                }
             }
         }
     }
