@@ -1,0 +1,9 @@
+function [resp] = golay_response (n)
+[a b] = golay(n);
+a_padded = [a zeros(1, 1024)];
+b_padded = [b zeros(1, 1024)];
+a_resp = hmeasure(a_padded);
+b_resp = hmeasure(b_padded);
+resp = fftfilt(flipud(a'), a_resp) + fftfilt(flipud(b'), b_resp);
+resp = resp / (2.0 * 2^n);
+resp = resp(2^n:end);
