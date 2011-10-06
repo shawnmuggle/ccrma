@@ -192,6 +192,9 @@ private function UpdateFunction () {
     // Apply gravity and jumping force
     velocity = ApplyGravityAndJumping (velocity);
     
+    transform.SendMessage("sendVelocity", velocity.magnitude * 10);
+    //oscScript.sendVelocity(velocity.magnitude);
+
     // Moving platform support
     var moveDistance : Vector3 = Vector3.zero;
     if (MoveWithPlatform()) {
@@ -430,7 +433,9 @@ private function ApplyGravityAndJumping (velocity : Vector3) {
 	    jumping.lastStartTime = Time.time;
 	    jumping.lastButtonDownTime = -100;
 	    jumping.holdingJumpButton = true;
-	    
+	
+	    SendMessage("startJumping");
+    
 	    // Calculate the jumping direction
 	    if (TooSteep())
 		jumping.jumpDir = Vector3.Slerp(Vector3.up, groundNormal, jumping.steepPerpAmount);
@@ -468,7 +473,7 @@ function OnControllerColliderHit (hit : ControllerColliderHit) {
 	if (script != null) {
 	    standingOn = hit.collider.transform;
 	    script.FlashWhite();
-	    transform.SendMessage("sendCollision", standingOn);
+	    //transform.SendMessage("sendCollision", standingOn);
 	}
     }
 

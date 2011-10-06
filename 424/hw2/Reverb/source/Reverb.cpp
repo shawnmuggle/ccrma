@@ -13,6 +13,8 @@
 #include <math.h>
 #include <stdlib.h>
 
+#define pi 3.14159265358979
+
 //-------------------------------------------------------------------------------------------------------
 AudioEffect* createEffectInstance (audioMasterCallback audioMaster)
 {
@@ -35,9 +37,9 @@ Reverb::Reverb (audioMasterCallback audioMaster)
     
 	the_sample_rate=getSampleRate();
 	pcoefs = coefs;									// pointer for filter coef assignment
-	t60low=3.5;				// time for low freqs to decay 60dB
+	t60low=2.0;				// time for low freqs to decay 60dB
 	t60high=0.5;			// time for high freqs to decay 60dB
-	tFreq=6700.0;			// transition freq between low and high freqs
+	tFreq=1500.0;			// transition freq between low and high freqs
 	WetDryKnob=(float)0.083;		// output mix
 	T60LowKnob=(float)0.35;		// knob for low freq T60
 	T60HighKnob=(float)0.05;		// knob for high freq T60
@@ -252,9 +254,30 @@ void Reverb::designShelf(double* pcofs, long theLength, double transition, doubl
 	//  and the zero. Explain what you are doing for full
 	//  credit.
     
-	b0 = 0.9;	// Dummy bypass filter, gain = 0.9
-	b1 = 0.9;	// at all frequencies
-	a1 = 1.0;
+    
+    // NOTE: I am setting the transition frequency of the analog prototype to 1, and then including the actual transition frequency
+    // in the bilinear transform so that the analog frequency is mapped exactly to a digital frequency with zero warping at the 
+    // transition frequency.
+    
+    
+//	b0 = 0.9;	// Dummy bypass filter, gain = 0.9
+//	b1 = 0.9;	// at all frequencies
+//	a1 = 1.0;
+    
+    //double rho = -transition / (the_sample_rate / 2.0);
+    
+    // from jos: https://ccrma.stanford.edu/~jos/st/Audio_Decay_Time_T60.html
+    double tauHigh = t60high / 6.91;
+    double tauLow = t60low / 6.91;
+    double l_pi = exp(-roundTrip / tauHigh);
+    double l_0 = exp(-roundTrip / tauLow);
+
+    //double rho = transition * 2.0 * pi;
+    double rho = 1;
+        
+    b0 = l_0;
+    b1 = l_pi/rho;
+    a1 = 1 / rho;
     
 	// Bilinear transform to make discrete-time filter.
 	// This version of the bilinear transform uses the
@@ -264,10 +287,20 @@ void Reverb::designShelf(double* pcofs, long theLength, double transition, doubl
 	// discrete- time frequencies at the transition frequency
 	// of the filter.
     
-	norm=1+a1*(2*the_sample_rate);			// do bilinear transform
-	b0z=(b0+b1*(2*the_sample_rate))/norm;	// (bilinear)
-	b1z=(b0-b1*(2*the_sample_rate))/norm;	// (bilinear)
-	a1z=(1-a1*(2*the_sample_rate))/norm;	// (bilinear)
+//	norm=1+a1*(2*the_sample_rate);			// do bilinear transform
+//	b0z=(b0+b1*(2*the_sample_rate))/norm;	// (bilinear)
+//	b1z=(b0-b1*(2*the_sample_rate))/norm;	// (bilinear)
+//	a1z=(1-a1*(2*the_sample_rate))/norm;	// (bilinear)
+    
+    double T = 1.0 / the_sample_rate;
+    double wcT = transition * 2 * pi * T;
+    double c = cos(wcT / 2) / sin(wcT / 2);
+
+//    double c = 2 * the_sample_rate;
+    norm = a1 * c + 1;
+    b0z = (b1 * c + b0) / norm;
+    b1z = (-b1 * c + b0) / norm;
+    a1z = (-a1 * c + 1) / norm;
     
 	*(pcoefs) = b0z;						// return coefs
 	*(pcoefs+1) = b1z;

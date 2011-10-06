@@ -110,7 +110,7 @@ using UnityEngine;
             return;
       
         Sender.Send(packet, length, remoteHostName, remotePort);
-        Debug.Log("osc message sent to "+remoteHostName+" port "+remotePort+" len="+length);
+        //Debug.Log("osc message sent to "+remoteHostName+" port "+remotePort+" len="+length);
     }
 
     /// <summary>

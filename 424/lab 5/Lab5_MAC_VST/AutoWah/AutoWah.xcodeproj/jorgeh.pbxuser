@@ -1,0 +1,103 @@
+// !$*UTF8*$!
+{
+	C1668E811382F54900B65441 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C1D8AE1513639EDE004F693A /* AutoWah.h */;
+		name = "AutoWah.h: 7";
+		rLen = 0;
+		rLoc = 227;
+		rType = 0;
+		vrLen = 919;
+		vrLoc = 0;
+	};
+	C1668E821382F54900B65441 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C1D8AE1413639EDE004F693A /* AutoWah.cpp */;
+		name = "AutoWah.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1008;
+		vrLoc = 11196;
+	};
+	C1668E831382F54900B65441 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C1D8AE1413639EDE004F693A /* AutoWah.cpp */;
+		name = "AutoWah.cpp: 7";
+		rLen = 0;
+		rLoc = 229;
+		rType = 0;
+		vrLen = 1475;
+		vrLoc = 0;
+	};
+	C169CE101382126E00B1444A /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	C169CE111382126E00B1444A /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	C1D8AD4213639978004F693A /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeTarget = C1D8AD4E1363998E004F693A /* AutoWah */;
+		codeSenseManager = C169CE111382126E00B1444A /* Code sense */;
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					10,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 327368094;
+			PBXWorkspaceStateSaveDate = 327368094;
+		};
+		perUserProjectItems = {
+			C1668E811382F54900B65441 = C1668E811382F54900B65441 /* PBXTextBookmark */;
+			C1668E821382F54900B65441 = C1668E821382F54900B65441 /* PBXTextBookmark */;
+			C1668E831382F54900B65441 = C1668E831382F54900B65441 /* PBXTextBookmark */;
+		};
+		sourceControlManager = C169CE101382126E00B1444A /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	C1D8AD4E1363998E004F693A /* AutoWah */ = {
+		activeExec = 0;
+	};
+	C1D8AE1413639EDE004F693A /* AutoWah.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 7280}}";
+			sepNavSelRange = "{229, 0}";
+			sepNavVisRange = "{10455, 1653}";
+		};
+	};
+	C1D8AE1513639EDE004F693A /* AutoWah.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 3668}}";
+			sepNavSelRange = "{227, 0}";
+			sepNavVisRange = "{4106, 1510}";
+		};
+	};
+}

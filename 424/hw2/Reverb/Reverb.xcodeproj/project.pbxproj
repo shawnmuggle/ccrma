@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C18C2ABA1368D50E00B023E5 /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = C18C2AB91368D50E00B023E5 /* Readme.txt */; };
-		C18C2ABC1368D51900B023E5 /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = C18C2ABB1368D51900B023E5 /* Readme.txt */; };
 		C1D8ADF613639BDC004F693A /* audioeffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D8ADCD13639BDC004F693A /* audioeffect.cpp */; };
 		C1D8ADF713639BDC004F693A /* audioeffectx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D8ADCF13639BDC004F693A /* audioeffectx.cpp */; };
 		C1D8ADF813639BDC004F693A /* vstplugmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D8ADD113639BDC004F693A /* vstplugmain.cpp */; };
@@ -198,8 +196,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C18C2ABA1368D50E00B023E5 /* Readme.txt in Resources */,
-				C18C2ABC1368D51900B023E5 /* Readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +260,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reverb-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = 4.2;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = vst_sdk;
 				INFOPLIST_FILE = "Reverb-Info.plist";
@@ -297,7 +293,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Reverb-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = 4.2;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = vst_sdk;
 				INFOPLIST_FILE = "Reverb-Info.plist";

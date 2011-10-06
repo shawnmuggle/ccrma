@@ -47,13 +47,15 @@ WahWah::WahWah (audioMasterCallback audioMaster)
     
     phase = 0.0;
 	
+    
+	// signal processing parameter and state initialization
+	fs = getSampleRate();	// sampling rate, Hz
+
+    
 	fcSlewer.SetTau(.0002, fs); // set the mod signal slewer
 	gSlewer.SetTau(.0002, fs); // set the mod signal slewer	
 	qSlewer.SetTau(.0002, fs); // set the mod signal slewer
 	modSlewer.SetTau(.0002, fs); // set the mod signal slewer
-
-	// signal processing parameter and state initialization
-	fs = getSampleRate();	// sampling rate, Hz
 
 	// place holder
 	designResonantLowPass(lpCoefs, FcValue, QValue);
@@ -325,15 +327,19 @@ void WahWah::processReplacing(float **inputs, float **outputs, VstInt32 sampleFr
 		double signal = inp0 + inp1;
 
 		// slew control signals
-		fcSlewer.Process(FcValue, FcValue);
-		gSlewer.Process(GainValue, GainValue);
-		qSlewer.Process(QValue, QValue);
+        double fc;
+        double g;
+        double q;
+        
+		fcSlewer.Process(FcValue, fc);
+		gSlewer.Process(GainValue, g);
+		qSlewer.Process(QValue, q);
 		
 		// modulation signal
-		float modulationSignal  = frequencyComputer(FcValue, RateValue, DepthValue);
+		float modulationSignal  = frequencyComputer(fc, RateValue, DepthValue);
 		
 		// design new input filter
-		designResonantLowPass(lpCoefs, modulationSignal, QValue);
+		designResonantLowPass(lpCoefs, modulationSignal, q);
 		
 		// set the filter stucture coefs
 		lpFilter.SetCoefs(lpCoefs);
