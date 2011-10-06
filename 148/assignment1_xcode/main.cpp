@@ -7,29 +7,42 @@
 #include <GL/glut.h>
 #endif
 
+#include <sstream>
+
 #include "Art1.h"
+#include "Art2.h"
 
 // Question 1: In a GLUT program, how is control passed
 // back to the programmer?  How is this set up during
 // initialization?
 
 int win_width = 1680;
-int win_height = 800;
+int win_height = 1050;
+//int win_width = 668;
+//int win_height = 605;
 
-Art1 *art;
+Art1 *art1;
+Art2 *art2;
+
+bool drawArt1 = true;
+bool drawArt2 = true;
 
 void display( void )
 {
     glClear( GL_COLOR_BUFFER_BIT );
     
-    art->draw();
+    if (drawArt2)
+        art2->draw();
+    if (drawArt1)
+        art1->draw();
     
     glutSwapBuffers();
 }
 
 void update( void )
 {
-    art->update();
+    art1->update();
+    art2->update();
     glutPostRedisplay();
 }
 
@@ -55,6 +68,14 @@ void keyboard( unsigned char key, int x, int y )
         case 27: // Escape key
             exit(0);
             break;
+        case '1':
+            drawArt1 = !drawArt1;
+            break;
+        case '2':
+            drawArt2 = !drawArt2;
+            break;
+        default:
+            break;    
     }
 }
 
@@ -65,22 +86,26 @@ void mouseButton(int button, int state, int x, int y)
 void mouseMotion(int x, int y)
 {
 //    printf("Mouse motion! %d %d\n", x, y);
-    art->setTargetPoint(x, win_height - y);
+    art1->setTargetPoint(x, win_height - y);
+    art2->setTargetPoint(x, win_height - y);
 }
 
 int main (int argc, char *argv[])
 {
     srand(time(NULL));
-    
-    art = new Art1(win_width, win_height);
-    
+
     glutInit( &argc, argv );
     // Question 2: What does the parameter to glutInitDisplayMode()
     // specify?
     glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE );
-    glutInitWindowSize( win_width, win_height );
     
-    glutCreateWindow( "Intro Graphics Assignment 1" );
+    std::stringstream s;
+    s << win_width << "x" << win_height << ":32@75";
+    glutGameModeString( s.str().c_str() );  // "1680x1050:32@75"
+    glutEnterGameMode();
+    
+//    glutInitWindowSize( win_width, win_height );
+//    glutCreateWindow( "Intro Graphics Assignment 1" );
     
     glutDisplayFunc( display );
     glutReshapeFunc( reshape );
@@ -89,8 +114,10 @@ int main (int argc, char *argv[])
     glutMotionFunc( mouseMotion );
     glutPassiveMotionFunc( mouseMotion );
     glutIdleFunc( update );
+
+    art1 = new Art1(win_width, win_height);
+    art2 = new Art2(win_width, win_height);
     
     glClearColor(0.95, 0.95, 0.95, 1.0);
-    
     glutMainLoop();
 }

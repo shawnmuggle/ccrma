@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6EBE73A90B548D2E00A7F42B /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBE73A80B548D2E00A7F42B /* GLUT.framework */; };
+		D53163EA143D9B4B00E5CA4C /* Art2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D53163E9143D9B4B00E5CA4C /* Art2.cpp */; };
 		D55780EA1438420C00548172 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.cpp */; };
 		D5E224AE143843D30074DBB5 /* MRPhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E224AD143843D30074DBB5 /* MRPhysics.cpp */; };
 		D5E224B51438498F0074DBB5 /* MRGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E224B41438498F0074DBB5 /* MRGraphics.cpp */; };
@@ -31,6 +32,8 @@
 		08FB7796FE84155DC02AAC07 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		6EBE73A80B548D2E00A7F42B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
 		8DD76F6C0486A84900D96B5E /* Assignment1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Assignment1; sourceTree = BUILT_PRODUCTS_DIR; };
+		D53163E7143D994600E5CA4C /* Art2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Art2.h; sourceTree = "<group>"; };
+		D53163E9143D9B4B00E5CA4C /* Art2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Art2.cpp; sourceTree = "<group>"; };
 		D55780D81438415E00548172 /* concave.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = concave.c; path = ../code/concave.c; sourceTree = "<group>"; };
 		D55780D91438415E00548172 /* double.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = double.c; path = ../code/double.c; sourceTree = "<group>"; };
 		D55780DA1438415E00548172 /* primitives.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = primitives.c; path = ../code/primitives.c; sourceTree = "<group>"; };
@@ -39,10 +42,10 @@
 		D55780DD1438415E00548172 /* reshape2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = reshape2.c; path = ../code/reshape2.c; sourceTree = "<group>"; };
 		D55780DE1438415E00548172 /* reshape3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = reshape3.c; path = ../code/reshape3.c; sourceTree = "<group>"; };
 		D55780DF1438415E00548172 /* single.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = single.c; path = ../code/single.c; sourceTree = "<group>"; };
-		D5E224AC143843010074DBB5 /* MRPhysics.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MRPhysics.h; sourceTree = "<group>"; };
+		D5E224AC143843010074DBB5 /* MRPhysics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRPhysics.h; sourceTree = "<group>"; };
 		D5E224AD143843D30074DBB5 /* MRPhysics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MRPhysics.cpp; sourceTree = "<group>"; };
-		D5E224B0143845240074DBB5 /* MRMath.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MRMath.h; sourceTree = "<group>"; };
-		D5E224B31438495E0074DBB5 /* MRGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MRGraphics.h; sourceTree = "<group>"; };
+		D5E224B0143845240074DBB5 /* MRMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRMath.h; sourceTree = "<group>"; };
+		D5E224B31438495E0074DBB5 /* MRGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGraphics.h; sourceTree = "<group>"; };
 		D5E224B41438498F0074DBB5 /* MRGraphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MRGraphics.cpp; sourceTree = "<group>"; };
 		D5E224B614384A1E0074DBB5 /* Art1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Art1.h; sourceTree = "<group>"; };
 		D5E224B714384A9A0074DBB5 /* Art1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Art1.cpp; sourceTree = "<group>"; };
@@ -86,6 +89,8 @@
 				D5E224B41438498F0074DBB5 /* MRGraphics.cpp */,
 				D5E224B614384A1E0074DBB5 /* Art1.h */,
 				D5E224B714384A9A0074DBB5 /* Art1.cpp */,
+				D53163E7143D994600E5CA4C /* Art2.h */,
+				D53163E9143D9B4B00E5CA4C /* Art2.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 				D5E224AE143843D30074DBB5 /* MRPhysics.cpp in Sources */,
 				D5E224B51438498F0074DBB5 /* MRGraphics.cpp in Sources */,
 				D5E224B814384A9A0074DBB5 /* Art1.cpp in Sources */,
+				D53163EA143D9B4B00E5CA4C /* Art2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

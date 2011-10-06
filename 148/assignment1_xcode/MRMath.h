@@ -14,6 +14,16 @@
 template <class T>
 class Vector3 {
 public: 
+    Vector3<T>()
+    {
+        setAll(0.0, 0.0, 0.0); // TODO: This is probably bad because I'm assuming T is a float
+    }
+    
+    Vector3<T>(T newX, T newY, T newZ)
+    {
+        setAll(newX, newY, newZ);
+    }
+    
     // setting and getting (should maybe be through setters & getters?)
     void setAll(T newX, T newY, T newZ) { x = newX; y = newY; z = newZ; }
     T x;
