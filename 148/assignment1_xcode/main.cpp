@@ -11,6 +11,7 @@
 
 #include "Art1.h"
 #include "Art2.h"
+#include "Art3.h"
 
 // Question 1: In a GLUT program, how is control passed
 // back to the programmer?  How is this set up during
@@ -23,18 +24,22 @@ int win_height = 1050;
 
 Art1 *art1;
 Art2 *art2;
+Art3 *art3;
 
 bool drawArt1 = true;
 bool drawArt2 = true;
+bool drawArt3 = true;
 
 void display( void )
 {
     glClear( GL_COLOR_BUFFER_BIT );
     
-    if (drawArt2)
-        art2->draw();
-    if (drawArt1)
-        art1->draw();
+    if (drawArt3)
+        art3->draw();
+//    if (drawArt2)
+//        art2->draw();
+//    if (drawArt1)
+//        art1->draw();
     
     glutSwapBuffers();
 }
@@ -43,6 +48,7 @@ void update( int unused )
 {
     art1->update();
     art2->update();
+    art3->update();
     glutPostRedisplay();
     glutTimerFunc(16.0f, update, 0);
 }
@@ -75,6 +81,9 @@ void keyboard( unsigned char key, int x, int y )
         case '2':
             drawArt2 = !drawArt2;
             break;
+        case '3':
+            drawArt3 = !drawArt3;
+            break;
         default:
             break;    
     }
@@ -89,6 +98,7 @@ void mouseMotion(int x, int y)
 //    printf("Mouse motion! %d %d\n", x, y);
     art1->setTargetPoint(x, win_height - y);
     art2->setTargetPoint(x, win_height - y);
+    art3->setTargetPoint(x, win_height - y);
 }
 
 int main (int argc, char *argv[])
@@ -120,6 +130,7 @@ int main (int argc, char *argv[])
 
     art1 = new Art1(win_width, win_height);
     art2 = new Art2(win_width, win_height);
+    art3 = new Art3(win_width, win_height);
     
     glClearColor(0.95, 0.95, 0.95, 1.0);
     glutMainLoop();

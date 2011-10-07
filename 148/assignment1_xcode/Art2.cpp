@@ -63,6 +63,7 @@ Art2::Art2(int aWidth, int aHeight)
 
 Art2::~Art2()
 {
+#warning I need to actually delete the vertices here, as they are not deleted by vector::clear
     vertices.clear();
 }
 
