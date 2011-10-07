@@ -36,10 +36,8 @@ void ConnectedVertex::draw()
 {
     for (vector<ConnectedVertex *>::iterator i = connections.begin(); i != connections.end(); i++) 
     {
-        
-        
         ConnectedVertex *otherVertex = *i;
-        glColor4f(0.85, 0.85, 0.85 - (position - otherVertex->position).magnitude() * 0.005, 0.5);
+        glColor4f(0.85, 0.85, 0.85 - (velocity).magnitude() * 0.5, 0.65);
         glVertex2f(position.x, position.y);
         glVertex2f(otherVertex->position.x, otherVertex->position.y);
     }
@@ -118,14 +116,8 @@ void Art2::draw()
     glBegin(GL_LINES);
     for (vector<ConnectedVertex *>::iterator i = vertices.begin(); i != vertices.end(); i++)
     {
-        ConnectedVertex *vertex = *i;
-        
-        float distance = (targetPoint - vertex->position).magnitude();
-        float energy = 0.01 / (max(0.000001, 0.01 * distance));
-        
+        ConnectedVertex *vertex = *i;        
         vertex->draw();
     }
     glEnd();
-    
-    glFlush();
 }

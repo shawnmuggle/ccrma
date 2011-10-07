@@ -39,11 +39,12 @@ void display( void )
     glutSwapBuffers();
 }
 
-void update( void )
+void update( int unused )
 {
     art1->update();
     art2->update();
     glutPostRedisplay();
+    glutTimerFunc(16.0f, update, 0);
 }
 
 void reshape( int w, int h )
@@ -113,7 +114,9 @@ int main (int argc, char *argv[])
     glutMouseFunc( mouseButton );
     glutMotionFunc( mouseMotion );
     glutPassiveMotionFunc( mouseMotion );
-    glutIdleFunc( update );
+
+//    glutIdleFunc( update );
+    glutTimerFunc(16.0f, update, 0);
 
     art1 = new Art1(win_width, win_height);
     art2 = new Art2(win_width, win_height);
