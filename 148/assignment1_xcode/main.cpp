@@ -26,8 +26,8 @@ Art1 *art1;
 Art2 *art2;
 Art3 *art3;
 
-bool drawArt1 = true;
-bool drawArt2 = true;
+bool drawArt1 = false;
+bool drawArt2 = false;
 bool drawArt3 = true;
 
 void display( void )
@@ -36,10 +36,10 @@ void display( void )
     
     if (drawArt3)
         art3->draw();
-//    if (drawArt2)
-//        art2->draw();
-//    if (drawArt1)
-//        art1->draw();
+    if (drawArt2)
+        art2->draw();
+    if (drawArt1)
+        art1->draw();
     
     glutSwapBuffers();
 }
@@ -91,6 +91,7 @@ void keyboard( unsigned char key, int x, int y )
 
 void mouseButton(int button, int state, int x, int y)
 {
+    art3->mouseButton(button, state, x, win_height - y);
 }
 
 void mouseMotion(int x, int y)

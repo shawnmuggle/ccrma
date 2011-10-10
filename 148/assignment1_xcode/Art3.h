@@ -21,6 +21,36 @@
 #include "MRPhysics.h"
 #include "MRGraphics.h"
 
+
+class SplinePoint : public PhysicsEntity, public DrawableEntity
+{
+public:
+    SplinePoint(Vector3<float> position);
+    virtual void draw();
+    virtual void update();
+    void setTangentWithControlPoint(Vector3<float> controlPoint);
+    float slope();
+    void drawHermiteCurveToNextPoint(int numInterpolatedPoints);
+    
+    SplinePoint *nextPoint;
+    SplinePoint *prevPoint;
+private:
+    Vector3<float> position;
+    Vector3<float> tangentVector;
+};
+
+class Spline : public DrawableEntity
+{
+public:
+    Spline();
+    ~Spline();
+    void addPoint(Vector3<float> position);
+    virtual void draw();
+//private:
+    SplinePoint *firstPoint;
+    SplinePoint *lastPoint;
+};
+
 class Blob2D : public PhysicsEntity, public DrawableEntity
 {
 public:
@@ -28,6 +58,7 @@ public:
     void generatePoints();
     virtual void draw();
     virtual void update();
+    void addPoint(Vector3<float> point);
 private:
     std::vector< Vector3<float> > points;
     std::vector< Vector3<float> > initialPoints;
@@ -41,14 +72,17 @@ public:
     ~Art3();
     void update();
     void draw();
+    void mouseButton(int button, int state, int x, int y);
     void setTargetPoint(float x, float y);
 private:
-    Vector3<float> targetPoint;
-    Vector3<float> prevTargetPoint;
     int width;
     int height;
+    bool mouseDown;
+    Vector3<float> targetPoint;
     
     std::vector<Blob2D *> blobs;
+    
+    Spline spline;
 };
 
 

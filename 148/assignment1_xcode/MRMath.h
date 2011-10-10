@@ -65,6 +65,13 @@ public:
         return result;
     }
     
+    Vector3<T> operator+ (const Vector3<T> & otherVector)
+    {
+        Vector3<T> result = *this;
+        result += otherVector;
+        return result;
+    }
+    
     Vector3<T> operator* (const float scalar)
     {
         Vector3<T> result = *this;
