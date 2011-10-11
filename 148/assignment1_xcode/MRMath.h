@@ -58,6 +58,15 @@ public:
         return *this;
     }
     
+    Vector3<T> & operator /= (const float scalar)
+    {
+        x /= scalar;
+        y /= scalar;
+        z /= scalar;
+        
+        return *this;
+    }
+    
     Vector3<T> operator- (const Vector3<T> & otherVector)
     {
         Vector3<T> result = *this;
@@ -78,11 +87,25 @@ public:
         result *= scalar;
         return result;
     }
+    
+    Vector3<T> operator/ (const float scalar)
+    {
+        Vector3<T> result = *this;
+        result /= scalar;
+        return result;
+    }
 
     float magnitude()
     {
         return sqrt(x * x + y * y + z * z);
     }
 };
+
+// The following two functions implement De Casteljau's algorithm for bezier curves, and are taken from
+// http://www.cubic.org/docs/bezier.htm
+
+void lerp(Vector3<float> &dest, const Vector3<float> &a, const Vector3<float> &b, const float t);
+
+void bezier(Vector3<float> &dest, const Vector3<float> &a, const Vector3<float> &b, const Vector3<float> &c, const Vector3<float> &d, const float t);
 
 #endif

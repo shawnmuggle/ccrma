@@ -28,7 +28,81 @@ float SplinePoint::slope()
     return (tangentVector.y / tangentVector.x);
 }
 
+//void SplinePoint::drawHermiteCurveToNextPoint(int numInterpolatedPoints)
+//{
+//    SplinePoint *p1 = this;
+//    SplinePoint *p2 = nextPoint;
+//    
+//    if (p1->position.x > p2->position.x)
+//    {
+//        SplinePoint *temp = p1;
+//        p1 = p2;
+//        p2 = temp;
+//    }
+//    
+//    float s;
+//    Vector3<float> prevPoint = p1->position; // NOTE: This might result in a redundant line from position to position.
+//    for (int i = 0; i < numInterpolatedPoints; i++)
+//    {
+//        s = (float)i / (numInterpolatedPoints - 1);
+//        float h1 =  2*pow(s,3) - 3*pow(s,2) + 1;          // calculate basis function 1
+//        float h2 = -2*pow(s,3) + 3*pow(s,2);              // calculate basis function 2
+//        float h3 =    pow(s,3) - 2*pow(s,2) + s;          // calculate basis function 3
+//        float h4 =    pow(s,3) -  pow(s,2);               // calculate basis function 4
+//        
+//        Vector3<float> p;
+//        p.x = p1->position.x + s * (p2->position.x - p1->position.x);
+//        p.y = (p1->position.y * h1 +
+//               p2->position.y * h2 +
+//               p1->slope() * (p2->position.x - p1->position.x) * h3 +
+//               p2->slope() * (p2->position.x - p1->position.x) * h4);
+//        
+//        glVertex3f(prevPoint.x, prevPoint.y, 0.0f);
+//        glVertex3f(p.x, p.y, 0.0);
+//        prevPoint = p;
+//    }
+//}
+
+
 void SplinePoint::drawHermiteCurveToNextPoint(int numInterpolatedPoints)
+{
+    SplinePoint *p1 = this;
+    SplinePoint *p2 = nextPoint;
+    
+//    bool reverse = false;
+//    if (p1->position.x > p2->position.x)
+//    {
+//        SplinePoint *temp = p1;
+//        p1 = p2;
+//        p2 = temp;
+//        reverse = true;
+//    }
+    
+    Vector3<float> p;
+    Vector3<float> prevP = p1->position;
+    float t;
+    for (int i = 0; i < numInterpolatedPoints; ++i)
+    {
+        t = static_cast<float>(i) / (numInterpolatedPoints - 1);
+        Vector3<float> a = p1->position;
+        Vector3<float> b = p1->position + p1->tangentVector / 3.0;
+        Vector3<float> c = p2->position - p2->tangentVector / 3.0;
+//        if (reverse)
+//        {
+//            b = p1->position + p1->tangentVector / 3.0;
+//            c = p2->position - p2->tangentVector / 3.0;
+//        }
+
+        Vector3<float> d = p2->position;
+        bezier(p, a, b, c, d, t);
+        glVertex2f(prevP.x, prevP.y);
+        glVertex2f(p.x, p.y);
+        prevP = p;
+    }
+}
+
+
+void SplinePoint::drawBezierCurveToNextPoint(int numInterpolatedPoints)
 {
     SplinePoint *p1 = this;
     SplinePoint *p2 = nextPoint;
@@ -40,26 +114,16 @@ void SplinePoint::drawHermiteCurveToNextPoint(int numInterpolatedPoints)
         p2 = temp;
     }
     
-    float s;
-    Vector3<float> prevPoint = p1->position; // NOTE: This might result in a redundant line from position to position.
-    for (int i = 0; i < numInterpolatedPoints; i++)
+    Vector3<float> p;
+    Vector3<float> prevP = p1->position;
+    float t;
+    for (int i = 0; i < numInterpolatedPoints; ++i)
     {
-        s = (float)i / (numInterpolatedPoints - 1);
-        float h1 =  2*pow(s,3) - 3*pow(s,2) + 1;          // calculate basis function 1
-        float h2 = -2*pow(s,3) + 3*pow(s,2);              // calculate basis function 2
-        float h3 =    pow(s,3) - 2*pow(s,2) + s;          // calculate basis function 3
-        float h4 =    pow(s,3) -  pow(s,2);               // calculate basis function 4
-        
-        Vector3<float> p;
-        p.x = p1->position.x + s * (p2->position.x - p1->position.x);
-        p.y = (p1->position.y * h1 +
-               p2->position.y * h2 +
-               p1->slope() * (p2->position.x - p1->position.x) * h3 +
-               p2->slope() * (p2->position.x - p1->position.x) * h4);
-        
-        glVertex3f(prevPoint.x, prevPoint.y, 0.0f);
-        glVertex3f(p.x, p.y, 0.0);
-        prevPoint = p;
+        t = static_cast<float>(i) / (numInterpolatedPoints - 1);
+        bezier(p, p1->position, p1->position + p1->tangentVector, p2->position + p2->tangentVector, p2->position, t);
+        glVertex2f(prevP.x, prevP.y);
+        glVertex2f(p.x, p.y);
+        prevP = p;
     }
 }
 
@@ -77,6 +141,9 @@ void SplinePoint::draw()
 
         glColor4f(0.9f, 0.3f, 0.01f, 1.0f);
         drawHermiteCurveToNextPoint(100);
+        
+//        glColor4f(0.1f, 0.9f, 0.8f, 1.0f);
+//        drawBezierCurveToNextPoint(100);
     }
 }
 

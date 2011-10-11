@@ -31,6 +31,7 @@ public:
     void setTangentWithControlPoint(Vector3<float> controlPoint);
     float slope();
     void drawHermiteCurveToNextPoint(int numInterpolatedPoints);
+    void drawBezierCurveToNextPoint(int numInterpolatedPoints);
     
     SplinePoint *nextPoint;
     SplinePoint *prevPoint;
