@@ -99,6 +99,11 @@ public:
     {
         return sqrt(x * x + y * y + z * z);
     }
+    
+    float angle()
+    {
+        return atan2f(y, x);
+    }
 };
 
 // The following two functions implement De Casteljau's algorithm for bezier curves, and are taken from
