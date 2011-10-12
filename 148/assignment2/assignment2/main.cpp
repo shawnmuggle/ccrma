@@ -19,7 +19,19 @@ void display( void )
 
 	// --- Make drawing calls here ---+
 
-
+    sglLoadIdentity();
+    sglBeginTriangles();
+    sglColor(0.9f, 0.1f, 0.1f);
+    sglVertex(150.f, 150.f);
+    sglColor(0.1f, 0.8f, 0.1f);
+    sglVertex(320.f, 150.f);
+    sglColor(0.1f, 0.1f, 0.7f);
+    sglVertex(150.f, 350.f);
+    sglColor(0.1f, 0.8f, 0.7f);
+    sglVertex(320.f, 350.f);
+    sglColor(0.9f, 0.8f, 0.1f);
+    sglVertex(160.f, 410.f);
+    sglEnd();
 
 	// --- End of drawing calls ------+
 
