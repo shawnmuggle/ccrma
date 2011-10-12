@@ -85,6 +85,7 @@ protected:
     
     Spline *topSpline;
     Spline *bottomSpline;
+    
     std::vector< Vector3<float> > linePoints;
     float width;
 };

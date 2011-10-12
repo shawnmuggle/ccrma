@@ -113,14 +113,23 @@ void Spline::addPoint(SplinePoint *newPoint)
     }
     else
     {
+        // We make sure that even if some other spline connected up to our last point, we keep that connection to the new last point.
+        SplinePoint *temp = lastPoint->nextPoint;
         lastPoint->nextPoint = newPoint;
         newPoint->prevPoint = lastPoint;
+        if (temp)
+        {
+            newPoint->nextPoint = temp;
+            temp->prevPoint = newPoint;
+        }
+        
         lastPoint = newPoint;
         totalLength += (lastPoint->position - lastPoint->prevPoint->position).magnitude();
     }
     
     numPoints++;
 }
+
 
 SplinePoint *Spline::end()
 {
@@ -155,6 +164,8 @@ void Spline::update()
     while (point != NULL)
     {
         Vector3<float> homeForce = point->vectorToHome() * 0.1;
+        if (homeForce.magnitude() > 100)
+            printf("WHAT\n");
         point->addForce(homeForce);
         
         point->update();
@@ -249,8 +260,8 @@ void CurvyTaperedPath2D::finishSplines()
 
 void CurvyTaperedPath2D::update()
 {
-    applyTaperForces(topSpline);
-    applyTaperForces(bottomSpline);
+//    applyTaperForces(topSpline);
+//    applyTaperForces(bottomSpline);
     
     topSpline->update();
     bottomSpline->update();
@@ -263,16 +274,20 @@ void CurvyTaperedPath2D::applyTaperForces(Spline *spline)
     while (point != NULL)
     {
         float taperMagnitude = 0;
-        if (lengthSoFar < 0.3 * spline->length())
+        if (lengthSoFar < 0.1 * spline->length())
         {
-            taperMagnitude = 1.0 - (lengthSoFar / spline->length()) / 0.3;
+            taperMagnitude = 1.0 - (lengthSoFar / spline->length()) / 0.1;
         }
-        else if (lengthSoFar > 0.7 * spline->length())
+        else if (lengthSoFar > 0.9 * spline->length())
         {
-            taperMagnitude = 1.0 - (1.0 - (lengthSoFar / spline->length())) / 0.3;
+            taperMagnitude = 1.0 - (1.0 - (lengthSoFar / spline->length())) / 0.1;
         }
         
         Vector3<float> taperForce = point->vectorToStartPoint() * 0.3 * taperMagnitude;
+        
+        if (taperForce.magnitude() > 100)
+            printf("WHOA\n");
+        
         point->addForce(taperForce);
         
         point = point->nextPoint;
