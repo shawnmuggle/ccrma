@@ -1,0 +1,15 @@
+clear all;
+
+f = 125;
+max_f = 8000;
+bs = zeros(5, 6);
+as = zeros(5, 6);
+i = 1;
+while (f <= max_f)
+    normalized_f_1 = f / 22050;
+    low = sqrt(normalized_f * (normalized_f / 2));
+    high = sqrt(normalized_f * (normalized_f * 2));
+    [bs(:,i), as(:,i)] = butter(2, [low high]);
+    f = f * 2;
+    i = i + 1;
+end

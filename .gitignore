@@ -1,10 +1,26 @@
-*#*
-*~
-256a/rtaudio*
-*.o
-256a/hw1/SunSine
-256a/hw2/Stringy
-256a/hw3/fail/SeeSound
-256a/hw3/VisualSine
-256a/hw4/Webleep
-256a/hw4/oscpack/bin/*
+# xcode noise
+build/
+build/*
+*/build/*
+build_iphone/
+build_iphone/*
+*/build_iphone/*
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcworkspace/
+xcuserdata/
+
+# OSX noise
+.DS_Store
+profile
+Icon*
+
+# other noise
+*.swp
+.svn
+
+# project files
+*.tmproj
+*.esproj

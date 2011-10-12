@@ -1,0 +1,17 @@
+s = wavread('test01_44100.wav');
+length_sec = length(s) / 44100.0;
+t = linspace(0, length_sec, length(s));
+figure(1);
+plot(t, s);
+
+s = wavread('compressor test.wav');
+length_sec = length(s) / 44100.0;
+t = linspace(0, length_sec, length(s));
+figure(2);
+plot(t, s);
+
+% The attack in the compressed version starts at 1 sec and lasts until
+% approximately 1.06 seconds (attack time constant set to 10ms). The
+% release starts at 3 sec and lasts until approximately 3.6 seconds
+% (release time constant set to 100ms). These match up with the attack and
+% release times shown in the graph in the reader. 

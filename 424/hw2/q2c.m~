@@ -1,0 +1,32 @@
+q2a
+q2b
+
+for i = [1:7]
+    s = filtfilt(bs(i,:), as(i,:), s_channel_1);
+    
+    N = round(100 * fs / 1000);
+    w = hanning(N) / sum(hanning(N));
+    avgs = sqrt(fftfilt(w, s.^2));
+    
+    figure(i)
+    plot(db(avgs));
+    p = polyfit([10000:30000], db(avgs(10000:30000))', 1);
+    hold on
+    plot([10000:30000], p(1)*[10000:30000] + p(2), 'r');
+    hold off
+    
+    ((-60 - p(2)) / p(1)) / fs
+    
+end
+
+% T60s (using extrapolated 1st-order polynomial obtained by averaging
+% energy)
+
+% 
+% 125 Hz: 0.9911s
+% 250 Hz: 1.3801s
+% 500 Hz: 1.7082s
+% 1000 Hz: 2.0349s
+% 2000 Hz: 1.7030s
+% 4000 Hz: 1.0822s
+% 8000 Hz: 0.5326s
