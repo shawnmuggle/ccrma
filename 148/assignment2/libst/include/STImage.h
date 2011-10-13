@@ -118,7 +118,10 @@ public:
     // to use it after the image is deleted.
     //
     Pixel* GetPixels() { return mPixels; }
-
+    
+    
+    void clear(Pixel color);
+    
 private:
     // Image height, in pixels.
     int mHeight;

@@ -1,6 +1,7 @@
 #include "sgl.h"
 
 #include <vector>
+#include <stack>
 
 using namespace std;
 // --- Do not modify this code ---+
@@ -23,6 +24,7 @@ struct VertexAttribs {
 vector<VertexAttribs> vertices;
 STImage::Pixel currentColor;
 
+std::stack<STTransform3> transformStack;
 STTransform3 ctm;
 
 static bool flip = false;
@@ -192,12 +194,13 @@ void sglTranslate(SGLfloat xtrans, SGLfloat ytrans)
     ctm = ctm * translateTransform;
 }
 
+// THIS TAKES RADIANS, DANG IT
 void sglRotate(SGLfloat angle)
 {
     STTransform3 rotateTransform;
     rotateTransform.loadIdentity();
-    float cosAngle = cos(DegreesToRadians(angle));
-    float sinAngle = sin(DegreesToRadians(angle));
+    float cosAngle = cos(angle);
+    float sinAngle = sin(angle);
     rotateTransform.matrix.elements[0][0] = cosAngle;
     rotateTransform.matrix.elements[0][1] = -sinAngle;
     rotateTransform.matrix.elements[1][0] = sinAngle;
@@ -207,12 +210,13 @@ void sglRotate(SGLfloat angle)
 
 void sglPushMatrix()
 {
-	IMPLEMENT_THIS_FUNCTION;
+    transformStack.push(ctm);
 }
 
 void sglPopMatrix()
 {
-	IMPLEMENT_THIS_FUNCTION;
+    ctm = transformStack.top();
+    transformStack.pop();
 }
 
 void sglVertex(SGLfloat x, SGLfloat y)

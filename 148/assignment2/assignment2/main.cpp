@@ -11,6 +11,55 @@
 
 using namespace std;
 
+class MRSquare {
+    float size;
+    float angle;
+    float angleIncrement;
+    float x, y;
+    
+public:
+    
+    MRSquare(float aX, float aY)
+    {
+        size = 50 + 100 * (rand() / (float)RAND_MAX);
+        angle = 0;
+        angleIncrement = 0.2 * (rand() / (float)RAND_MAX);
+        x = aX;
+        y = aY;
+    }
+    
+    void incrementAngle()
+    {
+        angle += angleIncrement;
+    }
+    
+    void draw()
+    {
+        sglTranslate(x, y);
+        sglRotate(angle);
+        sglScale(1.0 + 0.1 * sin(angle), 1.0 + 0.4 * cos(angle));
+        sglTranslate(-x, -y);
+        
+        sglBeginTriangles();
+        
+        sglColor(0.9f, 0.1f, 0.1f);
+        sglVertex(x - size / 2, y - size / 2);
+        
+        sglColor(0.1f, 0.8f, 0.1f);
+        sglVertex(x + size / 2, y - size / 2);
+        
+        sglColor(0.1f, 0.1f, 0.7f);
+        sglVertex(x - size / 2, y + size / 2);
+        
+        sglColor(0.1f, 0.8f, 0.7f);
+        sglVertex(x + size / 2, y + size / 2);
+        
+        sglEnd();
+    }
+};
+
+vector<MRSquare *> squares;
+
 STImage* buff;
 
 float angle = 0;
@@ -18,7 +67,13 @@ bool incrementAngle = false;
 void update( int unused )
 {
     if (incrementAngle)
-        angle += 1;
+    {
+        for (vector<MRSquare *>::iterator i = squares.begin(); i != squares.end(); i++)
+        {
+            MRSquare *square = *i;
+            square->incrementAngle();
+        }
+    }
     glutPostRedisplay();
     glutTimerFunc(16, update, 0);
 }
@@ -26,33 +81,19 @@ void update( int unused )
 void display( void )
 {
 	glClear( GL_COLOR_BUFFER_BIT );
-
+    buff->clear(STImage::Pixel(0, 0, 0));
+    
 	// --- Make drawing calls here ---+
-    
     sglLoadIdentity();
-    sglTranslate(150, 150);
-    sglRotate(angle);
-//    sglScale(0.25, 0.5);
-    sglTranslate(-150, -150);
+
+    for (vector<MRSquare *>::iterator i = squares.begin(); i != squares.end(); i++)
+    {
+        MRSquare *square = *i;
+        sglPushMatrix();
+        square->draw();
+        sglPopMatrix();
+    }
     
-
-    sglBeginTriangles();
-    sglColor(0.9f, 0.1f, 0.1f);
-    sglVertex(100.0f, 100.0f);
-
-    sglColor(0.1f, 0.8f, 0.1f);
-    sglVertex(200.0f, 100.0f);
-
-    sglColor(0.1f, 0.1f, 0.7f);
-    sglVertex(100.0f, 200.f);
-
-    sglColor(0.1f, 0.8f, 0.7f);
-    sglVertex(200.0f, 200.0f);
-
-//    sglColor(0.9f, 0.8f, 0.1f);
-//    sglVertex(160.f, 410.f);
-    sglEnd();
-
 	// --- End of drawing calls ------+
 
 	buff->Draw();
@@ -89,8 +130,16 @@ void keyboard( unsigned char key, int x, int y )
 
 int main (int argc, char *argv[])
 {
+    srand(time(NULL));
+    
 	int win_width = 512;
 	int win_height = 512;
+    
+    for (int i = 0; i < 10; i++)
+    {
+        squares.push_back(new MRSquare(win_width * (rand() / (float)RAND_MAX), win_height * (rand() / (float)RAND_MAX)));
+    }
+    
 	buff = new STImage(win_width, win_height, STColor4ub(0, 0, 0, 255));
 	setBuffer(buff);
 

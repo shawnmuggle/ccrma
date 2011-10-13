@@ -47,7 +47,11 @@ STImage::STImage(const std::string& filename)
 STImage::STImage(int width, int height, Pixel color)
 {
     Initialize(width, height);
+    clear(color);
+}
 
+void STImage::clear(Pixel color)
+{
     int numPixels = mWidth * mHeight;
     for (int ii = 0; ii < numPixels; ++ii) {
         mPixels[ii] = color;
