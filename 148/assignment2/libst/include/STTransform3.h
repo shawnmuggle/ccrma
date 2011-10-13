@@ -36,6 +36,7 @@ public:
     STTransform3(Matrix m);
     Matrix matrix;
     void loadIdentity();
+    void print() const;
 };
 
 STVector3 operator*(const STTransform3 &left, const STVector3 &right);

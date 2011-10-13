@@ -176,17 +176,33 @@ void sglLoadIdentity()
 
 void sglScale(SGLfloat xscale, SGLfloat yscale)
 {
-	IMPLEMENT_THIS_FUNCTION;
+    STTransform3 scaleTransform;
+    scaleTransform.loadIdentity();
+    scaleTransform.matrix.elements[0][0] = xscale;
+    scaleTransform.matrix.elements[1][1] = yscale;
+    ctm = ctm * scaleTransform;
 }
 
 void sglTranslate(SGLfloat xtrans, SGLfloat ytrans)
 {
-	IMPLEMENT_THIS_FUNCTION;
+    STTransform3 translateTransform;
+    translateTransform.loadIdentity();
+    translateTransform.matrix.elements[0][2] = xtrans;
+    translateTransform.matrix.elements[1][2] = ytrans;
+    ctm = ctm * translateTransform;
 }
 
 void sglRotate(SGLfloat angle)
 {
-	IMPLEMENT_THIS_FUNCTION;
+    STTransform3 rotateTransform;
+    rotateTransform.loadIdentity();
+    float cosAngle = cos(DegreesToRadians(angle));
+    float sinAngle = sin(DegreesToRadians(angle));
+    rotateTransform.matrix.elements[0][0] = cosAngle;
+    rotateTransform.matrix.elements[0][1] = -sinAngle;
+    rotateTransform.matrix.elements[1][0] = sinAngle;
+    rotateTransform.matrix.elements[1][1] = cosAngle;
+    ctm = ctm * rotateTransform;
 }
 
 void sglPushMatrix()
@@ -203,13 +219,13 @@ void sglVertex(SGLfloat x, SGLfloat y)
 {
     VertexAttribs v;
     
-    printf("VERTEX: %f, %f\n", x, y);
-    printf("CTM: %f, %f, %f\n", ctm.matrix.elements[0][0], ctm.matrix.elements[0][1], ctm.matrix.elements[0][2]);
+//    printf("VERTEX: %f, %f\n", x, y);
+//    printf("CTM: %f, %f, %f\n", ctm.matrix.elements[0][0], ctm.matrix.elements[0][1], ctm.matrix.elements[0][2]);
     
     v.vertex = ctm * Vertex(x, y, 1.0f);
     
-    printf("NEW VERTEX: %f, %f, %f\n", v.vertex.x, v.vertex.y, v.vertex.z);
-    printf("--------\n");
+//    printf("NEW VERTEX: %f, %f, %f\n", v.vertex.x, v.vertex.y, v.vertex.z);
+//    printf("--------\n");
     
     v.color = currentColor;
     vertices.push_back(v);

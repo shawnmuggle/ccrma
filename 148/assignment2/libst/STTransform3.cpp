@@ -25,31 +25,38 @@ void MatrixMultiply(const Matrix &left, const Matrix &right, Matrix &output)
 {
     for (int y = 0; y < left.height; y++)  // for each column
     {
-        printf("y: %d\n", y);
+//        printf("y: %d\n", y);
         for (int x = 0; x < right.width; x++)  // for each row
         {
-            printf("x: %d\n", x);
+//            printf("x: %d\n", x);
             for (int k = 0; k < left.width; k++)
             {
-                printf("k: %d\n", k);
-                printf("Left element at [%d][%d]: %f\n", y, k, left.elements[y][k]);
-                printf("Right element at [%d][%d]: %f\n", k, x, right.elements[k][x]);
+//                printf("k: %d\n", k);
+//                printf("Left element at [%d][%d]: %f\n", y, k, left.elements[y][k]);
+//                printf("Right element at [%d][%d]: %f\n", k, x, right.elements[k][x]);
                 // Sum of the pairwise combinations of the same row from the left matrix and the same column from the right matrix
                 output.elements[y][x] += left.elements[y][k] * right.elements[k][x];
             }
-            printf("Output element at %d, %d: %f\n", y, x, output.elements[y][x]);
+//            printf("Output element at %d, %d: %f\n", y, x, output.elements[y][x]);
         }
     }    
 }
 
 STTransform3::STTransform3() : matrix(3, 3)
 { 
-    loadIdentity();
+    
 }
 
 STTransform3::STTransform3(Matrix m) : matrix(m)
 {
     
+}
+
+void STTransform3::print() const
+{
+    printf("%f\t%f\t%f\n", matrix.elements[0][0], matrix.elements[0][1], matrix.elements[0][2]);
+    printf("%f\t%f\t%f\n", matrix.elements[1][0], matrix.elements[1][1], matrix.elements[1][2]);
+    printf("%f\t%f\t%f\n", matrix.elements[2][0], matrix.elements[2][1], matrix.elements[2][2]);
 }
 
 void STTransform3::loadIdentity()
@@ -62,8 +69,16 @@ void STTransform3::loadIdentity()
 
 STTransform3 operator*(const STTransform3& left, const STTransform3 &right)
 {
+//    left.print();
+//    printf("---------\n");
+//    right.print();
     STTransform3 newTransform;
     MatrixMultiply(left.matrix, right.matrix, newTransform.matrix);
+    
+//    printf("-------------\n");
+//    newTransform.print();
+//    printf("-\n-\n-\n-\n-\n");
+    
     return newTransform;
 }
 

@@ -13,26 +13,44 @@ using namespace std;
 
 STImage* buff;
 
+float angle = 0;
+bool incrementAngle = false;
+void update( int unused )
+{
+    if (incrementAngle)
+        angle += 1;
+    glutPostRedisplay();
+    glutTimerFunc(16, update, 0);
+}
+
 void display( void )
 {
 	glClear( GL_COLOR_BUFFER_BIT );
 
 	// --- Make drawing calls here ---+
-
-    printf("DISPLAY\n");
     
     sglLoadIdentity();
+    sglTranslate(150, 150);
+    sglRotate(angle);
+//    sglScale(0.25, 0.5);
+    sglTranslate(-150, -150);
+    
+
     sglBeginTriangles();
     sglColor(0.9f, 0.1f, 0.1f);
-    sglVertex(150.f, 150.f);
+    sglVertex(100.0f, 100.0f);
+
     sglColor(0.1f, 0.8f, 0.1f);
-    sglVertex(320.f, 150.f);
+    sglVertex(200.0f, 100.0f);
+
     sglColor(0.1f, 0.1f, 0.7f);
-    sglVertex(150.f, 350.f);
+    sglVertex(100.0f, 200.f);
+
     sglColor(0.1f, 0.8f, 0.7f);
-    sglVertex(320.f, 350.f);
+    sglVertex(200.0f, 200.0f);
+
 //    sglColor(0.9f, 0.8f, 0.1f);
-    sglVertex(160.f, 410.f);
+//    sglVertex(160.f, 410.f);
     sglEnd();
 
 	// --- End of drawing calls ------+
@@ -57,12 +75,15 @@ void keyboard( unsigned char key, int x, int y )
 {
 	switch(key)
 	{
-	case 27: // Escape key
-		exit(0);
-		break;
-	case 's': // Save
-		buff->Save("output.png");
-		break;
+        case 27: // Escape key
+            exit(0);
+            break;
+        case 's': // Save
+            buff->Save("output.png");
+            break;
+        case ' ':
+            incrementAngle = !incrementAngle;
+            break;
 	}
 }
 
@@ -82,6 +103,7 @@ int main (int argc, char *argv[])
 	glutDisplayFunc( display );
 	glutReshapeFunc( reshape );
 	glutKeyboardFunc( keyboard );
+    glutTimerFunc(16, update, 0);
 
 	glutMainLoop();
 

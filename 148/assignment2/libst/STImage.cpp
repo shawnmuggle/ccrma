@@ -154,8 +154,11 @@ STImage::Pixel STImage::GetPixel(int x, int y) const
 void STImage::SetPixel(int x, int y, Pixel value)
 {
     // Check that (x,y) is in range.
-    assert(x >= 0 && x < mWidth);
-    assert(y >= 0 && y < mHeight);
+//    assert(x >= 0 && x < mWidth);
+//    assert(y >= 0 && y < mHeight);
 
+    if (!(x >= 0 && x < mWidth) || !(y >= 0 && y < mHeight))
+        return;
+    
     mPixels[y*mWidth + x] = value;
 }
