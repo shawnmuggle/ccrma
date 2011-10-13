@@ -12,7 +12,7 @@ void setBuffer(STImage* ptr) { img = ptr; }
 void setBufferSize(int w, int h) { buffer_width = w; buffer_height = h; }
 // --- End of do not modify this code ---+
 
-typedef STVector2 Vertex;  // Using Vector instead of Point just so that I can use ComponentMin/Max
+typedef STVector3 Vertex;  // Using Vector instead of Point just so that I can use ComponentMin/Max
 struct Line {
     float a, b, c;
 };
@@ -22,6 +22,8 @@ struct VertexAttribs {
 };
 vector<VertexAttribs> vertices;
 STImage::Pixel currentColor;
+
+STTransform3 ctm;
 
 static bool flip = false;
 void getCCWVertices(const vector<VertexAttribs> &triangle, VertexAttribs *a, VertexAttribs *b, VertexAttribs *c)
@@ -44,8 +46,8 @@ void getCCWVertices(const vector<VertexAttribs> &triangle, VertexAttribs *a, Ver
 
 void getBoundingBox(const Vertex &a, const Vertex &b, const Vertex &c, Vertex *bboxMin, Vertex *bboxMax)
 {
-    *bboxMin = STVector2::ComponentMin(a, STVector2::ComponentMin(b, c));
-    *bboxMax = STVector2::ComponentMax(a, STVector2::ComponentMax(b, c));    
+    *bboxMin = Vertex::ComponentMin(a, Vertex::ComponentMin(b, c));
+    *bboxMax = Vertex::ComponentMax(a, Vertex::ComponentMax(b, c));    
 }
 
 void makeLineEquation(Vertex v0, Vertex v1, Line &l)
@@ -68,9 +70,23 @@ int inside(float e, Line l)
     return (e == 0) ? !shadow(l) : (e < 0);
 }
 
+// Just plug x and y into the line equation for l
 float evaluateLineAtPoint(const Line &l, float x, float y)
 {
     return l.a * x + l.b * y + l.c;
+}
+
+// This method basically determines the how far (x, y) is from each line in the triangle, as a percent of the distance to the opposite point from that line.
+// This is equivalent to the area proportion calculation method from lecture
+void barymetricCoordinatesFromBook(const Line &l0, const Line &l1, const Line &l2, 
+                                   const Vertex &a, const Vertex &b, const Vertex&c,
+                                   const float x, const float y,
+                                   float *alpha, float *beta, float *gamma)
+{
+    // Triangle vertex a is opposite Line l0, b is opposite l1, and c is opposite l2
+    *alpha = evaluateLineAtPoint(l0, x, y) / evaluateLineAtPoint(l0, a.x, a.y);
+    *beta = evaluateLineAtPoint(l1, x, y) / evaluateLineAtPoint(l1, b.x, b.y);
+    *gamma = evaluateLineAtPoint(l2, x, y) / evaluateLineAtPoint(l2, c.x, c.y);;
 }
 
 void renderTriangle(const vector<VertexAttribs> &triangle)
@@ -103,16 +119,13 @@ void renderTriangle(const vector<VertexAttribs> &triangle)
             float e2 = evaluateLineAtPoint(l2, x, y);  // l2.a * x + l2.b * y + l2.c;
             if (inside(e0, l0) && inside(e1, l1) && inside(e2, l2))
             {
-                float alpha = evaluateLineAtPoint(l0, x, y) / evaluateLineAtPoint(l0, a.vertex.x, a.vertex.y);
-                float beta = evaluateLineAtPoint(l1, x, y) / evaluateLineAtPoint(l1, b.vertex.x, b.vertex.y);
-                float gamma = evaluateLineAtPoint(l2, x, y) / evaluateLineAtPoint(l2, c.vertex.x, c.vertex.y);;
+                float alpha, beta, gamma;
+                barymetricCoordinatesFromBook(l0, l1, l2, a.vertex, b.vertex, c.vertex, x, y, &alpha, &beta, &gamma);
                 
                 // We are using the first pixel's color only until we have interpolation!
                 STImage::Pixel color = STImage::Pixel((STImage::Pixel::Component)(a.color.r * alpha + b.color.r * beta + c.color.r * gamma),
                                                       (STImage::Pixel::Component)(a.color.g * alpha + b.color.g * beta + c.color.g * gamma),
                                                       (STImage::Pixel::Component)(a.color.b * alpha + b.color.b * beta + c.color.b * gamma));
-                
-//                color = STImage::Pixel(beta * 255, beta * 255, beta * 255);
                 
                 img->SetPixel(x, y, color );
             }
@@ -158,7 +171,7 @@ void sglEnd()
 
 void sglLoadIdentity()
 {
-	IMPLEMENT_THIS_FUNCTION;
+    ctm.loadIdentity();
 }
 
 void sglScale(SGLfloat xscale, SGLfloat yscale)
@@ -189,7 +202,15 @@ void sglPopMatrix()
 void sglVertex(SGLfloat x, SGLfloat y)
 {
     VertexAttribs v;
-    v.vertex = Vertex(x, y);
+    
+    printf("VERTEX: %f, %f\n", x, y);
+    printf("CTM: %f, %f, %f\n", ctm.matrix.elements[0][0], ctm.matrix.elements[0][1], ctm.matrix.elements[0][2]);
+    
+    v.vertex = ctm * Vertex(x, y, 1.0f);
+    
+    printf("NEW VERTEX: %f, %f, %f\n", v.vertex.x, v.vertex.y, v.vertex.z);
+    printf("--------\n");
+    
     v.color = currentColor;
     vertices.push_back(v);
 }

@@ -5,6 +5,20 @@
 // Forward-declare libst types.
 #include "stForward.h"
 
+#include <vector>
+
+class Matrix {
+public:
+    inline Matrix(int aWidth, int aHeight);
+    
+    int width;
+    int height;
+
+    // I'm not using multi-dimensional arrays for matrices based on this article: http://cplusplus.com/forum/articles/17108/
+    std::vector< std::vector<float> > elements;  // row-major
+    void clear();
+};
+
 /**
 *  Class representing a 3x3 matrix that can be used to
 *  apply transforms to 2D points and vectors
@@ -17,6 +31,14 @@ class STTransform3
 	// accessor functions, you'll probably want to implement multiplication between transforms.
 	// You have a lot of flexibility as to how you implement this class, but you will need to
 	// follow the conventions used in the rest of libst.
+public:
+    STTransform3();
+    STTransform3(Matrix m);
+    Matrix matrix;
+    void loadIdentity();
 };
+
+STVector3 operator*(const STTransform3 &left, const STVector3 &right);
+STTransform3 operator*(const STTransform3 &left, const STTransform3 &right);
 
 #endif
