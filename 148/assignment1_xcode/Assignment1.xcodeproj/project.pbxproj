@@ -11,6 +11,7 @@
 		D53163EA143D9B4B00E5CA4C /* Art2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D53163E9143D9B4B00E5CA4C /* Art2.cpp */; };
 		D55780EA1438420C00548172 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.cpp */; };
 		D55B77D31443DF45004C5F03 /* MRMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D55B77D21443DF45004C5F03 /* MRMath.cpp */; };
+		D560B4C11446B41E00B80064 /* MRSplines.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D560B4C01446B41E00B80064 /* MRSplines.cpp */; };
 		D5AA878E143E8F6300A4E08A /* Art3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5AA878D143E8F6300A4E08A /* Art3.cpp */; };
 		D5E224AE143843D30074DBB5 /* MRPhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E224AD143843D30074DBB5 /* MRPhysics.cpp */; };
 		D5E224B51438498F0074DBB5 /* MRGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E224B41438498F0074DBB5 /* MRGraphics.cpp */; };
@@ -45,6 +46,8 @@
 		D55780DE1438415E00548172 /* reshape3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = reshape3.c; path = ../code/reshape3.c; sourceTree = "<group>"; };
 		D55780DF1438415E00548172 /* single.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = single.c; path = ../code/single.c; sourceTree = "<group>"; };
 		D55B77D21443DF45004C5F03 /* MRMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MRMath.cpp; sourceTree = "<group>"; };
+		D560B4BE1446B31F00B80064 /* MRSplines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRSplines.h; sourceTree = "<group>"; };
+		D560B4C01446B41E00B80064 /* MRSplines.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MRSplines.cpp; sourceTree = "<group>"; };
 		D5AA878B143E8CFD00A4E08A /* Art3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Art3.h; sourceTree = "<group>"; };
 		D5AA878D143E8F6300A4E08A /* Art3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Art3.cpp; sourceTree = "<group>"; };
 		D5E224AC143843010074DBB5 /* MRPhysics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRPhysics.h; sourceTree = "<group>"; };
@@ -99,6 +102,8 @@
 				D53163E9143D9B4B00E5CA4C /* Art2.cpp */,
 				D5AA878B143E8CFD00A4E08A /* Art3.h */,
 				D5AA878D143E8F6300A4E08A /* Art3.cpp */,
+				D560B4BE1446B31F00B80064 /* MRSplines.h */,
+				D560B4C01446B41E00B80064 /* MRSplines.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -160,7 +165,7 @@
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 0420;
 			};
 			buildConfigurationList = 1DEB923508733DC60010E9CD /* Build configuration list for PBXProject "Assignment1" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -190,6 +195,7 @@
 				D53163EA143D9B4B00E5CA4C /* Art2.cpp in Sources */,
 				D5AA878E143E8F6300A4E08A /* Art3.cpp in Sources */,
 				D55B77D31443DF45004C5F03 /* MRMath.cpp in Sources */,
+				D560B4C11446B41E00B80064 /* MRSplines.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

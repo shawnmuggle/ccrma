@@ -20,53 +20,7 @@
 #include "MRMath.h"
 #include "MRPhysics.h"
 #include "MRGraphics.h"
-
-
-class SplinePoint : public DrawableEntity, public PhysicsEntity
-{
-public:
-    SplinePoint(Vector3<float> aPosition, Vector3<float> aHome);
-    virtual void draw();
-    virtual void update();
-    void setTangentWithControlPoint(SplinePoint *aControlPoint);
-    float slope();
-    Vector3<float> tangent();
-    Vector3<float> vectorToHome();
-    Vector3<float> vectorToStartPoint();
-    void drawHermiteCurveToNextPoint(int numInterpolatedPoints);
-    void drawBezierCurveToNextPoint(int numInterpolatedPoints);
-    
-    SplinePoint *nextPoint;
-    SplinePoint *prevPoint;
-protected:
-    Vector3<float> tangentVector;
-    SplinePoint *controlPoint;
-    Vector3<float> home;
-    Vector3<float> startPosition;
-};
-
-class Spline : public DrawableEntity, public PhysicsEntity
-{
-public:
-    Spline();
-    ~Spline();
-    void addPoint(SplinePoint *newPoint);
-    SplinePoint *end();
-    int size();
-    float length();
-    virtual void draw();
-    virtual void update();
-//private:
-    SplinePoint *firstPoint;
-    SplinePoint *lastPoint;
-protected:
-    int numPoints;
-    float totalLength;
-};
-
-// class SplineLoop (keep lastPoint connected to firstPoint)
-
-// class Blob2D (make a vaguely circular splineloop with wavy control points along it that animate in & out)
+#include "MRSplines.h"
 
 // A smoothly curving shape that follows a line strip and has tapered ends
 class CurvyTaperedPath2D : public DrawableEntity, public PhysicsEntity
