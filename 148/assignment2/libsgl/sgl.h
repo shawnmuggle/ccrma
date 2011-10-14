@@ -28,6 +28,11 @@ void setBufferSize(int w, int h);
 void sglBeginTriangles();
 
 /**
+ * Start specifying the vertices for a triangle fan.
+ */
+void sglBeginTriangleFan();
+
+/**
  * Stop specifying the vertices for a triangle strip and begin rasterization.
  */
 void sglEnd();

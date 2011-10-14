@@ -27,23 +27,38 @@ STImage::Pixel currentColor;
 std::stack<STTransform3> transformStack;
 STTransform3 ctm;
 
-static bool flip = false;
-void getCCWVertices(const vector<VertexAttribs> &triangle, VertexAttribs *a, VertexAttribs *b, VertexAttribs *c)
+enum Mode {
+    TRI_STRIP,
+    TRI_FAN
+};
+Mode mode;
+
+// From http://mathworld.wolfram.com/TriangleArea.html
+float signedArea(const vector<VertexAttribs> &triangle)
 {
-    // Grap the vertices in alternating order because every second triangle in a triangle strip is clockwise
-    if (!flip)
+    Vertex p1 = triangle[0].vertex;
+    Vertex p2 = triangle[1].vertex;
+    Vertex p3 = triangle[2].vertex;
+    
+    return 0.5 * ( -p2.x * p1.y + p3.x * p1.y + p1.x * p2.y - p3.x * p2.y - p1.x * p3.y + p2.x * p3.y);
+}
+
+void getCCWVertices(const vector<VertexAttribs> &triangle, VertexAttribs *a, VertexAttribs *b, VertexAttribs *c)
+{    
+    if (signedArea(triangle) > 0)
     {
+        // Already CCW, return in order
         *a = triangle[0];
         *b = triangle[1];
         *c = triangle[2];
     }
     else
     {
+        // CW, flip it
         *a = triangle[2];
         *b = triangle[1];
         *c = triangle[0];
     }
-    flip = !flip;
 }
 
 void getBoundingBox(const Vertex &a, const Vertex &b, const Vertex &c, Vertex *bboxMin, Vertex *bboxMax)
@@ -102,10 +117,18 @@ void renderTriangle(const vector<VertexAttribs> &triangle)
     VertexAttribs a, b, c;
     getCCWVertices(triangle, &a, &b, &c);
     
+//    printf("A color: %d %d %d\n", a.color.r, a.color.g, a.color.b);
+//    printf("B color: %d %d %d\n", b.color.r, b.color.g, b.color.b);
+//    printf("C color: %d %d %d\n", c.color.r, c.color.g, c.color.b);
+//    
+//    printf("A pos: %f %f\n", a.vertex.x, a.vertex.y);
+//    printf("B pos: %f %f\n", b.vertex.x, b.vertex.y);
+//    printf("C pos: %f %f\n", c.vertex.x, c.vertex.y);
+    
     Vertex bboxMin, bboxMax;
     getBoundingBox(a.vertex, b.vertex, c.vertex, &bboxMin, &bboxMax);
     
-    Line l0, l1, l2;    
+    Line l0, l1, l2;
     makeLineEquation(a.vertex, b.vertex, l2);
     makeLineEquation(b.vertex, c.vertex, l0);
     makeLineEquation(c.vertex, a.vertex, l1);
@@ -161,14 +184,61 @@ void renderTriangles()
     }
 }
 
+void renderTriangleFan()
+{
+	if (vertices.size() < 3)
+    {
+        printf("Tried to render triangle fan when there were less than 3 vertices!\n");
+        return;
+    }
+
+    vector<VertexAttribs> triangle;
+    for (vector<VertexAttribs>::iterator i = vertices.begin(); i != vertices.end(); i++)
+    {
+        VertexAttribs v = *i;
+        triangle.push_back(v);
+        
+        if (triangle.size() > 3)
+        {
+            triangle.erase(triangle.begin() + 1);
+        }
+        
+        if (triangle.size() >= 3)
+        {
+            renderTriangle(triangle);
+        }
+    }
+    
+    // Connect the last fan point back to the first one
+    triangle.erase(triangle.begin() + 1);
+    triangle.push_back(vertices[1]);
+    renderTriangle(triangle);
+}
+
 void sglBeginTriangles()
 {
+    mode = TRI_STRIP;
+    vertices.clear();
+}
+
+void sglBeginTriangleFan()
+{
+    mode = TRI_FAN;
     vertices.clear();
 }
 
 void sglEnd()
 {
-	renderTriangles();
+    switch (mode) {
+        case TRI_STRIP:
+            renderTriangles();
+            break;
+        case TRI_FAN:
+            renderTriangleFan();
+            break;
+        default:
+            break;
+    }
 }
 
 void sglLoadIdentity()
@@ -232,6 +302,7 @@ void sglVertex(SGLfloat x, SGLfloat y)
 //    printf("--------\n");
     
     v.color = currentColor;
+    
     vertices.push_back(v);
 }
 
