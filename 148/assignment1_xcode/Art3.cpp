@@ -186,29 +186,29 @@ void Art3::mouseButton(int button, int state, int x, int y)
 {
     printf("BUTTON: %d\n", button);
     
+//    if (button == 0)
+//    {
+//        if (state == 0)
+//        {
+//            mouseDown = true;
+//            currentPath = new CurvyTaperedPath2D(30.0f);
+//            paths.push_back(currentPath);
+//        }
+//        else if (state == 1)
+//        {
+//            mouseDown = false;
+//            if (currentPath->size() == 0)
+//            {
+//                paths.pop_back();
+//                currentPath = NULL;
+//            }
+//            else
+//            {
+//                currentPath->finishSplines();
+//            }
+//        }
+//    }
     if (button == 0)
-    {
-        if (state == 0)
-        {
-            mouseDown = true;
-            currentPath = new CurvyTaperedPath2D(30.0f);
-            paths.push_back(currentPath);
-        }
-        else if (state == 1)
-        {
-            mouseDown = false;
-            if (currentPath->size() == 0)
-            {
-                paths.pop_back();
-                currentPath = NULL;
-            }
-            else
-            {
-                currentPath->finishSplines();
-            }
-        }
-    }
-    else if (button == 2)
     {
         if (state == 0)
         {

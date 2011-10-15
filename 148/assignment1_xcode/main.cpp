@@ -17,28 +17,29 @@
 // back to the programmer?  How is this set up during
 // initialization?
 
-int win_width = 1680;
+//int win_width = 1680;
 //int win_height = 1050;
-int win_height = 800;
+int win_width = 1366;
+int win_height = 768;
 
 Art1 *art1;
 Art2 *art2;
 Art3 *art3;
 
-bool drawArt1 = false;
-bool drawArt2 = false;
+bool drawArt1 = true;
+bool drawArt2 = true;
 bool drawArt3 = true;
 
 void display( void )
 {
     glClear( GL_COLOR_BUFFER_BIT );
     
-    if (drawArt3)
-        art3->draw();
     if (drawArt2)
         art2->draw();
     if (drawArt1)
         art1->draw();
+    if (drawArt3)
+        art3->draw();
     
     glutSwapBuffers();
 }
@@ -110,13 +111,13 @@ int main (int argc, char *argv[])
     // specify?
     glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE );
     
-//    std::stringstream s;
-//    s << win_width << "x" << win_height << ":32@75";
-//    glutGameModeString( s.str().c_str() );  // "1680x1050:32@75"
-//    glutEnterGameMode();
+    std::stringstream s;
+    s << win_width << "x" << win_height << ":32@75";
+    glutGameModeString( s.str().c_str() );  // "1680x1050:32@75"
+    glutEnterGameMode();
     
-    glutInitWindowSize( win_width, win_height );
-    glutCreateWindow( "Intro Graphics Assignment 1" );
+//    glutInitWindowSize( win_width, win_height );
+//    glutCreateWindow( "Intro Graphics Assignment 1" );
     
     glutDisplayFunc( display );
     glutReshapeFunc( reshape );

@@ -43,10 +43,13 @@ MRBlob::MRBlob(float aX, float aY)
     spline.lastPoint->nextPoint = spline.firstPoint;
     spline.firstPoint->prevPoint = spline.lastPoint;
     spline.lastPoint->setTangentWithControlPoint(spline.firstPoint);
+    
+    color = Vector3<float>(rand() / (float)RAND_MAX, rand() / (float)RAND_MAX, rand() / (float)RAND_MAX);
 }
 
 void MRBlob::draw()
 {
+    glColor3f(color.x, color.y, color.z);
     spline.draw();
 }
 

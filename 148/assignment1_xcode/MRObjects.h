@@ -24,6 +24,7 @@ class MRBlob : public PhysicsEntity, public DrawableEntity
     int numSlices;
     std::vector<float> phases;
     Spline spline;
+    Vector3<float> color;
     
 public:
     MRBlob(float aX, float aY);

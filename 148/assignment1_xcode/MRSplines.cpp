@@ -83,7 +83,6 @@ void SplinePoint::draw()
 {
     if (nextPoint)
     {
-        glColor4f(0.9f, 0.3f, 0.01f, 1.0f);
         drawHermiteCurveToNextPoint(20);
     }
 }
