@@ -650,7 +650,7 @@
 					"\"$(SRCROOT)/stk-4.4.2/src\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD5A620B-236A-4D9C-8580-19AAEFA890F2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B7705ED1-D12E-4AA4-8A03-FAE2023E551C";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -671,7 +671,7 @@
 					"\"$(SRCROOT)/stk-4.4.2/src\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD5A620B-236A-4D9C-8580-19AAEFA890F2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B7705ED1-D12E-4AA4-8A03-FAE2023E551C";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

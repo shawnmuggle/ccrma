@@ -715,6 +715,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Rotondo (W9AD566TJP)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -727,6 +728,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "wold-Info.plist";
 				PRODUCT_NAME = wold;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B7705ED1-D12E-4AA4-8A03-FAE2023E551C";
 			};
 			name = Debug;
 		};
@@ -734,6 +736,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Rotondo (W9AD566TJP)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -744,6 +747,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "wold-Info.plist";
 				PRODUCT_NAME = wold;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B7705ED1-D12E-4AA4-8A03-FAE2023E551C";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
