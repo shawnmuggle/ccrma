@@ -98,7 +98,7 @@ protected:
 
 inline StkFloat SineWave :: tick( void )
 {
-    printf("FOR SOME REASON, LAST FRAME SIZE IS NOW %d\n", lastFrame_.size());
+    printf("FOR SOME REASON, LAST FRAME SIZE IS NOW %lu\n", lastFrame_.size());
     
   // Check limits of time address ... if necessary, recalculate modulo
   // TABLE_SIZE.
@@ -115,7 +115,7 @@ inline StkFloat SineWave :: tick( void )
   // Increment time, which can be negative.
   time_ += rate_;
 
-    printf("lastFrame_ size is %d\n", lastFrame_.size());
+    printf("lastFrame_ size is %lu\n", lastFrame_.size());
     
   lastFrame_[0] = tmp;
   return lastFrame_[0];

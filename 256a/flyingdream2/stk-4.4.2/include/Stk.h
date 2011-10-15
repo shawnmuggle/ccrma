@@ -395,7 +395,7 @@ private:
 
 inline bool StkFrames :: empty() const
 {
-  printf("in empty, size is %d\n", size_);
+  printf("in empty, size is %lu\n", size_);
   if ( size_ > 0 ) return false;
   else return true;
 }

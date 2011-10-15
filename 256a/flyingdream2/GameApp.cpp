@@ -111,8 +111,8 @@ GameApp::GameApp(void)
     
     biquad.setGain(0);
     
-    g_width = 1440;
-    g_height = 900;
+    g_width = 1680;
+    g_height = 1050;
     g_pitch = g_yaw = g_roll = 0;
     g_tracking = false;
     done = false;
