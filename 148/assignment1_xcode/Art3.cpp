@@ -102,6 +102,9 @@ void CurvyTaperedPath2D::update()
 //    applyTaperForces(topSpline);
 //    applyTaperForces(bottomSpline);
     
+//    applyPointForce(topSpline);
+//    applyPointForce(bottomSpline);
+    
     topSpline->update();
     bottomSpline->update();
 }
@@ -141,6 +144,33 @@ SplinePoint *CurvyTaperedPath2D::createNewSplinePoint(Vector3<float> linePoint, 
     return new SplinePoint(linePoint, splinePointPosition);
 }
 
+void CurvyTaperedPath2D::setForcePoint(Vector3<float> point)
+{
+    forcePoint = point;
+}
+
+void CurvyTaperedPath2D::applyPointForce(Spline *spline)
+{
+    SplinePoint *point = spline->firstPoint;
+    while (point != NULL)
+    {
+        Vector3<float> mouseVector = point->position - forcePoint;
+        float mouseDistance = mouseVector.magnitude();
+        
+        Vector3<float> mouseDirection = mouseVector * (1.0 / mouseDistance);
+        float pushMagnitude = 200.0 / pow(mouseDistance, 2);
+        
+        point->addForce(mouseDirection * pushMagnitude);
+
+        point = point->nextPoint;
+    }
+}
+
+int CurvyTaperedPath2D::size()
+{
+    return linePoints.size();
+}
+
 Art3::Art3(int aWidth, int aHeight)
 {
     width = aWidth;
@@ -154,27 +184,52 @@ Art3::~Art3()
 
 void Art3::mouseButton(int button, int state, int x, int y)
 {
-    if (state == 0)
+    printf("BUTTON: %d\n", button);
+    
+    if (button == 0)
     {
-        mouseDown = true;
-        currentPath = new CurvyTaperedPath2D(30.0f);
-        paths.push_back(currentPath);
+        if (state == 0)
+        {
+            mouseDown = true;
+            currentPath = new CurvyTaperedPath2D(30.0f);
+            paths.push_back(currentPath);
+        }
+        else if (state == 1)
+        {
+            mouseDown = false;
+            if (currentPath->size() == 0)
+            {
+                paths.pop_back();
+                currentPath = NULL;
+            }
+            else
+            {
+                currentPath->finishSplines();
+            }
+        }
     }
-    else if (state == 1)
+    else if (button == 2)
     {
-        mouseDown = false;
-        currentPath->finishSplines();
+        if (state == 0)
+        {
+            blobs.push_back(new MRBlob(x, y));
+        }
     }
 }
 
 void Art3::setTargetPoint(float x, float y)
 {
     targetPoint.setAll(x, y, 0.0);
+    Vector3<float> mousePosition(x, y, 0.0);        
     if (mouseDown)
     {
-        Vector3<float> mousePosition(x, y, 0.0);        
         currentPath->addPoint(mousePosition);
     }
+    for (vector<CurvyTaperedPath2D *>::iterator i = paths.begin(); i != paths.end(); i++)
+    {
+        CurvyTaperedPath2D *path = *i;
+        path->setForcePoint(mousePosition);
+    }    
 }
 
 void Art3::draw()
@@ -184,6 +239,11 @@ void Art3::draw()
         CurvyTaperedPath2D *path = *i;
         path->draw();
     }
+    for (vector<MRBlob *>::iterator i = blobs.begin(); i != blobs.end(); i++)
+    {
+        MRBlob *blob = *i;
+        blob->draw();
+    }
 }
 
 void Art3::update()
@@ -192,5 +252,10 @@ void Art3::update()
     {
         CurvyTaperedPath2D *path = *i;
         path->update();
+    }
+    for (vector<MRBlob *>::iterator i = blobs.begin(); i != blobs.end(); i++)
+    {
+        MRBlob *blob = *i;
+        blob->update();
     }
 }

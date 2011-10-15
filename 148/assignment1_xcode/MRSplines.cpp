@@ -38,7 +38,9 @@ float SplinePoint::slope()
 
 Vector3<float> SplinePoint::tangent()
 {
-    if (controlPoint)
+    if (nextPoint && prevPoint)
+        return (nextPoint->position - prevPoint->position) / 2;
+    else if (controlPoint)
         return controlPoint->position - position;
     else
         return Vector3<float>(0.0f, 0.0f, 0.0f);
@@ -100,6 +102,10 @@ Spline::Spline()
 
 Spline::~Spline()
 {
+    // In case this spline is a loop, disconnect the end from the beginning before destructing it.
+    firstPoint->prevPoint->nextPoint = NULL;
+    firstPoint->prevPoint = NULL;
+    
     SplinePoint *point = firstPoint;
     SplinePoint *nextPoint;
     while (point != NULL)
@@ -154,14 +160,34 @@ float Spline::length()
 
 void Spline::draw()
 {
+    // draw curves!
     glBegin(GL_LINES);
     SplinePoint *point = firstPoint;
     while (point != NULL)
     {
         point->draw();
         point = point->nextPoint;
+
+        // Protect against looped splines
+        if (point == firstPoint)
+            break;
     }
     glEnd();
+
+    // draw points!
+//    glPointSize(5.0f);
+//    glBegin(GL_POINTS);
+//    point = firstPoint;
+//    while (point != NULL)
+//    {
+//        glVertex2f(point->position.x, point->position.y);
+//        point = point->nextPoint;
+//
+//        // Protect against looped splines
+//        if (point == firstPoint)
+//            break;
+//    }
+//    glEnd();
 }
 
 void Spline::update()
@@ -176,5 +202,9 @@ void Spline::update()
         
         point->update();
         point = point->nextPoint;
+
+        // Protect against looped splines
+        if (point == firstPoint)
+            break;
     }
 }

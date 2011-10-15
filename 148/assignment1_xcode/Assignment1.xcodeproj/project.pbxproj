@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6EBE73A90B548D2E00A7F42B /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBE73A80B548D2E00A7F42B /* GLUT.framework */; };
+		D5072E76144843C4005AE92A /* MRObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5072E75144843C4005AE92A /* MRObjects.cpp */; };
 		D53163EA143D9B4B00E5CA4C /* Art2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D53163E9143D9B4B00E5CA4C /* Art2.cpp */; };
 		D55780EA1438420C00548172 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.cpp */; };
 		D55B77D31443DF45004C5F03 /* MRMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D55B77D21443DF45004C5F03 /* MRMath.cpp */; };
@@ -35,6 +36,8 @@
 		08FB7796FE84155DC02AAC07 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		6EBE73A80B548D2E00A7F42B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
 		8DD76F6C0486A84900D96B5E /* Assignment1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Assignment1; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5072E6514484307005AE92A /* MRObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRObjects.h; sourceTree = "<group>"; };
+		D5072E75144843C4005AE92A /* MRObjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MRObjects.cpp; sourceTree = "<group>"; };
 		D53163E7143D994600E5CA4C /* Art2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Art2.h; sourceTree = "<group>"; };
 		D53163E9143D9B4B00E5CA4C /* Art2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Art2.cpp; sourceTree = "<group>"; };
 		D55780D81438415E00548172 /* concave.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = concave.c; path = ../code/concave.c; sourceTree = "<group>"; };
@@ -96,14 +99,16 @@
 				D55B77D21443DF45004C5F03 /* MRMath.cpp */,
 				D5E224B31438495E0074DBB5 /* MRGraphics.h */,
 				D5E224B41438498F0074DBB5 /* MRGraphics.cpp */,
+				D560B4BE1446B31F00B80064 /* MRSplines.h */,
+				D560B4C01446B41E00B80064 /* MRSplines.cpp */,
+				D5072E6514484307005AE92A /* MRObjects.h */,
+				D5072E75144843C4005AE92A /* MRObjects.cpp */,
 				D5E224B614384A1E0074DBB5 /* Art1.h */,
 				D5E224B714384A9A0074DBB5 /* Art1.cpp */,
 				D53163E7143D994600E5CA4C /* Art2.h */,
 				D53163E9143D9B4B00E5CA4C /* Art2.cpp */,
 				D5AA878B143E8CFD00A4E08A /* Art3.h */,
 				D5AA878D143E8F6300A4E08A /* Art3.cpp */,
-				D560B4BE1446B31F00B80064 /* MRSplines.h */,
-				D560B4C01446B41E00B80064 /* MRSplines.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 				D5AA878E143E8F6300A4E08A /* Art3.cpp in Sources */,
 				D55B77D31443DF45004C5F03 /* MRMath.cpp in Sources */,
 				D560B4C11446B41E00B80064 /* MRSplines.cpp in Sources */,
+				D5072E76144843C4005AE92A /* MRObjects.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

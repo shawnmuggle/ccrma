@@ -21,6 +21,7 @@
 #include "MRPhysics.h"
 #include "MRGraphics.h"
 #include "MRSplines.h"
+#include "MRObjects.h"
 
 // A smoothly curving shape that follows a line strip and has tapered ends
 class CurvyTaperedPath2D : public DrawableEntity, public PhysicsEntity
@@ -33,15 +34,20 @@ public:
     void addPoint(Vector3<float> newPoint);
     void finishSplines();
     virtual SplinePoint *createNewSplinePoint(Vector3<float> linePoint, Vector3<float> splinePointPosition);
+    void setForcePoint(Vector3<float> point);
+    int size();
 protected:
     void extendSplinesWithPointAndAngle(Vector3<float> pointToAdd, float angle);
     void applyTaperForces(Spline *spline);
+    void applyPointForce(Spline *spline);
     
     Spline *topSpline;
     Spline *bottomSpline;
     
     std::vector< Vector3<float> > linePoints;
     float width;
+    
+    Vector3<float> forcePoint;
 };
 
 class Art3
@@ -61,6 +67,8 @@ private:
     
     std::vector<CurvyTaperedPath2D *> paths;
     CurvyTaperedPath2D *currentPath;
+    
+    std::vector<MRBlob *> blobs;
 };
 
 
