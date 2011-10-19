@@ -17,10 +17,10 @@
 // back to the programmer?  How is this set up during
 // initialization?
 
-//int win_width = 1680;
-//int win_height = 1050;
-int win_width = 1366;
-int win_height = 768;
+int win_width = 1680;
+int win_height = 1050;
+//int win_width = 1366;
+//int win_height = 768;
 
 Art1 *art1;
 Art2 *art2;
