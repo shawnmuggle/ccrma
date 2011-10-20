@@ -25,6 +25,8 @@ public:
 
     virtual void Display();
     virtual void HandleClick();
+    
+    std::string Text() { return mText; }
 
 private:
     // Font to use for text
