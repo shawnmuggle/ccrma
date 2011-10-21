@@ -1,0 +1,440 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D53D5595144FB86300E46047 /* SAWorldView.mm in Sources */ = {isa = PBXBuildFile; fileRef = D53D5594144FB86300E46047 /* SAWorldView.mm */; };
+		D53D5599144FB8A300E46047 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53D5598144FB8A300E46047 /* OpenGL.framework */; };
+		D53D559D14500A6200E46047 /* SAWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = D53D559C14500A6200E46047 /* SAWorld.mm */; };
+		D5A7B5D71450F7980048749F /* libBox2D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A7B5CF1450339D0048749F /* libBox2D.a */; };
+		D5A7B5DA145168E20048749F /* SABall.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5A7B5D9145168E20048749F /* SABall.mm */; };
+		D5D29E9F144FB0C700485601 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D29E9E144FB0C700485601 /* Cocoa.framework */; };
+		D5D29EA9144FB0C700485601 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5D29EA7144FB0C700485601 /* InfoPlist.strings */; };
+		D5D29EAB144FB0C700485601 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D29EAA144FB0C700485601 /* main.m */; };
+		D5D29EAF144FB0C700485601 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D5D29EAD144FB0C700485601 /* Credits.rtf */; };
+		D5D29EB2144FB0C700485601 /* SAAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5D29EB1144FB0C700485601 /* SAAppDelegate.mm */; };
+		D5D29EB5144FB0C800485601 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D29EB3144FB0C800485601 /* MainMenu.xib */; };
+		D5D29EB8144FB0C800485601 /* Soundaround.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D5D29EB6144FB0C800485601 /* Soundaround.xcdatamodeld */; };
+		D5D96F8D145025DF003C5580 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D96F8C145025DF003C5580 /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D5A7B5CE1450339D0048749F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5A7B5C21450339C0048749F /* Box2D.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 80FF01D2141C3D980059E59D;
+			remoteInfo = Box2D;
+		};
+		D5A7B5D01450339D0048749F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5A7B5C21450339C0048749F /* Box2D.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 80BB8901141C3E1800F1753A;
+			remoteInfo = GLUI;
+		};
+		D5A7B5D21450339D0048749F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5A7B5C21450339C0048749F /* Box2D.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 80BB890A141C3E2700F1753A;
+			remoteInfo = HelloWorld;
+		};
+		D5A7B5D41450339D0048749F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5A7B5C21450339C0048749F /* Box2D.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 80BB8918141C3E3600F1753A;
+			remoteInfo = Testbed;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D53D5593144FB86300E46047 /* SAWorldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAWorldView.h; path = OpenGL/SAWorldView.h; sourceTree = "<group>"; };
+		D53D5594144FB86300E46047 /* SAWorldView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SAWorldView.mm; path = OpenGL/SAWorldView.mm; sourceTree = "<group>"; };
+		D53D5598144FB8A300E46047 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		D53D559B14500A6200E46047 /* SAWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAWorld.h; path = Soundaround/Game/SAWorld.h; sourceTree = "<group>"; };
+		D53D559C14500A6200E46047 /* SAWorld.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SAWorld.mm; path = Soundaround/Game/SAWorld.mm; sourceTree = "<group>"; };
+		D5A7B5C21450339C0048749F /* Box2D.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Box2D.xcodeproj; path = Box2D_v2.2.1/Build/xcode4/Box2D.xcodeproj; sourceTree = "<group>"; };
+		D5A7B5D8145168E20048749F /* SABall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SABall.h; path = Soundaround/Game/SABall.h; sourceTree = "<group>"; };
+		D5A7B5D9145168E20048749F /* SABall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SABall.mm; path = Soundaround/Game/SABall.mm; sourceTree = "<group>"; };
+		D5D29E9A144FB0C700485601 /* Soundaround.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soundaround.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5D29E9E144FB0C700485601 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		D5D29EA1144FB0C700485601 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D5D29EA2144FB0C700485601 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D5D29EA3144FB0C700485601 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D5D29EA6144FB0C700485601 /* Soundaround-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Soundaround-Info.plist"; sourceTree = "<group>"; };
+		D5D29EA8144FB0C700485601 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D5D29EAA144FB0C700485601 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D5D29EAC144FB0C700485601 /* Soundaround-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Soundaround-Prefix.pch"; sourceTree = "<group>"; };
+		D5D29EAE144FB0C700485601 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		D5D29EB0144FB0C700485601 /* SAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAAppDelegate.h; sourceTree = "<group>"; };
+		D5D29EB1144FB0C700485601 /* SAAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SAAppDelegate.mm; sourceTree = "<group>"; };
+		D5D29EB4144FB0C800485601 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D5D29EB7144FB0C800485601 /* Soundaround.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Soundaround.xcdatamodel; sourceTree = "<group>"; };
+		D5D96F8C145025DF003C5580 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D5D29E97144FB0C700485601 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5A7B5D71450F7980048749F /* libBox2D.a in Frameworks */,
+				D5D96F8D145025DF003C5580 /* QuartzCore.framework in Frameworks */,
+				D53D5599144FB8A300E46047 /* OpenGL.framework in Frameworks */,
+				D5D29E9F144FB0C700485601 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D53D5597144FB87200E46047 /* OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				D53D5593144FB86300E46047 /* SAWorldView.h */,
+				D53D5594144FB86300E46047 /* SAWorldView.mm */,
+			);
+			name = OpenGL;
+			sourceTree = "<group>";
+		};
+		D53D559A14500A2A00E46047 /* World */ = {
+			isa = PBXGroup;
+			children = (
+				D53D559B14500A6200E46047 /* SAWorld.h */,
+				D53D559C14500A6200E46047 /* SAWorld.mm */,
+				D5A7B5D8145168E20048749F /* SABall.h */,
+				D5A7B5D9145168E20048749F /* SABall.mm */,
+			);
+			name = World;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		D5A7B5C31450339C0048749F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5A7B5CF1450339D0048749F /* libBox2D.a */,
+				D5A7B5D11450339D0048749F /* libGLUI.a */,
+				D5A7B5D31450339D0048749F /* HelloWorld */,
+				D5A7B5D51450339D0048749F /* Testbed */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D5D29E8F144FB0C700485601 = {
+			isa = PBXGroup;
+			children = (
+				D5D29EA4144FB0C700485601 /* Soundaround */,
+				D5D29E9D144FB0C700485601 /* Frameworks */,
+				D5D29E9B144FB0C700485601 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D5D29E9B144FB0C700485601 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5D29E9A144FB0C700485601 /* Soundaround.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D5D29E9D144FB0C700485601 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5A7B5C21450339C0048749F /* Box2D.xcodeproj */,
+				D5D96F8C145025DF003C5580 /* QuartzCore.framework */,
+				D53D5598144FB8A300E46047 /* OpenGL.framework */,
+				D5D29E9E144FB0C700485601 /* Cocoa.framework */,
+				D5D29EA0144FB0C700485601 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D5D29EA0144FB0C700485601 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5D29EA1144FB0C700485601 /* AppKit.framework */,
+				D5D29EA2144FB0C700485601 /* CoreData.framework */,
+				D5D29EA3144FB0C700485601 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		D5D29EA4144FB0C700485601 /* Soundaround */ = {
+			isa = PBXGroup;
+			children = (
+				D5D29EB0144FB0C700485601 /* SAAppDelegate.h */,
+				D5D29EB1144FB0C700485601 /* SAAppDelegate.mm */,
+				D5D29EB3144FB0C800485601 /* MainMenu.xib */,
+				D5D29EB6144FB0C800485601 /* Soundaround.xcdatamodeld */,
+				D5D29EA5144FB0C700485601 /* Supporting Files */,
+				D53D5597144FB87200E46047 /* OpenGL */,
+				D53D559A14500A2A00E46047 /* World */,
+			);
+			path = Soundaround;
+			sourceTree = "<group>";
+		};
+		D5D29EA5144FB0C700485601 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D5D29EA6144FB0C700485601 /* Soundaround-Info.plist */,
+				D5D29EA7144FB0C700485601 /* InfoPlist.strings */,
+				D5D29EAA144FB0C700485601 /* main.m */,
+				D5D29EAC144FB0C700485601 /* Soundaround-Prefix.pch */,
+				D5D29EAD144FB0C700485601 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D5D29E99144FB0C700485601 /* Soundaround */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5D29EBB144FB0C800485601 /* Build configuration list for PBXNativeTarget "Soundaround" */;
+			buildPhases = (
+				D5D29E96144FB0C700485601 /* Sources */,
+				D5D29E97144FB0C700485601 /* Frameworks */,
+				D5D29E98144FB0C700485601 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Soundaround;
+			productName = Soundaround;
+			productReference = D5D29E9A144FB0C700485601 /* Soundaround.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D5D29E91144FB0C700485601 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = Rototyping;
+			};
+			buildConfigurationList = D5D29E94144FB0C700485601 /* Build configuration list for PBXProject "Soundaround" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D5D29E8F144FB0C700485601;
+			productRefGroup = D5D29E9B144FB0C700485601 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D5A7B5C31450339C0048749F /* Products */;
+					ProjectRef = D5A7B5C21450339C0048749F /* Box2D.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				D5D29E99144FB0C700485601 /* Soundaround */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D5A7B5CF1450339D0048749F /* libBox2D.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBox2D.a;
+			remoteRef = D5A7B5CE1450339D0048749F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D5A7B5D11450339D0048749F /* libGLUI.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGLUI.a;
+			remoteRef = D5A7B5D01450339D0048749F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D5A7B5D31450339D0048749F /* HelloWorld */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = HelloWorld;
+			remoteRef = D5A7B5D21450339D0048749F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D5A7B5D51450339D0048749F /* Testbed */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = Testbed;
+			remoteRef = D5A7B5D41450339D0048749F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D5D29E98144FB0C700485601 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5D29EA9144FB0C700485601 /* InfoPlist.strings in Resources */,
+				D5D29EAF144FB0C700485601 /* Credits.rtf in Resources */,
+				D5D29EB5144FB0C800485601 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D5D29E96144FB0C700485601 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5D29EAB144FB0C700485601 /* main.m in Sources */,
+				D5D29EB2144FB0C700485601 /* SAAppDelegate.mm in Sources */,
+				D5D29EB8144FB0C800485601 /* Soundaround.xcdatamodeld in Sources */,
+				D53D5595144FB86300E46047 /* SAWorldView.mm in Sources */,
+				D53D559D14500A6200E46047 /* SAWorld.mm in Sources */,
+				D5A7B5DA145168E20048749F /* SABall.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D5D29EA7144FB0C700485601 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5D29EA8144FB0C700485601 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D5D29EAD144FB0C700485601 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5D29EAE144FB0C700485601 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		D5D29EB3144FB0C800485601 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5D29EB4144FB0C800485601 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D5D29EB9144FB0C800485601 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D5D29EBA144FB0C800485601 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D5D29EBC144FB0C800485601 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Soundaround/Soundaround-Prefix.pch";
+				HEADER_SEARCH_PATHS = Box2D_v2.2.1;
+				INFOPLIST_FILE = "Soundaround/Soundaround-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D5D29EBD144FB0C800485601 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Soundaround/Soundaround-Prefix.pch";
+				HEADER_SEARCH_PATHS = Box2D_v2.2.1;
+				INFOPLIST_FILE = "Soundaround/Soundaround-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D5D29E94144FB0C700485601 /* Build configuration list for PBXProject "Soundaround" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5D29EB9144FB0C800485601 /* Debug */,
+				D5D29EBA144FB0C800485601 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5D29EBB144FB0C800485601 /* Build configuration list for PBXNativeTarget "Soundaround" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5D29EBC144FB0C800485601 /* Debug */,
+				D5D29EBD144FB0C800485601 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D5D29EB6144FB0C800485601 /* Soundaround.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D5D29EB7144FB0C800485601 /* Soundaround.xcdatamodel */,
+			);
+			currentVersion = D5D29EB7144FB0C800485601 /* Soundaround.xcdatamodel */;
+			path = Soundaround.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = D5D29E91144FB0C700485601 /* Project object */;
+}
