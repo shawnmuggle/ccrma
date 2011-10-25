@@ -10,11 +10,13 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "SAWorld.h"
+@class SAWorld;
+@class SAAudioManager;
 
 @interface SAWorldView : NSOpenGLView
 
 @property (nonatomic, retain) SAWorld *world;
+@property (nonatomic, retain) SAAudioManager *audioManager;
 @property (nonatomic, assign) CGRect viewport; // this is the size of the camera's window onto the world
 @property (nonatomic, assign) CVDisplayLinkRef displayLink;
 
@@ -23,10 +25,16 @@
 - (void)drawRect:(NSRect)bounds;
 - (void)draw;
 
-- (void)moveCameraByVector:(CGPoint)vector;
+- (void)setViewportToTrackAvatar;
+- (void)setViewportSize:(CGSize)size;
+- (void)positionViewportAt:(CGPoint)position;
 
 - (void)keyUp:(NSEvent*)event;
 - (void)keyDown:(NSEvent*)event;
+
+float lerp(float a, float b, float t);
+CGPoint CGPointLerp(const CGPoint &a, const CGPoint &b, float t);
+CGSize CGSizeLerp(const CGSize &a, const CGSize &b, float t);
 
 @end
 

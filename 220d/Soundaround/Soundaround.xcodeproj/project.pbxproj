@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D53D5595144FB86300E46047 /* SAWorldView.mm in Sources */ = {isa = PBXBuildFile; fileRef = D53D5594144FB86300E46047 /* SAWorldView.mm */; };
 		D53D5599144FB8A300E46047 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53D5598144FB8A300E46047 /* OpenGL.framework */; };
-		D53D559D14500A6200E46047 /* SAWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = D53D559C14500A6200E46047 /* SAWorld.mm */; };
+		D54D0DD31454B7830076EB5A /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54D0DD01454B7830076EB5A /* RtAudio.cpp */; };
+		D54D0DD51454B8CB0076EB5A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54D0DD41454B8CB0076EB5A /* CoreAudio.framework */; };
+		D54D0DDD1454B97E0076EB5A /* SAAvatar.mm in Sources */ = {isa = PBXBuildFile; fileRef = D54D0DD71454B97E0076EB5A /* SAAvatar.mm */; };
+		D54D0DDE1454B97E0076EB5A /* SABall.mm in Sources */ = {isa = PBXBuildFile; fileRef = D54D0DD91454B97E0076EB5A /* SABall.mm */; };
+		D54D0DDF1454B97E0076EB5A /* SAWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = D54D0DDB1454B97E0076EB5A /* SAWorld.mm */; };
+		D54D0DE21454B98A0076EB5A /* SAWorldView.mm in Sources */ = {isa = PBXBuildFile; fileRef = D54D0DE01454B98A0076EB5A /* SAWorldView.mm */; };
+		D54D0DE61454B9BC0076EB5A /* SAAudioManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = D54D0DE51454B9BC0076EB5A /* SAAudioManager.mm */; };
+		D54D0DE9145520570076EB5A /* SAPhysicsObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D54D0DE8145520570076EB5A /* SAPhysicsObject.mm */; };
+		D574FC641455650300AD4726 /* SAGrassBlade.mm in Sources */ = {isa = PBXBuildFile; fileRef = D574FC631455650300AD4726 /* SAGrassBlade.mm */; };
 		D5A7B5D71450F7980048749F /* libBox2D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A7B5CF1450339D0048749F /* libBox2D.a */; };
-		D5A7B5DA145168E20048749F /* SABall.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5A7B5D9145168E20048749F /* SABall.mm */; };
 		D5D29E9F144FB0C700485601 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D29E9E144FB0C700485601 /* Cocoa.framework */; };
 		D5D29EA9144FB0C700485601 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5D29EA7144FB0C700485601 /* InfoPlist.strings */; };
 		D5D29EAB144FB0C700485601 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D29EAA144FB0C700485601 /* main.m */; };
@@ -54,14 +60,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D53D5593144FB86300E46047 /* SAWorldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAWorldView.h; path = OpenGL/SAWorldView.h; sourceTree = "<group>"; };
-		D53D5594144FB86300E46047 /* SAWorldView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SAWorldView.mm; path = OpenGL/SAWorldView.mm; sourceTree = "<group>"; };
 		D53D5598144FB8A300E46047 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		D53D559B14500A6200E46047 /* SAWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAWorld.h; path = Soundaround/Game/SAWorld.h; sourceTree = "<group>"; };
-		D53D559C14500A6200E46047 /* SAWorld.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SAWorld.mm; path = Soundaround/Game/SAWorld.mm; sourceTree = "<group>"; };
+		D54D0DD01454B7830076EB5A /* RtAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RtAudio.cpp; sourceTree = "<group>"; };
+		D54D0DD11454B7830076EB5A /* RtAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
+		D54D0DD21454B7830076EB5A /* RtError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtError.h; sourceTree = "<group>"; };
+		D54D0DD41454B8CB0076EB5A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D54D0DD71454B97E0076EB5A /* SAAvatar.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SAAvatar.mm; path = Soundaround/SAAvatar.mm; sourceTree = "<group>"; };
+		D54D0DD81454B97E0076EB5A /* SAAvatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAAvatar.h; path = Soundaround/SAAvatar.h; sourceTree = "<group>"; };
+		D54D0DD91454B97E0076EB5A /* SABall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SABall.mm; path = Soundaround/SABall.mm; sourceTree = "<group>"; };
+		D54D0DDA1454B97E0076EB5A /* SAWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAWorld.h; path = Soundaround/SAWorld.h; sourceTree = "<group>"; };
+		D54D0DDB1454B97E0076EB5A /* SAWorld.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SAWorld.mm; path = Soundaround/SAWorld.mm; sourceTree = "<group>"; };
+		D54D0DDC1454B97E0076EB5A /* SABall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SABall.h; path = Soundaround/SABall.h; sourceTree = "<group>"; };
+		D54D0DE01454B98A0076EB5A /* SAWorldView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAWorldView.mm; sourceTree = "<group>"; };
+		D54D0DE11454B98A0076EB5A /* SAWorldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAWorldView.h; sourceTree = "<group>"; };
+		D54D0DE41454B9BC0076EB5A /* SAAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioManager.h; sourceTree = "<group>"; };
+		D54D0DE51454B9BC0076EB5A /* SAAudioManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAAudioManager.mm; sourceTree = "<group>"; };
+		D54D0DE7145520570076EB5A /* SAPhysicsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAPhysicsObject.h; path = Soundaround/SAPhysicsObject.h; sourceTree = "<group>"; };
+		D54D0DE8145520570076EB5A /* SAPhysicsObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SAPhysicsObject.mm; path = Soundaround/SAPhysicsObject.mm; sourceTree = "<group>"; };
+		D574FC621455650300AD4726 /* SAGrassBlade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAGrassBlade.h; path = Soundaround/SAGrassBlade.h; sourceTree = "<group>"; };
+		D574FC631455650300AD4726 /* SAGrassBlade.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SAGrassBlade.mm; path = Soundaround/SAGrassBlade.mm; sourceTree = "<group>"; };
+		D574FC6514556D5000AD4726 /* SADrawableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SADrawableObject.h; sourceTree = "<group>"; };
 		D5A7B5C21450339C0048749F /* Box2D.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Box2D.xcodeproj; path = Box2D_v2.2.1/Build/xcode4/Box2D.xcodeproj; sourceTree = "<group>"; };
-		D5A7B5D8145168E20048749F /* SABall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SABall.h; path = Soundaround/Game/SABall.h; sourceTree = "<group>"; };
-		D5A7B5D9145168E20048749F /* SABall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SABall.mm; path = Soundaround/Game/SABall.mm; sourceTree = "<group>"; };
 		D5D29E9A144FB0C700485601 /* Soundaround.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soundaround.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5D29E9E144FB0C700485601 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D5D29EA1144FB0C700485601 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -77,6 +96,7 @@
 		D5D29EB4144FB0C800485601 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D5D29EB7144FB0C800485601 /* Soundaround.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Soundaround.xcdatamodel; sourceTree = "<group>"; };
 		D5D96F8C145025DF003C5580 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D5F81E5F14555367005D6DB7 /* SAAudioProducer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAudioProducer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D54D0DD51454B8CB0076EB5A /* CoreAudio.framework in Frameworks */,
 				D5A7B5D71450F7980048749F /* libBox2D.a in Frameworks */,
 				D5D96F8D145025DF003C5580 /* QuartzCore.framework in Frameworks */,
 				D53D5599144FB8A300E46047 /* OpenGL.framework in Frameworks */,
@@ -94,25 +115,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D53D5597144FB87200E46047 /* OpenGL */ = {
-			isa = PBXGroup;
-			children = (
-				D53D5593144FB86300E46047 /* SAWorldView.h */,
-				D53D5594144FB86300E46047 /* SAWorldView.mm */,
-			);
-			name = OpenGL;
-			sourceTree = "<group>";
-		};
 		D53D559A14500A2A00E46047 /* World */ = {
 			isa = PBXGroup;
 			children = (
-				D53D559B14500A6200E46047 /* SAWorld.h */,
-				D53D559C14500A6200E46047 /* SAWorld.mm */,
-				D5A7B5D8145168E20048749F /* SABall.h */,
-				D5A7B5D9145168E20048749F /* SABall.mm */,
+				D54D0DD71454B97E0076EB5A /* SAAvatar.mm */,
+				D54D0DD81454B97E0076EB5A /* SAAvatar.h */,
+				D54D0DD91454B97E0076EB5A /* SABall.mm */,
+				D54D0DDC1454B97E0076EB5A /* SABall.h */,
+				D54D0DDA1454B97E0076EB5A /* SAWorld.h */,
+				D54D0DDB1454B97E0076EB5A /* SAWorld.mm */,
+				D54D0DE7145520570076EB5A /* SAPhysicsObject.h */,
+				D54D0DE8145520570076EB5A /* SAPhysicsObject.mm */,
+				D574FC621455650300AD4726 /* SAGrassBlade.h */,
+				D574FC631455650300AD4726 /* SAGrassBlade.mm */,
 			);
 			name = World;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		D54D0DCF1454B76A0076EB5A /* RtAudio */ = {
+			isa = PBXGroup;
+			children = (
+				D54D0DD01454B7830076EB5A /* RtAudio.cpp */,
+				D54D0DD11454B7830076EB5A /* RtAudio.h */,
+				D54D0DD21454B7830076EB5A /* RtError.h */,
+			);
+			name = RtAudio;
+			sourceTree = "<group>";
+		};
+		D54D0DD61454B8E70076EB5A /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				D54D0DE41454B9BC0076EB5A /* SAAudioManager.h */,
+				D54D0DE51454B9BC0076EB5A /* SAAudioManager.mm */,
+				D5F81E5F14555367005D6DB7 /* SAAudioProducer.h */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
+		D54D0DE31454B9900076EB5A /* View/Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D54D0DE01454B98A0076EB5A /* SAWorldView.mm */,
+				D54D0DE11454B98A0076EB5A /* SAWorldView.h */,
+				D574FC6514556D5000AD4726 /* SADrawableObject.h */,
+			);
+			name = View/Controller;
 			sourceTree = "<group>";
 		};
 		D5A7B5C31450339C0048749F /* Products */ = {
@@ -146,6 +194,8 @@
 		D5D29E9D144FB0C700485601 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D54D0DD41454B8CB0076EB5A /* CoreAudio.framework */,
+				D54D0DCF1454B76A0076EB5A /* RtAudio */,
 				D5A7B5C21450339C0048749F /* Box2D.xcodeproj */,
 				D5D96F8C145025DF003C5580 /* QuartzCore.framework */,
 				D53D5598144FB8A300E46047 /* OpenGL.framework */,
@@ -173,7 +223,8 @@
 				D5D29EB3144FB0C800485601 /* MainMenu.xib */,
 				D5D29EB6144FB0C800485601 /* Soundaround.xcdatamodeld */,
 				D5D29EA5144FB0C700485601 /* Supporting Files */,
-				D53D5597144FB87200E46047 /* OpenGL */,
+				D54D0DE31454B9900076EB5A /* View/Controller */,
+				D54D0DD61454B8E70076EB5A /* Sound */,
 				D53D559A14500A2A00E46047 /* World */,
 			);
 			path = Soundaround;
@@ -295,9 +346,14 @@
 				D5D29EAB144FB0C700485601 /* main.m in Sources */,
 				D5D29EB2144FB0C700485601 /* SAAppDelegate.mm in Sources */,
 				D5D29EB8144FB0C800485601 /* Soundaround.xcdatamodeld in Sources */,
-				D53D5595144FB86300E46047 /* SAWorldView.mm in Sources */,
-				D53D559D14500A6200E46047 /* SAWorld.mm in Sources */,
-				D5A7B5DA145168E20048749F /* SABall.mm in Sources */,
+				D54D0DD31454B7830076EB5A /* RtAudio.cpp in Sources */,
+				D54D0DDD1454B97E0076EB5A /* SAAvatar.mm in Sources */,
+				D54D0DDE1454B97E0076EB5A /* SABall.mm in Sources */,
+				D54D0DDF1454B97E0076EB5A /* SAWorld.mm in Sources */,
+				D54D0DE21454B98A0076EB5A /* SAWorldView.mm in Sources */,
+				D54D0DE61454B9BC0076EB5A /* SAAudioManager.mm in Sources */,
+				D54D0DE9145520570076EB5A /* SAPhysicsObject.mm in Sources */,
+				D574FC641455650300AD4726 /* SAGrassBlade.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +439,10 @@
 				GCC_PREFIX_HEADER = "Soundaround/Soundaround-Prefix.pch";
 				HEADER_SEARCH_PATHS = Box2D_v2.2.1;
 				INFOPLIST_FILE = "Soundaround/Soundaround-Info.plist";
+				OTHER_CPLUSPLUSFLAGS = (
+					"-D__MACOSX_CORE__",
+					"$(OTHER_CFLAGS)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -395,6 +455,10 @@
 				GCC_PREFIX_HEADER = "Soundaround/Soundaround-Prefix.pch";
 				HEADER_SEARCH_PATHS = Box2D_v2.2.1;
 				INFOPLIST_FILE = "Soundaround/Soundaround-Info.plist";
+				OTHER_CPLUSPLUSFLAGS = (
+					"-D__MACOSX_CORE__",
+					"$(OTHER_CFLAGS)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

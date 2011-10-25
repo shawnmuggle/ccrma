@@ -6,21 +6,36 @@
 //  Copyright (c) 2011 Rototyping. All rights reserved.
 //
 
-#import "SAWorldView.h"
 #include "OpenGL/gl.h"
+
+#import "SAWorldView.h"
+#import "SAWorld.h"
+#import "SAAvatar.h"
+#import "SAAudioManager.h"
+
+@interface SAWorldView ()
+
+@property (nonatomic, assign) CGSize minViewportSize;
+
+@end
 
 @implementation SAWorldView
 @synthesize world;
 @synthesize viewport;
 @synthesize displayLink;
+@synthesize minViewportSize;
+@synthesize audioManager;
 
 - (void)awakeFromNib
 {
     self.world = [SAWorld world];
     float aspectRatio = self.bounds.size.height / self.bounds.size.width;
-    float viewportWidth = 30; // in meters
-    self.viewport = CGRectMake(0, 0, viewportWidth, viewportWidth * aspectRatio);
+    float minViewportWidth = 30; // in meters
+    self.minViewportSize = CGSizeMake(minViewportWidth, minViewportWidth * aspectRatio);
+    self.viewport = CGRectMake(0, 0, self.minViewportSize.width, self.minViewportSize.height);
     [self createDisplayLink];
+
+    self.audioManager = [SAAudioManager audioManagerWithWorld:self.world];
 }
 
 - (void)dealloc
@@ -70,6 +85,8 @@ static CVReturn displayCallback(CVDisplayLinkRef displayLink, const CVTimeStamp*
 
 - (void)draw
 {
+    [self setViewportToTrackAvatar];
+    
     NSOpenGLContext *currentContext = [self openGLContext];
     [currentContext makeCurrentContext];
     
@@ -78,15 +95,14 @@ static CVReturn displayCallback(CVDisplayLinkRef displayLink, const CVTimeStamp*
     
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(0, self.viewport.size.width,
-            0, self.viewport.size.height,
+    glOrtho(self.viewport.origin.x, self.viewport.origin.x + self.viewport.size.width,
+            self.viewport.origin.y, self.viewport.origin.y + self.viewport.size.height,
             -1, 1);
-
+    
     glMatrixMode(GL_MODELVIEW);
     glViewport(0, 0, self.bounds.size.width, self.bounds.size.height);
 
     glPushMatrix();
-    glTranslatef(-self.viewport.origin.x, -self.viewport.origin.y, 0.0);
 
     [self.world draw];
 
@@ -97,9 +113,52 @@ static CVReturn displayCallback(CVDisplayLinkRef displayLink, const CVTimeStamp*
     CGLUnlockContext((CGLContextObj)[currentContext CGLContextObj]);
 }
 
-- (void)moveCameraByVector:(CGPoint)vector
+- (void)setViewportToTrackAvatar
 {
-    self.viewport = CGRectMake(self.viewport.origin.x + vector.x, self.viewport.origin.y + vector.y, 
+    CGPoint avatarPosition = self.world.avatar.position;
+    float viewportSizeMultiplier = self.world.avatar.speed * 0.3;
+    CGSize newViewportSize = CGSizeMake(self.minViewportSize.width + viewportSizeMultiplier, 
+                                        self.minViewportSize.height + viewportSizeMultiplier);
+    [self setViewportSize:newViewportSize];
+    
+    float movementThreshold = 0.4;
+    if (avatarPosition.x < self.viewport.origin.x + movementThreshold * self.viewport.size.width)
+    {
+        [self positionViewportAt:CGPointMake(avatarPosition.x - movementThreshold * self.viewport.size.width, 
+                                             self.viewport.origin.y)];
+    }
+    if (avatarPosition.x > self.viewport.origin.x + self.viewport.size.width - movementThreshold * self.viewport.size.width)
+    {
+        [self positionViewportAt:CGPointMake(avatarPosition.x - (1.0 - movementThreshold) * self.viewport.size.width, self.viewport.origin.y)];
+    }
+}
+
+float lerp(float a, float b, float t)
+{
+    return a + t * (b - a);
+}
+
+CGPoint CGPointLerp(const CGPoint &a, const CGPoint &b, float t)
+{
+    CGPoint p = CGPointMake(lerp(a.x, b.x, t), lerp(a.y, b.y, t));
+    return p;
+}
+
+CGSize CGSizeLerp(const CGSize &a, const CGSize &b, float t)
+{
+    CGSize s = CGSizeMake(lerp(a.width, b.width, t), lerp(a.height, b.height, t));
+    return s;
+}
+
+- (void)setViewportSize:(CGSize)size
+{
+    CGSize newSize = CGSizeLerp(self.viewport.size, size, 0.1);
+    self.viewport = CGRectMake(self.viewport.origin.x, self.viewport.origin.y, newSize.width, newSize.height);
+}
+
+- (void)positionViewportAt:(CGPoint)position
+{
+    self.viewport = CGRectMake(position.x, position.y, 
                                self.viewport.size.width, self.viewport.size.height);
 }
 
@@ -119,16 +178,17 @@ static CVReturn displayCallback(CVDisplayLinkRef displayLink, const CVTimeStamp*
 
 -(void)keyDown:(NSEvent*)event
 {   
-    CGPoint movementVector = CGPointMake(0, 0);
-    float movementAmount = 1.0;
+    CGPoint movementVector;
     
     // I added these based on the addition to your question :)
     switch( [event keyCode] ) {
         case 124:       // right arrow
-            movementVector = CGPointMake(movementVector.x + movementAmount, movementVector.y);
+            movementVector = CGPointMake(1, 0);
+            [self.world.avatar startMoving:movementVector];
             break;
         case 123:       // left arrow
-            movementVector = CGPointMake(movementVector.x - movementAmount, movementVector.y);
+            movementVector = CGPointMake(-1, 0);
+            [self.world.avatar startMoving:movementVector];
             break;
         case 126:       // up arrow
         case 125:       // down arrow
@@ -136,8 +196,6 @@ static CVReturn displayCallback(CVDisplayLinkRef displayLink, const CVTimeStamp*
             NSLog(@"Key pressed: %@", event);
             break;
     }
-    
-    [self moveCameraByVector:movementVector];
 }
 
 @end

@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SAPhysicsObject.h"
+#import "SAAudioProducer.h"
+#import "SADrawableObject.h"
 
 @class SAWorld;
-class b2Body;
 
-@interface SABall : NSObject
+@interface SABall : SAPhysicsObject <SAAudioProducer, SADrawableObject>
 
 + (id)ballInWorld:(SAWorld *)world;
-- (void)draw;
 - (void)throwTowards:(CGPoint)point;
 
 @end
