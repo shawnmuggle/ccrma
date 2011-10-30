@@ -1,0 +1,4 @@
+background1=image1.png
+background2=image2.jpg
+loadfile=FaceFeatures.txt
+savefile=FaceFeatures.txt
