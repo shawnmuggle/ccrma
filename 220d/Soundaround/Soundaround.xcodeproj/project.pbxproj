@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D502ED3A145CCB570085DD10 /* SASoundPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D502ED39145CCB570085DD10 /* SASoundPath.m */; };
 		D53D5599144FB8A300E46047 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53D5598144FB8A300E46047 /* OpenGL.framework */; };
 		D54D0DD31454B7830076EB5A /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54D0DD01454B7830076EB5A /* RtAudio.cpp */; };
 		D54D0DD51454B8CB0076EB5A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54D0DD41454B8CB0076EB5A /* CoreAudio.framework */; };
@@ -60,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D502ED38145CCB570085DD10 /* SASoundPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SASoundPath.h; path = Soundaround/SASoundPath.h; sourceTree = "<group>"; };
+		D502ED39145CCB570085DD10 /* SASoundPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SASoundPath.m; path = Soundaround/SASoundPath.m; sourceTree = "<group>"; };
 		D53D5598144FB8A300E46047 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		D54D0DD01454B7830076EB5A /* RtAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RtAudio.cpp; sourceTree = "<group>"; };
 		D54D0DD11454B7830076EB5A /* RtAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 				D54D0DE8145520570076EB5A /* SAPhysicsObject.mm */,
 				D574FC621455650300AD4726 /* SAGrassBlade.h */,
 				D574FC631455650300AD4726 /* SAGrassBlade.mm */,
+				D502ED38145CCB570085DD10 /* SASoundPath.h */,
+				D502ED39145CCB570085DD10 /* SASoundPath.m */,
 			);
 			name = World;
 			path = ..;
@@ -354,6 +359,7 @@
 				D54D0DE61454B9BC0076EB5A /* SAAudioManager.mm in Sources */,
 				D54D0DE9145520570076EB5A /* SAPhysicsObject.mm in Sources */,
 				D574FC641455650300AD4726 /* SAGrassBlade.mm in Sources */,
+				D502ED3A145CCB570085DD10 /* SASoundPath.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

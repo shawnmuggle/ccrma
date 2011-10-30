@@ -173,7 +173,7 @@ CGSize CGSizeLerp(const CGSize &a, const CGSize &b, float t)
 
 -(void)keyUp:(NSEvent*)event
 {
-    NSLog(@"Key released: %@", event);
+//    NSLog(@"Key released: %@", event);
 }
 
 -(void)keyDown:(NSEvent*)event
@@ -193,7 +193,7 @@ CGSize CGSizeLerp(const CGSize &a, const CGSize &b, float t)
         case 126:       // up arrow
         case 125:       // down arrow
         default:
-            NSLog(@"Key pressed: %@", event);
+//            NSLog(@"Key pressed: %@", event);
             break;
     }
 }

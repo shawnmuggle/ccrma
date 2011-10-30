@@ -7,7 +7,7 @@
 //
 
 #include <Box2D/Box2D.h>
-
+#include "OpenGL/gl.h"
 #import "SAAvatar.h"
 #import "SAWorld.h"
 

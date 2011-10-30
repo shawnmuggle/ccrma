@@ -7,7 +7,7 @@
 //
 
 #include <Box2D/Box2D.h>
-
+#include "OpenGL/gl.h"
 #import "SABall.h"
 #import "SAWorld.h"
 
@@ -104,7 +104,9 @@
     const b2Vec2 &difference = vectorB - vectorA;
     float32 approachVelocity = b2Dot(difference, worldManifold.normal);
     
-    float newEnvelopeAmplitude = MAX(0, (-1.0 / powf(approachVelocity, 2) + 1));
+    NSLog(@"Velocity: %f", approachVelocity);
+    
+    float newEnvelopeAmplitude = MAX(0, (-1.0 / powf(approachVelocity - 1, 0.3) + 1));
     if (newEnvelopeAmplitude > 0.001)
     {
         self.frequency = 200 + 600 * newEnvelopeAmplitude;
@@ -125,7 +127,7 @@
         {
             output[i * numChannels + j] += envelopedSample;
         }
-        self.envelopeAmplitude *= 0.992;
+        self.envelopeAmplitude *= 0.999;
         self.phase += (self.frequency * 2 * M_PI) / 44100;
     }
 }
