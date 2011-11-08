@@ -12,10 +12,14 @@
 #import "SADrawableObject.h"
 
 @class SAWorld;
+@class SABallGuide;
 
 @interface SABall : SAPhysicsObject <SAAudioProducer, SADrawableObject>
 
-+ (id)ballInWorld:(SAWorld *)world;
+@property (nonatomic) BOOL held;
+@property (nonatomic, weak) SABallGuide *currentGuide;
+
+- (id)initWithWorld:(SAWorld *)aWorld;
 - (void)throwTowards:(CGPoint)point;
 
 @end

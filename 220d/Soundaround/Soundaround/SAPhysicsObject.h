@@ -14,7 +14,11 @@ class b2Contact;
 @interface SAPhysicsObject : NSObject
 
 @property (nonatomic, assign) b2Body *physicsBody;
+@property (nonatomic, readonly) CGPoint position;
+@property (nonatomic, readonly) float speed;
 
 - (void)processContact:(b2Contact *)contact withOtherObject:(id)otherObject;
+- (BOOL)shouldDisableContact:(b2Contact *)contact;
+- (void)update;
 
 @end

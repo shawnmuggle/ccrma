@@ -13,8 +13,8 @@
 
 @interface SAAudioManager ()
 
-@property (nonatomic, assign) RtAudio *audio;
-@property (nonatomic, assign) SAWorld *world;
+@property (nonatomic) RtAudio *audio;
+@property (nonatomic, unsafe_unretained) SAWorld *world;
 
 - (void)initAudio;
 - (void)audioCallbackWithOutput:(void*)outputBuffer input:(void*)input numBufferFrames:(int)numBufferFrames;
@@ -30,7 +30,7 @@ int audioCallback(void *outputBuffer, void *inputBuffer, unsigned int nBufferFra
 
 + (id)audioManagerWithWorld:(SAWorld *)aWorld
 {
-    SAAudioManager *audioManager = [[[SAAudioManager alloc] init] autorelease];
+    SAAudioManager *audioManager = [[SAAudioManager alloc] init];
 
     audioManager.world = aWorld;
     audioManager.audio = new RtAudio();
@@ -58,7 +58,7 @@ int audioCallback(void *outputBuffer, void *inputBuffer, unsigned int nBufferFra
     unsigned int fs = 44100;
     
     try {
-        self.audio->openStream( &oParams, NULL, RTAUDIO_FLOAT32, fs, &bufferFrames, &audioCallback, (void *)self, &options );
+        self.audio->openStream( &oParams, NULL, RTAUDIO_FLOAT32, fs, &bufferFrames, &audioCallback, (__bridge void *)self, &options );
         self.audio->startStream();
     }
     catch ( RtError& e ) {
@@ -71,7 +71,6 @@ int audioCallback(void *outputBuffer, void *inputBuffer, unsigned int nBufferFra
 {
     if ( audio->isStreamOpen() ) audio->closeStream();
     delete audio;
-    [super dealloc];
 }
 
 - (void)audioCallbackWithOutput:(void *)outputBuffer input:(void *)inputBuffer numBufferFrames:(int)numBufferFrames
@@ -94,7 +93,7 @@ int audioCallback(void *outputBuffer, void *inputBuffer, unsigned int nBufferFra
 int audioCallback(void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
                   double streamTime, RtAudioStreamStatus status, void *data)
 {
-    SAAudioManager * audioManager = (SAAudioManager *)data;
+    SAAudioManager * audioManager = (__bridge SAAudioManager *)data;
     [audioManager audioCallbackWithOutput:outputBuffer input:inputBuffer numBufferFrames:nBufferFrames];
     return 0;
 }

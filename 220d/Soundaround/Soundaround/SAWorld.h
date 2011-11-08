@@ -15,18 +15,26 @@ class b2World;
 class b2Body;
 @class SABall;
 @class SAAvatar;
+@class SASoundPath;
+@class SABallGuide;
 
 @interface SAWorld : SAPhysicsObject <SAAudioProducer, SADrawableObject>
 
-@property (nonatomic, retain) SABall *ball;
-@property (nonatomic, retain) SAAvatar *avatar;
+@property (nonatomic, strong) SABall *ball;
+@property (nonatomic, strong) SAAvatar *avatar;
 @property (nonatomic, assign) b2World *physicsWorld;
+@property BOOL editMode;
 
-+ (id)world;
 - (void)registerBody:(b2Body *)body withObject:(SAPhysicsObject *)object;
 - (void)update:(NSTimer *)timer;
 
-// Control
-- (void)setTargetPoint:(CGPoint)targetPoint;
+- (void)addSoundPath:(SASoundPath *)inSoundPath;
+
+- (void)toggleEditMode;
+
+- (void)startBallGuide;
+- (void)addBallGuidePoint:(CGPoint)point;
+- (void)finishBallGuide;
+
 
 @end

@@ -12,18 +12,18 @@
 #import "SADrawableObject.h"
 
 @class SAWorld;
+@class SABall;
 
 @interface SAAvatar : SAPhysicsObject <SAAudioProducer, SADrawableObject>
 
-@property (nonatomic, readonly) CGPoint position;
-@property (nonatomic, readonly) float speed;
+@property (nonatomic, weak) SABall *ball;
 
-+ (id)avatarInWorld:(SAWorld *)world;
-
-- (CGPoint)position;
+- (id)initWithWorld:(SAWorld *)inWorld andBall:(SABall *)inBall;
 
 - (void)startMoving:(CGPoint)direction;
 - (void)stopMoving:(CGPoint)direction;
 
+- (void)grabBall;
+- (void)throwBallTowardsPoint:(CGPoint)point;
 
 @end

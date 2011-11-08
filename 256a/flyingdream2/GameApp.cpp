@@ -45,6 +45,10 @@
 // ???
 // Are the normals for the clouds or the ground screwed up? They seem to think the light's coming from opposite directions
 
+#include <OpenGL/glu.h>          /* Header File For The OpenGL Library */
+
+#import <SDL/SDL.h>
+
 #include "BiQuad.h"
 #include "Noise.h"
 #include "SineWave.h"
@@ -118,6 +122,7 @@ GameApp::GameApp(void)
     done = false;
     g_forward_held = false;
     g_backward_held = false;
+    g_space_held = false;
     
     g_gravity = Vector3D(0, 0.2, 0);
     g_gravity_on = true;
@@ -380,14 +385,18 @@ void GameApp::EventLoop(void)
                     default:
                         break;
                     case SDLK_SPACE:
-                        itr=g_cuboids->begin();                
-                        while(itr != g_cuboids->end()) {
-                            cuboid = *itr;                            
-                            cuboid->Flash();
-                            ++itr;
+                        if (!g_space_held)
+                        {
+                            itr=g_cuboids->begin();                
+                            while(itr != g_cuboids->end()) {
+                                cuboid = *itr;                            
+                                cuboid->Flash();
+                                ++itr;
+                            }
+                            g_tracking = true;
+                            g_paths.push_back(new Path(instrument_id, instrument_color));
                         }
-                        g_tracking = true;
-                        g_paths.push_back(new Path(instrument_id, instrument_color));
+                        g_space_held = true;
                         break;
                     case SDLK_w:
                         g_forward_held = true;
@@ -422,14 +431,18 @@ void GameApp::EventLoop(void)
                         g_backward_held = false;
                         break;
                     case SDLK_SPACE:
-                        itr=g_cuboids->begin();                
-                        while(itr != g_cuboids->end()) {
-                            cuboid = *itr;                            
-                            cuboid->Flash();
-                            ++itr;
+                        if (g_space_held)
+                        {
+                            itr=g_cuboids->begin();                
+                            while(itr != g_cuboids->end()) {
+                                cuboid = *itr;                            
+                                cuboid->Flash();
+                                ++itr;
+                            }
+                            g_tracking = false;
+                            g_paths.back()->FinishedDrawing();
                         }
-                        g_tracking = false;
-                        g_paths.back()->FinishedDrawing();
+                        g_space_held = false;
                         break;
                     case SDLK_d:
                         fluid_synth_noteoff(synth, 0, 60);

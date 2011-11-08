@@ -70,7 +70,7 @@ private:
     float g_pitch, g_yaw, g_roll;
     Vector3D g_position;
     Vector3D g_velocity;
-    bool g_forward_held, g_backward_held;
+    bool g_forward_held, g_backward_held, g_space_held;
     
     float g_width, g_height;
     

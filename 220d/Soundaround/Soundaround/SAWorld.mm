@@ -12,6 +12,9 @@
 #import "SABall.h"
 #import "SAAvatar.h"
 #import "SAGrassBlade.h"
+#import "SASoundPath.h"
+#import "SABallGuide.h"
+#import "SABallGuidePoint.h"
 
 #define NUM_TERRAIN_POINTS_PER_HUNK 100
 
@@ -31,14 +34,17 @@ private:
 };
 
 @interface SAWorld ()
-
-@property (nonatomic, retain) NSMutableArray *terrainPoints;
-@property (nonatomic, assign) float physicsHz;
-@property (nonatomic, retain) NSTimer *physicsTimer;
-@property (nonatomic, assign) SAPhysicsContactListener *physicsContactListener;
-@property (nonatomic, retain) NSMutableDictionary *bodyObjects;
-@property (nonatomic, retain) NSMutableArray *terrainDoodads;
-
+{
+    NSMutableArray *terrainPoints;
+    float physicsHz;
+    NSTimer *physicsTimer;
+    SAPhysicsContactListener *physicsContactListener;
+    NSMutableDictionary *bodyObjects;
+    NSMutableArray *terrainDoodads;
+    NSMutableArray *soundPaths;
+    NSMutableSet *ballGuides;
+    SABallGuide *currentBallGuide;
+}
 
 - (void)createTerrain;
 
@@ -52,54 +58,64 @@ void SAPhysicsContactListener::PreSolve(b2Contact *contact, const b2Manifold *ol
     contact->GetWorldManifold(&worldManifold);
     b2PointState state1[2], state2[2];
     b2GetPointStates(state1, state2, oldManifold, contact->GetManifold());
-    if (state2[0] == b2_addState)  // This is a new contact
+
+    const b2Body* bodyA = contact->GetFixtureA()->GetBody();
+    const b2Body* bodyB = contact->GetFixtureB()->GetBody();
+    SAPhysicsObject *objectA = [bodyObjects objectForKey:[NSValue valueWithPointer:bodyA]];
+    SAPhysicsObject *objectB = [bodyObjects objectForKey:[NSValue valueWithPointer:bodyB]];
+
+    if ([objectA shouldDisableContact:contact] || [objectB shouldDisableContact:contact])
     {
-        const b2Body* bodyA = contact->GetFixtureA()->GetBody();
-        const b2Body* bodyB = contact->GetFixtureB()->GetBody();
-        // Use a SAPhysicsBody superclass to avoid ids here
-        id objectA = [bodyObjects objectForKey:[NSValue valueWithPointer:bodyA]];
-        id objectB = [bodyObjects objectForKey:[NSValue valueWithPointer:bodyB]];
-        [objectA processContact:contact withOtherObject:objectB];
-        [objectB processContact:contact withOtherObject:objectA];
+        contact->SetEnabled(false);
+    }
+    else
+    {
+        if (state2[0] == b2_addState)  // This is a new contact
+        {
+            [objectA processContact:contact withOtherObject:objectB];
+            [objectB processContact:contact withOtherObject:objectA];
+        }
     }
 }
 
 @implementation SAWorld
 @synthesize ball;
 @synthesize avatar;
-@synthesize terrainPoints;
 @synthesize physicsWorld;
-@synthesize physicsHz;
-@synthesize physicsTimer;
-@synthesize physicsContactListener;
-@synthesize bodyObjects;
-@synthesize terrainDoodads;
+@synthesize editMode;
 
-+ (id)world
+- (id)init
 {
-    srand((unsigned int)time(NULL));
-    
-    SAWorld *world = [[[SAWorld alloc] init] autorelease];
-    world.bodyObjects = [NSMutableDictionary dictionaryWithCapacity:3];
-    world.terrainDoodads = [NSMutableArray arrayWithCapacity:100];
+    self = [super init];
+    if (self)
+    {
+        srand((unsigned int)time(NULL));
+        
+        bodyObjects = [NSMutableDictionary dictionaryWithCapacity:3];
+        terrainDoodads = [NSMutableArray arrayWithCapacity:100];
+        
+        b2Vec2 gravity(0.0f, -10.0f);
+        self.physicsWorld = new b2World(gravity);
+        
+        [self createTerrain];
+        [self registerBody:self.physicsBody withObject:self];
+        
+        self.ball = [[SABall alloc] initWithWorld:self];
+        self.avatar = [[SAAvatar alloc] initWithWorld:self andBall:self.ball];
+        
+        physicsHz = 1.0f/60.0f;
+        physicsTimer = [NSTimer timerWithTimeInterval:physicsHz target:self selector:@selector(update:) userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:physicsTimer forMode:NSDefaultRunLoopMode];
+        
+        physicsContactListener = new SAPhysicsContactListener(bodyObjects);
+        self.physicsWorld->SetContactListener(physicsContactListener);
+        
+        soundPaths = [NSMutableArray arrayWithCapacity:100];
+        ballGuides = [NSMutableSet setWithCapacity:100];
 
-    b2Vec2 gravity(0.0f, -10.0f);
-    world.physicsWorld = new b2World(gravity);
-    
-    [world createTerrain];
-    [world registerBody:world.physicsBody withObject:world];
-    
-    world.ball = [SABall ballInWorld:world];
-    world.avatar = [SAAvatar avatarInWorld:world];
-    
-    world.physicsHz = 1.0f/60.0f;
-    world.physicsTimer = [NSTimer timerWithTimeInterval:world.physicsHz target:world selector:@selector(update:) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:world.physicsTimer forMode:NSDefaultRunLoopMode];
-    
-    world.physicsContactListener = new SAPhysicsContactListener(world.bodyObjects);
-    world.physicsWorld->SetContactListener(world.physicsContactListener);
-    
-    return world;
+        self.editMode = NO;
+    }
+    return self;
 }
 
 - (void)createTerrain
@@ -107,19 +123,19 @@ void SAPhysicsContactListener::PreSolve(b2Contact *contact, const b2Manifold *ol
     b2BodyDef bd;
     self.physicsBody = self.physicsWorld->CreateBody(&bd);
     
-    float terrainSegmentWidth = 10; // in meters
-    self.terrainPoints = [NSMutableArray arrayWithCapacity:NUM_TERRAIN_POINTS_PER_HUNK];
+    float terrainSegmentWidth = 20; // in meters
+    terrainPoints = [NSMutableArray arrayWithCapacity:NUM_TERRAIN_POINTS_PER_HUNK];
     
     b2Vec2 vertices[NUM_TERRAIN_POINTS_PER_HUNK];
     
-    float prevY = 0.0f;
+    float prevY = 10.0f;
     float prevX = 0.0f;
-    float smoothing = 0.5f;
+    float smoothing = 0.2f;
     for (int i = 0; i < NUM_TERRAIN_POINTS_PER_HUNK; i++)
     {
         float x = terrainSegmentWidth * i;
         float y = smoothing * prevY + (1 - smoothing) * 10 * (rand() / (float)RAND_MAX);
-        [self.terrainPoints addObject:[NSValue valueWithPoint:CGPointMake(x, y)]];
+        [terrainPoints addObject:[NSValue valueWithPoint:CGPointMake(x, y)]];
         
         vertices[i].Set(x, y);
         
@@ -133,29 +149,53 @@ void SAPhysicsContactListener::PreSolve(b2Contact *contact, const b2Manifold *ol
 
     b2ChainShape terrainChain;
     terrainChain.CreateChain(vertices, NUM_TERRAIN_POINTS_PER_HUNK);
-    self.physicsBody->CreateFixture(&terrainChain, 0.0f);
+    
+    b2FixtureDef fd;
+    
+    fd.shape = &terrainChain;
+    fd.friction = 0.1f;
+    self.physicsBody->CreateFixture(&fd);
+
+//    self.physicsBody->CreateFixture(&terrainChain, 0.0f);
 }
 
 - (void)dealloc
 {
-    [terrainPoints release];
-    [physicsTimer release];
-    [bodyObjects release];
-    [terrainDoodads release];
     delete physicsWorld;
-    [super dealloc];
 }
 
 - (void)registerBody:(b2Body *)body withObject:(id)object
 {
-    [self.bodyObjects setObject:object forKey:[NSValue valueWithPointer:body]];
+    [bodyObjects setObject:object forKey:[NSValue valueWithPointer:body]];
 }
 
 - (void)update:(NSTimer *)timer
 {
-    int velocityIterations = 8;
-    int positionIterations = 3;
-    self.physicsWorld->Step(self.physicsHz, velocityIterations, positionIterations);
+    if ( !self.editMode)
+    {
+        [self.ball update];
+        [self.avatar update];
+        
+        int velocityIterations = 8;
+        int positionIterations = 3;
+        self.physicsWorld->Step(physicsHz, velocityIterations, positionIterations);
+        
+        if (!ball.currentGuide && !ball.held)
+        {
+            for (SABallGuide *ballGuide in ballGuides)
+            {
+                if ([ballGuide shouldActivateInWorld:self])
+                {
+                    [ballGuide activateWithBall:self.ball];
+                    break;
+                }
+            }
+        }
+        for (SABallGuide *ballGuide in ballGuides)
+        {
+            [ballGuide updateInWorld:self withTimeInterval:timer.timeInterval];
+        }
+    }
 }
 
 - (void)draw
@@ -174,7 +214,7 @@ void SAPhysicsContactListener::PreSolve(b2Contact *contact, const b2Manifold *ol
     
     glBegin(GL_TRIANGLE_STRIP);
     {
-        for (NSValue *pointValue in self.terrainPoints)
+        for (NSValue *pointValue in terrainPoints)
         {
             glColor3f(0.2043, 
                       0.5000, 
@@ -188,10 +228,22 @@ void SAPhysicsContactListener::PreSolve(b2Contact *contact, const b2Manifold *ol
     
     [self.ball draw];
     [self.avatar draw];
-    for (id<SADrawableObject> doodad in self.terrainDoodads)
+    for (id<SADrawableObject> doodad in terrainDoodads)
     {
         [doodad draw];
     }
+    for (SASoundPath *soundPath in soundPaths)
+    {
+        [soundPath draw];
+    }
+    
+    for (SABallGuide *ballGuide in ballGuides)
+    {
+        [ballGuide draw];
+    }
+    if (currentBallGuide)
+        [currentBallGuide draw];
+
 }
 
 - (void)processContact:(b2Contact *)contact withOtherObject:(SAPhysicsObject *)otherObject;
@@ -204,13 +256,39 @@ void SAPhysicsContactListener::PreSolve(b2Contact *contact, const b2Manifold *ol
     
     [self.ball audioProducer:self.ball fillBuffer:output withNumFrames:numBufferFrames];
     [self.avatar audioProducer:self.avatar fillBuffer:output withNumFrames:numBufferFrames];
+    for (SABallGuide *ballGuide in ballGuides)
+    {
+        [ballGuide audioProducer:ballGuide fillBuffer:output withNumFrames:numBufferFrames];
+    }
 }
 
-#pragma mark Control
-
-- (void)setTargetPoint:(CGPoint)targetPoint
+- (void)addSoundPath:(SASoundPath *)inSoundPath
 {
-    [self.ball throwTowards:targetPoint];
+    [soundPaths addObject:inSoundPath];
+}
+
+- (void)toggleEditMode
+{
+    self.editMode = !self.editMode;
+}
+
+- (void)startBallGuide
+{
+    currentBallGuide = [[SABallGuide alloc] init];
+}
+
+- (void)addBallGuidePoint:(CGPoint)point
+{
+    [currentBallGuide addPoint:[[SABallGuidePoint alloc] initWithPosition:point]];
+}
+
+- (void)finishBallGuide
+{
+    if (currentBallGuide && [currentBallGuide isValid])
+    {
+        [ballGuides addObject:currentBallGuide];
+    }
+    currentBallGuide = nil;
 }
 
 @end

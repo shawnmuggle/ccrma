@@ -14,6 +14,8 @@
 #include "PitchMapper.h"
 
 #include <vector>
+#include <pthread.h>
+
 
 class Path
 {
@@ -35,4 +37,5 @@ private:
     time_t time_finished_drawing;
     int volume;
     Vector3D color;
+    pthread_mutex_t points_mutex;
 };

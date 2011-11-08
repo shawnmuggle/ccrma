@@ -7,20 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		002F39FA09D0881F00EBEB88 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F39F909D0881F00EBEB88 /* SDL.framework */; };
-		002F3A0009D0884600EBEB88 /* SDL.framework in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = 002F39F909D0881F00EBEB88 /* SDL.framework */; };
-		002F3A2E09D0888800EBEB88 /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 002F3A2C09D0888800EBEB88 /* SDLMain.m */; };
 		002F3C0109D093BD00EBEB88 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F3C0009D093BD00EBEB88 /* OpenGL.framework */; };
 		38357A5F0A23B86E001C6B13 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38357A5E0A23B86E001C6B13 /* main.cpp */; };
 		38694A270A23D420005C94A3 /* GameApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38694A250A23D420005C94A3 /* GameApp.cpp */; };
 		38694A280A23D420005C94A3 /* GameApp.h in Copy Frameworks into .app bundle */ = {isa = PBXBuildFile; fileRef = 38694A260A23D420005C94A3 /* GameApp.h */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		D51A4164145E0D65006EF4BA /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D51A4161145E0D65006EF4BA /* RtAudio.cpp */; };
+		D51A4166145E0DFA006EF4BA /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51A4165145E0DF9006EF4BA /* CoreAudio.framework */; };
 		D53CF5B2129453D200DCCBA1 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D53CF5B1129453D200DCCBA1 /* Entity.cpp */; };
 		D53CF5B5129454B500DCCBA1 /* vector3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D53CF5B3129454B500DCCBA1 /* vector3d.cpp */; };
+		D548544B145E1E8C005C8CC9 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D548544A145E1E8C005C8CC9 /* SDL.framework */; };
 		D5BE9A2C12AFD44B00A1A3C2 /* InstrumentEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5BE9A2B12AFD44B00A1A3C2 /* InstrumentEntity.cpp */; };
-		D5CF60C512A2858800D94A19 /* librtaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CF60C312A2858800D94A19 /* librtaudio.a */; };
-		D5CF60C612A2858800D94A19 /* librtaudio.so in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CF60C412A2858800D94A19 /* librtaudio.so */; };
 		D5CF620512A3735200D94A19 /* SKINI.msg in Resources */ = {isa = PBXBuildFile; fileRef = D5CF61F012A3735200D94A19 /* SKINI.msg */; };
 		D5CF620612A3735200D94A19 /* SKINI.tbl in Resources */ = {isa = PBXBuildFile; fileRef = D5CF61F112A3735200D94A19 /* SKINI.tbl */; };
 		D5CF620812A3736700D94A19 /* libstk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CF620712A3736700D94A19 /* libstk.a */; };
@@ -36,7 +34,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				002F3A0009D0884600EBEB88 /* SDL.framework in Copy Frameworks into .app bundle */,
 				38694A280A23D420005C94A3 /* GameApp.h in Copy Frameworks into .app bundle */,
 			);
 			name = "Copy Frameworks into .app bundle";
@@ -45,9 +42,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		002F39F909D0881F00EBEB88 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
-		002F3A2B09D0888800EBEB88 /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SDLMain.h; sourceTree = SOURCE_ROOT; };
-		002F3A2C09D0888800EBEB88 /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SDLMain.m; sourceTree = SOURCE_ROOT; };
 		002F3C0009D093BD00EBEB88 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -58,14 +52,17 @@
 		38694A260A23D420005C94A3 /* GameApp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GameApp.h; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* FlyingDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlyingDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D51A4161145E0D65006EF4BA /* RtAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RtAudio.cpp; sourceTree = "<group>"; };
+		D51A4162145E0D65006EF4BA /* RtAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
+		D51A4163145E0D65006EF4BA /* RtError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtError.h; sourceTree = "<group>"; };
+		D51A4165145E0DF9006EF4BA /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		D53CF5B01294536500DCCBA1 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		D53CF5B1129453D200DCCBA1 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
 		D53CF5B3129454B500DCCBA1 /* vector3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vector3d.cpp; sourceTree = "<group>"; };
 		D53CF5B4129454B500DCCBA1 /* vector3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector3d.h; sourceTree = "<group>"; };
+		D548544A145E1E8C005C8CC9 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = Library/Frameworks/SDL.framework; sourceTree = SDKROOT; };
 		D5BE9A2A12AFD44B00A1A3C2 /* InstrumentEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstrumentEntity.h; sourceTree = "<group>"; };
 		D5BE9A2B12AFD44B00A1A3C2 /* InstrumentEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InstrumentEntity.cpp; sourceTree = "<group>"; };
-		D5CF60C312A2858800D94A19 /* librtaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librtaudio.a; path = "rtaudio-4.0.7/librtaudio.a"; sourceTree = "<group>"; };
-		D5CF60C412A2858800D94A19 /* librtaudio.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = librtaudio.so; path = "rtaudio-4.0.7/librtaudio.so"; sourceTree = "<group>"; };
 		D5CF61A012A3735200D94A19 /* ADSR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADSR.h; sourceTree = "<group>"; };
 		D5CF61A112A3735200D94A19 /* Asymp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asymp.h; sourceTree = "<group>"; };
 		D5CF61A212A3735200D94A19 /* BandedWG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandedWG.h; sourceTree = "<group>"; };
@@ -133,7 +130,7 @@
 		D5CF61E012A3735200D94A19 /* ReedTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReedTable.h; sourceTree = "<group>"; };
 		D5CF61E112A3735200D94A19 /* Resonate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resonate.h; sourceTree = "<group>"; };
 		D5CF61E212A3735200D94A19 /* Rhodey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rhodey.h; sourceTree = "<group>"; };
-		D5CF61E312A3735200D94A19 /* RtAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
+		D5CF61E312A3735200D94A19 /* RtAudioNOPE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtAudioNOPE.h; sourceTree = "<group>"; };
 		D5CF61E412A3735200D94A19 /* RtError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtError.h; sourceTree = "<group>"; };
 		D5CF61E512A3735200D94A19 /* RtMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtMidi.h; sourceTree = "<group>"; };
 		D5CF61E612A3735200D94A19 /* RtWvIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtWvIn.h; sourceTree = "<group>"; };
@@ -181,10 +178,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5CF60C512A2858800D94A19 /* librtaudio.a in Frameworks */,
-				D5CF60C612A2858800D94A19 /* librtaudio.so in Frameworks */,
+				D548544B145E1E8C005C8CC9 /* SDL.framework in Frameworks */,
+				D51A4166145E0DFA006EF4BA /* CoreAudio.framework in Frameworks */,
 				002F3C0109D093BD00EBEB88 /* OpenGL.framework in Frameworks */,
-				002F39FA09D0881F00EBEB88 /* SDL.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				D5CF620812A3736700D94A19 /* libstk.a in Frameworks */,
 			);
@@ -199,8 +195,6 @@
 				38694A250A23D420005C94A3 /* GameApp.cpp */,
 				38694A260A23D420005C94A3 /* GameApp.h */,
 				38357A5E0A23B86E001C6B13 /* main.cpp */,
-				002F3A2B09D0888800EBEB88 /* SDLMain.h */,
-				002F3A2C09D0888800EBEB88 /* SDLMain.m */,
 				D53CF5B01294536500DCCBA1 /* Entity.h */,
 				D53CF5B1129453D200DCCBA1 /* Entity.cpp */,
 				D53CF5B3129454B500DCCBA1 /* vector3d.cpp */,
@@ -220,7 +214,8 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				002F39F909D0881F00EBEB88 /* SDL.framework */,
+				D548544A145E1E8C005C8CC9 /* SDL.framework */,
+				D51A4165145E0DF9006EF4BA /* CoreAudio.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				002F3C0009D093BD00EBEB88 /* OpenGL.framework */,
 			);
@@ -247,9 +242,10 @@
 		29B97314FDCFA39411CA2CEA /* SDLOpenGLIntro */ = {
 			isa = PBXGroup;
 			children = (
+				D51A4161145E0D65006EF4BA /* RtAudio.cpp */,
+				D51A4162145E0D65006EF4BA /* RtAudio.h */,
+				D51A4163145E0D65006EF4BA /* RtError.h */,
 				D5CF613112A372F000D94A19 /* stk */,
-				D5CF60C312A2858800D94A19 /* librtaudio.a */,
-				D5CF60C412A2858800D94A19 /* librtaudio.so */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -355,7 +351,7 @@
 				D5CF61E012A3735200D94A19 /* ReedTable.h */,
 				D5CF61E112A3735200D94A19 /* Resonate.h */,
 				D5CF61E212A3735200D94A19 /* Rhodey.h */,
-				D5CF61E312A3735200D94A19 /* RtAudio.h */,
+				D5CF61E312A3735200D94A19 /* RtAudioNOPE.h */,
 				D5CF61E412A3735200D94A19 /* RtError.h */,
 				D5CF61E512A3735200D94A19 /* RtMidi.h */,
 				D5CF61E612A3735200D94A19 /* RtWvIn.h */,
@@ -469,7 +465,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp rtaudio-4.0.7/librtaudio.so \"$TARGET_BUILD_DIR\"\ncp rtaudio-4.0.7/librtaudio.a \"$TARGET_BUILD_DIR\"\ncp stk-4.4.2/src/libstk.a \"$TARGET_BUILD_DIR\"";
+			shellScript = "cp stk-4.4.2/src/libstk.a \"$TARGET_BUILD_DIR\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -478,7 +474,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				002F3A2E09D0888800EBEB88 /* SDLMain.m in Sources */,
 				38357A5F0A23B86E001C6B13 /* main.cpp in Sources */,
 				38694A270A23D420005C94A3 /* GameApp.cpp in Sources */,
 				D53CF5B2129453D200DCCBA1 /* Entity.cpp in Sources */,
@@ -487,6 +482,7 @@
 				D5E394AB12A23759003987A4 /* PitchMapper.cpp in Sources */,
 				D5CF65D612A3B00B00D94A19 /* Environment.cpp in Sources */,
 				D5BE9A2C12AFD44B00A1A3C2 /* InstrumentEntity.cpp in Sources */,
+				D51A4164145E0D65006EF4BA /* RtAudio.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +523,10 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/api/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/rtaudio-4.0.7\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/stk-4.4.2/src\"";
+				OTHER_CPLUSPLUSFLAGS = (
+					"-D__MACOSX_CORE__",
+					"$(OTHER_CFLAGS)",
+				);
 				OTHER_LDFLAGS = "-lfluidsynth";
 				PRODUCT_NAME = FlyingDream;
 				SDKROOT = macosx;
@@ -560,6 +560,10 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/api/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/rtaudio-4.0.7\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/stk-4.4.2/src\"";
+				OTHER_CPLUSPLUSFLAGS = (
+					"-D__MACOSX_CORE__",
+					"$(OTHER_CFLAGS)",
+				);
 				PRODUCT_NAME = FlyingDream;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;

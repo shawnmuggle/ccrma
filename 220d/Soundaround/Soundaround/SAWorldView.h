@@ -12,13 +12,16 @@
 
 @class SAWorld;
 @class SAAudioManager;
+@class SAWorldViewController;
 
 @interface SAWorldView : NSOpenGLView
 
-@property (nonatomic, retain) SAWorld *world;
-@property (nonatomic, retain) SAAudioManager *audioManager;
+@property (nonatomic, strong) SAWorld *world;
+@property (nonatomic, strong) SAAudioManager *audioManager;
 @property (nonatomic, assign) CGRect viewport; // this is the size of the camera's window onto the world
 @property (nonatomic, assign) CVDisplayLinkRef displayLink;
+@property (nonatomic, strong) IBOutlet SAWorldViewController *controller;
+@property BOOL followingBall;
 
 - (void)createDisplayLink;
 
@@ -26,11 +29,13 @@
 - (void)draw;
 
 - (void)setViewportToTrackAvatar;
+- (void)setViewportToTrackBall;
+- (void)setViewportToTrackMouse;
+- (void)setViewportToTrackPoint:(CGPoint)point withThreshold:(float)movementThreshold;
 - (void)setViewportSize:(CGSize)size;
 - (void)positionViewportAt:(CGPoint)position;
 
-- (void)keyUp:(NSEvent*)event;
-- (void)keyDown:(NSEvent*)event;
+- (CGPoint)worldPosForEvent:(NSEvent *)event;
 
 float lerp(float a, float b, float t);
 CGPoint CGPointLerp(const CGPoint &a, const CGPoint &b, float t);

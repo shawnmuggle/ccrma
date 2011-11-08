@@ -24,7 +24,7 @@
 
 + (id)grassbladeWithWorld:(SAWorld *)world atPosition:(CGPoint)position
 {
-    SAGrassBlade *grassblade = [[[SAGrassBlade alloc] init] autorelease];
+    SAGrassBlade *grassblade = [[SAGrassBlade alloc] init];
     
     b2BodyDef bd;
     bd.position.Set(position.x, position.y + 1.0f);

@@ -23,6 +23,7 @@ points(new std::vector<Vector3D *>())
 {
     printf("New path has rgb: %f, %f, %f\n", color->x, color->y, color->z);
     play_something = true;
+    pthread_mutex_init(&points_mutex, NULL);
     printf("instrument: %d\n", instrument_number);
 }
 
@@ -33,7 +34,9 @@ Path::~Path()
 
 void Path::AddPoint(Vector3D *point)
 {
+    pthread_mutex_lock(&points_mutex);
     points->push_back(point);
+    pthread_mutex_unlock(&points_mutex);
 }
 
 void Path::Update(Vector3D *player_position)
@@ -44,6 +47,7 @@ void Path::Update(Vector3D *player_position)
     
     Vector3D *point;
     double min_dist = 9999999999, square_dist;
+    pthread_mutex_lock(&points_mutex);
     std::vector<Vector3D *>::iterator point_itr=points->begin();
     while(point_itr != points->end() - 1) {
         point = *point_itr;
@@ -55,6 +59,7 @@ void Path::Update(Vector3D *player_position)
         
         ++point_itr;
     }
+    pthread_mutex_unlock(&points_mutex);
     volume = 0;
     if (min_dist < 200000) {
         volume = 127 * pow((1 - min_dist / 200000), 2);
@@ -89,9 +94,12 @@ void Path::Play(fluid_synth_t *synth, PitchMapper *mapper)
 
 void Path::Render()
 {
+    pthread_mutex_lock(&points_mutex);
     if (points->size() < 3) {
+        pthread_mutex_unlock(&points_mutex);
         return;
     }
+    pthread_mutex_unlock(&points_mutex);
     
     glDisable(GL_LIGHTING);
     glDisable(GL_CULL_FACE);
@@ -103,7 +111,7 @@ void Path::Render()
     float z_diff, y_diff, x_diff, theta, theta_right, theta_left, point_x, point_y, point_z, prev_point_x, prev_point_y, prev_point_z;
     
     // TODO: Make path rendering handle vertical angles as well as horizontal ones
-    
+    pthread_mutex_lock(&points_mutex);
     std::vector<Vector3D *>::iterator point_itr=points->begin();
     point = *point_itr;
     prev_point_x = point->x;
@@ -185,6 +193,7 @@ void Path::Render()
         ++point_index;
     }
     glEnd();
+    pthread_mutex_unlock(&points_mutex);
 
     glEnable(GL_CULL_FACE);
     glEnable(GL_LIGHTING);

@@ -7,19 +7,14 @@
  *
  */
 
+#import <OpenGL/glu.h>
+
 #include "Entity.h"
 
 class InstrumentEntity : public Entity
 {
 public:
-    InstrumentEntity(Vector3D *position, Vector3D *color, float alpha, float scale, int instrument_id) : 
-    Entity(position, color, alpha, scale),
-    instrument_id(instrument_id)
-    {
-        quadratic = gluNewQuadric();
-        gluQuadricNormals(quadratic, GLU_SMOOTH);	// Create Smooth Normals ( NEW )
-        gluQuadricTexture(quadratic, GL_TRUE);		// Create Texture Coords ( NEW )
-    }
+    InstrumentEntity(Vector3D *position, Vector3D *color, float alpha, float scale, int instrument_id);
     void Render();
     
     int instrument_id;

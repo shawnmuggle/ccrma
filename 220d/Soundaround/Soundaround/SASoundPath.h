@@ -7,7 +7,13 @@
 //
 
 #import "SAPhysicsObject.h"
+#import "SAAudioProducer.h"
+#import "SADrawableObject.h"
 
-@interface SASoundPath : SAPhysicsObject
+@class SASoundPoint;
+
+@interface SASoundPath : SAPhysicsObject <SAAudioProducer, SADrawableObject>
+
+- (void)addPoint:(SASoundPoint *)newPoint;
 
 @end
