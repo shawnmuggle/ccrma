@@ -15,8 +15,10 @@
 #import "SASoundPath.h"
 #import "SABallGuide.h"
 #import "SABallGuidePoint.h"
+#import "SAUtils.h"
 
 #define NUM_TERRAIN_POINTS_PER_HUNK 100
+#define NUM_CURVE_POINTS_PER_SEGMENT 20
 
 // Begin private stuff
 
@@ -44,9 +46,11 @@ private:
     NSMutableArray *soundPaths;
     NSMutableSet *ballGuides;
     SABallGuide *currentBallGuide;
+    b2ChainShape *terrainChain;
 }
 
 - (void)createTerrain;
+- (CGPoint)tangentAtIndex:(int)index inPoints:(NSArray *)points;
 
 @end
 
@@ -118,15 +122,42 @@ void SAPhysicsContactListener::PreSolve(b2Contact *contact, const b2Manifold *ol
     return self;
 }
 
+- (CGPoint)tangentAtIndex:(int)i inPoints:(NSArray *)inPoints
+{
+    if ( i < 0 || i >= [inPoints count])
+    {
+        [NSException raise:@"Invalid index" format:@"index of %d is invalid", i];
+    }
+    
+    NSValue *prevPointValue = [inPoints objectAtIndex:MAX(i - 1, 0)];
+    NSValue *pointValue = [inPoints objectAtIndex:i];
+    NSValue *nextPointValue = [inPoints objectAtIndex:MIN(i + 1, [inPoints count] - 1)];
+
+    CGPoint prevPoint = [prevPointValue pointValue];
+    CGPoint point = [pointValue pointValue];
+    CGPoint nextPoint = [nextPointValue pointValue];
+    
+    if (i == 0)
+    {
+        return CGPointSubtract(nextPoint, point);
+    }
+    if (i == [inPoints count] - 1)
+    {
+        return CGPointSubtract(point, prevPoint);
+    }
+    else
+    {
+        return CGPointDivide(CGPointSubtract(nextPoint, prevPoint), 2.0f);
+    }
+}
+
 - (void)createTerrain
 {
     b2BodyDef bd;
     self.physicsBody = self.physicsWorld->CreateBody(&bd);
     
     float terrainSegmentWidth = 20; // in meters
-    terrainPoints = [NSMutableArray arrayWithCapacity:NUM_TERRAIN_POINTS_PER_HUNK];
-    
-    b2Vec2 vertices[NUM_TERRAIN_POINTS_PER_HUNK];
+    NSMutableArray *uncurvedTerrainPoints = [NSMutableArray arrayWithCapacity:NUM_TERRAIN_POINTS_PER_HUNK];
     
     float prevY = 10.0f;
     float prevX = 0.0f;
@@ -135,28 +166,54 @@ void SAPhysicsContactListener::PreSolve(b2Contact *contact, const b2Manifold *ol
     {
         float x = terrainSegmentWidth * i;
         float y = smoothing * prevY + (1 - smoothing) * 10 * (rand() / (float)RAND_MAX);
-        [terrainPoints addObject:[NSValue valueWithPoint:CGPointMake(x, y)]];
+        [uncurvedTerrainPoints addObject:[NSValue valueWithPoint:CGPointMake(x, y)]];
         
-        vertices[i].Set(x, y);
-        
-        // CREATE SOmE GRASS?!?
-//        SAGrassBlade *grassblade = [SAGrassBlade grassbladeWithWorld:self atPosition:CGPointMake(x, y)];
-//        [self.terrainDoodads addObject:grassblade];
-
         prevY = y;
         prevX = x;
     }
 
-    b2ChainShape terrainChain;
-    terrainChain.CreateChain(vertices, NUM_TERRAIN_POINTS_PER_HUNK);
+    // We only do bezier interpolation up to the last major point, not after it.
+    terrainPoints = [NSMutableArray arrayWithCapacity:(NUM_TERRAIN_POINTS_PER_HUNK - 1) * NUM_CURVE_POINTS_PER_SEGMENT + 1];
+    b2Vec2 vertices[(NUM_TERRAIN_POINTS_PER_HUNK - 1) * NUM_CURVE_POINTS_PER_SEGMENT + 1];
+
+    for (int i = 0; i < NUM_TERRAIN_POINTS_PER_HUNK - 1; i++)
+    {
+        NSValue *pointValue = [uncurvedTerrainPoints objectAtIndex:i];
+        NSValue *nextPointValue = [uncurvedTerrainPoints objectAtIndex:MIN(i + 1, [uncurvedTerrainPoints count])];
+
+        CGPoint point = [pointValue pointValue];
+        CGPoint nextPoint = [nextPointValue pointValue];
+        
+        CGPoint tangentA = [self tangentAtIndex:i inPoints:uncurvedTerrainPoints];
+        CGPoint tangentB = [self tangentAtIndex:i+1 inPoints:uncurvedTerrainPoints];
+        
+        CGPoint a = point;
+        CGPoint b = CGPointAdd(a, CGPointDivide(tangentA, 3.0f));
+        CGPoint d = nextPoint;
+        CGPoint c = CGPointSubtract(d, CGPointDivide(tangentB, 3.0f));
+        
+        for (int j = 0; j < NUM_CURVE_POINTS_PER_SEGMENT; j++)
+        {
+            float t = (float) j / NUM_CURVE_POINTS_PER_SEGMENT;
+            CGPoint bezierPoint = CGPointBezier(a, b, c, d, t);
+            [terrainPoints addObject:[NSValue valueWithPoint:bezierPoint]];
+            vertices[i * NUM_CURVE_POINTS_PER_SEGMENT + j].Set(bezierPoint.x, bezierPoint.y);
+        }
+    }
+    
+    NSValue *lastPointValue = [uncurvedTerrainPoints lastObject];
+    CGPoint lastPoint = [lastPointValue pointValue];
+    vertices[(NUM_TERRAIN_POINTS_PER_HUNK - 1) * NUM_CURVE_POINTS_PER_SEGMENT].Set(lastPoint.x, lastPoint.y);
+    [terrainPoints addObject:lastPointValue];
+    
+    terrainChain = new b2ChainShape();
+    terrainChain->CreateChain(vertices, (NUM_TERRAIN_POINTS_PER_HUNK - 1) * NUM_CURVE_POINTS_PER_SEGMENT + 1);
     
     b2FixtureDef fd;
     
-    fd.shape = &terrainChain;
+    fd.shape = terrainChain;
     fd.friction = 0.1f;
     self.physicsBody->CreateFixture(&fd);
-
-//    self.physicsBody->CreateFixture(&terrainChain, 0.0f);
 }
 
 - (void)dealloc
@@ -200,28 +257,40 @@ void SAPhysicsContactListener::PreSolve(b2Contact *contact, const b2Manifold *ol
 
 - (void)draw
 {    
-    //    glClearColor(0, 0, 0, 0);
-    //    glClear(GL_COLOR_BUFFER_BIT);
-    
     glClearColor(0.2826,
                  0.5174,
                  0.9957, 
                  0);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    glColor3f(1.0f, 1.0f, 1.0f);
-    glPointSize(10.0f);
-    
     glBegin(GL_TRIANGLE_STRIP);
     {
-        for (NSValue *pointValue in terrainPoints)
+//        for (NSValue *pointValue in terrainPoints)
+        for (int i = 0; i < terrainChain->m_count; i++)
         {
+            b2Vec2 point = terrainChain->m_vertices[i];
+            
             glColor3f(0.2043, 
                       0.5000, 
                       0.1870);
-            CGPoint point = [pointValue pointValue];
+//            CGPoint point = [pointValue pointValue];
             glVertex2d(point.x, point.y);
             glVertex2d(point.x, 0);
+        }
+    }
+    glEnd();
+
+    glColor3f(0.75f, 0.65f, 0.8f);
+    glLineWidth(4.0f);
+    glBegin(GL_LINE_STRIP);
+    {
+//        for (NSValue *pointValue in terrainPoints)
+//        {
+//            CGPoint point = [pointValue pointValue];
+        for (int i = 0; i < terrainChain->m_count; i++)
+        {
+            b2Vec2 point = terrainChain->m_vertices[i];
+            glVertex2d(point.x, point.y);
         }
     }
     glEnd();

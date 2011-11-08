@@ -46,12 +46,14 @@
         b2FixtureDef fd;
         polygonShape = new b2PolygonShape();
         
-        b2Vec2 vertices[4];
-        vertices[0] = b2Vec2(-1.0f, -1.0f);
-        vertices[1] = b2Vec2(1.0f, -1.0f);
-        vertices[2] = b2Vec2(0.5f, 3.0f);
-        vertices[3] = b2Vec2(-0.5f, 3.0f);
-        polygonShape->Set(vertices, 4);
+        b2Vec2 vertices[6];
+        vertices[0] = b2Vec2(-1.0f, -0.8f);
+        vertices[1] = b2Vec2(-0.8f, -1.0f);
+        vertices[2] = b2Vec2(0.8f, -1.0f);
+        vertices[3] = b2Vec2(1.0f, -0.8f);
+        vertices[4] = b2Vec2(0.5f, 3.0f);
+        vertices[5] = b2Vec2(-0.5f, 3.0f);
+        polygonShape->Set(vertices, 6);
         
         fd.shape = polygonShape;
         fd.friction = 0.3f;

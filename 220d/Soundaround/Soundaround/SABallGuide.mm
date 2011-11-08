@@ -12,29 +12,11 @@
 #import "SABallGuidePoint.h"
 #import "SAWorld.h"
 #import "SABall.h"
+#import "SAUtils.h"
 
-float CGPointMagnitudeSquared(CGPoint p);
-float CGPointMagnitude(CGPoint p);
-CGPoint CGPointSubtract(CGPoint p1, CGPoint p2);
-
-float CGPointMagnitudeSquared(CGPoint p)
-{
-    return powf(p.x, 2) + powf(p.y, 2);
-}
-
-float CGPointMagnitude(CGPoint p)
-{
-    return sqrtf(CGPointMagnitudeSquared(p));
-}
-
-CGPoint CGPointSubtract(CGPoint p1, CGPoint p2)
-{
-    return CGPointMake(p1.x - p2.x, p1.y - p2.y);
-}
-
-struct Movement {
-    CGPoint start;
-    CGPoint end;
+struct BallState {
+    CGPoint position;
+    float intensity;
 };
 
 @interface SABallGuide ()
@@ -48,7 +30,8 @@ struct Movement {
     
     float phase;
     
-    Movement lastBallMovement;
+    BallState lastSonifiedBallState;
+    BallState currentBallState;
 }
 
 @end
@@ -139,21 +122,19 @@ struct Movement {
     b2Vec2 start = activeBall.physicsBody->GetWorldCenter();
     activeBall.physicsBody->SetTransform(position, 0.0f);
 
-    Movement m;
-    m.start = CGPointMake(start.x, start.y);
-    m.end = CGPointMake(position.x, position.y);
-    lastBallMovement = m;
-    
-//    NSLog(@"Last ball movement set to : %f, %f => %f, %f", m.start.x, m.start.y, m.end.x, m.end.y);
+    BallState state;
+    state.position = CGPointMake(position.x, position.y);
+    state.intensity = CGPointMagnitude(currentSegmentVector);
+    currentBallState = state;
     
     SABallGuidePoint *lastPoint = [points lastObject];
     if (currentSegmentEndPoint == lastPoint && [lastPoint isBallClose:activeBall])
     {
-//        SABallGuidePoint *secondToLastPoint = [points objectAtIndex:[points count] - 2];
-//        b2Vec2 vector = b2Vec2(lastPoint.position.x, lastPoint.position.y) - b2Vec2(secondToLastPoint.position.x, secondToLastPoint.position.y);
-//        float length = vector.Length();
-//        vector.Normalize();
-//        activeBall.physicsBody->SetLinearVelocity((length / secondToLastPoint.timeToNextPoint) * vector);
+        SABallGuidePoint *secondToLastPoint = [points objectAtIndex:[points count] - 2];
+        b2Vec2 vector = b2Vec2(lastPoint.position.x, lastPoint.position.y) - b2Vec2(secondToLastPoint.position.x, secondToLastPoint.position.y);
+        float length = vector.Length();
+        vector.Normalize();
+        activeBall.physicsBody->SetLinearVelocity((length / secondToLastPoint.timeToNextPoint) * vector);
         [self deactivate];
         return;
     }
@@ -210,16 +191,16 @@ struct Movement {
     
     int numChannels = 2;
     
-    Movement m = lastBallMovement;
+    BallState lastState = lastSonifiedBallState;
+    BallState currentState = currentBallState;
         
-    float frequency;
-    
-    float amplitude = 1.0f;
+    float frequency, amplitude;
     
     for (int i = 0; i < numBufferFrames; i++)
     {
         float percent = (float) i / (numBufferFrames - 1);
-        frequency = 100.0f * (m.start.y + percent * (m.end.y - m.start.y));
+        frequency = 30.0f * (lastState.position.y + percent * (currentState.position.y - lastState.position.y));
+        amplitude = (lastState.intensity + percent * (currentState.intensity - lastState.intensity)) / 20.0f;
         
         float noiseSample = 0.0f;  //(rand() / (float)RAND_MAX);
         float sineSample = sin(phase);
@@ -234,6 +215,8 @@ struct Movement {
             phase -= 2 * M_PI;
         }
     }
+    
+    lastSonifiedBallState = currentState;
 }
 
 @end

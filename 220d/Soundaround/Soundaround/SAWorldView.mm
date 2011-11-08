@@ -14,6 +14,7 @@
 #import "SABall.h"
 #import "SAAudioManager.h"
 #import "SAWorldViewController.h"
+#import "SAUtils.h"
 
 @interface SAWorldView ()
 @property (nonatomic, assign) CGSize minViewportSize;
@@ -185,23 +186,6 @@ static CVReturn displayCallback(CVDisplayLinkRef displayLink, const CVTimeStamp*
     {
         [self positionViewportAt:CGPointMake(point.x - (1.0 - movementThreshold) * self.viewport.size.width, self.viewport.origin.y)];
     }
-}
-
-float lerp(float a, float b, float t)
-{
-    return a + t * (b - a);
-}
-
-CGPoint CGPointLerp(const CGPoint &a, const CGPoint &b, float t)
-{
-    CGPoint p = CGPointMake(lerp(a.x, b.x, t), lerp(a.y, b.y, t));
-    return p;
-}
-
-CGSize CGSizeLerp(const CGSize &a, const CGSize &b, float t)
-{
-    CGSize s = CGSizeMake(lerp(a.width, b.width, t), lerp(a.height, b.height, t));
-    return s;
 }
 
 - (void)setViewportSize:(CGSize)size

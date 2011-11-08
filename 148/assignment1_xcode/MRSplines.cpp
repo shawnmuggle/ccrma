@@ -30,12 +30,6 @@ void SplinePoint::setTangentWithControlPoint(SplinePoint * aControlPoint)
     controlPoint = aControlPoint;
 }
 
-// These two functions should probably be const
-float SplinePoint::slope()
-{
-    return (tangent().y / tangent().x);
-}
-
 Vector3<float> SplinePoint::tangent()
 {
     if (nextPoint && prevPoint)
@@ -70,8 +64,8 @@ void SplinePoint::drawHermiteCurveToNextPoint(int numInterpolatedPoints)
         Vector3<float> a = p1->position;
         Vector3<float> b = p1->position + p1->tangent() / 3.0;
         Vector3<float> c = p2->position - p2->tangent() / 3.0;
-        
         Vector3<float> d = p2->position;
+        
         bezier(p, a, b, c, d, t);
         glVertex2f(prevP.x, prevP.y);
         glVertex2f(p.x, p.y);

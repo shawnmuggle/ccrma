@@ -22,7 +22,6 @@ public:
     virtual void draw();
     virtual void update();
     void setTangentWithControlPoint(SplinePoint *aControlPoint);
-    float slope();
     Vector3<float> tangent();
     Vector3<float> vectorToHome();
     Vector3<float> vectorToStartPoint();

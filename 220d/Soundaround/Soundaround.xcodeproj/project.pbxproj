@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D502ED3A145CCB570085DD10 /* SASoundPath.mm in Sources */ = {isa = PBXBuildFile; fileRef = D502ED39145CCB570085DD10 /* SASoundPath.mm */; };
 		D502ED3C145CD3F60085DD10 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D502ED3B145CD3F60085DD10 /* CoreVideo.framework */; };
+		D5209F4C1469246200DA2772 /* SAUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5209F4B1469246200DA2772 /* SAUtils.mm */; };
 		D53D5599144FB8A300E46047 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53D5598144FB8A300E46047 /* OpenGL.framework */; };
 		D54D0DD31454B7830076EB5A /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54D0DD01454B7830076EB5A /* RtAudio.cpp */; };
 		D54D0DD51454B8CB0076EB5A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54D0DD41454B8CB0076EB5A /* CoreAudio.framework */; };
@@ -69,6 +70,8 @@
 		D502ED38145CCB570085DD10 /* SASoundPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SASoundPath.h; path = Soundaround/SASoundPath.h; sourceTree = "<group>"; };
 		D502ED39145CCB570085DD10 /* SASoundPath.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SASoundPath.mm; path = Soundaround/SASoundPath.mm; sourceTree = "<group>"; };
 		D502ED3B145CD3F60085DD10 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		D5209F4A1469246200DA2772 /* SAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAUtils.h; sourceTree = "<group>"; };
+		D5209F4B1469246200DA2772 /* SAUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUtils.mm; sourceTree = "<group>"; };
 		D53D5598144FB8A300E46047 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		D54D0DD01454B7830076EB5A /* RtAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RtAudio.cpp; sourceTree = "<group>"; };
 		D54D0DD11454B7830076EB5A /* RtAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
@@ -133,6 +136,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D5209F491469244E00DA2772 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D5209F4A1469246200DA2772 /* SAUtils.h */,
+				D5209F4B1469246200DA2772 /* SAUtils.mm */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		D53D559A14500A2A00E46047 /* World */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +264,7 @@
 				D5D29EB3144FB0C800485601 /* MainMenu.xib */,
 				D5D29EB6144FB0C800485601 /* Soundaround.xcdatamodeld */,
 				D5D29EA5144FB0C700485601 /* Supporting Files */,
+				D5209F491469244E00DA2772 /* Utils */,
 				D54D0DE31454B9900076EB5A /* View/Controller */,
 				D54D0DD61454B8E70076EB5A /* Sound */,
 				D53D559A14500A2A00E46047 /* World */,
@@ -388,6 +401,7 @@
 				D5F2589F1467A2C3006D5AF4 /* SABallGuide.mm in Sources */,
 				D5F258A21467A505006D5AF4 /* SABallGuidePoint.mm in Sources */,
 				D5F258A61467AA04006D5AF4 /* SAWorldViewController.mm in Sources */,
+				D5209F4C1469246200DA2772 /* SAUtils.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

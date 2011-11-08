@@ -37,10 +37,6 @@
 
 - (CGPoint)worldPosForEvent:(NSEvent *)event;
 
-float lerp(float a, float b, float t);
-CGPoint CGPointLerp(const CGPoint &a, const CGPoint &b, float t);
-CGSize CGSizeLerp(const CGSize &a, const CGSize &b, float t);
-
 @end
 
 static CVReturn displayCallback(CVDisplayLinkRef displayLink, const CVTimeStamp* now, const CVTimeStamp* outputTime,
