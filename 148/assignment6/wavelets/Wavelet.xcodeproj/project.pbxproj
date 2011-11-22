@@ -1,0 +1,306 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D537950E1475BBCF00EF8AEC /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D537950D1475BBCF00EF8AEC /* OpenGL.framework */; };
+		D53795101475BBD700EF8AEC /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D537950F1475BBD700EF8AEC /* GLUT.framework */; };
+		D55586541475BEF500156801 /* libst.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D55586531475BCE000156801 /* libst.a */; };
+		D58EC5F91475CF4E00E4333F /* Wavelet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D58EC5F51475CEA300E4333F /* Wavelet.cpp */; };
+		D58EC5FF1475D0D000E4333F /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D58EC5FC1475D0D000E4333F /* Grid.cpp */; };
+		D58EC6021475D0F700E4333F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D58EC6011475D0F700E4333F /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D55586521475BCE000156801 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D555863B1475BCDA00156801 /* libst.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = libst;
+		};
+		D55586551475C04600156801 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D555863B1475BCDA00156801 /* libst.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = libst;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D53794F41475B96900EF8AEC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D53794F61475B96900EF8AEC /* Wavelet */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Wavelet; sourceTree = BUILT_PRODUCTS_DIR; };
+		D537950D1475BBCF00EF8AEC /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
+		D537950F1475BBD700EF8AEC /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/GLUT.framework; sourceTree = DEVELOPER_DIR; };
+		D555863B1475BCDA00156801 /* libst.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libst.xcodeproj; path = ../libst/xcode/libst.xcodeproj; sourceTree = "<group>"; };
+		D58EC5F41475CE6100E4333F /* Wavelet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wavelet.h; sourceTree = SOURCE_ROOT; };
+		D58EC5F51475CEA300E4333F /* Wavelet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wavelet.cpp; sourceTree = SOURCE_ROOT; };
+		D58EC5FC1475D0D000E4333F /* Grid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Grid.cpp; sourceTree = SOURCE_ROOT; };
+		D58EC5FD1475D0D000E4333F /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = SOURCE_ROOT; };
+		D58EC6011475D0F700E4333F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D53794F31475B96900EF8AEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D55586541475BEF500156801 /* libst.a in Frameworks */,
+				D53795101475BBD700EF8AEC /* GLUT.framework in Frameworks */,
+				D537950E1475BBCF00EF8AEC /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D53794E01475B8A400EF8AEC = {
+			isa = PBXGroup;
+			children = (
+				D53794F91475B96900EF8AEC /* Wavelet Compression */,
+				D555863B1475BCDA00156801 /* libst.xcodeproj */,
+				D537950F1475BBD700EF8AEC /* GLUT.framework */,
+				D537950D1475BBCF00EF8AEC /* OpenGL.framework */,
+				D53794F71475B96900EF8AEC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D53794F71475B96900EF8AEC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D53794F61475B96900EF8AEC /* Wavelet */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D53794F91475B96900EF8AEC /* Wavelet Compression */ = {
+			isa = PBXGroup;
+			children = (
+				D58EC6011475D0F700E4333F /* main.cpp */,
+				D58EC5FC1475D0D000E4333F /* Grid.cpp */,
+				D58EC5FD1475D0D000E4333F /* Grid.h */,
+				D58EC5F41475CE6100E4333F /* Wavelet.h */,
+				D58EC5F51475CEA300E4333F /* Wavelet.cpp */,
+			);
+			path = "Wavelet Compression";
+			sourceTree = "<group>";
+		};
+		D555864F1475BCE000156801 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D55586531475BCE000156801 /* libst.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D53794F51475B96900EF8AEC /* Wavelet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D53794FE1475B96900EF8AEC /* Build configuration list for PBXNativeTarget "Wavelet" */;
+			buildPhases = (
+				D53794F21475B96900EF8AEC /* Sources */,
+				D53794F31475B96900EF8AEC /* Frameworks */,
+				D53794F41475B96900EF8AEC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D55586561475C04600156801 /* PBXTargetDependency */,
+			);
+			name = Wavelet;
+			productName = "Wavelet Compression";
+			productReference = D53794F61475B96900EF8AEC /* Wavelet */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D53794E21475B8A400EF8AEC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = Rototyping;
+			};
+			buildConfigurationList = D53794E51475B8A400EF8AEC /* Build configuration list for PBXProject "Wavelet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D53794E01475B8A400EF8AEC;
+			productRefGroup = D53794F71475B96900EF8AEC /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D555864F1475BCE000156801 /* Products */;
+					ProjectRef = D555863B1475BCDA00156801 /* libst.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				D53794F51475B96900EF8AEC /* Wavelet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D55586531475BCE000156801 /* libst.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libst.a;
+			remoteRef = D55586521475BCE000156801 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D53794F21475B96900EF8AEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D58EC5F91475CF4E00E4333F /* Wavelet.cpp in Sources */,
+				D58EC5FF1475D0D000E4333F /* Grid.cpp in Sources */,
+				D58EC6021475D0F700E4333F /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D55586561475C04600156801 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libst;
+			targetProxy = D55586551475C04600156801 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D53794E71475B8A400EF8AEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)";
+			};
+			name = Debug;
+		};
+		D53794E81475B8A400EF8AEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)";
+			};
+			name = Release;
+		};
+		D53794FF1475B96900EF8AEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../libst/include;
+				LIBRARY_SEARCH_PATHS = (
+					/sw/lib,
+					/opt/local/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lfreetype",
+					"-lpng",
+					"-ljpeg",
+				);
+				PRODUCT_NAME = Wavelet;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D53795001475B96900EF8AEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../libst/include;
+				LIBRARY_SEARCH_PATHS = (
+					/sw/lib,
+					/opt/local/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"-lfreetype",
+					"-lpng",
+					"-ljpeg",
+				);
+				PRODUCT_NAME = Wavelet;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D53794E51475B8A400EF8AEC /* Build configuration list for PBXProject "Wavelet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D53794E71475B8A400EF8AEC /* Debug */,
+				D53794E81475B8A400EF8AEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D53794FE1475B96900EF8AEC /* Build configuration list for PBXNativeTarget "Wavelet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D53794FF1475B96900EF8AEC /* Debug */,
+				D53795001475B96900EF8AEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D53794E21475B8A400EF8AEC /* Project object */;
+}
