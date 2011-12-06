@@ -39,16 +39,11 @@ static float materialDiffuse[]  = { 0.2, 0.2, 0.6, 1.0 };
 static float materialSpecular[] = { 0.8, 0.8, 0.8, 1.0 };
 static float shininess          = 8.0;  // # between 1 and 128.
 
-static float animationTime = 0.0f;
-
 STImage   *surfaceNormImg;
 STTexture *surfaceNormTex;
 
 STImage   *lightProbeImg;
 STTexture *lightProbeTex;
-
-STImage   *waterImg;
-STTexture *waterTex;
 
 STShaderProgram *shader;
 
@@ -60,7 +55,6 @@ STVector3 mCameraTranslation;
 float mCameraAzimuth;
 float mCameraElevation;
 bool teapot = false;
-bool specular = true;
 
 
 void resetCamera()
@@ -85,27 +79,24 @@ void Setup()
     glLightfv(GL_LIGHT0, GL_SPECULAR,  specularLight);
     glLightfv(GL_LIGHT0, GL_AMBIENT,   ambientLight);
     glLightfv(GL_LIGHT0, GL_DIFFUSE,   diffuseLight);
-    
+
     // Ditto with accessing material properties in the fragment
     // and vertex shaders.
     glMaterialfv(GL_FRONT, GL_AMBIENT,   materialAmbient);
     glMaterialfv(GL_FRONT, GL_DIFFUSE,   materialDiffuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR,  materialSpecular);
     glMaterialfv(GL_FRONT, GL_SHININESS, &shininess);
-    
+
     surfaceNormImg = new STImage(normalMap);
     surfaceNormTex = new STTexture(surfaceNormImg);
-    
+
     lightProbeImg = new STImage(lightProbe);
     lightProbeTex = new STTexture(lightProbeImg);
 
-    waterImg = new STImage("images/water.jpg");
-    waterTex = new STTexture(waterImg);
-    
     shader = new STShaderProgram();
     shader->LoadVertexShader(vertexShader);
     shader->LoadFragmentShader(fragmentShader);
-    
+
     resetCamera();
     
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -139,7 +130,7 @@ void DisplayCallback()
     
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    
+
     STVector3 trans = -mCameraTranslation;
     
     glTranslatef(trans.x, trans.y, trans.z);
@@ -149,27 +140,23 @@ void DisplayCallback()
     
     glRotatef(-90.0f, 1, 0, 0);
     glScalef(1.0, -1.0, 1.0);
-    
-    
+
+
 	float leftX   = -2;
 	float rightX  = -leftX;
-    
+
 	float planeY  = 0;
-    
+
 	float nearZ   = 0;
 	float farZ    = 4;
-    
+
     float lightPosition[] = {4.0, 10.0, farZ, 1.0};
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
-    
-    // Texture 3: water
-    glActiveTexture(GL_TEXTURE2);
-    waterTex->Bind();
-    
+
     // Texture 2: light probe environment map
     glActiveTexture(GL_TEXTURE1);
     lightProbeTex->Bind();
-    
+
     // Texture 1: surface normal map
     glActiveTexture(GL_TEXTURE0);
     surfaceNormTex->Bind();
@@ -179,26 +166,11 @@ void DisplayCallback()
     // shader.
     shader->SetTexture("normalTex", 0);
     shader->SetTexture("envMapTex", 1);
-    shader->SetTexture("waterTex", 2);
-    
+
     // Invoke the shader.  Now OpenGL will call our
     // shader programs on anything we draw.
     shader->Bind();
-        
-    glMaterialfv(GL_FRONT, GL_SHININESS, &shininess);
 
-    if (specular)
-    {
-        shader->SetUniform("specular", 1.);
-    }
-    else
-    {
-        shader->SetUniform("specular", 0.);
-    }
-    
-    animationTime += 0.01f;
-    shader->SetUniform("time", animationTime);
-    
     if (teapot)
     {
         // Draw a Utah Teapot
@@ -213,47 +185,45 @@ void DisplayCallback()
         // assignment.
         glBegin(GL_QUADS);
         glColor4f(.1, .1, .7, 1.0f);
-        
+
         // All vertices on the plane have the same normal
         glNormal3f(0.0f, 1.0f, 0.0f);
-        
+
         for (int i = 0; i < XTesselationDepth; i++)
             for (int j = 0; j < ZTesselationDepth; j++) {
                 float s0 = (float)  i      / (float) XTesselationDepth;
                 float s1 = (float) (i + 1) / (float) XTesselationDepth;
                 float x0 =  s0 * (rightX - leftX) + leftX;
                 float x1 =  s1 * (rightX - leftX) + leftX;
-                
+
                 float t0 = (float) j       / (float) ZTesselationDepth;
                 float t1 = (float) (j + 1) / (float) ZTesselationDepth;
                 float z0 = t0 * (farZ - nearZ) + nearZ;
                 float z1 = t1 * (farZ - nearZ) + nearZ;
-                
+
                 glTexCoord2f(s0, t0);
                 glVertex3f(x0, planeY, z0);
-                
+
                 glTexCoord2f(s1, t0);
                 glVertex3f(x1, planeY, z0);
-                
+
                 glTexCoord2f(s1, t1);
                 glVertex3f(x1, planeY,  z1);
-                
+
                 glTexCoord2f(s0, t1);
                 glVertex3f(x0,  planeY,  z1);
             }
-        
+
         glEnd();
     }
     
     shader->UnBind();
-    
-    glActiveTexture(GL_TEXTURE2);
-    waterTex->UnBind();
+
     glActiveTexture(GL_TEXTURE1);
     lightProbeTex->UnBind();
     glActiveTexture(GL_TEXTURE0);
     surfaceNormTex->UnBind();
-    
+
     glutSwapBuffers();
 }
 
@@ -265,15 +235,15 @@ void ReshapeCallback(int w, int h)
 {
 	gWindowSizeX = w;
     gWindowSizeY = h;
-    
+
     glViewport(0, 0, gWindowSizeX, gWindowSizeY);
-    
+
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
 	// Set up a perspective projection
     float aspectRatio = (float) gWindowSizeX / (float) gWindowSizeY;
 	gluPerspective(30.0f, aspectRatio, .1f, 100.0f);
-    
+
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
@@ -302,7 +272,7 @@ void SpecialKeyCallback(int key, int x, int y)
 void KeyCallback(unsigned char key, int x, int y)
 {
     switch(key) {
-        case 's': {
+    case 's': {
             //
             // Take a screenshot, and save as screenshot.jpg
             //
@@ -311,28 +281,19 @@ void KeyCallback(unsigned char key, int x, int y)
             screenshot->Save("screenshot.jpg");
             delete screenshot;
         }
-            break;
-        case 'r':
-            resetCamera();
-            break;
-        case 't':
-            teapot = !teapot;
-            break;
-        case 'p':
-            specular = !specular;
-            break;
-        case ',':
-            shininess = shininess - 1 >= 1 ? shininess - 1 : 1;
-            break;
-        case '.':
-            shininess = shininess + 1 <= 128 ? shininess + 1 : 128;
-            break;
-        case 'q':
-            exit(0);
-        default:
-            break;
+        break;
+    case 'r':
+        resetCamera();
+        break;
+    case 't':
+        teapot = !teapot;
+        break;
+	case 'q':
+		exit(0);
+    default:
+        break;
     }
-    
+
     // glutPostRedisplay();
 }
 
@@ -404,12 +365,12 @@ int main(int argc, char** argv)
 {
 	if (argc != 5)
 		usage();
-    
+
 	vertexShader   = std::string(argv[1]);
 	fragmentShader = std::string(argv[2]);
 	lightProbe     = std::string(argv[3]);
 	normalMap      = std::string(argv[4]);
-    
+
     //
     // Initialize GLUT.
     //
@@ -427,7 +388,7 @@ int main(int argc, char** argv)
     if(!GLEW_VERSION_2_0) {
         printf("Your graphics card or graphics driver does\n"
 			   "\tnot support OpenGL 2.0, trying ARB extensions\n");
-        
+
         if(!GLEW_ARB_vertex_shader || !GLEW_ARB_fragment_shader) {
             printf("ARB extensions don't work either.\n");
             printf("\tYou can try updating your graphics drivers.\n"
@@ -437,12 +398,12 @@ int main(int argc, char** argv)
         }
     }
 #endif
-    
+
     // Be sure to initialize GLUT (and GLEW for this assignment) before
     // initializing your application.
-    
+
     Setup();
-    
+
     glutDisplayFunc(DisplayCallback);
     glutReshapeFunc(ReshapeCallback);
     glutSpecialFunc(SpecialKeyCallback);
@@ -450,12 +411,12 @@ int main(int argc, char** argv)
     glutMouseFunc(MouseCallback);
     glutMotionFunc(MouseMotionCallback);
     glutIdleFunc(DisplayCallback);
-    
+
     glutMainLoop();
-    
-    
+
+
     // Cleanup code should be called here.
-    
-    
+
+
     return 0;
 }

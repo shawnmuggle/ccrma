@@ -39,5 +39,5 @@ void main()
 
     // push light source through modelview matrix to find its position
     // in model space and pass it to the fragment shader.
-    lightSource = (gl_ModelViewMatrix * gl_LightSource[0].position).xyz;
+    lightSource = gl_LightSource[0].position.xyz;
 }

@@ -15,8 +15,6 @@ varying vec3 normal;	  // fragment normal in model space
 
 varying float displacement;
 
-uniform sampler2D waterTex;
-
 void main()
 {
     // Sample from the normal map, if we're not doing displacement mapping
@@ -47,5 +45,5 @@ void main()
         // TODO: Try to replicate hostile takeover by specular part & show to TA
     }
     
-    gl_FragColor = vec4(color, 1.) * texture2D(waterTex, texPos);
+    gl_FragColor = vec4(color, 1.);
 }

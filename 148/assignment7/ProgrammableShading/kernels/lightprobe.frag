@@ -30,5 +30,8 @@ void main()
 
 	/* CS 148 TODO: Implement environment mapping here */
     
-    gl_FragColor = texture2D(envMapTex, texPos);
+    vec3 P = normalize(N);
+    vec2 texCoord = vec2(P.x / 2.0 + 0.5, P.y / 2.0 + 0.5);
+    
+    gl_FragColor = texture2D(envMapTex, texCoord);
 }

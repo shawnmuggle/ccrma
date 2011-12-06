@@ -1,0 +1,332 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D53BDCAB148CCFF80027E017 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D53BDCA8148CCFF80027E017 /* main.cpp */; };
+		D53BDCAC148CCFF80027E017 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D53BDCA9148CCFF80027E017 /* Scene.cpp */; };
+		D54218CB148CD2490033D195 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54218CA148CD2490033D195 /* Camera.cpp */; };
+		D54218D6148CD5E40033D195 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54218D5148CD5E40033D195 /* OpenGL.framework */; };
+		D54C807C148CCD7C003F89B3 /* libst.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D54C807B148CCD56003F89B3 /* libst.a */; };
+		D56B6A48148DF9B500916926 /* ImagePlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D56B6A47148DF9B500916926 /* ImagePlane.cpp */; };
+		D59FEF16148DE78000326D53 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D59FEF15148DE78000326D53 /* Sphere.cpp */; };
+		D5FA747A148DE86700FD2AB3 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5FA7479148DE86700FD2AB3 /* Material.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D54C807A148CCD56003F89B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D54C8073148CCD55003F89B3 /* libst.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = libst;
+		};
+		D54C8086148CCDA2003F89B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D54C8073148CCD55003F89B3 /* libst.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = libst;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D501389C148CCC8F00F5B4F4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D501389E148CCC8F00F5B4F4 /* raytracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = raytracer; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5388DC1148DE8BE0048135A /* Ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ray.h; sourceTree = SOURCE_ROOT; };
+		D5388DC2148DE8C90048135A /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = SOURCE_ROOT; };
+		D53BDCA8148CCFF80027E017 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
+		D53BDCA9148CCFF80027E017 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = SOURCE_ROOT; };
+		D53BDCAA148CCFF80027E017 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = SOURCE_ROOT; };
+		D53BDCB7148CD2100027E017 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = SOURCE_ROOT; };
+		D54218CA148CD2490033D195 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = SOURCE_ROOT; };
+		D54218D5148CD5E40033D195 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		D54C8073148CCD55003F89B3 /* libst.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libst.xcodeproj; path = ../libst/xcode/libst.xcodeproj; sourceTree = "<group>"; };
+		D56B6A45148DE8F300916926 /* Intersection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intersection.h; sourceTree = SOURCE_ROOT; };
+		D56B6A46148DF1DC00916926 /* ImagePlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlane.h; sourceTree = SOURCE_ROOT; };
+		D56B6A47148DF9B500916926 /* ImagePlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImagePlane.cpp; sourceTree = SOURCE_ROOT; };
+		D59FEF15148DE78000326D53 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = SOURCE_ROOT; };
+		D59FEF17148DE78900326D53 /* Sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sphere.h; sourceTree = SOURCE_ROOT; };
+		D59FEF19148DE84000326D53 /* Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shape.h; sourceTree = SOURCE_ROOT; };
+		D5FA7479148DE86700FD2AB3 /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = SOURCE_ROOT; };
+		D5FA747B148DE86F00FD2AB3 /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = SOURCE_ROOT; };
+		D5FA747C148DE89A00FD2AB3 /* SceneObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneObject.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D501389B148CCC8F00F5B4F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D54218D6148CD5E40033D195 /* OpenGL.framework in Frameworks */,
+				D54C807C148CCD7C003F89B3 /* libst.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D5013893148CCC8F00F5B4F4 = {
+			isa = PBXGroup;
+			children = (
+				D54218D5148CD5E40033D195 /* OpenGL.framework */,
+				D50138A1148CCC8F00F5B4F4 /* raytracer */,
+				D54C8073148CCD55003F89B3 /* libst.xcodeproj */,
+				D501389F148CCC8F00F5B4F4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D501389F148CCC8F00F5B4F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D501389E148CCC8F00F5B4F4 /* raytracer */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D50138A1148CCC8F00F5B4F4 /* raytracer */ = {
+			isa = PBXGroup;
+			children = (
+				D53BDCA8148CCFF80027E017 /* main.cpp */,
+				D53BDCA9148CCFF80027E017 /* Scene.cpp */,
+				D53BDCAA148CCFF80027E017 /* Scene.h */,
+				D53BDCB7148CD2100027E017 /* Camera.h */,
+				D54218CA148CD2490033D195 /* Camera.cpp */,
+				D59FEF19148DE84000326D53 /* Shape.h */,
+				D59FEF17148DE78900326D53 /* Sphere.h */,
+				D59FEF15148DE78000326D53 /* Sphere.cpp */,
+				D5FA747B148DE86F00FD2AB3 /* Material.h */,
+				D5FA7479148DE86700FD2AB3 /* Material.cpp */,
+				D5FA747C148DE89A00FD2AB3 /* SceneObject.h */,
+				D5388DC1148DE8BE0048135A /* Ray.h */,
+				D5388DC2148DE8C90048135A /* Light.h */,
+				D56B6A45148DE8F300916926 /* Intersection.h */,
+				D56B6A46148DF1DC00916926 /* ImagePlane.h */,
+				D56B6A47148DF9B500916926 /* ImagePlane.cpp */,
+			);
+			path = raytracer;
+			sourceTree = "<group>";
+		};
+		D54C8074148CCD55003F89B3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D54C807B148CCD56003F89B3 /* libst.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D501389D148CCC8F00F5B4F4 /* raytracer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D50138A8148CCC8F00F5B4F4 /* Build configuration list for PBXNativeTarget "raytracer" */;
+			buildPhases = (
+				D501389A148CCC8F00F5B4F4 /* Sources */,
+				D501389B148CCC8F00F5B4F4 /* Frameworks */,
+				D501389C148CCC8F00F5B4F4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D54C8087148CCDA2003F89B3 /* PBXTargetDependency */,
+			);
+			name = raytracer;
+			productName = raytracer;
+			productReference = D501389E148CCC8F00F5B4F4 /* raytracer */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D5013895148CCC8F00F5B4F4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = Rototyping;
+			};
+			buildConfigurationList = D5013898148CCC8F00F5B4F4 /* Build configuration list for PBXProject "raytracer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D5013893148CCC8F00F5B4F4;
+			productRefGroup = D501389F148CCC8F00F5B4F4 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D54C8074148CCD55003F89B3 /* Products */;
+					ProjectRef = D54C8073148CCD55003F89B3 /* libst.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				D501389D148CCC8F00F5B4F4 /* raytracer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D54C807B148CCD56003F89B3 /* libst.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libst.a;
+			remoteRef = D54C807A148CCD56003F89B3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D501389A148CCC8F00F5B4F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D53BDCAB148CCFF80027E017 /* main.cpp in Sources */,
+				D53BDCAC148CCFF80027E017 /* Scene.cpp in Sources */,
+				D54218CB148CD2490033D195 /* Camera.cpp in Sources */,
+				D59FEF16148DE78000326D53 /* Sphere.cpp in Sources */,
+				D5FA747A148DE86700FD2AB3 /* Material.cpp in Sources */,
+				D56B6A48148DF9B500916926 /* ImagePlane.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D54C8087148CCDA2003F89B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libst;
+			targetProxy = D54C8086148CCDA2003F89B3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D50138A6148CCC8F00F5B4F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D50138A7148CCC8F00F5B4F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D50138A9148CCC8F00F5B4F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)";
+				LIBRARY_SEARCH_PATHS = (
+					/sw/lib/freetype2/lib,
+					/sw/lib,
+					/opt/local/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-lfreetype",
+					"-lz",
+					"-lpng",
+					"-ljpeg",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = ../libst/include;
+			};
+			name = Debug;
+		};
+		D50138AA148CCC8F00F5B4F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)";
+				LIBRARY_SEARCH_PATHS = (
+					/sw/lib/freetype2/lib,
+					/sw/lib,
+					/opt/local/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-lfreetype",
+					"-lz",
+					"-lpng",
+					"-ljpeg",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = ../libst/include;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D5013898148CCC8F00F5B4F4 /* Build configuration list for PBXProject "raytracer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D50138A6148CCC8F00F5B4F4 /* Debug */,
+				D50138A7148CCC8F00F5B4F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D50138A8148CCC8F00F5B4F4 /* Build configuration list for PBXNativeTarget "raytracer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D50138A9148CCC8F00F5B4F4 /* Debug */,
+				D50138AA148CCC8F00F5B4F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D5013895148CCC8F00F5B4F4 /* Project object */;
+}
