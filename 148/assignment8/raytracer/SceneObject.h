@@ -21,6 +21,10 @@ public:
     Material material;
     STTransform4 transform;
     
+    SceneObject() :
+    shape(NULL)
+    { }
+    
     SceneObject(Shape * const inShape, Material const& inMaterial, STTransform4 const& inTransform) : 
     shape(inShape),
     material(inMaterial),

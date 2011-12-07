@@ -7,6 +7,8 @@
 #include "Material.h"
 #include "SceneObject.h"
 #include "Light.h"
+#include <vector>
+#include <stack>
 
 class Scene
 {
@@ -14,6 +16,7 @@ public:
 	Scene(std::string sceneFilename);
 
 	/* CS 148 TODO: Add methods for the scene to render itself, etc. **/
+    STColor3f traceRay(Ray const& r) const;
 
 private:
 
@@ -47,10 +50,11 @@ private:
     std::vector<AmbientLight> ambientLights;
     std::vector<PointLight> pointLights;
     std::vector<DirectionalLight> directionalLights;
+    std::stack<STTransform4> transformStack;
     
-    void Cleanup();
+    void cleanup();
+    bool intersect(Ray const& r, Intersection * const outIntersection, SceneObject * const outObject) const;
 };
-
 
 #endif //SCENE_H
 

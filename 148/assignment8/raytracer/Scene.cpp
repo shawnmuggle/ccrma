@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "Sphere.h"
+#include "Triangle.h"
 #include <fstream>
 #include <sstream>
 
@@ -149,9 +150,10 @@ void Scene::Parse(std::string sceneFilename)
 void Scene::BeganParsing()
 {
     printf("BEGAN PARSING\n");
+    transformStack.push(STTransform4::Identity());
 }
 
-void Scene::Cleanup()
+void Scene::cleanup()
 {
     for (std::vector<SceneObject>::const_iterator itr = objects.begin(); itr != objects.end(); itr++)
     {
@@ -165,10 +167,10 @@ void Scene::FinishedParsing()
 {
     printf("FINISHED PARSING\n");
     
-    imagePlane.generateRaysFromCamera(camera, &objects, &ambientLights, &pointLights, &directionalLights);    
+    imagePlane.generateRaysFromCamera(camera, this);    
     imagePlane.saveOutputImage();
     
-    Cleanup();
+    cleanup();
 }
 
 void Scene::ParsedCamera(const STPoint3& eye, const STVector3& up, const STPoint3& lookAt, float fovy, float aspect)
@@ -195,39 +197,54 @@ void Scene::ParsedShadowBias(float bias)
 
 void Scene::ParsedPushMatrix()
 {
-	/* CS 148 TODO: Fill this in **/
+    transformStack.push(transformStack.top());
 }
 
 void Scene::ParsedPopMatrix()
 {
-	/* CS 148 TODO: Fill this in **/
+    transformStack.pop();
+    if (!transformStack.size())
+    {
+        transformStack.push(STTransform4::Identity());
+    }
 }
 
 void Scene::ParsedRotate(float rx, float ry, float rz)
 {
-	/* CS 148 TODO: Fill this in **/
+    STTransform4 ctm = transformStack.top();
+    STTransform4 rotate = STTransform4::Rotation(rx, ry, rz);
+    transformStack.pop();
+    transformStack.push(ctm * rotate);
 }
 
 void Scene::ParsedScale(float sx, float sy, float sz)
 {
-	/* CS 148 TODO: Fill this in **/
+    STTransform4 ctm = transformStack.top();
+    STTransform4 scale = STTransform4::Scaling(sx, sy, sz);
+    transformStack.pop();
+    transformStack.push(ctm * scale);
 }
 
 void Scene::ParsedTranslate(float tx, float ty, float tz)
 {
-	/* CS 148 TODO: Fill this in **/
+    STTransform4 ctm = transformStack.top();
+    STTransform4 translation = STTransform4::Translation(tx, ty, tz);
+    transformStack.pop();
+    transformStack.push(ctm * translation);
 }
 
 void Scene::ParsedSphere(const STPoint3& center, float radius)
 {
     Sphere *sphere = new Sphere(center, radius);
-    SceneObject object(sphere, currentMaterial, STTransform4::Identity());
+    SceneObject object(sphere, currentMaterial, transformStack.top());
     objects.push_back(object);
 }
 
 void Scene::ParsedTriangle(const STPoint3& v1, const STPoint3& v2, const STPoint3& v3)
 {
-	/* CS 148 TODO: Fill this in **/
+    Triangle *triangle = new Triangle(v1, v2, v3);
+    SceneObject object(triangle, currentMaterial, transformStack.top());
+    objects.push_back(object);
 }
 
 void Scene::ParsedAmbientLight(const STColor3f& col)
@@ -251,4 +268,112 @@ void Scene::ParsedDirectionalLight(const STVector3& dir, const STColor3f& col)
 void Scene::ParsedMaterial(const STColor3f& amb, const STColor3f& diff, const STColor3f& spec, const STColor3f& mirr, float shine)
 {
     currentMaterial = Material(amb, diff, spec, mirr, shine);
+}
+
+bool Scene::intersect(Ray const& r, Intersection * const outIntersection, SceneObject * const outObject) const
+{
+    bool intersects = false;
+    float minT = MAXFLOAT;
+    Intersection minIntersection;
+    SceneObject minObject;
+    for (std::vector<SceneObject>::const_iterator itr = objects.begin(); itr != objects.end(); itr++)
+    {
+        SceneObject object = *itr;
+        Intersection intersection;
+        if (object.shape->intersectionWithRay(r, &intersection))
+        {
+            intersects = true;
+            if (intersection.t < minT)
+            {
+                minT = intersection.t;
+                minIntersection = intersection;
+                minObject = object;
+            }
+        }
+    }
+    *outIntersection = minIntersection;
+    *outObject = minObject;
+    return intersects;
+}
+
+STColor3f Scene::traceRay(Ray const& r) const
+{
+    STColor3f outputColor;
+    Intersection intersection;
+    SceneObject object;
+    bool intersects = intersect(r, &intersection, &object);
+        
+    if (intersects)
+    {
+        STColor3f ambientColor = STColor3f();
+        for (std::vector<AmbientLight>::const_iterator aItr = ambientLights.begin(); aItr != ambientLights.end(); aItr++)
+        {
+            AmbientLight aLight = *aItr;
+            ambientColor += aLight.color;
+        }
+        ambientColor *= object.material.ambient;                    
+        
+#warning Do something about potential color overflow??
+        STColor3f diffuseColor;
+        STColor3f specularColor;
+        for (std::vector<PointLight>::const_iterator pItr = pointLights.begin(); pItr != pointLights.end(); pItr++)
+        {
+            PointLight pLight = *pItr;
+            
+            STVector3 L = pLight.position - intersection.position;            
+            L.Normalize();
+
+            // Check for shadow
+            Ray shadowRay(intersection.position, L, shadowBias, 100000);
+            Intersection shadowIntersection;
+            SceneObject shadowObject;
+            if (intersect(shadowRay, &shadowIntersection, &shadowObject))
+                continue;
+                
+            // Diffuse lighting
+            float diffuseAmount = fmax(0, STVector3::Dot(L, intersection.normal));
+            diffuseColor += object.material.diffuse * pLight.color * diffuseAmount;
+            
+            // Specular lighting
+            L *= -1.0f;
+            STVector3 R = L - 2 * STVector3::Dot(L, intersection.normal) * intersection.normal;
+            R.Normalize();
+            STVector3 V = camera.position - intersection.position;
+            V.Normalize();
+            float specularAmount = powf(fmaxf(0, STVector3::Dot(R, V)), object.material.shine);
+            specularColor += object.material.specular * pLight.color * specularAmount;
+        }
+        
+        for (std::vector<DirectionalLight>::const_iterator dItr = directionalLights.begin(); dItr != directionalLights.end(); dItr++)
+        {
+            DirectionalLight dLight = *dItr;
+            
+            // Diffuse lighting
+            STVector3 L = -dLight.direction;
+            L.Normalize();
+            
+            // Check for shadow
+            Ray shadowRay(intersection.position, L, shadowBias, MAXFLOAT);
+            Intersection shadowIntersection;
+            SceneObject shadowObject;
+            if (intersect(shadowRay, &shadowIntersection, &shadowObject))
+                continue;
+            
+            float diffuseAmount = fmax(0, STVector3::Dot(L, intersection.normal));
+            diffuseColor += object.material.diffuse * dLight.color * diffuseAmount;
+            
+            // Specular lighting
+            L *= -1.0f;
+            STVector3 R = L - 2 * STVector3::Dot(L, intersection.normal) * intersection.normal;
+            R.Normalize();
+            STVector3 V = camera.position - intersection.position;
+            V.Normalize();
+            float specularAmount = powf(fmaxf(0, STVector3::Dot(R, V)), object.material.shine);
+            specularColor += object.material.specular * dLight.color * specularAmount;
+        }
+        
+        outputColor = ambientColor + diffuseColor + specularColor;
+    }
+    
+    return outputColor;
 }

@@ -9,12 +9,11 @@
 #ifndef raytracer_Ray_h
 #define raytracer_Ray_h
 
-#include "stForward.h"
+#include "STPoint3.h"
+#include "STVector3.h"
 
 class Ray {
-        
     float minValidT, maxValidT;
-    
 public:
     STPoint3 e;
     STVector3 d;
@@ -23,7 +22,7 @@ public:
     e(e), d(d), minValidT(minValidT), maxValidT(maxValidT) {}
     
     inline STPoint3 pointOnRayAtT(float t) { return e + t * d; }
-    inline bool isValidT(float t) { return t >= minValidT && t <= maxValidT; }
+    inline bool isValidT(float t) { return t >= minValidT && t <= maxValidT; }    
 };
 
 #endif

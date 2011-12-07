@@ -13,6 +13,7 @@
 		D54218D6148CD5E40033D195 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54218D5148CD5E40033D195 /* OpenGL.framework */; };
 		D54C807C148CCD7C003F89B3 /* libst.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D54C807B148CCD56003F89B3 /* libst.a */; };
 		D56B6A48148DF9B500916926 /* ImagePlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D56B6A47148DF9B500916926 /* ImagePlane.cpp */; };
+		D56B6A4B148EC33200916926 /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D56B6A4A148EC33100916926 /* Triangle.cpp */; };
 		D59FEF16148DE78000326D53 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D59FEF15148DE78000326D53 /* Sphere.cpp */; };
 		D5FA747A148DE86700FD2AB3 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5FA7479148DE86700FD2AB3 /* Material.cpp */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,8 @@
 		D56B6A45148DE8F300916926 /* Intersection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intersection.h; sourceTree = SOURCE_ROOT; };
 		D56B6A46148DF1DC00916926 /* ImagePlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlane.h; sourceTree = SOURCE_ROOT; };
 		D56B6A47148DF9B500916926 /* ImagePlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImagePlane.cpp; sourceTree = SOURCE_ROOT; };
+		D56B6A49148EC32900916926 /* Triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triangle.h; sourceTree = SOURCE_ROOT; };
+		D56B6A4A148EC33100916926 /* Triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Triangle.cpp; sourceTree = SOURCE_ROOT; };
 		D59FEF15148DE78000326D53 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = SOURCE_ROOT; };
 		D59FEF17148DE78900326D53 /* Sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sphere.h; sourceTree = SOURCE_ROOT; };
 		D59FEF19148DE84000326D53 /* Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shape.h; sourceTree = SOURCE_ROOT; };
@@ -107,9 +110,6 @@
 				D53BDCAA148CCFF80027E017 /* Scene.h */,
 				D53BDCB7148CD2100027E017 /* Camera.h */,
 				D54218CA148CD2490033D195 /* Camera.cpp */,
-				D59FEF19148DE84000326D53 /* Shape.h */,
-				D59FEF17148DE78900326D53 /* Sphere.h */,
-				D59FEF15148DE78000326D53 /* Sphere.cpp */,
 				D5FA747B148DE86F00FD2AB3 /* Material.h */,
 				D5FA7479148DE86700FD2AB3 /* Material.cpp */,
 				D5FA747C148DE89A00FD2AB3 /* SceneObject.h */,
@@ -118,6 +118,11 @@
 				D56B6A45148DE8F300916926 /* Intersection.h */,
 				D56B6A46148DF1DC00916926 /* ImagePlane.h */,
 				D56B6A47148DF9B500916926 /* ImagePlane.cpp */,
+				D59FEF19148DE84000326D53 /* Shape.h */,
+				D59FEF17148DE78900326D53 /* Sphere.h */,
+				D59FEF15148DE78000326D53 /* Sphere.cpp */,
+				D56B6A49148EC32900916926 /* Triangle.h */,
+				D56B6A4A148EC33100916926 /* Triangle.cpp */,
 			);
 			path = raytracer;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 				D59FEF16148DE78000326D53 /* Sphere.cpp in Sources */,
 				D5FA747A148DE86700FD2AB3 /* Material.cpp in Sources */,
 				D56B6A48148DF9B500916926 /* ImagePlane.cpp in Sources */,
+				D56B6A4B148EC33200916926 /* Triangle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

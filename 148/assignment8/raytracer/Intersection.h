@@ -9,7 +9,7 @@
 #ifndef raytracer_Intersection_h
 #define raytracer_Intersection_h
 
-#include "stForward.h"
+#include "STPoint3.h"
 
 class Intersection {
     

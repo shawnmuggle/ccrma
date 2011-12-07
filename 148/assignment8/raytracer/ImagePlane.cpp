@@ -10,8 +10,7 @@
 #include "ImagePlane.h"
 #include "Ray.h"
 #include "Camera.h"
-#include "SceneObject.h"
-#include "Light.h"
+#include "Scene.h"
 
 void ImagePlane::createBoundaryPoints(Camera camera, float fovy, float aspect)
 {
@@ -46,11 +45,7 @@ STPoint3 ImagePlane::bilinearInterpolate(float s, float t)
     return a + s * (b - a);
 }
 
-void ImagePlane::generateRaysFromCamera(Camera camera, 
-                                        std::vector<SceneObject> const* objects, 
-                                        std::vector<AmbientLight> const* ambientLights,
-                                        std::vector<PointLight> const* pointLights,
-                                        std::vector<DirectionalLight> const* directionalLights)
+void ImagePlane::generateRaysFromCamera(Camera camera, Scene const* scene)
 {
     if (!outputImage)
         return;
@@ -68,77 +63,16 @@ void ImagePlane::generateRaysFromCamera(Camera camera,
 #warning Is there a more sensible maximum t I should use here?
             Ray r(camera.position, d, d.Length(), 10000);
             
-            for (std::vector<SceneObject>::const_iterator itr = objects->begin(); itr != objects->end(); itr++)
-            {
-                SceneObject object = *itr;
-                Intersection intersection;
-                bool intersects = object.shape->intersectionWithRay(r, &intersection);
-                
-                if (intersects)
-                {
-                    STColor3f ambientColor = STColor3f();
-                    for (std::vector<AmbientLight>::const_iterator aItr = ambientLights->begin(); aItr != ambientLights->end(); aItr++)
-                    {
-                        AmbientLight aLight = *aItr;
-                        ambientColor += aLight.color;
-                    }
-                    ambientColor *= object.material.ambient;                    
-
-#warning Do something about potential color overflow??
-                    STColor3f diffuseColor;
-                    STColor3f specularColor;
-                    for (std::vector<PointLight>::const_iterator pItr = pointLights->begin(); pItr != pointLights->end(); pItr++)
-                    {
-                        PointLight pLight = *pItr;
-
-                        // Diffuse lighting
-                        STVector3 L = pLight.position - intersection.position;                        
-                        L.Normalize();
-                        float diffuseAmount = fmax(0, STVector3::Dot(L, intersection.normal));
-                        diffuseColor += object.material.diffuse * pLight.color * diffuseAmount;
-                        
-                        // Specular lighting
-                        L *= -1.0f;
-                        STVector3 R = L - 2 * STVector3::Dot(L, intersection.normal) * intersection.normal;
-                        R.Normalize();
-                        STVector3 V = camera.position - intersection.position;
-                        V.Normalize();
-                        float specularAmount = powf(fmaxf(0, STVector3::Dot(R, V)), object.material.shine);
-                        specularColor += object.material.specular * pLight.color * specularAmount;
-                    }
-                    
-                    for (std::vector<DirectionalLight>::const_iterator dItr = directionalLights->begin(); dItr != directionalLights->end(); dItr++)
-                    {
-                        DirectionalLight dLight = *dItr;
-                        
-                        // Diffuse lighting
-                        STVector3 L = -dLight.direction;
-                        L.Normalize();
-                        float diffuseAmount = fmax(0, STVector3::Dot(L, intersection.normal));
-                        diffuseColor += object.material.diffuse * dLight.color * diffuseAmount;
-                        
-                        // Specular lighting
-                        L *= -1.0f;
-                        STVector3 R = L - 2 * STVector3::Dot(L, intersection.normal) * intersection.normal;
-                        R.Normalize();
-                        STVector3 V = camera.position - intersection.position;
-                        V.Normalize();
-                        float specularAmount = powf(fmaxf(0, STVector3::Dot(R, V)), object.material.shine);
-                        specularColor += object.material.specular * dLight.color * specularAmount;
-                    }
-                    
-                    outputImage->SetPixel(x, y, STImage::Pixel(ambientColor + diffuseColor + specularColor));
-                }
-                else
-                {
-                    outputImage->SetPixel(x, y, STImage::Pixel(0, 0, 0, 255));
-                }
-            }
+            if (x == 128 && y == 256)
+                printf("HI\n");
+            
+            outputImage->SetPixel(x, y, STImage::Pixel(scene->traceRay(r)));
         }
     }
 }
 
 void ImagePlane::saveOutputImage()
 {
+    printf("Saving %s\n", outputFilename.c_str());
     outputImage->Save(outputFilename);
 }

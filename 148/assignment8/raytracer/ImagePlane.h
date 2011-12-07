@@ -14,10 +14,7 @@
 #include <vector>
 
 class Camera;
-class SceneObject;
-class AmbientLight;
-class PointLight;
-class DirectionalLight;
+class Scene;
 
 class ImagePlane {
     STPoint3 LL, UL, LR, UR;
@@ -31,11 +28,7 @@ public:
     ImagePlane() : outputImage(NULL) {}
     void createBoundaryPoints(Camera camera, float fovy, float aspect);
     void createOutputImage(const int &width, const int &height, const std::string &filename);
-    void generateRaysFromCamera(Camera camera, 
-                                std::vector<SceneObject> const* objects, 
-                                std::vector<AmbientLight> const* ambientLights,
-                                std::vector<PointLight> const* pointLights,
-                                std::vector<DirectionalLight> const* directionalLights);
+    void generateRaysFromCamera(Camera camera, Scene const* scene);
     void saveOutputImage();
 };
 

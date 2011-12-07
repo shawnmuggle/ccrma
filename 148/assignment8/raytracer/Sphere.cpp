@@ -22,6 +22,11 @@ bool Sphere::intersectionWithRay(Ray r, Intersection *outIntersection)
 
     // Subtract the discriminant instead of adding it because we want the minimum t value
     float t = (STVector3::Dot(-r.d, r.e - position) - sqrtf(discriminant)) / STVector3::Dot(r.d, r.d);
+
+    if (!r.isValidT(t)) {
+        return false;
+    }
+    
     STPoint3 p = r.pointOnRayAtT(t);
     outIntersection->t = t;
     outIntersection->position = p;
