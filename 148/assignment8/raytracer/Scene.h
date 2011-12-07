@@ -40,7 +40,6 @@ private:
 	void ParsedDirectionalLight(const STVector3& dir, const STColor3f& col);
 	void ParsedMaterial(const STColor3f& amb, const STColor3f& diff, const STColor3f& spec, const STColor3f& mirr, float shine);
 
-	/* CS 148 TODO: Add instance vars to store camera, lights, objects, etc. */
     Camera camera;
     ImagePlane imagePlane;
     int bounceDepth;

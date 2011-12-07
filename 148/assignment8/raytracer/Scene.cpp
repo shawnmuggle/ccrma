@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "Sphere.h"
 #include "Triangle.h"
+#include "STUtil.h"
 #include <fstream>
 #include <sstream>
 
@@ -176,8 +177,7 @@ void Scene::FinishedParsing()
 void Scene::ParsedCamera(const STPoint3& eye, const STVector3& up, const STPoint3& lookAt, float fovy, float aspect)
 {
     camera.createOrthonormalBasis(eye, up, lookAt);
-    imagePlane.createBoundaryPoints(camera, fovy, aspect);
-#warning Why are my spheres rendering smaller than they do in the provided screenshots?!
+    imagePlane.createBoundaryPoints(camera, DegreesToRadians(fovy), aspect);
 }
 
 void Scene::ParsedOutput(int imgWidth, int imgHeight, const std::string& outputFilename)
@@ -212,7 +212,7 @@ void Scene::ParsedPopMatrix()
 void Scene::ParsedRotate(float rx, float ry, float rz)
 {
     STTransform4 ctm = transformStack.top();
-    STTransform4 rotate = STTransform4::Rotation(rx, ry, rz);
+    STTransform4 rotate = STTransform4::Rotation(DegreesToRadians(rx), DegreesToRadians(ry), DegreesToRadians(rz));
     transformStack.pop();
     transformStack.push(ctm * rotate);
 }
@@ -314,6 +314,7 @@ STColor3f Scene::traceRay(Ray const& r) const
         ambientColor *= object.material.ambient;                    
         
 #warning Do something about potential color overflow??
+#warning Figure out why my TransformationTest image has a "halo" around the specular highlight
         STColor3f diffuseColor;
         STColor3f specularColor;
         for (std::vector<PointLight>::const_iterator pItr = pointLights.begin(); pItr != pointLights.end(); pItr++)

@@ -5,16 +5,11 @@
 
 int main(int argc, char** argv)
 {
-    if (argc != 2)
-    {
-        printf("Usage: raytracer <scene_filename>\n");
+    for (int i = 1; i < argc; i++) {
+        std::string filename = argv[i];
+        Scene *scene = new Scene(filename);
+        // Welp.
+        delete scene;
     }
-    
-    std::string filename = argv[1];
-    
-    Scene *scene = new Scene(filename);
-    // Welp.
-    delete scene;
-    
     return 0;
 }
