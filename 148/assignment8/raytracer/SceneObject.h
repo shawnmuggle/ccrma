@@ -30,6 +30,8 @@ public:
     material(inMaterial),
     transform(inTransform)
     { }
+    
+    bool intersectionWithRay(Ray r, Intersection *outIntersection);
 };
 
 #endif

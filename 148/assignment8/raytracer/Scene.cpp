@@ -280,7 +280,7 @@ bool Scene::intersect(Ray const& r, Intersection * const outIntersection, SceneO
     {
         SceneObject object = *itr;
         Intersection intersection;
-        if (object.shape->intersectionWithRay(r, &intersection))
+        if (object.intersectionWithRay(r, &intersection))
         {
             intersects = true;
             if (intersection.t < minT)

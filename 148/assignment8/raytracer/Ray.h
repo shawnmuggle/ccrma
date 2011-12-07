@@ -13,8 +13,8 @@
 #include "STVector3.h"
 
 class Ray {
-    float minValidT, maxValidT;
 public:
+    float minValidT, maxValidT;
     STPoint3 e;
     STVector3 d;
     
