@@ -16,7 +16,9 @@ bool SceneObject::intersectionWithRay(Ray r, Intersection *outIntersection)
     bool intersects = shape->intersectionWithRay(transformedRay, outIntersection);
     
     outIntersection->position = transform * outIntersection->position;
-    outIntersection->normal = transform.Inverse().Transpose() * outIntersection->normal;
+    STVector3 normal = transform.Inverse().Transpose() * outIntersection->normal;
+    normal.Normalize();
+    outIntersection->normal = normal;
     
     return intersects;
 }
