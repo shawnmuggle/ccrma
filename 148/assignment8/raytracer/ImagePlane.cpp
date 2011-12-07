@@ -12,7 +12,7 @@
 #include "Camera.h"
 #include "Scene.h"
 
-void ImagePlane::createBoundaryPoints(Camera camera, float fovy, float aspect)
+void ImagePlane::createBoundaryPoints(Camera const& camera, float const& fovy, float const& aspect)
 {
     STPoint3 C = camera.position + camera.w;
     float x = tanf(fovy / 2.0f);
@@ -24,13 +24,13 @@ void ImagePlane::createBoundaryPoints(Camera camera, float fovy, float aspect)
     UR = C - (x * camera.u) + (y * camera.v);
 }
 
-void ImagePlane::createOutputImage(const int &width, const int &height, const std::string &filename)
+void ImagePlane::createOutputImage(int const& width, int const& height, std::string const& filename)
 {
     outputImage = new STImage(width, height);
     outputFilename = filename;
 }
 
-STPoint3 ImagePlane::bilinearInterpolate(float s, float t)
+STPoint3 ImagePlane::bilinearInterpolate(float const& s, float const& t)
 {
     STVector3 LL_UL = UL - LL;
     STVector3 LR_UR = UR - LR;
@@ -39,7 +39,7 @@ STPoint3 ImagePlane::bilinearInterpolate(float s, float t)
     return a + s * (b - a);
 }
 
-void ImagePlane::generateRaysFromCamera(Camera camera, Scene const* scene)
+void ImagePlane::generateRaysFromCamera(Camera const& camera, Scene const* const scene)
 {
     if (!outputImage)
         return;
@@ -54,10 +54,10 @@ void ImagePlane::generateRaysFromCamera(Camera camera, Scene const* scene)
             STPoint3 p = bilinearInterpolate(s, t);
             STVector3 d = p - camera.position;
 
-#warning Is there a more sensible maximum t I should use here?
-            Ray r(camera.position, d, d.Length(), 10000);
-            
-            outputImage->SetPixel(x, y, STImage::Pixel(scene->traceRay(r)));
+            Ray r(camera.position, d, d.Length(), MAXFLOAT);
+            STColor3f color;
+            scene->traceRay(r, &color);
+            outputImage->SetPixel(x, y, STImage::Pixel(color));
         }
     }
 }

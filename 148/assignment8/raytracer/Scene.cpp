@@ -255,13 +255,13 @@ void Scene::ParsedAmbientLight(const STColor3f& col)
 
 void Scene::ParsedPointLight(const STPoint3& loc, const STColor3f& col)
 {
-    PointLight light(loc, col);
+    PointLight light(transformStack.top() * loc, col);
     pointLights.push_back(light);
 }
 
 void Scene::ParsedDirectionalLight(const STVector3& dir, const STColor3f& col)
 {
-    DirectionalLight light(dir, col);
+    DirectionalLight light(transformStack.top() * dir, col);
     directionalLights.push_back(light);
 }
 
@@ -296,9 +296,45 @@ bool Scene::intersect(Ray const& r, Intersection * const outIntersection, SceneO
     return intersects;
 }
 
-STColor3f Scene::traceRay(Ray const& r) const
+#warning refactor Light to be an abstract class that can handle things like different shadowing
+void Scene::lightObjectAtIntersection(STColor3f const& lightColor,
+                                      float const& distanceToLight,
+                                      Intersection const& intersection, 
+                                      Material const& material, 
+                                      STVector3 const& L,
+                                      STColor3f *const outDiffuseColor,
+                                      STColor3f *const outSpecularColor) const
 {
-    STColor3f outputColor;
+    // Check for shadow
+    Ray shadowRay(intersection.position, L, shadowBias, distanceToLight);
+    Intersection shadowIntersection;
+    SceneObject shadowObject;
+    if (intersect(shadowRay, &shadowIntersection, &shadowObject))
+        return;
+    
+    // Diffuse lighting
+    float diffuseAmount = fmax(0, STVector3::Dot(L, intersection.normal));
+    *outDiffuseColor += material.diffuse * lightColor * diffuseAmount;
+    
+    // Specular lighting
+    STVector3 R = reflect(-L, intersection.normal);
+    R.Normalize();
+    STVector3 V = camera.position - intersection.position;
+    V.Normalize();
+    float specularAmount = powf(fmaxf(0, STVector3::Dot(R, V)), material.shine);
+    *outSpecularColor += material.specular * lightColor * specularAmount;
+}
+
+void Scene::traceRay(Ray const& r, STColor3f *const outColor) const
+{
+    traceRayRecursive(r, outColor, bounceDepth, STColor3f(1.0f, 1.0f, 1.0f));
+}
+
+void Scene::traceRayRecursive(Ray const& r, STColor3f *const outColor, int const& recursionCount, STColor3f const& multiplier) const
+{
+    if (recursionCount == 0)
+        return;
+    
     Intersection intersection;
     SceneObject object;
     bool intersects = intersect(r, &intersection, &object);
@@ -313,68 +349,30 @@ STColor3f Scene::traceRay(Ray const& r) const
         }
         ambientColor *= object.material.ambient;                    
         
-#warning Do something about potential color overflow??
-#warning Figure out why my TransformationTest image has a "halo" around the specular highlight
         STColor3f diffuseColor;
         STColor3f specularColor;
         for (std::vector<PointLight>::const_iterator pItr = pointLights.begin(); pItr != pointLights.end(); pItr++)
         {
             PointLight pLight = *pItr;
-            
-            STVector3 L = pLight.position - intersection.position;            
+            STVector3 L = pLight.position - intersection.position;
+            float distanceToLight = L.Length();
             L.Normalize();
-
-            // Check for shadow
-            Ray shadowRay(intersection.position, L, shadowBias, 100000);
-            Intersection shadowIntersection;
-            SceneObject shadowObject;
-            if (intersect(shadowRay, &shadowIntersection, &shadowObject))
-                continue;
-                
-            // Diffuse lighting
-            float diffuseAmount = fmax(0, STVector3::Dot(L, intersection.normal));
-            diffuseColor += object.material.diffuse * pLight.color * diffuseAmount;
-            
-            // Specular lighting
-            L *= -1.0f;
-            STVector3 R = L - 2 * STVector3::Dot(L, intersection.normal) * intersection.normal;
-            R.Normalize();
-            STVector3 V = camera.position - intersection.position;
-            V.Normalize();
-            float specularAmount = powf(fmaxf(0, STVector3::Dot(R, V)), object.material.shine);
-            specularColor += object.material.specular * pLight.color * specularAmount;
+            lightObjectAtIntersection(pLight.color, distanceToLight, intersection, object.material, L, &diffuseColor, &specularColor);
         }
         
         for (std::vector<DirectionalLight>::const_iterator dItr = directionalLights.begin(); dItr != directionalLights.end(); dItr++)
         {
             DirectionalLight dLight = *dItr;
-            
-            // Diffuse lighting
             STVector3 L = -dLight.direction;
             L.Normalize();
-            
-            // Check for shadow
-            Ray shadowRay(intersection.position, L, shadowBias, MAXFLOAT);
-            Intersection shadowIntersection;
-            SceneObject shadowObject;
-            if (intersect(shadowRay, &shadowIntersection, &shadowObject))
-                continue;
-            
-            float diffuseAmount = fmax(0, STVector3::Dot(L, intersection.normal));
-            diffuseColor += object.material.diffuse * dLight.color * diffuseAmount;
-            
-            // Specular lighting
-            L *= -1.0f;
-            STVector3 R = L - 2 * STVector3::Dot(L, intersection.normal) * intersection.normal;
-            R.Normalize();
-            STVector3 V = camera.position - intersection.position;
-            V.Normalize();
-            float specularAmount = powf(fmaxf(0, STVector3::Dot(R, V)), object.material.shine);
-            specularColor += object.material.specular * dLight.color * specularAmount;
+            lightObjectAtIntersection(dLight.color, MAXFLOAT, intersection, object.material, L, &diffuseColor, &specularColor);
         }
+                
+        *outColor += multiplier * (ambientColor + diffuseColor + specularColor);
         
-        outputColor = ambientColor + diffuseColor + specularColor;
+        STVector3 reflectedDirection = reflect(r.d, intersection.normal);
+        reflectedDirection.Normalize();
+        Ray reflection(intersection.position, reflectedDirection, shadowBias, MAXFLOAT);
+        traceRayRecursive(reflection, outColor, recursionCount - 1, multiplier * object.material.mirr);
     }
-    
-    return outputColor;
 }

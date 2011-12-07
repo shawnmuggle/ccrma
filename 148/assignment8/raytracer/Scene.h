@@ -10,13 +10,18 @@
 #include <vector>
 #include <stack>
 
+inline STVector3 reflect(STVector3 const& I, STVector3 const& N)
+{
+    return I - 2 * STVector3::Dot(I, N) * N;
+}
+
 class Scene
 {
 public:
 	Scene(std::string sceneFilename);
 
 	/* CS 148 TODO: Add methods for the scene to render itself, etc. **/
-    STColor3f traceRay(Ray const& r) const;
+    void traceRay(Ray const& r, STColor3f *const outColor) const;
 
 private:
 
@@ -52,7 +57,15 @@ private:
     std::stack<STTransform4> transformStack;
     
     void cleanup();
+    void traceRayRecursive(Ray const& r, STColor3f *const outColor, int const& recursionCount, STColor3f const& multiplier) const;
     bool intersect(Ray const& r, Intersection * const outIntersection, SceneObject * const outObject) const;
+    void lightObjectAtIntersection(STColor3f const& lightColor, 
+                                   float const& distanceToLight,
+                                   Intersection const& intersection, 
+                                   Material const& material, 
+                                   STVector3 const& L,
+                                   STColor3f *const outDiffuseColor,
+                                   STColor3f *const outSpecularColor) const;
 };
 
 #endif //SCENE_H

@@ -22,13 +22,13 @@ class ImagePlane {
     std::string outputFilename;
     STImage *outputImage;
     
-    STPoint3 bilinearInterpolate(float s, float t);
+    STPoint3 bilinearInterpolate(float const& s, float const& t);
     
 public:
     ImagePlane() : outputImage(NULL) {}
-    void createBoundaryPoints(Camera camera, float fovy, float aspect);
-    void createOutputImage(const int &width, const int &height, const std::string &filename);
-    void generateRaysFromCamera(Camera camera, Scene const* scene);
+    void createBoundaryPoints(Camera const& camera, float const& fovy, float const& aspect);
+    void createOutputImage(int const& width, int const& height, std::string const& filename);
+    void generateRaysFromCamera(Camera const& camera, Scene const* const scene);
     void saveOutputImage();
 };
 
