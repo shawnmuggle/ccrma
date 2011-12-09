@@ -51,6 +51,7 @@ private:
     float shadowBias;
     Material currentMaterial;
     std::vector<SceneObject> objects;
+    // I have separate vectors for each Light type because I don't want to store raw pointers in stl containers because it's discouraged
     std::vector<AmbientLight> ambientLights;
     std::vector<PointLight> pointLights;
     std::vector<DirectionalLight> directionalLights;
@@ -60,6 +61,7 @@ private:
     void traceRayRecursive(Ray const& r, STColor3f *const outColor, int const& recursionCount, STColor3f const& multiplier) const;
     bool intersect(Ray const& r, Intersection * const outIntersection, SceneObject * const outObject) const;
     void lightObjectAtIntersection(STColor3f const& lightColor, 
+                                   Ray const& viewingRay,
                                    float const& distanceToLight,
                                    Intersection const& intersection, 
                                    Material const& material, 

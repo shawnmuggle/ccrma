@@ -12,25 +12,34 @@
 #include "STColor3f.h"
 #include "STPoint3.h"
 #include "STVector3.h"
+#include "STTransform4.h"
 
-class AmbientLight {
+class Light {
 public:
+    STTransform4 transform;
     STColor3f color;
-    AmbientLight(STColor3f const& color) : color(color) {}
+    Light(STTransform4 transform, STColor3f const& color) : 
+    transform(transform), color(color) {}
 };
 
-class PointLight {
+class AmbientLight : public Light {
+public:
+    AmbientLight(STTransform4 transform, STColor3f const& color) : 
+    Light(transform, color) {}
+};
+
+class PointLight : public Light {
 public:
     STPoint3 position;
-    STColor3f color;
-    PointLight(STPoint3 const& position, STColor3f const& color) : position(position), color(color) {}
+    PointLight(STTransform4 transform, STColor3f const& color, STPoint3 const& position) : 
+    Light(transform, color), position(position) {}
 };
 
-class DirectionalLight {
+class DirectionalLight : public Light {
 public:
     STVector3 direction;
-    STColor3f color;    
-    DirectionalLight(STVector3 const& direction, STColor3f const& color) : direction(direction), color(color) {}    
+    DirectionalLight(STTransform4 transform, STColor3f const& color, STVector3 const& direction) : 
+    Light(transform, color), direction(direction) {}    
 };
 
 

@@ -53,6 +53,9 @@ void ImagePlane::generateRaysFromCamera(Camera const& camera, Scene const* const
             t = (y + 0.5) / outputImage->GetHeight();
             STPoint3 p = bilinearInterpolate(s, t);
             STVector3 d = p - camera.position;
+            
+            if (x == 256 && y == 10)
+                printf("HI\n");
 
             Ray r(camera.position, d, d.Length(), MAXFLOAT);
             STColor3f color;

@@ -18,6 +18,13 @@ bool SceneObject::intersectionWithRay(Ray r, Intersection *outIntersection)
     outIntersection->position = transform * outIntersection->position;
     STVector3 normal = transform.Inverse().Transpose() * outIntersection->normal;
     normal.Normalize();
+    
+    // Choose the normal which is pointing towards the ray-sender
+    float angle1 = acosf(STVector3::Dot(-r.d, normal) / (r.d.Length() * normal.Length()));
+    float angle2 = acosf(STVector3::Dot(-r.d, -normal) / (r.d.Length() * normal.Length()));
+    if (angle2 < angle1)
+        normal *= -1;
+    
     outIntersection->normal = normal;
     
     return intersects;

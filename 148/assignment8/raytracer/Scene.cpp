@@ -249,19 +249,19 @@ void Scene::ParsedTriangle(const STPoint3& v1, const STPoint3& v2, const STPoint
 
 void Scene::ParsedAmbientLight(const STColor3f& col)
 {
-    AmbientLight light(col);
+    AmbientLight light(transformStack.top(), col);
     ambientLights.push_back(light);
 }
 
 void Scene::ParsedPointLight(const STPoint3& loc, const STColor3f& col)
 {
-    PointLight light(transformStack.top() * loc, col);
+    PointLight light(transformStack.top(), col, transformStack.top() * loc);
     pointLights.push_back(light);
 }
 
 void Scene::ParsedDirectionalLight(const STVector3& dir, const STColor3f& col)
 {
-    DirectionalLight light(transformStack.top() * dir, col);
+    DirectionalLight light(transformStack.top(), col, transformStack.top() * dir);
     directionalLights.push_back(light);
 }
 
@@ -296,8 +296,8 @@ bool Scene::intersect(Ray const& r, Intersection * const outIntersection, SceneO
     return intersects;
 }
 
-#warning refactor Light to be an abstract class that can handle things like different shadowing
 void Scene::lightObjectAtIntersection(STColor3f const& lightColor,
+                                      Ray const& viewingRay,
                                       float const& distanceToLight,
                                       Intersection const& intersection, 
                                       Material const& material, 
@@ -319,7 +319,7 @@ void Scene::lightObjectAtIntersection(STColor3f const& lightColor,
     // Specular lighting
     STVector3 R = reflect(-L, intersection.normal);
     R.Normalize();
-    STVector3 V = camera.position - intersection.position;
+    STVector3 V = viewingRay.e - intersection.position;
     V.Normalize();
     float specularAmount = powf(fmaxf(0, STVector3::Dot(R, V)), material.shine);
     *outSpecularColor += material.specular * lightColor * specularAmount;
@@ -332,7 +332,7 @@ void Scene::traceRay(Ray const& r, STColor3f *const outColor) const
 
 void Scene::traceRayRecursive(Ray const& r, STColor3f *const outColor, int const& recursionCount, STColor3f const& multiplier) const
 {
-    if (recursionCount == 0)
+    if (recursionCount == -1)
         return;
     
     Intersection intersection;
@@ -357,7 +357,8 @@ void Scene::traceRayRecursive(Ray const& r, STColor3f *const outColor, int const
             STVector3 L = pLight.position - intersection.position;
             float distanceToLight = L.Length();
             L.Normalize();
-            lightObjectAtIntersection(pLight.color, distanceToLight, intersection, object.material, L, &diffuseColor, &specularColor);
+#warning clean this fucking method up
+            lightObjectAtIntersection(pLight.color, r, distanceToLight, intersection, object.material, L, &diffuseColor, &specularColor);
         }
         
         for (std::vector<DirectionalLight>::const_iterator dItr = directionalLights.begin(); dItr != directionalLights.end(); dItr++)
@@ -365,7 +366,7 @@ void Scene::traceRayRecursive(Ray const& r, STColor3f *const outColor, int const
             DirectionalLight dLight = *dItr;
             STVector3 L = -dLight.direction;
             L.Normalize();
-            lightObjectAtIntersection(dLight.color, MAXFLOAT, intersection, object.material, L, &diffuseColor, &specularColor);
+            lightObjectAtIntersection(dLight.color, r, MAXFLOAT, intersection, object.material, L, &diffuseColor, &specularColor);
         }
                 
         *outColor += multiplier * (ambientColor + diffuseColor + specularColor);
