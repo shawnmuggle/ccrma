@@ -40,7 +40,7 @@ public:
 
 
 // TIME FOR JANKY THREAD POOLS GO
-#define MAX_NUM_THREADS 80
+#define MAX_NUM_THREADS 10
 
 struct RayThreadArgs {
     ImagePlane *imagePlane;
