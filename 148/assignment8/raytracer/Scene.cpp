@@ -5,7 +5,6 @@
 #include <fstream>
 #include <sstream>
 
-
 Scene::Scene(std::string sceneFilename)
 {
 	Parse(sceneFilename);
@@ -150,7 +149,6 @@ void Scene::Parse(std::string sceneFilename)
 
 void Scene::BeganParsing()
 {
-    printf("BEGAN PARSING\n");
     transformStack.push(STTransform4::Identity());
 }
 
@@ -161,13 +159,10 @@ void Scene::cleanup()
         SceneObject object = *itr;
         delete object.shape;
     }
-    printf("ALL CLEANED UP\n");
 }
 
 void Scene::FinishedParsing()
-{
-    printf("FINISHED PARSING\n");
-    
+{    
     imagePlane.generateRaysFromCamera(camera, this);    
     imagePlane.saveOutputImage();
     
@@ -357,7 +352,6 @@ void Scene::traceRayRecursive(Ray const& r, STColor3f *const outColor, int const
             STVector3 L = pLight.position - intersection.position;
             float distanceToLight = L.Length();
             L.Normalize();
-#warning clean this fucking method up
             lightObjectAtIntersection(pLight.color, r, distanceToLight, intersection, object.material, L, &diffuseColor, &specularColor);
         }
         
