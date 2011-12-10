@@ -40,25 +40,32 @@ public:
 
 
 // TIME FOR JANKY THREAD POOLS GO
+#define MAX_NUM_THREADS 80
 
 struct RayThreadArgs {
     ImagePlane *imagePlane;
     Camera const* camera;
     Scene const* scene;
+};
+
+struct XYPair {
     int x;
     int y;
+    pthread_mutex_t mutex;
+    ~XYPair() { pthread_mutex_destroy(&mutex); }
 };
+
+static XYPair *xyPairs;
+static int numXYPairs;
 
 static void *generateRayFromCameraAtPoint(void *args);
 
-#define MAX_NUM_THREADS 10
 class JankyRayThreadPool {
     pthread_attr_t attr;
-    int currentThread;
 public:
     pthread_t threads[MAX_NUM_THREADS];
     JankyRayThreadPool();
-    void callFunctionWithArgs(void *(*function)(void*), void *args);
+    JankyRayThreadPool(RayThreadArgs *args);
 };
 
 #endif

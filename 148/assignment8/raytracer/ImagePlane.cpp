@@ -12,9 +12,8 @@
 #include "Camera.h"
 #include "Scene.h"
 
-ImagePlane::ImagePlane() : outputImage(NULL), threadPool(new JankyRayThreadPool()) 
+ImagePlane::ImagePlane() : outputImage(NULL), threadPool(NULL)
 {
-    
 }
 
 ImagePlane::~ImagePlane()
@@ -61,57 +60,80 @@ void ImagePlane::generateRaysFromCamera(Camera const& camera, Scene const* const
     if (!outputImage)
         return;
     
+    numXYPairs = outputImage->GetWidth() * outputImage->GetHeight();
+    xyPairs = new XYPair[numXYPairs];
+    int i = 0;
     for (int x = 0; x < outputImage->GetWidth(); x++)
     {
         for (int y = 0; y < outputImage->GetHeight(); y++)
         {
-            RayThreadArgs *rta = new RayThreadArgs();
-            rta->imagePlane = this;
-            rta->camera = &camera;
-            rta->scene = scene;
-            rta->x = x;
-            rta->y = y;
-            threadPool->callFunctionWithArgs(generateRayFromCameraAtPoint, rta);
+            xyPairs[i].x = x;
+            xyPairs[i].y = y;
+            pthread_mutex_init(&xyPairs[i].mutex, NULL);
+            i++;
         }
     }
+    
+    RayThreadArgs *rta = new RayThreadArgs();
+    rta->imagePlane = this;
+    rta->camera = &camera;
+    rta->scene = scene;
+    threadPool = new JankyRayThreadPool(rta);
+
+    delete [] xyPairs;
 }
 
-static void *generateRayFromCameraAtPoint(void *args)
+static void *generateRaysFromCamera(void *args)
 {
     RayThreadArgs *rta = (RayThreadArgs *)args;
     
-//    float s = (rta->x + 0.5) / rta->imagePlane->outputImage->GetWidth();
-//    float t = (rta->y + 0.5) / rta->imagePlane->outputImage->GetHeight();
-//    STPoint3 p = rta->imagePlane->bilinearInterpolate(s, t);
-//    STVector3 d = p - rta->camera->position;
-//    
-//    Ray r(rta->camera->position, d, d.Length(), MAXFLOAT);
-//    STColor3f color;
-//    rta->scene->traceRay(r, &color);
-//    rta->imagePlane->outputImage->SetPixel(rta->x, rta->y, STImage::Pixel(color));
-//    
-//    // This pointer was created just for this thread, so we can delete it here.
-//    // OR MAYBE NOT?!?
-//    delete rta;
+    int i = 0;
+    while (i < numXYPairs)
+    {
+        if (!pthread_mutex_trylock(&xyPairs[i].mutex))
+        {
+            int x = xyPairs[i].x;
+            int y = xyPairs[i].y;
+            float s = (x + 0.5) / rta->imagePlane->outputImage->GetWidth();
+            float t = (y + 0.5) / rta->imagePlane->outputImage->GetHeight();
+            STPoint3 p = rta->imagePlane->bilinearInterpolate(s, t);
+            STVector3 d = p - rta->camera->position;
+            
+            Ray r(rta->camera->position, d, d.Length(), MAXFLOAT);
+            STColor3f color;
+            rta->scene->traceRay(r, &color);
+            rta->imagePlane->outputImage->SetPixel(x, y, STImage::Pixel(color));
+        }
+        i++;
+    }
+    
     pthread_exit(NULL);
 }
 
-JankyRayThreadPool::JankyRayThreadPool()
+JankyRayThreadPool::JankyRayThreadPool(RayThreadArgs *args)
 {
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-    currentThread = 0;
-}
-
-void JankyRayThreadPool::callFunctionWithArgs(void *(*function)(void*), void *args)
-{
+    int rc;
     void *status;
-    pthread_join(threads[currentThread], &status);
-    int rc = pthread_create(&threads[currentThread], &attr, function, args); 
-    if (rc) {
-        printf("ERROR; return code from pthread_create() is %d\n", rc);
-        exit(-1);
+    
+    for (int i = 0; i < MAX_NUM_THREADS; i++)
+    {
+        rc = pthread_create(&threads[i], &attr, generateRaysFromCamera, args); 
+        if (rc) {
+            printf("ERROR; return code from pthread_create() is %d\n", rc);
+            exit(-1);
+        }        
     }
-    currentThread = (currentThread + 1) % MAX_NUM_THREADS;
-    printf("Current thread: %d\n", currentThread);
+    
+    for (int i = 0; i < MAX_NUM_THREADS; i++)
+    {
+        rc = pthread_join(threads[i], &status);
+        if (rc) {
+            printf("ERROR; return code from pthread_join() is %d\n", rc);
+            exit(-1);
+        }
+    }
+    
+    delete args;
 }
