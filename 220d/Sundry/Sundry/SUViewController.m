@@ -23,7 +23,9 @@
 
     BOOL movingForward;
     float movementRate;
+    float maxMovementRate;
     float turnRate;
+    float maxTurnRate;
 }
 @property (strong, nonatomic) EAGLContext *context;
 
@@ -89,8 +91,8 @@
     
     playerPosition = GLKVector3Make(0.0f, 0.0f, -10.0f);
     playerOrientation = GLKQuaternionIdentity;
-    movementRate = 0.3f;
-    turnRate = 0.0005f;
+    maxMovementRate = 0.3f;
+    maxTurnRate = 0.0005f;
 }
 
 - (void)viewDidUnload
@@ -140,28 +142,33 @@
     projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
     
     if (movingForward)
-    {        
-        GLKVector3 xAxis = GLKVector3Make(1.0f, 0.0f, 0.0f);
-        GLKVector3 rotatedXAxis = GLKQuaternionRotateVector3(playerOrientation, xAxis);        
-        GLKQuaternion xRotation = GLKQuaternionMakeWithAngleAndVector3Axis(-movementTouchOffset.y * turnRate, rotatedXAxis);
-        playerOrientation = GLKQuaternionMultiply(xRotation, playerOrientation);
-
-        GLKVector3 yAxis = GLKVector3Make(0.0f, 1.0f, 0.0f);
-        GLKVector3 rotatedYAxis = GLKQuaternionRotateVector3(playerOrientation, yAxis);
-        GLKQuaternion yRotation = GLKQuaternionMakeWithAngleAndVector3Axis(-movementTouchOffset.x * turnRate, rotatedYAxis);
-        playerOrientation = GLKQuaternionMultiply(yRotation, playerOrientation);
-        
-        GLKVector3 movement = GLKVector3Make(0.0f, 0.0f, movementRate);
-        movement = GLKQuaternionRotateVector3(playerOrientation, movement);        
-        playerPosition = GLKVector3Add(playerPosition, movement);
-        NSLog(@"Player movement: %@", NSStringFromGLKVector3(movement));
-        NSLog(@"Player position: %@", NSStringFromGLKVector3(playerPosition));
+    {
+        movementRate = MIN(maxMovementRate, movementRate + 0.005f);
+        turnRate = MIN(maxTurnRate, turnRate + 0.01f);
     }
+    else
+    {
+        movementRate = MAX(0, movementRate - 0.03f);
+        turnRate = MAX(0, turnRate - 0.00006f);
+    }
+    GLKVector3 xAxis = GLKVector3Make(1.0f, 0.0f, 0.0f);
+    GLKVector3 rotatedXAxis = GLKQuaternionRotateVector3(playerOrientation, xAxis);        
+    GLKQuaternion xRotation = GLKQuaternionMakeWithAngleAndVector3Axis(-movementTouchOffset.y * turnRate, rotatedXAxis);
+    playerOrientation = GLKQuaternionMultiply(xRotation, playerOrientation);
+    
+    GLKVector3 yAxis = GLKVector3Make(0.0f, 1.0f, 0.0f);
+    GLKVector3 rotatedYAxis = GLKQuaternionRotateVector3(playerOrientation, yAxis);
+    GLKQuaternion yRotation = GLKQuaternionMakeWithAngleAndVector3Axis(-movementTouchOffset.x * turnRate, rotatedYAxis);
+    playerOrientation = GLKQuaternionMultiply(yRotation, playerOrientation);
+    
+    GLKVector3 movement = GLKVector3Make(0.0f, 0.0f, movementRate);
+    movement = GLKQuaternionRotateVector3(playerOrientation, movement);        
+    playerPosition = GLKVector3Add(playerPosition, movement);
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
+    glClearColor(0.83f, 0.86f, 0.80f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     GLKMatrix4 baseModelViewMatrix = GLKMatrix4Identity;
