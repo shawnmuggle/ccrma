@@ -1,0 +1,346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D537701D1491B8B9002CCAF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D537701C1491B8B9002CCAF5 /* UIKit.framework */; };
+		D537701F1491B8B9002CCAF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D537701E1491B8B9002CCAF5 /* Foundation.framework */; };
+		D53770211491B8B9002CCAF5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53770201491B8B9002CCAF5 /* CoreGraphics.framework */; };
+		D53770231491B8B9002CCAF5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53770221491B8B9002CCAF5 /* GLKit.framework */; };
+		D53770251491B8B9002CCAF5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53770241491B8B9002CCAF5 /* OpenGLES.framework */; };
+		D537702B1491B8B9002CCAF5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D53770291491B8B9002CCAF5 /* InfoPlist.strings */; };
+		D537702D1491B8B9002CCAF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D537702C1491B8B9002CCAF5 /* main.m */; };
+		D53770311491B8B9002CCAF5 /* SUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D53770301491B8B9002CCAF5 /* SUAppDelegate.m */; };
+		D53770331491B8B9002CCAF5 /* Gouraud.fsh in Resources */ = {isa = PBXBuildFile; fileRef = D53770321491B8B9002CCAF5 /* Gouraud.fsh */; };
+		D53770351491B8B9002CCAF5 /* Gouraud.vsh in Resources */ = {isa = PBXBuildFile; fileRef = D53770341491B8B9002CCAF5 /* Gouraud.vsh */; };
+		D53770381491B8B9002CCAF5 /* SUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53770371491B8B9002CCAF5 /* SUViewController.m */; };
+		D537703B1491B8B9002CCAF5 /* SUViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D53770391491B8B9002CCAF5 /* SUViewController_iPhone.xib */; };
+		D537703E1491B8B9002CCAF5 /* SUViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D537703C1491B8B9002CCAF5 /* SUViewController_iPad.xib */; };
+		D537704A1491C3D9002CCAF5 /* SUWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = D53770491491C3D9002CCAF5 /* SUWorld.m */; };
+		D537704D1491C478002CCAF5 /* SUSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = D537704C1491C478002CCAF5 /* SUSpace.m */; };
+		D53770541491CC40002CCAF5 /* ROGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = D53770531491CC40002CCAF5 /* ROGLProgram.m */; };
+		D53770571491CC4E002CCAF5 /* ROGLShapes.m in Sources */ = {isa = PBXBuildFile; fileRef = D53770561491CC4E002CCAF5 /* ROGLShapes.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D53770181491B8B9002CCAF5 /* Sundry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sundry.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D537701C1491B8B9002CCAF5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D537701E1491B8B9002CCAF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D53770201491B8B9002CCAF5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D53770221491B8B9002CCAF5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		D53770241491B8B9002CCAF5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		D53770281491B8B9002CCAF5 /* Sundry-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sundry-Info.plist"; sourceTree = "<group>"; };
+		D537702A1491B8B9002CCAF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D537702C1491B8B9002CCAF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D537702E1491B8B9002CCAF5 /* Sundry-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sundry-Prefix.pch"; sourceTree = "<group>"; };
+		D537702F1491B8B9002CCAF5 /* SUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SUAppDelegate.h; sourceTree = "<group>"; };
+		D53770301491B8B9002CCAF5 /* SUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SUAppDelegate.m; sourceTree = "<group>"; };
+		D53770321491B8B9002CCAF5 /* Gouraud.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Gouraud.fsh; path = Shaders/Gouraud.fsh; sourceTree = "<group>"; };
+		D53770341491B8B9002CCAF5 /* Gouraud.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Gouraud.vsh; path = Shaders/Gouraud.vsh; sourceTree = "<group>"; };
+		D53770361491B8B9002CCAF5 /* SUViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SUViewController.h; sourceTree = "<group>"; };
+		D53770371491B8B9002CCAF5 /* SUViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SUViewController.m; sourceTree = "<group>"; };
+		D537703A1491B8B9002CCAF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SUViewController_iPhone.xib; sourceTree = "<group>"; };
+		D537703D1491B8B9002CCAF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SUViewController_iPad.xib; sourceTree = "<group>"; };
+		D53770481491C3D9002CCAF5 /* SUWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUWorld.h; sourceTree = "<group>"; };
+		D53770491491C3D9002CCAF5 /* SUWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUWorld.m; sourceTree = "<group>"; };
+		D537704B1491C478002CCAF5 /* SUSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUSpace.h; sourceTree = "<group>"; };
+		D537704C1491C478002CCAF5 /* SUSpace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUSpace.m; sourceTree = "<group>"; };
+		D53770521491CC40002CCAF5 /* ROGLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ROGLProgram.h; path = ROGL/ROGLProgram.h; sourceTree = "<group>"; };
+		D53770531491CC40002CCAF5 /* ROGLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ROGLProgram.m; path = ROGL/ROGLProgram.m; sourceTree = "<group>"; };
+		D53770551491CC4E002CCAF5 /* ROGLShapes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ROGLShapes.h; sourceTree = "<group>"; };
+		D53770561491CC4E002CCAF5 /* ROGLShapes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ROGLShapes.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D53770151491B8B9002CCAF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D537701D1491B8B9002CCAF5 /* UIKit.framework in Frameworks */,
+				D537701F1491B8B9002CCAF5 /* Foundation.framework in Frameworks */,
+				D53770211491B8B9002CCAF5 /* CoreGraphics.framework in Frameworks */,
+				D53770231491B8B9002CCAF5 /* GLKit.framework in Frameworks */,
+				D53770251491B8B9002CCAF5 /* OpenGLES.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D537700D1491B8B9002CCAF5 = {
+			isa = PBXGroup;
+			children = (
+				D53770261491B8B9002CCAF5 /* Sundry */,
+				D537701B1491B8B9002CCAF5 /* Frameworks */,
+				D53770191491B8B9002CCAF5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D53770191491B8B9002CCAF5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D53770181491B8B9002CCAF5 /* Sundry.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D537701B1491B8B9002CCAF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D537701C1491B8B9002CCAF5 /* UIKit.framework */,
+				D537701E1491B8B9002CCAF5 /* Foundation.framework */,
+				D53770201491B8B9002CCAF5 /* CoreGraphics.framework */,
+				D53770221491B8B9002CCAF5 /* GLKit.framework */,
+				D53770241491B8B9002CCAF5 /* OpenGLES.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D53770261491B8B9002CCAF5 /* Sundry */ = {
+			isa = PBXGroup;
+			children = (
+				D53770511491CC14002CCAF5 /* ROGL */,
+				D53770271491B8B9002CCAF5 /* Supporting Files */,
+				D537702F1491B8B9002CCAF5 /* SUAppDelegate.h */,
+				D53770301491B8B9002CCAF5 /* SUAppDelegate.m */,
+				D53770391491B8B9002CCAF5 /* SUViewController_iPhone.xib */,
+				D537703C1491B8B9002CCAF5 /* SUViewController_iPad.xib */,
+				D53770321491B8B9002CCAF5 /* Gouraud.fsh */,
+				D53770341491B8B9002CCAF5 /* Gouraud.vsh */,
+				D53770361491B8B9002CCAF5 /* SUViewController.h */,
+				D53770371491B8B9002CCAF5 /* SUViewController.m */,
+				D537704B1491C478002CCAF5 /* SUSpace.h */,
+				D537704C1491C478002CCAF5 /* SUSpace.m */,
+				D53770481491C3D9002CCAF5 /* SUWorld.h */,
+				D53770491491C3D9002CCAF5 /* SUWorld.m */,
+			);
+			path = Sundry;
+			sourceTree = "<group>";
+		};
+		D53770271491B8B9002CCAF5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D53770281491B8B9002CCAF5 /* Sundry-Info.plist */,
+				D53770291491B8B9002CCAF5 /* InfoPlist.strings */,
+				D537702C1491B8B9002CCAF5 /* main.m */,
+				D537702E1491B8B9002CCAF5 /* Sundry-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D53770511491CC14002CCAF5 /* ROGL */ = {
+			isa = PBXGroup;
+			children = (
+				D53770521491CC40002CCAF5 /* ROGLProgram.h */,
+				D53770531491CC40002CCAF5 /* ROGLProgram.m */,
+				D53770551491CC4E002CCAF5 /* ROGLShapes.h */,
+				D53770561491CC4E002CCAF5 /* ROGLShapes.m */,
+			);
+			name = ROGL;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D53770171491B8B9002CCAF5 /* Sundry */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D53770411491B8B9002CCAF5 /* Build configuration list for PBXNativeTarget "Sundry" */;
+			buildPhases = (
+				D53770141491B8B9002CCAF5 /* Sources */,
+				D53770151491B8B9002CCAF5 /* Frameworks */,
+				D53770161491B8B9002CCAF5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sundry;
+			productName = Sundry;
+			productReference = D53770181491B8B9002CCAF5 /* Sundry.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D537700F1491B8B9002CCAF5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = Rototyping;
+			};
+			buildConfigurationList = D53770121491B8B9002CCAF5 /* Build configuration list for PBXProject "Sundry" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D537700D1491B8B9002CCAF5;
+			productRefGroup = D53770191491B8B9002CCAF5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D53770171491B8B9002CCAF5 /* Sundry */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D53770161491B8B9002CCAF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D537702B1491B8B9002CCAF5 /* InfoPlist.strings in Resources */,
+				D53770331491B8B9002CCAF5 /* Gouraud.fsh in Resources */,
+				D53770351491B8B9002CCAF5 /* Gouraud.vsh in Resources */,
+				D537703B1491B8B9002CCAF5 /* SUViewController_iPhone.xib in Resources */,
+				D537703E1491B8B9002CCAF5 /* SUViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D53770141491B8B9002CCAF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D537702D1491B8B9002CCAF5 /* main.m in Sources */,
+				D53770311491B8B9002CCAF5 /* SUAppDelegate.m in Sources */,
+				D53770381491B8B9002CCAF5 /* SUViewController.m in Sources */,
+				D537704A1491C3D9002CCAF5 /* SUWorld.m in Sources */,
+				D537704D1491C478002CCAF5 /* SUSpace.m in Sources */,
+				D53770541491CC40002CCAF5 /* ROGLProgram.m in Sources */,
+				D53770571491CC4E002CCAF5 /* ROGLShapes.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D53770291491B8B9002CCAF5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D537702A1491B8B9002CCAF5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D53770391491B8B9002CCAF5 /* SUViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D537703A1491B8B9002CCAF5 /* en */,
+			);
+			name = SUViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		D537703C1491B8B9002CCAF5 /* SUViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D537703D1491B8B9002CCAF5 /* en */,
+			);
+			name = SUViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D537703F1491B8B9002CCAF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D53770401491B8B9002CCAF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D53770421491B8B9002CCAF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sundry/Sundry-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "Sundry/Sundry-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D53770431491B8B9002CCAF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sundry/Sundry-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "Sundry/Sundry-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D53770121491B8B9002CCAF5 /* Build configuration list for PBXProject "Sundry" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D537703F1491B8B9002CCAF5 /* Debug */,
+				D53770401491B8B9002CCAF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D53770411491B8B9002CCAF5 /* Build configuration list for PBXNativeTarget "Sundry" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D53770421491B8B9002CCAF5 /* Debug */,
+				D53770431491B8B9002CCAF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D537700F1491B8B9002CCAF5 /* Project object */;
+}
