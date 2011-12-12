@@ -8,11 +8,14 @@
 
 #import "ROGLProgram.h"
 
+#warning These uniforms should be made PER-PROGRAM/PER-SHADER instead of globally! Ignoring for now.
+
 // Uniform index.
 enum
 {
     UNIFORM_MODELVIEWPROJECTION_MATRIX,
     UNIFORM_NORMAL_MATRIX,
+    UNIFORM_COLOR,
     NUM_UNIFORMS
 };
 GLint uniforms[NUM_UNIFORMS];
@@ -20,7 +23,7 @@ GLint uniforms[NUM_UNIFORMS];
 // Attribute index.
 enum
 {
-    ATTRIB_VERTEX,
+    ATTRIB_POSITION,
     ATTRIB_NORMAL,
     NUM_ATTRIBUTES
 };
@@ -48,6 +51,11 @@ enum
 {
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, modelViewProjectionMatrix.m);
     glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, normalMatrix.m);
+}
+
+- (void)setColor:(GLKVector3)color
+{
+    glUniform3fv(uniforms[UNIFORM_COLOR], 1, color.v);
 }
 
 @end
@@ -98,7 +106,7 @@ enum
         
         // Bind attribute locations.
         // This needs to be done prior to linking.
-        glBindAttribLocation(program, ATTRIB_VERTEX, "position");
+        glBindAttribLocation(program, ATTRIB_POSITION, "position");
         glBindAttribLocation(program, ATTRIB_NORMAL, "normal");
         
         // Link program.
@@ -125,6 +133,7 @@ enum
         // Get uniform locations.
         uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(program, "modelViewProjectionMatrix");
         uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(program, "normalMatrix");
+        uniforms[UNIFORM_COLOR] = glGetUniformLocation(program, "color");
         
         // Release vertex and fragment shaders.
         if (vertShader) {

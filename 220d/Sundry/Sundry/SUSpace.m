@@ -15,7 +15,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        int numWorlds = 1000;
+        int numWorlds = 100;
         worlds = [NSMutableSet setWithCapacity:numWorlds];
         for (int i = 0; i < numWorlds; i++)
         {
@@ -24,6 +24,14 @@
 
     }
     return self;
+}
+
+- (void)renderAudioIntoBuffer:(SUAudioBuffer)buffer forPlayer:(SUPlayer *)player
+{
+    for (SUWorld *world in self.worlds)
+    {
+        [world renderAudioIntoBuffer:buffer forPlayer:player];
+    }
 }
 
 @end

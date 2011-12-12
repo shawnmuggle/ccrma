@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SUPlayer.h"
 
 @interface SUSpace : NSObject
 
 @property (nonatomic, strong) NSMutableSet *worlds;
+
+- (void)renderAudioIntoBuffer:(SUAudioBuffer)buffer forPlayer:(SUPlayer *)player;
 
 @end

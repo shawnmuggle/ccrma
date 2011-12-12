@@ -9,14 +9,11 @@
 #import "SUViewController.h"
 #import "SUSpace.h"
 #import "SUWorld.h"
+#import "SUAudioManager.h"
 
 @interface SUViewController () {
     GLKMatrix4 projectionMatrix;
-    SUSpace *space;
-
-    GLKVector3 playerPosition;
-    GLKQuaternion playerOrientation;
-
+    
     UITouch *movementTouch;
     GLKVector2 movementTouchStartPoint;
     GLKVector2 movementTouchOffset;
@@ -35,8 +32,9 @@
 @end
 
 @implementation SUViewController
-
 @synthesize context = _context;
+@synthesize space;
+@synthesize player;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -86,13 +84,14 @@
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     [self setupGL];
+
+    self.space = [[SUSpace alloc] init];
     
-    space = [[SUSpace alloc] init];
+    self.player = [[SUPlayer alloc] initWithPosition:GLKVector3Make(0.0f, 0.0f, -50.0f) orientation:GLKQuaternionIdentity ];
+    maxMovementRate = 6.0f;
+    maxTurnRate = 0.0003f;
     
-    playerPosition = GLKVector3Make(0.0f, 0.0f, -10.0f);
-    playerOrientation = GLKQuaternionIdentity;
-    maxMovementRate = 0.3f;
-    maxTurnRate = 0.0005f;
+    [SUAudioManager initAudioWithPlayer:self.player space:self.space]; // Get this audio party started
 }
 
 - (void)viewDidUnload
@@ -139,49 +138,50 @@
 - (void)update
 {
     float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
-    projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
+    projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 10000.0f);
     
     if (movingForward)
     {
-        movementRate = MIN(maxMovementRate, movementRate + 0.005f);
-        turnRate = MIN(maxTurnRate, turnRate + 0.01f);
+        movementRate = MIN(maxMovementRate, movementRate + 0.05f);
+        turnRate = MIN(maxTurnRate, turnRate + 0.00005f);
     }
     else
     {
-        movementRate = MAX(0, movementRate - 0.03f);
-        turnRate = MAX(0, turnRate - 0.00006f);
+        movementRate = MAX(0, movementRate - 0.3f);
+        turnRate = MAX(0, turnRate - 0.00003f);
     }
     GLKVector3 xAxis = GLKVector3Make(1.0f, 0.0f, 0.0f);
-    GLKVector3 rotatedXAxis = GLKQuaternionRotateVector3(playerOrientation, xAxis);        
+    GLKVector3 rotatedXAxis = GLKQuaternionRotateVector3(self.player.orientation, xAxis);        
     GLKQuaternion xRotation = GLKQuaternionMakeWithAngleAndVector3Axis(-movementTouchOffset.y * turnRate, rotatedXAxis);
-    playerOrientation = GLKQuaternionMultiply(xRotation, playerOrientation);
+    self.player.orientation = GLKQuaternionMultiply(xRotation, self.player.orientation);
     
     GLKVector3 yAxis = GLKVector3Make(0.0f, 1.0f, 0.0f);
-    GLKVector3 rotatedYAxis = GLKQuaternionRotateVector3(playerOrientation, yAxis);
+    GLKVector3 rotatedYAxis = GLKQuaternionRotateVector3(self.player.orientation, yAxis);
     GLKQuaternion yRotation = GLKQuaternionMakeWithAngleAndVector3Axis(-movementTouchOffset.x * turnRate, rotatedYAxis);
-    playerOrientation = GLKQuaternionMultiply(yRotation, playerOrientation);
+    self.player.orientation = GLKQuaternionMultiply(yRotation, self.player.orientation);
     
     GLKVector3 movement = GLKVector3Make(0.0f, 0.0f, movementRate);
-    movement = GLKQuaternionRotateVector3(playerOrientation, movement);        
-    playerPosition = GLKVector3Add(playerPosition, movement);
+    movement = GLKQuaternionRotateVector3(self.player.orientation, movement);        
+    self.player.position = GLKVector3Add(self.player.position, movement);
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    glClearColor(0.83f, 0.86f, 0.80f, 1.0f);
+    glClearColor(0.43f, 0.66f, 0.93f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     GLKMatrix4 baseModelViewMatrix = GLKMatrix4Identity;
+    baseModelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, 
+                                             GLKMatrix4MakeWithQuaternion(GLKQuaternionInvert(self.player.orientation)));
+    GLKVector3 position = self.player.position;
+    baseModelViewMatrix = GLKMatrix4Translate(baseModelViewMatrix, 
+                                              position.x, 
+                                              position.y, 
+                                              position.z);
     
-//    float angle = GLKQuaternionAngle(playerOrientation);
-//    GLKVector3 axis = GLKQuaternionAxis(playerOrientation);
-    
-    baseModelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, GLKMatrix4MakeWithQuaternion(GLKQuaternionInvert(playerOrientation)));
-    baseModelViewMatrix = GLKMatrix4Translate(baseModelViewMatrix, playerPosition.x, playerPosition.y, playerPosition.z);
-    
-    for (SUWorld *world in space.worlds)
+    for (SUWorld *world in self.space.worlds)
     {
-        [world drawWithBaseModelViewMatrix:baseModelViewMatrix projectionMatrix:projectionMatrix];
+        [world drawWithBaseModelViewMatrix:baseModelViewMatrix projectionMatrix:projectionMatrix timeElapsed:self.timeSinceLastDraw];
     }
 }
 

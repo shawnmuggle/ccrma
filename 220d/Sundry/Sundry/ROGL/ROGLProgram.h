@@ -20,5 +20,6 @@
 
 + (ROGLGouraudProgram *)sharedInstance;
 - (void)setModelViewProjectionMatrix:(GLKMatrix4)modelViewProjectionMatrix normalMatrix:(GLKMatrix3)normalMatrix;
+- (void)setColor:(GLKVector3)color;
 
 @end

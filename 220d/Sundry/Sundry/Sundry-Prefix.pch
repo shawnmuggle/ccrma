@@ -12,3 +12,11 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+typedef struct SUAudioBuffer_ {
+    float *buffer;
+    unsigned int numFrames;
+    unsigned int numChannels;
+} SUAudioBuffer;
+
+#define SAMPLE_RATE 44100

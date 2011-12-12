@@ -9,11 +9,23 @@
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 
+@class SUPlayer;
+
 @interface SUWorld : NSObject
 
-@property (nonatomic) GLKVector3 position;
-
 - (void)drawWithBaseModelViewMatrix:(GLKMatrix4)baseModelViewMatrix
-                   projectionMatrix:(GLKMatrix4)projectionMatrix;
+                   projectionMatrix:(GLKMatrix4)projectionMatrix
+                        timeElapsed:(NSTimeInterval)timeElapsed;
+- (void)renderAudioIntoBuffer:(SUAudioBuffer)buffer forPlayer:(SUPlayer *)player;
+
+@end
+
+@interface SUWorldCube : NSObject
+
+- (id)initAtPosition:(GLKVector3)inPosition;
+- (void)drawWithBaseModelViewMatrix:(GLKMatrix4)baseModelViewMatrix
+                   projectionMatrix:(GLKMatrix4)projectionMatrix
+                        timeElapsed:(NSTimeInterval)timeElapsed;
+- (void)renderAudioIntoBuffer:(SUAudioBuffer)buffer forPlayer:(SUPlayer *)player;
 
 @end
