@@ -8,7 +8,6 @@
 
 #import "SUViewController.h"
 #import "SUSpace.h"
-#import "SUWorld.h"
 #import "SUAudioManager.h"
 
 @interface SUViewController () {
@@ -179,10 +178,10 @@
                                               position.y, 
                                               position.z);
     
-    for (SUWorld *world in self.space.worlds)
-    {
-        [world drawWithBaseModelViewMatrix:baseModelViewMatrix projectionMatrix:projectionMatrix timeElapsed:self.timeSinceLastDraw];
-    }
+    [self.space drawWithBaseModelViewMatrix:baseModelViewMatrix
+                           projectionMatrix:projectionMatrix
+                                timeElapsed:self.timeSinceLastDraw
+                                  forPlayer:self.player];
 }
 
 @end

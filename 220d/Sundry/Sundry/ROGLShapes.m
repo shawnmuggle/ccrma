@@ -60,7 +60,6 @@ GLfloat gCubeVertexData[216] =
 
 @interface ROGLShapes ()
 {
-    GLuint cubeVertexArray;
     GLuint cubeVertexBuffer;
 }
 @end
@@ -80,9 +79,6 @@ GLfloat gCubeVertexData[216] =
 - (id)init {
     self = [super init];
     if (self) {
-        glGenVertexArraysOES(1, &cubeVertexArray);
-        glBindVertexArrayOES(cubeVertexArray);
-        
         glGenBuffers(1, &cubeVertexBuffer);
         glBindBuffer(GL_ARRAY_BUFFER, cubeVertexBuffer);
         glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
@@ -91,21 +87,36 @@ GLfloat gCubeVertexData[216] =
         glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
         glEnableVertexAttribArray(GLKVertexAttribNormal);
         glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
-        
-        glBindVertexArrayOES(0);
     }
     return self;
 }
 
 - (void)dealloc {
     glDeleteBuffers(1, &cubeVertexBuffer);
-    glDeleteVertexArraysOES(1, &cubeVertexArray);
+}
+
+- (void)prepareToDrawCubes
+{
+    glBindBuffer(GL_ARRAY_BUFFER, cubeVertexBuffer);
+    glEnableVertexAttribArray(GLKVertexAttribPosition);
+    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
+    glEnableVertexAttribArray(GLKVertexAttribNormal);
+    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
 }
 
 - (void)drawCube
 {
-    glBindVertexArrayOES(cubeVertexArray);
     glDrawArrays(GL_TRIANGLES, 0, 36);
+}
+
+- (void)prepareToDrawTriangles
+{
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+- (void)prepareToDrawSpringThings
+{
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 @end

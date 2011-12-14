@@ -13,6 +13,10 @@
 
 @property (nonatomic, strong) NSMutableSet *worlds;
 
+- (void)drawWithBaseModelViewMatrix:(GLKMatrix4)baseModelViewMatrix 
+                   projectionMatrix:(GLKMatrix4)projectionMatrix
+                        timeElapsed:(NSTimeInterval)timeElapsed
+                          forPlayer:(SUPlayer *)player;
 - (void)renderAudioIntoBuffer:(SUAudioBuffer)buffer forPlayer:(SUPlayer *)player;
 
 @end

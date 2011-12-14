@@ -53,9 +53,9 @@ enum
     glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, normalMatrix.m);
 }
 
-- (void)setColor:(GLKVector3)color
+- (void)setColor:(GLKVector4)color
 {
-    glUniform3fv(uniforms[UNIFORM_COLOR], 1, color.v);
+    glUniform4fv(uniforms[UNIFORM_COLOR], 1, color.v);
 }
 
 @end

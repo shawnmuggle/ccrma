@@ -11,6 +11,9 @@
 @interface ROGLShapes : NSObject
 
 + (ROGLShapes *)sharedInstance;
-- (void)drawCube;
 
+- (void)prepareToDrawCubes;
+- (void)drawCube;
+- (void)prepareToDrawTriangles;
+- (void)prepareToDrawSpringThings;
 @end

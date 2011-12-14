@@ -54,7 +54,8 @@
 		D53770541491CC40002CCAF5 /* ROGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = D53770531491CC40002CCAF5 /* ROGLProgram.m */; };
 		D53770571491CC4E002CCAF5 /* ROGLShapes.m in Sources */ = {isa = PBXBuildFile; fileRef = D53770561491CC4E002CCAF5 /* ROGLShapes.m */; };
 		D5A70AE5149384070055BDAA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A70AE4149384070055BDAA /* AudioToolbox.framework */; };
-		D5FE66D814958B1900B87322 /* SUSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FE66D714958B1900B87322 /* SUSynth.m */; };
+		D5FE66D814958B1900B87322 /* SUSynths.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FE66D714958B1900B87322 /* SUSynths.m */; };
+		D5FE66DB1496C4D800B87322 /* sin_lookup.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FE66DA1496C4D700B87322 /* sin_lookup.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,8 +143,10 @@
 		D53770551491CC4E002CCAF5 /* ROGLShapes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ROGLShapes.h; sourceTree = "<group>"; };
 		D53770561491CC4E002CCAF5 /* ROGLShapes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ROGLShapes.m; sourceTree = "<group>"; };
 		D5A70AE4149384070055BDAA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		D5FE66D614958B1900B87322 /* SUSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUSynth.h; sourceTree = "<group>"; };
-		D5FE66D714958B1900B87322 /* SUSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUSynth.m; sourceTree = "<group>"; };
+		D5FE66D614958B1900B87322 /* SUSynths.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SUSynths.h; sourceTree = "<group>"; };
+		D5FE66D714958B1900B87322 /* SUSynths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUSynths.m; sourceTree = "<group>"; };
+		D5FE66D914961A0500B87322 /* sin_lookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sin_lookup.h; sourceTree = "<group>"; };
+		D5FE66DA1496C4D700B87322 /* sin_lookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sin_lookup.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,8 +334,10 @@
 				D5284502149563E5006982B8 /* SUPlayer.m */,
 				D528450414956699006982B8 /* SUAudioManager.h */,
 				D528450514956699006982B8 /* SUAudioManager.mm */,
-				D5FE66D614958B1900B87322 /* SUSynth.h */,
-				D5FE66D714958B1900B87322 /* SUSynth.m */,
+				D5FE66D614958B1900B87322 /* SUSynths.h */,
+				D5FE66D714958B1900B87322 /* SUSynths.m */,
+				D5FE66D914961A0500B87322 /* sin_lookup.h */,
+				D5FE66DA1496C4D700B87322 /* sin_lookup.m */,
 			);
 			path = Sundry;
 			sourceTree = "<group>";
@@ -461,7 +466,8 @@
 				D534EA6A1493750D009353B3 /* OscTypes.cpp in Sources */,
 				D5284503149563E5006982B8 /* SUPlayer.m in Sources */,
 				D528450614956699006982B8 /* SUAudioManager.mm in Sources */,
-				D5FE66D814958B1900B87322 /* SUSynth.m in Sources */,
+				D5FE66D814958B1900B87322 /* SUSynths.m in Sources */,
+				D5FE66DB1496C4D800B87322 /* sin_lookup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
