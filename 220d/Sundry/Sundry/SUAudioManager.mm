@@ -10,6 +10,7 @@
 #import "SUViewController.h"
 #import "SUPlayer.h"
 #import "SUSpace.h"
+#import "SUWorld.h"
 
 #import "mo_audio.h"
 
@@ -35,13 +36,13 @@ void AudioCallback( Float32 * buffer, UInt32 numFrames, void * userData )
 @property (nonatomic, weak) SUPlayer *player;
 @property (nonatomic, weak) SUSpace *space;
 
-+ (SUAudioManager *)sharedAudioManager;
-
 @end
 
 @implementation SUAudioManager
 @synthesize player;
 @synthesize space;
+@synthesize editMode;
+@synthesize editingWorld;
 
 + (void)initAudioWithPlayer:(SUPlayer *)player space:(SUSpace *)space
 {
@@ -50,7 +51,6 @@ void AudioCallback( Float32 * buffer, UInt32 numFrames, void * userData )
     audioManager.space = space;
     MoAudio::init(SAMPLE_RATE, 4096, numChannels);
     MoAudio::start(AudioCallback, (__bridge void *) audioManager);
-
 }
 
 + (SUAudioManager *)sharedAudioManager
@@ -76,7 +76,14 @@ void AudioCallback( Float32 * buffer, UInt32 numFrames, void * userData )
 
 - (void)audioCallback:(SUAudioBuffer)audioBuffer
 {
-    [self.space renderAudioIntoBuffer:audioBuffer forPlayer:self.player];
+    if (editMode)
+    {
+        [self.editingWorld renderAudioIntoBuffer:audioBuffer forPlayer:self.player];
+    }
+    else
+    {
+        [self.space renderAudioIntoBuffer:audioBuffer forPlayer:self.player];
+    }
 }
 
 @end

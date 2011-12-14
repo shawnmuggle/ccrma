@@ -11,7 +11,17 @@
 
 @interface SUWorldCube : NSObject
 @property (nonatomic) float scale;
-- (id)initAtPosition:(GLKVector3)inPosition;
+@property (nonatomic) float maxScale;
+@property (nonatomic) float minScale;
+@property (nonatomic) float angleIncrement;
+@property (nonatomic) float minAngleIncrement;
+@property (nonatomic) float maxAngleIncrement;
+@property (nonatomic) GLKVector3 axis;
+@property (nonatomic) GLKVector3 relativePosition;
+@property (nonatomic) float minRelativePosition;
+@property (nonatomic) float maxRelativePosition;
+@property (nonatomic) GLKVector4 color;
+
 + (void)prepareToDrawCubes;
 - (void)drawWithBaseModelViewMatrix:(GLKMatrix4)baseModelViewMatrix
                    projectionMatrix:(GLKMatrix4)projectionMatrix

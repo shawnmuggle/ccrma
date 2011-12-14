@@ -10,8 +10,14 @@
 #import <GLKit/GLKit.h>
 
 @class SUPlayer;
+@class SUWorldCube;
 
 @interface SUWorld : NSObject
+
+- (id)initWithPosition:(GLKVector3)inPosition;
+- (void)autoPopulate;
+- (void)addCube:(SUWorldCube *)cube;
+
 - (void)drawWithBaseModelViewMatrix:(GLKMatrix4)baseModelViewMatrix
                    projectionMatrix:(GLKMatrix4)projectionMatrix
                         timeElapsed:(NSTimeInterval)timeElapsed
@@ -25,9 +31,11 @@
 
 @interface SUWorldSeed : NSObject
 
+@property (nonatomic) GLKVector3 position;
+
 - (void)drawWithBaseModelViewMatrix:(GLKMatrix4)baseModelViewMatrix
                    projectionMatrix:(GLKMatrix4)projectionMatrix
                         timeElapsed:(NSTimeInterval)timeElapsed
                           forPlayer:(SUPlayer *)player;
-
+- (BOOL)checkForCollisionWithPlayer:(SUPlayer *)player;
 @end

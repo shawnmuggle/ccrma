@@ -8,6 +8,8 @@
 
 #import "SUViewController.h"
 #import "SUSpace.h"
+#import "SUWorld.h"
+#import "SUWorldParts.h"
 #import "SUAudioManager.h"
 
 @interface SUViewController () {
@@ -22,11 +24,16 @@
     float maxMovementRate;
     float turnRate;
     float maxTurnRate;
+    
+    BOOL editMode;
+    SUWorld *editingWorld;
+    SUWorldCube *editingWorldCube;
 }
 @property (strong, nonatomic) EAGLContext *context;
 
 - (void)setupGL;
 - (void)tearDownGL;
+- (void)createEditingCube;
 
 @end
 
@@ -34,43 +41,79 @@
 @synthesize context = _context;
 @synthesize space;
 @synthesize player;
+@synthesize editingView;
+
+@synthesize scaleSlider;
+@synthesize freqSlider;
+@synthesize axisXSlider;
+@synthesize axisYSlider;
+@synthesize axisZSlider;
+@synthesize posXSlider;
+@synthesize posYSlider;
+@synthesize posZSlider;
+@synthesize colRSlider;
+@synthesize colGSlider;
+@synthesize colBSlider;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (movementTouch == nil)
+    if (editMode)
     {
-        movementTouch = [touches anyObject];
-
-        movingForward = YES;
-        CGPoint touchPoint = [movementTouch locationInView:movementTouch.view];
-        movementTouchStartPoint = GLKVector2Make(touchPoint.x, touchPoint.y);
-        movementTouchOffset = GLKVector2Make(0.0f, 0.0f);
+        
+    }
+    else
+    {
+        if (movementTouch == nil)
+        {
+            movementTouch = [touches anyObject];
+            
+            movingForward = YES;
+            CGPoint touchPoint = [movementTouch locationInView:movementTouch.view];
+            movementTouchStartPoint = GLKVector2Make(touchPoint.x, touchPoint.y);
+            movementTouchOffset = GLKVector2Make(0.0f, 0.0f);
+        }
     }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if ([touches containsObject:movementTouch])
+    if (editMode)
     {
-        CGPoint touchPoint = [movementTouch locationInView:movementTouch.view];
-        GLKVector2 movementTouchPoint = GLKVector2Make(touchPoint.x, touchPoint.y);
-        movementTouchOffset = GLKVector2Subtract(movementTouchPoint, movementTouchStartPoint);
-    }    
+        
+    }
+    else
+    {
+        if ([touches containsObject:movementTouch])
+        {
+            CGPoint touchPoint = [movementTouch locationInView:movementTouch.view];
+            GLKVector2 movementTouchPoint = GLKVector2Make(touchPoint.x, touchPoint.y);
+            movementTouchOffset = GLKVector2Subtract(movementTouchPoint, movementTouchStartPoint);
+        }    
+    }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if ([touches containsObject:movementTouch])
+    if (editMode)
     {
-        movementTouch = nil;
         
-        movingForward = NO;
+    }
+    else
+    {
+        if ([touches containsObject:movementTouch])
+        {
+            movementTouch = nil;
+            
+            movingForward = NO;
+        }
     }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[UINib nibWithNibName:@"SUCubeEditingView" bundle:nil] instantiateWithOwner:self options:nil];
         
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
 
@@ -146,8 +189,15 @@
     }
     else
     {
-        movementRate = MAX(0, movementRate - 0.3f);
-        turnRate = MAX(0, turnRate - 0.00003f);
+        if (editMode)
+        {
+            movementRate *= 0.94f;
+        }
+        else
+        {
+            movementRate = MAX(0, movementRate - 0.3f);
+            turnRate = MAX(0, turnRate - 0.00003f);
+        }
     }
     GLKVector3 xAxis = GLKVector3Make(1.0f, 0.0f, 0.0f);
     GLKVector3 rotatedXAxis = GLKQuaternionRotateVector3(self.player.orientation, xAxis);        
@@ -162,6 +212,105 @@
     GLKVector3 movement = GLKVector3Make(0.0f, 0.0f, movementRate);
     movement = GLKQuaternionRotateVector3(self.player.orientation, movement);        
     self.player.position = GLKVector3Add(self.player.position, movement);
+    
+    SUWorldSeed *activeWorldSeed = [self.space checkWorldSeedsForCollisionWithPlayer:self.player];
+    if (activeWorldSeed)
+    {
+        movingForward = NO;
+        movementRate = -10.0f;
+        turnRate = 0.0f;
+        movementTouch = nil;
+        
+        editMode = YES;
+        editingWorld = [[SUWorld alloc] initWithPosition:activeWorldSeed.position];
+        [self.space removeWorldSeed:activeWorldSeed];
+        [SUAudioManager sharedAudioManager].editMode = YES;
+        [SUAudioManager sharedAudioManager].editingWorld = editingWorld;
+        [self.space addWorld:editingWorld];
+        [self createEditingCube];
+    }
+}
+
+- (void)createEditingCube
+{
+    if (editMode && editingWorld)
+    {
+        editingWorldCube = [[SUWorldCube alloc] init];
+        [editingWorld addCube:editingWorldCube];
+        
+        [self.view addSubview:self.editingView];
+        
+        self.scaleSlider.value = ((editingWorldCube.scale - editingWorldCube.minScale) / 
+                                  (editingWorldCube.maxScale - editingWorldCube.minScale));
+        self.freqSlider.value = ((editingWorldCube.angleIncrement - editingWorldCube.minAngleIncrement) / 
+                                 (editingWorldCube.maxAngleIncrement - editingWorldCube.minAngleIncrement));
+        self.axisXSlider.value = editingWorldCube.axis.x;
+        self.axisYSlider.value = editingWorldCube.axis.y;
+        self.axisZSlider.value = editingWorldCube.axis.z;
+        self.posXSlider.value = ((editingWorldCube.relativePosition.x - editingWorldCube.minRelativePosition) / 
+                                 (editingWorldCube.maxRelativePosition - editingWorldCube.minRelativePosition));
+        self.posYSlider.value = ((editingWorldCube.relativePosition.y - editingWorldCube.minRelativePosition) / 
+                                 (editingWorldCube.maxRelativePosition - editingWorldCube.minRelativePosition));
+        self.posZSlider.value = ((editingWorldCube.relativePosition.z - editingWorldCube.minRelativePosition) / 
+                                 (editingWorldCube.maxRelativePosition - editingWorldCube.minRelativePosition));
+        self.colRSlider.value = editingWorldCube.color.x;
+        self.colGSlider.value = editingWorldCube.color.y;
+        self.colBSlider.value = editingWorldCube.color.x;
+    }
+}
+
+- (IBAction)scaleChanged:(UISlider *)sender
+{
+    editingWorldCube.scale = editingWorldCube.minScale + (editingWorldCube.maxScale - editingWorldCube.minScale) * sender.value;
+}
+- (IBAction)freqChanged:(UISlider *)sender
+{
+    editingWorldCube.angleIncrement = editingWorldCube.minAngleIncrement + (editingWorldCube.maxAngleIncrement - editingWorldCube.minAngleIncrement) * sender.value;
+}
+- (IBAction)axisXChanged:(UISlider *)sender
+{
+    editingWorldCube.axis = GLKVector3Make(sender.value, editingWorldCube.axis.y, editingWorldCube.axis.z);
+}
+- (IBAction)axisYChanged:(UISlider *)sender
+{
+    editingWorldCube.axis = GLKVector3Make(editingWorldCube.axis.x, sender.value, editingWorldCube.axis.z);
+}
+- (IBAction)axisZChanged:(UISlider *)sender
+{
+    editingWorldCube.axis = GLKVector3Make(editingWorldCube.axis.x, editingWorldCube.axis.y, sender.value);
+}
+- (IBAction)posXChanged:(UISlider *)sender
+{
+    editingWorldCube.relativePosition = GLKVector3Make(editingWorldCube.minRelativePosition + (editingWorldCube.maxRelativePosition - editingWorldCube.minRelativePosition) * sender.value, editingWorldCube.relativePosition.y, editingWorldCube.relativePosition.z);
+}
+- (IBAction)posYChanged:(UISlider *)sender
+{
+    editingWorldCube.relativePosition = GLKVector3Make(editingWorldCube.relativePosition.x, editingWorldCube.minRelativePosition + (editingWorldCube.maxRelativePosition - editingWorldCube.minRelativePosition) * sender.value, editingWorldCube.relativePosition.z);    
+}
+- (IBAction)posZChanged:(UISlider *)sender
+{
+    editingWorldCube.relativePosition = GLKVector3Make(editingWorldCube.relativePosition.x, editingWorldCube.relativePosition.y, editingWorldCube.minRelativePosition + (editingWorldCube.maxRelativePosition - editingWorldCube.minRelativePosition) * sender.value);
+}
+- (IBAction)colRChanged:(UISlider *)sender
+{
+    editingWorldCube.color = GLKVector4Make(sender.value, editingWorldCube.color.y, editingWorldCube.color.z, 1.0f);
+}
+- (IBAction)colGChanged:(UISlider *)sender
+{
+    editingWorldCube.color = GLKVector4Make(editingWorldCube.color.x, sender.value, editingWorldCube.color.z, 1.0f);
+}
+- (IBAction)colBChanged:(UISlider *)sender
+{
+    editingWorldCube.color = GLKVector4Make(editingWorldCube.color.x, editingWorldCube.color.y, sender.value, 1.0f);    
+}
+
+- (IBAction)createAnotherCube:(id)sender
+{
+    [self createEditingCube];
+}
+- (IBAction)doneCreatingCubes:(id)sender
+{
+    
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect

@@ -18,54 +18,77 @@ static float TWO_PI = 2 * M_PI;
 
 @interface SUWorldCube ()
 {
-    GLKVector3 relativePosition;
-    
     float angle;
-    float angleIncrement;
-    GLKVector3 axis;
-    
-    GLKVector4 color;
-    
-    float scale;
-    
+
     SUFMSynth *synth;    
 }
 @end
 
 @implementation SUWorldCube
-@synthesize scale;
+@synthesize scale, minScale, maxScale;
+@synthesize angleIncrement, minAngleIncrement, maxAngleIncrement;
+@synthesize axis;
+@synthesize relativePosition, minRelativePosition, maxRelativePosition;
+@synthesize color;
 
-- (id)initAtPosition:(GLKVector3)inPosition
+- (id)init
 {
     self = [super init];
     if (self) {
-        relativePosition = GLKVector3Make(10 * (arc4random() / (float)0x100000000) - 5, 
-                                          10 * (arc4random() / (float)0x100000000) - 5, 
-                                          10 * (arc4random() / (float)0x100000000) - 5);
+        synth = [[SUFMSynth alloc] init];
+        
+        self.minRelativePosition = -5.0f;
+        self.maxRelativePosition = 5.0f;
+        self.relativePosition = GLKVector3Make(self.minRelativePosition + (self.maxRelativePosition - self.minRelativePosition) * 
+                                               (arc4random() / (float)0x100000000), 
+                                               self.minRelativePosition + (self.maxRelativePosition - self.minRelativePosition) * 
+                                               (arc4random() / (float)0x100000000), 
+                                               self.minRelativePosition + (self.maxRelativePosition - self.minRelativePosition) *
+                                               (arc4random() / (float)0x100000000));
         
         angle = 0.0f;
-        angleIncrement = 4.0f * (arc4random() / (float)0x100000000);  // radians per second
+        self.minAngleIncrement = 0.0f;
+        self.maxAngleIncrement = 4.0f;
+        self.angleIncrement = self.minAngleIncrement + (self.maxAngleIncrement - self.minAngleIncrement) * (arc4random() / (float)0x100000000);  // radians per second
         
-        axis = GLKVector3Make((arc4random() / (float)0x100000000), 
-                              (arc4random() / (float)0x100000000), 
-                              (arc4random() / (float)0x100000000));
+        self.axis = GLKVector3Make((arc4random() / (float)0x100000000), 
+                                   (arc4random() / (float)0x100000000), 
+                                   (arc4random() / (float)0x100000000));
         
-        float maxScale = 50.0f;
-        float minScale = 20.0f;
-        self.scale = minScale + (maxScale - minScale) * (arc4random() / (float)0x100000000);
+        self.minScale = 20.0f;
+        self.maxScale = 50.0f;
+        self.scale = self.minScale + (self.maxScale - self.minScale) * (arc4random() / (float)0x100000000);
         
-        color = GLKVector4Make((arc4random() / (float)0x100000000),
-                               (arc4random() / (float)0x100000000),
-                               (arc4random() / (float)0x100000000),
-                               1.0f);
-        
-        synth = [[SUFMSynth alloc] init];
-        synth.carrierFreq = 100.0f + 300.0f * (1.0f - (self.scale / maxScale)); // Smaller world, higher pitch
-        synth.modDepth = synth.carrierFreq * 0.8 * (arc4random() / (float)0x100000000);
-        synth.modFreq = 2000 * angleIncrement / TWO_PI;
-        synth.lfoFreq = angleIncrement / TWO_PI;
+        self.color = GLKVector4Make((arc4random() / (float)0x100000000),
+                                    (arc4random() / (float)0x100000000),
+                                    (arc4random() / (float)0x100000000),
+                                    1.0f);
     }
     return self;
+}
+
+- (void)setScale:(float)inScale
+{
+    scale = inScale;
+    synth.carrierFreq = 100.0f + 600.0f * (1.0f - (self.scale / self.maxScale));
+}
+
+- (void)setAngleIncrement:(float)inAngleIncrement
+{
+    angleIncrement = inAngleIncrement;
+    synth.lfoFreq = angleIncrement / TWO_PI;
+}
+
+- (void)setAxis:(GLKVector3)inAxis
+{
+    axis = inAxis;
+    synth.modFreq = 200 * GLKVector3Length(self.axis);
+}
+
+- (void)setColor:(GLKVector4)inColor
+{
+    color = inColor;
+    synth.modDepth = synth.carrierFreq * (GLKVector3Length(GLKVector3Make(self.color.x, self.color.y, self.color.z)) / GLKVector3Length(GLKVector3Make(1.0f, 1.0f, 1.0f)));
 }
 
 // MUST BE CALLED before drawWith... is called!
@@ -78,12 +101,14 @@ static float TWO_PI = 2 * M_PI;
                    projectionMatrix:(GLKMatrix4)projectionMatrix
                         timeElapsed:(NSTimeInterval)timeElapsed
 {    
-    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(-relativePosition.x, -relativePosition.y, -relativePosition.z);
+    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(-self.relativePosition.x, 
+                                                           -self.relativePosition.y, 
+                                                           -self.relativePosition.z);
     modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, self.scale, self.scale, self.scale);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, angle, axis.x, axis.y, axis.z);
+    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, angle, self.axis.x, self.axis.y, self.axis.z);
     modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
     
-    float actualAngleIncrement = angleIncrement * timeElapsed;    
+    float actualAngleIncrement = self.angleIncrement * timeElapsed;    
     angle = fmodf(angle + actualAngleIncrement, TWO_PI);
     
     GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
@@ -92,14 +117,14 @@ static float TWO_PI = 2 * M_PI;
 #warning CHECK HERE to see if the cube is within the projection frustrum, and if not don't draw it!
     
     [[ROGLGouraudProgram sharedInstance] setModelViewProjectionMatrix:modelViewProjectionMatrix normalMatrix:normalMatrix];
-    [[ROGLGouraudProgram sharedInstance] setColor:color];
+    [[ROGLGouraudProgram sharedInstance] setColor:self.color];
     
     [[ROGLShapes sharedInstance] drawCube];
 }
 
 - (void)renderAudioIntoBuffer:(SUAudioBuffer)buffer gain:(float)inGain
 {    
-    float masterGain = 0.07f;
+    float masterGain = 0.08f;
     float gain = inGain * masterGain;
     [synth renderAudioIntoBuffer:buffer gain:gain];
 }
@@ -377,7 +402,7 @@ static float TWO_PI = 2 * M_PI;
 
 - (void)renderAudioIntoBuffer:(SUAudioBuffer)buffer gain:(float)inGain
 {    
-    float masterGain = 0.05f;
+    float masterGain = 0.1f;
     float gain = inGain * masterGain;
     [synth renderAudioIntoBuffer:buffer gain:gain];
 }

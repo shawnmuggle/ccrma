@@ -82,7 +82,7 @@ inline float saw(float phase, float width)
         lfoSample = sin_lookup(lfoPhase);
 
         modSample = sin_lookup(modPhase);
-        freq = carrierFreq + modDepth * modSample * lfoSample;
+        freq = carrierFreq + modDepth * modSample * (0.2f + 0.8f * lfoSample);// * self.lfoDepth;
         phaseIncrement = TWO_PI * (freq / SAMPLE_RATE);
         
 //        lfoPhase = fmodf(lfoPhase + lfoPhaseIncrement, TWO_PI);

@@ -11,15 +11,25 @@
 
 @implementation SUSpace
 @synthesize worlds;
+@synthesize worldSeeds;
 
 - (id)init {
     self = [super init];
     if (self) {
         int numWorlds = 20;
-        worlds = [NSMutableSet setWithCapacity:numWorlds];
+        self.worlds = [NSMutableSet setWithCapacity:numWorlds];
         for (int i = 0; i < numWorlds; i++)
         {
-            [worlds addObject:[[SUWorld alloc] init]];
+            SUWorld *world = [[SUWorld alloc] init];
+            [world autoPopulate];
+            [self.worlds addObject:world];
+        }
+        
+        int numWorldSeeds = 10;
+        self.worldSeeds = [NSMutableSet setWithCapacity:numWorldSeeds];
+        for (int i = 0; i < numWorldSeeds; i++)
+        {
+            [self.worldSeeds addObject:[[SUWorldSeed alloc] init]];
         }
 
     }
@@ -38,6 +48,15 @@
                                timeElapsed:timeElapsed
                                  forPlayer:player];
     }
+    
+    for (SUWorldSeed *worldSeed in self.worldSeeds)
+    {
+        [worldSeed drawWithBaseModelViewMatrix:baseModelViewMatrix
+                              projectionMatrix:projectionMatrix
+                                   timeElapsed:timeElapsed
+                                     forPlayer:player];
+    }
+    
     for (SUWorld *world in self.worlds)
     {    
         [world drawTransparentCrapWithBaseModelViewMatrix:baseModelViewMatrix
@@ -48,12 +67,34 @@
     }
 }
 
+- (SUWorldSeed *)checkWorldSeedsForCollisionWithPlayer:(SUPlayer *)player
+{
+    for (SUWorldSeed *worldSeed in self.worldSeeds)
+    {
+        if ([worldSeed checkForCollisionWithPlayer:player])
+        {
+            return worldSeed;
+        }
+    }
+    return nil;
+}
+
 - (void)renderAudioIntoBuffer:(SUAudioBuffer)buffer forPlayer:(SUPlayer *)player
 {
     for (SUWorld *world in self.worlds)
     {
         [world renderAudioIntoBuffer:buffer forPlayer:player];
     }
+}
+
+- (void)addWorld:(SUWorld *)world
+{
+    [worlds addObject:world];
+}
+
+- (void)removeWorldSeed:(SUWorldSeed *)worldSeed
+{
+    [worldSeeds removeObject:worldSeed];
 }
 
 @end
