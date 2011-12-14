@@ -67,16 +67,12 @@
         
     }    
 
-    int numTriangles = 50;
-    for (int i = 0; i < numTriangles; i++)
-    {
-        [orbitingTriangles addObject:[[SUWorldOrbitingTriangle alloc] init]];
-    }
+    [self makeTriangles];
 
     int numSpringThings = 10;
     for (int i = 0; i < numSpringThings; i++)
     {
-        [springThings addObject:[[SUWorldSpringThing alloc] init]];
+        [self addSpringThing:[[SUWorldSpringThing alloc] init]];
     }
 }
 
@@ -179,6 +175,20 @@
 //            maxCubeScale = cube.scale;
 //    }
 //    range = 12.0f * maxCubeScale;
+}
+
+- (void)addSpringThing:(SUWorldSpringThing *)springThing
+{
+    [springThings addObject:springThing];
+}
+
+- (void)makeTriangles
+{
+    int numTriangles = 50;
+    for (int i = 0; i < numTriangles; i++)
+    {
+        [orbitingTriangles addObject:[[SUWorldOrbitingTriangle alloc] init]];
+    }
 }
 
 @end

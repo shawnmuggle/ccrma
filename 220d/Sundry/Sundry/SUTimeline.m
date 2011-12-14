@@ -10,18 +10,18 @@
 
 @interface SUTimeline ()
 {
-    float length;
     NSMutableArray *events; //Contains NSValues which contain TimeEvents
 }
 @end
 
 @implementation SUTimeline
+@synthesize length;
 
 - (id)initWithLength:(float)inLength
 {
     self = [super init];
     if (self) {
-        length = inLength;
+        self.length = inLength;
         events = [NSMutableArray array];
     }
     return self;
@@ -63,15 +63,20 @@
     }
 }
 
+- (void)clear
+{
+    [events removeAllObjects];
+}
+
 - (SUTimeEvent)lastValueBetweenStartTime:(float)startTime endTime:(float)endTime
 {
-    while (startTime > length) 
+    while (startTime > self.length) 
     {
-        startTime -= length;
+        startTime -= self.length;
     }
-    while (endTime > length)
+    while (endTime > self.length)
     {
-        endTime -= length;
+        endTime -= self.length;
     }
     
     SUTimeEvent ret;

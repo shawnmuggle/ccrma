@@ -253,8 +253,6 @@ static float TWO_PI = 2 * M_PI;
     float amplitudeFollower;
     float amplitudeFollowingAmount;
     
-    SUPercSynth *synth;
-    SUTimeline *timeline;
     NSTimeInterval totalTimeElapsed;
     
     // For emphasis!
@@ -263,6 +261,8 @@ static float TWO_PI = 2 * M_PI;
 @end
 
 @implementation SUWorldSpringThing
+@synthesize synth;
+@synthesize timeline;
 
 - (id)init {
     self = [super init];
@@ -275,10 +275,10 @@ static float TWO_PI = 2 * M_PI;
         inclinationIncrement = 3.0f * (arc4random() / (float)0x100000000);  // radians per second
         azimuthIncrement = 3.0f * (arc4random() / (float)0x100000000);  // radians per second
         
-        synth = [[SUPercSynth alloc] init];
-        synth.startFreq = inclination * 300.0f;
-        synth.endFreq = azimuth * 300.0f;
-        synth.length = inclinationIncrement;
+        self.synth = [[SUPercSynth alloc] init];
+        self.synth.startFreq = inclination * 300.0f;
+        self.synth.endFreq = azimuth * 300.0f;
+        self.synth.length = inclinationIncrement;
         
         amplitudeFollowingAmount = 0.8f;
         
@@ -287,10 +287,11 @@ static float TWO_PI = 2 * M_PI;
                                1.0f + (arc4random() / (float)0x100000000));
         
         float timeLineLength = 2.0f;
-        timeline = [[SUTimeline alloc] initWithLength:timeLineLength];
+        self.timeline = [[SUTimeline alloc] initWithLength:timeLineLength];
         for (int i = 0; i < 3 + (int)(3 * (arc4random() / (float)0x100000000)); i++)
         {
-            [timeline addEvent:(arc4random() / (float)0x100000000) atTime:timeLineLength * (arc4random() / (float)0x100000000)];
+            [self.timeline addEvent:(arc4random() / (float)0x100000000) 
+                             atTime:timeLineLength * (arc4random() / (float)0x100000000)];
         }
         
         float inclinationOffset = 0.0f;
@@ -337,7 +338,7 @@ static float TWO_PI = 2 * M_PI;
    baseModelViewMatrix:(GLKMatrix4)baseModelViewMatrix 
       projectionMatrix:(GLKMatrix4)projectionMatrix;
 {
-    SUTimeEvent event = [timeline lastValueBetweenStartTime:totalTimeElapsed endTime:totalTimeElapsed + timeElapsed];
+    SUTimeEvent event = [self.timeline lastValueBetweenStartTime:totalTimeElapsed endTime:totalTimeElapsed + timeElapsed];
     if (event.time > 0)
     {
         [self springWithAmplitude:event.value];
@@ -346,9 +347,9 @@ static float TWO_PI = 2 * M_PI;
     
     timeSinceSpringing += timeElapsed;
     float amplitude = 0.0f;
-    if (timeSinceSpringing <= synth.length)
+    if (timeSinceSpringing <= self.synth.length)
     {
-        amplitude = maxSpringAmplitude * expf(-timeSinceSpringing / (0.2f * synth.length));
+        amplitude = maxSpringAmplitude * expf(-timeSinceSpringing / (0.2f * self.synth.length));
     }
     amplitudeFollower = amplitudeFollower + amplitudeFollowingAmount * (amplitude - amplitudeFollower);
     

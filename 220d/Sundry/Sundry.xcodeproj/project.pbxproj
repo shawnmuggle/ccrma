@@ -14,6 +14,7 @@
 		D533C1A31498AAD800488693 /* SUTimeline.m in Sources */ = {isa = PBXBuildFile; fileRef = D533C1A21498AAD800488693 /* SUTimeline.m */; };
 		D533C1A61498CAB200488693 /* SUWorldParts.m in Sources */ = {isa = PBXBuildFile; fileRef = D533C1A51498CAB100488693 /* SUWorldParts.m */; };
 		D533C1AD1498EB8500488693 /* SUCubeEditingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D533C1AB1498EB8500488693 /* SUCubeEditingView.xib */; };
+		D533C1AF1499291200488693 /* SUPercsEditingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D533C1AE1499291200488693 /* SUPercsEditingView.xib */; };
 		D534EA571493750D009353B3 /* mo_accel.mm in Sources */ = {isa = PBXBuildFile; fileRef = D534EA1D1493750D009353B3 /* mo_accel.mm */; };
 		D534EA581493750D009353B3 /* mo_audio.mm in Sources */ = {isa = PBXBuildFile; fileRef = D534EA1F1493750D009353B3 /* mo_audio.mm */; };
 		D534EA591493750D009353B3 /* mo_colormap.mm in Sources */ = {isa = PBXBuildFile; fileRef = D534EA211493750D009353B3 /* mo_colormap.mm */; };
@@ -73,6 +74,7 @@
 		D533C1A41498CAB100488693 /* SUWorldParts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUWorldParts.h; sourceTree = "<group>"; };
 		D533C1A51498CAB100488693 /* SUWorldParts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUWorldParts.m; sourceTree = "<group>"; };
 		D533C1AB1498EB8500488693 /* SUCubeEditingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SUCubeEditingView.xib; sourceTree = "<group>"; };
+		D533C1AE1499291200488693 /* SUPercsEditingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SUPercsEditingView.xib; sourceTree = "<group>"; };
 		D534EA1C1493750D009353B3 /* mo_accel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_accel.h; sourceTree = "<group>"; };
 		D534EA1D1493750D009353B3 /* mo_accel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_accel.mm; sourceTree = "<group>"; };
 		D534EA1E1493750D009353B3 /* mo_audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_audio.h; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				D533C1A11498AAD800488693 /* SUTimeline.h */,
 				D533C1A21498AAD800488693 /* SUTimeline.m */,
 				D533C1AB1498EB8500488693 /* SUCubeEditingView.xib */,
+				D533C1AE1499291200488693 /* SUPercsEditingView.xib */,
 			);
 			path = Sundry;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				D52844FE1495618F006982B8 /* Icon~ipad.png in Resources */,
 				D5284500149561CA006982B8 /* Icon.png in Resources */,
 				D533C1AD1498EB8500488693 /* SUCubeEditingView.xib in Resources */,
+				D533C1AF1499291200488693 /* SUPercsEditingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

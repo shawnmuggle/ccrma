@@ -10,7 +10,11 @@
 #import "SUSpace.h"
 #import "SUWorld.h"
 #import "SUWorldParts.h"
+#import "SUSynths.h"
 #import "SUAudioManager.h"
+#import "SUTimeline.h"
+
+static float TWO_PI = 2 * M_PI;
 
 @interface SUViewController () {
     GLKMatrix4 projectionMatrix;
@@ -28,6 +32,8 @@
     BOOL editMode;
     SUWorld *editingWorld;
     SUWorldCube *editingWorldCube;
+    NSArray *editingWorldSprings;
+    float loopTime;
 }
 @property (strong, nonatomic) EAGLContext *context;
 
@@ -41,7 +47,8 @@
 @synthesize context = _context;
 @synthesize space;
 @synthesize player;
-@synthesize editingView;
+@synthesize cubeEditingView;
+@synthesize percsEditingView;
 
 @synthesize scaleSlider;
 @synthesize freqSlider;
@@ -54,6 +61,25 @@
 @synthesize colRSlider;
 @synthesize colGSlider;
 @synthesize colBSlider;
+@synthesize perc0StartFreqSlider;
+@synthesize perc0EndFreqSlider;
+@synthesize perc0LengthSlider;
+@synthesize perc1StartFreqSlider;
+@synthesize perc1EndFreqSlider;
+@synthesize perc1LengthSlider;
+@synthesize perc2StartFreqSlider;
+@synthesize perc2EndFreqSlider;
+@synthesize perc2LengthSlider;
+@synthesize perc3StartFreqSlider;
+@synthesize perc3EndFreqSlider;
+@synthesize perc3LengthSlider;
+@synthesize perc4StartFreqSlider;
+@synthesize perc4EndFreqSlider;
+@synthesize perc4LengthSlider;
+@synthesize perc5StartFreqSlider;
+@synthesize perc5EndFreqSlider;
+@synthesize perc5LengthSlider;
+@synthesize percLoopProgressView;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -114,6 +140,7 @@
     [super viewDidLoad];
     
     [[UINib nibWithNibName:@"SUCubeEditingView" bundle:nil] instantiateWithOwner:self options:nil];
+    [[UINib nibWithNibName:@"SUPercsEditingView" bundle:nil] instantiateWithOwner:self options:nil];
         
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
 
@@ -238,7 +265,7 @@
         editingWorldCube = [[SUWorldCube alloc] init];
         [editingWorld addCube:editingWorldCube];
         
-        [self.view addSubview:self.editingView];
+        [self.view addSubview:self.cubeEditingView];
         
         self.scaleSlider.value = ((editingWorldCube.scale - editingWorldCube.minScale) / 
                                   (editingWorldCube.maxScale - editingWorldCube.minScale));
@@ -310,7 +337,85 @@
 }
 - (IBAction)doneCreatingCubes:(id)sender
 {
+    [self.cubeEditingView removeFromSuperview];
+    [self.view addSubview:self.percsEditingView];
     
+    editingWorldSprings = [NSArray arrayWithObjects:
+                           [[SUWorldSpringThing alloc] init],
+                           [[SUWorldSpringThing alloc] init],
+                           [[SUWorldSpringThing alloc] init],
+                           [[SUWorldSpringThing alloc] init],
+                           [[SUWorldSpringThing alloc] init],
+                           [[SUWorldSpringThing alloc] init], nil];
+    for (SUWorldSpringThing *springThing in editingWorldSprings)
+    {
+        [editingWorld addSpringThing:springThing];
+    }
+    
+    SUPercSynth *perc;
+    // NOTE: The ranges on these synth params shouldn't be magic numbers over here, but in fact they are provided by the springthing so there's a bit of funkiness already. Ignoring for now.
+    perc = ((SUWorldSpringThing *)[editingWorldSprings objectAtIndex:0]).synth;
+    self.perc0StartFreqSlider.value = perc.startFreq / (300.0f * TWO_PI);
+    self.perc0EndFreqSlider.value = perc.endFreq / (300.0f * TWO_PI);
+    self.perc0LengthSlider.value = perc.length / 3.0f;
+    perc = ((SUWorldSpringThing *)[editingWorldSprings objectAtIndex:1]).synth;
+    self.perc1StartFreqSlider.value = perc.startFreq / (300.0f * TWO_PI);
+    self.perc1EndFreqSlider.value = perc.endFreq / (300.0f * TWO_PI);
+    self.perc1LengthSlider.value = perc.length / 3.0f;
+    perc = ((SUWorldSpringThing *)[editingWorldSprings objectAtIndex:2]).synth;
+    self.perc2StartFreqSlider.value = perc.startFreq / (300.0f * TWO_PI);
+    self.perc2EndFreqSlider.value = perc.endFreq / (300.0f * TWO_PI);
+    self.perc2LengthSlider.value = perc.length / 3.0f;
+    perc = ((SUWorldSpringThing *)[editingWorldSprings objectAtIndex:3]).synth;
+    self.perc3StartFreqSlider.value = perc.startFreq / (300.0f * TWO_PI);
+    self.perc3EndFreqSlider.value = perc.endFreq / (300.0f * TWO_PI);
+    self.perc3LengthSlider.value = perc.length / 3.0f;
+    perc = ((SUWorldSpringThing *)[editingWorldSprings objectAtIndex:4]).synth;
+    self.perc4StartFreqSlider.value = perc.startFreq / (300.0f * TWO_PI);
+    self.perc4EndFreqSlider.value = perc.endFreq / (300.0f * TWO_PI);
+    self.perc4LengthSlider.value = perc.length / 3.0f;
+    perc = ((SUWorldSpringThing *)[editingWorldSprings objectAtIndex:5]).synth;
+    self.perc5StartFreqSlider.value = perc.startFreq / (300.0f * TWO_PI);
+    self.perc5EndFreqSlider.value = perc.endFreq / (300.0f * TWO_PI);
+    self.perc5LengthSlider.value = perc.length / 3.0f;
+}
+
+- (IBAction)startFreqChanged:(UISlider *)sender
+{
+    ((SUWorldSpringThing *)[editingWorldSprings objectAtIndex:sender.tag]).synth.startFreq = 300.0f * TWO_PI * sender.value;
+}
+- (IBAction)endFreqChanged:(UISlider *)sender
+{
+    ((SUWorldSpringThing *)[editingWorldSprings objectAtIndex:sender.tag]).synth.endFreq = 300.0f * TWO_PI * sender.value;
+}
+- (IBAction)lengthChanged:(UISlider *)sender
+{
+    ((SUWorldSpringThing *)[editingWorldSprings objectAtIndex:sender.tag]).synth.length = 3.0f * sender.value;
+}
+- (IBAction)percPadPressed:(UIButton *)sender
+{
+    SUWorldSpringThing *springThing = [editingWorldSprings objectAtIndex:sender.tag];
+    [springThing springWithAmplitude:1.0f];
+    [springThing.timeline addEvent:0.5f + 0.5f * (arc4random() / (float)0x100000000) atTime:loopTime];
+    
+}
+- (IBAction)clearSprings:(UIButton *)sender
+{
+    for (SUWorldSpringThing *springThing in editingWorldSprings)
+    {
+        [springThing.timeline clear];
+    }
+}
+- (IBAction)doneEditing:(UIButton *)sender
+{
+    [self.cubeEditingView removeFromSuperview];
+    [self.percsEditingView removeFromSuperview];
+    editMode = NO;
+    [SUAudioManager sharedAudioManager].editMode = NO;
+    [editingWorld makeTriangles];
+    editingWorld = nil;
+    editingWorldCube = nil;
+    editingWorldSprings = nil;
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
@@ -331,6 +436,14 @@
                            projectionMatrix:projectionMatrix
                                 timeElapsed:self.timeSinceLastDraw
                                   forPlayer:self.player];
+    
+    if (editMode && editingWorldSprings)
+    {
+        SUWorldSpringThing *springThing = [editingWorldSprings objectAtIndex:0];
+        float loopLength = springThing.timeline.length;
+        percLoopProgressView.progress = loopTime / loopLength;
+        loopTime = fmodf(loopTime + self.timeSinceLastDraw, loopLength);
+    }
 }
 
 @end

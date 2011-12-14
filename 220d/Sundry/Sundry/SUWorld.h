@@ -11,12 +11,15 @@
 
 @class SUPlayer;
 @class SUWorldCube;
+@class SUWorldSpringThing;
 
 @interface SUWorld : NSObject
 
 - (id)initWithPosition:(GLKVector3)inPosition;
 - (void)autoPopulate;
 - (void)addCube:(SUWorldCube *)cube;
+- (void)addSpringThing:(SUWorldSpringThing *)springThing;
+- (void)makeTriangles;
 
 - (void)drawWithBaseModelViewMatrix:(GLKMatrix4)baseModelViewMatrix
                    projectionMatrix:(GLKMatrix4)projectionMatrix

@@ -15,8 +15,11 @@ typedef struct SUTimeEvent_ {
 
 @interface SUTimeline : NSObject
 
-- (id)initWithLength:(float)length;
+@property (nonatomic) float length;
+
+- (id)initWithLength:(float)inLength;
 - (void)addEvent:(float)value atTime:(float)time;
+- (void)clear;
 - (SUTimeEvent)lastValueBetweenStartTime:(float)startTime endTime:(float)endTime;
 
 @end

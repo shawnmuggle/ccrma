@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 
+@class SUPercSynth;
+@class SUTimeline;
+
 @interface SUWorldCube : NSObject
 @property (nonatomic) float scale;
 @property (nonatomic) float maxScale;
@@ -36,6 +39,11 @@
 @end
 
 @interface SUWorldSpringThing : NSObject
+
+@property (nonatomic, strong) SUPercSynth *synth;
+@property (nonatomic, strong) SUTimeline *timeline;
+
+
 + (void)prepareToDrawSpringThings;
 + (void)finishDrawingSpringThings;
 - (void)drawWithRadius:(float)radius 
