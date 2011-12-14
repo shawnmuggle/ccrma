@@ -31,3 +31,7 @@
 - (void)renderAudioIntoBuffer:(SUAudioBuffer)buffer gain:(float)inGain;
 
 @end
+
+@interface SUNoiseSynth : NSObject
+- (void)renderAudioIntoBuffer:(SUAudioBuffer)buffer gain:(float)inGain;
+@end

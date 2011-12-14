@@ -32,9 +32,9 @@
     self = [super init];
     if (self) 
     {        
-        position = GLKVector3Make(2000 * (arc4random() / (float)0x100000000) - 1000, 
-                                  2000 * (arc4random() / (float)0x100000000) - 1000, 
-                                  2000 * (arc4random() / (float)0x100000000) - 1000);
+        position = GLKVector3Make(3000 * (arc4random() / (float)0x100000000) - 1500, 
+                                  3000 * (arc4random() / (float)0x100000000) - 1500, 
+                                  3000 * (arc4random() / (float)0x100000000) - 1500);
         [self setup];
     }
     return self;

@@ -11,7 +11,7 @@
 
 static float TWO_PI = 2 * M_PI;
 
-inline float pulse(float phase, float width)
+/*inline*/ float pulse(float phase, float width)
 {
     width = MAX(0.1, MIN(0.9, width));
     return phase < width * TWO_PI ? 1.0f : 0.0f;
@@ -186,3 +186,45 @@ inline float saw(float phase, float width)
 }
 
 @end
+
+@interface SUNoiseSynth ()
+{
+    float gain;
+    float gainFollowRate;
+    float prevSample;
+    float alpha;
+}
+@end
+
+@implementation SUNoiseSynth
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        gainFollowRate = 0.0001f;
+        alpha = 0.9999f;
+    }
+    return self;
+}
+
+- (void)renderAudioIntoBuffer:(SUAudioBuffer)buffer gain:(float)inGain
+{
+    float sample, tempSample;
+    for (int i = 0; i < buffer.numFrames; i++)
+    {
+        // track gain towards inGain (the desired playback gain) to alleviate zippering
+        gain = gain + gainFollowRate * (inGain - gain);
+        
+        sample = (arc4random() / (float)0x100000000);
+        tempSample = sample;
+        sample = gain * ((1.0f - alpha) * sample + alpha * prevSample);
+        prevSample = tempSample;
+        for (int j = 0; j < buffer.numChannels; j++)
+        {
+            buffer.buffer[i * buffer.numChannels + j] += sample;
+        }
+    }
+}
+
+@end
+

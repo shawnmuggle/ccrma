@@ -8,10 +8,12 @@
 
 #import "SUSpace.h"
 #import "SUWorld.h"
+#import "SULandscape.h"
 
 @implementation SUSpace
 @synthesize worlds;
 @synthesize worldSeeds;
+@synthesize landscape;
 
 - (id)init {
     self = [super init];
@@ -31,6 +33,8 @@
         {
             [self.worldSeeds addObject:[[SUWorldSeed alloc] init]];
         }
+        
+//        self.landscape = [[SULandscape alloc] init];
 
     }
     return self;
@@ -41,6 +45,8 @@
                         timeElapsed:(NSTimeInterval)timeElapsed
                           forPlayer:(SUPlayer *)player
 {
+//    [self.landscape drawWithBaseModelViewMatrix:baseModelViewMatrix projectionMatrix:projectionMatrix];
+    
     for (SUWorld *world in self.worlds)
     {
         [world drawWithBaseModelViewMatrix:baseModelViewMatrix
@@ -85,6 +91,8 @@
     {
         [world renderAudioIntoBuffer:buffer forPlayer:player];
     }
+    
+    [player renderAudioIntoBuffer:buffer gain:1.0f];
 }
 
 - (void)addWorld:(SUWorld *)world

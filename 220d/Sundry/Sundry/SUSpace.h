@@ -11,11 +11,13 @@
 
 @class SUWorldSeed;
 @class SUWorld;
+@class SULandscape;
 
 @interface SUSpace : NSObject
 
 @property (nonatomic, strong) NSMutableSet *worlds;
 @property (nonatomic, strong) NSMutableSet *worldSeeds;
+@property (nonatomic, strong) SULandscape *landscape;
 
 - (void)drawWithBaseModelViewMatrix:(GLKMatrix4)baseModelViewMatrix 
                    projectionMatrix:(GLKMatrix4)projectionMatrix
