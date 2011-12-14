@@ -48,7 +48,7 @@ void AudioCallback( Float32 * buffer, UInt32 numFrames, void * userData )
     SUAudioManager *audioManager = [SUAudioManager sharedAudioManager];
     audioManager.player = player;
     audioManager.space = space;
-    MoAudio::init(SAMPLE_RATE, 2048, numChannels);
+    MoAudio::init(SAMPLE_RATE, 4096, numChannels);
     MoAudio::start(AudioCallback, (__bridge void *) audioManager);
 
 }
