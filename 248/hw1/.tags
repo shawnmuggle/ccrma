@@ -1,0 +1,103 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CXX	Makefile	/^CXX       = g++$/;"	m
+CXXFLAGS	Makefile	/^CXXFLAGS  = -g -O2 -Wall -c$/;"	m
+CurrentMatrix	minigl.cpp	/^Transform CurrentMatrix()$/;"	f
+CurrentMatrixStack	minigl.cpp	/^stack<Transform> &CurrentMatrixStack()$/;"	f
+EXEC	Makefile	/^EXEC      = minigl$/;"	m
+FB_HEIGHT	main.cpp	/^#define FB_HEIGHT /;"	d	file:
+FB_WIDTH	main.cpp	/^#define FB_WIDTH /;"	d	file:
+LDFLAGS	Makefile	/^LDFLAGS   = -g -O2 -Wall$/;"	m
+MGL_ERROR	minigl.cpp	/^inline void MGL_ERROR(const char* description) {$/;"	f
+MGL_GET_BLUE	minigl.h	/^#define MGL_GET_BLUE(/;"	d
+MGL_GET_GREEN	minigl.h	/^#define MGL_GET_GREEN(/;"	d
+MGL_GET_RED	minigl.h	/^#define MGL_GET_RED(/;"	d
+MGL_MODELVIEW	minigl.h	/^    MGL_MODELVIEW,$/;"	e	enum:__anon2
+MGL_MODELVIEW	tests/t1.cpp	/^mglMatrixMode(MGL_MODELVIEW);$/;"	v
+MGL_MODELVIEW	tests/t2.cpp	/^mglMatrixMode(MGL_MODELVIEW);$/;"	v
+MGL_MODELVIEW	tests/t3.cpp	/^mglMatrixMode(MGL_MODELVIEW);$/;"	v
+MGL_MODELVIEW	tests/t4.cpp	/^mglMatrixMode(MGL_MODELVIEW);$/;"	v
+MGL_MODELVIEW	tests/t5.cpp	/^mglMatrixMode(MGL_MODELVIEW);$/;"	v
+MGL_MODELVIEW	tests/t6.cpp	/^mglMatrixMode(MGL_MODELVIEW);$/;"	v
+MGL_PROJECTION	minigl.h	/^    MGL_PROJECTION$/;"	e	enum:__anon2
+MGL_PROJECTION	tests/t1.cpp	/^mglMatrixMode(MGL_PROJECTION);$/;"	v
+MGL_PROJECTION	tests/t2.cpp	/^mglMatrixMode(MGL_PROJECTION);$/;"	v
+MGL_PROJECTION	tests/t3.cpp	/^mglMatrixMode(MGL_PROJECTION);$/;"	v
+MGL_PROJECTION	tests/t4.cpp	/^mglMatrixMode(MGL_PROJECTION);$/;"	v
+MGL_PROJECTION	tests/t5.cpp	/^mglMatrixMode(MGL_PROJECTION);$/;"	v
+MGL_PROJECTION	tests/t6.cpp	/^mglMatrixMode(MGL_PROJECTION);$/;"	v
+MGL_QUADS	minigl.h	/^    MGL_QUADS$/;"	e	enum:__anon3
+MGL_QUADS	tests/t2.cpp	/^mglBegin(MGL_QUADS);$/;"	v
+MGL_QUADS	tests/t3.cpp	/^mglBegin(MGL_QUADS);$/;"	v
+MGL_QUADS	tests/t4.cpp	/^mglBegin(MGL_QUADS);$/;"	v
+MGL_SET_BLUE	minigl.h	/^#define MGL_SET_BLUE(/;"	d
+MGL_SET_GREEN	minigl.h	/^#define MGL_SET_GREEN(/;"	d
+MGL_SET_RED	minigl.h	/^#define MGL_SET_RED(/;"	d
+MGL_TRIANGLES	minigl.h	/^    MGL_TRIANGLES,$/;"	e	enum:__anon3
+MGL_TRIANGLES	tests/t1.cpp	/^mglBegin(MGL_TRIANGLES);$/;"	v
+MGL_TRIANGLES	tests/t3.cpp	/^mglBegin(MGL_TRIANGLES);$/;"	v
+MGL_TRIANGLES	tests/t4.cpp	/^mglBegin(MGL_TRIANGLES);$/;"	v
+MGL_TRIANGLES	tests/t6.cpp	/^mglBegin(MGL_TRIANGLES);$/;"	v
+MGLbool	minigl.h	/^typedef bool          MGLbool;$/;"	t
+MGLbyte	minigl.h	/^typedef unsigned char MGLbyte;$/;"	t
+MGLfloat	minigl.h	/^typedef float         MGLfloat;$/;"	t
+MGLint	minigl.h	/^typedef int           MGLint;$/;"	t
+MGLmatrix_mode	minigl.h	/^} MGLmatrix_mode;$/;"	t	typeref:enum:__anon2
+MGLpixel	minigl.h	/^typedef unsigned int  MGLpixel;$/;"	t
+MGLpoly_mode	minigl.h	/^} MGLpoly_mode;$/;"	t	typeref:enum:__anon3
+MGLsize	minigl.h	/^typedef unsigned int  MGLsize;$/;"	t
+RM	Makefile	/^RM        = rm -f$/;"	m
+Transform	minigl.cpp	/^Transform::Transform()$/;"	f	class:Transform
+Transform	minigl.cpp	/^Transform::Transform(const MGLfloat *matrix_pointer)$/;"	f	class:Transform
+Transform	minigl.cpp	/^class Transform$/;"	c	file:
+__MINIGL_H__	minigl.h	/^#define __MINIGL_H__$/;"	d
+a	minigl.cpp	/^      MGLfloat a[16];  \/\/ Column major!$/;"	m	union:Transform::matrix_t	file:
+a00	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a01	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a02	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a03	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a10	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a11	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a12	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a13	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a20	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a21	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a22	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a23	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a30	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a31	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a32	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+a33	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+cols	tests/t5.cpp	/^static MGLbyte cols[6][3] = {$/;"	v	file:
+current_matrix_mode	minigl.cpp	/^MGLmatrix_mode current_matrix_mode;$/;"	v
+e	minigl.cpp	/^      } e;$/;"	m	union:Transform::matrix_t	typeref:struct:Transform::matrix_t::__anon1	file:
+m	minigl.cpp	/^    } m;$/;"	m	class:Transform	typeref:union:Transform::matrix_t	file:
+main	main.cpp	/^int main(int argc, char** argv)$/;"	f
+matrix_t	minigl.cpp	/^    union matrix_t$/;"	u	class:Transform	file:
+mglBegin	minigl.cpp	/^void mglBegin(MGLpoly_mode mode)$/;"	f
+mglColor	minigl.cpp	/^void mglColor(MGLbyte red,$/;"	f
+mglEnd	minigl.cpp	/^void mglEnd()$/;"	f
+mglFrustum	minigl.cpp	/^void mglFrustum(MGLfloat left,$/;"	f
+mglLoadIdentity	minigl.cpp	/^void mglLoadIdentity()$/;"	f
+mglLoadMatrix	minigl.cpp	/^void mglLoadMatrix(const MGLfloat *matrix)$/;"	f
+mglMatrixMode	minigl.cpp	/^void mglMatrixMode(MGLmatrix_mode mode)$/;"	f
+mglMultMatrix	minigl.cpp	/^void mglMultMatrix(const MGLfloat *matrix)$/;"	f
+mglOrtho	minigl.cpp	/^void mglOrtho(MGLfloat left,$/;"	f
+mglPopMatrix	minigl.cpp	/^void mglPopMatrix()$/;"	f
+mglPushMatrix	minigl.cpp	/^void mglPushMatrix()$/;"	f
+mglReadPixels	minigl.cpp	/^void mglReadPixels(MGLsize width,$/;"	f
+mglRotate	minigl.cpp	/^void mglRotate(MGLfloat angle,$/;"	f
+mglScale	minigl.cpp	/^void mglScale(MGLfloat x,$/;"	f
+mglTranslate	minigl.cpp	/^void mglTranslate(MGLfloat x,$/;"	f
+mglVertex2	minigl.cpp	/^void mglVertex2(MGLfloat x,$/;"	f
+mglVertex3	minigl.cpp	/^void mglVertex3(MGLfloat x,$/;"	f
+modelview_matrix_stack	minigl.cpp	/^stack<Transform> modelview_matrix_stack;$/;"	v
+projection_matrix_stack	minigl.cpp	/^stack<Transform> projection_matrix_stack;$/;"	v
+render	main.cpp	/^void render()$/;"	f
+rots	tests/t5.cpp	/^static MGLfloat rots[6][4] = {$/;"	v	file:
+trans	tests/t5.cpp	/^static MGLfloat trans[6][3] = {$/;"	v	file:
+writeToTGA	main.cpp	/^void writeToTGA(char* filename)$/;"	f

@@ -89,7 +89,7 @@
 
 -(void)keyDown:(NSEvent*)event
 {   
-    NSLog(@"Key pressed: %@", event);
+//    NSLog(@"Key pressed: %@", event);
     CGPoint movementVector;
     switch( [event keyCode] ) {
         case 14: // E key, toggle edit mode

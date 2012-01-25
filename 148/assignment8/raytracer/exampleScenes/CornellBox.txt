@@ -46,3 +46,13 @@ Sphere   5 -6 1   4
 # Mirror Sphere
 Material   1 1 1   0 0 0   0 0 0   0.9 0.9 0.9   0
 Sphere   -5 -6 -5   4
+
+# Mirror Sphere
+Material   1 1 1   0 0 0   0 0 0   0.9 0.9 0.9   0
+Sphere   -1 -4 -5   2
+# Mirror Sphere
+Material   1 1 1   0 0 0   0 0 0   0.9 0.9 0.9   0
+Sphere   3 -2 -5   1
+# Mirror Sphere
+Material   1 1 1   0 0 0   0 0 0   0.9 0.9 0.9   0
+Sphere   5 0 -5   0.5
