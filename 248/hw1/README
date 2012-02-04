@@ -1,3 +1,10 @@
 Mike Rotondo
 mrotondo
 OS X 10.7 64-bit
+
+NOTE:
+My second submission (this one) is just for 2 minor bugfixes. If it's late enough that it's going to use up a late day, don't use it! My previous submission works just fine, grade that.
+
+Bugs fixed in the second submission:
+ - using pixel centers for barycentric interpolation
+ - clipping(scissoring) on the near and far z-planes

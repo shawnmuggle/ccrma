@@ -653,7 +653,7 @@ void mglReadPixels(MGLsize width,
         MGLfloat z;
         if (t.isInside(p, &z))
         {
-          if (z < z_buffer[y * width + x])
+          if (z < z_buffer[y * width + x] && z >= -1.0f && z <= 1.0f)
           {
             MGLpixel pixel = t.color.asPixel();
             data[y * width + x] = pixel;
