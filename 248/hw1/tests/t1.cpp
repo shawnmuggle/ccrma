@@ -17,3 +17,11 @@ mglVertex2(0.25, 0.25);
 mglVertex2(0.75, 0.25);
 mglVertex2(0.75, 0.75);
 mglEnd();
+
+// mglBegin(MGL_QUADS);
+// mglVertex2(0.25, 0.05);
+// mglVertex2(0.85, 0.25);
+// mglVertex2(0.75, 0.95);
+// mglVertex2(0.05, 0.85);
+// mglEnd();
+

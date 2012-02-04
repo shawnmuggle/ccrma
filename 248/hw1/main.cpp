@@ -44,7 +44,7 @@ void writeToTGA(char* filename);
  */
 void render()
 {
-    #include "tests/t1.cpp"
+    #include "tests/t5.cpp"
 }
 
 /**

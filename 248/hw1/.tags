@@ -5,39 +5,41 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
 CXX	Makefile	/^CXX       = g++$/;"	m
-CXXFLAGS	Makefile	/^CXXFLAGS  = -g -O2 -Wall -c$/;"	m
-CurrentMatrix	minigl.cpp	/^Transform CurrentMatrix()$/;"	f
-CurrentMatrixStack	minigl.cpp	/^stack<Transform> &CurrentMatrixStack()$/;"	f
+CXXFLAGS	Makefile	/^CXXFLAGS  = -g -O0 -Wall -c$/;"	m
+Color	minigl.cpp	/^Color::Color() : r(0), g(0), b(0) { }$/;"	f	class:Color
+Color	minigl.cpp	/^Color::Color(MGLbyte r, MGLbyte g, MGLbyte b) : r(r), g(g), b(b) { }$/;"	f	class:Color
+Color	minigl.cpp	/^class Color$/;"	c	file:
 EXEC	Makefile	/^EXEC      = minigl$/;"	m
 FB_HEIGHT	main.cpp	/^#define FB_HEIGHT /;"	d	file:
 FB_WIDTH	main.cpp	/^#define FB_WIDTH /;"	d	file:
-LDFLAGS	Makefile	/^LDFLAGS   = -g -O2 -Wall$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS   = -g -O0 -Wall$/;"	m
+MAX	minigl.cpp	/^#define MAX(/;"	d	file:
 MGL_ERROR	minigl.cpp	/^inline void MGL_ERROR(const char* description) {$/;"	f
 MGL_GET_BLUE	minigl.h	/^#define MGL_GET_BLUE(/;"	d
 MGL_GET_GREEN	minigl.h	/^#define MGL_GET_GREEN(/;"	d
 MGL_GET_RED	minigl.h	/^#define MGL_GET_RED(/;"	d
-MGL_MODELVIEW	minigl.h	/^    MGL_MODELVIEW,$/;"	e	enum:__anon2
+MGL_MODELVIEW	minigl.h	/^    MGL_MODELVIEW,$/;"	e	enum:__anon1
 MGL_MODELVIEW	tests/t1.cpp	/^mglMatrixMode(MGL_MODELVIEW);$/;"	v
 MGL_MODELVIEW	tests/t2.cpp	/^mglMatrixMode(MGL_MODELVIEW);$/;"	v
 MGL_MODELVIEW	tests/t3.cpp	/^mglMatrixMode(MGL_MODELVIEW);$/;"	v
 MGL_MODELVIEW	tests/t4.cpp	/^mglMatrixMode(MGL_MODELVIEW);$/;"	v
 MGL_MODELVIEW	tests/t5.cpp	/^mglMatrixMode(MGL_MODELVIEW);$/;"	v
 MGL_MODELVIEW	tests/t6.cpp	/^mglMatrixMode(MGL_MODELVIEW);$/;"	v
-MGL_PROJECTION	minigl.h	/^    MGL_PROJECTION$/;"	e	enum:__anon2
+MGL_PROJECTION	minigl.h	/^    MGL_PROJECTION$/;"	e	enum:__anon1
 MGL_PROJECTION	tests/t1.cpp	/^mglMatrixMode(MGL_PROJECTION);$/;"	v
 MGL_PROJECTION	tests/t2.cpp	/^mglMatrixMode(MGL_PROJECTION);$/;"	v
 MGL_PROJECTION	tests/t3.cpp	/^mglMatrixMode(MGL_PROJECTION);$/;"	v
 MGL_PROJECTION	tests/t4.cpp	/^mglMatrixMode(MGL_PROJECTION);$/;"	v
 MGL_PROJECTION	tests/t5.cpp	/^mglMatrixMode(MGL_PROJECTION);$/;"	v
 MGL_PROJECTION	tests/t6.cpp	/^mglMatrixMode(MGL_PROJECTION);$/;"	v
-MGL_QUADS	minigl.h	/^    MGL_QUADS$/;"	e	enum:__anon3
+MGL_QUADS	minigl.h	/^    MGL_QUADS$/;"	e	enum:__anon2
 MGL_QUADS	tests/t2.cpp	/^mglBegin(MGL_QUADS);$/;"	v
 MGL_QUADS	tests/t3.cpp	/^mglBegin(MGL_QUADS);$/;"	v
 MGL_QUADS	tests/t4.cpp	/^mglBegin(MGL_QUADS);$/;"	v
 MGL_SET_BLUE	minigl.h	/^#define MGL_SET_BLUE(/;"	d
 MGL_SET_GREEN	minigl.h	/^#define MGL_SET_GREEN(/;"	d
 MGL_SET_RED	minigl.h	/^#define MGL_SET_RED(/;"	d
-MGL_TRIANGLES	minigl.h	/^    MGL_TRIANGLES,$/;"	e	enum:__anon3
+MGL_TRIANGLES	minigl.h	/^    MGL_TRIANGLES,$/;"	e	enum:__anon2
 MGL_TRIANGLES	tests/t1.cpp	/^mglBegin(MGL_TRIANGLES);$/;"	v
 MGL_TRIANGLES	tests/t3.cpp	/^mglBegin(MGL_TRIANGLES);$/;"	v
 MGL_TRIANGLES	tests/t4.cpp	/^mglBegin(MGL_TRIANGLES);$/;"	v
@@ -46,38 +48,63 @@ MGLbool	minigl.h	/^typedef bool          MGLbool;$/;"	t
 MGLbyte	minigl.h	/^typedef unsigned char MGLbyte;$/;"	t
 MGLfloat	minigl.h	/^typedef float         MGLfloat;$/;"	t
 MGLint	minigl.h	/^typedef int           MGLint;$/;"	t
-MGLmatrix_mode	minigl.h	/^} MGLmatrix_mode;$/;"	t	typeref:enum:__anon2
+MGLmatrix_mode	minigl.h	/^} MGLmatrix_mode;$/;"	t	typeref:enum:__anon1
 MGLpixel	minigl.h	/^typedef unsigned int  MGLpixel;$/;"	t
-MGLpoly_mode	minigl.h	/^} MGLpoly_mode;$/;"	t	typeref:enum:__anon3
+MGLpoly_mode	minigl.h	/^} MGLpoly_mode;$/;"	t	typeref:enum:__anon2
 MGLsize	minigl.h	/^typedef unsigned int  MGLsize;$/;"	t
+MIN	minigl.cpp	/^#define MIN(/;"	d	file:
+Matrix4	minigl.cpp	/^Matrix4::Matrix4()$/;"	f	class:Matrix4
+Matrix4	minigl.cpp	/^Matrix4::Matrix4(const MGLfloat *matrix_pointer)$/;"	f	class:Matrix4
+Matrix4	minigl.cpp	/^class Matrix4$/;"	c	file:
+Point	minigl.cpp	/^typedef Vector2 Point;$/;"	t	file:
+Quad	minigl.cpp	/^Quad::Quad(Color c) : color(c) { }$/;"	f	class:Quad
+Quad	minigl.cpp	/^class Quad$/;"	c	file:
 RM	Makefile	/^RM        = rm -f$/;"	m
-Transform	minigl.cpp	/^Transform::Transform()$/;"	f	class:Transform
-Transform	minigl.cpp	/^Transform::Transform(const MGLfloat *matrix_pointer)$/;"	f	class:Transform
-Transform	minigl.cpp	/^class Transform$/;"	c	file:
+Rect2D	minigl.cpp	/^Rect2D::Rect2D() : left(0.0f), bottom(0.0f), right(0.0f), top(0.0f) { }$/;"	f	class:Rect2D
+Rect2D	minigl.cpp	/^Rect2D::Rect2D(MGLfloat left, MGLfloat bottom, MGLfloat right, MGLfloat top) : left(left), bottom(bottom), right(right), top(top) { }$/;"	f	class:Rect2D
+Rect2D	minigl.cpp	/^class Rect2D$/;"	c	file:
+Transform	minigl.cpp	/^typedef Matrix4 Transform;$/;"	t	file:
+Triangle	minigl.cpp	/^Triangle::Triangle() { }$/;"	f	class:Triangle
+Triangle	minigl.cpp	/^Triangle::Triangle(Color c) : color(c) { }$/;"	f	class:Triangle
+Triangle	minigl.cpp	/^class Triangle$/;"	c	file:
+Vector2	minigl.cpp	/^Vector2::Vector2() : x(0.0f), y(0.0f) { }$/;"	f	class:Vector2
+Vector2	minigl.cpp	/^Vector2::Vector2(MGLfloat x, MGLfloat y) : x(x), y(y) { }$/;"	f	class:Vector2
+Vector2	minigl.cpp	/^class Vector2$/;"	c	file:
+Vector4	minigl.cpp	/^Vector4::Vector4() : x(0.0f), y(0.0f), z(0.0f), w(1.0f) { }$/;"	f	class:Vector4
+Vector4	minigl.cpp	/^Vector4::Vector4(MGLfloat x, MGLfloat y, MGLfloat z, MGLfloat w) : x(x), y(y), z(z), w(w) { }$/;"	f	class:Vector4
+Vector4	minigl.cpp	/^class Vector4$/;"	c	file:
+Vertex	minigl.cpp	/^typedef Vector4 Vertex;$/;"	t	file:
 __MINIGL_H__	minigl.h	/^#define __MINIGL_H__$/;"	d
-a	minigl.cpp	/^      MGLfloat a[16];  \/\/ Column major!$/;"	m	union:Transform::matrix_t	file:
-a00	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a01	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a02	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a03	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a10	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a11	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a12	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a13	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a20	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a21	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a22	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a23	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a30	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a31	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a32	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
-a33	minigl.cpp	/^        MGLfloat a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33;  \/\/ Also column major! So a00 is top left, a30 is top right.$/;"	m	struct:Transform::matrix_t::__anon1	file:
+addVertex	minigl.cpp	/^void Quad::addVertex(Vertex v)$/;"	f	class:Quad
+addVertex	minigl.cpp	/^void Triangle::addVertex(Vertex v)$/;"	f	class:Triangle
+asArray	minigl.cpp	/^void Matrix4::asArray(MGLfloat *a)$/;"	f	class:Matrix4
+b	minigl.cpp	/^    MGLbyte r, g, b;$/;"	m	class:Color	file:
+bbox	minigl.cpp	/^  Rect2D bbox;$/;"	m	class:Triangle	file:
+beta_denom	minigl.cpp	/^  MGLfloat gamma_denom, beta_denom;$/;"	m	class:Triangle	file:
+bottom	minigl.cpp	/^  MGLfloat left, bottom, right, top;$/;"	m	class:Rect2D	file:
+boundingBox	minigl.cpp	/^Rect2D Triangle::boundingBox()$/;"	f	class:Triangle
+color	minigl.cpp	/^  Color color;$/;"	m	class:Quad	file:
+color	minigl.cpp	/^  Color color;$/;"	m	class:Triangle	file:
 cols	tests/t5.cpp	/^static MGLbyte cols[6][3] = {$/;"	v	file:
-current_matrix_mode	minigl.cpp	/^MGLmatrix_mode current_matrix_mode;$/;"	v
-e	minigl.cpp	/^      } e;$/;"	m	union:Transform::matrix_t	typeref:struct:Transform::matrix_t::__anon1	file:
-m	minigl.cpp	/^    } m;$/;"	m	class:Transform	typeref:union:Transform::matrix_t	file:
+currentMatrix	minigl.cpp	/^Transform currentMatrix()$/;"	f
+currentMatrixStack	minigl.cpp	/^std::stack<Transform> &currentMatrixStack()$/;"	f
+currentQuad	minigl.cpp	/^Quad &currentQuad()$/;"	f
+currentTriangle	minigl.cpp	/^Triangle &currentTriangle()$/;"	f
+current_color	minigl.cpp	/^Color current_color;$/;"	v
+current_matrix_mode	minigl.cpp	/^MGLmatrix_mode current_matrix_mode = MGL_MODELVIEW;$/;"	v
+current_poly_mode	minigl.cpp	/^MGLpoly_mode current_poly_mode;$/;"	v
+g	minigl.cpp	/^    MGLbyte r, g, b;$/;"	m	class:Color	file:
+gamma_denom	minigl.cpp	/^  MGLfloat gamma_denom, beta_denom;$/;"	m	class:Triangle	file:
+get	minigl.cpp	/^MGLfloat Matrix4::get(int column, int row) const$/;"	f	class:Matrix4
+isComplete	minigl.cpp	/^bool Quad::isComplete()$/;"	f	class:Quad
+isComplete	minigl.cpp	/^bool Triangle::isComplete()$/;"	f	class:Triangle
+isInside	minigl.cpp	/^bool Quad::isInside(Point p, MGLfloat *z)$/;"	f	class:Quad
+isInside	minigl.cpp	/^bool Rect2D::isInside(Point p)$/;"	f	class:Rect2D
+isInside	minigl.cpp	/^bool Triangle::isInside(Point p, MGLfloat *z)$/;"	f	class:Triangle
+left	minigl.cpp	/^  MGLfloat left, bottom, right, top;$/;"	m	class:Rect2D	file:
+loadIdentity	minigl.cpp	/^void Matrix4::loadIdentity()$/;"	f	class:Matrix4
+m	minigl.cpp	/^  std::vector<MGLfloat> m;  \/\/ Column major!$/;"	m	class:Matrix4	file:
 main	main.cpp	/^int main(int argc, char** argv)$/;"	f
-matrix_t	minigl.cpp	/^    union matrix_t$/;"	u	class:Transform	file:
 mglBegin	minigl.cpp	/^void mglBegin(MGLpoly_mode mode)$/;"	f
 mglColor	minigl.cpp	/^void mglColor(MGLbyte red,$/;"	f
 mglEnd	minigl.cpp	/^void mglEnd()$/;"	f
@@ -95,9 +122,46 @@ mglScale	minigl.cpp	/^void mglScale(MGLfloat x,$/;"	f
 mglTranslate	minigl.cpp	/^void mglTranslate(MGLfloat x,$/;"	f
 mglVertex2	minigl.cpp	/^void mglVertex2(MGLfloat x,$/;"	f
 mglVertex3	minigl.cpp	/^void mglVertex3(MGLfloat x,$/;"	f
-modelview_matrix_stack	minigl.cpp	/^stack<Transform> modelview_matrix_stack;$/;"	v
-projection_matrix_stack	minigl.cpp	/^stack<Transform> projection_matrix_stack;$/;"	v
+modelviewMatrix	minigl.cpp	/^Transform modelviewMatrix()$/;"	f
+modelviewMatrixStack	minigl.cpp	/^std::stack<Transform> &modelviewMatrixStack()$/;"	f
+modelview_matrix_stack	minigl.cpp	/^std::stack<Transform> modelview_matrix_stack;$/;"	v
+newQuad	minigl.cpp	/^Quad &newQuad()$/;"	f
+newTriangle	minigl.cpp	/^Triangle &newTriangle()$/;"	f
+operator *	minigl.cpp	/^Matrix4 Matrix4::operator*(Matrix4 const & rhs)$/;"	f	class:Matrix4
+operator *	minigl.cpp	/^Vector4 Matrix4::operator*(Vector4 const & rhs)$/;"	f	class:Matrix4
+orthoTransform	minigl.cpp	/^static Transform orthoTransform(MGLfloat left, MGLfloat right, MGLfloat bottom, MGLfloat top, MGLfloat near, MGLfloat far)$/;"	f	file:
+perspectiveTransform	minigl.cpp	/^static Transform perspectiveTransform(MGLfloat left, MGLfloat right, MGLfloat bottom, MGLfloat top, MGLfloat near, MGLfloat far)$/;"	f	file:
+poly_mode_set	minigl.cpp	/^bool poly_mode_set = false;$/;"	v
+print	minigl.cpp	/^void Matrix4::print()$/;"	f	class:Matrix4
+print	minigl.cpp	/^void Rect2D::print()$/;"	f	class:Rect2D
+print	minigl.cpp	/^void Vector4::print()$/;"	f	class:Vector4
+projectionMatrix	minigl.cpp	/^Transform projectionMatrix()$/;"	f
+projectionMatrixStack	minigl.cpp	/^std::stack<Transform> &projectionMatrixStack()$/;"	f
+projection_matrix_stack	minigl.cpp	/^std::stack<Transform> projection_matrix_stack;$/;"	v
+quads	minigl.cpp	/^std::vector<Quad> quads;$/;"	v
+r	minigl.cpp	/^    MGLbyte r, g, b;$/;"	m	class:Color	file:
 render	main.cpp	/^void render()$/;"	f
+right	minigl.cpp	/^  MGLfloat left, bottom, right, top;$/;"	m	class:Rect2D	file:
 rots	tests/t5.cpp	/^static MGLfloat rots[6][4] = {$/;"	v	file:
+set	minigl.cpp	/^void Matrix4::set(int column, int row, MGLfloat value)$/;"	f	class:Matrix4
+t0	minigl.cpp	/^  Triangle t0, t1; $/;"	m	class:Quad	file:
+t1	minigl.cpp	/^  Triangle t0, t1; $/;"	m	class:Quad	file:
+top	minigl.cpp	/^  MGLfloat left, bottom, right, top;$/;"	m	class:Rect2D	file:
 trans	tests/t5.cpp	/^static MGLfloat trans[6][3] = {$/;"	v	file:
+triangles	minigl.cpp	/^std::vector<Triangle> triangles;$/;"	v
+vertices	minigl.cpp	/^  std::vector<Vertex> vertices;$/;"	m	class:Triangle	file:
+w	minigl.cpp	/^  MGLfloat w;$/;"	m	class:Vector4	file:
 writeToTGA	main.cpp	/^void writeToTGA(char* filename)$/;"	f
+x	minigl.cpp	/^  MGLfloat x;$/;"	m	class:Vector2	file:
+x	minigl.cpp	/^  MGLfloat x;$/;"	m	class:Vector4	file:
+xa_xc	minigl.cpp	/^  MGLfloat ya_yb, xb_xa, xayb, xbya, yc_ya, xa_xc, xcya, xayc;$/;"	m	class:Triangle	file:
+xayb	minigl.cpp	/^  MGLfloat ya_yb, xb_xa, xayb, xbya, yc_ya, xa_xc, xcya, xayc;$/;"	m	class:Triangle	file:
+xayc	minigl.cpp	/^  MGLfloat ya_yb, xb_xa, xayb, xbya, yc_ya, xa_xc, xcya, xayc;$/;"	m	class:Triangle	file:
+xb_xa	minigl.cpp	/^  MGLfloat ya_yb, xb_xa, xayb, xbya, yc_ya, xa_xc, xcya, xayc;$/;"	m	class:Triangle	file:
+xbya	minigl.cpp	/^  MGLfloat ya_yb, xb_xa, xayb, xbya, yc_ya, xa_xc, xcya, xayc;$/;"	m	class:Triangle	file:
+xcya	minigl.cpp	/^  MGLfloat ya_yb, xb_xa, xayb, xbya, yc_ya, xa_xc, xcya, xayc;$/;"	m	class:Triangle	file:
+y	minigl.cpp	/^  MGLfloat y;$/;"	m	class:Vector2	file:
+y	minigl.cpp	/^  MGLfloat y;$/;"	m	class:Vector4	file:
+ya_yb	minigl.cpp	/^  MGLfloat ya_yb, xb_xa, xayb, xbya, yc_ya, xa_xc, xcya, xayc;$/;"	m	class:Triangle	file:
+yc_ya	minigl.cpp	/^  MGLfloat ya_yb, xb_xa, xayb, xbya, yc_ya, xa_xc, xcya, xayc;$/;"	m	class:Triangle	file:
+z	minigl.cpp	/^  MGLfloat z;$/;"	m	class:Vector4	file:

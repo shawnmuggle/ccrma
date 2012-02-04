@@ -12,31 +12,149 @@
 #include <stack>
 #include <vector>
 #include "assert.h"
+#include <math.h>
 
-class Transform
+#define MAX(x, y) (((x) > (y)) ? (x) : (y))
+#define MIN(x, y) (((x) < (y)) ? (x) : (y))
+
+// CLASS DECLARATIONS (I wish we had more than one file)
+
+class Vector4
+{
+public:
+  Vector4();
+  Vector4(MGLfloat x, MGLfloat y, MGLfloat z, MGLfloat w);
+  void print();
+
+  Vector4 operator *(MGLfloat rhs);
+  Vector4 operator /(MGLfloat rhs);
+
+  MGLfloat x;
+  MGLfloat y;
+  MGLfloat z;
+  MGLfloat w;
+};
+typedef Vector4 Vertex;
+
+class Vector2
+{
+public:
+  Vector2();
+  Vector2(MGLfloat x, MGLfloat y);
+  MGLfloat x;
+  MGLfloat y;
+};
+typedef Vector2 Point;
+
+class Matrix4
+{
+public:
+  Matrix4();
+  Matrix4(const MGLfloat *matrix_pointer); // FOR CONVENIENCE :(
+  void loadIdentity();
+  void set(int column, int row, MGLfloat value);
+  MGLfloat get(int column, int row) const;
+  void print();
+  void asArray(MGLfloat *a);
+
+  Matrix4 operator*(Matrix4 const & rhs);
+  Vector4 operator*(Vector4 const & rhs);
+
+private:
+  std::vector<MGLfloat> m;  // Column major!
+};
+typedef Matrix4 Transform;
+
+class Color
 {
   public:
-    Transform();
-    Transform(const MGLfloat *matrix_pointer);
-    void set(int column, int row, MGLfloat value);
-    MGLfloat get(int column, int row);
-    void print();
-  private:
-    std::vector<MGLfloat> m;  // Column major!
+    Color();
+    Color(MGLbyte r, MGLbyte g, MGLbyte b);
+    MGLbyte r, g, b;
 };
 
-Transform::Transform()
+class Rect2D
 {
-  m.resize(16, 0);
+public:
+  Rect2D();
+  Rect2D(MGLfloat left, MGLfloat bottom, MGLfloat right, MGLfloat top);
+  bool isInside(Point p);
+  void print();
+private:
+  MGLfloat left, bottom, right, top;
+};
 
-  // Default constructor creates the identity matrix
-  set(0, 0, 1.0f);
-  set(1, 1, 1.0f);
-  set(2, 2, 1.0f);
-  set(3, 3, 1.0f);
+// This Triangle class will always store its vertices in Normalized Device Coordinates, so we can do checks to see if 2d points on the 
+// projection plane are "inside" the triangle
+class Triangle
+{
+public:
+  Triangle();
+  Triangle(Color c);
+  void addVertex(Vertex v);
+  bool isComplete();
+  bool isInside(Point p, MGLfloat *z);
+
+  Color color;
+  std::vector<Vertex> vertices;
+private:
+  Rect2D boundingBox;
+  Rect2D computeBoundingBox();
+
+  MGLfloat ya_yb, xb_xa, xayb, xbya, yc_ya, xa_xc, xcya, xayc;
+  MGLfloat gamma_denom, beta_denom;
+};
+
+class Quad
+{
+public:
+  Quad(Color c);
+  void addVertex(Vertex v);
+  bool isComplete();
+  bool isInside(Point p, MGLfloat *z);
+  Color color;
+private:
+  Triangle t0, t1; 
+};
+
+// CLASS DEFINITIONS
+
+Vector4::Vector4() : x(0.0f), y(0.0f), z(0.0f), w(1.0f) { }
+
+Vector4::Vector4(MGLfloat x, MGLfloat y, MGLfloat z, MGLfloat w) : x(x), y(y), z(z), w(w) { }
+
+void Vector4::print()
+{
+  fprintf(stderr, "%f %f %f %f\n", x, y, z, w);
 }
 
-Transform::Transform(const MGLfloat *matrix_pointer)
+Vector4 Vector4::operator *(MGLfloat rhs)
+{
+  Vector4 result;
+  result.x = x * rhs;
+  result.y = y * rhs;
+  result.z = z * rhs;
+  result.w = w * rhs;
+  return result;
+}
+
+Vector4 Vector4::operator /(MGLfloat rhs)
+{
+  Vector4 result = *this * (1.0 / rhs);
+  return result;
+}
+
+Vector2::Vector2() : x(0.0f), y(0.0f) { }
+
+Vector2::Vector2(MGLfloat x, MGLfloat y) : x(x), y(y) { }
+
+Matrix4::Matrix4()
+{
+  m.resize(16, 0);
+  loadIdentity();
+}
+
+Matrix4::Matrix4(const MGLfloat *matrix_pointer)
 {
   m.resize(16, 0);
 
@@ -46,18 +164,29 @@ Transform::Transform(const MGLfloat *matrix_pointer)
   }
 }
 
-void Transform::set(int column, int row, MGLfloat value)
+void Matrix4::loadIdentity()
+{
+  m.resize(16, 0);
+  
+  // Default constructor creates the identity matrix
+  set(0, 0, 1.0f);
+  set(1, 1, 1.0f);
+  set(2, 2, 1.0f);
+  set(3, 3, 1.0f);
+}
+
+void Matrix4::set(int column, int row, MGLfloat value)
 {
   m[column * 4 + row] = value;
 }
 
-MGLfloat Transform::get(int column, int row)
+MGLfloat Matrix4::get(int column, int row) const
 {
   int i = column * 4 + row;
   return m[i];
 }
 
-void Transform::print()
+void Matrix4::print()
 {
   for (int row = 0; row < 4; row++)
   {
@@ -69,99 +198,345 @@ void Transform::print()
   }
 }
 
-class Vertex
+void Matrix4::asArray(MGLfloat *a)
 {
-  public:
-    Vertex(MGLfloat x, MGLfloat y, MGLfloat z, MGLfloat w);
-    MGLfloat x;
-    MGLfloat y;
-    MGLfloat z;
-    MGLfloat w;
-};
+  for (int column = 0; column < 4; column++)
+  {
+    for (int row = 0; row < 4; row++)
+    {
+      a[column * 4 + row] = get(column, row);
+    }
+  }
+}
 
-Vertex::Vertex(MGLfloat x, MGLfloat y, MGLfloat z, MGLfloat w) : x(x), y(y), z(z), w(w)
-{ }
-
-class Color
+Matrix4 Matrix4::operator*(Matrix4 const & rhs)
 {
-  public:
-    Color(MGLbyte r, MGLbyte g, MGLbyte b);
-  private:
-    MGLbyte r, g, b;
-};
+  Matrix4 mult;
 
-Color::Color(MGLbyte r, MGLbyte g, MGLbyte b) : r(r), g(g), b(b)
-{ }
+  mult.set(0, 0, get(0, 0) * rhs.get(0, 0) + get(1, 0) * rhs.get(0, 1) + get(2, 0) * rhs.get(0, 2) + get(3, 0) * rhs.get(0, 3));
+  mult.set(0, 1, get(0, 1) * rhs.get(0, 0) + get(1, 1) * rhs.get(0, 1) + get(2, 1) * rhs.get(0, 2) + get(3, 1) * rhs.get(0, 3));
+  mult.set(0, 2, get(0, 2) * rhs.get(0, 0) + get(1, 2) * rhs.get(0, 1) + get(2, 2) * rhs.get(0, 2) + get(3, 2) * rhs.get(0, 3));
+  mult.set(0, 3, get(0, 3) * rhs.get(0, 0) + get(1, 3) * rhs.get(0, 1) + get(2, 3) * rhs.get(0, 2) + get(3, 3) * rhs.get(0, 3));
 
-class Triangle
+  mult.set(1, 0, get(0, 0) * rhs.get(1, 0) + get(1, 0) * rhs.get(1, 1) + get(2, 0) * rhs.get(1, 2) + get(3, 0) * rhs.get(1, 3));
+  mult.set(1, 1, get(0, 1) * rhs.get(1, 0) + get(1, 1) * rhs.get(1, 1) + get(2, 1) * rhs.get(1, 2) + get(3, 1) * rhs.get(1, 3));
+  mult.set(1, 2, get(0, 2) * rhs.get(1, 0) + get(1, 2) * rhs.get(1, 1) + get(2, 2) * rhs.get(1, 2) + get(3, 2) * rhs.get(1, 3));
+  mult.set(1, 3, get(0, 3) * rhs.get(1, 0) + get(1, 3) * rhs.get(1, 1) + get(2, 3) * rhs.get(1, 2) + get(3, 3) * rhs.get(1, 3));
+
+  mult.set(2, 0, get(0, 0) * rhs.get(2, 0) + get(1, 0) * rhs.get(2, 1) + get(2, 0) * rhs.get(2, 2) + get(3, 0) * rhs.get(2, 3));
+  mult.set(2, 1, get(0, 1) * rhs.get(2, 0) + get(1, 1) * rhs.get(2, 1) + get(2, 1) * rhs.get(2, 2) + get(3, 1) * rhs.get(2, 3));
+  mult.set(2, 2, get(0, 2) * rhs.get(2, 0) + get(1, 2) * rhs.get(2, 1) + get(2, 2) * rhs.get(2, 2) + get(3, 2) * rhs.get(2, 3));
+  mult.set(2, 3, get(0, 3) * rhs.get(2, 0) + get(1, 3) * rhs.get(2, 1) + get(2, 3) * rhs.get(2, 2) + get(3, 3) * rhs.get(2, 3));
+
+  mult.set(3, 0, get(0, 0) * rhs.get(3, 0) + get(1, 0) * rhs.get(3, 1) + get(2, 0) * rhs.get(3, 2) + get(3, 0) * rhs.get(3, 3));
+  mult.set(3, 1, get(0, 1) * rhs.get(3, 0) + get(1, 1) * rhs.get(3, 1) + get(2, 1) * rhs.get(3, 2) + get(3, 1) * rhs.get(3, 3));
+  mult.set(3, 2, get(0, 2) * rhs.get(3, 0) + get(1, 2) * rhs.get(3, 1) + get(2, 2) * rhs.get(3, 2) + get(3, 2) * rhs.get(3, 3));
+  mult.set(3, 3, get(0, 3) * rhs.get(3, 0) + get(1, 3) * rhs.get(3, 1) + get(2, 3) * rhs.get(3, 2) + get(3, 3) * rhs.get(3, 3));
+
+  return mult;
+}
+
+Vector4 Matrix4::operator*(Vector4 const & rhs)
 {
-  public:
-    void addVertex(Vertex v);
-    bool complete();
-  private:
-    std::vector<Vertex> vertices;
-};
+  Vector4 v;
+  v.x = get(0, 0) * rhs.x + get(1, 0) * rhs.y + get(2, 0) * rhs.z + get(3, 0) * rhs.w;
+  v.y = get(0, 1) * rhs.x + get(1, 1) * rhs.y + get(2, 1) * rhs.z + get(3, 1) * rhs.w;
+  v.z = get(0, 2) * rhs.x + get(1, 2) * rhs.y + get(2, 2) * rhs.z + get(3, 2) * rhs.w;
+  v.w = get(0, 3) * rhs.x + get(1, 3) * rhs.y + get(2, 3) * rhs.z + get(3, 3) * rhs.w;
+  return v;
+}
+
+Color::Color() : r(0), g(0), b(0) { }
+
+Color::Color(MGLbyte r, MGLbyte g, MGLbyte b) : r(r), g(g), b(b) { }
+
+Rect2D::Rect2D() : left(0.0f), bottom(0.0f), right(0.0f), top(0.0f) { }
+
+Rect2D::Rect2D(MGLfloat left, MGLfloat bottom, MGLfloat right, MGLfloat top) : left(left), bottom(bottom), right(right), top(top) { }
+
+bool Rect2D::isInside(Point p)
+{
+  return p.x > left && p.x <= right && p.y > bottom && p.y <= top;
+}
+
+void Rect2D::print()
+{
+  fprintf(stderr, "Rect: (%f, %f) (%f, %f)\n", left, bottom, right, top);
+}
+
+Triangle::Triangle() { }
+
+Triangle::Triangle(Color c) : color(c) { }
 
 void Triangle::addVertex(Vertex v)
 {
   assert(vertices.size() < 3);
   vertices.push_back(v);
+  if (vertices.size() == 3)
+  {
+    // Done with vertices! Cache some data for computing inside points
+    boundingBox = computeBoundingBox();
+
+    ya_yb = vertices[0].y - vertices[1].y;
+    xb_xa = vertices[1].x - vertices[0].x;
+    xayb = vertices[0].x * vertices[1].y;
+    xbya = vertices[1].x * vertices[0].y;
+    yc_ya = vertices[2].y - vertices[0].y;
+    xa_xc = vertices[0].x - vertices[2].x;
+    xcya = vertices[2].x * vertices[0].y;
+    xayc = vertices[0].x * vertices[2].y;
+    gamma_denom = ya_yb * vertices[2].x + xb_xa * vertices[2].y + xayb - xbya;
+    beta_denom = yc_ya * vertices[1].x + xa_xc * vertices[1].y + xcya - xayc;
+  }
 }
 
-bool Triangle::complete()
+bool Triangle::isComplete()
 {
   return vertices.size() == 3;
 }
 
-// Global state variables
+Rect2D Triangle::computeBoundingBox()
+{
+  assert(isComplete());
+  return Rect2D(MIN(vertices[0].x, MIN(vertices[1].x, vertices[2].x)),
+                MIN(vertices[0].y, MIN(vertices[1].y, vertices[2].y)),
+                MAX(vertices[0].x, MAX(vertices[1].x, vertices[2].x)),
+                MAX(vertices[0].y, MAX(vertices[1].y, vertices[2].y)));
+}
+
+bool Triangle::isInside(Point p, MGLfloat *z)
+{
+  assert(isComplete());
+
+  MGLfloat gamma = (ya_yb * p.x + xb_xa * p.y + xayb - xbya) / gamma_denom;
+  MGLfloat beta = (yc_ya * p.x + xa_xc * p.y + xcya - xayc) / beta_denom;
+  MGLfloat alpha = 1.0f - beta - gamma;
+
+  *z = gamma * vertices[2].z + beta * vertices[1].z + alpha * vertices[0].z;
+
+  return gamma >= 0.0f && gamma <= 1.0f && beta >= 0.0f && beta <= 1.0f && alpha >= 0.0f && alpha <= 1.0f;
+}
+
+Quad::Quad(Color c) : color(c) { }
+
+void Quad::addVertex(Vertex v)
+{
+  if (!t0.isComplete())
+  {
+    t0.addVertex(v);
+    if(t0.isComplete())
+    {
+      t1.addVertex(t0.vertices[0]);
+      t1.addVertex(t0.vertices[2]);
+    }
+  }
+  else if (!t1.isComplete())
+  {
+    t1.addVertex(v);
+  }
+  else
+  {
+    assert(false);
+  }
+}
+
+bool Quad::isComplete()
+{
+  return t0.isComplete() && t1.isComplete();
+}
+
+bool Quad::isInside(Point p, MGLfloat *z)
+{
+  assert(isComplete());
+  return t0.isInside(p, z) || t1.isInside(p, z);
+}
+
+// TRANSFORM HELPERS
+
+static Transform orthoTransform(MGLfloat left, MGLfloat right, MGLfloat bottom, MGLfloat top, MGLfloat near, MGLfloat far)
+{
+  Transform ortho;
+
+  // From Angel Fig. 4.25
+  
+  // scale to the size of the clipping cube (2x2x2)
+  ortho.set(0, 0, 2.0f / (right - left));
+  ortho.set(1, 1, 2.0f / (top - bottom));
+  ortho.set(2, 2, -2.0f / (far - near));
+
+  // translate to be centered around 0
+  ortho.set(3, 0, -(left + right) / (right - left));
+  ortho.set(3, 1, -(top + bottom) / (top - bottom));
+  ortho.set(3, 2, -(far + near) / (far - near));
+
+  return ortho;
+}
+
+static Transform perspectiveTransform(MGLfloat left, MGLfloat right, MGLfloat bottom, MGLfloat top, MGLfloat near, MGLfloat far)
+{
+  Transform perspective;
+
+  // From http://www.songho.ca/opengl/gl_projectionmatrix.html
+
+  perspective.set(0, 0, (2.0f * near) / (right - left));
+
+  perspective.set(1, 1, (2.0f * near) / (top - bottom));
+
+  perspective.set(2, 0, (right + left) / (right - left));
+  perspective.set(2, 1, (top + bottom) / (top - bottom));
+  perspective.set(2, 2, -(far + near) / (far - near));
+  perspective.set(2, 3, -1.0f);
+
+  perspective.set(3, 2, (-2.0f * far * near) / (far - near));
+  perspective.set(3, 3, 0.0f);
+
+  return perspective;
+}
+
+static Transform scaleTransform(MGLfloat sx, MGLfloat sy, MGLfloat sz)
+{
+  Transform scale;
+  scale.set(0, 0, sx);
+  scale.set(1, 1, sy);
+  scale.set(2, 2, sz);
+  return scale;
+}
+
+static Transform translateTransform(MGLfloat tx, MGLfloat ty, MGLfloat tz)
+{
+  Transform translate;
+  translate.set(3, 0, tx);
+  translate.set(3, 1, ty);
+  translate.set(3, 2, tz);
+  return translate;
+}
+
+static Transform rotateTransform(MGLfloat angle, MGLfloat rx, MGLfloat ry, MGLfloat rz)
+{
+  MGLfloat rad = M_PI * angle / 180.0f;
+
+  MGLfloat magnitude = sqrt(pow(rx, 2.0f) + pow(ry, 2.0f) + pow(rz, 2.0f));
+  rx /= magnitude;
+  ry /= magnitude;
+  rz /= magnitude;
+
+  Transform rotate;
+  MGLfloat c = cos(rad);
+  MGLfloat s = sin(rad);
+  rotate.set(0, 0, c + pow(rx, 2.0f) * (1.0f - c));
+  rotate.set(0, 1, ry * rx * (1.0f - c) + rz * s);
+  rotate.set(0, 2, rz * rx * (1.0f - c) - ry * s);
+
+  rotate.set(1, 0, rx * ry * (1.0f - c) - rz * s);
+  rotate.set(1, 1, c + pow(ry, 2.0f) * (1.0f - c));
+  rotate.set(1, 2, rz * ry * (1.0f - c) + rx * s);
+
+  rotate.set(2, 0, rx * rz * (1.0f - c) + ry * s);
+  rotate.set(2, 1, ry * rz * (1.0f - c) - rx * s);
+  rotate.set(2, 2, c + pow(rz, 2.0f) * (1.0f - c));
+  return rotate;
+}
+
+// GLOBAL STATE
+
 MGLmatrix_mode current_matrix_mode = MGL_MODELVIEW;
 std::stack<Transform> modelview_matrix_stack;
 std::stack<Transform> projection_matrix_stack;
 std::vector<Triangle> triangles;
+std::vector<Quad> quads;
 MGLpoly_mode current_poly_mode;
 bool poly_mode_set = false;
+Color current_color;
 
+// TRANSFORM STACK HELPERS
 
-// private helpers
-std::stack<Transform> &CurrentMatrixStack()
+std::stack<Transform> &modelviewMatrixStack()
 {
-  std::stack<Transform> &current_matrix_stack = current_matrix_mode == MGL_MODELVIEW ? modelview_matrix_stack : projection_matrix_stack;
-
   // Sanity check, we treat the top of the stacks as the current matrix so there should always be something there (specifically, the identity matrix)
-  if (!current_matrix_stack.size())
+  if (!modelview_matrix_stack.size())
   {
-    current_matrix_stack.push(Transform());
+    modelview_matrix_stack.push(Transform());
   }
-
-  return current_matrix_stack;
+  return modelview_matrix_stack;  
 }
 
-Transform CurrentMatrix()
+Transform modelviewMatrix()
 {
-  std::stack<Transform> &current_matrix_stack = CurrentMatrixStack();
-  return current_matrix_stack.top();
+  return modelviewMatrixStack().top();
+}
+
+std::stack<Transform> &projectionMatrixStack()
+{
+  // Sanity check, we treat the top of the stacks as the current matrix so there should always be something there (specifically, the identity matrix)
+  if (!projection_matrix_stack.size())
+  {
+    projection_matrix_stack.push(Transform());
+  }
+  return projection_matrix_stack;  
+}
+
+Transform projectionMatrix()
+{
+
+  return projectionMatrixStack().top();
+}
+
+std::stack<Transform> &currentMatrixStack()
+{
+  return current_matrix_mode == MGL_MODELVIEW ? modelviewMatrixStack() : projectionMatrixStack();
+}
+
+Transform currentMatrix()
+{
+  return current_matrix_mode == MGL_MODELVIEW ? modelviewMatrix() : projectionMatrix();
 }
 
 // Create a new triangle in the triangles vector, and return a reference to it.
-Triangle &NewTriangle()
+Triangle &newTriangle()
 {
-  triangles.push_back(Triangle());
+  triangles.push_back(Triangle(current_color));
   return triangles.back();
 }
 
+Quad &newQuad()
+{
+  quads.push_back(Quad(current_color));
+  return quads.back();
+}
+
 // Returns a reference to the current triangle-in-progress, creating a new triangle if necessary (empty list, or current triangle is complete)
-Triangle &CurrentTriangle()
+Triangle &currentTriangle()
 {
   if (!triangles.size())
   {
-    return NewTriangle();
+    return newTriangle();
   }
   else
   {
     Triangle &current = triangles.back();
-    if (current.complete())
+    if (current.isComplete())
     {
-      return NewTriangle();
+      return newTriangle();
+    }
+    else
+    {
+      return current;
+    }
+  }
+}
+
+Quad &currentQuad()
+{
+  if (!quads.size())
+  {
+    return newQuad();
+  }
+  else
+  {
+    Quad &current = quads.back();
+    if (current.isComplete())
+    {
+      return newQuad();
     }
     else
     {
@@ -195,6 +570,64 @@ void mglReadPixels(MGLsize width,
                    MGLsize height,
                    MGLpixel *data)
 {
+  // TODO: loop through shapes outermost, and only look within their bounding boxes (and then clip/scissor)
+  // TODO: figure out weird artifacts on edges of objects
+
+  MGLfloat z_buffer[width * height];
+  for (unsigned int i = 0; i < width * height; i++)
+  {
+    z_buffer[i] = MAXFLOAT;
+  }
+
+  for (MGLsize y = 0; y < height; y++)
+  {
+    for (MGLsize x = 0; x < width; x++)
+    {
+      MGLpixel pixel;
+      MGL_SET_RED(pixel, 0);
+      MGL_SET_GREEN(pixel, 0);
+      MGL_SET_BLUE(pixel, 0);
+      for (std::vector<Triangle>::iterator i = triangles.begin(); i != triangles.end(); i++)
+      {
+        Point p;
+        p.x = (2 * x) / (MGLfloat) width - 1;
+        p.y = (2 * y) / (MGLfloat) height - 1;
+        Triangle t = *i;
+        MGLfloat z;
+        if (t.isInside(p, &z))
+        {
+          if (z < z_buffer[y * width + x])
+          {
+            MGL_SET_RED(pixel, t.color.r);
+            MGL_SET_GREEN(pixel, t.color.g);
+            MGL_SET_BLUE(pixel, t.color.b);
+            data[y * width + x] = pixel;
+            z_buffer[y * width + x] = z;
+          }
+        }
+      }
+
+      for (std::vector<Quad>::iterator i = quads.begin(); i != quads.end(); i++)
+      {
+        Point p;
+        p.x = (2 * x) / (MGLfloat) width - 1;
+        p.y = (2 * y) / (MGLfloat) height - 1;
+        Quad q = *i;
+        MGLfloat z;
+        if (q.isInside(p, &z))
+        {
+          if (z < z_buffer[y * width + x])
+          {
+            MGL_SET_RED(pixel, q.color.r);
+            MGL_SET_GREEN(pixel, q.color.g);
+            MGL_SET_BLUE(pixel, q.color.b);
+            data[y * width + x] = pixel;
+            z_buffer[y * width + x] = z;
+          }
+        }
+      }
+    }
+  }
 }
 
 /**
@@ -249,15 +682,25 @@ void mglVertex3(MGLfloat x,
   
   MGLfloat w = 1.0f;
 
-  // Multiply the vector that was passed in by the current modelview matrix
-  assert(current_matrix_mode == MGL_MODELVIEW);
-  Transform t = CurrentMatrix();
-  MGLfloat tx = t.get(0, 0) * x + t.get(1, 0) * y + t.get(2, 0) * z + t.get(3, 0) * w;
-  MGLfloat ty = t.get(0, 1) * x + t.get(1, 1) * y + t.get(2, 1) * z + t.get(3, 1) * w;
-  MGLfloat tz = t.get(0, 2) * x + t.get(1, 2) * y + t.get(2, 2) * z + t.get(3, 2) * w;
-  MGLfloat tw = t.get(0, 3) * x + t.get(1, 3) * y + t.get(2, 3) * z + t.get(3, 3) * w;
+  Vertex vertex(x, y, z, w);
 
-  CurrentTriangle().addVertex(Vertex(tx, ty, tz, tw));
+  // Multiply the vector that was passed in by the current modelview matrix
+  Transform modelview = modelviewMatrix();
+  Vertex modelviewVertex = modelview * vertex;
+
+  Transform projection = projectionMatrix();
+  Vertex projectionVertex = projection * modelviewVertex;
+
+  Vertex ndcVertex = projectionVertex / projectionVertex.w;
+
+  if (current_poly_mode == MGL_TRIANGLES)
+  {
+    currentTriangle().addVertex(ndcVertex);
+  }
+  else
+  {
+    currentQuad().addVertex(ndcVertex);
+  }
 }
 
 /**
@@ -276,6 +719,8 @@ void mglMatrixMode(MGLmatrix_mode mode)
 void mglPushMatrix()
 {
   assert(!poly_mode_set);
+  std::stack<Transform> &current_matrix_stack = currentMatrixStack();
+  current_matrix_stack.push(currentMatrix());
 }
 
 /**
@@ -285,7 +730,10 @@ void mglPushMatrix()
 void mglPopMatrix()
 {
   assert(!poly_mode_set);
-
+  std::stack<Transform> &current_matrix_stack = currentMatrixStack();
+  // We can never do the illegal "empty stack pop" because our accessor guarantees that the stack will 
+  //   always have at least the Identity matrix in it
+  current_matrix_stack.pop();  
 }
 
 /**
@@ -294,7 +742,7 @@ void mglPopMatrix()
 void mglLoadIdentity()
 {
   assert(!poly_mode_set);
-  std::stack<Transform> &current_matrix_stack = CurrentMatrixStack();
+  std::stack<Transform> &current_matrix_stack = currentMatrixStack();
   current_matrix_stack.pop();
   current_matrix_stack.push(Transform());
 }
@@ -331,32 +779,11 @@ void mglLoadMatrix(const MGLfloat *matrix)
 void mglMultMatrix(const MGLfloat *matrix)
 {
   assert(!poly_mode_set);
-  Transform b = CurrentMatrix();
-  Transform a = matrix;
-  
-  // multiply matrices here
-  Transform mult;
-  mult.set(0, 0, a.get(0, 0) * b.get(0, 0) + a.get(1, 0) * b.get(0, 1) + a.get(2, 0) * b.get(0, 2) + a.get(3, 0) * b.get(0, 3));
-  mult.set(0, 1, a.get(0, 1) * b.get(0, 0) + a.get(1, 1) * b.get(0, 1) + a.get(2, 1) * b.get(0, 2) + a.get(3, 1) * b.get(0, 3));
-  mult.set(0, 2, a.get(0, 2) * b.get(0, 0) + a.get(1, 2) * b.get(0, 1) + a.get(2, 2) * b.get(0, 2) + a.get(3, 2) * b.get(0, 3));
-  mult.set(0, 3, a.get(0, 3) * b.get(0, 0) + a.get(1, 3) * b.get(0, 1) + a.get(2, 3) * b.get(0, 2) + a.get(3, 3) * b.get(0, 3));
+  Transform newTransform = matrix;
 
-  mult.set(1, 0, a.get(0, 0) * b.get(1, 0) + a.get(1, 0) * b.get(1, 1) + a.get(2, 0) * b.get(1, 2) + a.get(3, 0) * b.get(1, 3));
-  mult.set(1, 1, a.get(0, 1) * b.get(1, 0) + a.get(1, 1) * b.get(1, 1) + a.get(2, 1) * b.get(1, 2) + a.get(3, 1) * b.get(1, 3));
-  mult.set(1, 2, a.get(0, 2) * b.get(1, 0) + a.get(1, 2) * b.get(1, 1) + a.get(2, 2) * b.get(1, 2) + a.get(3, 2) * b.get(1, 3));
-  mult.set(1, 3, a.get(0, 3) * b.get(1, 0) + a.get(1, 3) * b.get(1, 1) + a.get(2, 3) * b.get(1, 2) + a.get(3, 3) * b.get(1, 3));
+  Transform mult = Transform(currentMatrix() * newTransform);
 
-  mult.set(2, 0, a.get(0, 0) * b.get(2, 0) + a.get(1, 0) * b.get(2, 1) + a.get(2, 0) * b.get(2, 2) + a.get(3, 0) * b.get(2, 3));
-  mult.set(2, 1, a.get(0, 1) * b.get(2, 0) + a.get(1, 1) * b.get(2, 1) + a.get(2, 1) * b.get(2, 2) + a.get(3, 1) * b.get(2, 3));
-  mult.set(2, 2, a.get(0, 2) * b.get(2, 0) + a.get(1, 2) * b.get(2, 1) + a.get(2, 2) * b.get(2, 2) + a.get(3, 2) * b.get(2, 3));
-  mult.set(2, 3, a.get(0, 3) * b.get(2, 0) + a.get(1, 3) * b.get(2, 1) + a.get(2, 3) * b.get(2, 2) + a.get(3, 3) * b.get(2, 3));
-
-  mult.set(3, 0, a.get(0, 0) * b.get(3, 0) + a.get(1, 0) * b.get(3, 1) + a.get(2, 0) * b.get(3, 2) + a.get(3, 0) * b.get(3, 3));
-  mult.set(3, 1, a.get(0, 1) * b.get(3, 0) + a.get(1, 1) * b.get(3, 1) + a.get(2, 1) * b.get(3, 2) + a.get(3, 1) * b.get(3, 3));
-  mult.set(3, 2, a.get(0, 2) * b.get(3, 0) + a.get(1, 2) * b.get(3, 1) + a.get(2, 2) * b.get(3, 2) + a.get(3, 2) * b.get(3, 3));
-  mult.set(3, 3, a.get(0, 3) * b.get(3, 0) + a.get(1, 3) * b.get(3, 1) + a.get(2, 3) * b.get(3, 2) + a.get(3, 3) * b.get(3, 3));
-
-  std::stack<Transform> &current_matrix_stack = CurrentMatrixStack();
+  std::stack<Transform> &current_matrix_stack = currentMatrixStack();
   current_matrix_stack.pop();
   current_matrix_stack.push(mult);
 }
@@ -370,6 +797,12 @@ void mglTranslate(MGLfloat x,
                   MGLfloat z)
 {
   assert(!poly_mode_set);
+  
+  Transform translate = translateTransform(x, y, z);
+  // Turn our nice std::vector back into an array to pass it to mglMultMatrix
+  MGLfloat a[16];
+  translate.asArray(a);
+  mglMultMatrix(a);
 }
 
 /**
@@ -383,6 +816,12 @@ void mglRotate(MGLfloat angle,
                MGLfloat z)
 {
   assert(!poly_mode_set);
+
+  Transform rotate = rotateTransform(angle, x, y, z);
+  // Turn our nice std::vector back into an array to pass it to mglMultMatrix
+  MGLfloat a[16];
+  rotate.asArray(a);
+  mglMultMatrix(a);
 }
 
 /**
@@ -394,6 +833,11 @@ void mglScale(MGLfloat x,
               MGLfloat z)
 {
   assert(!poly_mode_set);
+  Transform scale = scaleTransform(x, y, z);
+  // Turn our nice std::vector back into an array to pass it to mglMultMatrix
+  MGLfloat a[16];
+  scale.asArray(a);
+  mglMultMatrix(a);
 }
 
 /**
@@ -409,6 +853,12 @@ void mglFrustum(MGLfloat left,
 {
   assert(current_matrix_mode == MGL_PROJECTION);
   assert(!poly_mode_set);
+
+  Transform perspective = perspectiveTransform(left, right, bottom, top, near, far);
+  // Turn our nice std::vector back into an array to pass it to mglMultMatrix
+  MGLfloat a[16];
+  perspective.asArray(a);
+  mglMultMatrix(a);
 }
 
 /**
@@ -425,28 +875,10 @@ void mglOrtho(MGLfloat left,
   assert(current_matrix_mode == MGL_PROJECTION);
   assert(!poly_mode_set);
 
-  // From Angel Fig. 4.25
-  Transform ortho;
-  
-  // scale to the size of the clipping cube (2x2x2)
-  ortho.set(0, 0, 2.0 / (right - left));
-  ortho.set(1, 1, 2.0 / (top - bottom));
-  ortho.set(2, 2, -2.0 / (far - near));
-
-  // translate to be centered around 0
-  ortho.set(3, 0, -(left + right) / (right - left));
-  ortho.set(3, 1, -(top + bottom) / (top - bottom));
-  ortho.set(3, 2, -(far + near) / (far - near));
-
+  Transform ortho = orthoTransform(left, right, bottom, top, near, far);
   // Turn our nice std::vector back into an array to pass it to mglMultMatrix
   MGLfloat a[16];
-  for (int column = 0; column < 4; column++)
-  {
-    for (int row = 0; row < 4; row++)
-    {
-      a[column * 4 + row] = ortho.get(column, row);
-    }
-  }
+  ortho.asArray(a);
   mglMultMatrix(a);
 }
 
@@ -457,5 +889,5 @@ void mglColor(MGLbyte red,
               MGLbyte green,
               MGLbyte blue)
 {
-  
+  current_color = Color(red, green, blue);
 }
