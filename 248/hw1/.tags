@@ -13,6 +13,9 @@ EXEC	Makefile	/^EXEC      = minigl$/;"	m
 FB_HEIGHT	main.cpp	/^#define FB_HEIGHT /;"	d	file:
 FB_WIDTH	main.cpp	/^#define FB_WIDTH /;"	d	file:
 LDFLAGS	Makefile	/^LDFLAGS   = -g -O0 -Wall$/;"	m
+Line2D	minigl.cpp	/^Line2D::Line2D() { }$/;"	f	class:Line2D
+Line2D	minigl.cpp	/^Line2D::Line2D(Point p0, Point p1)$/;"	f	class:Line2D
+Line2D	minigl.cpp	/^class Line2D$/;"	c	file:
 MAX	minigl.cpp	/^#define MAX(/;"	d	file:
 MGL_ERROR	minigl.cpp	/^inline void MGL_ERROR(const char* description) {$/;"	f
 MGL_GET_BLUE	minigl.h	/^#define MGL_GET_BLUE(/;"	d
@@ -57,7 +60,7 @@ Matrix4	minigl.cpp	/^Matrix4::Matrix4()$/;"	f	class:Matrix4
 Matrix4	minigl.cpp	/^Matrix4::Matrix4(const MGLfloat *matrix_pointer)$/;"	f	class:Matrix4
 Matrix4	minigl.cpp	/^class Matrix4$/;"	c	file:
 Point	minigl.cpp	/^typedef Vector2 Point;$/;"	t	file:
-Quad	minigl.cpp	/^Quad::Quad(Color c) : color(c) { }$/;"	f	class:Quad
+Quad	minigl.cpp	/^Quad::Quad(Color c) : color(c), t0(c), t1(c) { }$/;"	f	class:Quad
 Quad	minigl.cpp	/^class Quad$/;"	c	file:
 RM	Makefile	/^RM        = rm -f$/;"	m
 Rect2D	minigl.cpp	/^Rect2D::Rect2D() : left(0.0f), bottom(0.0f), right(0.0f), top(0.0f) { }$/;"	f	class:Rect2D
@@ -75,17 +78,21 @@ Vector4	minigl.cpp	/^Vector4::Vector4(MGLfloat x, MGLfloat y, MGLfloat z, MGLflo
 Vector4	minigl.cpp	/^class Vector4$/;"	c	file:
 Vertex	minigl.cpp	/^typedef Vector4 Vertex;$/;"	t	file:
 __MINIGL_H__	minigl.h	/^#define __MINIGL_H__$/;"	d
+a	minigl.cpp	/^  MGLfloat a, b, c;$/;"	m	class:Line2D	file:
 addVertex	minigl.cpp	/^void Quad::addVertex(Vertex v)$/;"	f	class:Quad
 addVertex	minigl.cpp	/^void Triangle::addVertex(Vertex v)$/;"	f	class:Triangle
 asArray	minigl.cpp	/^void Matrix4::asArray(MGLfloat *a)$/;"	f	class:Matrix4
+asPixel	minigl.cpp	/^MGLpixel Color::asPixel()$/;"	f	class:Color
 b	minigl.cpp	/^    MGLbyte r, g, b;$/;"	m	class:Color	file:
-bbox	minigl.cpp	/^  Rect2D bbox;$/;"	m	class:Triangle	file:
+b	minigl.cpp	/^  MGLfloat a, b, c;$/;"	m	class:Line2D	file:
 beta_denom	minigl.cpp	/^  MGLfloat gamma_denom, beta_denom;$/;"	m	class:Triangle	file:
 bottom	minigl.cpp	/^  MGLfloat left, bottom, right, top;$/;"	m	class:Rect2D	file:
-boundingBox	minigl.cpp	/^Rect2D Triangle::boundingBox()$/;"	f	class:Triangle
+boundingBox	minigl.cpp	/^  Rect2D boundingBox;$/;"	m	class:Triangle	file:
+c	minigl.cpp	/^  MGLfloat a, b, c;$/;"	m	class:Line2D	file:
 color	minigl.cpp	/^  Color color;$/;"	m	class:Quad	file:
 color	minigl.cpp	/^  Color color;$/;"	m	class:Triangle	file:
 cols	tests/t5.cpp	/^static MGLbyte cols[6][3] = {$/;"	v	file:
+computeBoundingBox	minigl.cpp	/^Rect2D Triangle::computeBoundingBox()$/;"	f	class:Triangle
 currentMatrix	minigl.cpp	/^Transform currentMatrix()$/;"	f
 currentMatrixStack	minigl.cpp	/^std::stack<Transform> &currentMatrixStack()$/;"	f
 currentQuad	minigl.cpp	/^Quad &currentQuad()$/;"	f
@@ -93,14 +100,16 @@ currentTriangle	minigl.cpp	/^Triangle &currentTriangle()$/;"	f
 current_color	minigl.cpp	/^Color current_color;$/;"	v
 current_matrix_mode	minigl.cpp	/^MGLmatrix_mode current_matrix_mode = MGL_MODELVIEW;$/;"	v
 current_poly_mode	minigl.cpp	/^MGLpoly_mode current_poly_mode;$/;"	v
+evaluate	minigl.cpp	/^MGLfloat Line2D::evaluate(Point p)$/;"	f	class:Line2D
 g	minigl.cpp	/^    MGLbyte r, g, b;$/;"	m	class:Color	file:
 gamma_denom	minigl.cpp	/^  MGLfloat gamma_denom, beta_denom;$/;"	m	class:Triangle	file:
 get	minigl.cpp	/^MGLfloat Matrix4::get(int column, int row) const$/;"	f	class:Matrix4
 isComplete	minigl.cpp	/^bool Quad::isComplete()$/;"	f	class:Quad
 isComplete	minigl.cpp	/^bool Triangle::isComplete()$/;"	f	class:Triangle
-isInside	minigl.cpp	/^bool Quad::isInside(Point p, MGLfloat *z)$/;"	f	class:Quad
+isInside	minigl.cpp	/^bool Line2D::isInside(Point p)$/;"	f	class:Line2D
 isInside	minigl.cpp	/^bool Rect2D::isInside(Point p)$/;"	f	class:Rect2D
 isInside	minigl.cpp	/^bool Triangle::isInside(Point p, MGLfloat *z)$/;"	f	class:Triangle
+isShadowed	minigl.cpp	/^bool Line2D::isShadowed()$/;"	f	class:Line2D
 left	minigl.cpp	/^  MGLfloat left, bottom, right, top;$/;"	m	class:Rect2D	file:
 loadIdentity	minigl.cpp	/^void Matrix4::loadIdentity()$/;"	f	class:Matrix4
 m	minigl.cpp	/^  std::vector<MGLfloat> m;  \/\/ Column major!$/;"	m	class:Matrix4	file:
@@ -129,6 +138,8 @@ newQuad	minigl.cpp	/^Quad &newQuad()$/;"	f
 newTriangle	minigl.cpp	/^Triangle &newTriangle()$/;"	f
 operator *	minigl.cpp	/^Matrix4 Matrix4::operator*(Matrix4 const & rhs)$/;"	f	class:Matrix4
 operator *	minigl.cpp	/^Vector4 Matrix4::operator*(Vector4 const & rhs)$/;"	f	class:Matrix4
+operator *	minigl.cpp	/^Vector4 Vector4::operator *(MGLfloat rhs)$/;"	f	class:Vector4
+operator /	minigl.cpp	/^Vector4 Vector4::operator \/(MGLfloat rhs)$/;"	f	class:Vector4
 orthoTransform	minigl.cpp	/^static Transform orthoTransform(MGLfloat left, MGLfloat right, MGLfloat bottom, MGLfloat top, MGLfloat near, MGLfloat far)$/;"	f	file:
 perspectiveTransform	minigl.cpp	/^static Transform perspectiveTransform(MGLfloat left, MGLfloat right, MGLfloat bottom, MGLfloat top, MGLfloat near, MGLfloat far)$/;"	f	file:
 poly_mode_set	minigl.cpp	/^bool poly_mode_set = false;$/;"	v
@@ -142,12 +153,15 @@ quads	minigl.cpp	/^std::vector<Quad> quads;$/;"	v
 r	minigl.cpp	/^    MGLbyte r, g, b;$/;"	m	class:Color	file:
 render	main.cpp	/^void render()$/;"	f
 right	minigl.cpp	/^  MGLfloat left, bottom, right, top;$/;"	m	class:Rect2D	file:
+rotateTransform	minigl.cpp	/^static Transform rotateTransform(MGLfloat angle, MGLfloat rx, MGLfloat ry, MGLfloat rz)$/;"	f	file:
 rots	tests/t5.cpp	/^static MGLfloat rots[6][4] = {$/;"	v	file:
+scaleTransform	minigl.cpp	/^static Transform scaleTransform(MGLfloat sx, MGLfloat sy, MGLfloat sz)$/;"	f	file:
 set	minigl.cpp	/^void Matrix4::set(int column, int row, MGLfloat value)$/;"	f	class:Matrix4
 t0	minigl.cpp	/^  Triangle t0, t1; $/;"	m	class:Quad	file:
 t1	minigl.cpp	/^  Triangle t0, t1; $/;"	m	class:Quad	file:
 top	minigl.cpp	/^  MGLfloat left, bottom, right, top;$/;"	m	class:Rect2D	file:
 trans	tests/t5.cpp	/^static MGLfloat trans[6][3] = {$/;"	v	file:
+translateTransform	minigl.cpp	/^static Transform translateTransform(MGLfloat tx, MGLfloat ty, MGLfloat tz)$/;"	f	file:
 triangles	minigl.cpp	/^std::vector<Triangle> triangles;$/;"	v
 vertices	minigl.cpp	/^  std::vector<Vertex> vertices;$/;"	m	class:Triangle	file:
 w	minigl.cpp	/^  MGLfloat w;$/;"	m	class:Vector4	file:

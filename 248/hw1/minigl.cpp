@@ -41,6 +41,7 @@ class Vector2
 public:
   Vector2();
   Vector2(MGLfloat x, MGLfloat y);
+  Vector2(Vector4 v4);
   MGLfloat x;
   MGLfloat y;
 };
@@ -70,6 +71,8 @@ class Color
   public:
     Color();
     Color(MGLbyte r, MGLbyte g, MGLbyte b);
+    MGLpixel asPixel();
+  private:
     MGLbyte r, g, b;
 };
 
@@ -80,8 +83,19 @@ public:
   Rect2D(MGLfloat left, MGLfloat bottom, MGLfloat right, MGLfloat top);
   bool isInside(Point p);
   void print();
-private:
   MGLfloat left, bottom, right, top;
+};
+
+class Line2D
+{
+public:
+  Line2D();
+  Line2D(Point p0, Point p1);
+  MGLfloat evaluate(Point p);
+  bool isShadowed();
+  bool isInside(Point p);
+private:
+  MGLfloat a, b, c;
 };
 
 // This Triangle class will always store its vertices in Normalized Device Coordinates, so we can do checks to see if 2d points on the 
@@ -97,12 +111,13 @@ public:
 
   Color color;
   std::vector<Vertex> vertices;
-private:
   Rect2D boundingBox;
+private:
   Rect2D computeBoundingBox();
 
   MGLfloat ya_yb, xb_xa, xayb, xbya, yc_ya, xa_xc, xcya, xayc;
   MGLfloat gamma_denom, beta_denom;
+  Line2D l0, l1, l2;
 };
 
 class Quad
@@ -111,9 +126,7 @@ public:
   Quad(Color c);
   void addVertex(Vertex v);
   bool isComplete();
-  bool isInside(Point p, MGLfloat *z);
   Color color;
-private:
   Triangle t0, t1; 
 };
 
@@ -147,6 +160,8 @@ Vector4 Vector4::operator /(MGLfloat rhs)
 Vector2::Vector2() : x(0.0f), y(0.0f) { }
 
 Vector2::Vector2(MGLfloat x, MGLfloat y) : x(x), y(y) { }
+
+Vector2::Vector2(Vector4 v4) : x(v4.x), y(v4.y) { }
 
 Matrix4::Matrix4()
 {
@@ -246,9 +261,18 @@ Vector4 Matrix4::operator*(Vector4 const & rhs)
   return v;
 }
 
-Color::Color() : r(0), g(0), b(0) { }
+Color::Color() : r(1), g(1), b(1) { }
 
 Color::Color(MGLbyte r, MGLbyte g, MGLbyte b) : r(r), g(g), b(b) { }
+
+MGLpixel Color::asPixel()
+{
+  MGLpixel pixel;
+  MGL_SET_RED(pixel, r);
+  MGL_SET_GREEN(pixel, g);
+  MGL_SET_BLUE(pixel, b);
+  return pixel;
+}
 
 Rect2D::Rect2D() : left(0.0f), bottom(0.0f), right(0.0f), top(0.0f) { }
 
@@ -262,6 +286,31 @@ bool Rect2D::isInside(Point p)
 void Rect2D::print()
 {
   fprintf(stderr, "Rect: (%f, %f) (%f, %f)\n", left, bottom, right, top);
+}
+
+Line2D::Line2D() { }
+
+Line2D::Line2D(Point p0, Point p1)
+{
+  a = p1.y - p0.y; 
+  b = p0.x - p1.x;
+  c = -(a * p0.x + b * p0.y);
+}
+
+MGLfloat Line2D::evaluate(Point p)
+{
+  return a * p.x + b * p.y + c;
+}
+
+bool Line2D::isShadowed()
+{
+  return a > 0.0f || (a == 0.0f && b > 0.0f);
+}
+
+bool Line2D::isInside(Point p)
+{
+  MGLfloat e = evaluate(p);
+  return e == 0.0f ? !isShadowed() : (e < 0.0f);
 }
 
 Triangle::Triangle() { }
@@ -287,6 +336,10 @@ void Triangle::addVertex(Vertex v)
     xayc = vertices[0].x * vertices[2].y;
     gamma_denom = ya_yb * vertices[2].x + xb_xa * vertices[2].y + xayb - xbya;
     beta_denom = yc_ya * vertices[1].x + xa_xc * vertices[1].y + xcya - xayc;
+
+    l0 = Line2D(vertices[1], vertices[2]);
+    l1 = Line2D(vertices[2], vertices[0]);
+    l2 = Line2D(vertices[0], vertices[1]);
   }
 }
 
@@ -297,7 +350,6 @@ bool Triangle::isComplete()
 
 Rect2D Triangle::computeBoundingBox()
 {
-  assert(isComplete());
   return Rect2D(MIN(vertices[0].x, MIN(vertices[1].x, vertices[2].x)),
                 MIN(vertices[0].y, MIN(vertices[1].y, vertices[2].y)),
                 MAX(vertices[0].x, MAX(vertices[1].x, vertices[2].x)),
@@ -306,7 +358,12 @@ Rect2D Triangle::computeBoundingBox()
 
 bool Triangle::isInside(Point p, MGLfloat *z)
 {
-  assert(isComplete());
+  if (!isComplete())
+    return false;
+
+  bool insideLines = l0.isInside(p) && l1.isInside(p) && l2.isInside(p);
+  if (!insideLines)
+    return false;
 
   MGLfloat gamma = (ya_yb * p.x + xb_xa * p.y + xayb - xbya) / gamma_denom;
   MGLfloat beta = (yc_ya * p.x + xa_xc * p.y + xcya - xayc) / beta_denom;
@@ -317,7 +374,7 @@ bool Triangle::isInside(Point p, MGLfloat *z)
   return gamma >= 0.0f && gamma <= 1.0f && beta >= 0.0f && beta <= 1.0f && alpha >= 0.0f && alpha <= 1.0f;
 }
 
-Quad::Quad(Color c) : color(c) { }
+Quad::Quad(Color c) : color(c), t0(c), t1(c) { }
 
 void Quad::addVertex(Vertex v)
 {
@@ -343,12 +400,6 @@ void Quad::addVertex(Vertex v)
 bool Quad::isComplete()
 {
   return t0.isComplete() && t1.isComplete();
-}
-
-bool Quad::isInside(Point p, MGLfloat *z)
-{
-  assert(isComplete());
-  return t0.isInside(p, z) || t1.isInside(p, z);
 }
 
 // TRANSFORM HELPERS
@@ -570,8 +621,13 @@ void mglReadPixels(MGLsize width,
                    MGLsize height,
                    MGLpixel *data)
 {
-  // TODO: loop through shapes outermost, and only look within their bounding boxes (and then clip/scissor)
-  // TODO: figure out weird artifacts on edges of objects
+  // Add quad triangles to triangles list for rendering
+  for (std::vector<Quad>::iterator i = quads.begin(); i != quads.end(); i++)
+  {
+    Quad q = *i;
+    triangles.push_back(q.t0);
+    triangles.push_back(q.t1);
+  }
 
   MGLfloat z_buffer[width * height];
   for (unsigned int i = 0; i < width * height; i++)
@@ -579,48 +635,27 @@ void mglReadPixels(MGLsize width,
     z_buffer[i] = MAXFLOAT;
   }
 
-  for (MGLsize y = 0; y < height; y++)
+  for (std::vector<Triangle>::iterator i = triangles.begin(); i != triangles.end(); i++)
   {
-    for (MGLsize x = 0; x < width; x++)
+    Triangle t = *i;
+    Rect2D boundingBox = t.boundingBox;
+    MGLsize bottom = ceil(height * (MAX(-1.0f, boundingBox.bottom) + 1) / 2.0);
+    MGLsize top = ceil(height * (MIN(1.0f, boundingBox.top) + 1) / 2.0);
+    MGLsize left = ceil(width * (MAX(-1.0f, boundingBox.left) + 1) / 2.0);
+    MGLsize right = ceil(width * (MIN(1.0f, boundingBox.right) + 1) / 2.0);
+    for (MGLsize y = bottom; y < top; y++)
     {
-      MGLpixel pixel;
-      MGL_SET_RED(pixel, 0);
-      MGL_SET_GREEN(pixel, 0);
-      MGL_SET_BLUE(pixel, 0);
-      for (std::vector<Triangle>::iterator i = triangles.begin(); i != triangles.end(); i++)
+      for (MGLsize x = left; x < right; x++)
       {
         Point p;
-        p.x = (2 * x) / (MGLfloat) width - 1;
-        p.y = (2 * y) / (MGLfloat) height - 1;
-        Triangle t = *i;
+        p.x = (2 * (x + 0.5f)) / (MGLfloat) width - 1;
+        p.y = (2 * (y + 0.5f)) / (MGLfloat) height - 1;
         MGLfloat z;
         if (t.isInside(p, &z))
         {
           if (z < z_buffer[y * width + x])
           {
-            MGL_SET_RED(pixel, t.color.r);
-            MGL_SET_GREEN(pixel, t.color.g);
-            MGL_SET_BLUE(pixel, t.color.b);
-            data[y * width + x] = pixel;
-            z_buffer[y * width + x] = z;
-          }
-        }
-      }
-
-      for (std::vector<Quad>::iterator i = quads.begin(); i != quads.end(); i++)
-      {
-        Point p;
-        p.x = (2 * x) / (MGLfloat) width - 1;
-        p.y = (2 * y) / (MGLfloat) height - 1;
-        Quad q = *i;
-        MGLfloat z;
-        if (q.isInside(p, &z))
-        {
-          if (z < z_buffer[y * width + x])
-          {
-            MGL_SET_RED(pixel, q.color.r);
-            MGL_SET_GREEN(pixel, q.color.g);
-            MGL_SET_BLUE(pixel, q.color.b);
+            MGLpixel pixel = t.color.asPixel();
             data[y * width + x] = pixel;
             z_buffer[y * width + x] = z;
           }
@@ -651,6 +686,22 @@ void mglEnd()
 {
   // Make sure that we are currently in an mglBegin/mglEnd block
   assert(poly_mode_set);
+
+  if (current_poly_mode == MGL_TRIANGLES)
+  {
+    if (!currentTriangle().isComplete())
+    {
+      triangles.pop_back();
+    }
+  }
+  else if (current_poly_mode == MGL_QUADS)
+  {
+    if (!currentQuad().isComplete())
+    {
+      quads.pop_back();
+    }    
+  }
+
   poly_mode_set = false;
 }
 
@@ -681,16 +732,11 @@ void mglVertex3(MGLfloat x,
   assert(poly_mode_set);
   
   MGLfloat w = 1.0f;
-
   Vertex vertex(x, y, z, w);
-
-  // Multiply the vector that was passed in by the current modelview matrix
   Transform modelview = modelviewMatrix();
   Vertex modelviewVertex = modelview * vertex;
-
   Transform projection = projectionMatrix();
   Vertex projectionVertex = projection * modelviewVertex;
-
   Vertex ndcVertex = projectionVertex / projectionVertex.w;
 
   if (current_poly_mode == MGL_TRIANGLES)
@@ -744,7 +790,7 @@ void mglLoadIdentity()
   assert(!poly_mode_set);
   std::stack<Transform> &current_matrix_stack = currentMatrixStack();
   current_matrix_stack.pop();
-  current_matrix_stack.push(Transform());
+  current_matrix_stack.push(Transform());  // Default transform constructor creates the identity matrix
 }
 
 /**
@@ -762,6 +808,11 @@ void mglLoadIdentity()
 void mglLoadMatrix(const MGLfloat *matrix)
 {
   assert(!poly_mode_set);
+  Transform newTransform = matrix;
+
+  std::stack<Transform> &current_matrix_stack = currentMatrixStack();
+  current_matrix_stack.pop();
+  current_matrix_stack.push(newTransform);
 }
 
 /**
@@ -780,7 +831,6 @@ void mglMultMatrix(const MGLfloat *matrix)
 {
   assert(!poly_mode_set);
   Transform newTransform = matrix;
-
   Transform mult = Transform(currentMatrix() * newTransform);
 
   std::stack<Transform> &current_matrix_stack = currentMatrixStack();
