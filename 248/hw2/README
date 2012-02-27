@@ -1,6 +1,8 @@
-Sample renderings can be found in 'samples'
-To run the driver program, type: ./run model/<model-name>.obj
-ONLY turn in this README and minigl.cpp.
+Mike Rotondo
+mrotondo
+OS X 10.7 64-bit
+Phong shading
 
+Specular lighting is weirdly broken (see sphere.obj for best example). If you could find out what I did wrong, that'd be awesome :\
 
-Replace this README with your write-up for the assignment.
+Specular textures and toon shading are unimplemented. :\ again.

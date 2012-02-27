@@ -39,6 +39,94 @@ inline void MGL_ERROR(const char* description) {
 
 // Data structures definition
 
+struct Light
+{
+    bool enabled;
+    std::map<MGLlight_param, std::vector<MGLfloat> > params;
+};
+
+struct Material
+{
+    std::map<MGLmat_param, std::vector<MGLfloat> > params;
+};
+
+struct Texture
+{
+    Texture() :
+    width(0), height(0), data(NULL)
+    { }
+    
+    Texture(MGLsize width, MGLsize height, MGLpixel *imageData) : 
+    width(width), height(height)
+    {
+        data = (MGLpixel *)malloc(width * height * sizeof(MGLpixel));
+        for (int i = 0; i < width * height; i++)
+        {
+            data[i] = imageData[i];
+        }
+    }
+    
+    MGLpixel getColor(MGLfloat u, MGLfloat v)
+    {
+        if (!data)
+        {
+            return 0xffffffff;
+        }
+        
+        while (u < 0.0f)
+        {
+            u += 1.0f;
+        }
+        while (v < 0.0f)
+        {
+            v += 1.0f;
+        }
+        u = fmodf(u, 1.0f);
+        v = fmodf(v, 1.0f);
+        int x0 = floor(u * width);
+        int x1 = fmodf(ceil(u * width), width);
+        int y0 = floor(v * height);
+        int y1 = fmodf(ceil(v * height), height);
+        MGLpixel x0y0 = data[y0 * width + x0];
+        MGLbyte x0y0r = MGL_GET_RED(x0y0);
+        MGLbyte x0y0g = MGL_GET_GREEN(x0y0);
+        MGLbyte x0y0b = MGL_GET_BLUE(x0y0);
+
+        MGLpixel x0y1 = data[y1 * width + x0];
+        MGLbyte x0y1r = MGL_GET_RED(x0y1);
+        MGLbyte x0y1g = MGL_GET_GREEN(x0y1);
+        MGLbyte x0y1b = MGL_GET_BLUE(x0y1);
+
+        MGLpixel x1y0 = data[y0 * width + x1];
+        MGLbyte x1y0r = MGL_GET_RED(x1y0);
+        MGLbyte x1y0g = MGL_GET_GREEN(x1y0);
+        MGLbyte x1y0b = MGL_GET_BLUE(x1y0);
+
+        MGLpixel x1y1 = data[y1 * width + x1];
+        MGLbyte x1y1r = MGL_GET_RED(x1y1);
+        MGLbyte x1y1g = MGL_GET_GREEN(x1y1);
+        MGLbyte x1y1b = MGL_GET_BLUE(x1y1);
+        
+        MGLfloat s = v * height - y0;
+        MGLfloat t = u * width - x0;
+        
+        MGLbyte r = (1.0f - s) * ((1.0f - t) * x0y0r + t * x1y0r) + s * ((1.0f - t) * x0y1r + t * x1y1r);
+        MGLbyte g = (1.0f - s) * ((1.0f - t) * x0y0g + t * x1y0g) + s * ((1.0f - t) * x0y1g + t * x1y1g);
+        MGLbyte b = (1.0f - s) * ((1.0f - t) * x0y0b + t * x1y0b) + s * ((1.0f - t) * x0y1b + t * x1y1b);
+        
+        MGLpixel p = 0xffffffff;
+        MGL_SET_RED(p, r);
+        MGL_SET_GREEN(p, g);
+        MGL_SET_BLUE(p, b);
+        
+        return p;
+    }
+    
+    MGLsize width;
+    MGLsize height;
+    MGLpixel *data;
+};
+
 struct MGLvertex {
     MGLfloat x, y, z, w;
     MGLpixel color;
@@ -51,6 +139,26 @@ struct MGLvertex {
     //
     ///////////////////////////////////////////////////////
     
+    // Texture coordinates
+    MGLfloat u, v;
+    MGLfloat f_prime_u, f_prime_v, g_prime;
+    Texture diffuseTexture;
+    Texture specularTexture;
+    
+    // Normal coordinates
+    MGLfloat nx, ny, nz;
+    MGLfloat f_prime_nx, f_prime_ny, f_prime_nz;
+    
+    // Eye-space coordinates
+    MGLfloat ex, ey, ez;
+    MGLfloat f_prime_ex, f_prime_ey, f_prime_ez;
+    
+    Material material;
+    
+    MGLvertex()
+    {
+        color = 0xff00000;
+    }
     
     ///////////////////////////////////////////////////////
     //
@@ -62,8 +170,6 @@ struct MGLvertex {
 struct MGLtriangle {
     MGLvertex v[3];
 };
-
-
 
 /**
  * A simple wrapper structure for storing 4x4 matrix.
@@ -114,34 +220,6 @@ struct MGLfragbuffer {
     MGLfragment* data;
 };
 
-struct Light
-{
-    bool enabled;
-    std::map<MGLlight_param, std::vector<float> > params;
-};
-
-struct Texture
-{
-    Texture(MGLsize width, MGLsize height, MGLpixel *imageData) : 
-    width(width), height(height)
-    {
-        data = (MGLpixel *)malloc(width * height * sizeof(MGLpixel));
-        for (int i = 0; i < width * height; i++)
-        {
-            data[i] = imageData[i];
-        }
-    }
-    
-    ~Texture()
-    {
-        delete [] data;
-    }
-    
-    MGLsize width;
-    MGLsize height;
-    MGLpixel *data;
-};
-
 // Global variables definition
 
 MGLpixel curColor = 0xff000000;                // changed when mglColor
@@ -169,12 +247,157 @@ vector<MGLvertex> transformedVertices;  // store all vertices in clipping space
 // coordinates without dividing by w
 
 bool lightingEnabled = false;
-bool texturesEnabled = false;
 std::map<MGLlight, Light> lights;
 MGLshading_mode shadingMode = MGL_PHONG;
+
+bool texturesEnabled = false;
 std::map<MGLtex_id, Texture> textures;
 MGLtex_id nextTextureId = 1;
-MGLtex_id currentTextureId = 0;
+MGLtex_slot textureSlot = MGL_TEX_DIFFUSE;
+MGLtex_id currentDiffuseTextureId = 0;
+MGLtex_id currentSpecularTextureId = 0;
+struct texCoord {
+    MGLfloat u, v;
+};
+texCoord currentTexCoord;
+
+class Vector3 {
+public:
+    Vector3()
+    {
+    }
+    Vector3(MGLfloat vin[3])
+    {
+        v[0] = vin[0];
+        v[1] = vin[1];
+        v[2] = vin[2];
+    }
+    Vector3(MGLfloat x, MGLfloat y, MGLfloat z)
+    {
+        v[0] = x;
+        v[1] = y;
+        v[2] = z;
+    }
+    Vector3 operator-(Vector3 rhs)
+    {
+        return Vector3(v[0] - rhs.v[0], v[1] - rhs.v[1], v[2] - rhs.v[2]);
+    }
+    Vector3 operator*(MGLfloat rhs)
+    {
+        return Vector3(v[0] * rhs, v[1] * rhs, v[2] * rhs);
+    }
+    Vector3 operator/(MGLfloat rhs)
+    {
+        return *this * (1.0 / rhs);
+    }
+    MGLfloat magnitude()
+    {
+        return sqrt(pow(v[0], 2) + pow(v[1], 2) + pow(v[2], 2));
+    }
+    MGLfloat dot(Vector3 rhs)
+    {
+        return v[0] * rhs.v[0] + v[1] * rhs.v[1] + v[2] * rhs.v[2];
+    }
+    Vector3 cross(Vector3 rhs)
+    {
+        return Vector3(v[1] * rhs.v[2] - v[2] * rhs.v[1], 
+                       v[2] * rhs.v[0] - v[0] * rhs.v[2], 
+                       v[0] * rhs.v[1] - v[1] * rhs.v[0]);
+    }
+    Vector3 normalize()
+    {
+        return *this / magnitude();
+    }
+    MGLfloat cosAngleToVector(Vector3 rhs)
+    {
+        return dot(rhs) / (magnitude() * rhs.magnitude());
+        
+    }
+    MGLfloat v[3];
+};
+
+class Matrix3;
+Matrix3 matrix3FromRows(vector<Vector3 > rows);
+class Matrix3
+{
+public:
+    // row major, top to bottom
+    vector<Vector3> columns;
+    Matrix3() { }
+    Matrix3(vector<Vector3> columns) : columns(columns) { }
+    Matrix3 operator*(MGLfloat rhs)
+    {
+        Matrix3 ret;
+        for (int i = 0; i < 3; i++)
+        {
+            ret.columns.push_back(Vector3());
+            ret.columns[i].v[0] = columns[i].v[0] * rhs;
+            ret.columns[i].v[1] = columns[i].v[1] * rhs;
+            ret.columns[i].v[2] = columns[i].v[2] * rhs;
+        }
+        return ret;
+    }
+    Matrix3 operator/(MGLfloat rhs)
+    {
+        Matrix3 lhs = *this;
+        return lhs * (1.0 / rhs);
+    }
+    Vector3 operator*(Vector3 rhs)
+    {
+        Vector3 ret;
+        for (int i = 0; i < 3; i++)
+        {
+            ret.v[i] = columns[0].v[i] * rhs.v[0] + columns[1].v[i] * rhs.v[1] + columns[2].v[i] * rhs.v[2];
+        }
+        return ret;
+    }
+    Matrix3 transpose()
+    {
+        return matrix3FromRows(columns);
+    }
+    Matrix3 invert()
+    {
+        Matrix3 inversion;
+        inversion.columns.push_back(columns[1].cross(columns[2]));
+        inversion.columns.push_back(columns[2].cross(columns[0]));
+        inversion.columns.push_back(columns[0].cross(columns[1]));
+        MGLfloat det = columns[0].dot(columns[1].cross(columns[2]));
+        return inversion.transpose() / det;
+    }
+};
+
+Matrix3 matrix3FromRows(vector<Vector3 > rows)
+{
+    Matrix3 newMatrix;
+
+    for (int i = 0; i < 3; i++)
+    {
+        Vector3 col;
+        col.v[0] = rows[0].v[i];
+        col.v[1] = rows[1].v[i];
+        col.v[2] = rows[2].v[i];
+        newMatrix.columns.push_back(col);
+    }
+    
+    return newMatrix;
+}
+Matrix3 matrix3FromMGLMatrix(MGLmatrix const & mat)
+{
+    Matrix3 newMatrix;
+    for (int i = 0; i < 3; i++)
+    {
+        newMatrix.columns.push_back(Vector3());
+        for (int j = 0; j < 3; j++)
+        {
+            newMatrix.columns[i].v[j] = mat.m[i * 4 + j];
+        }
+
+    }
+    return newMatrix;
+}
+
+Vector3 currentNormal;
+Material currentMaterial;
 
 // Helper functions
 
@@ -244,7 +467,7 @@ void rasterize(MGLtriangle& tri, MGLfragbuffer& fragbuf)
         //
         ///////////////////////////////////////////////////
         
-        tri.v[i].w = 1.0f;
+        
         
         ///////////////////////////////////////////////////
         //
@@ -280,8 +503,9 @@ void rasterize(MGLtriangle& tri, MGLfragbuffer& fragbuf)
 			alpha /= detA;
 			float beta = (tri.v[0].x * p.y) - (tri.v[0].x * tri.v[2].y) - (p.x * tri.v[0].y) + (p.x * tri.v[2].y) + (tri.v[2].x * tri.v[0].y) - (tri.v[2].x * p.y);
 			beta /= detA;
-			float gamma = (tri.v[0].x * tri.v[1].y) - (tri.v[0].x * p.y) - (tri.v[1].x * tri.v[0].y) + (tri.v[1].x * p.y) + (p.x * tri.v[0].y) - (p.x * tri.v[1].y);
-			gamma /= detA;
+//			float gamma = (tri.v[0].x * tri.v[1].y) - (tri.v[0].x * p.y) - (tri.v[1].x * tri.v[0].y) + (tri.v[1].x * p.y) + (p.x * tri.v[0].y) - (p.x * tri.v[1].y);
+//			gamma /= detA;
+            float gamma = 1.0 - alpha - beta;
 			
 			// Point/Triangle test
 			if (alpha >= 0. && alpha <= 1. && beta >= 0. && beta <= 1. && gamma >= 0. && gamma <=1.)
@@ -302,10 +526,112 @@ void rasterize(MGLtriangle& tri, MGLfragbuffer& fragbuf)
 				
 				// Barycentric interpolation of z
 				p.z = alpha * tri.v[0].z + beta * tri.v[1].z + gamma * tri.v[2].z;
-				
-				// The following line needs to be changed to handle
-				// perspective correct interpolation of colors.
-				p.color = tri.v[0].color;
+                
+                // Arbitrarily choose the texture from v0, because it's undefined behavior to have different textures for the different vertices in a triangle.
+                Texture diffuseTexture = tri.v[0].diffuseTexture;
+                Texture specularTexture = tri.v[0].specularTexture;
+                                
+                MGLfloat linearInvW = alpha * tri.v[0].g_prime + beta * tri.v[1].g_prime + gamma * tri.v[2].g_prime;
+
+                // Barycentric interpolation of u & z
+                MGLfloat linearU = alpha * tri.v[0].f_prime_u + beta * tri.v[1].f_prime_u + gamma * tri.v[2].f_prime_u;
+                MGLfloat linearV = alpha * tri.v[0].f_prime_v + beta * tri.v[1].f_prime_v + gamma * tri.v[2].f_prime_v;
+                
+                p.u = linearU / linearInvW;
+                p.v = linearV / linearInvW;
+                
+                MGLfloat linearNx = alpha * tri.v[0].f_prime_nx + beta * tri.v[1].f_prime_nx + gamma * tri.v[2].f_prime_nx;
+                MGLfloat linearNy = alpha * tri.v[0].f_prime_ny + beta * tri.v[1].f_prime_ny + gamma * tri.v[2].f_prime_ny;
+                MGLfloat linearNz = alpha * tri.v[0].f_prime_nz + beta * tri.v[1].f_prime_nz + gamma * tri.v[2].f_prime_nz;
+                
+                p.nx = linearNx / linearInvW;
+                p.ny = linearNy / linearInvW;
+                p.nz = linearNz / linearInvW;
+                
+                MGLpixel diffuseColor = diffuseTexture.getColor(p.u, p.v);
+                MGLpixel specularColor = specularTexture.getColor(p.u, p.v);
+                
+                MGLfloat linearEx = alpha * tri.v[0].f_prime_ex + beta * tri.v[1].f_prime_ex + gamma * tri.v[2].f_prime_ex;
+                MGLfloat linearEy = alpha * tri.v[0].f_prime_ey + beta * tri.v[1].f_prime_ey + gamma * tri.v[2].f_prime_ey;
+                MGLfloat linearEz = alpha * tri.v[0].f_prime_ez + beta * tri.v[1].f_prime_ez + gamma * tri.v[2].f_prime_ez;
+                
+                p.ex = linearEx / linearInvW;
+                p.ey = linearEy / linearInvW;
+                p.ez = linearEz / linearInvW;
+                
+                MGLfloat r = 0;
+                MGLfloat g = 0;
+                MGLfloat b = 0;
+                if (lightingEnabled)
+                {
+                    MGLfloat r_amb, g_amb, b_amb;
+                    MGLfloat r_dif, g_dif, b_dif;
+                    MGLfloat r_spc, g_spc, b_spc;
+                    
+                    Material m = tri.v[0].material;
+                    for (std::map<MGLlight, Light>::iterator i = lights.begin(); i != lights.end(); i++)
+                    {
+                        Light l = (*i).second;
+                        if (l.enabled)
+                        {
+                            r_amb = fmin(1.0, l.params[MGL_LIGHT_AMBIENT][0] * m.params[MGL_MAT_AMBIENT][0]);
+                            g_amb = fmin(1.0, l.params[MGL_LIGHT_AMBIENT][1] * m.params[MGL_MAT_AMBIENT][1]);
+                            b_amb = fmin(1.0, l.params[MGL_LIGHT_AMBIENT][2] * m.params[MGL_MAT_AMBIENT][2]);
+                            
+                            Vector3 pointPosition(p.ex, p.ey, p.ez);
+                            vector<MGLfloat> lightPos = l.params[MGL_LIGHT_POSITION];
+                            
+                            Vector3 lightPosition(lightPos[0], lightPos[1], lightPos[2]);
+                            Vector3 pointToLight = (pointPosition - lightPosition).normalize();
+                            Vector3 normal = Vector3(p.nx, p.ny, p.nz).normalize();
+                            MGLfloat cosTheta = fmax(0.0, normal.dot(pointToLight));
+                            
+                            r_dif = fmin(1.0, cosTheta * m.params[MGL_MAT_DIFFUSE][0] * l.params[MGL_LIGHT_DIFFUSE][0]);
+                            g_dif = fmin(1.0, cosTheta * m.params[MGL_MAT_DIFFUSE][1] * l.params[MGL_LIGHT_DIFFUSE][1]);
+                            b_dif = fmin(1.0, cosTheta * m.params[MGL_MAT_DIFFUSE][2] * l.params[MGL_LIGHT_DIFFUSE][2]);
+                            
+                            Vector3 reflection = (normal * 2 * pointToLight.dot(normal) - pointToLight).normalize();
+                            Vector3 pointToCamera = (pointPosition - Vector3(0, 0, 0)).normalize();
+                            cosTheta = powf(fmax(0.0, pointToCamera.dot(reflection)), m.params[MGL_MAT_SHININESS][0]);
+                            
+                            r_spc = fmin(1.0, cosTheta * m.params[MGL_MAT_SPECULAR][0] * l.params[MGL_LIGHT_SPECULAR][0]);
+                            g_spc = fmin(1.0, cosTheta * m.params[MGL_MAT_SPECULAR][1] * l.params[MGL_LIGHT_SPECULAR][1]);
+                            b_spc = fmin(1.0, cosTheta * m.params[MGL_MAT_SPECULAR][2] * l.params[MGL_LIGHT_SPECULAR][2]);
+                            
+                            r += fmin(1.0, r_amb + r_dif + r_spc);
+                            g += fmin(1.0, g_amb + g_dif + g_spc);
+                            b += fmin(1.0, b_amb + b_dif + b_spc);
+                            
+//                            r = 0.5 * (normal.v[0] + 1);
+//                            g = 0.5 * (normal.v[1] + 1);
+//                            b = 0.5 * (normal.v[2] + 1);
+                        }
+                    }
+                }
+                else
+                {
+                    MGLfloat linearR = alpha * MGL_GET_RED(tri.v[0].color) + beta * MGL_GET_RED(tri.v[1].color) + gamma * MGL_GET_RED(tri.v[2].color);
+                    MGLfloat linearG = alpha * MGL_GET_GREEN(tri.v[0].color) + beta * MGL_GET_GREEN(tri.v[1].color) + gamma * MGL_GET_GREEN(tri.v[2].color);
+                    MGLfloat linearB = alpha * MGL_GET_BLUE(tri.v[0].color) + beta * MGL_GET_BLUE(tri.v[1].color) + gamma * MGL_GET_BLUE(tri.v[2].color);
+                    
+                    r = (linearR / linearInvW) / 255.0f;
+                    g = (linearG / linearInvW) / 255.0f;
+                    b = (linearB / linearInvW) / 255.0f;
+                }
+                
+                r = fminf(1.0, fmaxf(0.0, r));
+                g = fminf(1.0, fmaxf(0.0, g));
+                b = fminf(1.0, fmaxf(0.0, b));
+                
+                MGLbyte red = MGL_GET_RED(diffuseColor) * r;
+                MGLbyte green = MGL_GET_GREEN(diffuseColor) * g;
+                MGLbyte blue = MGL_GET_BLUE(diffuseColor) * b;
+                
+                p.color = 0xffffffff;
+                
+                MGL_SET_RED(p.color, red);
+                MGL_SET_GREEN(p.color, green);
+                MGL_SET_BLUE(p.color, blue);
                 
 				MGLsize idx = x + y * fragbuf.width;
 				
@@ -350,39 +676,28 @@ void shadeFragment(const MGLfragment& frag, MGLpixel& data)
  */
 void mglLightingEnabled(bool enabled)
 {
-    static bool firstTimeLightingEnabled = true;
-    if (enabled && firstTimeLightingEnabled)
-    {
-        firstTimeLightingEnabled = false; // Never again
-        Light light0;
-        light0.params[MGL_LIGHT_AMBIENT] = std::vector<float>(3, 0.0f);
-        light0.params[MGL_LIGHT_DIFFUSE] = std::vector<float>(3, 1.0f);
-        light0.params[MGL_LIGHT_SPECULAR] = std::vector<float>(3, 1.0f);
-        light0.params[MGL_LIGHT_POSITION] = std::vector<float>(3, 0.0f);
-        light0.params[MGL_LIGHT_POSITION][2] = 1.0f;
-        light0.enabled = false;
-        lights[MGL_LIGHT0] = light0;
-
-        Light light1;
-        light1.params[MGL_LIGHT_AMBIENT] = std::vector<float>(3, 0.0f);
-        light1.params[MGL_LIGHT_DIFFUSE] = std::vector<float>(3, 0.0f);
-        light1.params[MGL_LIGHT_SPECULAR] = std::vector<float>(3, 0.0f);
-        light1.params[MGL_LIGHT_POSITION] = std::vector<float>(3, 0.0f);
-        light1.params[MGL_LIGHT_POSITION][2] = 1.0f;
-        light1.enabled = false;
-        lights[MGL_LIGHT1] = light1;
-
-        Light light2;
-        light2.params[MGL_LIGHT_AMBIENT] = std::vector<float>(3, 0.0f);
-        light2.params[MGL_LIGHT_DIFFUSE] = std::vector<float>(3, 0.0f);
-        light2.params[MGL_LIGHT_SPECULAR] = std::vector<float>(3, 0.0f);
-        light2.params[MGL_LIGHT_POSITION] = std::vector<float>(3, 0.0f);
-        light2.params[MGL_LIGHT_POSITION][2] = 1.0f;
-        light2.enabled = false;
-        lights[MGL_LIGHT2] = light2;
-    }
-    
     lightingEnabled = enabled;
+}
+
+void initLight(MGLlight light)
+{
+    std::map<MGLlight, Light>::iterator i = lights.find(light);
+    if (i == lights.end())
+    {
+        // INITIAL LIGHT SETUP
+        Light lightToSetup;
+        MGLfloat diffuseAmount = light == MGL_LIGHT0 ? 1.0f : 0.0f;
+        MGLfloat specularAmount = light == MGL_LIGHT0 ? 1.0f : 0.0f;
+        lightToSetup.params[MGL_LIGHT_AMBIENT] = std::vector<float>(3, 0.0f);
+        lightToSetup.params[MGL_LIGHT_DIFFUSE] = std::vector<float>(3, diffuseAmount);
+        lightToSetup.params[MGL_LIGHT_SPECULAR] = std::vector<float>(3, specularAmount);
+        MGLfloat position[4] = {0.0f, 0.0f, 1.0f, 1.0f};
+        MGLfloat transformedPosition[4];
+        mulMatrixVector(modelViewMatrix, position, transformedPosition);
+        lightToSetup.params[MGL_LIGHT_POSITION] = std::vector<float>(transformedPosition, transformedPosition + 3);
+        lights[light] = lightToSetup;
+        
+    }
 }
 
 /**
@@ -391,6 +706,7 @@ void mglLightingEnabled(bool enabled)
  */
 void mglLightEnabled(MGLlight light, bool enabled)
 {
+    initLight(light);
     lights[light].enabled = enabled;
 }
 
@@ -444,6 +760,20 @@ void mglLight(MGLlight light,
               MGLlight_param pname,
               MGLfloat *values)
 {
+    initLight(light);
+    if (pname == MGL_LIGHT_POSITION)
+    {
+        MGLfloat position[4];
+        for (int i = 0; i < 3; i++)
+        {
+            position[i] = values[i];
+        }
+        position[3] = 1.0f;
+        MGLfloat transformedPosition[4];
+        mulMatrixVector(modelViewMatrix, position, transformedPosition);
+        values = transformedPosition;
+    }
+    
     lights[light].params[pname] = vector<float>(values, values + 3);
 }
 
@@ -477,7 +807,20 @@ void mglLight(MGLlight light,
 void mglMaterial(MGLmat_param pname,
                  MGLfloat *values)
 {
-    NOT_YET_IMPLEMENTED;
+    static bool doFirstTimeMaterialSetup = true;
+    if (doFirstTimeMaterialSetup)
+    {
+        doFirstTimeMaterialSetup = false;  // never again
+        currentMaterial.params[MGL_MAT_AMBIENT] = vector<MGLfloat>(0.2, 3);
+        currentMaterial.params[MGL_MAT_DIFFUSE] = vector<MGLfloat>(0.8, 3);
+        currentMaterial.params[MGL_MAT_SPECULAR] = vector<MGLfloat>(0.0, 3);
+        currentMaterial.params[MGL_MAT_SHININESS] = vector<MGLfloat>(0.0, 1);
+    }
+    
+    int numValues = 3;
+    if (pname == MGL_MAT_SHININESS)
+        numValues = 1;
+    currentMaterial.params[pname] = vector<MGLfloat>(values, values + numValues);
 }
 
 /**
@@ -545,7 +888,14 @@ void mglUseTexture(MGLtex_id id)
     {
         MGL_ERROR("An unregistered texture ID was used in a call to mglUseTexture");
     }
-    currentTextureId = id;
+    if (textureSlot == MGL_TEX_DIFFUSE)
+    {
+        currentDiffuseTextureId = id;
+    }
+    else if (textureSlot == MGL_TEX_SPECULAR)
+    {
+        currentSpecularTextureId = id;
+    }
 }
 
 /**
@@ -556,6 +906,8 @@ void mglUseTexture(MGLtex_id id)
  */
 void mglFreeTexture(MGLtex_id id)
 {
+    Texture t = textures[id];
+    delete [] t.data;
     textures.erase(id);
 }
 
@@ -567,7 +919,8 @@ void mglFreeTexture(MGLtex_id id)
 void mglTexCoord(MGLfloat x,
                  MGLfloat y)
 {
-    NOT_YET_IMPLEMENTED;
+    currentTexCoord.u = x;
+    currentTexCoord.v = y;
 }
 
 /**
@@ -585,7 +938,7 @@ void mglTexCoord(MGLfloat x,
  */
 void mglTextureSlot(MGLtex_slot slot)
 {
-    NOT_YET_IMPLEMENTED;
+    textureSlot = slot;
 }
 
 /**
@@ -598,7 +951,7 @@ void mglNormal(MGLfloat x,
                MGLfloat y,
                MGLfloat z)
 {
-    NOT_YET_IMPLEMENTED;
+    currentNormal = Vector3(x, y, z).normalize();
 }
 
 /**
@@ -654,6 +1007,8 @@ void mglReadPixels(MGLsize width,
 void mglFlush()
 {
     if (hasBegun) MGL_ERROR("mglFlush executed after mglBegin.");
+    
+    printf("---\n");
     
     transformedVertices.clear();
 }
@@ -721,8 +1076,41 @@ void mglVertex3(MGLfloat x,
     // Assign your new added vertex attributes here.
     //
     // ////////////////////////////////////////////////////
+    v.u = currentTexCoord.u;
+    v.v = currentTexCoord.v;
     
-    v.color = curColor;
+    // TODO: Multiply the normal by the transpose of the inverse of the modelview matrix.
+    Matrix3 normalMatrix = matrix3FromMGLMatrix(modelViewMatrix).invert().transpose();
+    Vector3 transformedNormal = (normalMatrix * currentNormal).normalize();
+    v.nx = transformedNormal.v[0];
+    v.ny = transformedNormal.v[1];
+    v.nz = transformedNormal.v[2];
+    
+    // The following are all linear in cartesian space 
+    v.f_prime_u = v.u / v.w;
+    v.f_prime_v = v.v / v.w;
+
+    v.f_prime_nx = v.nx / v.w;
+    v.f_prime_ny = v.ny / v.w;
+    v.f_prime_nz = v.nz / v.w;
+    
+    v.ex = v.x;
+    v.ey = v.y;
+    v.ez = v.z;
+    v.f_prime_ex = v.ex / v.w;
+    v.f_prime_ey = v.ey / v.w;
+    v.f_prime_ez = v.ez / v.w;
+    
+    v.g_prime = 1.0 / v.w;  // linear in cartesian space, used to recover values from f_primes after linearly interpolating everything
+     
+    v.diffuseTexture = textures[currentDiffuseTextureId];
+    v.specularTexture = textures[currentSpecularTextureId];
+    
+    MGL_SET_RED(v.color, (MGLbyte)(MGL_GET_RED(curColor) / v.w));
+    MGL_SET_GREEN(v.color, (MGLbyte)(MGL_GET_GREEN(curColor) / v.w));
+    MGL_SET_BLUE(v.color, (MGLbyte)(MGL_GET_BLUE(curColor) / v.w));
+    
+    v.material = currentMaterial;
     
     ///////////////////////////////////////////////////////
     //
