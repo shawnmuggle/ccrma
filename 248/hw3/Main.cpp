@@ -40,7 +40,8 @@ std::map<aiMaterial *, sf::Image *> normalMaps;
 bool left, right, forward, backward;
 bool lightLeft, lightRight, lightUp, lightDown;
 float yaw = 0.0, pitch = 0.0;
-float lightYaw = 0.0f, lightPitch = 0.0f, lightDistance = 15.0f;
+float lightYaw = 0.0f, lightPitch = M_PI / 9, lightDistance = 15.0f;
+bool test;
 
 aiVector3D position, velocity;
 float friction = 0.9;
@@ -280,7 +281,10 @@ void handleInput() {
                     break;                    
                 case sf::Key::Right:
                     lightRight = true;
-                    break;                    
+                    break;
+                case sf::Key::T:
+                    test = !test;
+                    break;
                 default:
                     break;
             }
@@ -408,7 +412,7 @@ void updateLightPosition()
         lightYaw += 0.01;
     }
     if (lightPitch > M_PI / 3.0f) lightPitch = M_PI / 3.0f;
-    if (lightPitch < -M_PI / 3.0f) lightPitch = -M_PI / 3.0f;
+    if (lightPitch < 0.05f) lightPitch = 0.05f;
 }
 
 // TODO: remove this?
@@ -579,7 +583,7 @@ void setLightMatrix()
 {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-25, 25, -25, 25, -10, 40);
+    glOrtho(-25, 25, -25, 25, -20, 40);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     
@@ -611,7 +615,7 @@ void setLightMatrix()
 	
 	// change texture7's matrix
 	glMatrixMode(GL_TEXTURE);
-	glActiveTextureARB(GL_TEXTURE7);  // Store the light bias * projection * modelview matrix in texture 7 (??)
+	glActiveTexture(GL_TEXTURE7);  // Store the light bias * projection * modelview matrix in texture 7 (??)
 	
 	glLoadIdentity();	
 	glLoadMatrixd(bias);
@@ -634,7 +638,7 @@ void renderNode(Shader *shader, aiScene const * scene, aiNode *node, bool doText
     if (shader == phongShader)
     {
         glMatrixMode(GL_TEXTURE);
-        glActiveTextureARB(GL_TEXTURE6);
+        glActiveTexture(GL_TEXTURE6);
         glPushMatrix();
         glMultMatrixf((float *)&m);
     }
@@ -674,6 +678,7 @@ void renderNode(Shader *shader, aiScene const * scene, aiNode *node, bool doText
     if (shader == phongShader)
     {
         glMatrixMode(GL_TEXTURE);
+        glActiveTexture(GL_TEXTURE6);
         glPopMatrix();
     }
     
@@ -699,39 +704,34 @@ void renderFrame() {
 
     glUseProgram(phongShader->programID());
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    setLightMatrix();
     setMatrices();
     renderNode(phongShader, cathedralScene, cathedralScene->mRootNode, true);
     renderNode(phongShader, armadilloScene, armadilloScene->mRootNode, false);
     
-    // Render test quad
-    glDisable(GL_LIGHTING);
-    glUseProgramObjectARB(0);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-RENDER_WIDTH/2,RENDER_WIDTH/2,-RENDER_HEIGHT/2,RENDER_HEIGHT/2,1,20);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glColor4f(1,1,1,1);
-    glActiveTextureARB(GL_TEXTURE0);
-    
-//    glBindTexture(GL_TEXTURE_2D, depthTextureId);
-    
-//    sf::Image *diffuseMap = getTextureMap(cathedralScene, cathedralScene->mMeshes[1], &diffuseMaps);
-//    diffuseMap->Bind();
-//    printf("Some texture: %d\n", diffuseMap->myTexture);
-
-//    depthRenderTarget->bind();
-    glBindTexture(GL_TEXTURE_2D, depthRenderTarget->textureID());
-    
-    glEnable(GL_TEXTURE_2D);
-    glTranslated(0,-RENDER_HEIGHT/2,-1);
-    glBegin(GL_QUADS);
-    glTexCoord2d(0,0);glVertex3f(0,0,0);
-    glTexCoord2d(1,0);glVertex3f(RENDER_WIDTH/2,0,0);
-    glTexCoord2d(1,1);glVertex3f(RENDER_WIDTH/2,RENDER_HEIGHT/2,0);
-    glTexCoord2d(0,1);glVertex3f(0,RENDER_HEIGHT/2,0);
-    glEnd();
-    glEnable(GL_LIGHTING);
-    glDisable(GL_TEXTURE_2D);
-    depthRenderTarget->unbind();
+    if (test)
+    {
+        // Render test quad
+        glDisable(GL_LIGHTING);
+        glUseProgramObjectARB(0);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        glOrtho(-RENDER_WIDTH/2,RENDER_WIDTH/2,-RENDER_HEIGHT/2,RENDER_HEIGHT/2,1,20);
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glColor4f(1,1,1,1);
+        glActiveTextureARB(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, depthRenderTarget->textureID());
+        glEnable(GL_TEXTURE_2D);
+        glTranslated(0,-RENDER_HEIGHT/2,-1);
+        glBegin(GL_QUADS);
+        glTexCoord2d(0,0);glVertex3f(0,0,0);
+        glTexCoord2d(1,0);glVertex3f(RENDER_WIDTH/2,0,0);
+        glTexCoord2d(1,1);glVertex3f(RENDER_WIDTH/2,RENDER_HEIGHT/2,0);
+        glTexCoord2d(0,1);glVertex3f(0,RENDER_HEIGHT/2,0);
+        glEnd();
+        glEnable(GL_LIGHTING);
+        glDisable(GL_TEXTURE_2D);
+        depthRenderTarget->unbind();
+    }
 }

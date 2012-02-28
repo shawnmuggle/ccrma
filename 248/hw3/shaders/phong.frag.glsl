@@ -100,7 +100,7 @@ void main() {
     vec4 tempShadow = shadowCoords / shadowCoords.w ;
     
     // offset the shadow coordinate to avoid bad stuff
-    tempShadow.z += 0.005;
+    tempShadow.z -= 0.00005;
     
     // compute the depth
     float d = texture2D(shadowMap,tempShadow.xy).z;
@@ -114,4 +114,5 @@ void main() {
     
 	// This actually writes to the frame buffer
 	gl_FragColor = directionalLightColor * shadow + pointLightColor;
+//    gl_FragColor = vec4(d, 0.0, 0.0, 1.0);
 }
