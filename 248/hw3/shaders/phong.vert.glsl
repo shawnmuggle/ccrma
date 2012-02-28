@@ -15,7 +15,7 @@ varying vec3 tangent;
 varying vec3 bitangent;
 
 void main() {
-
+    
 	// Transform the vertex to get the eye-space position of the vertex
 	vec4 eyeTemp = gl_ModelViewMatrix * vec4(positionIn, 1);
 	eyePosition = eyeTemp.xyz;

@@ -37,10 +37,11 @@ DepthRenderTarget::DepthRenderTarget(unsigned int width, unsigned int height) {
 
     // Check the status of the FBO
     glDrawBuffer(GL_NONE);
+    glReadBuffer(GL_NONE);
     if (GL_FRAMEBUFFER_COMPLETE != glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT)) {
         throw std::runtime_error("Invalid framebuffer configuration");
     }
-    glDrawBuffer(GL_BACK);
+//    glDrawBuffer(GL_BACK);
     glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
     glBindTexture(GL_TEXTURE_2D, 0);
 }
@@ -59,6 +60,7 @@ void DepthRenderTarget::bind() {
     glPushAttrib(GL_VIEWPORT_BIT);
     glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, frameBufferID_);
     glDrawBuffer(GL_NONE);
+//    glReadBuffer(GL_NONE);
     glViewport(0, 0, width_, height_);
 }
 

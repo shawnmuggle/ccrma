@@ -60,6 +60,8 @@
 		D59522FB14FB321600401581 /* tiles_n.jpg in Copy Models */ = {isa = PBXBuildFile; fileRef = D59522B914FB319C00401581 /* tiles_n.jpg */; };
 		D59522FC14FB321600401581 /* tiles_s.jpg in Copy Models */ = {isa = PBXBuildFile; fileRef = D59522BA14FB319C00401581 /* tiles_s.jpg */; };
 		D596868B14FC36B500D61899 /* DepthRenderTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D596868914FC36B500D61899 /* DepthRenderTarget.cpp */; };
+		D5B777A214FCD7F700D1C2CF /* simple.frag.glsl in Copy Shaders */ = {isa = PBXBuildFile; fileRef = D5B7779F14FCD7E700D1C2CF /* simple.frag.glsl */; };
+		D5B777A314FCD7F700D1C2CF /* simple.vert.glsl in Copy Shaders */ = {isa = PBXBuildFile; fileRef = D5B777A014FCD7E700D1C2CF /* simple.vert.glsl */; };
 		E7FBA82714EDF2E00028D7C0 /* libassimp.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E36360E12FCF52A00D6344A /* libassimp.dylib */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +82,8 @@
 			dstPath = shaders;
 			dstSubfolderSpec = 7;
 			files = (
+				D5B777A214FCD7F700D1C2CF /* simple.frag.glsl in Copy Shaders */,
+				D5B777A314FCD7F700D1C2CF /* simple.vert.glsl in Copy Shaders */,
 				C98951FB12EF808800B97901 /* phong.frag.glsl in Copy Shaders */,
 				C98951FC12EF808800B97901 /* phong.vert.glsl in Copy Shaders */,
 			);
@@ -201,6 +205,8 @@
 		D59522BA14FB319C00401581 /* tiles_s.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tiles_s.jpg; sourceTree = "<group>"; };
 		D596868914FC36B500D61899 /* DepthRenderTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DepthRenderTarget.cpp; path = ../DepthRenderTarget.cpp; sourceTree = "<group>"; };
 		D596868A14FC36B500D61899 /* DepthRenderTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepthRenderTarget.h; path = ../DepthRenderTarget.h; sourceTree = "<group>"; };
+		D5B7779F14FCD7E700D1C2CF /* simple.frag.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = simple.frag.glsl; path = ../shaders/simple.frag.glsl; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		D5B777A014FCD7E700D1C2CF /* simple.vert.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = simple.vert.glsl; path = ../shaders/simple.vert.glsl; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		E700C5D414E90AB80056CBB4 /* sndfile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = sndfile.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -268,6 +274,8 @@
 			children = (
 				C98951C112EF7C0A00B97901 /* phong.frag.glsl */,
 				C98951C012EF7BFA00B97901 /* phong.vert.glsl */,
+				D5B7779F14FCD7E700D1C2CF /* simple.frag.glsl */,
+				D5B777A014FCD7E700D1C2CF /* simple.vert.glsl */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";

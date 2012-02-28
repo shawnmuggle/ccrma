@@ -4,6 +4,7 @@
 uniform sampler2D diffuseMap;
 uniform sampler2D specularMap;
 uniform sampler2D normalMap;
+uniform sampler2D shadowMap;
 
 // Diffuse, ambient, and specular materials.  These are also uniform.
 uniform vec3 Kd;
@@ -20,8 +21,8 @@ varying vec3 eyePosition;
 varying vec3 tangent;
 varying vec3 bitangent;
 
-void main() {
-
+vec4 pointLight(int lightId)
+{
     vec3 mapNormal = texture2D(normalMap, texcoord).rgb;
     mapNormal = mapNormal * 2.0 - 1.0;
     mat3 tbn;
@@ -31,27 +32,67 @@ void main() {
     
     vec3 transformedNormal = tbn * mapNormal;
     
-	// Normalize the normal, and calculate light vector and view vector
-	// Note: this is doing a directional light, which is a little different
-	// from what you did in Assignment 2.
+    // Normalize the normal, and calculate light vector and view vector
 	vec3 N = normalize(transformedNormal);
-	vec3 L = normalize(gl_LightSource[0].position.xyz);
+	vec3 L = normalize(gl_LightSource[lightId].position.xyz - eyePosition.xyz);
 	vec3 V = normalize(-eyePosition);
-		
+    
 	// Calculate the diffuse color coefficient, and sample the diffuse texture
 	float Rd = max(0.0, dot(L, N));
 	vec3 Td = texture2D(diffuseMap, texcoord).rgb;
-	vec3 diffuse = Rd * Kd * Td * gl_LightSource[0].diffuse.rgb;
+	vec3 diffuse = Rd * Kd * Td * gl_LightSource[lightId].diffuse.rgb;
 	
 	// Calculate the specular coefficient
 	vec3 R = reflect(-L, N);
 	float Rs = pow(max(0.0, dot(V, R)), alpha);
 	vec3 Ts = texture2D(specularMap, texcoord).rgb;
-	vec3 specular = Rs * Ks * Ts * gl_LightSource[0].specular.rgb;
-		
+	vec3 specular = Rs * Ks * Ts * gl_LightSource[lightId].specular.rgb;
+    
 	// Ambient is easy
-	vec3 ambient = Ka * gl_LightSource[0].ambient.rgb;
+	vec3 ambient = Ka * gl_LightSource[lightId].ambient.rgb;
+    
+    return vec4(diffuse + specular + ambient, 1);
+}
 
+vec4 directionalLight(int lightId)
+{
+    vec3 mapNormal = texture2D(normalMap, texcoord).rgb;
+    mapNormal = mapNormal * 2.0 - 1.0;
+    mat3 tbn;
+    tbn[0] = tangent;
+    tbn[1] = bitangent;
+    tbn[2] = normalize(normal);
+    
+    vec3 transformedNormal = tbn * mapNormal;
+    
+    // Normalize the normal, and calculate light vector and view vector
+	// Note: this is doing a directional light, which is a little different
+	// from what you did in Assignment 2.
+	vec3 N = normalize(transformedNormal);
+	vec3 L = normalize(gl_LightSource[lightId].position.xyz);
+	vec3 V = normalize(-eyePosition);
+    
+	// Calculate the diffuse color coefficient, and sample the diffuse texture
+	float Rd = max(0.0, dot(L, N));
+	vec3 Td = texture2D(diffuseMap, texcoord).rgb;
+	vec3 diffuse = Rd * Kd * Td * gl_LightSource[lightId].diffuse.rgb;
+	
+	// Calculate the specular coefficient
+	vec3 R = reflect(-L, N);
+	float Rs = pow(max(0.0, dot(V, R)), alpha);
+	vec3 Ts = texture2D(specularMap, texcoord).rgb;
+	vec3 specular = Rs * Ks * Ts * gl_LightSource[lightId].specular.rgb;
+    
+	// Ambient is easy
+	vec3 ambient = Ka * gl_LightSource[lightId].ambient.rgb;
+    
+    return vec4(diffuse + specular + ambient, 1);
+}
+
+void main() {
+    vec4 directionalLightColor = directionalLight(0);
+    vec4 pointLightColor = pointLight(1);
+    
 	// This actually writes to the frame buffer
-	gl_FragColor = vec4(diffuse + specular + ambient, 1);
+	gl_FragColor = directionalLightColor + pointLightColor;
 }
