@@ -20,6 +20,7 @@ varying vec3 normal;
 varying vec3 eyePosition;
 varying vec3 tangent;
 varying vec3 bitangent;
+varying vec4 shadowCoords;
 
 vec4 pointLight(int lightId)
 {
@@ -93,6 +94,24 @@ void main() {
     vec4 directionalLightColor = directionalLight(0);
     vec4 pointLightColor = pointLight(1);
     
+    // TODO: Make this take into account the surrounding pixels
+    
+    // divide the shadow coordinate by w
+    vec4 tempShadow = shadowCoords / shadowCoords.w ;
+    
+    // offset the shadow coordinate to avoid bad stuff
+    tempShadow.z += 0.005;
+    
+    // compute the depth
+    float d = texture2D(shadowMap,tempShadow.xy).z;
+    
+    // shadow will not affect the output by default
+    float shadow = 1.0;
+    // however, if the w value is less than zero and the depth is less
+    // than shadow.z, it will 
+    if (shadowCoords.w > 0.0 && d < tempShadow.z)
+        shadow = 0.5;
+    
 	// This actually writes to the frame buffer
-	gl_FragColor = directionalLightColor + pointLightColor;
+	gl_FragColor = directionalLightColor * shadow + pointLightColor;
 }

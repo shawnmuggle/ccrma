@@ -40,7 +40,7 @@ std::map<aiMaterial *, sf::Image *> normalMaps;
 bool left, right, forward, backward;
 bool lightLeft, lightRight, lightUp, lightDown;
 float yaw = 0.0, pitch = 0.0;
-float lightYaw = 0.0f, lightPitch = 0.0f, lightDistance = 25.0f;
+float lightYaw = 0.0f, lightPitch = 0.0f, lightDistance = 15.0f;
 
 aiVector3D position, velocity;
 float friction = 0.9;
@@ -53,13 +53,6 @@ void renderFrame();
 // SHADOW STUFF
 
 DepthRenderTarget *depthRenderTarget;
-
-//// Hold id of the framebuffer for light POV rendering
-//GLuint fboId;
-//// Z values will be rendered to this texture when using fboId framebuffer
-//GLuint depthTextureId;
-//
-//void generateShadowFBO();
 
 // END SHADOW STUFF
 
@@ -249,8 +242,6 @@ void loadAssets() {
     loadTexturesAndMeshIndices(armadilloScene);
     
     whiteImage = sf::Image(1, 1, sf::Color::White);
-    
-//    generateShadowFBO();
 }
 
 void handleInput() {
@@ -588,7 +579,7 @@ void setLightMatrix()
 {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-25, 25, -25, 25, -20, 40);
+    glOrtho(-25, 25, -25, 25, -10, 40);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     
@@ -600,6 +591,35 @@ void setLightMatrix()
     gluLookAt(lightPos.x, lightPos.y, lightPos.z,
               0.0f, 0.0f, 0.0f, 
               0.0f, 1.0f, 0.0f);
+    
+    // PACKAGE UP THE LIGHT MATRICES FOR THE SHADER
+    // (so that we can do it once per frame on the CPU instead of a hojillion times on the GPU)
+    static double modelView[16];
+	static double projection[16];
+    
+	const GLdouble bias[16] =
+    {
+		0.5, 0.0, 0.0, 0.0, 
+		0.0, 0.5, 0.0, 0.0,
+		0.0, 0.0, 0.5, 0.0,
+        0.5, 0.5, 0.5, 1.0
+    };
+	
+	// Grab modelview and transformation matrices
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelView);
+	glGetDoublev(GL_PROJECTION_MATRIX, projection);
+	
+	// change texture7's matrix
+	glMatrixMode(GL_TEXTURE);
+	glActiveTextureARB(GL_TEXTURE7);  // Store the light bias * projection * modelview matrix in texture 7 (??)
+	
+	glLoadIdentity();	
+	glLoadMatrixd(bias);
+    glMultMatrixd(projection);
+	glMultMatrixd(modelView);
+	
+	// Go back to modelview matrix mode
+	glMatrixMode(GL_MODELVIEW);
 }
 
 void renderNode(Shader *shader, aiScene const * scene, aiNode *node, bool doTexture)
@@ -611,6 +631,14 @@ void renderNode(Shader *shader, aiScene const * scene, aiNode *node, bool doText
     m = m.Transpose();
     glMultMatrixf((float *)&m);
 
+    if (shader == phongShader)
+    {
+        glMatrixMode(GL_TEXTURE);
+        glActiveTextureARB(GL_TEXTURE6);
+        glPushMatrix();
+        glMultMatrixf((float *)&m);
+    }
+    
     for (int i = 0; i < node->mNumMeshes; i++)
     {
         int meshIndex = node->mMeshes[i];
@@ -643,143 +671,15 @@ void renderNode(Shader *shader, aiScene const * scene, aiNode *node, bool doText
         renderNode(shader, scene, childNode, doTexture);
     }
     
+    if (shader == phongShader)
+    {
+        glMatrixMode(GL_TEXTURE);
+        glPopMatrix();
+    }
+    
     glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
 }
-
-//void generateShadowFBO()
-//{
-//    int shadowMapWidth = RENDER_WIDTH * SHADOW_MAP_RATIO;
-//    int shadowMapHeight = RENDER_HEIGHT * SHADOW_MAP_RATIO;
-//	
-//    GLenum FBOstatus;
-//    
-//    // Try to use a texture depth component
-//    glGenTextures(1, &depthTextureId);
-//    glBindTexture(GL_TEXTURE_2D, depthTextureId);
-//    
-//    // GL_LINEAR does not make sense for depth texture. However, next tutorial shows usage of GL_LINEAR and PCF
-//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-//    
-//    // Remove artifact on the edges of the shadowmap
-//    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP );
-//    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP );
-//    
-//    // No need to force GL_DEPTH_COMPONENT24, drivers usually give you the max precision if available
-//    glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, shadowMapWidth, shadowMapHeight, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, 0);
-//    glBindTexture(GL_TEXTURE_2D, 0);
-//    
-//    // create a framebuffer object
-//    glGenFramebuffersEXT(1, &fboId);
-//    glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fboId);
-//    
-//    // Instruct openGL that we won't bind a color texture with the currently bound FBO
-//    glDrawBuffer(GL_NONE);
-//    glReadBuffer(GL_NONE);
-//    
-//    // attach the texture to FBO depth attachment point
-//    glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT,GL_TEXTURE_2D, depthTextureId, 0);
-//    
-//    // check FBO status
-//    FBOstatus = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-//    if(FBOstatus != GL_FRAMEBUFFER_COMPLETE_EXT)
-//        printf("GL_FRAMEBUFFER_COMPLETE_EXT failed, CANNOT use FBO\n");
-//    
-//    // switch back to window-system-provided framebuffer
-//    glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
-//}
-//
-//void setupShadowMatrices(float position_x,float position_y,float position_z,float lookAt_x,float lookAt_y,float lookAt_z)
-//{
-//	glMatrixMode(GL_PROJECTION);
-//	glLoadIdentity();
-//    glOrtho(-35, 35, -35, 35, -35, 35);
-//	glMatrixMode(GL_MODELVIEW);
-//	glLoadIdentity();
-//	gluLookAt(position_x,position_y,position_z,lookAt_x,lookAt_y,lookAt_z,0,1,0);
-//}
-//
-//void setLightMatrix(void)
-//{
-//    static double modelView[16];
-//    static double projection[16];
-//    
-//    // Moving from unit cube [-1,1] to [0,1]  
-//    const GLdouble bias[16] =
-//    {
-//        0.5, 0.0, 0.0, 0.0, 
-//        0.0, 0.5, 0.0, 0.0,
-//        0.0, 0.0, 0.5, 0.0,
-//		0.5, 0.5, 0.5, 1.0
-//    };
-//    
-//    // Grab modelview and transformation matrices
-//    glGetDoublev(GL_MODELVIEW_MATRIX, modelView);
-//    glGetDoublev(GL_PROJECTION_MATRIX, projection);
-//    
-//    glMatrixMode(GL_TEXTURE);
-//    glActiveTextureARB(GL_TEXTURE7);
-//    
-//    glLoadIdentity();	
-//    glLoadMatrixd(bias);
-//    
-//    // concatating all matrices into one.
-//    glMultMatrixd (projection);
-//    glMultMatrixd (modelView);
-//    
-//    // Go back to normal matrix mode
-//    glMatrixMode(GL_MODELVIEW);
-//}	
-//
-//void renderShadows()
-//{
-//    //First step: Render from the light POV to a FBO, story depth values only
-//	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT,fboId);	//Rendering offscreen
-//	
-//	//Using the fixed pipeline to render to the depthbuffer
-////	glUseProgramObjectARB(0);
-//    glUseProgram(shader->programID());  // TEMP TEMP TEMP
-//	
-//	// In the case we render the shadowmap to a higher resolution, the viewport must be modified accordingly.
-//	glViewport(0,0,RENDER_WIDTH * SHADOW_MAP_RATIO,RENDER_HEIGHT* SHADOW_MAP_RATIO);
-//	
-//	// Clear previous frame values
-//	glClear( GL_DEPTH_BUFFER_BIT);
-//	
-//	//Disable color rendering, we only want to write to the Z-Buffer
-//	glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE); 
-//	
-//	setupShadowMatrices(0, 30, 0, 0, 0, 0);
-//    setMatrices();
-//	
-//	// Culling switching, rendering only backface, this is done to avoid self-shadowing
-////    glEnable(GL_CULL_FACE);
-////	glCullFace(GL_FRONT);
-//    renderNode(cathedralScene, cathedralScene->mRootNode, true);
-//    renderNode(armadilloScene, armadilloScene->mRootNode, false);
-//	
-//	//Save modelview/projection matrice into texture7, also add a bias
-////	setLightMatrix();
-//    
-//    // RECOVER STATE
-//    
-//    // Now rendering from the camera POV, using the FBO to generate shadows
-//	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT,0);
-//	
-//	glViewport(0,0,RENDER_WIDTH,RENDER_HEIGHT);
-//	
-//	//Enabling color write (previously disabled for light POV z-buffer rendering)
-//	glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE); 
-//	
-//	// Clear previous frame values
-//	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//    
-//	//Using the shadow shader
-//	glUseProgram(shader->programID());
-//	
-////    glDisable(GL_CULL_FACE);
-//}
 
 void renderFrame() {
     //////////////////////////////////////////////////////////////////////////
@@ -789,17 +689,16 @@ void renderFrame() {
     move();
     updateLightPosition();
     
-    glUseProgram(simpleShader->programID());
     depthRenderTarget->bind();
+    glUseProgram(simpleShader->programID());
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     setLightMatrix();
     renderNode(simpleShader, cathedralScene, cathedralScene->mRootNode, true);
     renderNode(simpleShader, armadilloScene, armadilloScene->mRootNode, false);
     depthRenderTarget->unbind();
 
+    glUseProgram(phongShader->programID());
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glUseProgram(phongShader->programID());    
-
     setMatrices();
     renderNode(phongShader, cathedralScene, cathedralScene->mRootNode, true);
     renderNode(phongShader, armadilloScene, armadilloScene->mRootNode, false);

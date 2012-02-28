@@ -13,6 +13,7 @@ varying vec3 normal;
 varying vec3 eyePosition;
 varying vec3 tangent;
 varying vec3 bitangent;
+varying vec4 shadowCoords;
 
 void main() {
     
@@ -31,4 +32,6 @@ void main() {
 
 	// Just copy the texture coordinates
 	texcoord = texcoordIn;
+    
+    shadowCoords = gl_TextureMatrix[7] * (gl_TextureMatrix[6] * vec4(positionIn, 1));
 }
