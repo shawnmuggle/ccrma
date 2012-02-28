@@ -59,6 +59,7 @@
 		D59522FA14FB321600401581 /* tiles_d.jpg in Copy Models */ = {isa = PBXBuildFile; fileRef = D59522B814FB319C00401581 /* tiles_d.jpg */; };
 		D59522FB14FB321600401581 /* tiles_n.jpg in Copy Models */ = {isa = PBXBuildFile; fileRef = D59522B914FB319C00401581 /* tiles_n.jpg */; };
 		D59522FC14FB321600401581 /* tiles_s.jpg in Copy Models */ = {isa = PBXBuildFile; fileRef = D59522BA14FB319C00401581 /* tiles_s.jpg */; };
+		D596868B14FC36B500D61899 /* DepthRenderTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D596868914FC36B500D61899 /* DepthRenderTarget.cpp */; };
 		E7FBA82714EDF2E00028D7C0 /* libassimp.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E36360E12FCF52A00D6344A /* libassimp.dylib */; };
 /* End PBXBuildFile section */
 
@@ -198,6 +199,8 @@
 		D59522B814FB319C00401581 /* tiles_d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tiles_d.jpg; sourceTree = "<group>"; };
 		D59522B914FB319C00401581 /* tiles_n.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tiles_n.jpg; sourceTree = "<group>"; };
 		D59522BA14FB319C00401581 /* tiles_s.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tiles_s.jpg; sourceTree = "<group>"; };
+		D596868914FC36B500D61899 /* DepthRenderTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DepthRenderTarget.cpp; path = ../DepthRenderTarget.cpp; sourceTree = "<group>"; };
+		D596868A14FC36B500D61899 /* DepthRenderTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepthRenderTarget.h; path = ../DepthRenderTarget.h; sourceTree = "<group>"; };
 		E700C5D414E90AB80056CBB4 /* sndfile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = sndfile.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -235,6 +238,8 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D596868914FC36B500D61899 /* DepthRenderTarget.cpp */,
+				D596868A14FC36B500D61899 /* DepthRenderTarget.h */,
 				C989525712EF856100B97901 /* Shader.cpp */,
 				C989525812EF856100B97901 /* Shader.h */,
 				C9EA8EF612EE67EA0002670E /* Main.cpp */,
@@ -395,6 +400,7 @@
 			files = (
 				C9EA8EF712EE67EA0002670E /* Main.cpp in Sources */,
 				C989525912EF856100B97901 /* Shader.cpp in Sources */,
+				D596868B14FC36B500D61899 /* DepthRenderTarget.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

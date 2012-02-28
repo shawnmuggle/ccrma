@@ -1,8 +1,8 @@
 #include "Framework.h"
 #include "Shader.h"
 
-#define MODEL_PATH "models/cathedral.3ds"
-//#define MODEL_PATH "models/dragon.dae"
+#define CATHEDRAL_MODEL_PATH "models/cathedral.3ds"
+#define ARMADILLO_MODEL_PATH "models/armadillo.3ds"
 
 // Note: See the SMFL documentation for info on setting up fullscreen mode
 // and using rendering settings
@@ -17,8 +17,10 @@ sf::Clock clck;
 // This creates an asset importer using the Open Asset Import library.
 // It automatically manages resources for you, and frees them when the program
 // exits.
-Assimp::Importer importer;
-const aiScene* scene;
+Assimp::Importer cathedralImporter;
+const aiScene* cathedralScene;
+Assimp::Importer armadilloImporter;
+const aiScene* armadilloScene;
 std::map<aiMesh *, std::vector<unsigned>*> indexBuffers;
 sf::Image whiteImage;
 
@@ -39,7 +41,7 @@ void loadAssets();
 void handleInput();
 void renderFrame();
 
-void loadTextureMap(aiMaterial *material, aiTextureType textureType, std::map<aiMaterial *, sf::Image *> *textureMapMap, char file_suffix);
+void loadTextureMap(aiMaterial *material, std::map<aiMaterial *, sf::Image *> *textureMapMap, char file_suffix);
 sf::Image *getTextureMap(aiMesh const * inMesh, std::map<aiMaterial *, sf::Image *> *textureMapMap);
 
 int main(int argc, char** argv) {
@@ -56,8 +58,6 @@ int main(int argc, char** argv) {
 
     return 0;
 }
-
-
 
 void initOpenGL() {
     // Initialize GLEW on Windows, to make sure that OpenGL 2.0 is loaded
@@ -82,10 +82,18 @@ void initOpenGL() {
     
     position = aiVector3D(40.0, -5.0, 0.0);
     yaw = M_PI * 3 / 2.0;
+    
+    GLfloat light0_ambient[] = { 245/2550.0, 222/2550.0, 179/2550.0, 1 };
+    GLfloat light0_diffuse[] = { 245/255.0, 232/255.0, 199/255.0, 1 };
+    GLfloat light0_specular[] = { 0.7, 0.7, 0.7, 1 };
+    GLfloat shininess = 90;
+    glLightfv( GL_LIGHT0, GL_AMBIENT, light0_ambient );
+    glLightfv( GL_LIGHT0, GL_DIFFUSE, light0_diffuse );
+    glLightfv( GL_LIGHT0, GL_SPECULAR, light0_specular );
+    glLightfv( GL_LIGHT0, GL_SHININESS, &shininess );
 }
 
-
-void loadTextureMap(aiMaterial *material, aiTextureType textureType, std::map<aiMaterial *, sf::Image *> *textureMapMap, char file_suffix)
+void loadTextureMap(aiMaterial *material, std::map<aiMaterial *, sf::Image *> *textureMapMap, char file_suffix)
 {
     aiString materialName;
     material->Get(AI_MATKEY_NAME, materialName);
@@ -96,20 +104,23 @@ void loadTextureMap(aiMaterial *material, aiTextureType textureType, std::map<ai
     {
         // Haven't loaded this image yet, load it
         aiString pathString;
-        material->GetTexture(textureType, 0, &pathString);
+        material->GetTexture(aiTextureType_DIFFUSE, 0, &pathString);
         
         // Look for a diffuse texture
         sf::Image *map = new sf::Image();
         char path[1024];
         sprintf(path, "models/%s_%c.jpg", pathString.data, file_suffix);
+        printf("LOOKING FOR texture: %s\n", path);
         bool loaded = map->LoadFromFile(path);
         if (loaded)
         {
             // Found a file!
+            printf("GOT ITTTT\n");
             textureMapMap->insert(std::pair<aiMaterial *, sf::Image *>(material, map));
         }
         else
         {
+            printf("NOPE\n");
             delete map;
         }
     }
@@ -119,19 +130,56 @@ void loadTextureMap(aiMaterial *material, aiTextureType textureType, std::map<ai
     }
 }
 
+void loadTexturesAndMeshIndices(aiScene const * scene)
+{
+    for (unsigned meshIndex = 0; meshIndex < scene->mNumMeshes; meshIndex++)
+    {
+        aiMesh *mesh = scene->mMeshes[meshIndex];
+        
+        // Load index buffers
+        // Set up the index buffer.  Each face should have 3 vertices since we
+        // specified aiProcess_Triangulate
+        std::vector<unsigned> *indexBuffer = new std::vector<unsigned>();
+        indexBuffer->reserve(mesh->mNumFaces * 3);
+        for (unsigned i = 0; i < mesh->mNumFaces; i++) {
+            for (unsigned j = 0; j < mesh->mFaces[i].mNumIndices; j++) {
+                indexBuffer->push_back(mesh->mFaces[i].mIndices[j]);
+            }
+        }
+        indexBuffers.insert(std::pair<aiMesh *, std::vector<unsigned>*>(mesh, indexBuffer));
+        
+        // Load textures
+        aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+        loadTextureMap(material, &diffuseMaps, 'd');
+        loadTextureMap(material, &specularMaps, 's');
+        loadTextureMap(material, &normalMaps, 'n');
+    }
+}
+
 void loadAssets() {
     // Read in an asset file, and do some post-processing.  There is much 
     // more you can do with this asset loader, including load textures.
     // More info is here:
     // http://assimp.sourceforge.net/lib_html/usage.html
-    scene = importer.ReadFile(MODEL_PATH,  
+    cathedralScene = cathedralImporter.ReadFile(CATHEDRAL_MODEL_PATH,  
         aiProcess_CalcTangentSpace |
         aiProcess_Triangulate |
         aiProcess_JoinIdenticalVertices |
         aiProcessPreset_TargetRealtime_Quality);
 
-    if (!scene || scene->mNumMeshes <= 0) {
-        std::cerr << importer.GetErrorString() << std::endl;
+    if (!cathedralScene || cathedralScene->mNumMeshes <= 0) {
+        std::cerr << cathedralImporter.GetErrorString() << std::endl;
+        exit(-1);
+    }
+    
+    armadilloScene = armadilloImporter.ReadFile(ARMADILLO_MODEL_PATH,  
+                                       aiProcess_CalcTangentSpace |
+                                       aiProcess_Triangulate |
+                                       aiProcess_JoinIdenticalVertices |
+                                       aiProcessPreset_TargetRealtime_Quality);
+    
+    if (!armadilloScene || armadilloScene->mNumMeshes <= 0) {
+        std::cerr << armadilloImporter.GetErrorString() << std::endl;
         exit(-1);
     }
         
@@ -147,28 +195,8 @@ void loadAssets() {
 		exit(-1);
 	}
     
-    for (unsigned i = 0; i < scene->mNumMeshes; i++)
-    {
-        aiMesh *mesh = scene->mMeshes[i];
-     
-        // Load index buffers
-        // Set up the index buffer.  Each face should have 3 vertices since we
-        // specified aiProcess_Triangulate
-        std::vector<unsigned> *indexBuffer = new std::vector<unsigned>();
-        indexBuffer->reserve(mesh->mNumFaces * 3);
-        for (unsigned i = 0; i < mesh->mNumFaces; i++) {
-            for (unsigned j = 0; j < mesh->mFaces[i].mNumIndices; j++) {
-                indexBuffer->push_back(mesh->mFaces[i].mIndices[j]);
-            }
-        }
-        indexBuffers.insert(std::pair<aiMesh *, std::vector<unsigned>*>(mesh, indexBuffer));
-        
-        // Load textures
-        aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
-        loadTextureMap(material, aiTextureType_DIFFUSE, &diffuseMaps, 'd');
-        loadTextureMap(material, aiTextureType_SPECULAR, &specularMaps, 's');
-        loadTextureMap(material, aiTextureType_NORMALS, &normalMaps, 'n');
-    }
+    loadTexturesAndMeshIndices(cathedralScene);
+    loadTexturesAndMeshIndices(armadilloScene);
     
     whiteImage = sf::Image(1, 1, sf::Color::White);
 }
@@ -263,6 +291,23 @@ float deg_to_rad(float angle)
     return M_PI * (angle / 180.0);
 }
 
+
+void transNode(aiScene const *scene, aiNode const *node)
+{
+    if ( node == NULL ) return;
+    aiMatrix4x4 m = node->mTransformation;
+    
+    float mat[16] = {m.a1,m.b1,m.c1,m.d1,m.a2,m.b2,m.c2,m.d2,m.a3,
+        m.b3,m.c3,m.d3,m.a4,m.b4,m.c4,m.d4};
+    
+    glMultMatrixf(mat);
+    
+    for (int i = 0; i < (int)node->mNumChildren; i++) 
+    {
+        transNode(scene, node->mChildren[i]);
+    }
+}
+
 void setMatrices() {
     // Set up the projection and model-view matrices
     GLfloat aspectRatio = (GLfloat)window.GetWidth()/window.GetHeight();
@@ -277,12 +322,19 @@ void setMatrices() {
     glLoadIdentity();
     gluLookAt(0.0, 0.0, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f);
     
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix(); // set the light in the scene correctly
+    transNode(cathedralScene, cathedralScene->mRootNode);
+    GLfloat light0_position[] = { 0, 11, 0, 0 };
+    glLightfv( GL_LIGHT0, GL_POSITION, light0_position );
+    glPopMatrix();
+    
     glRotatef(rad_to_deg(pitch), 1.0, 0.0, 0.0);
     glRotatef(rad_to_deg(yaw), 0.0, 1.0, 0.0);
     glTranslatef(position.x, position.y, position.z);
 }
 
-void setMaterial(aiMesh *mesh) {
+void setMaterial(aiScene const * scene, aiMesh *mesh) {
     aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
     aiColor3D color;
     
@@ -309,13 +361,13 @@ void setMaterial(aiMesh *mesh) {
     if (AI_SUCCESS == material->Get(AI_MATKEY_SHININESS, value)) {
         glUniform1f(shininess, value);
     } else {
-        glUniform1f(shininess, 1);
+        glUniform1f(shininess, 20);
     }
 }
 
-sf::Image *getTextureMap(aiMesh const * inMesh, std::map<aiMaterial *, sf::Image *> *textureMapMap)
+sf::Image *getTextureMap(aiScene const * scene, aiMesh const * mesh, std::map<aiMaterial *, sf::Image *> *textureMapMap)
 {
-    aiMaterial* material = scene->mMaterials[inMesh->mMaterialIndex];
+    aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 
     aiString materialName;
     material->Get(AI_MATKEY_NAME, materialName);
@@ -331,14 +383,14 @@ sf::Image *getTextureMap(aiMesh const * inMesh, std::map<aiMaterial *, sf::Image
     }
 }
 
-void setTextures(aiMesh *mesh) {
+void setTextures(aiScene const * scene, aiMesh const * mesh) {
     // Get a "handle" to the texture variables inside our shader.  Then 
     // pass two textures to the shader: one for diffuse, and the other for
     // transparency.
     GLint diffuse = glGetUniformLocation(shader->programID(), "diffuseMap");
     glUniform1i(diffuse, 0); // The diffuse map will be GL_TEXTURE0
     glActiveTexture(GL_TEXTURE0);
-    sf::Image *diffuseMap = getTextureMap(mesh, &diffuseMaps);
+    sf::Image *diffuseMap = getTextureMap(scene, mesh, &diffuseMaps);
     diffuseMap->Bind();
     glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
     glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
@@ -347,7 +399,7 @@ void setTextures(aiMesh *mesh) {
     GLint specular = glGetUniformLocation(shader->programID(), "specularMap");
     glUniform1i(specular, 1); // The transparency map will be GL_TEXTURE1
     glActiveTexture(GL_TEXTURE1);
-    sf::Image *specularMap = getTextureMap(mesh, &specularMaps);
+    sf::Image *specularMap = getTextureMap(scene, mesh, &specularMaps);
     specularMap->Bind();
     glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
     glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
@@ -370,7 +422,7 @@ void setMeshData(aiMesh *mesh) {
     glVertexAttribPointer(normal, 3, GL_FLOAT, 0, sizeof(aiVector3D), mesh->mNormals);
 }
 
-void renderNode(aiNode *node)
+void renderNode(aiScene const * scene, aiNode *node)
 {
     glMatrixMode(GL_MODELVIEW);
     
@@ -387,8 +439,8 @@ void renderNode(aiNode *node)
         if (mesh->mPrimitiveTypes != aiPrimitiveType_TRIANGLE)
             continue;
         
-        setMaterial(mesh);
-        setTextures(mesh);
+        setMaterial(scene, mesh);
+        setTextures(scene, mesh);
         setMeshData(mesh);
         
         // Draw the mesh
@@ -404,7 +456,7 @@ void renderNode(aiNode *node)
     for (int i = 0; i < node->mNumChildren; i++)
     {
         aiNode *childNode = node->mChildren[i];
-        renderNode(childNode);
+        renderNode(scene, childNode);
     }
     
     glMatrixMode(GL_MODELVIEW);
@@ -415,7 +467,7 @@ void move()
 {
     // TODO: This has the classic "diagonal movement is faster" bug
     // TODO: It also has the classic "movement speed is dependent on framerate" bug
-    static float speed = 0.2;
+    static float speed = 0.1;
     float rad_pitch_WHY = pitch + M_PI / 2.0;
     float rad_yaw = yaw;
     
@@ -457,10 +509,11 @@ void renderFrame() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glUseProgram(shader->programID());
-    
+
     setMatrices();
-    
+
     move();
     
-    renderNode(scene->mRootNode);
+    renderNode(cathedralScene, cathedralScene->mRootNode);
+    renderNode(armadilloScene, armadilloScene->mRootNode);
 }
