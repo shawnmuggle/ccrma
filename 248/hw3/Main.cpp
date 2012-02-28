@@ -80,8 +80,9 @@ void initOpenGL() {
     glEnable(GL_DEPTH_TEST);
     glViewport(0, 0, window.GetWidth(), window.GetHeight());
     
-    position = aiVector3D(40.0, -5.0, 0.0);
+    position = aiVector3D(35.0, -20.0, 0.0);
     yaw = M_PI * 3 / 2.0;
+    pitch = -M_PI / 7;
     
     GLfloat light0_ambient[] = { 245/2550.0, 222/2550.0, 179/2550.0, 1 };
     GLfloat light0_diffuse[] = { 245/255.0, 232/255.0, 199/255.0, 1 };
@@ -403,6 +404,15 @@ void setTextures(aiScene const * scene, aiMesh const * mesh) {
     specularMap->Bind();
     glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
     glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
+
+    // Transparency
+    GLint normal = glGetUniformLocation(shader->programID(), "normalMap");
+    glUniform1i(normal, 2); // The transparency map will be GL_TEXTURE2
+    glActiveTexture(GL_TEXTURE2);
+    sf::Image *normalMap = getTextureMap(scene, mesh, &normalMaps);
+    normalMap->Bind();
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
 }
 
 void setMeshData(aiMesh *mesh) {
@@ -420,10 +430,15 @@ void setMeshData(aiMesh *mesh) {
     GLint normal = glGetAttribLocation(shader->programID(), "normalIn");
     glEnableVertexAttribArray(normal);
     glVertexAttribPointer(normal, 3, GL_FLOAT, 0, sizeof(aiVector3D), mesh->mNormals);
+    
+    // Tangents
+    GLint tangent = glGetAttribLocation(shader->programID(), "tangentIn");
+    glEnableVertexAttribArray(tangent);
+    glVertexAttribPointer(tangent, 3, GL_FLOAT, 0, sizeof(aiVector3D), mesh->mTangents);
 }
 
-void renderNode(aiScene const * scene, aiNode *node)
-{
+void renderNode(aiScene const * scene, aiNode *node, bool doTexture)
+{    
     glMatrixMode(GL_MODELVIEW);
     
     glPushMatrix();
@@ -440,7 +455,8 @@ void renderNode(aiScene const * scene, aiNode *node)
             continue;
         
         setMaterial(scene, mesh);
-        setTextures(scene, mesh);
+        if (doTexture)
+            setTextures(scene, mesh);
         setMeshData(mesh);
         
         // Draw the mesh
@@ -456,7 +472,7 @@ void renderNode(aiScene const * scene, aiNode *node)
     for (int i = 0; i < node->mNumChildren; i++)
     {
         aiNode *childNode = node->mChildren[i];
-        renderNode(scene, childNode);
+        renderNode(scene, childNode, doTexture);
     }
     
     glMatrixMode(GL_MODELVIEW);
@@ -514,6 +530,6 @@ void renderFrame() {
 
     move();
     
-    renderNode(cathedralScene, cathedralScene->mRootNode);
-    renderNode(armadilloScene, armadilloScene->mRootNode);
+    renderNode(cathedralScene, cathedralScene->mRootNode, true);
+    renderNode(armadilloScene, armadilloScene->mRootNode, false);
 }

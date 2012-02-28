@@ -3,6 +3,7 @@
 // for all fragments in an object, but they can change in between objects.
 uniform sampler2D diffuseMap;
 uniform sampler2D specularMap;
+uniform sampler2D normalMap;
 
 // Diffuse, ambient, and specular materials.  These are also uniform.
 uniform vec3 Kd;
@@ -16,13 +17,24 @@ uniform float alpha;
 varying vec2 texcoord;
 varying vec3 normal;
 varying vec3 eyePosition;
+varying vec3 tangent;
+varying vec3 bitangent;
 
 void main() {
 
+    vec3 mapNormal = texture2D(normalMap, texcoord).rgb;
+    mapNormal = mapNormal * 2.0 - 1.0;
+    mat3 tbn;
+    tbn[0] = tangent;
+    tbn[1] = bitangent;
+    tbn[2] = normalize(normal);
+    
+    vec3 transformedNormal = tbn * mapNormal;
+    
 	// Normalize the normal, and calculate light vector and view vector
 	// Note: this is doing a directional light, which is a little different
 	// from what you did in Assignment 2.
-	vec3 N = normalize(normal);
+	vec3 N = normalize(transformedNormal);
 	vec3 L = normalize(gl_LightSource[0].position.xyz);
 	vec3 V = normalize(-eyePosition);
 		
