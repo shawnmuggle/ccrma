@@ -539,14 +539,14 @@ void setTextures(Shader *shader, aiScene const * scene, aiMesh const * mesh) {
     if (shader == envMapShader)
     {
         GLint env = glGetUniformLocation(shader->programID(), "cubeMap");
-        glUniform1i(env, 4); // The env map will be GL_TEXTURE4
+        glUniform1i(env, 4); // The env map will be GL_TEXTURE3
         glActiveTexture(GL_TEXTURE4);
         glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapTextureID);
         glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP);
-        glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP);
-        glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP);
+        glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
     }
     else if (shader == phongShader)
     {
@@ -754,8 +754,7 @@ void renderNode(Shader *shader, aiScene const * scene, aiNode *node, bool doShad
     glPopMatrix();
 }
 
-//#define CUBE_MAP_SIZE RENDER_HEIGHT
-#define CUBE_MAP_SIZE 256
+#define CUBE_MAP_SIZE RENDER_HEIGHT
 #include <sstream>
 void generateCubeMap()
 {
@@ -769,12 +768,10 @@ void generateCubeMap()
     glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapTextureID);    
     glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP);
-    glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP);
-    glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP);
-
+    glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
     for (uint face = 0; face < 6; face++) {
-    
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         // Set up the projection and model-view matrices
@@ -851,23 +848,6 @@ void generateCubeMap()
         glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, 0, GL_RGBA,
                      CUBE_MAP_SIZE, CUBE_MAP_SIZE, 0, GL_RGBA, GL_FLOAT, NULL);
         glCopyTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, 0, 0, 0, 0, 0, CUBE_MAP_SIZE, CUBE_MAP_SIZE);
-        
-        // for rendering to image (debugging)
-        sf::Uint8 *pixelArray = new sf::Uint8[CUBE_MAP_SIZE*CUBE_MAP_SIZE*4];
-        
-        // use ONE of the two following lines:
-        // This line will copy images from the framebuffer
-//        glReadPixels(0, 0, CUBE_MAP_SIZE, CUBE_MAP_SIZE, GL_RGBA, GL_UNSIGNED_BYTE, pixelArray);
-        
-        // This line will copy images stored in the currently bound texture
-        glGetTexImage(GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelArray);
-        
-        // FOR SAVING TO FILE
-        std::ostringstream out;
-        out << "/Users/mrotondo/Pictures/cubemap/" << face << ".jpg";
-        sf::Image img(CUBE_MAP_SIZE, CUBE_MAP_SIZE, sf::Color::White);
-        img.LoadFromPixels(CUBE_MAP_SIZE, CUBE_MAP_SIZE, pixelArray);
-        img.SaveToFile(out.str());
     }
     
     glUniform1i(drawShadows, 1);

@@ -1,0 +1,11 @@
+Mike Rotondo
+mrotondo
+OS X 64-bit
+
+I implemented shadow mapping, normal mapping, and most of environment mapping. My textures are so mip-mapped.
+
+My shadow mapping does not use pcf to smooth the shadows, I couldn't get it working in time.
+
+My environment mapping seems to work EXCEPT that it won't load my cube map into the shader, so all that shows up are occasional colored rectangles on the sphere. If you see what I'm doing wrong here, I'd really love to know.
+
+I helped and was helped by Hunter McCurry, and was helped by Nick Kruge who took 248 last year.

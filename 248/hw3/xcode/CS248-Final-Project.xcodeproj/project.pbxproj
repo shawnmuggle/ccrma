@@ -26,6 +26,8 @@
 		C9EA905A12EE7B1B0002670E /* sfml-system.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = C9EA8FDB12EE79EB0002670E /* sfml-system.framework */; };
 		C9EA905B12EE7B1B0002670E /* sfml-window.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = C9EA8FDC12EE79EB0002670E /* sfml-window.framework */; };
 		C9EA905C12EE7B1B0002670E /* SFML.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = C9EA8FDD12EE79EB0002670E /* SFML.framework */; };
+		D557E51014FDF75A00D0186A /* envmap.frag.glsl in Copy Shaders */ = {isa = PBXBuildFile; fileRef = D557E50C14FDED8E00D0186A /* envmap.frag.glsl */; };
+		D557E51114FDF75A00D0186A /* envmap.vert.glsl in Copy Shaders */ = {isa = PBXBuildFile; fileRef = D557E50D14FDED8E00D0186A /* envmap.vert.glsl */; };
 		D59522DC14FB321600401581 /* armadillo.3ds in Copy Models */ = {isa = PBXBuildFile; fileRef = D595229A14FB319C00401581 /* armadillo.3ds */; };
 		D59522DD14FB321600401581 /* armadillo.blend in Copy Models */ = {isa = PBXBuildFile; fileRef = D595229B14FB319C00401581 /* armadillo.blend */; };
 		D59522DE14FB321600401581 /* armadillo.blend1 in Copy Models */ = {isa = PBXBuildFile; fileRef = D595229C14FB319C00401581 /* armadillo.blend1 */; };
@@ -82,6 +84,8 @@
 			dstPath = shaders;
 			dstSubfolderSpec = 7;
 			files = (
+				D557E51014FDF75A00D0186A /* envmap.frag.glsl in Copy Shaders */,
+				D557E51114FDF75A00D0186A /* envmap.vert.glsl in Copy Shaders */,
 				D5B777A214FCD7F700D1C2CF /* simple.frag.glsl in Copy Shaders */,
 				D5B777A314FCD7F700D1C2CF /* simple.vert.glsl in Copy Shaders */,
 				C98951FB12EF808800B97901 /* phong.frag.glsl in Copy Shaders */,
@@ -170,6 +174,8 @@
 		C9EA8FDB12EE79EB0002670E /* sfml-system.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "sfml-system.framework"; sourceTree = "<group>"; };
 		C9EA8FDC12EE79EB0002670E /* sfml-window.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "sfml-window.framework"; sourceTree = "<group>"; };
 		C9EA8FDD12EE79EB0002670E /* SFML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SFML.framework; sourceTree = "<group>"; };
+		D557E50C14FDED8E00D0186A /* envmap.frag.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = envmap.frag.glsl; path = ../shaders/envmap.frag.glsl; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		D557E50D14FDED8E00D0186A /* envmap.vert.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = envmap.vert.glsl; path = ../shaders/envmap.vert.glsl; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		D595229A14FB319C00401581 /* armadillo.3ds */ = {isa = PBXFileReference; lastKnownFileType = file; path = armadillo.3ds; sourceTree = "<group>"; };
 		D595229B14FB319C00401581 /* armadillo.blend */ = {isa = PBXFileReference; lastKnownFileType = file; path = armadillo.blend; sourceTree = "<group>"; };
 		D595229C14FB319C00401581 /* armadillo.blend1 */ = {isa = PBXFileReference; lastKnownFileType = file; path = armadillo.blend1; sourceTree = "<group>"; };
@@ -276,6 +282,8 @@
 				C98951C012EF7BFA00B97901 /* phong.vert.glsl */,
 				D5B7779F14FCD7E700D1C2CF /* simple.frag.glsl */,
 				D5B777A014FCD7E700D1C2CF /* simple.vert.glsl */,
+				D557E50C14FDED8E00D0186A /* envmap.frag.glsl */,
+				D557E50D14FDED8E00D0186A /* envmap.vert.glsl */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
