@@ -22,6 +22,8 @@ varying vec3 tangent;
 varying vec3 bitangent;
 varying vec4 shadowCoords;
 
+float pi = 3.14159;
+
 vec4 pointLight(int lightId)
 {
     vec3 mapNormal = texture2D(normalMap, texcoord).rgb;
@@ -90,6 +92,45 @@ vec4 directionalLight(int lightId)
     return vec4(diffuse + specular + ambient, 1);
 }
 
+// TODO: FIXME
+// not working, moving on... :'(
+float pcfShadow(vec4 shadowCoord)
+{
+    // divide the shadow coordinate by w
+    vec4 tempShadow = shadowCoord / shadowCoord.w;
+    
+    // offset the shadow coordinate to avoid bad stuff
+    tempShadow.z -= 0.00005;
+    
+    float d;
+    
+    int x = int(tempShadow.x);
+    int y = int(tempShadow.y);
+    
+    for (int i = -1; i <= 1; i++)
+    {
+        for (int j = -1; j <= 1; j++)
+        {
+            vec2 coord = vec2(x+i, y+j);
+            float dist = length(coord - tempShadow.xy);
+//            float sigma = sqrt((pow(9.0, 2.0) - 1.0) / 12.0);
+//            float amount = (1.0 / (sqrt(2.0 * pi) * sigma)) * exp(-pow(dist, 2.0) / (2.0 * pow(sigma, 2.0)));
+            float amount = 1.0 / 9.0;
+            float value = amount * texture2D(shadowMap, coord).z;
+            d += value;
+        }
+    }
+    
+    // shadow will not affect the output by default
+    float shadow = 1.0;
+    // however, if the w value is less than zero and the depth is less
+    // than shadow.z, it will 
+    if (shadowCoord.w > 0.0 && d < tempShadow.z)
+        shadow = 0.5;
+    
+    return shadow;
+}
+
 void main() {
     vec4 directionalLightColor = directionalLight(0);
     vec4 pointLightColor = pointLight(1);
@@ -112,7 +153,9 @@ void main() {
     if (shadowCoords.w > 0.0 && d < tempShadow.z)
         shadow = 0.5;
     
+//    float shadow = pcfShadow(shadowCoords);
+    
 	// This actually writes to the frame buffer
 	gl_FragColor = directionalLightColor * shadow + pointLightColor;
-//    gl_FragColor = vec4(d, 0.0, 0.0, 1.0);
+//    gl_FragColor = vec4(shadow, 0.0, 0.0, 1.0);
 }
