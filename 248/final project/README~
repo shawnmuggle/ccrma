@@ -1,0 +1,11 @@
+Mike Rotondo
+mrotondo
+
+This project is a work-in-progress exhibit that I'm working on with my partner Luke Iannini (not a Stanford student) for the Children's Creativity Museum in San Francisco. The exhibit will involve a number of iPads being used by kids at the museum to draw virtual creatures that "live" in a world projected onto the walls of the room where the exhibit will be.
+
+Luke worked on the networking and audio, and I've done all the graphics and interaction so far. I'm not including all our dependencies because the total project is around 150 MB right now, but I'll list everything here:
+
+Our third party dependencies:
+- SuperCollider for audio synthesis
+- Box2D for physics
+- Redis for network persistence (not shown in demo)

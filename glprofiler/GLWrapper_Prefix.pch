@@ -1,0 +1,17 @@
+/*
+ *  GLWrapper_Prefix.pch
+ *  GLProfiler
+ *
+ *  Created by handley on 7/26/10.
+ *  Copyright 2010 __MyCompanyName__. All rights reserved.
+ *
+ */
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+    #import <Cocoa/Cocoa.h>
+#endif
+
+#include <stdint.h>
+#define EXPORT __attribute__((visibility("default")))

@@ -3,8 +3,8 @@
 #include "DepthRenderTarget.h"
 
 #define CATHEDRAL_MODEL_PATH "models/cathedral.3ds"
-#define ARMADILLO_MODEL_PATH "models/armadillo.3ds"
-//#define ARMADILLO_MODEL_PATH "models/sphere.3ds"
+//#define ARMADILLO_MODEL_PATH "models/armadillo.3ds"
+#define ARMADILLO_MODEL_PATH "models/sphere.3ds"
 
 #define RENDER_WIDTH 800
 #define RENDER_HEIGHT 600
@@ -911,7 +911,7 @@ void renderFrame() {
     renderNode(phongShader, cathedralScene, cathedralScene->mRootNode, true);
 
     // Render the armadillo using the environment map shader.
-    glUseProgram(envMapShader->programID());
+    glUseProgram(envMapShader->programID());    
     setMatrices();
     renderNode(envMapShader, armadilloScene, armadilloScene->mRootNode, true);
     

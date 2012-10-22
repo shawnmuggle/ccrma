@@ -1,0 +1,20 @@
+Mike Rotondo
+mrotondo
+
+This project is a work-in-progress exhibit that I'm working on with my partner Luke Iannini (not a Stanford student) for the Children's Creativity Museum in San Francisco. The exhibit will involve a number of iPads being used by kids at the museum to draw virtual creatures that "live" in a world projected onto the walls of the room where the exhibit will be.
+
+Luke worked on the networking and audio, and I've done all the graphics and interaction so far. I'm not including all our dependencies because the total project is around 150 MB right now, but I'll list everything here:
+
+Our third party dependencies:
+- SuperCollider for audio synthesis
+- Box2D for physics
+- Redis for persistence (not shown in demo)
+
+What I did:
+
+- Procedurally generated terrain with bezier interpolation
+- Procedurally generated normal maps for the terrain
+- Phong shading with a day/night cycle with dynamic lighting
+- Joint-based physically-simulated creatures are drawn freehand. The creatures move around dynamically (and spaz out, and explode)
+
+This has been a strange project because of the large amount of work that we've had to do for the exhibit that fell outside the realm of 3d graphics, so it's definitely not as graphically impressive as I'd like it to be.
